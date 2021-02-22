@@ -38,14 +38,11 @@ public class AudioSync : RealtimeComponent<AudioSyncModel> {
     private void UpdateAudioSource() {
         if(model.playAudio) _audioSource.Play();
         print(_audioSource.isPlaying);
-        // if(model.playAudio) _audioSource.Play();
-        // else _audioSource.Stop();
     }
     
     public void SetAudio(bool play) {
         // Set the color on the model
         // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
         model.playAudio = play;
-        // print(play);
     }
 }

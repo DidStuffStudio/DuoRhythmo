@@ -16,9 +16,14 @@ public class AudioSyncTest : MonoBehaviour {
 
     private void Update() {
         // If the color has changed (via the inspector), call SetColor on the color sync component.
-        if (_playAudio != _previousPlayAudio) {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _playAudio = true;
             _colorSync.SetAudio(_playAudio);
-            _previousPlayAudio = _playAudio;
+        }
+        else if (_playAudio) {
+            _playAudio = false;
+            _colorSync.SetAudio(_playAudio);
         }
     }
 }

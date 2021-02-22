@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Normal.Realtime;
 using UnityEngine;
 
 public class DrumKitManager : MonoBehaviour
@@ -8,14 +9,16 @@ public class DrumKitManager : MonoBehaviour
     private bool _previousPlayAudio = default;
 
     public SnareSync _snareSync,_bassSync, _highHatSync;
-    
-    
+
+    public GameObject snarePrefab;
     private void Update() {
         // If the color has changed (via the inspector), call SetColor on the color sync component.
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             _playAudio = true;
             _snareSync.SetAudio(_playAudio);
+            //Instantiate AudioSource
+            var snare = Realtime.Instantiate(snarePrefab.name);
         }
         else if (_playAudio) {
             _playAudio = false;

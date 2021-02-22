@@ -5,7 +5,7 @@ using UnityEngine;
 using Normal.Realtime;
 using UnityEngine.PlayerLoop;
 
-public class AudioSync : MonoBehaviour {
+public class AudioSync : RealtimeComponent<AudioSyncModel> {
     [SerializeField] private AudioSource _audioSource;
     private void Awake() {
         _audioSource = GetComponent<AudioSource>();
@@ -23,7 +23,7 @@ public class AudioSync : MonoBehaviour {
                 currentModel.playAudio = _audioSource.isPlaying;
         
             // Update the mesh render to match the new model
-            UpdateAudioSource(currentModel);
+            UpdateAudioSource();
 
             // Register for events so we'll know if the color changes later
             currentModel.playAudioDidChange += AudioDidChange;
@@ -32,16 +32,19 @@ public class AudioSync : MonoBehaviour {
     
     private void AudioDidChange(AudioSyncModel model, bool b) {
         // Update the mesh renderer
-        UpdateAudioSource(model);
+        UpdateAudioSource();
     }
     
-    private void UpdateAudioSource(AudioSyncModel model) {
-        if(model.playAudio) _audioSource.Play();
+    private void UpdateAudioSource() {
+        _audioSource.Play();
+        // if(model.playAudio) _audioSource.Play();
+        // else _audioSource.Stop();
     }
     
-    public void SetAudio(AudioSyncModel model, bool play) {
+    public void SetAudio(bool play) {
         // Set the color on the model
         // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
         model.playAudio = play;
+        print(play);
     }
 }

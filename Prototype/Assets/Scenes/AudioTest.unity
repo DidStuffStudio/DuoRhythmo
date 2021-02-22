@@ -366,7 +366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &499962454
 AudioSource:
   m_ObjectHideFlags: 0
@@ -486,10 +486,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 499962453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f68349e8b7ed9e409a6013b8a2a0348, type: 3}
+  m_Script: {fileID: 11500000, guid: 92ddbea067c24932b926b5669576042a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 0, g: 0, b: 0, a: 0}
+  _playAudio: 0
 --- !u!114 &499962457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,9 +499,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 499962453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1084f0eeacdd0cb45b704198f9fec677, type: 3}
+  m_Script: {fileID: 11500000, guid: f8cf59fc9d1ab436f88578dbff8ff756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 0}
 --- !u!114 &499962458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,9 +515,9 @@ MonoBehaviour:
   m_Script: {fileID: -363599832, guid: ebae63e7edba59945a994528ada1f7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _realtime: {fileID: 499962459}
+  _realtime: {fileID: 0}
   _sceneViewUUID: 
-  _viewUUID: 23725ded-cd8d-4573-aea9-def27cc716f3
+  _viewUUID: dc280dff-dc0c-42d1-9808-c2cc4fece947
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
   _isRootPrefabView: 0

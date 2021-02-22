@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: -363599832, guid: ebae63e7edba59945a994528ada1f7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _realtime: {fileID: 0}
+  _realtime: {fileID: 499962459}
   _sceneViewUUID: 
   _viewUUID: dc280dff-dc0c-42d1-9808-c2cc4fece947
   _sceneViewPreventOwnershipTakeover: 0
@@ -968,7 +968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1801543559
 Transform:
   m_ObjectHideFlags: 0
@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_Script: {fileID: -363599832, guid: ebae63e7edba59945a994528ada1f7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _realtime: {fileID: 0}
+  _realtime: {fileID: 499962459}
   _sceneViewUUID: 
   _viewUUID: 64b92444-df50-42dd-b8a3-4018afcd2bf7
   _sceneViewPreventOwnershipTakeover: 0

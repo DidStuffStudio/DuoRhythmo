@@ -11,7 +11,7 @@ public class AudioSync : RealtimeComponent<AudioSyncModel> {
         _audioSource = GetComponent<AudioSource>();
     }
 
-    protected void OnRealtimeModelReplaced(AudioSyncModel previousModel, AudioSyncModel currentModel) {
+    protected override void OnRealtimeModelReplaced(AudioSyncModel previousModel, AudioSyncModel currentModel) {
         if (previousModel != null) {
             // Unregister from events
             previousModel.playAudioDidChange -= AudioDidChange;
@@ -36,7 +36,8 @@ public class AudioSync : RealtimeComponent<AudioSyncModel> {
     }
     
     private void UpdateAudioSource() {
-        _audioSource.Play();
+        if(model.playAudio) _audioSource.Play();
+        print(_audioSource.isPlaying);
         // if(model.playAudio) _audioSource.Play();
         // else _audioSource.Stop();
     }
@@ -45,6 +46,6 @@ public class AudioSync : RealtimeComponent<AudioSyncModel> {
         // Set the color on the model
         // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
         model.playAudio = play;
-        print(play);
+        // print(play);
     }
 }

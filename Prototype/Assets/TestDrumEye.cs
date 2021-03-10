@@ -6,18 +6,19 @@ using UnityEngine;
 
 public class TestDrumEye : MonoBehaviour
 {
-    private GazeAware gazeAware;
     public DrumKitManager drumKit;
     private bool canPlay = true;
+    public bool play = false;
     public float bpm;
     private void Start()
     {
-        gazeAware = GetComponent<GazeAware>();
+        drumKit = Transform.FindObjectOfType<DrumKitManager>();
+        
     }
 
     private void Update()
     {
-        if (!gazeAware.HasGazeFocus || !canPlay) return;
+        if (!play || !canPlay) return;
         drumKit.kick = true;
         canPlay = false;
         StartCoroutine(WaitBro());
@@ -25,6 +26,7 @@ public class TestDrumEye : MonoBehaviour
 
     IEnumerator WaitBro()
     {
+        play = false;
         yield return new WaitForSeconds(bpm);
         canPlay = true;
     }

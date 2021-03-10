@@ -55,4 +55,9 @@ public class DrumKitManager : MonoBehaviour {
             hiHat = false;
         }
     }
+
+    public void enableKick()
+    {
+        kick = true;
+    }
 }

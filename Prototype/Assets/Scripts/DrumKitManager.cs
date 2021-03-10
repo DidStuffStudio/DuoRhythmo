@@ -11,40 +11,48 @@ public class DrumKitManager : MonoBehaviour {
     public SnareSync _snareSync,_bassSync, _highHatSync;
 
     public GameObject snarePrefab, bassPrefab, highHatPrefab;
+
+    public bool snare, kick, hiHat;
     private void Update() {
         // If the color has changed (via the inspector), call SetColor on the color sync component.
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) || snare)
         {
             _playAudio = true;
             // _snareSync.SetAudio(_playAudio);
             //Instantiate AudioSource
-            Realtime.Instantiate(snarePrefab.name);
+            Realtime.Instantiate(snarePrefab.name, true);
+            snare = false;
         }
         else if (_playAudio) {
             _playAudio = false;
             // _snareSync.SetAudio(_playAudio);
+            snare = false;
         }
         
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) || kick)
         {
             _playAudio = true;
             // _bassSync.SetAudio(_playAudio);
-            Realtime.Instantiate(bassPrefab.name);
+            Realtime.Instantiate(bassPrefab.name, true);
+            kick = false;
         }
         else if (_playAudio) {
             _playAudio = false;
             // _bassSync.SetAudio(_playAudio);
+            kick = false;
         }
         
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3) || hiHat)
         {
             _playAudio = true;
             // _highHatSync.SetAudio(_playAudio);
-            Realtime.Instantiate(highHatPrefab.name);
+            Realtime.Instantiate(highHatPrefab.name, true);
+            hiHat = false;
         }
         else if (_playAudio) {
             _playAudio = false;
             // _highHatSync.SetAudio(_playAudio);
+            hiHat = false;
         }
     }
 }

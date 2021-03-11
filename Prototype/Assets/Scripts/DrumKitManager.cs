@@ -14,6 +14,7 @@ public class DrumKitManager : MonoBehaviour {
 
     public bool snare, kick, hiHat;
     private void Update() {
+        
         // If the color has changed (via the inspector), call SetColor on the color sync component.
         if (Input.GetKeyDown(KeyCode.Alpha2) || snare)
         {

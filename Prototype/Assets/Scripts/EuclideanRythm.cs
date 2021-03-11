@@ -34,7 +34,6 @@ public class EuclideanRythm : MonoBehaviour {
 
         var bucket = 0; //out variable to add pulses together for each step
 
-        //fill array with rhythm
         for (int i = 0; i < steps; i++) {
             bucket += pulses;
             if (bucket >= steps) {
@@ -76,23 +75,5 @@ public class EuclideanRythm : MonoBehaviour {
     private bool IsCurrentBeatPulse(int currentBeat) {
         var curStep = currentBeat % totalSteps; // wraps beat around if it is higher than the number of steps
         return _storedRhythm[curStep] == 1;
-    }
-
-
-    public int GCDRecursive(int a, int b) {
-        if (a == 0) return b;
-        if (b == 0) return a;
-        if (a > b) return GCDRecursive(a % b, b);
-        else return GCDRecursive(a, b % a);
-    }
-
-    public int GCDNonRecursive(int a, int b) {
-        while (a != 0 && b != 0) {
-            if (a > b) a %= b;
-            else b %= a;
-        }
-
-        if (a == 0) return b;
-        else return a;
     }
 }

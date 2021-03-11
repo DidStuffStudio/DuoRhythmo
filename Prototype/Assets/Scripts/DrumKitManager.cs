@@ -34,7 +34,7 @@ public class DrumKitManager : MonoBehaviour {
         {
             _playAudio = true;
             // _bassSync.SetAudio(_playAudio);
-            Realtime.Instantiate(bassPrefab.name, true);
+            Instantiate(bassPrefab);
             kick = false;
         }
         else if (_playAudio) {

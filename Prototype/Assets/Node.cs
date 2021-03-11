@@ -45,6 +45,7 @@ public class Node : MonoBehaviour {
     public void Play() {
         if (!activated) return;
         testing.play = true;
+        print("beat played at" +Time.time);
     }
 
     private IEnumerator Window()

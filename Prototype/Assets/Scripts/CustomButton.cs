@@ -7,32 +7,23 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(GazeAware))]
 [RequireComponent(typeof(Image))]
+[RequireComponent(typeof(Collider))]
 public class CustomButton : MonoBehaviour {
     private GazeAware _gazeAware;
     private Image _image;
-
-    private UserInput _userInput;
-    /*
-    struct State {
-        private bool active;
-        private Color color;
-    }
-
-    private State defaultState, hoverState, activeState, hintState;
-    */
-
+    private Collider _collider;
+    
     public bool isDefault, isHover, isActive, isHint, isConfirmationButton;
     [SerializeField] private Color defaultColor, hoverColor, activeColor, hintColor;
 
     public bool mouseOver;
 
     private void Start() {
-        _userInput = FindObjectOfType<UserInput>();
         _gazeAware = GetComponent<GazeAware>();
         _image = GetComponent<Image>();
+        _collider = GetComponent<Collider>();
         SetDefault();
         if (isConfirmationButton) ConfirmActivation(false);
-        
     }
 
     private void Update() {
@@ -50,15 +41,13 @@ public class CustomButton : MonoBehaviour {
         mouseOver = false;
         UnHover();
     }
-
-
-    public void SetActive()
-    {
+    
+    public void SetActive() {
         _image.color = activeColor;
         if (isActive) return;
         isActive = true;
         isDefault = false;
-
+        if (isHint) isHint = false;
     }
 
     private void Hover() {
@@ -67,16 +56,12 @@ public class CustomButton : MonoBehaviour {
         isHover = true;
     }
 
-    private void UnHover()
-    {
+    private void UnHover() {
         if (!isHover) return;
         isHover = false;
         if (isConfirmationButton) SetDefault();
         else if (isDefault) SetDefault();
         else if (isActive) SetActive();
-        {
-            
-        }
     }
 
     public void SetDefault() {
@@ -86,9 +71,13 @@ public class CustomButton : MonoBehaviour {
         isActive = false;
     }
 
-    public void ConfirmActivation(bool enabled)
-    {
-        GetComponent<Collider>().enabled = enabled;
-        GetComponent<Image>().enabled = enabled;
+    public void ConfirmActivation(bool enabled) {
+        _collider.enabled = enabled;
+        _image.enabled = enabled;
+    }
+
+    public void SetHint() {
+        _image.color = hintColor;
+        isHint = true;
     }
 }

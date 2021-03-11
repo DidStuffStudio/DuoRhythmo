@@ -5,8 +5,8 @@ using System.Linq;
 using UnityEngine;
 
 public class EuclideanRythm : MonoBehaviour {
-    [SerializeField] private int pulses = 0; // 
-    [SerializeField] private int totalSteps = 1; // euclidean cycle
+    public int pulses = 3; // 
+    public int totalSteps = 8; // euclidean cycle
 
     private List<int> _storedRhythm = new List<int>();
     private int _rotate;

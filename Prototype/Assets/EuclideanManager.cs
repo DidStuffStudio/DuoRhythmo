@@ -9,10 +9,18 @@ public class EuclideanManager : MonoBehaviour
     public float radius = 3.0f;
     public GameObject nodePrefab;
     private GameObject[] _nodes;
+
+    public float secondsBetweenBeats = 0.25f;
     
     private void Start()
     {
         SpawnNodes();
+        StartCoroutine(PlayNodes());
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void SpawnNodes()
@@ -40,11 +48,22 @@ public class EuclideanManager : MonoBehaviour
             _nodes.SetValue(node, i);
 
         }
-        
-        
-
-        
-
     }
+
+
+
+    public IEnumerator PlayNodes()
+    {
+        while(true){
+            
+        
+        for (int i = 0; i < _nodes.Length; i++)
+        {
+            yield return new WaitForSecondsRealtime(secondsBetweenBeats);
+            _nodes[i].GetComponent<Node>().Play();
+            
+        }
+    }
+}
 
 }

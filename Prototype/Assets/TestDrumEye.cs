@@ -19,6 +19,7 @@ public class TestDrumEye : MonoBehaviour
     private void Update()
     {
         if (!play || !canPlay) return;
+        play = false;
         drumKit.kick = true;
         canPlay = false;
         StartCoroutine(WaitBro());
@@ -26,7 +27,7 @@ public class TestDrumEye : MonoBehaviour
 
     IEnumerator WaitBro()
     {
-        play = false;
+        
         yield return new WaitForSeconds(bpm);
         canPlay = true;
     }

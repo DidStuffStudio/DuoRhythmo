@@ -1359,6 +1359,7 @@ GameObject:
   - component: {fileID: 1143099681}
   - component: {fileID: 1143099683}
   - component: {fileID: 1143099682}
+  - component: {fileID: 1143099684}
   m_Layer: 0
   m_Name: Input Manager
   m_TagString: Untagged
@@ -1448,6 +1449,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1143099684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143099680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99ba4e397fa0eeb499b9737c2bb03086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEyeTracking: 0
 --- !u!1 &1146492087
 GameObject:
   m_ObjectHideFlags: 0

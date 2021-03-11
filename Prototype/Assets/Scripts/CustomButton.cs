@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Tobii.Gaming;
 using Tobii.Gaming.Internal;
 using UnityEngine;
@@ -6,10 +7,11 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(GazeAware))]
 [RequireComponent(typeof(Image))]
-public class CustomButton : MonoBehaviour, IGazeFocusable {
+public class CustomButton : MonoBehaviour {
     private GazeAware _gazeAware;
     private Image _image;
 
+    private UserInput _userInput;
     /*
     struct State {
         private bool active;
@@ -22,15 +24,34 @@ public class CustomButton : MonoBehaviour, IGazeFocusable {
     public bool isDefault, isHover, isActive, isHint, isConfirmationButton;
     [SerializeField] private Color defaultColor, hoverColor, activeColor, hintColor;
 
-    private void Start() {
+    public bool mouseOver;
+    private void Start()
+    {
+        _userInput = FindObjectOfType<UserInput>();
         _gazeAware = GetComponent<GazeAware>();
         _image = GetComponent<Image>();
         SetDefault();
     }
 
-    private void OnMouseOver() => Hover();
+    private void Update()
+    {
+        if (!TobiiAPI.IsConnected) return;
+        if (_gazeAware.HasGazeFocus) Hover();
+        else if (!mouseOver) SetDefault();
+        //StartCoroutine(WaitForEndOfFrameCoroutine());
+    }
 
-    private void OnMouseExit() => SetDefault();
+    private void OnMouseOver()
+    {
+        mouseOver = true;
+        Hover();
+    }
+
+    private void OnMouseExit()
+    {
+        mouseOver = false;
+        SetDefault();
+    }
 
 
     public void SetActive() {
@@ -54,9 +75,9 @@ public class CustomButton : MonoBehaviour, IGazeFocusable {
         isDefault = true;
         _image.color = defaultColor;
     }
-
-    public void UpdateGazeFocus(bool hasFocus) {
-        if(hasFocus) Hover();
-        else SetDefault();
+    
+    IEnumerator WaitForEndOfFrameCoroutine () {
+        yield return new WaitForEndOfFrame ();
+        if (!isHover) SetDefault();
     }
 }

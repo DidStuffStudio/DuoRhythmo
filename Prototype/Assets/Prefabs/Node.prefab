@@ -170,12 +170,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6748157332143515024}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f921df9e7d6d35241ae9d2d599aa4d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonGaze: {fileID: 6748157332993167013}
+  buttonGaze: {fileID: 0}
   confirmGaze: {fileID: 6748157332128358509}
   button: {fileID: 8002361928869053110}
   confirm: {fileID: 7676980843970789667}

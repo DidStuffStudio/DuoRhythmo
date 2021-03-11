@@ -25,30 +25,27 @@ public class CustomButton : MonoBehaviour {
     [SerializeField] private Color defaultColor, hoverColor, activeColor, hintColor;
 
     public bool mouseOver;
-    private void Start()
-    {
+
+    private void Start() {
         _userInput = FindObjectOfType<UserInput>();
         _gazeAware = GetComponent<GazeAware>();
         _image = GetComponent<Image>();
         SetDefault();
     }
 
-    private void Update()
-    {
+    private void Update() {
         if (!TobiiAPI.IsConnected) return;
         if (_gazeAware.HasGazeFocus) Hover();
         else if (!mouseOver) SetDefault();
         //StartCoroutine(WaitForEndOfFrameCoroutine());
     }
 
-    private void OnMouseOver()
-    {
+    private void OnMouseOver() {
         mouseOver = true;
         Hover();
     }
 
-    private void OnMouseExit()
-    {
+    private void OnMouseExit() {
         mouseOver = false;
         SetDefault();
     }
@@ -75,9 +72,9 @@ public class CustomButton : MonoBehaviour {
         isDefault = true;
         _image.color = defaultColor;
     }
-    
-    IEnumerator WaitForEndOfFrameCoroutine () {
-        yield return new WaitForEndOfFrame ();
+
+    private IEnumerator WaitForEndOfFrameCoroutine() {
+        yield return new WaitForEndOfFrame();
         if (!isHover) SetDefault();
     }
 }

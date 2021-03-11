@@ -1461,7 +1461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ba4e397fa0eeb499b9737c2bb03086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracking: 0
 --- !u!1 &1146492087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,7 +1552,7 @@ MonoBehaviour:
   numberOfNodes: 8
   radius: 120
   nodePrefab: {fileID: 6748157332143515024, guid: a1fc0a6a038313d48b38d64efb0d9456, type: 3}
-  secondsBetweenBeats: 0.25
+  secondsBetweenBeats: 1
 --- !u!1 &1176469635
 GameObject:
   m_ObjectHideFlags: 0

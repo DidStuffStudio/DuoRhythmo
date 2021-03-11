@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6748157332128358511
 RectTransform:
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   isHover: 0
   isActive: 0
   isHint: 0
-  isConfirmationButton: 0
+  isConfirmationButton: 1
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 1, g: 0, b: 0, a: 1}
   activeColor: {r: 0.16983688, g: 1, b: 0, a: 1}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drumKit: {fileID: 0}
   play: 0
-  bpm: 2
+  bpm: 0.1
 --- !u!1 &6748157332993167195
 GameObject:
   m_ObjectHideFlags: 0

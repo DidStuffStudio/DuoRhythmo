@@ -14,20 +14,31 @@ public class Node : MonoBehaviour {
     private bool crRunning = false;
     public bool activated;
 
+    public bool cameFromButton;
+    
     private void Start() {
         testing = GetComponent<TestDrumEye>();
     }
 
     private void Update() {
         if(button.isHover) {
-            confirm.gameObject.SetActive(true);
-            StartCoroutine(Window());
+            canConfirm = true;
+            confirm.ConfirmActivation(true);
+            cameFromButton = true;
         }
-        if (!canConfirm) return;
-        if(confirm.isHover) {
+        else if (!crRunning)        StartCoroutine(Window());
+        if (!confirm.isHover || !cameFromButton) return;
+
+        cameFromButton = false;
+        if (!activated)
+        {
             button.SetActive();
             activated = true;
-            confirm.gameObject.SetActive(false);
+        }
+        else
+        {
+            button.SetDefault();
+            activated = false;
         }
     }
 
@@ -36,10 +47,12 @@ public class Node : MonoBehaviour {
         testing.play = true;
     }
 
-    private IEnumerator Window() {
-        canConfirm = true;
+    private IEnumerator Window()
+    {
+        crRunning = true;
         yield return new WaitForSeconds(confirmWindow);
         canConfirm = false;
-        confirm.gameObject.SetActive(false);
+        confirm.ConfirmActivation(false);
+        crRunning = false;
     }
 }

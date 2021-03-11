@@ -31,13 +31,14 @@ public class CustomButton : MonoBehaviour {
         _gazeAware = GetComponent<GazeAware>();
         _image = GetComponent<Image>();
         SetDefault();
+        if (isConfirmationButton) ConfirmActivation(false);
+        
     }
 
     private void Update() {
         if (!TobiiAPI.IsConnected) return;
         if (_gazeAware.HasGazeFocus) Hover();
-        else if (!mouseOver) SetDefault();
-        //StartCoroutine(WaitForEndOfFrameCoroutine());
+        else if (!mouseOver) UnHover();
     }
 
     private void OnMouseOver() {
@@ -47,34 +48,47 @@ public class CustomButton : MonoBehaviour {
 
     private void OnMouseExit() {
         mouseOver = false;
-        SetDefault();
+        UnHover();
     }
 
 
-    public void SetActive() {
-        isActive = true;
+    public void SetActive()
+    {
         _image.color = activeColor;
-        isHint = false;
+        if (isActive) return;
+        isActive = true;
+        isDefault = false;
+
     }
 
     private void Hover() {
-        if (isHover) return;
-        print("isHover");
-        isHover = true;
-        isDefault = false;
         _image.color = hoverColor;
+        if (isHover) return;
+        isHover = true;
     }
 
-    private void SetDefault() {
-        if (isDefault) return;
-        print("isDefault");
+    private void UnHover()
+    {
+        if (!isHover) return;
         isHover = false;
-        isDefault = true;
-        _image.color = defaultColor;
+        if (isConfirmationButton) SetDefault();
+        else if (isDefault) SetDefault();
+        else if (isActive) SetActive();
+        {
+            
+        }
     }
 
-    private IEnumerator WaitForEndOfFrameCoroutine() {
-        yield return new WaitForEndOfFrame();
-        if (!isHover) SetDefault();
+    public void SetDefault() {
+        _image.color = defaultColor;
+        if (isDefault) return;
+        isDefault = true;
+        isActive = false;
+    }
+
+    public void ConfirmActivation(bool enabled)
+    {
+        GetComponent<Collider>().enabled = enabled;
+        GetComponent<Image>().enabled = enabled;
     }
 }

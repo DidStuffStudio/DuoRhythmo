@@ -57,18 +57,37 @@ public class EuclideanManager : MonoBehaviour {
         _nodes = new Node[numberOfNodes];
 
         for (int i = 0; i < numberOfNodes; i++) {
+
             //var radians = Mathf.Deg2Rad * (i * (360 / numberOfNodes));
-            var radians = -(i * 2 * Mathf.PI) / numberOfNodes + (Mathf.PI / 2);
+            var radians = (i * 2 * Mathf.PI) / (-numberOfNodes) + (Mathf.PI / 2);
+            // if i == 0  --> radians = 0 / 8 + PI/2
+            //  --> y = sin PI/2 = 1
+            //  --> x = cos PI/2 = 0 // if i == 0  --> radians = 0 + PI/2
+
+            // if i == 1  --> radians = 2PI / 1 + PI/2 = 0 + PI/2
+            //  --> y = sin PI/2 = 1
+            //  --> x = cos PI/2 = 0
+            
+            // if i == 2  --> radians = 2 * 2PI + PI/2 = 0 + PI/2
+            //  --> y = sin PI/2 = 1
+            //  --> x = cos PI/2 = 0
+
             var y = Mathf.Sin(radians);
             var x = Mathf.Cos(radians);
             var spawnPos = new Vector2(x, y) * radius;
+
+            //  sin 0 = 0
+            // cos 0 = 1
+            // sin PI / 2 = 1
+            // cos PI / 2 = 0
+
 
             var node = Instantiate(nodePrefab, transform) as GameObject;
             _nodes[i] = node.GetComponent<Node>();
 
             var rt = node.GetComponent<RectTransform>();
 
-            rt.rotation = Quaternion.Euler(0, 0, i * (360 / numberOfNodes));
+            rt.rotation = Quaternion.Euler(0, 0, i * (360 / -numberOfNodes));
             //rt.pivot = new Vector2(0.5f,0.5f);
             rt.anchoredPosition = spawnPos;
 
@@ -76,6 +95,7 @@ public class EuclideanManager : MonoBehaviour {
             var text = node.transform.GetChild(0).GetChild(0).GetComponent<Text>();
             text.text = (i + 1).ToString();
         }
+
         // System.Array.Reverse(_nodes);
     }
 
@@ -85,6 +105,7 @@ public class EuclideanManager : MonoBehaviour {
             for (int i = 0; i < _nodes.Length; i++) {
                 yield return new WaitForSecondsRealtime(60.0f / bpm);
                 _nodes[i].Play();
+                print("BEAT");
             }
         }
     }
@@ -95,7 +116,7 @@ public class EuclideanManager : MonoBehaviour {
             float beatsPerSecond = bpm / 60.0f; // 2 beats per second
             yield return new WaitForSecondsRealtime(time: 0.01f);
             secondsFor360 = secondsPerBeat * numberOfNodes;
-            rotation -= 360.0f / numberOfNodes * 0.01f * secondsFor360;
+            rotation -= 360.0f / (secondsFor360 / 0.01f);
             // rotation -= 360 / 0.01f * secondsFor360;// / secondsFor360 * Time.deltaTime;
             _ryhtmIndicator.rotation = Quaternion.Euler(0, 0, rotation % 360);
         }

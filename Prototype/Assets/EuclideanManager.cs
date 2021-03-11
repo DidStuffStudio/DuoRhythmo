@@ -8,13 +8,17 @@ using UnityEngine.UI;
 public class EuclideanManager : MonoBehaviour {
     private EuclideanRythm _euclideanRythm;
     public int numberOfNodes = 4;
+    private int previousNumberOfNodes;
+    private bool _beatsUpdated = false;
     public float radius = 3.0f;
     public GameObject nodePrefab;
-    private Node[] _nodes;
+    private List<Node> _nodes = new List<Node>();
     [SerializeField] private RectTransform _ryhtmIndicator;
-    private float rotation = -180;
+    private float rotation = 0;
     public int bpm = 120;
     private float secondsFor360 = 1;
+
+    private AudioSource _audioSource;
 
     private List<int> _storedRhythm = new List<int>();
 
@@ -22,102 +26,131 @@ public class EuclideanManager : MonoBehaviour {
 
     private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();
+        _audioSource = GetComponent<AudioSource>();
+        previousNumberOfNodes = numberOfNodes;
         SpawnNodes();
         StartCoroutine(PlayNodes());
-        StartCoroutine(Beats());
+        // StartCoroutine(Beats());
     }
+
+    // private void Update() {
+    //     // 120 beats per minute / 8 nodes = 15 beats per minute per node
+    //     // 15 beats / 60s = 0.25  // full circle per second
+    //
+    //     // rotate a line around the 
+    //
+    //
+    //     // change this functionality so it's an event instead of inside the update
+    //     int pulses = 0;
+    //     for (int i = 0; i < _nodesGameObjects.Length; i++) {
+    //         if (_nodes[i].activated) pulses++;
+    //     }
+    //     // get the euclidean rhythm
+    //     var er = _euclideanRythm.GetEuclideanRythm(steps: numberOfNodes, pulses: pulses).ToArray();
+    //     // compare the euclidean rhythm array with the nodes array 
+    //     for (int i = 0; i < _nodes.Length; i++) {
+    //         if (!_nodes[i].activated && er[i] == 1) {
+    //             _nodes[i].button.SetHint();
+    //         }
+    //         else if (_nodes[i].button.isHint) {
+    //             _nodes[i].button.SetDefault();
+    //         }
+    //         
+    //     }
+    //
+    // }
 
     private void Update() {
-        // 120 beats per minute / 8 nodes = 15 beats per minute per node
-        // 15 beats / 60s = 0.25  // full circle per second
-
-        // rotate a line around the 
-
-
-        // change this functionality so it's an event instead of inside the update
-        // int pulses = 0;
-        // for (int i = 0; i < _nodesGameObjects.Length; i++) {
-        //     if (_nodes[i].activated) pulses++;
-        // }
-        // // get the euclidean rhythm
-        // var er = _euclideanRythm.GetEuclideanRythm(steps: numberOfNodes, pulses: pulses).ToArray();
-        // // compare the euclidean rhythm array with the nodes array 
-        // for (int i = 0; i < _nodes.Length; i++) {
-        //     if (!_nodes[i].activated && er[i] == 1) {
-        //         _nodes[i].button.SetHint();
-        //     }
-        //     else if (_nodes[i].button.isHint) {
-        //         _nodes[i].button.SetDefault();
-        //     }
-        //     
-        // }
-
+        if (previousNumberOfNodes != numberOfNodes) {
+            if (numberOfNodes < 2) numberOfNodes = 2; // force the minimum amount of nodes to be 2
+            SpawnNodes();
+            previousNumberOfNodes = numberOfNodes;
+        }
     }
 
-    public void SpawnNodes() {
-        _nodes = new Node[numberOfNodes];
+    private void SpawnNodes() {
+        // if more nodes exist than is needed, delete them
+        if (_nodes.Count > numberOfNodes) {
+            for (int i = numberOfNodes - 1; i < _nodes.Count; i++) {
+                Destroy(_nodes[i].gameObject);
+                _nodes.Remove(_nodes[i]);
+            }
 
-        for (int i = 0; i < numberOfNodes; i++) {
-
-            //var radians = Mathf.Deg2Rad * (i * (360 / numberOfNodes));
-            var radians = (i * 2 * Mathf.PI) / (-numberOfNodes) + (Mathf.PI / 2);
-            // if i == 0  --> radians = 0 / 8 + PI/2
-            //  --> y = sin PI/2 = 1
-            //  --> x = cos PI/2 = 0 // if i == 0  --> radians = 0 + PI/2
-
-            // if i == 1  --> radians = 2PI / 1 + PI/2 = 0 + PI/2
-            //  --> y = sin PI/2 = 1
-            //  --> x = cos PI/2 = 0
+            // _nodes.RemoveRange(numberOfNodes - 1, _nodes.Count - numberOfNodes);
             
-            // if i == 2  --> radians = 2 * 2PI + PI/2 = 0 + PI/2
-            //  --> y = sin PI/2 = 1
-            //  --> x = cos PI/2 = 0
+            // update the rotation value of the rhythm signifier so that it makes sense
+            var newRotation = 360.0f / numberOfNodes;
+            var difference = rotation - newRotation;
+            rotation -= difference;
 
-            var y = Mathf.Sin(radians);
-            var x = Mathf.Cos(radians);
-            var spawnPos = new Vector2(x, y) * radius;
-
-            //  sin 0 = 0
-            // cos 0 = 1
-            // sin PI / 2 = 1
-            // cos PI / 2 = 0
-
-
-            var node = Instantiate(nodePrefab, transform) as GameObject;
-            _nodes[i] = node.GetComponent<Node>();
-
-            var rt = node.GetComponent<RectTransform>();
-
-            rt.localRotation = Quaternion.Euler(0, 0, i * (360 / -numberOfNodes));
-            //rt.pivot = new Vector2(0.5f,0.5f);
-            rt.anchoredPosition = spawnPos;
-
-            rt.localScale = Vector3.one;
-            var text = node.transform.GetChild(0).GetChild(0).GetComponent<Text>();
-            text.text = (i + 1).ToString();
+            _beatsUpdated = true;
         }
 
-        // System.Array.Reverse(_nodes);
+        // position all the nodes (existing nodes and to-be-created ones)
+        for (int i = 0; i < numberOfNodes; i++) {
+            PositionNode(i);
+        }
+
+        _beatsUpdated = false; // they have finished positioning - so start beats coroutine again
+    }
+
+    private void PositionNode(int i) {
+        var radians = (i * 2 * Mathf.PI) / (-numberOfNodes) + (Mathf.PI / 2); // set them starting from 90 degrees = PI radians
+        var y = Mathf.Sin(radians);
+        var x = Mathf.Cos(radians);
+        var spawnPos = new Vector2(x, y) * radius;
+
+        // if the current node doesn't exist, then create one and add it to the nodes list
+        if (i >= _nodes.Count) {
+            var node = Instantiate(nodePrefab, transform) as GameObject;
+            node.name = "Node " + (i + 1).ToString();
+            _nodes.Add(node.GetComponent<Node>());
+            _beatsUpdated = true;
+        }
+
+        var rt = _nodes[i].GetComponent<RectTransform>();
+
+        rt.localRotation = Quaternion.Euler(0, 0, i * (360 / -numberOfNodes));
+        //rt.pivot = new Vector2(0.5f,0.5f);
+        rt.anchoredPosition = spawnPos;
+
+        rt.localScale = Vector3.one;
+        var text = _nodes[i].transform.GetChild(0).GetChild(0).GetComponent<Text>();
+        text.text = (i + 1).ToString();
     }
 
 
-    public IEnumerator PlayNodes() {
-        while (true) {
-            for (int i = 0; i < _nodes.Length; i++) {
+    private IEnumerator PlayNodes() {
+        var secondsPerBeat = 60.0f / bpm;
+        print(secondsPerBeat);
+        rotation += 360.0f / numberOfNodes;
+        while (!_beatsUpdated) {
+            for (int i = 0; i < _nodes.Count; i++) {
                 yield return new WaitForSecondsRealtime(60.0f / bpm);
-                _nodes[i].Play();
-
+                if (_nodes.Count >= i) {
+                    // check if there haven't been any deletions from the nodes list while waiting for seconds
+                    rotation -= 360.0f / numberOfNodes;
+                    print("BEAT " + (i + 1) + "  rotation: " + rotation % 360);
+                    // _nodes[i].Play();
+                    _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
+                    if (_nodes[i].activated) _audioSource.Play();
+                }
             }
         }
+
+        _beatsUpdated = false;
     }
 
     private IEnumerator Beats() {
         while (true) {
             float secondsPerBeat = 60.0f / bpm; // 0.5 seconds per beat
-            secondsFor360 = secondsPerBeat * (_nodes.Length-1);
-            rotation -= 360.0f / (secondsFor360 / 0.01f);
+            yield return new WaitForSecondsRealtime(secondsPerBeat);
+            secondsFor360 = secondsPerBeat * numberOfNodes;
+            // rotation -= 90;
+            rotation -= 360.0f / numberOfNodes;
+            // _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
+            // rotation -= 360.0f / (secondsFor360 / 0.01f);
             _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
-            yield return new WaitForSecondsRealtime(0.01f);
         }
     }
 }

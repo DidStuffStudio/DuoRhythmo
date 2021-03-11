@@ -17,14 +17,6 @@ public class EuclideanRythm : MonoBehaviour {
         return CalculateEuclideanAlgorithm(b, a % b);
     }
 
-    private void Start() {
-        // print(CalculateEuclideanAlgorithm(pulses, totalSteps));
-        for (int i = 0; i < totalSteps; i++) {
-            GetEuclideanRythm(totalSteps, pulses);
-            _rotate++;
-        }
-    }
-
     // calculate a euclidean rhythm
     // ref --> https://www.computermusicdesign.com/simplest-euclidean-rhythm-algorithm-explained/
     public List<int> GetEuclideanRythm(int steps, int pulses) {

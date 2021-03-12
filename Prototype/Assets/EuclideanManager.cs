@@ -29,7 +29,7 @@ public class EuclideanManager : MonoBehaviour {
         _audioSource = GetComponent<AudioSource>();
         previousNumberOfNodes = numberOfNodes;
         SpawnNodes();
-        StartCoroutine(PlayNodes());
+        //StartCoroutine(PlayNodes());
         StartCoroutine(Beats());
     }
 
@@ -123,6 +123,7 @@ public class EuclideanManager : MonoBehaviour {
     }
 
 
+    /*
     private IEnumerator PlayNodes() {
         
         
@@ -144,6 +145,7 @@ public class EuclideanManager : MonoBehaviour {
 
         _beatsUpdated = false;
     }
+    */
 
     private IEnumerator Beats() {
         rotation = 0;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RhythmSignifier : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
-        var node = other.GetComponent<Node>();
+        var node = other.transform.GetComponentInParent<Node>();
         node.Play();
     }
 }

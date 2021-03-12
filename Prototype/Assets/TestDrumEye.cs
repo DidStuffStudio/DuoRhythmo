@@ -8,7 +8,7 @@ public class TestDrumEye : MonoBehaviour
 {
     public DrumKitManager drumKit;
     private bool canPlay = true;
-    public bool play = false;
+    public bool playKick, playSnare = false;
     public float bpm;
     private void Start()
     {
@@ -16,15 +16,22 @@ public class TestDrumEye : MonoBehaviour
         
     }
 
-    private void Update()
+    public void PlayKick()
     {
-        if (!play || !canPlay) return;
-        play = false;
+
         drumKit.kick = true;
-        canPlay = false;
-        StartCoroutine(WaitBro());
+        //canPlay = false;
+        //StartCoroutine(WaitBro());
     }
 
+    public void PlaySnare()
+    {
+
+        drumKit.snare = true;
+        //canPlay = false;
+        //StartCoroutine(WaitBro());
+    }
+    
     IEnumerator WaitBro()
     {
         

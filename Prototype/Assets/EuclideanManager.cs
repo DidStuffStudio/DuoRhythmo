@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,7 @@ public class EuclideanManager : MonoBehaviour {
     private List<int> _storedRhythm = new List<int>();
 
     public float secondsBetweenBeats = 0.25f;
+    public bool isKick, isSnare;
 
     private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();
@@ -106,9 +108,20 @@ public class EuclideanManager : MonoBehaviour {
         // if the current node doesn't exist, then create one and add it to the nodes list
         if (i >= _nodes.Count) {
             var node = Instantiate(nodePrefab, transform) as GameObject;
+            
             node.name = "Node " + (i + 1).ToString();
             _nodes.Add(node.GetComponent<Node>());
             _beatsUpdated = true;
+            
+            if (isKick)
+            {
+                node.GetComponent<Node>().isKick = true;
+            }
+
+            else
+            {
+                node.GetComponent<Node>().isSnare = true;
+            }
         }
 
         var rt = _nodes[i].GetComponent<RectTransform>();

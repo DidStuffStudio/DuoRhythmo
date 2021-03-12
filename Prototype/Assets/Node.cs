@@ -16,6 +16,7 @@ public class Node : MonoBehaviour {
 
     public bool cameFromButton;
     
+    public bool isKick, isSnare;
     private void Start() {
         testing = GetComponent<TestDrumEye>();
     }
@@ -42,10 +43,20 @@ public class Node : MonoBehaviour {
         }
     }
 
-    public void Play() {
+    public void Play()
+    {
+        if (isKick) PlayKick();
+        else PlaySnare();
+    }
+    public void PlayKick() {
         if (!activated) return;
-        testing.play = true;
-        print("beat played at" +Time.time);
+        testing.PlayKick();
+    }
+
+    public void PlaySnare()
+    {
+        if (!activated) return;
+        testing.PlaySnare();
     }
 
     private IEnumerator Window()

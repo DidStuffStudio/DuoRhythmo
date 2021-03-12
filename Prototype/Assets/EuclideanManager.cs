@@ -30,7 +30,7 @@ public class EuclideanManager : MonoBehaviour {
         previousNumberOfNodes = numberOfNodes;
         SpawnNodes();
         StartCoroutine(PlayNodes());
-        // StartCoroutine(Beats());
+        StartCoroutine(Beats());
     }
 
     // private void Update() {
@@ -69,6 +69,7 @@ public class EuclideanManager : MonoBehaviour {
     }
 
     private void SpawnNodes() {
+
         // if more nodes exist than is needed, delete them
         if (_nodes.Count > numberOfNodes) {
             for (int i = numberOfNodes - 1; i < _nodes.Count; i++) {
@@ -77,7 +78,7 @@ public class EuclideanManager : MonoBehaviour {
             }
 
             // _nodes.RemoveRange(numberOfNodes - 1, _nodes.Count - numberOfNodes);
-            
+
             // update the rotation value of the rhythm signifier so that it makes sense
             var newRotation = 360.0f / numberOfNodes;
             var difference = rotation - newRotation;
@@ -92,10 +93,12 @@ public class EuclideanManager : MonoBehaviour {
         }
 
         _beatsUpdated = false; // they have finished positioning - so start beats coroutine again
+        // StartCoroutine(PlayNodes());
     }
 
     private void PositionNode(int i) {
-        var radians = (i * 2 * Mathf.PI) / (-numberOfNodes) + (Mathf.PI / 2); // set them starting from 90 degrees = PI radians
+        var radians =
+            (i * 2 * Mathf.PI) / (-numberOfNodes) + (Mathf.PI / 2); // set them starting from 90 degrees = PI radians
         var y = Mathf.Sin(radians);
         var x = Mathf.Cos(radians);
         var spawnPos = new Vector2(x, y) * radius;
@@ -121,18 +124,19 @@ public class EuclideanManager : MonoBehaviour {
 
 
     private IEnumerator PlayNodes() {
-        var secondsPerBeat = 60.0f / bpm;
-        print(secondsPerBeat);
-        rotation += 360.0f / numberOfNodes;
-        while (!_beatsUpdated) {
+        
+        
+        // rotation += 360.0f / numberOfNodes;
+        rotation = 0;
+        while (true) {
+            var secondsPerBeat = 60.0f / bpm;
             for (int i = 0; i < _nodes.Count; i++) {
-                yield return new WaitForSecondsRealtime(60.0f / bpm);
+                yield return new WaitForSeconds(secondsPerBeat);
+                if(_beatsUpdated) yield break;
+                // check if there haven't been any deletions from the nodes list while waiting for seconds
                 if (_nodes.Count >= i) {
-                    // check if there haven't been any deletions from the nodes list while waiting for seconds
-                    rotation -= 360.0f / numberOfNodes;
-                    print("BEAT " + (i + 1) + "  rotation: " + rotation % 360);
+                    // print("BEAT " + (i + 1) + "  rotation: " + rotation % 360);
                     // _nodes[i].Play();
-                    _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
                     if (_nodes[i].activated) _audioSource.Play();
                 }
             }
@@ -142,14 +146,15 @@ public class EuclideanManager : MonoBehaviour {
     }
 
     private IEnumerator Beats() {
+        rotation = 0;
         while (true) {
-            float secondsPerBeat = 60.0f / bpm; // 0.5 seconds per beat
-            yield return new WaitForSecondsRealtime(secondsPerBeat);
-            secondsFor360 = secondsPerBeat * numberOfNodes;
-            // rotation -= 90;
-            rotation -= 360.0f / numberOfNodes;
-            // _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
-            // rotation -= 360.0f / (secondsFor360 / 0.01f);
+            float secondsPerBeat = 60.0f / bpm;
+            float waitingTimeSeconds = 0.01f;
+            yield return new WaitForSeconds(waitingTimeSeconds);
+            var radiansPerSecond = 2 * Mathf.PI / 60.0f * bpm; // angular frequency
+            var degreesPerSecond = (Mathf.Rad2Deg * radiansPerSecond);
+            print(degreesPerSecond);
+            rotation -= (degreesPerSecond * waitingTimeSeconds);
             _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
         }
     }

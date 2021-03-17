@@ -31,7 +31,6 @@ public class SnareSync : RealtimeComponent<DrumSyncModel>
     }
     
     private void AudioDidChange(DrumSyncModel model, bool b) {
-        // Update the mesh renderer
         UpdateAudioSource();
     }
     
@@ -41,7 +40,7 @@ public class SnareSync : RealtimeComponent<DrumSyncModel>
     
     public void SetAudio(bool play) {
         // Set the color on the model
-        // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
+        // This will fire the audioChanged event on the model, which will update the sound for both the local player and all remote players.
         model.playAudio = play;
     }
 }

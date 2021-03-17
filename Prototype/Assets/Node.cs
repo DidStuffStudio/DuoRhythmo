@@ -15,52 +15,50 @@ public class Node : MonoBehaviour {
     public bool activated;
 
     public bool cameFromButton;
-    
+
     public bool isKick, isSnare;
+
     private void Start() {
         testing = GetComponent<TestDrumEye>();
     }
 
     private void Update() {
-        if(button.isHover) {
+        if (button.isHover) {
             canConfirm = true;
             confirm.ConfirmActivation(true);
             cameFromButton = true;
         }
-        else if (!crRunning)        StartCoroutine(Window());
+        else if (!crRunning) StartCoroutine(Window());
+
         if (!confirm.isHover || !cameFromButton) return;
 
         cameFromButton = false;
-        if (!activated)
-        {
+        if (!activated) {
             button.SetActive();
             activated = true;
         }
-        else
-        {
+        else {
             button.SetDefault();
             activated = false;
         }
     }
 
-    public void Play()
-    {
+    public void Play() {
         if (isKick) PlayKick();
         else PlaySnare();
     }
+
     public void PlayKick() {
         if (!activated) return;
         testing.PlayKick();
     }
 
-    public void PlaySnare()
-    {
+    public void PlaySnare() {
         if (!activated) return;
         testing.PlaySnare();
     }
 
-    private IEnumerator Window()
-    {
+    private IEnumerator Window() {
         crRunning = true;
         yield return new WaitForSeconds(confirmWindow);
         canConfirm = false;

@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
-
+/*
 public class SoundFilesManager : MonoBehaviour {
     // contains and loads all the different sounds from the Resources folder
 
@@ -60,3 +60,4 @@ public class SoundFilesManager : MonoBehaviour {
         return result;
     }
 }
+*/

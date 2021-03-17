@@ -26,6 +26,8 @@ public class EuclideanManager : MonoBehaviour {
     public float secondsBetweenBeats = 0.25f;
     public bool isKick, isSnare;
 
+    [SerializeField] private ScreenSync _screenSync;
+
     private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();
         _audioSource = GetComponent<AudioSource>();
@@ -63,15 +65,16 @@ public class EuclideanManager : MonoBehaviour {
     // }
 
     private void Update() {
-        if (previousNumberOfNodes != numberOfNodes) {
+        if (_screenSync.NumberOfNodes != numberOfNodes) {
+            numberOfNodes = _screenSync.NumberOfNodes;
             if (numberOfNodes < 2) numberOfNodes = 2; // force the minimum amount of nodes to be 2
             SpawnNodes();
-            previousNumberOfNodes = numberOfNodes;
         }
+        
+        if(_screenSync.Bpm != bpm) print(bpm = _screenSync.Bpm);
     }
 
     private void SpawnNodes() {
-
         // if more nodes exist than is needed, delete them
         if (_nodes.Count > numberOfNodes) {
             for (int i = numberOfNodes - 1; i < _nodes.Count; i++) {
@@ -100,7 +103,8 @@ public class EuclideanManager : MonoBehaviour {
 
     private void PositionNode(int i) {
         var radians =
-            (i * 2 * Mathf.PI) / (-numberOfNodes) + (Mathf.PI / 2); // set them starting from 90 degrees = PI radians
+            (i * 2 * Mathf.PI) / (-numberOfNodes) +
+            (Mathf.PI / 2); // set them starting from 90 degrees = PI / 2 radians
         var y = Mathf.Sin(radians);
         var x = Mathf.Cos(radians);
         var spawnPos = new Vector2(x, y) * radius;
@@ -108,57 +112,20 @@ public class EuclideanManager : MonoBehaviour {
         // if the current node doesn't exist, then create one and add it to the nodes list
         if (i >= _nodes.Count) {
             var node = Instantiate(nodePrefab, transform) as GameObject;
-            
             node.name = "Node " + (i + 1).ToString();
             _nodes.Add(node.GetComponent<Node>());
             _beatsUpdated = true;
-            
-            if (isKick)
-            {
-                node.GetComponent<Node>().isKick = true;
-            }
-
-            else
-            {
-                node.GetComponent<Node>().isSnare = true;
-            }
+            if (isKick) _nodes[i].isKick = true;
+            else _nodes[i].isSnare = true;
         }
 
         var rt = _nodes[i].GetComponent<RectTransform>();
-
         rt.localRotation = Quaternion.Euler(0, 0, i * (360 / -numberOfNodes));
-        //rt.pivot = new Vector2(0.5f,0.5f);
         rt.anchoredPosition = spawnPos;
-
         rt.localScale = Vector3.one;
         var text = _nodes[i].transform.GetChild(0).GetChild(0).GetComponent<Text>();
         text.text = (i + 1).ToString();
     }
-
-
-    /*
-    private IEnumerator PlayNodes() {
-        
-        
-        // rotation += 360.0f / numberOfNodes;
-        rotation = 0;
-        while (true) {
-            var secondsPerBeat = 60.0f / bpm;
-            for (int i = 0; i < _nodes.Count; i++) {
-                yield return new WaitForSeconds(secondsPerBeat);
-                if(_beatsUpdated) yield break;
-                // check if there haven't been any deletions from the nodes list while waiting for seconds
-                if (_nodes.Count >= i) {
-                    // print("BEAT " + (i + 1) + "  rotation: " + rotation % 360);
-                    // _nodes[i].Play();
-                    if (_nodes[i].activated) _audioSource.Play();
-                }
-            }
-        }
-
-        _beatsUpdated = false;
-    }
-    */
 
     private IEnumerator Beats() {
         rotation = 0;
@@ -168,7 +135,6 @@ public class EuclideanManager : MonoBehaviour {
             yield return new WaitForSeconds(waitingTimeSeconds);
             var radiansPerSecond = 2 * Mathf.PI / 60.0f * bpm; // angular frequency
             var degreesPerSecond = (Mathf.Rad2Deg * radiansPerSecond);
-            print(degreesPerSecond);
             rotation -= (degreesPerSecond * waitingTimeSeconds);
             _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
         }

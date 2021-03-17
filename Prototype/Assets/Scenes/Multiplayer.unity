@@ -400,7 +400,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467839298}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1424795628, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
   m_Name: 
@@ -809,6 +809,7 @@ GameObject:
   - component: {fileID: 1279193803}
   - component: {fileID: 1279193802}
   - component: {fileID: 1279193801}
+  - component: {fileID: 1279193808}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -853,7 +854,7 @@ MonoBehaviour:
   m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _realtime: {fileID: 467839302}
+  _realtime: {fileID: 288725028}
   _sceneViewUUID: 
   _viewUUID: 3db69588-6816-4f78-9ffa-3cd8207ec0a9
   _sceneViewPreventOwnershipTakeover: 0
@@ -939,6 +940,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1279193808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279193800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1424795628, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obsoleteAppKey: 
+  _normcoreAppSettings: {fileID: 11400000, guid: b385db3c031134ad7be085ad59c0b4e4, type: 2}
+  _roomToJoinOnStart: Test Room
+  _joinRoomOnStart: 1
 --- !u!1 &1310136691
 GameObject:
   m_ObjectHideFlags: 0

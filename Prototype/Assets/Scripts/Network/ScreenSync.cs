@@ -25,7 +25,7 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
     
     public void SetArrayOfNodes(int [] value) {
         for (int i = 0; i < model.nodesArray.Count; i++) {
-            print(model.nodesArray[i].nodeIndex = value[i]);
+            model.nodesArray[i].nodeIndex = value[i];
         }
     }
 
@@ -72,6 +72,7 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
         _numberOfNodes = model.numberOfNodes;
         for (int i = 0; i < model.nodesArray.Count; i++) {
             _nodesValues[i] = model.nodesArray[i].nodeIndex;
+            print(_nodesValues[i]);
         }
     }
 }

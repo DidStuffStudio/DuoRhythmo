@@ -13,7 +13,10 @@ public class ScreenSyncTest : MonoBehaviour {
     private int [] _previousNodes;
 
     private ScreenSync _screenSync;
-    private void Start() => _screenSync = GetComponent<ScreenSync>();
+    private void Start() {
+        _screenSync = GetComponent<ScreenSync>();
+        _previousNodes = new int[_nodes.Length];
+    }
 
     private void Update() {
         if (_bpm != _previousBpm) {
@@ -25,10 +28,14 @@ public class ScreenSyncTest : MonoBehaviour {
             _screenSync.SetNumberOfNodes(_numberOfNodes);
             _previousNumberOfNodes = _numberOfNodes;
         }
-        
-        if (_nodes != _previousNodes) {
-            _screenSync.SetArrayOfNodes(_nodes);
-            _previousNodes = _nodes;
+
+        for (int i = 0; i < _nodes.Length; i++) {
+            if(_nodes[i] != _previousNodes[i]) {
+                print("NOT EQUAL");
+                _previousNodes[i] = _nodes[i];
+                _screenSync.SetArrayOfNodes(_nodes);
+                break;
+            }
         }
     }
 }

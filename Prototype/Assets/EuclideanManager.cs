@@ -70,8 +70,7 @@ public class EuclideanManager : MonoBehaviour {
             if (numberOfNodes < 2) numberOfNodes = 2; // force the minimum amount of nodes to be 2
             SpawnNodes();
         }
-        
-        if(_screenSync.Bpm != bpm) print(bpm = _screenSync.Bpm);
+        bpm = _screenSync.Bpm;
     }
 
     private void SpawnNodes() {

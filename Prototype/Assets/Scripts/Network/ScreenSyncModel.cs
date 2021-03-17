@@ -5,6 +5,7 @@ using Normal.Realtime;
 
 [RealtimeModel]
 public partial class ScreenSyncModel {
+    // if the real time array doesn't seem to be working - add a real time view with boolean to each node
     [RealtimeProperty(1, true, true)] private RealtimeArray<NodeModel> _nodesArray;
     [RealtimeProperty(2, true, true)] private int _numberOfNodes;
     [RealtimeProperty(3, true, true)] private int _bpm;

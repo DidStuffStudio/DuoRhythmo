@@ -3,16 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RhythmSignifier : MonoBehaviour
-{
-    private bool canPlay = true;
-    IEnumerator OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer != 6 || !canPlay) yield return null;
-        canPlay = false;
+public class RhythmSignifier : MonoBehaviour {
+    private IEnumerator OnTriggerEnter(Collider other) {
+        if (other.gameObject.layer != 6) yield return null;
         var node = other.transform.GetComponentInParent<Node>();
         node.PlayDrum();
-        yield return new WaitForSeconds(0.1f);
-        canPlay = true;
+        other.GetComponent<Collider>().enabled = false;
+        yield return new WaitForSeconds(0.3f);
+        other.GetComponent<Collider>().enabled = true;
     }
 }

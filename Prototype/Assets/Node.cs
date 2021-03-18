@@ -38,14 +38,6 @@ public class Node : MonoBehaviour {
     }
 
     private void Update() {
-        if (_nodeSync.IsActivated && !activated) {
-            activated = true;
-            button.SetActive();
-        }
-        else if (!_nodeSync.IsActivated && activated) {
-            activated = false;
-            button.SetDefault();
-        }
         switch (interactionMethod) {
             case InteractionMethod.contextSwitch: {
                 if (button.isHover) {
@@ -98,6 +90,30 @@ public class Node : MonoBehaviour {
 
                 break;
             }
+        }
+    }
+
+    private void LateUpdate() {
+        /*
+        if (_nodeSync.IsActivated && !activated) {
+            button.SetActive();
+            activated = true;
+        }
+        else if (!_nodeSync.IsActivated && activated) {
+            button.SetDefault();
+            activated = false;
+        }
+        */
+    }
+
+    public void Activate(bool setActive) {
+        if (setActive) {
+            button.SetActive();
+            activated = true;
+        }
+        else {
+            button.SetDefault();
+            activated = false;
         }
     }
 

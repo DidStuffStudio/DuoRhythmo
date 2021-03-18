@@ -6,8 +6,8 @@ using Normal.Realtime.Serialization;
 using UnityEngine.PlayerLoop;
 
 public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
-    private int _bpm = 12;
-    private int _numberOfNodes = 12;
+    private int _bpm = 180;
+    private int _numberOfNodes = 8;
     
     // getters
     public int Bpm => _bpm;
@@ -40,20 +40,14 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
         }
     }
 
-    private void BpmDidChange(ScreenSyncModel model, int value)
-    {
-       
-        //_bpm = model.bpm;
-    }
+    private void BpmDidChange(ScreenSyncModel model, int value) => _bpm = model.bpm;
+    
 
-    private void NumberNodesDidChange(ScreenSyncModel model, int value)
-    {
-        //_numberOfNodes = model.numberOfNodes;
-    }
+    private void NumberNodesDidChange(ScreenSyncModel model, int value) => _numberOfNodes = model.numberOfNodes;
 
 
     private void UpdateNode() {
-        //_bpm = model.bpm;
-        //_numberOfNodes = model.numberOfNodes;
+        _bpm = model.bpm;
+        _numberOfNodes = model.numberOfNodes;
     }
 }

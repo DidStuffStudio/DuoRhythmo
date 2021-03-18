@@ -148,6 +148,151 @@
 						<ActiveSource Name="Funk_BD" ID="{B0C56F01-5B17-410D-97DF-1997620BE774}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="Banjo_Drum_Hit_Fienup_016" ID="{26B54E16-8C52-402D-BFFC-7119041FAD42}" ShortID="472612498">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+						</Reference>
+						<Reference Name="Effect0">
+							<Custom CreatedFrom="{41EEE722-3009-4B3F-8820-F414623783E3}">
+								<Effect Name="Small_Tiled_Room1 (Custom)" ID="{CBC33507-B298-4942-A763-938E2A067EB4}" ShortID="231178415" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+									<PropertyList>
+										<Property Name="HFRatio" Type="Real32" Value="8"/>
+										<Property Name="NumberOfDelays" Type="int32" Value="12"/>
+										<Property Name="ReverbTime" Type="Real32" Value="1.5">
+											<RTPCList>
+												<RTPC Name="" ID="{B4015F02-78E9-460D-AC0C-7189AD65F1E6}" ShortID="249130523">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Kick_Reverb_Level" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{6A1DDD8F-020D-41AF-8723-E9ED52E72915}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0.1</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>10</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="WetLevel" Type="Real32" Value="-25"/>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="Effect1">
+							<Custom CreatedFrom="{AB3CE4D4-B0DD-4FC2-AC1D-30EB749C5911}">
+								<Effect Name="Bass (Custom)" ID="{A7854419-2287-45E8-B683-B63099EEF10F}" ShortID="429576701" PluginName="Wwise Flanger" CompanyID="0" PluginID="125" PluginType="3">
+									<PropertyList>
+										<Property Name="DelayTime" Type="Real32" Value="16.5"/>
+										<Property Name="FeedBackLevel" Type="Real32" Value="0.75"/>
+										<Property Name="FeedForwardLevel" Type="Real32" Value="0.5"/>
+										<Property Name="ModDepth" Type="Real32" Value="100">
+											<RTPCList>
+												<RTPC Name="" ID="{0658557C-F955-494B-BCF6-895B8C1B6774}" ShortID="807727601">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Vibrato" ID="{1DC47568-7B3B-4A8E-B39F-C20943E54C6A}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{5AC12DD6-062B-40A7-8554-B0E5B753705E}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-100</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>100</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="ModFrequency" Type="Real32" Value="0.25"/>
+										<Property Name="ModPWM" Type="Real32" Value="0"/>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="Effect2">
+							<Custom CreatedFrom="{44148F30-E06C-4A77-8BE0-E18906268EB4}">
+								<Effect Name="New_Wwise_Guitar_Distortion (Custom)" ID="{1E63769F-B3F2-4786-AAB9-C17782D1082D}" ShortID="1048544354" PluginName="Wwise Guitar Distortion" CompanyID="0" PluginID="126" PluginType="3">
+									<PropertyList>
+										<Property Name="DistortionDrive" Type="Real32" Value="100">
+											<RTPCList>
+												<RTPC Name="" ID="{97FAC203-BD7F-4613-BD90-A64A5C13BBD8}" ShortID="766939639">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Distortion_Level" ID="{3E44A7F2-8141-4682-A03B-34537A3F92C9}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{0147188F-9856-4544-B7B3-04137F9F0789}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-100</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>100</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="DistortionTone" Type="Real32" Value="100"/>
+										<Property Name="DistortionType" Type="int32" Value="4"/>
+										<Property Name="PreEQBand1Frequency" Type="Real32" Value="6670"/>
+										<Property Name="PreEQBand2Frequency" Type="Real32" Value="117"/>
+										<Property Name="PreEQBand3Frequency" Type="Real32" Value="12982"/>
+										<Property Name="Rectification" Type="Real32" Value="100"/>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Banjo_Drum_Hit_Fienup_016" ID="{6858E8FE-577F-4034-BC20-797A036FA7F8}">
+							<Language>SFX</Language>
+							<AudioFile>Banjo_Drum_Hit_Fienup_016.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="155654854"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="Banjo_Drum_Hit_Fienup_016" ID="{6858E8FE-577F-4034-BC20-797A036FA7F8}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

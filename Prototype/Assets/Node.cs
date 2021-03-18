@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 
 public class Node : MonoBehaviour {
@@ -19,8 +20,10 @@ public class Node : MonoBehaviour {
     
     public bool cameFromButton;
     public AK.Wwise.Event kickEvent, snareEvent, hiHatEvent, tomTomEvent;
-
-    private void Start() {
+    private VisualEffect vfx;
+    private void Start()
+    {
+        vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _nodeSync = GetComponent<NodeSync>();
         switch (interactionMethod) {
             case InteractionMethod.contextSwitch: {
@@ -98,9 +101,13 @@ public class Node : MonoBehaviour {
         }
     }
 
-    public void PlayDrum() {
+    public void PlayDrum()
+    {
         if (!activated) return;
-        switch (drumType) {
+        vfx.SetFloat("SphereSize", 4.0f);
+        StartCoroutine(SetVFXBack());
+        switch (drumType)
+        {
             case DrumType.kick:
                 kickEvent.Post(gameObject);
                 break;
@@ -114,6 +121,11 @@ public class Node : MonoBehaviour {
                 tomTomEvent.Post(gameObject);
                 break;
         }
+    }
+    private IEnumerator SetVFXBack() {
+        
+        yield return new WaitForSeconds(0.2f);
+        vfx.SetFloat("SphereSize", 2.0f);
     }
 
 

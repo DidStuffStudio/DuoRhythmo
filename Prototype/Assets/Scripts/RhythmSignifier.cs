@@ -8,11 +8,11 @@ public class RhythmSignifier : MonoBehaviour
     private bool canPlay = true;
     IEnumerator OnTriggerEnter(Collider other)
     {
-        if (!canPlay) yield break;
+        if (other.gameObject.layer != 6 || !canPlay) yield return null;
         canPlay = false;
         var node = other.transform.GetComponentInParent<Node>();
         node.PlayDrum();
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         canPlay = true;
     }
 }

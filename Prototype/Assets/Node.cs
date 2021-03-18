@@ -15,18 +15,17 @@ public class Node : MonoBehaviour {
     [SerializeField] private bool canConfirm;
     private bool crRunning = false;
     public bool activated, canPlay=true;
-    
-    
-    
-    private NodeSync _nodeSync;
+
+    public int indexValue;
+
+    private ScreenSync _screenSync;
     
     public bool cameFromButton;
     public AK.Wwise.Event kickEvent, snareEvent, hiHatEvent, tomTomEvent;
     private VisualEffect vfx;
-    private void Start()
-    {
+    private void Start() {
+        _screenSync = GameObject.FindObjectOfType<ScreenSync>().GetComponent<ScreenSync>();
         vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
-        _nodeSync = GetComponent<NodeSync>();
         switch (interactionMethod) {
             case InteractionMethod.contextSwitch: {
                 break;
@@ -54,12 +53,12 @@ public class Node : MonoBehaviour {
                 cameFromButton = false;
                 if (!activated) {
                     button.SetActive();
-                    _nodeSync.SetActive(true);
+                    _screenSync.SetIndexValue(indexValue);
                     activated = true;
                 }
                 else {
                     button.SetDefault();
-                    _nodeSync.SetActive(false);
+                    _screenSync.SetIndexValue(indexValue);
                     activated = false;
                 }
 
@@ -75,13 +74,13 @@ public class Node : MonoBehaviour {
                         if (!activated) {
                             StartCoroutine(button.InteractionBreakTime());
                             button.SetActive();
-                            _nodeSync.SetActive(true);
+                            _screenSync.SetIndexValue(indexValue);
                             activated = true;
                         }
                         else {
                             StartCoroutine(button.InteractionBreakTime());
                             button.SetDefault();
-                            _nodeSync.SetActive(false);
+                            _screenSync.SetIndexValue(indexValue);
                             activated = false;
                         }
                     }
@@ -97,21 +96,8 @@ public class Node : MonoBehaviour {
         }
     }
 
-    private void LateUpdate() {
-        /*
-        if (_nodeSync.IsActivated && !activated) {
-            button.SetActive();
-            activated = true;
-        }
-        else if (!_nodeSync.IsActivated && activated) {
-            button.SetDefault();
-            activated = false;
-        }
-        */
-    }
-
     public void Activate(bool setActive) {
-        if (setActive) {
+        if (!activated) {
             button.SetActive();
             activated = true;
         }

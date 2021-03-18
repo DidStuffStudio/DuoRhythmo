@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Text;
 using Normal.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public enum DrumType {
     kick,
@@ -49,9 +51,9 @@ public class EuclideanManager : MonoBehaviour {
     }
 
     private IEnumerator WaitUntilConnected() {
-        while (!_realTime.connected) yield return new WaitForEndOfFrame();
+        while (!_realTime.connected) yield return null;
         rotation = 0;
-        if (GetComponent<NetworkManagerSync>().NodesInstantiated) yield return null;
+        OnConnectedEnable();
         SpawnNodes();
         //backingEvent.Post(gameObject);
     }
@@ -68,10 +70,31 @@ public class EuclideanManager : MonoBehaviour {
         }
 
         bpm = _screenSync.Bpm;
+        
+
+        if (Input.GetKeyDown(KeyCode.G)) {
+            char [] n =  {(char)0, (char)1, (char)0, (char)1, (char)0, (char)0, (char)1, (char)0, (char)1, (char)0};
+            byte[] bytes = Encoding.Default.GetBytes(n);
+            
+            _realTime.room.SendRPCMessage(bytes, true);
+            // _realTime.room.realtime.BroadcastMessage("MyAmazingMessage", bytes);
+        }
+    }
+
+    public void MyAmazingMessage(byte[] data) {
+        foreach (var d in data) {
+            print(d);
+        }
     }
 
 
     private void SpawnNodes() {
+        // var realtimeObjects =_realTime.room.datastore.prefabViewModels;
+        
+        // Realtime.FindObjectsOfType<Node>();
+        // Realtime.RealtimeEvent e;
+        // _realTime.room.realtime.BroadcastMessage();
+        
         // if more nodes exist than is needed, delete them
         if (_nodes.Count > numberOfNodes) {
             for (int i = numberOfNodes - 1; i < _nodes.Count; i++) {
@@ -91,6 +114,13 @@ public class EuclideanManager : MonoBehaviour {
         }
     }
 
+    private void MessageReceived(Room room, int senderid, byte[] data, bool reliable) {
+        if(_realTime.room.name != room.name) return;
+        foreach (var d in data) {
+            print(d);
+        }
+    }
+
     private void PositionNode(int i) {
         var radians =
             (i * 2 * Mathf.PI) / (-numberOfNodes) +
@@ -101,13 +131,14 @@ public class EuclideanManager : MonoBehaviour {
 
         // if the current node doesn't exist, then create one and add it to the nodes list
         if (i >= _nodes.Count) {
-            var node = Realtime.Instantiate(nodePrefab.name, transform.position, Quaternion.identity, false, false, true, _realTime);
-            
-            
-            node.transform.parent = transform;
-            node.transform.position = transform.position;
+            // var node = Realtime.Instantiate(nodePrefab.name, transform.position, Quaternion.identity, false, false, true, _realTime);
+            var node = Instantiate(nodePrefab, transform);
+            // node.transform.parent = transform;
+            // node.transform.position = transform.position;
             node.name = "Node " + (i + 1).ToString();
             _nodes.Add(node.GetComponent<Node>());
+            node.GetComponent<Node>().indexValue = i;
+            _screenSync._nodes.Add(node.GetComponent<Node>());
 
             _nodes[i].drumType = drumType switch {
                 DrumType.kick => DrumType.kick,
@@ -122,6 +153,7 @@ public class EuclideanManager : MonoBehaviour {
                 InteractionMethod.spock => InteractionMethod.spock,
                 _ => _nodes[i].interactionMethod
             };
+            
         }
 
         var rt = _nodes[i].GetComponent<RectTransform>();
@@ -131,7 +163,6 @@ public class EuclideanManager : MonoBehaviour {
         var text = _nodes[i].transform.GetChild(0).GetChild(0).GetComponent<Text>();
         text.text = (i + 1).ToString();
 
-        GetComponent<NetworkManagerSync>().SetNodesInstantiated(true);
     }
 
     private void FixedUpdate() {
@@ -147,5 +178,14 @@ public class EuclideanManager : MonoBehaviour {
 
     private void DidConnectToRoom(Realtime realtime) {
         
+    }
+
+
+    private void OnConnectedEnable() {
+        _realTime.room.rpcMessageReceived += MessageReceived;
+    }
+
+    private void OnDisable() {
+        _realTime.room.rpcMessageReceived -= MessageReceived;
     }
 }

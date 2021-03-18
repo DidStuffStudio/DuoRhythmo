@@ -6,9 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-
-public class Node : MonoBehaviour
-{
+public class Node : MonoBehaviour {
     public InteractionMethod interactionMethod;
     public DrumType drumType;
     public CustomButton button, confirm;
@@ -17,36 +15,29 @@ public class Node : MonoBehaviour
     private bool crRunning = false;
     public bool activated;
 
+    private NodeSync _nodeSync;
+    
     public bool cameFromButton;
     public AK.Wwise.Event kickEvent, snareEvent, hiHatEvent, tomTomEvent;
 
-    private void Start()
-    {
-        switch (interactionMethod)
-        {
-            case InteractionMethod.contextSwitch:
-            {
+    private void Start() {
+        _nodeSync = GetComponent<NodeSync>();
+        switch (interactionMethod) {
+            case InteractionMethod.contextSwitch: {
                 break;
             }
 
-            case InteractionMethod.dwellFeedback:
-            {
+            case InteractionMethod.dwellFeedback: {
                 confirm.gameObject.SetActive(false);
                 break;
             }
-
         }
     }
 
     private void Update() {
-        
-
-        switch (interactionMethod)
-        {
-            case InteractionMethod.contextSwitch:
-            {
-                if (button.isHover)
-                {
+        switch (interactionMethod) {
+            case InteractionMethod.contextSwitch: {
+                if (button.isHover) {
                     canConfirm = true;
                     confirm.ConfirmActivation(true);
                     cameFromButton = true;
@@ -56,36 +47,32 @@ public class Node : MonoBehaviour
                 if (!confirm.isHover || !cameFromButton) return;
 
                 cameFromButton = false;
-                if (!activated)
-                {
+                if (!activated) {
                     button.SetActive();
+                    _nodeSync.SetActive(true);
                     activated = true;
                 }
-                else
-                {
+                else {
                     button.SetDefault();
+                    _nodeSync.SetActive(false);
                     activated = false;
                 }
-            
+
 
                 break;
-        }
+            }
             case InteractionMethod.dwellFeedback: {
-
-                if (button.isHover)
-                {
-                    if(button.confirmScalerRT.localScale.x < 1.0f) button.confirmScalerRT.localScale += Vector3.one/200;
-                    else
-                    {
+                if (button.isHover) {
+                    if (button.confirmScalerRT.localScale.x < 1.0f)
+                        button.confirmScalerRT.localScale += Vector3.one / 200;
+                    else {
                         button.confirmScalerRT.localScale = Vector3.zero;
-                        if (!activated)
-                        {
+                        if (!activated) {
                             StartCoroutine(button.InteractionBreakTime());
                             button.SetActive();
                             activated = true;
                         }
-                        else
-                        {
+                        else {
                             StartCoroutine(button.InteractionBreakTime());
                             button.SetDefault();
                             activated = false;
@@ -93,22 +80,19 @@ public class Node : MonoBehaviour
                     }
                 }
 
-                else
-                {
+                else {
                     if (button.confirmScalerRT.localScale.x < 0.0f) return;
-                    button.confirmScalerRT.localScale -= Vector3.one/100;
+                    button.confirmScalerRT.localScale -= Vector3.one / 100;
                 }
-                
+
                 break;
-                }
+            }
         }
     }
 
-    public void PlayDrum()
-    {
+    public void PlayDrum() {
         if (!activated) return;
-        switch (drumType)
-        {
+        switch (drumType) {
             case DrumType.kick:
                 kickEvent.Post(gameObject);
                 break;
@@ -123,7 +107,7 @@ public class Node : MonoBehaviour
                 break;
         }
     }
-    
+
 
     private IEnumerator Window() {
         crRunning = true;

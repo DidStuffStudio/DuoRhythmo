@@ -219,6 +219,8 @@ GameObject:
   - component: {fileID: 6748157332143515036}
   - component: {fileID: 8040717043673488930}
   - component: {fileID: 8517848921195261517}
+  - component: {fileID: -3518828660512160169}
+  - component: {fileID: 7710312877751197348}
   m_Layer: 0
   m_Name: Node
   m_TagString: Untagged
@@ -322,6 +324,40 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
+--- !u!114 &-3518828660512160169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6748157332143515024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _realtime: {fileID: 0}
+  _sceneViewUUID: 
+  _viewUUID: 
+  _sceneViewPreventOwnershipTakeover: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
+  _isRootPrefabView: 1
+  _components:
+  - componentID: 1
+    component: {fileID: 7710312877751197348}
+  _childViews: []
+--- !u!114 &7710312877751197348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6748157332143515024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29602a88832324ad59c6adf716810760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6748157332993167195
 GameObject:
   m_ObjectHideFlags: 0

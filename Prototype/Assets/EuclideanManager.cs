@@ -2,11 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using Normal.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum DrumType
-{
+public enum DrumType {
     kick,
     snare,
     hiHat,
@@ -19,7 +19,6 @@ public class EuclideanManager : MonoBehaviour {
     public InteractionMethod interactionMethod;
     public int numberOfNodes = 4;
     private int previousNumberOfNodes;
-    private bool _beatsUpdated = false;
     public float radius = 3.0f;
     public GameObject nodePrefab;
     private List<Node> _nodes = new List<Node>();
@@ -31,9 +30,10 @@ public class EuclideanManager : MonoBehaviour {
     private List<int> _storedRhythm = new List<int>();
     public DrumType drumType;
     [SerializeField] private ScreenSync _screenSync;
-    
-    
-    
+
+    [SerializeField] private Realtime _realTime;
+
+
     [Range(0.0f, 100.0f)] [SerializeField] private float reverbLevel;
     [Range(0.0f, 100.0f)] [SerializeField] private float distortionLevel;
     [Range(0.0f, 100.0f)] [SerializeField] private float vibratoLevel;
@@ -41,52 +41,31 @@ public class EuclideanManager : MonoBehaviour {
     private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();
         previousNumberOfNodes = numberOfNodes;
+        StartCoroutine(WaitUntilConnected());
+        // _realTime = RealTimeInstance.Instance.GetComponent<Realtime>();
+    }
+
+    private IEnumerator WaitUntilConnected() {
+        while (!_realTime.connected) {
+            yield return new WaitForEndOfFrame();
+        }
+
         SpawnNodes();
-        //StartCoroutine(PlayNodes());
         StartCoroutine(Beats());
     }
 
-    // private void Update() {
-    //     // 120 beats per minute / 8 nodes = 15 beats per minute per node
-    //     // 15 beats / 60s = 0.25  // full circle per second
-    //
-    //     // rotate a line around the 
-    //
-    //
-    //     // change this functionality so it's an event instead of inside the update
-    //     int pulses = 0;
-    //     for (int i = 0; i < _nodesGameObjects.Length; i++) {
-    //         if (_nodes[i].activated) pulses++;
-    //     }
-    //     // get the euclidean rhythm
-    //     var er = _euclideanRythm.GetEuclideanRythm(steps: numberOfNodes, pulses: pulses).ToArray();
-    //     // compare the euclidean rhythm array with the nodes array 
-    //     for (int i = 0; i < _nodes.Length; i++) {
-    //         if (!_nodes[i].activated && er[i] == 1) {
-    //             _nodes[i].button.SetHint();
-    //         }
-    //         else if (_nodes[i].button.isHint) {
-    //             _nodes[i].button.SetDefault();
-    //         }
-    //         
-    //     }
-    //
-    // }
-
-    private void Update()
-    {
+    private void Update() {
         AkSoundEngine.SetRTPCValue("Kick_Reverb_Level", reverbLevel);
         AkSoundEngine.SetRTPCValue("Vibrato", vibratoLevel);
         AkSoundEngine.SetRTPCValue("Distortion_Level", distortionLevel);
-        
-        /*if (_screenSync.NumberOfNodes != numberOfNodes)
-        {
+
+        if (_screenSync.NumberOfNodes != numberOfNodes && _realTime.connected) {
             numberOfNodes = _screenSync.NumberOfNodes;
             if (numberOfNodes < 2) numberOfNodes = 2; // force the minimum amount of nodes to be 2
             SpawnNodes();
         }
 
-        bpm = _screenSync.Bpm;*/
+        bpm = _screenSync.Bpm;
     }
 
 
@@ -98,23 +77,16 @@ public class EuclideanManager : MonoBehaviour {
                 _nodes.Remove(_nodes[i]);
             }
 
-            // _nodes.RemoveRange(numberOfNodes - 1, _nodes.Count - numberOfNodes);
-
             // update the rotation value of the rhythm signifier so that it makes sense
             var newRotation = 360.0f / numberOfNodes;
             var difference = rotation - newRotation;
             rotation -= difference;
-
-            _beatsUpdated = true;
         }
 
         // position all the nodes (existing nodes and to-be-created ones)
         for (int i = 0; i < numberOfNodes; i++) {
             PositionNode(i);
         }
-
-        _beatsUpdated = false; // they have finished positioning - so start beats coroutine again
-        // StartCoroutine(PlayNodes());
     }
 
     private void PositionNode(int i) {
@@ -127,21 +99,22 @@ public class EuclideanManager : MonoBehaviour {
 
         // if the current node doesn't exist, then create one and add it to the nodes list
         if (i >= _nodes.Count) {
-            var node = Instantiate(nodePrefab, transform) as GameObject;
+            var node = Realtime.Instantiate(nodePrefab.name, transform.position, Quaternion.identity, true, false, true, _realTime);
+            // var node = Instantiate(nodePrefab, transform);
+            
+            node.transform.parent = transform;
+            node.transform.position = transform.position;
             node.name = "Node " + (i + 1).ToString();
             _nodes.Add(node.GetComponent<Node>());
-            _beatsUpdated = true;
 
-            _nodes[i].drumType = drumType switch
-            {
+            _nodes[i].drumType = drumType switch {
                 DrumType.kick => DrumType.kick,
                 DrumType.snare => DrumType.snare,
                 DrumType.hiHat => DrumType.hiHat,
                 DrumType.tomTom => DrumType.tomTom,
                 _ => _nodes[i].drumType
             };
-            _nodes[i].interactionMethod = interactionMethod switch
-            {
+            _nodes[i].interactionMethod = interactionMethod switch {
                 InteractionMethod.contextSwitch => InteractionMethod.contextSwitch,
                 InteractionMethod.dwellFeedback => InteractionMethod.dwellFeedback,
                 InteractionMethod.spock => InteractionMethod.spock,
@@ -155,6 +128,17 @@ public class EuclideanManager : MonoBehaviour {
         rt.localScale = Vector3.one;
         var text = _nodes[i].transform.GetChild(0).GetChild(0).GetComponent<Text>();
         text.text = (i + 1).ToString();
+/*
+        var nodes = GameObject.FindObjectsOfType<Node>();
+        foreach (var node in nodes) {
+            node.gameObject.GetComponent<RealtimeView>().destroyWhenOwnerOrLastClientLeaves = true;
+            node.gameObject.GetComponent<RealtimeView>().ClearOwnership();
+            node.gameObject.GetComponent<RealtimeView>().SetOwnership(_realTime.clientID);
+            Realtime.Destroy(node);
+            Realtime.Destroy(node.gameObject);
+        }
+        */
+        
     }
 
     private IEnumerator Beats() {

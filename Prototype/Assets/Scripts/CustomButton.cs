@@ -6,16 +6,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-
 [RequireComponent(typeof(GazeAware))]
 [RequireComponent(typeof(Image))]
 [RequireComponent(typeof(Collider))]
-
-
-
-public class CustomButton : MonoBehaviour
-{
-
+public class CustomButton : MonoBehaviour {
     private GazeAware _gazeAware;
     private Image _image;
     private Collider _collider;
@@ -28,8 +22,7 @@ public class CustomButton : MonoBehaviour
     public float interactionBreakTime = 1.0f;
     private bool _canHover = true;
 
-    private void Start()
-    {
+    private void Start() {
         confirmScalerRT = confirmScaler.GetComponent<RectTransform>();
         _gazeAware = GetComponent<GazeAware>();
         _image = GetComponent<Image>();
@@ -38,27 +31,23 @@ public class CustomButton : MonoBehaviour
         if (isConfirmationButton) ConfirmActivation(false);
     }
 
-    private void Update()
-    {
+    private void Update() {
         if (!TobiiAPI.IsConnected) return;
         if (_gazeAware.HasGazeFocus) Hover();
         else if (!mouseOver) UnHover();
     }
 
-    private void OnMouseOver()
-    {
+    private void OnMouseOver() {
         mouseOver = true;
         Hover();
     }
 
-    private void OnMouseExit()
-    {
+    private void OnMouseExit() {
         mouseOver = false;
         UnHover();
     }
 
-    public void SetActive()
-    {
+    public void SetActive() {
         _image.color = activeColor;
         if (isActive) return;
         isActive = true;
@@ -66,16 +55,14 @@ public class CustomButton : MonoBehaviour
         if (isHint) isHint = false;
     }
 
-    private void Hover()
-    {    
-        if(!_canHover) return;
+    private void Hover() {
+        if (!_canHover) return;
         _image.color = hoverColor;
         if (isHover) return;
         isHover = true;
     }
 
-    private void UnHover()
-    {
+    private void UnHover() {
         if (!isHover) return;
         isHover = false;
         if (isConfirmationButton) SetDefault();
@@ -83,32 +70,27 @@ public class CustomButton : MonoBehaviour
         else if (isActive) SetActive();
     }
 
-    public void SetDefault()
-    {
+    public void SetDefault() {
         _image.color = defaultColor;
         if (isDefault) return;
         isDefault = true;
         isActive = false;
     }
 
-    public void ConfirmActivation(bool enabled)
-    {
+    public void ConfirmActivation(bool enabled) {
         _collider.enabled = enabled;
         _image.enabled = enabled;
     }
 
-    public void SetHint()
-    {
+    public void SetHint() {
         _image.color = hintColor;
         isHint = true;
     }
 
-    public IEnumerator InteractionBreakTime()
-    {
+    public IEnumerator InteractionBreakTime() {
         _canHover = false;
         isHover = false;
         yield return new WaitForSeconds(interactionBreakTime);
         _canHover = true;
-
     }
 }

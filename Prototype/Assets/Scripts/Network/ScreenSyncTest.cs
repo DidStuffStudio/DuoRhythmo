@@ -9,13 +9,9 @@ public class ScreenSyncTest : MonoBehaviour {
     private int _previousNumberOfNodes = 0;
     [SerializeField] private int _bpm = 120;
     private int _previousBpm;
-    [SerializeField] private int [] _nodes;
-    private int [] _previousNodes;
-
     private ScreenSync _screenSync;
     private void Start() {
         _screenSync = GetComponent<ScreenSync>();
-        _previousNodes = new int[_nodes.Length];
     }
 
     private void Update() {
@@ -28,14 +24,6 @@ public class ScreenSyncTest : MonoBehaviour {
             _screenSync.SetNumberOfNodes(_numberOfNodes);
             _previousNumberOfNodes = _numberOfNodes;
         }
-
-        for (int i = 0; i < _nodes.Length; i++) {
-            if(_nodes[i] != _previousNodes[i]) {
-                print("NOT EQUAL");
-                _previousNodes[i] = _nodes[i];
-                _screenSync.SetArrayOfNodes(_nodes);
-                break;
-            }
-        }
     }
 }
+

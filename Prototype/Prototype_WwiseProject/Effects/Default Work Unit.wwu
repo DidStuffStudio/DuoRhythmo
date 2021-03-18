@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{5011D678-D00C-43CD-B050-5AD2824A49DE}" SchemaVersion="103">
 	<Effects>
-		<WorkUnit Name="Default Work Unit" ID="{5011D678-D00C-43CD-B050-5AD2824A49DE}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{5011D678-D00C-43CD-B050-5AD2824A49DE}" PersistMode="Standalone">
+			<ChildrenList>
+				<Effect Name="New_Wwise_Guitar_Distortion" ID="{44148F30-E06C-4A77-8BE0-E18906268EB4}" PluginName="Wwise Guitar Distortion" CompanyID="0" PluginID="126" PluginType="3">
+					<PropertyList>
+						<Property Name="DistortionDrive" Type="Real32" Value="100">
+							<RTPCList>
+								<RTPC Name="" ID="{A00AE4E7-C7F1-479D-804C-0CBB0BE4ECEB}" ShortID="512663989">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="Distortion_Level" ID="{3E44A7F2-8141-4682-A03B-34537A3F92C9}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{17C614EA-7600-4BFB-B876-F1BEC30A2F75}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="1"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-100</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>100</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+						<Property Name="DistortionTone" Type="Real32" Value="100"/>
+						<Property Name="DistortionType" Type="int32" Value="4"/>
+						<Property Name="PreEQBand1Frequency" Type="Real32" Value="6670"/>
+						<Property Name="PreEQBand2Frequency" Type="Real32" Value="117"/>
+						<Property Name="PreEQBand3Frequency" Type="Real32" Value="12982"/>
+						<Property Name="Rectification" Type="Real32" Value="100"/>
+					</PropertyList>
+				</Effect>
+				<Effect Name="New_Wwise_Time_Stretch" ID="{D49C6392-F92A-43BC-AD37-736B68AC051F}" PluginName="Wwise Time Stretch" CompanyID="0" PluginID="130" PluginType="3">
+					<PropertyList>
+						<Property Name="TimeStretch" Type="Real32" Value="526"/>
+						<Property Name="TimeStretchRandom" Type="Real32" Value="200"/>
+						<Property Name="WindowSize" Type="int32" Value="1536"/>
+					</PropertyList>
+				</Effect>
+			</ChildrenList>
+		</WorkUnit>
 	</Effects>
 </WwiseDocument>

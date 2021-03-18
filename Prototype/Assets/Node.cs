@@ -5,58 +5,125 @@ using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Node : MonoBehaviour {
+
+
+public class Node : MonoBehaviour
+{
+    public InteractionMethod interactionMethod;
+    public DrumType drumType;
     public CustomButton button, confirm;
     public float confirmWindow = 2.0f;
     [SerializeField] private bool canConfirm;
-    private TestDrumEye testing;
-
     private bool crRunning = false;
     public bool activated;
 
     public bool cameFromButton;
+    public AK.Wwise.Event kickEvent, snareEvent, hiHatEvent, tomTomEvent;
 
-    public bool isKick, isSnare;
+    private void Start()
+    {
+        switch (interactionMethod)
+        {
+            case InteractionMethod.contextSwitch:
+            {
+                break;
+            }
 
-    private void Start() {
-        testing = GetComponent<TestDrumEye>();
+            case InteractionMethod.dwellFeedback:
+            {
+                confirm.gameObject.SetActive(false);
+                break;
+            }
+
+        }
     }
 
     private void Update() {
-        if (button.isHover) {
-            canConfirm = true;
-            confirm.ConfirmActivation(true);
-            cameFromButton = true;
-        }
-        else if (!crRunning) StartCoroutine(Window());
+        
 
-        if (!confirm.isHover || !cameFromButton) return;
+        switch (interactionMethod)
+        {
+            case InteractionMethod.contextSwitch:
+            {
+                if (button.isHover)
+                {
+                    canConfirm = true;
+                    confirm.ConfirmActivation(true);
+                    cameFromButton = true;
+                }
+                else if (!crRunning) StartCoroutine(Window());
 
-        cameFromButton = false;
-        if (!activated) {
-            button.SetActive();
-            activated = true;
+                if (!confirm.isHover || !cameFromButton) return;
+
+                cameFromButton = false;
+                if (!activated)
+                {
+                    button.SetActive();
+                    activated = true;
+                }
+                else
+                {
+                    button.SetDefault();
+                    activated = false;
+                }
+            
+
+                break;
         }
-        else {
-            button.SetDefault();
-            activated = false;
+            case InteractionMethod.dwellFeedback: {
+
+                if (button.isHover)
+                {
+                    if(button.confirmScalerRT.localScale.x < 1.0f) button.confirmScalerRT.localScale += Vector3.one/200;
+                    else
+                    {
+                        button.confirmScalerRT.localScale = Vector3.zero;
+                        if (!activated)
+                        {
+                            StartCoroutine(button.InteractionBreakTime());
+                            button.SetActive();
+                            activated = true;
+                        }
+                        else
+                        {
+                            StartCoroutine(button.InteractionBreakTime());
+                            button.SetDefault();
+                            activated = false;
+                        }
+                    }
+                }
+
+                else
+                {
+                    if (button.confirmScalerRT.localScale.x < 0.0f) return;
+                    button.confirmScalerRT.localScale -= Vector3.one/100;
+                }
+                
+                break;
+                }
         }
     }
 
-    public void Play() {
-        if (isKick) PlayKick();
-        else PlaySnare();
-    }
-
-    public void PlayKick() {
+    public void PlayDrum()
+    {
         if (!activated) return;
-        testing.PlayKick();
+        switch (drumType)
+        {
+            case DrumType.kick:
+                kickEvent.Post(gameObject);
+                break;
+            case DrumType.snare:
+                snareEvent.Post(gameObject);
+                break;
+            case DrumType.hiHat:
+                hiHatEvent.Post(gameObject);
+                break;
+            case DrumType.tomTom:
+                tomTomEvent.Post(gameObject);
+                break;
+        }
     }
-
-    public void PlaySnare() {
-        if (!activated) return;
-        testing.PlaySnare();
-    }
+    
 
     private IEnumerator Window() {
         crRunning = true;

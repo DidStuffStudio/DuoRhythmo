@@ -1,6 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{D3110F0B-B237-4284-AD44-0007B592510C}" SchemaVersion="103">
 	<AudioObjects>
-		<WorkUnit Name="Default Work Unit" ID="{D3110F0B-B237-4284-AD44-0007B592510C}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{D3110F0B-B237-4284-AD44-0007B592510C}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="Funk_BD" ID="{02084163-4D37-4B77-AEA4-92B1E29C159D}" ShortID="413073654">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+						</Reference>
+						<Reference Name="Effect0">
+							<Custom CreatedFrom="{41EEE722-3009-4B3F-8820-F414623783E3}">
+								<Effect Name="Small_Tiled_Room1 (Custom)" ID="{FE8606F4-06C5-4AA8-BA1F-DC85B7919588}" ShortID="1038217125" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+									<PropertyList>
+										<Property Name="HFRatio" Type="Real32" Value="8"/>
+										<Property Name="NumberOfDelays" Type="int32" Value="12"/>
+										<Property Name="ReverbTime" Type="Real32" Value="1.5">
+											<RTPCList>
+												<RTPC Name="" ID="{8A901488-FDE3-4E65-BDDD-54CB2F857246}" ShortID="730853601">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Kick_Reverb_Level" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{554F290A-5144-4ADD-A7EA-725AE812581D}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0.1</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>10</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="WetLevel" Type="Real32" Value="-25"/>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="Effect1">
+							<Custom CreatedFrom="{AB3CE4D4-B0DD-4FC2-AC1D-30EB749C5911}">
+								<Effect Name="Bass (Custom)" ID="{53B39322-5682-4FC3-AD89-3CD62FD17635}" ShortID="1063835520" PluginName="Wwise Flanger" CompanyID="0" PluginID="125" PluginType="3">
+									<PropertyList>
+										<Property Name="DelayTime" Type="Real32" Value="16.5"/>
+										<Property Name="FeedBackLevel" Type="Real32" Value="0.75"/>
+										<Property Name="FeedForwardLevel" Type="Real32" Value="0.5"/>
+										<Property Name="ModDepth" Type="Real32" Value="100">
+											<RTPCList>
+												<RTPC Name="" ID="{E2C8C87C-41E7-4779-BC3C-98985F390B08}" ShortID="630222177">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Vibrato" ID="{1DC47568-7B3B-4A8E-B39F-C20943E54C6A}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{0C083959-8630-41F9-8686-CBBFF68ACF00}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-100</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>100</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="ModFrequency" Type="Real32" Value="0.25"/>
+										<Property Name="ModPWM" Type="Real32" Value="0"/>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="Effect2">
+							<Custom CreatedFrom="{44148F30-E06C-4A77-8BE0-E18906268EB4}">
+								<Effect Name="New_Wwise_Guitar_Distortion (Custom)" ID="{9E98ED01-EF31-4775-A601-9907ED259512}" ShortID="828219929" PluginName="Wwise Guitar Distortion" CompanyID="0" PluginID="126" PluginType="3">
+									<PropertyList>
+										<Property Name="DistortionDrive" Type="Real32" Value="100">
+											<RTPCList>
+												<RTPC Name="" ID="{C6E55B7B-6349-46FE-AB93-E659FD828934}" ShortID="658719845">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Distortion_Level" ID="{3E44A7F2-8141-4682-A03B-34537A3F92C9}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{1176F0E1-66E1-4D39-8125-6F6558B37E21}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-100</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>100</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="DistortionTone" Type="Real32" Value="100"/>
+										<Property Name="DistortionType" Type="int32" Value="4"/>
+										<Property Name="PreEQBand1Frequency" Type="Real32" Value="6670"/>
+										<Property Name="PreEQBand2Frequency" Type="Real32" Value="117"/>
+										<Property Name="PreEQBand3Frequency" Type="Real32" Value="12982"/>
+										<Property Name="Rectification" Type="Real32" Value="100"/>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Funk_BD" ID="{B0C56F01-5B17-410D-97DF-1997620BE774}">
+							<Language>SFX</Language>
+							<AudioFile>Funk_BD.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="97711246"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="Funk_BD" ID="{B0C56F01-5B17-410D-97DF-1997620BE774}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
 	</AudioObjects>
 </WwiseDocument>

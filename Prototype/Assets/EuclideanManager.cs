@@ -5,9 +5,18 @@ using System.Collections.Specialized;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum DrumType
+{
+    kick,
+    snare,
+    hiHat,
+    tomTom
+}
+
 [RequireComponent(typeof(EuclideanRythm))]
 public class EuclideanManager : MonoBehaviour {
     private EuclideanRythm _euclideanRythm;
+    public InteractionMethod interactionMethod;
     public int numberOfNodes = 4;
     private int previousNumberOfNodes;
     private bool _beatsUpdated = false;
@@ -19,18 +28,18 @@ public class EuclideanManager : MonoBehaviour {
     public int bpm = 120;
     private float secondsFor360 = 1;
 
-    private AudioSource _audioSource;
-
     private List<int> _storedRhythm = new List<int>();
-
-    public float secondsBetweenBeats = 0.25f;
-    public bool isKick, isSnare;
-
+    public DrumType drumType;
     [SerializeField] private ScreenSync _screenSync;
+    
+    
+    
+    [Range(0.0f, 100.0f)] [SerializeField] private float reverbLevel;
+    [Range(0.0f, 100.0f)] [SerializeField] private float distortionLevel;
+    [Range(0.0f, 100.0f)] [SerializeField] private float vibratoLevel;
 
     private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();
-        _audioSource = GetComponent<AudioSource>();
         previousNumberOfNodes = numberOfNodes;
         SpawnNodes();
         //StartCoroutine(PlayNodes());
@@ -64,14 +73,22 @@ public class EuclideanManager : MonoBehaviour {
     //
     // }
 
-    private void Update() {
-        if (_screenSync.NumberOfNodes != numberOfNodes) {
+    private void Update()
+    {
+        AkSoundEngine.SetRTPCValue("Kick_Reverb_Level", reverbLevel);
+        AkSoundEngine.SetRTPCValue("Vibrato", vibratoLevel);
+        AkSoundEngine.SetRTPCValue("Distortion_Level", distortionLevel);
+        
+        /*if (_screenSync.NumberOfNodes != numberOfNodes)
+        {
             numberOfNodes = _screenSync.NumberOfNodes;
             if (numberOfNodes < 2) numberOfNodes = 2; // force the minimum amount of nodes to be 2
             SpawnNodes();
         }
-        bpm = _screenSync.Bpm;
+
+        bpm = _screenSync.Bpm;*/
     }
+
 
     private void SpawnNodes() {
         // if more nodes exist than is needed, delete them
@@ -114,8 +131,22 @@ public class EuclideanManager : MonoBehaviour {
             node.name = "Node " + (i + 1).ToString();
             _nodes.Add(node.GetComponent<Node>());
             _beatsUpdated = true;
-            if (isKick) _nodes[i].isKick = true;
-            else _nodes[i].isSnare = true;
+
+            _nodes[i].drumType = drumType switch
+            {
+                DrumType.kick => DrumType.kick,
+                DrumType.snare => DrumType.snare,
+                DrumType.hiHat => DrumType.hiHat,
+                DrumType.tomTom => DrumType.tomTom,
+                _ => _nodes[i].drumType
+            };
+            _nodes[i].interactionMethod = interactionMethod switch
+            {
+                InteractionMethod.contextSwitch => InteractionMethod.contextSwitch,
+                InteractionMethod.dwellFeedback => InteractionMethod.dwellFeedback,
+                InteractionMethod.spock => InteractionMethod.spock,
+                _ => _nodes[i].interactionMethod
+            };
         }
 
         var rt = _nodes[i].GetComponent<RectTransform>();

@@ -13,18 +13,20 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID PLAY_KICK = 711699424U;
+        static const AkUniqueID PLAYKICK = 3490755565U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS
     {
-        static const AkUniqueID DELAY = 357718954U;
+        static const AkUniqueID DISTORTION_LEVEL = 4258055663U;
+        static const AkUniqueID KICK_REVERB_LEVEL = 332679093U;
+        static const AkUniqueID VIBRATO = 109045632U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
-        static const AkUniqueID FUNKYDRUMSBANK = 3656677061U;
+        static const AkUniqueID DRUMKIT = 3748316847U;
     } // namespace BANKS
 
     namespace BUSSES

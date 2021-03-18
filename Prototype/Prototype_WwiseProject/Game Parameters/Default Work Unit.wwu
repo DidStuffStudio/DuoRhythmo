@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{CCB02C9F-4716-4003-A744-C7E35CB02879}" SchemaVersion="103">
 	<GameParameters>
-		<WorkUnit Name="Default Work Unit" ID="{CCB02C9F-4716-4003-A744-C7E35CB02879}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{CCB02C9F-4716-4003-A744-C7E35CB02879}" PersistMode="Standalone">
+			<ChildrenList>
+				<GameParameter Name="Kick_Reverb_Level" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="Distortion_Level" ID="{3E44A7F2-8141-4682-A03B-34537A3F92C9}"/>
+				<GameParameter Name="Vibrato" ID="{1DC47568-7B3B-4A8E-B39F-C20943E54C6A}"/>
+			</ChildrenList>
+		</WorkUnit>
 	</GameParameters>
 </WwiseDocument>

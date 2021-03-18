@@ -732,7 +732,34 @@
 							<PropertyList>
 								<Property Name="HFRatio" Type="Real32" Value="8"/>
 								<Property Name="NumberOfDelays" Type="int32" Value="12"/>
-								<Property Name="ReverbTime" Type="Real32" Value="1.5"/>
+								<Property Name="ReverbTime" Type="Real32" Value="1.5">
+									<RTPCList>
+										<RTPC Name="" ID="{0DF2BAEC-8DA4-409E-8D23-BDA60B0C24FB}" ShortID="265792385">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Kick_Reverb_Level" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{483C73AD-AFD1-4C15-9A4B-5436603E2AEB}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="1"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>0.1</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>10</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
 								<Property Name="WetLevel" Type="Real32" Value="-25"/>
 							</PropertyList>
 						</Effect>
@@ -1409,7 +1436,34 @@
 										<Property Name="HFDamping" Type="Real32" Value="5.3"/>
 										<Property Name="PreDelay" Type="Real32" Value="80"/>
 										<Property Name="Quality" Type="int32" Value="6"/>
-										<Property Name="ReverbLevel" Type="Real32" Value="-19"/>
+										<Property Name="ReverbLevel" Type="Real32" Value="-19">
+											<RTPCList>
+												<RTPC Name="" ID="{B9C681C2-CD0C-46A7-9C61-8F1D19B41CC9}" ShortID="269272347">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Kick_Reverb_Level" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{1A4CE33B-94A5-47EE-8AFB-391ECA0C93EB}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-96.3</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
 										<Property Name="RoomSize" Type="Real32" Value="100"/>
 									</PropertyList>
 								</Effect>
@@ -1564,10 +1618,37 @@
 								</Effect>
 								<Effect Name="Bass" ID="{AB3CE4D4-B0DD-4FC2-AC1D-30EB749C5911}" PluginName="Wwise Flanger" CompanyID="0" PluginID="125" PluginType="3">
 									<PropertyList>
-										<Property Name="DelayTime" Type="Real32" Value="10"/>
+										<Property Name="DelayTime" Type="Real32" Value="16.5"/>
 										<Property Name="FeedBackLevel" Type="Real32" Value="0.75"/>
 										<Property Name="FeedForwardLevel" Type="Real32" Value="0.5"/>
-										<Property Name="ModDepth" Type="Real32" Value="60"/>
+										<Property Name="ModDepth" Type="Real32" Value="100">
+											<RTPCList>
+												<RTPC Name="" ID="{7012B4AC-A853-44EF-B74A-E332D0CEC8D4}" ShortID="317503902">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Vibrato" ID="{1DC47568-7B3B-4A8E-B39F-C20943E54C6A}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{5EB6A750-D571-44D9-9A22-C04F9F582276}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-100</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>100</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
 										<Property Name="ModFrequency" Type="Real32" Value="0.25"/>
 										<Property Name="ModPWM" Type="Real32" Value="0"/>
 									</PropertyList>
@@ -1597,12 +1678,14 @@
 						</Folder>
 						<Effect Name="Vibrato" ID="{D9586A30-FF0D-4DCC-89C5-04CDC4716ED6}" PluginName="Wwise Flanger" CompanyID="0" PluginID="125" PluginType="3">
 							<PropertyList>
-								<Property Name="DelayTime" Type="Real32" Value="8.5"/>
-								<Property Name="DryLevel" Type="Real32" Value="0.3"/>
+								<Property Name="DelayTime" Type="Real32" Value="89"/>
 								<Property Name="FeedBackLevel" Type="Real32" Value="0.9"/>
 								<Property Name="ModDepth" Type="Real32" Value="10"/>
-								<Property Name="ModFrequency" Type="Real32" Value="5.5"/>
-								<Property Name="ModPWM" Type="Real32" Value="0"/>
+								<Property Name="ModFrequency" Type="Real32" Value="10.9"/>
+								<Property Name="ModPWM" Type="Real32" Value="87"/>
+								<Property Name="ModSmoothing" Type="Real32" Value="81"/>
+								<Property Name="OutputLevel" Type="Real32" Value="3"/>
+								<Property Name="WetDryMix" Type="Real32" Value="23"/>
 							</PropertyList>
 						</Effect>
 						<Effect Name="Special_Effect_1" ID="{83317D8A-9D4C-438E-BE8C-BC7D27CAD1B0}" PluginName="Wwise Flanger" CompanyID="0" PluginID="125" PluginType="3">

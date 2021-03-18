@@ -9,13 +9,13 @@ public class DrumKitManager : MonoBehaviour {
     private bool _previousPlayAudio = default;
 
     public SnareSync _snareSync, _bassSync, _highHatSync;
-
-    public GameObject snarePrefab, bassPrefab, highHatPrefab;
-
-    public bool snare, kick, hiHat;
+    
 
     private void Update() {
-        // If the color has changed (via the inspector), call SetColor on the color sync component.
+        
+  
+        
+        /*// If the color has changed (via the inspector), call SetColor on the color sync component.
         if (Input.GetKeyDown(KeyCode.Alpha2) || snare) {
             _playAudio = true;
             Instantiate(snarePrefab);
@@ -28,7 +28,8 @@ public class DrumKitManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Alpha1) || kick) {
             _playAudio = true;
-            Instantiate(bassPrefab);
+            kickEvent.Post(gameObject);
+            //Instantiate(bassPrefab);
             kick = false;
         }
         else if (_playAudio) {
@@ -44,10 +45,6 @@ public class DrumKitManager : MonoBehaviour {
         else if (_playAudio) {
             _playAudio = false;
             hiHat = false;
-        }
-    }
-
-    public void enableKick() {
-        kick = true;
+        }*/
     }
 }

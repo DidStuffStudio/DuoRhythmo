@@ -1,0 +1,16 @@
+Event	ID	Name			Wwise Object Path	Notes
+	3490755565	PlayKick			\Default Work Unit\PlayKick	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	109045632	Vibrato			\Default Work Unit\Vibrato	
+	332679093	Kick_Reverb_Level			\Default Work Unit\Kick_Reverb_Level	
+	4258055663	Distortion_Level			\Default Work Unit\Distortion_Level	
+
+Effect plug-ins	ID	Name	Type				Notes
+	828219929	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
+	1038217125	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
+	1063835520	Bass (Custom)	Wwise Flanger			
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	97711246	Funk_BD	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\Funk_BD_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Funk_BD		162228
+

@@ -33,6 +33,9 @@ public class EuclideanManager : MonoBehaviour {
 
     [SerializeField] private Realtime _realTime;
 
+    public float waitingTime = 1;
+    private float beatTime;
+
 
     [Range(0.0f, 100.0f)] [SerializeField] private float reverbLevel;
     [Range(0.0f, 100.0f)] [SerializeField] private float distortionLevel;
@@ -51,7 +54,9 @@ public class EuclideanManager : MonoBehaviour {
         }
 
         SpawnNodes();
-        StartCoroutine(Beats());
+        rotation = 0;
+        // beatTime = Time.time;
+        // StartCoroutine(Beats());
     }
 
     private void Update() {
@@ -141,16 +146,49 @@ public class EuclideanManager : MonoBehaviour {
         
     }
 
+    private void FixedUpdate() {
+        if (!_realTime.connected) return;
+        beatTime += Time.fixedDeltaTime;
+        float rpm = (float)bpm / (numberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
+        var rps = (float) rpm / 60.0f;
+        var revolutionsPerWaitingSeconds = rps * Time.fixedDeltaTime; //Convert to revolutions per millisecond
+        var degreesPerWaitingSeconds = (360.0f - 360.0f / numberOfNodes) * revolutionsPerWaitingSeconds;
+        rotation -= degreesPerWaitingSeconds;
+        _ryhtmIndicator.rotation = Quaternion.Euler(0, 0, rotation);
+        print(beatTime + ", rot = " + rotation + " with bpm "+ bpm +" and nodes "+numberOfNodes);
+    }
+
     private IEnumerator Beats() {
         rotation = 0;
         while (true) {
             float secondsPerBeat = 60.0f / bpm;
-            float waitingTimeSeconds = 0.01f;
+            float waitingTimeSeconds = 1;
             yield return new WaitForSeconds(waitingTimeSeconds);
-            var radiansPerSecond = 2 * Mathf.PI / 60.0f * bpm; // angular frequency
-            var degreesPerSecond = (Mathf.Rad2Deg * radiansPerSecond);
-            rotation -= (degreesPerSecond * waitingTimeSeconds);
-            _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
+            // var radiansPerSecond = 2 * Mathf.PI / numberOfNodes * bpm; // angular frequency
+            // var degreesPerSecond = (Mathf.Rad2Deg * radiansPerSecond); // should be 360 - (360 / numberOfNodes)
+            // var degreesPerSecond = (360 - (360.0f / numberOfNodes)) / numberOfNodes * bpm;
+            // print(degreesPerSecond);
+            // rotation -= (degreesPerSecond * waitingTimeSeconds) % 360;
+            float rpm = (float)bpm / (numberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
+            var rps = (float) rpm / 60.0f;
+            // var revolutionsPerWaitingSeconds = rps * waitingTimeSeconds; //Convert to revolutions per millisecond
+            var degreesPerWaitingSeconds = (360.0f - 360.0f / numberOfNodes) * rps;
+            
+            var rot = Quaternion.Lerp(_ryhtmIndicator.localRotation, Quaternion.Euler(0, 0, _ryhtmIndicator.localRotation.eulerAngles.z - degreesPerWaitingSeconds) , waitingTimeSeconds);
+            // var rot =  Vector3.RotateTowards(_ryhtmIndicator.localRotation, )
+            // rotation -= degreesPerWaitingSeconds;
+            _ryhtmIndicator.localRotation = rot;
+            print(Time.time + ", rot = " + rotation + " with bpm "+ bpm +" and nodes "+numberOfNodes);
+            // _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
         }
     }
 }
+
+// 2 nodes
+// 60 bpm 
+
+// every 5 seconds --> play a beat
+
+// 
+
+// 30 seconds to play 10

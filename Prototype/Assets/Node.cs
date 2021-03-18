@@ -14,7 +14,7 @@ public class Node : MonoBehaviour {
     [SerializeField] private bool canConfirm;
     private bool crRunning = false;
     public bool activated;
-
+    
     private NodeSync _nodeSync;
     
     public bool cameFromButton;
@@ -35,6 +35,14 @@ public class Node : MonoBehaviour {
     }
 
     private void Update() {
+        if (_nodeSync.IsActivated && !activated) {
+            activated = true;
+            button.SetActive();
+        }
+        else if (!_nodeSync.IsActivated && activated) {
+            activated = false;
+            button.SetDefault();
+        }
         switch (interactionMethod) {
             case InteractionMethod.contextSwitch: {
                 if (button.isHover) {

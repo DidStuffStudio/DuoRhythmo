@@ -580,8 +580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04792667a757c4acfa962f1750e6f014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfNodes: 8
-  _bpm: 120
+  _numberOfNodes: 10
+  _bpm: 10
 --- !u!114 &467839300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1497,6 +1497,7 @@ MonoBehaviour:
   drumType: 0
   _screenSync: {fileID: 467839300}
   _realTime: {fileID: 288725028}
+  waitingTime: 1
   reverbLevel: 0
   distortionLevel: 0
   vibratoLevel: 0

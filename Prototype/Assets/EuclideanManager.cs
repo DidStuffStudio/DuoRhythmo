@@ -49,10 +49,9 @@ public class EuclideanManager : MonoBehaviour {
     }
 
     private IEnumerator WaitUntilConnected() {
-        while (!_realTime.connected) {
-            yield return new WaitForEndOfFrame();
-        }
+        while (!_realTime.connected) yield return new WaitForEndOfFrame();
 
+        if (RealTimeInstance.Instance.nodesInstantiated) yield return null;
         SpawnNodes();
         rotation = 0;
         //backingEvent.Post(gameObject);
@@ -103,8 +102,8 @@ public class EuclideanManager : MonoBehaviour {
 
         // if the current node doesn't exist, then create one and add it to the nodes list
         if (i >= _nodes.Count) {
-            var node = Realtime.Instantiate(nodePrefab.name, transform.position, Quaternion.identity, true, false, true, _realTime);
-            // var node = Instantiate(nodePrefab, transform);
+            var node = Realtime.Instantiate(nodePrefab.name, transform.position, Quaternion.identity, false, false, true, _realTime);
+            
             
             node.transform.parent = transform;
             node.transform.position = transform.position;
@@ -133,6 +132,7 @@ public class EuclideanManager : MonoBehaviour {
         var text = _nodes[i].transform.GetChild(0).GetChild(0).GetComponent<Text>();
         text.text = (i + 1).ToString();
 
+        RealTimeInstance.Instance.nodesInstantiated = true;
     }
 
     private void FixedUpdate() {
@@ -144,5 +144,9 @@ public class EuclideanManager : MonoBehaviour {
         var degreesPerWaitingSeconds = (360.0f - 360.0f / numberOfNodes) * revolutionsPerWaitingSeconds;
         rotation -= degreesPerWaitingSeconds;
         _ryhtmIndicator.rotation = Quaternion.Euler(0, 0, rotation);
+    }
+
+    private void DidConnectToRoom(Realtime realtime) {
+        
     }
 }

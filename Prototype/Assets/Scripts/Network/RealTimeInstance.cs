@@ -10,4 +10,6 @@ public class RealTimeInstance : MonoBehaviour {
     public static RealTimeInstance Instance => _instance;
 
     private void Awake() => _instance = this;
+
+    public bool nodesInstantiated;
 }

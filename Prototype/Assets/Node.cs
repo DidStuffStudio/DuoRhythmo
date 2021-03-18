@@ -75,11 +75,13 @@ public class Node : MonoBehaviour {
                         if (!activated) {
                             StartCoroutine(button.InteractionBreakTime());
                             button.SetActive();
+                            _nodeSync.SetActive(true);
                             activated = true;
                         }
                         else {
                             StartCoroutine(button.InteractionBreakTime());
                             button.SetDefault();
+                            _nodeSync.SetActive(false);
                             activated = false;
                         }
                     }

@@ -8,7 +8,18 @@
 						<Action Name="" ID="{E53E246A-3E17-4E9B-9D9B-AC4E8D5A70BA}" ShortID="589159502">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Banjo_Drum_Hit_Fienup_016" ID="{26B54E16-8C52-402D-BFFC-7119041FAD42}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+									<ObjectRef Name="Funk_BD" ID="{02084163-4D37-4B77-AEA4-92B1E29C159D}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayBacking1" ID="{8E40F171-F46D-45FE-B070-683154CF5774}">
+					<ChildrenList>
+						<Action Name="" ID="{64BDC7EE-EC7F-42AB-BCBB-E788C75B2E18}" ShortID="872283318">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Outfoxing the Fox" ID="{584E867D-3F5B-4B73-8847-214421918ABF}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

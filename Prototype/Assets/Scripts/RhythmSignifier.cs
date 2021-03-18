@@ -8,8 +8,8 @@ public class RhythmSignifier : MonoBehaviour {
         if (other.gameObject.layer != 6) yield return null;
         var node = other.transform.GetComponentInParent<Node>();
         node.PlayDrum();
-        other.GetComponent<Collider>().enabled = false;
-        yield return new WaitForSeconds(0.3f);
-        other.GetComponent<Collider>().enabled = true;
+        node.canPlay = false;
+        yield return new WaitForSeconds(0.5f);
+        node.canPlay = true;
     }
 }

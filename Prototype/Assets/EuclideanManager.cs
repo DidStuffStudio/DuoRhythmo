@@ -35,7 +35,7 @@ public class EuclideanManager : MonoBehaviour {
 
     public float waitingTime = 1;
     private float beatTime;
-
+    public AK.Wwise.Event backingEvent;
 
     [Range(0.0f, 100.0f)] [SerializeField] private float reverbLevel;
     [Range(0.0f, 100.0f)] [SerializeField] private float distortionLevel;
@@ -55,6 +55,7 @@ public class EuclideanManager : MonoBehaviour {
 
         SpawnNodes();
         rotation = 0;
+        //backingEvent.Post(gameObject);
     }
 
     private void Update() {

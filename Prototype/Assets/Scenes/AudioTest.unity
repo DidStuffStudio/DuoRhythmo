@@ -198,8 +198,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 200, z: 1}
-  m_Center: {x: 0, y: 100, z: 0}
+  m_Size: {x: 2, y: 30, z: 2}
+  m_Center: {x: 0, y: 175, z: 0}
 --- !u!114 &19825640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5614,6 +5614,7 @@ GameObject:
   - component: {fileID: 1146492089}
   - component: {fileID: 1146492091}
   - component: {fileID: 1146492092}
+  - component: {fileID: 1146492093}
   m_Layer: 0
   m_Name: Kick
   m_TagString: Untagged
@@ -5700,6 +5701,11 @@ MonoBehaviour:
   drumType: 0
   _screenSync: {fileID: 1158173523}
   _realTime: {fileID: 320708703}
+  waitingTime: 1
+  backingEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 28473f9a03779a946825a8e590312305, type: 2}
   reverbLevel: 29.3
   distortionLevel: 3.2
   vibratoLevel: 6.9
@@ -5717,6 +5723,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pulses: 3
   totalSteps: 8
+--- !u!114 &1146492093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146492087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9104b62658a98448e8e48481f75978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!1 &1158173521
 GameObject:
   m_ObjectHideFlags: 0
@@ -5748,8 +5776,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04792667a757c4acfa962f1750e6f014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfNodes: 8
-  _bpm: 120
+  _numberOfNodes: 12
+  _bpm: 300
 --- !u!114 &1158173523
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,16 +16,24 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3748316847" Language="SFX" Hash="317413097">
+		<SoundBank Id="3748316847" Language="SFX" Hash="1611437253">
 			<ObjectPath>\SoundBanks\Default Work Unit\DrumKit</ObjectPath>
 			<ShortName>DrumKit</ShortName>
 			<Path>DrumKit.bnk</Path>
 			<IncludedEvents>
-				<Event Id="3490755565" Name="PlayKick" ObjectPath="\Events\Default Work Unit\PlayKick" DurationType="OneShot" DurationMin="2.442667" DurationMax="2.442667">
+				<Event Id="3393636471" Name="PlayBacking1" ObjectPath="\Events\Default Work Unit\PlayBacking1" DurationType="OneShot" DurationMin="175.452499" DurationMax="175.452499">
 					<IncludedMemoryFiles>
-						<File Id="155654854" Language="SFX">
-							<ShortName>Banjo_Drum_Hit_Fienup_016.wav</ShortName>
-							<Path>SFX\Banjo_Drum_Hit_Fienup_016_10C4C929.wem</Path>
+						<File Id="137618464" Language="SFX">
+							<ShortName>Outfoxing the Fox.wav</ShortName>
+							<Path>SFX\Outfoxing the Fox_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3490755565" Name="PlayKick" ObjectPath="\Events\Default Work Unit\PlayKick" DurationType="OneShot" DurationMin="0.919297" DurationMax="0.919297">
+					<IncludedMemoryFiles>
+						<File Id="97711246" Language="SFX">
+							<ShortName>Funk_BD.wav</ShortName>
+							<Path>SFX\Funk_BD_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

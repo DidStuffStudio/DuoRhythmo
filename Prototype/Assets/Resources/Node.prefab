@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -317,6 +317,7 @@ MonoBehaviour:
   confirmWindow: 1
   canConfirm: 0
   activated: 0
+  canPlay: 1
   cameFromButton: 0
   kickEvent:
     idInternal: 0
@@ -530,7 +531,7 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 0.7921569}
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
   activeColor: {r: 0.5283019, g: 0.8018868, b: 0.47281063, a: 1}
   hintColor: {r: 0, g: 0.26723528, b: 1, a: 1}

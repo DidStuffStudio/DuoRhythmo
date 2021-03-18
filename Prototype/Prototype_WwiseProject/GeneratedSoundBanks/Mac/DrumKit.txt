@@ -1,4 +1,5 @@
 Event	ID	Name			Wwise Object Path	Notes
+	3393636471	PlayBacking1			\Default Work Unit\PlayBacking1	
 	3490755565	PlayKick			\Default Work Unit\PlayKick	
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
@@ -7,10 +8,11 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 	4258055663	Distortion_Level			\Default Work Unit\Distortion_Level	
 
 Effect plug-ins	ID	Name	Type				Notes
-	231178415	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
-	429576701	Bass (Custom)	Wwise Flanger			
-	1048544354	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
+	828219929	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
+	1038217125	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
+	1063835520	Bass (Custom)	Wwise Flanger			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	155654854	Banjo_Drum_Hit_Fienup_016	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Mac\SFX\Banjo_Drum_Hit_Fienup_016_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Banjo_Drum_Hit_Fienup_016		469056
+	97711246	Funk_BD	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Mac\SFX\Funk_BD_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Funk_BD		162228
+	137618464	Outfoxing the Fox	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Mac\SFX\Outfoxing the Fox_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Outfoxing the Fox		30949884
 

@@ -6,8 +6,8 @@ using Normal.Realtime.Serialization;
 using UnityEngine.PlayerLoop;
 
 public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
-    private int _bpm = 180;
-    private int _numberOfNodes = 8;
+    private int _bpm = 120;
+    private int _numberOfNodes = 12;
     
     // getters
     public int Bpm => _bpm;

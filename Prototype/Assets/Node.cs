@@ -14,7 +14,9 @@ public class Node : MonoBehaviour {
     public float confirmWindow = 2.0f;
     [SerializeField] private bool canConfirm;
     private bool crRunning = false;
-    public bool activated;
+    public bool activated, canPlay=true;
+    
+    
     
     private NodeSync _nodeSync;
     
@@ -119,7 +121,7 @@ public class Node : MonoBehaviour {
 
     public void PlayDrum()
     {
-        if (!activated) return;
+        if (!activated || !canPlay) return;
         vfx.SetFloat("SphereSize", 4.0f);
         StartCoroutine(SetVFXBack());
         switch (drumType)

@@ -293,6 +293,36 @@
 						<ActiveSource Name="Banjo_Drum_Hit_Fienup_016" ID="{6858E8FE-577F-4034-BC20-797A036FA7F8}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="Outfoxing the Fox" ID="{584E867D-3F5B-4B73-8847-214421918ABF}" ShortID="242039073">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-14</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Outfoxing the Fox" ID="{D884C3A8-65BE-4BB1-AA75-0BA1C91012ED}">
+							<Language>SFX</Language>
+							<AudioFile>Outfoxing the Fox.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="137618464"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="Outfoxing the Fox" ID="{D884C3A8-65BE-4BB1-AA75-0BA1C91012ED}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

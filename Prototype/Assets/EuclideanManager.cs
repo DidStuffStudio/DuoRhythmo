@@ -50,10 +50,9 @@ public class EuclideanManager : MonoBehaviour {
 
     private IEnumerator WaitUntilConnected() {
         while (!_realTime.connected) yield return new WaitForEndOfFrame();
-
-        if (RealTimeInstance.Instance.nodesInstantiated) yield return null;
-        SpawnNodes();
         rotation = 0;
+        if (GetComponent<NetworkManagerSync>().NodesInstantiated) yield return null;
+        SpawnNodes();
         //backingEvent.Post(gameObject);
     }
 
@@ -132,7 +131,7 @@ public class EuclideanManager : MonoBehaviour {
         var text = _nodes[i].transform.GetChild(0).GetChild(0).GetComponent<Text>();
         text.text = (i + 1).ToString();
 
-        RealTimeInstance.Instance.nodesInstantiated = true;
+        GetComponent<NetworkManagerSync>().SetNodesInstantiated(true);
     }
 
     private void FixedUpdate() {

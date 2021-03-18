@@ -287,6 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202fb86e5d3e84768909425a46074a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodesInstantiated: 0
 --- !u!114 &320708703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5615,6 +5616,8 @@ GameObject:
   - component: {fileID: 1146492091}
   - component: {fileID: 1146492092}
   - component: {fileID: 1146492093}
+  - component: {fileID: 1146492095}
+  - component: {fileID: 1146492094}
   m_Layer: 0
   m_Name: Kick
   m_TagString: Untagged
@@ -5745,6 +5748,40 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
+--- !u!114 &1146492094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146492087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ede57e5f70a7498e964b79da589e97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1146492095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146492087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _realtime: {fileID: 320708703}
+  _sceneViewUUID: 
+  _viewUUID: 3e341429-767a-4f28-b41b-5fea7d0f16e5
+  _sceneViewPreventOwnershipTakeover: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
+  _isRootPrefabView: 0
+  _components:
+  - componentID: 1
+    component: {fileID: 1146492094}
+  _childViews: []
 --- !u!1 &1158173521
 GameObject:
   m_ObjectHideFlags: 0

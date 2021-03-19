@@ -110,7 +110,7 @@ public class Node : MonoBehaviour {
     public void PlayDrum()
     {
         if (!activated || !canPlay) return;
-        vfx.SetFloat("SphereSize", 4.0f);
+        vfx.SetFloat("SphereSize", vfx.GetFloat("SphereSize") + 4.0f);
         StartCoroutine(SetVFXBack());
         switch (drumType)
         {
@@ -129,9 +129,11 @@ public class Node : MonoBehaviour {
         }
     }
     private IEnumerator SetVFXBack() {
-        
-        yield return new WaitForSeconds(0.2f);
-        vfx.SetFloat("SphereSize", 2.0f);
+        while (vfx.GetFloat("SphereSize") > 0.7)
+        {
+            yield return new WaitForSeconds(0.01f);
+            vfx.SetFloat("SphereSize", vfx.GetFloat("SphereSize") - 0.5f);
+        }
     }
 
 

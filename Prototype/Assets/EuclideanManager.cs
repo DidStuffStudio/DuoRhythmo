@@ -173,7 +173,7 @@ public class EuclideanManager : MonoBehaviour {
         var revolutionsPerWaitingSeconds = rps * Time.fixedDeltaTime; //Convert to revolutions per millisecond
         var degreesPerWaitingSeconds = (360.0f - 360.0f / numberOfNodes) * revolutionsPerWaitingSeconds;
         rotation -= degreesPerWaitingSeconds;
-        _ryhtmIndicator.rotation = Quaternion.Euler(0, 0, rotation);
+        _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
     }
 
     private void DidConnectToRoom(Realtime realtime) {

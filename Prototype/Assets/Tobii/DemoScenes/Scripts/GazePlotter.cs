@@ -2,6 +2,7 @@
 // Copyright 2016 Tobii AB (publ). All rights reserved.
 //-----------------------------------------------------------------------
 
+using System;
 using UnityEngine;
 using Tobii.Gaming;
 
@@ -145,6 +146,7 @@ public class GazePlotter : MonoBehaviour
 	private void UpdateGazeBubbleVisibility()
 	{
 		_gazeBubbleRenderer.enabled = UseFilter;
+		
 	}
 
 	private int Next()

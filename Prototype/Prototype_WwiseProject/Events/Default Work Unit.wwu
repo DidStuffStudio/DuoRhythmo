@@ -8,18 +8,51 @@
 						<Action Name="" ID="{E53E246A-3E17-4E9B-9D9B-AC4E8D5A70BA}" ShortID="589159502">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Funk_BD" ID="{02084163-4D37-4B77-AEA4-92B1E29C159D}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+									<ObjectRef Name="HS_Jazz_01_BD" ID="{A5881040-DC6F-418B-A116-4999CD60F3B1}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="PlayBacking1" ID="{8E40F171-F46D-45FE-B070-683154CF5774}">
+				<Event Name="PlaySnare" ID="{80CD29B9-E282-4C0E-A32F-07EF82809E8F}">
 					<ChildrenList>
-						<Action Name="" ID="{64BDC7EE-EC7F-42AB-BCBB-E788C75B2E18}" ShortID="872283318">
+						<Action Name="" ID="{7D618E97-B8CA-4418-8CE1-D5264DAD7AC4}" ShortID="227913413">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Outfoxing the Fox" ID="{584E867D-3F5B-4B73-8847-214421918ABF}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+									<ObjectRef Name="HS_Jazz_03_SD" ID="{8B2BCCE9-85B4-488F-B5F6-33FB279488B1}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayHiHat" ID="{6C0484CB-E36C-4F88-AFE8-EB700375971D}">
+					<ChildrenList>
+						<Action Name="" ID="{C6DB9689-C860-40FF-89C2-088261BA4AB9}" ShortID="959197868">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Funk_HH" ID="{32C24199-5756-4720-A6D7-92ACB97B1D02}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayTomTom" ID="{1C36108C-3371-49D3-8889-229DC510CA03}">
+					<ChildrenList>
+						<Action Name="" ID="{3A71FA82-7B7E-4809-9238-975489BC3AA9}" ShortID="699670892">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="HS_Jazz_09_Tom" ID="{D5F19EF0-3DF1-48A5-AF7C-56807B30F3DD}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayCymbol" ID="{41E0FDA9-BA0C-42DA-89D1-010AFB2FA77C}">
+					<ChildrenList>
+						<Action Name="" ID="{678F65E3-3237-4C65-B3C7-AE2D78BB12EC}" ShortID="587847909">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="HS_Jazz_07_Cymbal" ID="{30DDE0D9-A9CA-4AEC-93C7-E9CBD98F7B19}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

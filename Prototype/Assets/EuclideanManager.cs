@@ -12,7 +12,8 @@ public enum DrumType {
     kick,
     snare,
     hiHat,
-    tomTom
+    tomTom,
+    cymbal
 }
 
 [RequireComponent(typeof(EuclideanRythm))]
@@ -43,11 +44,25 @@ public class EuclideanManager : MonoBehaviour {
     [Range(0.0f, 100.0f)] [SerializeField] private float distortionLevel;
     [Range(0.0f, 100.0f)] [SerializeField] private float vibratoLevel;
 
-    private void Start() {
+    private string[] effectNames = new string[3];
+
+    private void Start()
+    {
         _euclideanRythm = GetComponent<EuclideanRythm>();
         previousNumberOfNodes = numberOfNodes;
         StartCoroutine(WaitUntilConnected());
         // _realTime = RealTimeInstance.Instance.GetComponent<Realtime>();
+        // starting string for reverb
+
+
+        string[] effects = {"_Reverb_Level", "_Vibrato_Level", "_Distortion_Level"};
+
+        if (drumType == DrumType.kick) for (int i = 0; i < effects.Length; i++) effectNames[i] = "Kick" + effects[i];
+        else if (drumType == DrumType.snare) for (int i = 0; i < effects.Length; i++) effectNames[i] = "Snare" + effects[i];
+        else if (drumType == DrumType.hiHat) for (int i = 0; i < effects.Length; i++) effectNames[i] = "HiHat" + effects[i];
+        else if (drumType == DrumType.tomTom) for (int i = 0; i < effects.Length; i++) effectNames[i] = "TomTom" + effects[i];
+        else if (drumType == DrumType.cymbal) for (int i = 0; i < effects.Length; i++) effectNames[i] = "Cymbol" + effects[i];
+
     }
 
     private IEnumerator WaitUntilConnected() {
@@ -59,9 +74,10 @@ public class EuclideanManager : MonoBehaviour {
     }
 
     private void Update() {
-        AkSoundEngine.SetRTPCValue("Kick_Reverb_Level", reverbLevel);
-        AkSoundEngine.SetRTPCValue("Vibrato", vibratoLevel);
-        AkSoundEngine.SetRTPCValue("Distortion_Level", distortionLevel);
+        
+        AkSoundEngine.SetRTPCValue(effectNames[0], reverbLevel);
+        AkSoundEngine.SetRTPCValue(effectNames[1], vibratoLevel);
+        AkSoundEngine.SetRTPCValue(effectNames[2], distortionLevel);
 
         if (_screenSync.NumberOfNodes != numberOfNodes && _realTime.connected) {
             numberOfNodes = _screenSync.NumberOfNodes;
@@ -145,6 +161,7 @@ public class EuclideanManager : MonoBehaviour {
                 DrumType.snare => DrumType.snare,
                 DrumType.hiHat => DrumType.hiHat,
                 DrumType.tomTom => DrumType.tomTom,
+                DrumType.cymbal => DrumType.cymbal,
                 _ => _nodes[i].drumType
             };
             _nodes[i].interactionMethod = interactionMethod switch {
@@ -186,6 +203,6 @@ public class EuclideanManager : MonoBehaviour {
     }
 
     private void OnDisable() {
-        _realTime.room.rpcMessageReceived -= MessageReceived;
+        //_realTime.room.rpcMessageReceived -= MessageReceived;
     }
 }

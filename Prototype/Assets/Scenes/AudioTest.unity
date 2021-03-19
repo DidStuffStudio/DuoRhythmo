@@ -5077,16 +5077,16 @@ MonoBehaviour:
   nodePrefab: {fileID: 6748157332143515024, guid: a1fc0a6a038313d48b38d64efb0d9456, type: 3}
   _ryhtmIndicator: {fileID: 981917761}
   bpm: 12
-  drumType: 0
+  drumType: 2
   _screenSync: {fileID: 1158173523}
   _realTime: {fileID: 320708703}
   waitingTime: 1
   backingEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 28473f9a03779a946825a8e590312305, type: 2}
-  reverbLevel: 42
-  distortionLevel: 8
+    WwiseObjectReference: {fileID: 0}
+  reverbLevel: 15
+  distortionLevel: 0
   vibratoLevel: 0
 --- !u!114 &774570384
 MonoBehaviour:
@@ -10076,16 +10076,16 @@ MonoBehaviour:
   nodePrefab: {fileID: 6748157332143515024, guid: a1fc0a6a038313d48b38d64efb0d9456, type: 3}
   _ryhtmIndicator: {fileID: 1312171118}
   bpm: 12
-  drumType: 0
+  drumType: 3
   _screenSync: {fileID: 1158173523}
   _realTime: {fileID: 320708703}
   waitingTime: 1
   backingEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 28473f9a03779a946825a8e590312305, type: 2}
-  reverbLevel: 42
-  distortionLevel: 8
+    WwiseObjectReference: {fileID: 0}
+  reverbLevel: 15
+  distortionLevel: 0
   vibratoLevel: 0
 --- !u!114 &778911305
 MonoBehaviour:
@@ -12878,9 +12878,9 @@ MonoBehaviour:
   backingEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 28473f9a03779a946825a8e590312305, type: 2}
-  reverbLevel: 42
-  distortionLevel: 8
+    WwiseObjectReference: {fileID: 0}
+  reverbLevel: 15
+  distortionLevel: 0
   vibratoLevel: 0
 --- !u!114 &1146492092
 MonoBehaviour:
@@ -13497,7 +13497,7 @@ VisualEffect:
       - m_Value: 0.71
         m_Name: SphereSize
         m_Overridden: 1
-      - m_Value: 100000
+      - m_Value: 50000
         m_Name: Spawnrate
         m_Overridden: 1
       - m_Value: 500
@@ -15900,16 +15900,16 @@ MonoBehaviour:
   nodePrefab: {fileID: 6748157332143515024, guid: a1fc0a6a038313d48b38d64efb0d9456, type: 3}
   _ryhtmIndicator: {fileID: 268505690}
   bpm: 12
-  drumType: 0
+  drumType: 1
   _screenSync: {fileID: 1158173523}
   _realTime: {fileID: 320708703}
   waitingTime: 1
   backingEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 28473f9a03779a946825a8e590312305, type: 2}
-  reverbLevel: 42
-  distortionLevel: 8
+    WwiseObjectReference: {fileID: 0}
+  reverbLevel: 15
+  distortionLevel: 0
   vibratoLevel: 0
 --- !u!114 &1631976134
 MonoBehaviour:
@@ -16692,16 +16692,16 @@ MonoBehaviour:
   nodePrefab: {fileID: 6748157332143515024, guid: a1fc0a6a038313d48b38d64efb0d9456, type: 3}
   _ryhtmIndicator: {fileID: 593915144}
   bpm: 12
-  drumType: 0
+  drumType: 4
   _screenSync: {fileID: 1158173523}
   _realTime: {fileID: 320708703}
   waitingTime: 1
   backingEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 28473f9a03779a946825a8e590312305, type: 2}
-  reverbLevel: 42
-  distortionLevel: 8
+    WwiseObjectReference: {fileID: 0}
+  reverbLevel: 15
+  distortionLevel: 0
   vibratoLevel: 0
 --- !u!114 &1801813182
 MonoBehaviour:

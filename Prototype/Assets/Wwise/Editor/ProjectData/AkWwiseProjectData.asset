@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: a81dc75788825b409833e16fa7d911ed
     GuidInternal: 
-    m_lastTime: -8585855135107953971
+    m_lastTime: -8585854423980338973
     List:
     - name: DrumKit
       guid: 9b12486e84dacd4fbb559b2f24703957
@@ -94,11 +94,11 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 4359b77ad457754e8a9cd706b9cd71ce
     GuidInternal: 
-    m_lastTime: -8585855137474700496
+    m_lastTime: -8585854426045935349
     List:
-    - name: PlayBacking1
-      guid: 71f1408e6df4fe45b070683154cf5774
-      id: 3393636471
+    - name: PlayCymbol
+      guid: a9fde0410cbada4289d1010afb2fa77c
+      id: 797559763
       PathAndIcons:
       - ElementName: Events
         ObjectType: 5
@@ -106,13 +106,30 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: 4359b77ad457754e8a9cd706b9cd71ce
-      - ElementName: PlayBacking1
+      - ElementName: PlayCymbol
         ObjectType: 3
-        guid: 71f1408e6df4fe45b070683154cf5774
-      Path: Events\Default Work Unit\PlayBacking1
+        guid: a9fde0410cbada4289d1010afb2fa77c
+      Path: Events\Default Work Unit\PlayCymbol
       maxAttenuation: 0
-      maxDuration: 175.4525
-      minDuration: 175.4525
+      maxDuration: 2.074875
+      minDuration: 2.074875
+    - name: PlayHiHat
+      guid: cb84046c6ce3884fafe8eb700375971d
+      id: 2024048025
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 4359b77ad457754e8a9cd706b9cd71ce
+      - ElementName: PlayHiHat
+        ObjectType: 3
+        guid: cb84046c6ce3884fafe8eb700375971d
+      Path: Events\Default Work Unit\PlayHiHat
+      maxAttenuation: 0
+      maxDuration: 0.257891
+      minDuration: 0.257891
     - name: PlayKick
       guid: a663cad299d8254d9d631e5301ab6f0b
       id: 3490755565
@@ -128,8 +145,42 @@ MonoBehaviour:
         guid: a663cad299d8254d9d631e5301ab6f0b
       Path: Events\Default Work Unit\PlayKick
       maxAttenuation: 0
-      maxDuration: 0.919297
-      minDuration: 0.919297
+      maxDuration: 0.960952
+      minDuration: 0.960952
+    - name: PlaySnare
+      guid: b929cd8082e20e4ca32f07ef82809e8f
+      id: 519310506
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 4359b77ad457754e8a9cd706b9cd71ce
+      - ElementName: PlaySnare
+        ObjectType: 3
+        guid: b929cd8082e20e4ca32f07ef82809e8f
+      Path: Events\Default Work Unit\PlaySnare
+      maxAttenuation: 0
+      maxDuration: 0.949773
+      minDuration: 0.949773
+    - name: PlayTomTom
+      guid: 8c10361c7133d3498889229dc510ca03
+      id: 989251011
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 4359b77ad457754e8a9cd706b9cd71ce
+      - ElementName: PlayTomTom
+        ObjectType: 3
+        guid: 8c10361c7133d3498889229dc510ca03
+      Path: Events\Default Work Unit\PlayTomTom
+      maxAttenuation: 0
+      maxDuration: 1.910907
+      minDuration: 1.910907
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -142,11 +193,11 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: 9f2cb0cc16470340a744c7e35cb02879
     GuidInternal: 
-    m_lastTime: -8585855836551989572
+    m_lastTime: -8585854426045514970
     List:
-    - name: Distortion_Level
-      guid: f2a7443e41818246a03b34537a3f92c9
-      id: 4258055663
+    - name: Cymbol_Distortion_Level
+      guid: b66287d2c2e2f74d885dc48226701b86
+      id: 1512457770
       PathAndIcons:
       - ElementName: Game Parameters
         ObjectType: 5
@@ -154,10 +205,94 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: 9f2cb0cc16470340a744c7e35cb02879
-      - ElementName: Distortion_Level
+      - ElementName: Cymbol_Distortion_Level
+        ObjectType: 13
+        guid: b66287d2c2e2f74d885dc48226701b86
+      Path: Game Parameters\Default Work Unit\Cymbol_Distortion_Level
+    - name: Cymbol_Reverb_Level
+      guid: 7ef7aed22c63034eafe1242c840c3d64
+      id: 3704685835
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: Cymbol_Reverb_Level
+        ObjectType: 13
+        guid: 7ef7aed22c63034eafe1242c840c3d64
+      Path: Game Parameters\Default Work Unit\Cymbol_Reverb_Level
+    - name: Cymbol_Vibrato_Level
+      guid: 2d84cd9a1e88554e8d0cb993667ab55a
+      id: 420160488
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: Cymbol_Vibrato_Level
+        ObjectType: 13
+        guid: 2d84cd9a1e88554e8d0cb993667ab55a
+      Path: Game Parameters\Default Work Unit\Cymbol_Vibrato_Level
+    - name: HiHat_Distortion_Level
+      guid: bdcaa4c8e953fc42b6696256104f018f
+      id: 2224488652
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: HiHat_Distortion_Level
+        ObjectType: 13
+        guid: bdcaa4c8e953fc42b6696256104f018f
+      Path: Game Parameters\Default Work Unit\HiHat_Distortion_Level
+    - name: HiHat_Reverb_Level
+      guid: cb33319d4fab3a4cb3e8053c64b99f60
+      id: 737935225
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: HiHat_Reverb_Level
+        ObjectType: 13
+        guid: cb33319d4fab3a4cb3e8053c64b99f60
+      Path: Game Parameters\Default Work Unit\HiHat_Reverb_Level
+    - name: HiHat_Vibrato_Level
+      guid: 55b47697ca575a4eae78dafe06de97b6
+      id: 3189860618
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: HiHat_Vibrato_Level
+        ObjectType: 13
+        guid: 55b47697ca575a4eae78dafe06de97b6
+      Path: Game Parameters\Default Work Unit\HiHat_Vibrato_Level
+    - name: Kick_Distortion_Level
+      guid: f2a7443e41818246a03b34537a3f92c9
+      id: 3716690160
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: Kick_Distortion_Level
         ObjectType: 13
         guid: f2a7443e41818246a03b34537a3f92c9
-      Path: Game Parameters\Default Work Unit\Distortion_Level
+      Path: Game Parameters\Default Work Unit\Kick_Distortion_Level
     - name: Kick_Reverb_Level
       guid: d46f027dba738c41b0294d637a7ccd5e
       id: 332679093
@@ -172,9 +307,9 @@ MonoBehaviour:
         ObjectType: 13
         guid: d46f027dba738c41b0294d637a7ccd5e
       Path: Game Parameters\Default Work Unit\Kick_Reverb_Level
-    - name: Vibrato
+    - name: Kick_Vibrato_Level
       guid: 6875c41d3b7b8e4ab39fc20943e54c6a
-      id: 109045632
+      id: 308881454
       PathAndIcons:
       - ElementName: Game Parameters
         ObjectType: 5
@@ -182,10 +317,94 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: 9f2cb0cc16470340a744c7e35cb02879
-      - ElementName: Vibrato
+      - ElementName: Kick_Vibrato_Level
         ObjectType: 13
         guid: 6875c41d3b7b8e4ab39fc20943e54c6a
-      Path: Game Parameters\Default Work Unit\Vibrato
+      Path: Game Parameters\Default Work Unit\Kick_Vibrato_Level
+    - name: Snare_Distortion_Level
+      guid: d004532882dcfd439bc66e11dc5832af
+      id: 2110460501
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: Snare_Distortion_Level
+        ObjectType: 13
+        guid: d004532882dcfd439bc66e11dc5832af
+      Path: Game Parameters\Default Work Unit\Snare_Distortion_Level
+    - name: Snare_Reverb_Level
+      guid: 91862bd8e67c814da822e388e469450d
+      id: 2202578148
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: Snare_Reverb_Level
+        ObjectType: 13
+        guid: 91862bd8e67c814da822e388e469450d
+      Path: Game Parameters\Default Work Unit\Snare_Reverb_Level
+    - name: Snare_Vibrato_Level
+      guid: 55523314161001498da0a112673c976a
+      id: 3405938365
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: Snare_Vibrato_Level
+        ObjectType: 13
+        guid: 55523314161001498da0a112673c976a
+      Path: Game Parameters\Default Work Unit\Snare_Vibrato_Level
+    - name: TomTom_Distortion_Level
+      guid: 0d734d16240e784b9bfce6016ecb0711
+      id: 24097478
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: TomTom_Distortion_Level
+        ObjectType: 13
+        guid: 0d734d16240e784b9bfce6016ecb0711
+      Path: Game Parameters\Default Work Unit\TomTom_Distortion_Level
+    - name: TomTom_Reverb_Level
+      guid: 0ddd5b0823cc584a925b9a6a9e2441df
+      id: 3509199135
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: TomTom_Reverb_Level
+        ObjectType: 13
+        guid: 0ddd5b0823cc584a925b9a6a9e2441df
+      Path: Game Parameters\Default Work Unit\TomTom_Reverb_Level
+    - name: TomTom_Vibrato_Level
+      guid: 887cc59b24c5944d9e153f1e7c58e3b9
+      id: 1274110740
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: TomTom_Vibrato_Level
+        ObjectType: 13
+        guid: 887cc59b24c5944d9e153f1e7c58e3b9
+      Path: Game Parameters\Default Work Unit\TomTom_Vibrato_Level
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     PathAndIcons:
@@ -228,9 +447,9 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8585860534101239506
     List: []
-  ExpandedFileSystemItemIds: 
+  ExpandedFileSystemItemIds: 0200000003000000
   ExpandedWaapiItemIds: 0200000003000000050000000600000007000000080000000a0000000b0000000c0000000d0000000f000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
-  currentDataSource: 0
+  currentDataSource: 1
   CurrentPluginConfig: 

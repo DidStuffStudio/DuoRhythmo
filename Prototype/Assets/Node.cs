@@ -21,7 +21,7 @@ public class Node : MonoBehaviour {
     private ScreenSync _screenSync;
     
     public bool cameFromButton;
-    public AK.Wwise.Event kickEvent, snareEvent, hiHatEvent, tomTomEvent;
+    public AK.Wwise.Event kickEvent, snareEvent, hiHatEvent, tomTomEvent, cymbalEvent;
     private VisualEffect vfx;
     private void Start() {
         _screenSync = GameObject.FindObjectOfType<ScreenSync>().GetComponent<ScreenSync>();
@@ -125,6 +125,9 @@ public class Node : MonoBehaviour {
                 break;
             case DrumType.tomTom:
                 tomTomEvent.Post(gameObject);
+                break;
+            case DrumType.cymbal:
+                cymbalEvent.Post(gameObject);
                 break;
         }
     }

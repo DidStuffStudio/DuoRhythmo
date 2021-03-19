@@ -266,7 +266,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6748157332143515025}
   - component: {fileID: 6748157332143515036}
-  - component: {fileID: 8040717043673488930}
   - component: {fileID: 8517848921195261517}
   m_Layer: 0
   m_Name: Node
@@ -325,32 +324,19 @@ MonoBehaviour:
   snareEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: 002a8fa724d7b84488def34dea0e011a, type: 2}
   hiHatEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: 030901a2e7451014982be8a03db889e3, type: 2}
   tomTomEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
---- !u!114 &8040717043673488930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6748157332143515024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0c986815171c4e4d9c6dd37fe7a32b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionMethod: 0
-  drumKit: {fileID: 0}
-  playKick: 0
-  playSnare: 0
-  bpm: 0.1
+    WwiseObjectReference: {fileID: 11400000, guid: a0d12ad59751f6e46b22c204429efe1f, type: 2}
+  cymbalEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6dd43599664cb8e4fa19584d469edcea, type: 2}
 --- !u!114 &8517848921195261517
 MonoBehaviour:
   m_ObjectHideFlags: 0

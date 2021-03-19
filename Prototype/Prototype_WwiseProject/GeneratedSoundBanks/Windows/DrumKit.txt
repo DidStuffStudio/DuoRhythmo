@@ -1,18 +1,48 @@
 Event	ID	Name			Wwise Object Path	Notes
-	3393636471	PlayBacking1			\Default Work Unit\PlayBacking1	
+	519310506	PlaySnare			\Default Work Unit\PlaySnare	
+	797559763	PlayCymbol			\Default Work Unit\PlayCymbol	
+	989251011	PlayTomTom			\Default Work Unit\PlayTomTom	
+	2024048025	PlayHiHat			\Default Work Unit\PlayHiHat	
 	3490755565	PlayKick			\Default Work Unit\PlayKick	
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
-	109045632	Vibrato			\Default Work Unit\Vibrato	
+	24097478	TomTom_Distortion_Level			\Default Work Unit\TomTom_Distortion_Level	
+	308881454	Kick_Vibrato_Level			\Default Work Unit\Kick_Vibrato_Level	
 	332679093	Kick_Reverb_Level			\Default Work Unit\Kick_Reverb_Level	
-	4258055663	Distortion_Level			\Default Work Unit\Distortion_Level	
+	420160488	Cymbol_Vibrato_Level			\Default Work Unit\Cymbol_Vibrato_Level	
+	737935225	HiHat_Reverb_Level			\Default Work Unit\HiHat_Reverb_Level	
+	1274110740	TomTom_Vibrato_Level			\Default Work Unit\TomTom_Vibrato_Level	
+	1512457770	Cymbol_Distortion_Level			\Default Work Unit\Cymbol_Distortion_Level	
+	2110460501	Snare_Distortion_Level			\Default Work Unit\Snare_Distortion_Level	
+	2202578148	Snare_Reverb_Level			\Default Work Unit\Snare_Reverb_Level	
+	2224488652	HiHat_Distortion_Level			\Default Work Unit\HiHat_Distortion_Level	
+	3189860618	HiHat_Vibrato_Level			\Default Work Unit\HiHat_Vibrato_Level	
+	3405938365	Snare_Vibrato_Level			\Default Work Unit\Snare_Vibrato_Level	
+	3509199135	TomTom_Reverb_Level			\Default Work Unit\TomTom_Reverb_Level	
+	3704685835	Cymbol_Reverb_Level			\Default Work Unit\Cymbol_Reverb_Level	
+	3716690160	Kick_Distortion_Level			\Default Work Unit\Kick_Distortion_Level	
 
 Effect plug-ins	ID	Name	Type				Notes
-	828219929	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
-	1038217125	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
-	1063835520	Bass (Custom)	Wwise Flanger			
+	5641065	Bass (Custom)	Wwise Flanger			
+	83070814	Bass (Custom)	Wwise Flanger			
+	335173439	Bass (Custom)	Wwise Flanger			
+	363421624	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
+	381642426	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
+	414665925	Bass (Custom)	Wwise Flanger			
+	415503168	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
+	526361734	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
+	597472014	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
+	678024392	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
+	699844546	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
+	878566758	Bass (Custom)	Wwise Flanger			
+	902659813	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
+	1021781828	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
+	1038865442	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	97711246	Funk_BD	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\Funk_BD_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Funk_BD		162228
-	137618464	Outfoxing the Fox	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\Outfoxing the Fox_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Outfoxing the Fox		30949884
+	128923291	HS_Jazz_07_Cymbal	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\HS_Jazz_07_Cymbal_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\HS_Jazz_07_Cymbal		366072
+	395345225	HS_Jazz_03_SD	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\HS_Jazz_03_SD_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\HS_Jazz_03_SD		167604
+	525752949	HS_Jazz_01_BD	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\HS_Jazz_01_BD_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\HS_Jazz_01_BD		169576
+	707305554	Funk_HH	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\Funk_HH_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Funk_HH		45556
+	947972333	HS_Jazz_09_Tom	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\HS_Jazz_09_Tom_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\HS_Jazz_09_Tom		337148
 

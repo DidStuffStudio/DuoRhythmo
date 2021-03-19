@@ -8,8 +8,36 @@
 						<Property Name="InitialValue" Type="Real64" Value="0"/>
 					</PropertyList>
 				</GameParameter>
-				<GameParameter Name="Distortion_Level" ID="{3E44A7F2-8141-4682-A03B-34537A3F92C9}"/>
-				<GameParameter Name="Vibrato" ID="{1DC47568-7B3B-4A8E-B39F-C20943E54C6A}"/>
+				<GameParameter Name="Kick_Distortion_Level" ID="{3E44A7F2-8141-4682-A03B-34537A3F92C9}"/>
+				<GameParameter Name="Kick_Vibrato_Level" ID="{1DC47568-7B3B-4A8E-B39F-C20943E54C6A}"/>
+				<GameParameter Name="Snare_Reverb_Level" ID="{D82B8691-7CE6-4D81-A822-E388E469450D}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="Snare_Vibrato_Level" ID="{14335255-1016-4901-8DA0-A112673C976A}"/>
+				<GameParameter Name="Snare_Distortion_Level" ID="{285304D0-DC82-43FD-9BC6-6E11DC5832AF}"/>
+				<GameParameter Name="Cymbol_Reverb_Level" ID="{D2AEF77E-632C-4E03-AFE1-242C840C3D64}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="Cymbol_Vibrato_Level" ID="{9ACD842D-881E-4E55-8D0C-B993667AB55A}"/>
+				<GameParameter Name="Cymbol_Distortion_Level" ID="{D28762B6-E2C2-4DF7-885D-C48226701B86}"/>
+				<GameParameter Name="TomTom_Reverb_Level" ID="{085BDD0D-CC23-4A58-925B-9A6A9E2441DF}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="TomTom_Vibrato_Level" ID="{9BC57C88-C524-4D94-9E15-3F1E7C58E3B9}"/>
+				<GameParameter Name="TomTom_Distortion_Level" ID="{164D730D-0E24-4B78-9BFC-E6016ECB0711}"/>
+				<GameParameter Name="HiHat_Reverb_Level" ID="{9D3133CB-AB4F-4C3A-B3E8-053C64B99F60}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="HiHat_Vibrato_Level" ID="{9776B455-57CA-4E5A-AE78-DAFE06DE97B6}"/>
+				<GameParameter Name="HiHat_Distortion_Level" ID="{C8A4CABD-53E9-42FC-B669-6256104F018F}"/>
 			</ChildrenList>
 		</WorkUnit>
 	</GameParameters>

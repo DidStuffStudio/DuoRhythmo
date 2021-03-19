@@ -12,8 +12,8 @@ Material:
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -24,13 +24,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 10307, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpAmt: 10
     - _Radius: 82
-    - _Size: 1
+    - _Size: 20.7
     m_Colors:
+    - _AdditiveColor: {r: 0, g: 0.4986515, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _MultiplyColor: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

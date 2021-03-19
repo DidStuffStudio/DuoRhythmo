@@ -1,151 +1,180 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "Unlit/FrostedGlass"
-{
-    Properties
-    {
-        _Radius("Radius", Range(1, 255)) = 1
+Shader "Custom/MaskedUIBlur" {
+    Properties {
+        _Size ("Blur", Range(0, 30)) = 1
+        _MainTex ("Masking Texture", 2D) = "white" {}
+        _AdditiveColor ("Additive Tint color", Color) = (0, 0, 0, 0)
+        _MultiplyColor ("Multiply Tint color", Color) = (1, 1, 1, 1)
     }
 
-    Category
-    {
-        Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Opaque" }
+    Category {
+
+        // We must be transparent, so other objects are drawn before this one.
+        Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Opaque" }
+
 
         SubShader
         {
+            // Horizontal blur
             GrabPass
             {
-                Tags{ "LightMode" = "Always" }
+                "_HBlur"
             }
+            /*
+            ZTest Off
+            Blend SrcAlpha OneMinusSrcAlpha
+            */
+
+            Cull Off
+            Lighting Off
+            ZWrite Off
+            ZTest [unity_GUIZTestMode]
+            Blend SrcAlpha OneMinusSrcAlpha
 
             Pass
-            {
-                Tags{ "LightMode" = "Always" }
-
+            {          
                 CGPROGRAM
                 #pragma vertex vert
                 #pragma fragment frag
                 #pragma fragmentoption ARB_precision_hint_fastest
                 #include "UnityCG.cginc"
 
-                struct appdata_t
-                {
+                struct appdata_t {
                     float4 vertex : POSITION;
-                    float2 texcoord: TEXCOORD0;
+                    float2 texcoord : TEXCOORD0;
                 };
 
-                struct v2f
-                {
+                struct v2f {
                     float4 vertex : POSITION;
                     float4 uvgrab : TEXCOORD0;
+                    float2 uvmain : TEXCOORD1;
                 };
 
-                v2f vert(appdata_t v)
+                sampler2D _MainTex;
+                float4 _MainTex_ST;
+
+                v2f vert (appdata_t v)
                 {
                     v2f o;
                     o.vertex = UnityObjectToClipPos(v.vertex);
+
                     #if UNITY_UV_STARTS_AT_TOP
                     float scale = -1.0;
                     #else
                     float scale = 1.0;
                     #endif
-                    o.uvgrab.xy = (float2(o.vertex.x, o.vertex.y*scale) + o.vertex.w) * 0.5;
+
+                    o.uvgrab.xy = (float2(o.vertex.x, o.vertex.y * scale) + o.vertex.w) * 0.5;
                     o.uvgrab.zw = o.vertex.zw;
+
+                    o.uvmain = TRANSFORM_TEX(v.texcoord, _MainTex);
                     return o;
                 }
 
-                sampler2D _GrabTexture;
-                float4 _GrabTexture_TexelSize;
-                float _Radius;
+                sampler2D _HBlur;
+                float4 _HBlur_TexelSize;
+                float _Size;
+                float4 _AdditiveColor;
+                float4 _MultiplyColor;
 
-                half4 frag(v2f i) : COLOR
-                {
+                half4 frag( v2f i ) : COLOR
+                {   
                     half4 sum = half4(0,0,0,0);
 
-                    #define GRABXYPIXEL(kernelx, kernely) tex2Dproj( _GrabTexture, UNITY_PROJ_COORD(float4(i.uvgrab.x + _GrabTexture_TexelSize.x * kernelx, i.uvgrab.y + _GrabTexture_TexelSize.y * kernely, i.uvgrab.z, i.uvgrab.w)))
+                    #define GRABPIXEL(weight,kernelx) tex2Dproj( _HBlur, UNITY_PROJ_COORD(float4(i.uvgrab.x + _HBlur_TexelSize.x * kernelx * _Size, i.uvgrab.y, i.uvgrab.z, i.uvgrab.w))) * weight
 
-                    sum += GRABXYPIXEL(0.0, 0.0);
-                    int measurments = 1;
+                    sum += GRABPIXEL(0.05, -4.0);
+                    sum += GRABPIXEL(0.09, -3.0);
+                    sum += GRABPIXEL(0.12, -2.0);
+                    sum += GRABPIXEL(0.15, -1.0);
+                    sum += GRABPIXEL(0.18,  0.0);
+                    sum += GRABPIXEL(0.15, +1.0);
+                    sum += GRABPIXEL(0.12, +2.0);
+                    sum += GRABPIXEL(0.09, +3.0);
+                    sum += GRABPIXEL(0.05, +4.0);
 
-                    for (float range = 0.1f; range <= _Radius; range += 0.1f)
-                    {
-                        sum += GRABXYPIXEL(range, range);
-                        sum += GRABXYPIXEL(range, -range);
-                        sum += GRABXYPIXEL(-range, range);
-                        sum += GRABXYPIXEL(-range, -range);
-                        measurments += 4;
-                    }
 
-                    return sum / measurments;
+                    half4 result = half4(sum.r * _MultiplyColor.r + _AdditiveColor.r, 
+                                        sum.g * _MultiplyColor.g + _AdditiveColor.g, 
+                                        sum.b * _MultiplyColor.b + _AdditiveColor.b, 
+                                        tex2D(_MainTex, i.uvmain).a);
+                    return result;
                 }
                 ENDCG
             }
+
+            // Vertical blur
             GrabPass
             {
-                Tags{ "LightMode" = "Always" }
+                "_VBlur"
             }
 
             Pass
-            {
-                Tags{ "LightMode" = "Always" }
-
+            {          
                 CGPROGRAM
                 #pragma vertex vert
                 #pragma fragment frag
                 #pragma fragmentoption ARB_precision_hint_fastest
                 #include "UnityCG.cginc"
 
-                struct appdata_t
-                {
+                struct appdata_t {
                     float4 vertex : POSITION;
                     float2 texcoord: TEXCOORD0;
                 };
 
-                struct v2f
-                {
+                struct v2f {
                     float4 vertex : POSITION;
                     float4 uvgrab : TEXCOORD0;
+                    float2 uvmain : TEXCOORD1;
                 };
 
-                v2f vert(appdata_t v)
-                {
+                sampler2D _MainTex;
+                float4 _MainTex_ST;
+
+                v2f vert (appdata_t v) {
                     v2f o;
                     o.vertex = UnityObjectToClipPos(v.vertex);
+
                     #if UNITY_UV_STARTS_AT_TOP
                     float scale = -1.0;
                     #else
                     float scale = 1.0;
                     #endif
-                    o.uvgrab.xy = (float2(o.vertex.x, o.vertex.y*scale) + o.vertex.w) * 0.5;
+
+                    o.uvgrab.xy = (float2(o.vertex.x, o.vertex.y * scale) + o.vertex.w) * 0.5;
                     o.uvgrab.zw = o.vertex.zw;
+
+                    o.uvmain = TRANSFORM_TEX(v.texcoord, _MainTex);
+
                     return o;
                 }
 
-                sampler2D _GrabTexture;
-                float4 _GrabTexture_TexelSize;
-                float _Radius;
+                sampler2D _VBlur;
+                float4 _VBlur_TexelSize;
+                float _Size;
+                float4 _AdditiveColor;
+                float4 _MultiplyColor;
 
-                half4 frag(v2f i) : COLOR
+                half4 frag( v2f i ) : COLOR
                 {
-
                     half4 sum = half4(0,0,0,0);
-                    float radius = 1.41421356237 * _Radius;
 
-                    #define GRABXYPIXEL(kernelx, kernely) tex2Dproj( _GrabTexture, UNITY_PROJ_COORD(float4(i.uvgrab.x + _GrabTexture_TexelSize.x * kernelx, i.uvgrab.y + _GrabTexture_TexelSize.y * kernely, i.uvgrab.z, i.uvgrab.w)))
+                    #define GRABPIXEL(weight,kernely) tex2Dproj( _VBlur, UNITY_PROJ_COORD(float4(i.uvgrab.x, i.uvgrab.y + _VBlur_TexelSize.y * kernely * _Size, i.uvgrab.z, i.uvgrab.w))) * weight
 
-                    sum += GRABXYPIXEL(0.0, 0.0);
-                    int measurments = 1;
+                    sum += GRABPIXEL(0.05, -4.0);
+                    sum += GRABPIXEL(0.09, -3.0);
+                    sum += GRABPIXEL(0.12, -2.0);
+                    sum += GRABPIXEL(0.15, -1.0);
+                    sum += GRABPIXEL(0.18,  0.0);
+                    sum += GRABPIXEL(0.15, +1.0);
+                    sum += GRABPIXEL(0.12, +2.0);
+                    sum += GRABPIXEL(0.09, +3.0);
+                    sum += GRABPIXEL(0.05, +4.0);
 
-                    for (float range = 1.41421356237f; range <= radius * 1.41; range += 1.41421356237f)
-                    {
-                        sum += GRABXYPIXEL(range, 0);
-                        sum += GRABXYPIXEL(-range, 0);
-                        sum += GRABXYPIXEL(0, range);
-                        sum += GRABXYPIXEL(0, -range);
-                        measurments += 4;
-                    }
-
-                    return sum / measurments;
+                    half4 result = half4(sum.r * _MultiplyColor.r + _AdditiveColor.r, 
+                                        sum.g * _MultiplyColor.g + _AdditiveColor.g, 
+                                        sum.b * _MultiplyColor.b + _AdditiveColor.b, 
+                                        tex2D(_MainTex, i.uvmain).a);
+                    return result;
                 }
                 ENDCG
             }

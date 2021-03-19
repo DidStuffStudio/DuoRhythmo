@@ -8,8 +8,20 @@ using UnityEngine;
 public class RealTimeInstance : MonoBehaviour {
     private static RealTimeInstance _instance;
     public static RealTimeInstance Instance => _instance;
-
-    private void Awake() => _instance = this;
-
+    private Realtime _realtime;
     public bool nodesInstantiated;
+    public bool isConnected;
+    
+    private void Awake()
+    {
+        _instance = this;
+        _realtime = GetComponent<Realtime>();
+    }
+
+   
+    private void Update()
+    {
+        if (!_realtime.connected) return;
+        isConnected = true;
+    }
 }

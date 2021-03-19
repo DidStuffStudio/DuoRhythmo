@@ -27,6 +27,7 @@ public class UserInterfaceManager : MonoBehaviour
     public void PauseAnimation()
     {
         _uiAnimator.speed = 0.0f;
+        _playerAnimator.speed = 0.0f;
         startTimer = true;
     }
 

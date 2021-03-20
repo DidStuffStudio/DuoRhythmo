@@ -7,12 +7,13 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 [RequireComponent(typeof(Realtime))]
-[RequireComponent(typeof(NetworkManagerSync))]
 public class RealTimeInstance : MonoBehaviour {
     private static RealTimeInstance _instance;
     public static RealTimeInstance Instance => _instance;
     
     private Realtime _realtime;
+    [SerializeField] private GameObject networkManagerPrefab;
+    private GameObject networkManager;
     private NetworkManagerSync _networkManagerSync;
     public bool isConnected;
     public int numberPlayers;
@@ -21,7 +22,6 @@ public class RealTimeInstance : MonoBehaviour {
     private void Awake() {
         _instance = this;
         _realtime = GetComponent<Realtime>();
-        _networkManagerSync = GetComponent<NetworkManagerSync>();
         RegisterToEvents();
     }
 
@@ -33,16 +33,22 @@ public class RealTimeInstance : MonoBehaviour {
 
     private void Update() {
         numberPlayers = _networkManagerSync.NumberPlayers;
+        print("This is the number of players according to the network model: " + numberPlayers);
+        numberPlayers = GameObject.FindObjectsOfType<NetworkManagerSync>().Length;
+        print("This is the number of players according to the amount ot NetworkManager instances: " + numberPlayers);
     }
 
     private void DidConnectToRoom(Realtime realtime) {
-        isConnected = true;
+        networkManager = Realtime.Instantiate(networkManagerPrefab.name, true);
+        _networkManagerSync = networkManager.GetComponent<NetworkManagerSync>();
         _networkManagerSync.PlayerConnected();
+        isConnected = true;
     }
     
     private void DidDisconnectFromRoom(Realtime realtime) {
-        isConnected = false;
         _networkManagerSync.PlayerDisconnected();
+        _networkManagerSync = networkManager.GetComponent<NetworkManagerSync>();
+        isConnected = false;
     }
 
     private void OnDisable() {

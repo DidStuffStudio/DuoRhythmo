@@ -78,9 +78,12 @@ public class EuclideanManager : MonoBehaviour {
     }
 
     private IEnumerator WaitUntilConnected() {
-        while (!_realTime.connected) yield return null;
         rotation = 0;
-        SpawnNodes();
+        if (!RealTimeInstance.Instance.isSoloMode) {
+            while (!RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers < 2) yield return null;
+            SpawnNodes();
+        }
+        else SpawnNodes();
     }
 
     private void Update() {

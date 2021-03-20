@@ -2,41 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using Normal.Realtime;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class NetworkManagerSync : RealtimeComponent<NetworkManagerModel>
 {
-    private bool _nodesInstantiated;
-    public bool NodesInstantiated => _nodesInstantiated;
-    
+    private int _numberPlayers;
+    public int NumberPlayers {
+        get => _numberPlayers;
+        set => _numberPlayers = value;
+    }
+
     protected override void OnRealtimeModelReplaced(NetworkManagerModel previousModel, NetworkManagerModel currentModel) {
         if (previousModel != null) {
             // Unregister from events
-            previousModel.nodesInstantiatedDidChange -= NodesInstantiatedDidChange;
+            previousModel.numberPlayersDidChange -= NumberPlayersDidChange;
         }
         
         if (currentModel != null) {
             // If this is a model that has no data set on it, populate it with the current mesh renderer color.
             if (currentModel.isFreshModel) {
-                currentModel.nodesInstantiated = _nodesInstantiated;
+                currentModel.numberPlayers = _numberPlayers;
             }
         
             // Update the mesh render to match the new model
-            UpdateInstantiation();
+            UpdateNetwork();
             
             // Register for events so we'll know if the color changes later
-            currentModel.nodesInstantiatedDidChange += NodesInstantiatedDidChange;
+            currentModel.numberPlayersDidChange += NumberPlayersDidChange;
         }
     }
 
-    private void NodesInstantiatedDidChange(NetworkManagerModel networkManagerModel, bool value) {
-        if(!_nodesInstantiated) _nodesInstantiated = true;
-    }
+    private void NumberPlayersDidChange(NetworkManagerModel networkManagerModel, int value) => _numberPlayers = model.numberPlayers;
 
-    private void UpdateInstantiation() {
-        _nodesInstantiated = model.nodesInstantiated;
-    }
-
-    public void SetNodesInstantiated(bool value) {
-        model.nodesInstantiated = value;
-    }
+    private void UpdateNetwork() => _numberPlayers = model.numberPlayers;
 }

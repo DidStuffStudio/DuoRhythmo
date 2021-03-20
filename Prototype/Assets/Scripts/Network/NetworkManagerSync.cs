@@ -7,10 +7,7 @@ using UnityEngine.PlayerLoop;
 public class NetworkManagerSync : RealtimeComponent<NetworkManagerModel>
 {
     private int _numberPlayers;
-    public int NumberPlayers {
-        get => _numberPlayers;
-        set => _numberPlayers = value;
-    }
+    public int NumberPlayers => _numberPlayers;
 
     protected override void OnRealtimeModelReplaced(NetworkManagerModel previousModel, NetworkManagerModel currentModel) {
         if (previousModel != null) {
@@ -19,20 +16,26 @@ public class NetworkManagerSync : RealtimeComponent<NetworkManagerModel>
         }
         
         if (currentModel != null) {
-            // If this is a model that has no data set on it, populate it with the current mesh renderer color.
             if (currentModel.isFreshModel) {
                 currentModel.numberPlayers = _numberPlayers;
             }
         
-            // Update the mesh render to match the new model
             UpdateNetwork();
             
-            // Register for events so we'll know if the color changes later
+            // register to events
             currentModel.numberPlayersDidChange += NumberPlayersDidChange;
         }
     }
 
-    private void NumberPlayersDidChange(NetworkManagerModel networkManagerModel, int value) => _numberPlayers = model.numberPlayers;
+    private void NumberPlayersDidChange(NetworkManagerModel networkManagerModel, int value) {
+        _numberPlayers = model.numberPlayers;
+        print("The number of players has changed to: " + _numberPlayers);
+    }
 
     private void UpdateNetwork() => _numberPlayers = model.numberPlayers;
+
+    public void SetNumberOfPlayers(int num) {
+        _numberPlayers = num;
+        model.numberPlayers = _numberPlayers;
+    }
 }

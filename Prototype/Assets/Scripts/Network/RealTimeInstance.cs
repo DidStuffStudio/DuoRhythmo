@@ -22,10 +22,10 @@ public class RealTimeInstance : MonoBehaviour {
         _instance = this;
         _realtime = GetComponent<Realtime>();
         _networkManagerSync = GetComponent<NetworkManagerSync>();
-        SubscribeToEvents();
+        RegisterToEvents();
     }
 
-    private void SubscribeToEvents() {
+    private void RegisterToEvents() {
         // Notify us when Realtime connects to or disconnects from the room
         _realtime.didConnectToRoom += DidConnectToRoom;
         _realtime.didDisconnectFromRoom += DidDisconnectFromRoom;
@@ -37,16 +37,15 @@ public class RealTimeInstance : MonoBehaviour {
 
     private void DidConnectToRoom(Realtime realtime) {
         isConnected = true;
-        _networkManagerSync.NumberPlayers++;
+        _networkManagerSync.SetNumberOfPlayers(numberPlayers + 1);
     }
     
     private void DidDisconnectFromRoom(Realtime realtime) {
         isConnected = false;
-        _networkManagerSync.NumberPlayers--;
+        _networkManagerSync.SetNumberOfPlayers(numberPlayers - 1);
     }
 
     private void OnDisable() {
-        // Notify us when Realtime successfully connects to the room
         _realtime.didConnectToRoom -= DidConnectToRoom;
         _realtime.didDisconnectFromRoom -= DidDisconnectFromRoom;
     }

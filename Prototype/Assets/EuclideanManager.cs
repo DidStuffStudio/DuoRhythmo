@@ -50,7 +50,12 @@ public class EuclideanManager : MonoBehaviour {
         _euclideanRythm = GetComponent<EuclideanRythm>();
         previousNumberOfNodes = numberOfNodes;
         _screenSync = GetComponentInParent<ScreenSync>();
-        StartCoroutine(WaitUntilConnected());
+
+        if (RealTimeInstance.Instance.isSoloMode) SpawnNodes();
+        else StartCoroutine(WaitUntilConnected());
+        
+        rotation = 0;
+        
         //_realTime = RealTimeInstance.Instance.GetComponent<Realtime>();
         int sliderIndex = 0;
         foreach (var slider in sliders) {
@@ -78,12 +83,12 @@ public class EuclideanManager : MonoBehaviour {
     }
 
     private IEnumerator WaitUntilConnected() {
-        rotation = 0;
-        if (!RealTimeInstance.Instance.isSoloMode) {
-            while (!RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers < 2) yield return null;
-            SpawnNodes();
+        while (true) {
+            if(RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
+            yield return new WaitForEndOfFrame();
         }
-        else SpawnNodes();
+        SpawnNodes();
+        rotation = 0;
     }
 
     private void Update() {

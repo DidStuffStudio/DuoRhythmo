@@ -44,41 +44,47 @@ public class EuclideanManager : MonoBehaviour {
     private string[] effectNames = new string[3];
 
     public Slider[] sliders = new Slider[3];
+    private bool effectsChangedOnServer = false;
 
-    private void Start()
-    {
+    private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();
         previousNumberOfNodes = numberOfNodes;
         StartCoroutine(WaitUntilConnected());
         //_realTime = RealTimeInstance.Instance.GetComponent<Realtime>();
         int sliderIndex = 0;
-        foreach (var slider in sliders)
-        {
+        foreach (var slider in sliders) {
             var index = sliderIndex;
             slider.onValueChanged.AddListener(delegate { ChangeEffectValue(index: index); });
             sliderIndex++;
         }
-        string[] effects = {"_Reverb_Level", "_Vibrato_Level", "_Distortion_Level"};
-        if (drumType == DrumType.kick) for (int i = 0; i < effects.Length; i++) effectNames[i] = "Kick" + effects[i];
-        else if (drumType == DrumType.snare) for (int i = 0; i < effects.Length; i++) effectNames[i] = "Snare" + effects[i];
-        else if (drumType == DrumType.hiHat) for (int i = 0; i < effects.Length; i++) effectNames[i] = "HiHat" + effects[i];
-        else if (drumType == DrumType.tomTom) for (int i = 0; i < effects.Length; i++) effectNames[i] = "TomTom" + effects[i];
-        else if (drumType == DrumType.cymbal) for (int i = 0; i < effects.Length; i++) effectNames[i] = "Cymbol" + effects[i];
 
+        string[] effects = {"_Reverb_Level", "_Vibrato_Level", "_Distortion_Level"};
+        if (drumType == DrumType.kick)
+            for (int i = 0; i < effects.Length; i++)
+                effectNames[i] = "Kick" + effects[i];
+        else if (drumType == DrumType.snare)
+            for (int i = 0; i < effects.Length; i++)
+                effectNames[i] = "Snare" + effects[i];
+        else if (drumType == DrumType.hiHat)
+            for (int i = 0; i < effects.Length; i++)
+                effectNames[i] = "HiHat" + effects[i];
+        else if (drumType == DrumType.tomTom)
+            for (int i = 0; i < effects.Length; i++)
+                effectNames[i] = "TomTom" + effects[i];
+        else if (drumType == DrumType.cymbal)
+            for (int i = 0; i < effects.Length; i++)
+                effectNames[i] = "Cymbol" + effects[i];
     }
 
     private IEnumerator WaitUntilConnected() {
         while (!_realTime.connected) yield return null;
         rotation = 0;
-        OnConnectedEnable();
         SpawnNodes();
     }
 
     private void Update() {
-
         for (int i = 0; i < levels.Length; i++) AkSoundEngine.SetRTPCValue(effectNames[i], levels[i]);
         
-
         if (_screenSync.NumberOfNodes != numberOfNodes && _realTime.connected) {
             numberOfNodes = _screenSync.NumberOfNodes;
             if (numberOfNodes < 2) numberOfNodes = 2; // force the minimum amount of nodes to be 2
@@ -86,31 +92,31 @@ public class EuclideanManager : MonoBehaviour {
         }
 
         bpm = _screenSync.Bpm;
-        
-
-        if (Input.GetKeyDown(KeyCode.G)) {
-            char [] n =  {(char)0, (char)1, (char)0, (char)1, (char)0, (char)0, (char)1, (char)0, (char)1, (char)0};
-            byte[] bytes = Encoding.Default.GetBytes(n);
-            
-            _realTime.room.SendRPCMessage(bytes, true);
-            // _realTime.room.realtime.BroadcastMessage("MyAmazingMessage", bytes);
-        }
     }
 
-    public void MyAmazingMessage(byte[] data) {
-        foreach (var d in data) {
-            print(d);
-        }
+    private void LateUpdate() {
+        // check for changes of the effects from the server side
+        CheckForChangesEffects();
     }
 
+    private void CheckForChangesEffects() {
+        if (_screenSync.Effect1 != (int) sliders[0].value) {
+            effectsChangedOnServer = true;
+            sliders[0].value = _screenSync.Effect1;
+        }
+        if (_screenSync.Effect2 != (int) sliders[1].value) {
+            effectsChangedOnServer = true;
+            sliders[1].value = _screenSync.Effect2;
+        }
+        if (_screenSync.Effect3 != (int) sliders[2].value) {
+            effectsChangedOnServer = true;
+            sliders[2].value = _screenSync.Effect3;
+        }
+        // if (_screenSync.Effect4 != (int) sliders[3].value) sliders[3].value = _screenSync.Effect4;
+    }
 
     private void SpawnNodes() {
-        // var realtimeObjects =_realTime.room.datastore.prefabViewModels;
-        
-        // Realtime.FindObjectsOfType<Node>();
-        // Realtime.RealtimeEvent e;
-        // _realTime.room.realtime.BroadcastMessage();
-        
+
         // if more nodes exist than is needed, delete them
         if (_nodes.Count > numberOfNodes) {
             for (int i = numberOfNodes - 1; i < _nodes.Count; i++) {
@@ -131,7 +137,7 @@ public class EuclideanManager : MonoBehaviour {
     }
 
     private void MessageReceived(Room room, int senderid, byte[] data, bool reliable) {
-        if(_realTime.room.name != room.name) return;
+        if (_realTime.room.name != room.name) return;
         foreach (var d in data) {
             print(d);
         }
@@ -170,7 +176,6 @@ public class EuclideanManager : MonoBehaviour {
                 InteractionMethod.spock => InteractionMethod.spock,
                 _ => _nodes[i].interactionMethod
             };
-            
         }
 
         var rt = _nodes[i].GetComponent<RectTransform>();
@@ -179,13 +184,12 @@ public class EuclideanManager : MonoBehaviour {
         rt.localScale = Vector3.one;
         var text = _nodes[i].transform.GetChild(0).GetChild(0).GetComponent<Text>();
         text.text = (i + 1).ToString();
-
     }
 
     private void FixedUpdate() {
         if (!_realTime.connected) return;
         beatTime += Time.fixedDeltaTime;
-        float rpm = (float)bpm / (numberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
+        float rpm = (float) bpm / (numberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
         var rps = (float) rpm / 60.0f;
         var revolutionsPerWaitingSeconds = rps * Time.fixedDeltaTime; //Convert to revolutions per millisecond
         var degreesPerWaitingSeconds = (360.0f - 360.0f / numberOfNodes) * revolutionsPerWaitingSeconds;
@@ -193,22 +197,28 @@ public class EuclideanManager : MonoBehaviour {
         _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
     }
 
-    private void DidConnectToRoom(Realtime realtime) {
-        
-    }
-
-    public void ChangeEffectValue(int index)
-    {
+    public void ChangeEffectValue(int index) {
         print("Index value is " + index);
-        levels[index] = sliders[index].value * 100;
-    }
-
-
-    private void OnConnectedEnable() {
-        _realTime.room.rpcMessageReceived += MessageReceived;
-    }
-
-    private void OnDisable() {
-        //_realTime.room.rpcMessageReceived -= MessageReceived;
+        var sliderValue = sliders[index].value;
+        levels[index] = sliderValue * 100;
+        if(effectsChangedOnServer) {
+            switch (index) {
+                case 0:
+                    _screenSync.Effect1 = (int) sliderValue * 100;
+                    break;
+                case 1:
+                    _screenSync.Effect2 = (int) sliderValue * 100;
+                    break;
+                case 2:
+                    _screenSync.Effect3 = (int) sliderValue * 100;
+                    break;
+                case 3:
+                    _screenSync.Effect4 = (int) sliderValue * 100;
+                    break;
+                default: Debug.LogError("Effect index (" + index + ") not found");
+                    break;
+            }
+            effectsChangedOnServer = false;
+        }
     }
 }

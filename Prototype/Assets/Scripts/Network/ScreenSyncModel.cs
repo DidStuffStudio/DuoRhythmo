@@ -6,9 +6,16 @@ using Normal.Realtime;
 
 [RealtimeModel]
 public partial class ScreenSyncModel {
+    // rhythm (beats)
     [RealtimeProperty(1, true, true)] private int _indexValue;
     [RealtimeProperty(2, true, true)] private int _numberOfNodes;
     [RealtimeProperty(3, true, true)] private int _bpm;
+    
+    // effects
+    [RealtimeProperty(4, true, true)] private int _effect1;
+    [RealtimeProperty(5, true, true)] private int _effect2;
+    [RealtimeProperty(6, true, true)] private int _effect3;
+    [RealtimeProperty(7, true, true)] private int _effect4;
 }
 
 
@@ -51,10 +58,62 @@ public partial class ScreenSyncModel : RealtimeModel {
         }
     }
     
+    public int effect1 {
+        get {
+            return _cache.LookForValueInCache(_effect1, entry => entry.effect1Set, entry => entry.effect1);
+        }
+        set {
+            if (this.effect1 == value) return;
+            _cache.UpdateLocalCache(entry => { entry.effect1Set = true; entry.effect1 = value; return entry; });
+            InvalidateReliableLength();
+            FireEffect1DidChange(value);
+        }
+    }
+    
+    public int effect2 {
+        get {
+            return _cache.LookForValueInCache(_effect2, entry => entry.effect2Set, entry => entry.effect2);
+        }
+        set {
+            if (this.effect2 == value) return;
+            _cache.UpdateLocalCache(entry => { entry.effect2Set = true; entry.effect2 = value; return entry; });
+            InvalidateReliableLength();
+            FireEffect2DidChange(value);
+        }
+    }
+    
+    public int effect3 {
+        get {
+            return _cache.LookForValueInCache(_effect3, entry => entry.effect3Set, entry => entry.effect3);
+        }
+        set {
+            if (this.effect3 == value) return;
+            _cache.UpdateLocalCache(entry => { entry.effect3Set = true; entry.effect3 = value; return entry; });
+            InvalidateReliableLength();
+            FireEffect3DidChange(value);
+        }
+    }
+    
+    public int effect4 {
+        get {
+            return _cache.LookForValueInCache(_effect4, entry => entry.effect4Set, entry => entry.effect4);
+        }
+        set {
+            if (this.effect4 == value) return;
+            _cache.UpdateLocalCache(entry => { entry.effect4Set = true; entry.effect4 = value; return entry; });
+            InvalidateReliableLength();
+            FireEffect4DidChange(value);
+        }
+    }
+    
     public delegate void PropertyChangedHandler<in T>(ScreenSyncModel model, T value);
     public event PropertyChangedHandler<int> indexValueDidChange;
     public event PropertyChangedHandler<int> numberOfNodesDidChange;
     public event PropertyChangedHandler<int> bpmDidChange;
+    public event PropertyChangedHandler<int> effect1DidChange;
+    public event PropertyChangedHandler<int> effect2DidChange;
+    public event PropertyChangedHandler<int> effect3DidChange;
+    public event PropertyChangedHandler<int> effect4DidChange;
     
     private struct LocalCacheEntry {
         public bool indexValueSet;
@@ -63,6 +122,14 @@ public partial class ScreenSyncModel : RealtimeModel {
         public int numberOfNodes;
         public bool bpmSet;
         public int bpm;
+        public bool effect1Set;
+        public int effect1;
+        public bool effect2Set;
+        public int effect2;
+        public bool effect3Set;
+        public int effect3;
+        public bool effect4Set;
+        public int effect4;
     }
     
     private LocalChangeCache<LocalCacheEntry> _cache = new LocalChangeCache<LocalCacheEntry>();
@@ -71,6 +138,10 @@ public partial class ScreenSyncModel : RealtimeModel {
         IndexValue = 1,
         NumberOfNodes = 2,
         Bpm = 3,
+        Effect1 = 4,
+        Effect2 = 5,
+        Effect3 = 6,
+        Effect4 = 7,
     }
     
     public ScreenSyncModel() : this(null) {
@@ -107,6 +178,38 @@ public partial class ScreenSyncModel : RealtimeModel {
         }
     }
     
+    private void FireEffect1DidChange(int value) {
+        try {
+            effect1DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireEffect2DidChange(int value) {
+        try {
+            effect2DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireEffect3DidChange(int value) {
+        try {
+            effect3DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireEffect4DidChange(int value) {
+        try {
+            effect4DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
     protected override int WriteLength(StreamContext context) {
         int length = 0;
         if (context.fullModel) {
@@ -114,6 +217,10 @@ public partial class ScreenSyncModel : RealtimeModel {
             length += WriteStream.WriteVarint32Length((uint)PropertyID.IndexValue, (uint)_indexValue);
             length += WriteStream.WriteVarint32Length((uint)PropertyID.NumberOfNodes, (uint)_numberOfNodes);
             length += WriteStream.WriteVarint32Length((uint)PropertyID.Bpm, (uint)_bpm);
+            length += WriteStream.WriteVarint32Length((uint)PropertyID.Effect1, (uint)_effect1);
+            length += WriteStream.WriteVarint32Length((uint)PropertyID.Effect2, (uint)_effect2);
+            length += WriteStream.WriteVarint32Length((uint)PropertyID.Effect3, (uint)_effect3);
+            length += WriteStream.WriteVarint32Length((uint)PropertyID.Effect4, (uint)_effect4);
         } else if (context.reliableChannel) {
             LocalCacheEntry entry = _cache.localCache;
             if (entry.indexValueSet) {
@@ -124,6 +231,18 @@ public partial class ScreenSyncModel : RealtimeModel {
             }
             if (entry.bpmSet) {
                 length += WriteStream.WriteVarint32Length((uint)PropertyID.Bpm, (uint)entry.bpm);
+            }
+            if (entry.effect1Set) {
+                length += WriteStream.WriteVarint32Length((uint)PropertyID.Effect1, (uint)entry.effect1);
+            }
+            if (entry.effect2Set) {
+                length += WriteStream.WriteVarint32Length((uint)PropertyID.Effect2, (uint)entry.effect2);
+            }
+            if (entry.effect3Set) {
+                length += WriteStream.WriteVarint32Length((uint)PropertyID.Effect3, (uint)entry.effect3);
+            }
+            if (entry.effect4Set) {
+                length += WriteStream.WriteVarint32Length((uint)PropertyID.Effect4, (uint)entry.effect4);
             }
         }
         return length;
@@ -136,9 +255,13 @@ public partial class ScreenSyncModel : RealtimeModel {
             stream.WriteVarint32((uint)PropertyID.IndexValue, (uint)_indexValue);
             stream.WriteVarint32((uint)PropertyID.NumberOfNodes, (uint)_numberOfNodes);
             stream.WriteVarint32((uint)PropertyID.Bpm, (uint)_bpm);
+            stream.WriteVarint32((uint)PropertyID.Effect1, (uint)_effect1);
+            stream.WriteVarint32((uint)PropertyID.Effect2, (uint)_effect2);
+            stream.WriteVarint32((uint)PropertyID.Effect3, (uint)_effect3);
+            stream.WriteVarint32((uint)PropertyID.Effect4, (uint)_effect4);
         } else if (context.reliableChannel) {
             LocalCacheEntry entry = _cache.localCache;
-            if (entry.indexValueSet || entry.numberOfNodesSet || entry.bpmSet) {
+            if (entry.indexValueSet || entry.numberOfNodesSet || entry.bpmSet || entry.effect1Set || entry.effect2Set || entry.effect3Set || entry.effect4Set) {
                 _cache.PushLocalCacheToInflight(context.updateID);
                 ClearCacheOnStreamCallback(context);
             }
@@ -152,6 +275,22 @@ public partial class ScreenSyncModel : RealtimeModel {
             }
             if (entry.bpmSet) {
                 stream.WriteVarint32((uint)PropertyID.Bpm, (uint)entry.bpm);
+                didWriteProperties = true;
+            }
+            if (entry.effect1Set) {
+                stream.WriteVarint32((uint)PropertyID.Effect1, (uint)entry.effect1);
+                didWriteProperties = true;
+            }
+            if (entry.effect2Set) {
+                stream.WriteVarint32((uint)PropertyID.Effect2, (uint)entry.effect2);
+                didWriteProperties = true;
+            }
+            if (entry.effect3Set) {
+                stream.WriteVarint32((uint)PropertyID.Effect3, (uint)entry.effect3);
+                didWriteProperties = true;
+            }
+            if (entry.effect4Set) {
+                stream.WriteVarint32((uint)PropertyID.Effect4, (uint)entry.effect4);
                 didWriteProperties = true;
             }
             
@@ -189,6 +328,42 @@ public partial class ScreenSyncModel : RealtimeModel {
                     }
                     break;
                 }
+                case (uint)PropertyID.Effect1: {
+                    int previousValue = _effect1;
+                    _effect1 = (int)stream.ReadVarint32();
+                    bool effect1ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.effect1Set);
+                    if (!effect1ExistsInChangeCache && _effect1 != previousValue) {
+                        FireEffect1DidChange(_effect1);
+                    }
+                    break;
+                }
+                case (uint)PropertyID.Effect2: {
+                    int previousValue = _effect2;
+                    _effect2 = (int)stream.ReadVarint32();
+                    bool effect2ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.effect2Set);
+                    if (!effect2ExistsInChangeCache && _effect2 != previousValue) {
+                        FireEffect2DidChange(_effect2);
+                    }
+                    break;
+                }
+                case (uint)PropertyID.Effect3: {
+                    int previousValue = _effect3;
+                    _effect3 = (int)stream.ReadVarint32();
+                    bool effect3ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.effect3Set);
+                    if (!effect3ExistsInChangeCache && _effect3 != previousValue) {
+                        FireEffect3DidChange(_effect3);
+                    }
+                    break;
+                }
+                case (uint)PropertyID.Effect4: {
+                    int previousValue = _effect4;
+                    _effect4 = (int)stream.ReadVarint32();
+                    bool effect4ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.effect4Set);
+                    if (!effect4ExistsInChangeCache && _effect4 != previousValue) {
+                        FireEffect4DidChange(_effect4);
+                    }
+                    break;
+                }
                 default: {
                     stream.SkipProperty();
                     break;
@@ -205,6 +380,10 @@ public partial class ScreenSyncModel : RealtimeModel {
         _indexValue = indexValue;
         _numberOfNodes = numberOfNodes;
         _bpm = bpm;
+        _effect1 = effect1;
+        _effect2 = effect2;
+        _effect3 = effect3;
+        _effect4 = effect4;
         _cache.Clear();
     }
     

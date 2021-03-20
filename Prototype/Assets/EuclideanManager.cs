@@ -38,25 +38,27 @@ public class EuclideanManager : MonoBehaviour {
 
     public float waitingTime = 1;
     private float beatTime;
-    public AK.Wwise.Event backingEvent;
 
-    [Range(0.0f, 100.0f)] [SerializeField] private float reverbLevel;
-    [Range(0.0f, 100.0f)] [SerializeField] private float distortionLevel;
-    [Range(0.0f, 100.0f)] [SerializeField] private float vibratoLevel;
+    [Range(0.0f, 100.0f)] [SerializeField] private float[] levels = new float[3];
 
     private string[] effectNames = new string[3];
+
+    public Slider[] sliders = new Slider[3];
 
     private void Start()
     {
         _euclideanRythm = GetComponent<EuclideanRythm>();
         previousNumberOfNodes = numberOfNodes;
         StartCoroutine(WaitUntilConnected());
-        // _realTime = RealTimeInstance.Instance.GetComponent<Realtime>();
-        // starting string for reverb
-
-
+        //_realTime = RealTimeInstance.Instance.GetComponent<Realtime>();
+        int sliderIndex = 0;
+        foreach (var slider in sliders)
+        {
+            var index = sliderIndex;
+            slider.onValueChanged.AddListener(delegate { ChangeEffectValue(index: index); });
+            sliderIndex++;
+        }
         string[] effects = {"_Reverb_Level", "_Vibrato_Level", "_Distortion_Level"};
-
         if (drumType == DrumType.kick) for (int i = 0; i < effects.Length; i++) effectNames[i] = "Kick" + effects[i];
         else if (drumType == DrumType.snare) for (int i = 0; i < effects.Length; i++) effectNames[i] = "Snare" + effects[i];
         else if (drumType == DrumType.hiHat) for (int i = 0; i < effects.Length; i++) effectNames[i] = "HiHat" + effects[i];
@@ -70,14 +72,12 @@ public class EuclideanManager : MonoBehaviour {
         rotation = 0;
         OnConnectedEnable();
         SpawnNodes();
-        //backingEvent.Post(gameObject);
     }
 
     private void Update() {
+
+        for (int i = 0; i < levels.Length; i++) AkSoundEngine.SetRTPCValue(effectNames[i], levels[i]);
         
-        AkSoundEngine.SetRTPCValue(effectNames[0], reverbLevel);
-        AkSoundEngine.SetRTPCValue(effectNames[1], vibratoLevel);
-        AkSoundEngine.SetRTPCValue(effectNames[2], distortionLevel);
 
         if (_screenSync.NumberOfNodes != numberOfNodes && _realTime.connected) {
             numberOfNodes = _screenSync.NumberOfNodes;
@@ -195,6 +195,12 @@ public class EuclideanManager : MonoBehaviour {
 
     private void DidConnectToRoom(Realtime realtime) {
         
+    }
+
+    public void ChangeEffectValue(int index)
+    {
+        print("Index value is " + index);
+        levels[index] = sliders[index].value * 100;
     }
 
 

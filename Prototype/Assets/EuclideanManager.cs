@@ -46,6 +46,8 @@ public class EuclideanManager : MonoBehaviour {
     public Slider[] sliders = new Slider[3];
     private bool effectsChangedOnServer = false;
 
+    private int previousEffectValue;
+
     private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();
         previousNumberOfNodes = numberOfNodes;
@@ -109,19 +111,9 @@ public class EuclideanManager : MonoBehaviour {
     }
 
     private void CheckForChangesEffects() {
-        if (_screenSync.Effect1 != (int) sliders[0].value) {
-            effectsChangedOnServer = true;
-            sliders[0].value = _screenSync.Effect1;
-        }
-        if (_screenSync.Effect2 != (int) sliders[1].value) {
-            effectsChangedOnServer = true;
-            sliders[1].value = _screenSync.Effect2;
-        }
-        if (_screenSync.Effect3 != (int) sliders[2].value) {
-            effectsChangedOnServer = true;
-            sliders[2].value = _screenSync.Effect3;
-        }
-        // if (_screenSync.Effect4 != (int) sliders[3].value) sliders[3].value = _screenSync.Effect4;
+        sliders[0].value = _screenSync.Effect1;
+        sliders[1].value = _screenSync.Effect2;
+        sliders[2].value = _screenSync.Effect3;
     }
 
     private void SpawnNodes() {
@@ -207,12 +199,11 @@ public class EuclideanManager : MonoBehaviour {
     }
 
     public void ChangeEffectValue(int index) {
-        print("Index value is " + index);
-        var sliderValue = sliders[index].value;
-        levels[index] = sliderValue * 100;
-        if(effectsChangedOnServer) {
-            _screenSync.SetEffectValue(index, (int) sliderValue * 100);
-            effectsChangedOnServer = false;
-        }
+        print("It's changed" + index);
+        var sliderValue = (int) sliders[index].value;
+        levels[index] = sliderValue;
+        _screenSync.SetEffectValue(index, sliderValue);
+        effectsChangedOnServer = false;
+        
     }
 }

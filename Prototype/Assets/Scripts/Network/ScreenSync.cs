@@ -39,6 +39,7 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
             case 0:
                 _effect1 = effectValue;
                 model.effect1 = effectValue;
+                print("This is the model that has been sent: " + effectValue + " and this is the one on the server: " + model.effect1);
                 break;
             case 1:
                 _effect2 = effectValue;

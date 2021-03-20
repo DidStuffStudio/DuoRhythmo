@@ -26,6 +26,7 @@ public class Node : MonoBehaviour {
     private void Start() {
         _screenSync = GetComponentInParent<ScreenSync>();
         vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
+        
         switch (interactionMethod) {
             case InteractionMethod.contextSwitch: {
                 break;
@@ -110,8 +111,11 @@ public class Node : MonoBehaviour {
     public void PlayDrum()
     {
         if (!activated || !canPlay) return;
-        vfx.SetFloat("SphereSize", vfx.GetFloat("SphereSize") + 2.0f);
-        StartCoroutine(SetVFXBack());
+        
+        StartCoroutine(AudioVFX());
+        
+        
+        
         switch (drumType)
         {
             case DrumType.kick:
@@ -131,11 +135,15 @@ public class Node : MonoBehaviour {
                 break;
         }
     }
-    private IEnumerator SetVFXBack() {
-        while (vfx.GetFloat("SphereSize") > 0.7)
+    private IEnumerator AudioVFX()
+    {
+        vfx.SetFloat("SphereSize", vfx.GetFloat("SphereSize") + 1.0f);
+        bool run = true;
+        while (run)
         {
-            yield return new WaitForSeconds(0.01f);
-            vfx.SetFloat("SphereSize", vfx.GetFloat("SphereSize") - 2.0f);
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
+            if (vfx.GetFloat("SphereSize") > 1.1f) vfx.SetFloat("SphereSize", vfx.GetFloat("SphereSize") - 0.1f);
+            else run = false;
         }
     }
 

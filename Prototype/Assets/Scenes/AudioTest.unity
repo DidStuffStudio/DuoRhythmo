@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06209767, g: 0.18151793, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.008784562, g: 0.005563087, b: 0.24988365, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12649,10 +12649,10 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 0.71
+      - m_Value: 5
         m_Name: SphereSize
         m_Overridden: 1
-      - m_Value: 50000
+      - m_Value: 1000000
         m_Name: Spawnrate
         m_Overridden: 1
       - m_Value: 500

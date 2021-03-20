@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class UserInterfaceManager : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class UserInterfaceManager : MonoBehaviour
     [SerializeField] private int roundTime = 30, timer;
     public Text timerDisplay;
     public bool startTimer, timerRunnning;
-    
+    public Material skybox;
+    private float timeLeft;
+    private Color targetColor;
     private IEnumerator WaitUntilConnected() {
         while (!RealTimeInstance.Instance.isConnected) yield return null;
         startTimer = true;
@@ -42,6 +45,26 @@ public class UserInterfaceManager : MonoBehaviour
 
     public void Update()
     {
+        if (timeLeft <= Time.deltaTime)
+        {
+            // transition complete
+            // assign the target color
+            skybox.SetColor("_Tint", targetColor);
+            
+            // start a new transition
+            targetColor = new Color(Random.value, Random.value, Random.value);
+            timeLeft = 30.0f;
+        }
+        else
+        {
+            // transition in progress
+            // calculate interpolated color
+            skybox.SetColor("_Tint", Color.Lerp(skybox.GetColor("_Tint"), targetColor, Time.deltaTime / timeLeft));
+ 
+            // update the timer
+            timeLeft -= Time.deltaTime;
+        }
+        
         timerDisplay.text = timer.ToString();
         if (!startTimer || timerRunnning) return;
         timer = roundTime;

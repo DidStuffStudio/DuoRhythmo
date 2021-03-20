@@ -24,7 +24,7 @@ public class Node : MonoBehaviour {
     public AK.Wwise.Event kickEvent, snareEvent, hiHatEvent, tomTomEvent, cymbalEvent;
     private VisualEffect vfx;
     private void Start() {
-        _screenSync = GameObject.FindObjectOfType<ScreenSync>().GetComponent<ScreenSync>();
+        _screenSync = GetComponentInParent<ScreenSync>();
         vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         switch (interactionMethod) {
             case InteractionMethod.contextSwitch: {
@@ -110,7 +110,7 @@ public class Node : MonoBehaviour {
     public void PlayDrum()
     {
         if (!activated || !canPlay) return;
-        vfx.SetFloat("SphereSize", vfx.GetFloat("SphereSize") + 4.0f);
+        vfx.SetFloat("SphereSize", vfx.GetFloat("SphereSize") + 2.0f);
         StartCoroutine(SetVFXBack());
         switch (drumType)
         {
@@ -135,7 +135,7 @@ public class Node : MonoBehaviour {
         while (vfx.GetFloat("SphereSize") > 0.7)
         {
             yield return new WaitForSeconds(0.01f);
-            vfx.SetFloat("SphereSize", vfx.GetFloat("SphereSize") - 0.5f);
+            vfx.SetFloat("SphereSize", vfx.GetFloat("SphereSize") - 2.0f);
         }
     }
 

@@ -1867,7 +1867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &213822378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3619,7 +3619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &565050214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3755,6 +3755,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 577469897}
+  - component: {fileID: 577469900}
+  - component: {fileID: 577469899}
+  - component: {fileID: 577469898}
   m_Layer: 0
   m_Name: Kick_UI
   m_TagString: Untagged
@@ -3777,6 +3780,57 @@ Transform:
   m_Father: {fileID: 530605013}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &577469898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577469896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04792667a757c4acfa962f1750e6f014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numberOfNodes: 12
+  _bpm: 120
+--- !u!114 &577469899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577469896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e3767f4eba41858e36189306c99649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nodes: []
+--- !u!114 &577469900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577469896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _realtime: {fileID: 320708703}
+  _sceneViewUUID: 
+  _viewUUID: 375cc95e-f14e-47ac-b3a5-ef2c69d25d7f
+  _sceneViewPreventOwnershipTakeover: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
+  _isRootPrefabView: 0
+  _components:
+  - componentID: 1
+    component: {fileID: 577469899}
+  _childViews:
+  - viewID: 1
+    view: {fileID: 1146492095}
 --- !u!1 &593915143
 GameObject:
   m_ObjectHideFlags: 0
@@ -4952,13 +5006,8 @@ MonoBehaviour:
   _ryhtmIndicator: {fileID: 981917761}
   bpm: 12
   drumType: 2
-  _screenSync: {fileID: 1158173523}
   _realTime: {fileID: 320708703}
   waitingTime: 1
-  backingEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
   levels:
   - 0
   - 0
@@ -9987,13 +10036,8 @@ MonoBehaviour:
   _ryhtmIndicator: {fileID: 1312171118}
   bpm: 12
   drumType: 3
-  _screenSync: {fileID: 1158173523}
   _realTime: {fileID: 320708703}
   waitingTime: 1
-  backingEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
   levels:
   - 0
   - 0
@@ -12020,13 +12064,8 @@ MonoBehaviour:
   _ryhtmIndicator: {fileID: 19825636}
   bpm: 12
   drumType: 0
-  _screenSync: {fileID: 1158173523}
   _realTime: {fileID: 320708703}
   waitingTime: 1
-  backingEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
   levels:
   - 0
   - 0
@@ -12109,7 +12148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1158173522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12123,7 +12162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberOfNodes: 12
-  _bpm: 500
+  _bpm: 120
 --- !u!114 &1158173523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12151,7 +12190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _realtime: {fileID: 320708703}
   _sceneViewUUID: 
-  _viewUUID: 9cec49e0-e48d-403d-a1c7-d9de57bd870f
+  _viewUUID: 74c3c323-b27f-41a4-849d-5949955aa531
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
   _isRootPrefabView: 0
@@ -12672,6 +12711,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1226057115}
+  - component: {fileID: 1226057118}
+  - component: {fileID: 1226057117}
+  - component: {fileID: 1226057116}
   m_Layer: 0
   m_Name: HiHat_UI
   m_TagString: Untagged
@@ -12694,6 +12736,57 @@ Transform:
   m_Father: {fileID: 530605013}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -72, z: 0}
+--- !u!114 &1226057116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226057114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04792667a757c4acfa962f1750e6f014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numberOfNodes: 12
+  _bpm: 120
+--- !u!114 &1226057117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226057114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e3767f4eba41858e36189306c99649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nodes: []
+--- !u!114 &1226057118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226057114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _realtime: {fileID: 320708703}
+  _sceneViewUUID: 
+  _viewUUID: d375aeff-ebd8-4508-9993-856fe977f88c
+  _sceneViewPreventOwnershipTakeover: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
+  _isRootPrefabView: 0
+  _components:
+  - componentID: 1
+    component: {fileID: 1226057117}
+  _childViews:
+  - viewID: 1
+    view: {fileID: 774570380}
 --- !u!1 &1235922152
 GameObject:
   m_ObjectHideFlags: 0
@@ -13573,6 +13666,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1361662999}
+  - component: {fileID: 1361663002}
+  - component: {fileID: 1361663001}
+  - component: {fileID: 1361663000}
   m_Layer: 0
   m_Name: Tommy_UI
   m_TagString: Untagged
@@ -13595,6 +13691,57 @@ Transform:
   m_Father: {fileID: 530605013}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -144, z: 0}
+--- !u!114 &1361663000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361662998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04792667a757c4acfa962f1750e6f014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numberOfNodes: 12
+  _bpm: 120
+--- !u!114 &1361663001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361662998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e3767f4eba41858e36189306c99649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nodes: []
+--- !u!114 &1361663002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361662998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _realtime: {fileID: 320708703}
+  _sceneViewUUID: 
+  _viewUUID: 6495f850-c417-472e-956d-2a9402c56f4b
+  _sceneViewPreventOwnershipTakeover: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
+  _isRootPrefabView: 0
+  _components:
+  - componentID: 1
+    component: {fileID: 1361663001}
+  _childViews:
+  - viewID: 1
+    view: {fileID: 778911301}
 --- !u!1 &1408089198
 GameObject:
   m_ObjectHideFlags: 0
@@ -14559,13 +14706,8 @@ MonoBehaviour:
   _ryhtmIndicator: {fileID: 268505690}
   bpm: 12
   drumType: 1
-  _screenSync: {fileID: 1158173523}
   _realTime: {fileID: 320708703}
   waitingTime: 1
-  backingEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
   levels:
   - 0
   - 0
@@ -15281,13 +15423,8 @@ MonoBehaviour:
   _ryhtmIndicator: {fileID: 593915144}
   bpm: 12
   drumType: 4
-  _screenSync: {fileID: 1158173523}
   _realTime: {fileID: 320708703}
   waitingTime: 1
-  backingEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
   levels:
   - 0
   - 0
@@ -16198,6 +16335,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1986206303}
+  - component: {fileID: 1986206306}
+  - component: {fileID: 1986206305}
+  - component: {fileID: 1986206304}
   m_Layer: 0
   m_Name: Cymbol_UI
   m_TagString: Untagged
@@ -16220,6 +16360,57 @@ Transform:
   m_Father: {fileID: 530605013}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -288, z: 0}
+--- !u!114 &1986206304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986206302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04792667a757c4acfa962f1750e6f014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numberOfNodes: 12
+  _bpm: 120
+--- !u!114 &1986206305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986206302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e3767f4eba41858e36189306c99649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nodes: []
+--- !u!114 &1986206306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986206302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _realtime: {fileID: 320708703}
+  _sceneViewUUID: 
+  _viewUUID: ae02a15a-8de3-4c87-b110-1fed95bbaaff
+  _sceneViewPreventOwnershipTakeover: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
+  _isRootPrefabView: 0
+  _components:
+  - componentID: 1
+    component: {fileID: 1986206305}
+  _childViews:
+  - viewID: 1
+    view: {fileID: 1801813178}
 --- !u!1 &2012946309
 GameObject:
   m_ObjectHideFlags: 0
@@ -16394,6 +16585,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2083569444}
+  - component: {fileID: 2083569447}
+  - component: {fileID: 2083569446}
+  - component: {fileID: 2083569445}
   m_Layer: 0
   m_Name: Snare_UI
   m_TagString: Untagged
@@ -16416,6 +16610,57 @@ Transform:
   m_Father: {fileID: 530605013}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: -216, z: 0}
+--- !u!114 &2083569445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083569443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04792667a757c4acfa962f1750e6f014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numberOfNodes: 12
+  _bpm: 120
+--- !u!114 &2083569446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083569443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e3767f4eba41858e36189306c99649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nodes: []
+--- !u!114 &2083569447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083569443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _realtime: {fileID: 320708703}
+  _sceneViewUUID: 
+  _viewUUID: 48e9d884-7bb0-4216-8024-0c165b3e139d
+  _sceneViewPreventOwnershipTakeover: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
+  _isRootPrefabView: 0
+  _components:
+  - componentID: 1
+    component: {fileID: 2083569446}
+  _childViews:
+  - viewID: 1
+    view: {fileID: 1631976130}
 --- !u!1 &2102676812
 GameObject:
   m_ObjectHideFlags: 0

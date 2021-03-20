@@ -32,7 +32,7 @@ public class EuclideanManager : MonoBehaviour {
 
     private List<int> _storedRhythm = new List<int>();
     public DrumType drumType;
-    [SerializeField] private ScreenSync _screenSync;
+    private ScreenSync _screenSync;
 
     [SerializeField] private Realtime _realTime;
 
@@ -49,6 +49,7 @@ public class EuclideanManager : MonoBehaviour {
     private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();
         previousNumberOfNodes = numberOfNodes;
+        _screenSync = GetComponentInParent<ScreenSync>();
         StartCoroutine(WaitUntilConnected());
         //_realTime = RealTimeInstance.Instance.GetComponent<Realtime>();
         int sliderIndex = 0;

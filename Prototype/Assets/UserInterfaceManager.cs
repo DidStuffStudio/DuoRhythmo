@@ -16,7 +16,11 @@ public class UserInterfaceManager : MonoBehaviour
     private float timeLeft;
     private Color targetColor;
     private IEnumerator WaitUntilConnected() {
-        while (!RealTimeInstance.Instance.isConnected) yield return null;
+        
+        while (true) {
+            if(RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
+            yield return new WaitForEndOfFrame();
+        }
         startTimer = true;
     }
     void Start()

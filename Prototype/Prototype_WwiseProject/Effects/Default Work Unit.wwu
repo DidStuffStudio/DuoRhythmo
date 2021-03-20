@@ -34,11 +34,12 @@
 							</RTPCList>
 						</Property>
 						<Property Name="DistortionTone" Type="Real32" Value="100"/>
-						<Property Name="DistortionType" Type="int32" Value="4"/>
+						<Property Name="DistortionType" Type="int32" Value="2"/>
+						<Property Name="OutputLevel" Type="Real32" Value="24"/>
 						<Property Name="PreEQBand1Frequency" Type="Real32" Value="6670"/>
 						<Property Name="PreEQBand2Frequency" Type="Real32" Value="117"/>
 						<Property Name="PreEQBand3Frequency" Type="Real32" Value="12982"/>
-						<Property Name="Rectification" Type="Real32" Value="100"/>
+						<Property Name="Rectification" Type="Real32" Value="50"/>
 					</PropertyList>
 				</Effect>
 				<Effect Name="New_Wwise_Time_Stretch" ID="{D49C6392-F92A-43BC-AD37-736B68AC051F}" PluginName="Wwise Time Stretch" CompanyID="0" PluginID="130" PluginType="3">
@@ -48,6 +49,16 @@
 						<Property Name="WindowSize" Type="int32" Value="1536"/>
 					</PropertyList>
 				</Effect>
+				<Effect Name="New_iZotope_Hybrid_Reverb" ID="{B80C9307-D74C-41F9-9DB3-1BFBC4C90153}" PluginName="iZotope Hybrid Reverb" CompanyID="259" PluginID="2" PluginType="3">
+					<PropertyList>
+						<Property Name="DecayLowRatio" Type="Real32" Value="0.25"/>
+						<Property Name="DecayTime" Type="Real32" Value="2.5"/>
+						<Property Name="EarlyGain" Type="Real32" Value="15.1"/>
+						<Property Name="FrontWet" Type="Real32" Value="24"/>
+						<Property Name="TailGain" Type="Real32" Value="16.7"/>
+					</PropertyList>
+				</Effect>
+				<Effect Name="New_Wwise_Recorder" ID="{A060FF58-A2C9-40D5-9F7C-6EA610F2ADBB}" PluginName="Wwise Recorder" CompanyID="0" PluginID="132" PluginType="3"/>
 			</ChildrenList>
 		</WorkUnit>
 	</Effects>

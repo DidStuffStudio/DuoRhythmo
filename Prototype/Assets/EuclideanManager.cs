@@ -52,7 +52,7 @@ public class EuclideanManager : MonoBehaviour {
         _euclideanRythm = GetComponent<EuclideanRythm>();
         previousNumberOfNodes = numberOfNodes;
         _screenSync = GetComponentInParent<ScreenSync>();
-
+        _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = false;
         if (RealTimeInstance.Instance.isSoloMode) SpawnNodes();
         else StartCoroutine(WaitUntilConnected());
         
@@ -91,6 +91,7 @@ public class EuclideanManager : MonoBehaviour {
         }
         SpawnNodes();
         rotation = 0;
+        _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
     }
 
     private void Update() {

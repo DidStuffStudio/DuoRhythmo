@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PluginInfo Project="Prototype_WwiseProject" Platform="Windows" BasePlatform="Windows">
 	<Plugins>
-		<Plugin Name="Wwise Matrix Reverb" ID="7536643" DLL="AkMatrixReverb" StaticLib="AkMatrixReverbFX"/>
-		<Plugin Name="Wwise Flanger" ID="8192003" DLL="AkFlanger" StaticLib="AkFlangerFX"/>
-		<Plugin Name="Wwise Guitar Distortion" ID="8257539" DLL="AkGuitarDistortion" StaticLib="AkGuitarDistortionFX"/>
+		<Plugin Name="Wwise RoomVerb" ID="7733251" DLL="AkRoomVerb" StaticLib="AkRoomVerbFX"/>
+		<Plugin Name="Wwise Tremolo" ID="8585219" DLL="AkTremolo" StaticLib="AkTremoloFX"/>
 		<Plugin Name="System" ID="11403271"/>
 		<Plugin Name="No Output" ID="11862023"/>
 	</Plugins>

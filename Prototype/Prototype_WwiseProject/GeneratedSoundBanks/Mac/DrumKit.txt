@@ -13,7 +13,6 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 	737935225	HiHat_Reverb_Level			\Default Work Unit\HiHat_Reverb_Level	
 	1274110740	TomTom_Vibrato_Level			\Default Work Unit\TomTom_Vibrato_Level	
 	1512457770	Cymbol_Distortion_Level			\Default Work Unit\Cymbol_Distortion_Level	
-	2110460501	Snare_Distortion_Level			\Default Work Unit\Snare_Distortion_Level	
 	2202578148	Snare_Reverb_Level			\Default Work Unit\Snare_Reverb_Level	
 	2224488652	HiHat_Distortion_Level			\Default Work Unit\HiHat_Distortion_Level	
 	3189860618	HiHat_Vibrato_Level			\Default Work Unit\HiHat_Vibrato_Level	
@@ -23,21 +22,21 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 	3716690160	Kick_Distortion_Level			\Default Work Unit\Kick_Distortion_Level	
 
 Effect plug-ins	ID	Name	Type				Notes
-	5641065	Bass (Custom)	Wwise Flanger			
-	83070814	Bass (Custom)	Wwise Flanger			
-	335173439	Bass (Custom)	Wwise Flanger			
-	363421624	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
-	381642426	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
-	414665925	Bass (Custom)	Wwise Flanger			
-	415503168	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
-	526361734	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
-	597472014	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
-	678024392	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
-	699844546	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
-	878566758	Bass (Custom)	Wwise Flanger			
-	902659813	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
-	1021781828	New_Wwise_Guitar_Distortion (Custom)	Wwise Guitar Distortion			
-	1038865442	Small_Tiled_Room1 (Custom)	Wwise Matrix Reverb			
+	196634411	Rhythmic_Talk (Custom)	Wwise Tremolo			
+	286945859	Rhythmic_Talk (Custom)	Wwise Tremolo			
+	321603720	Have_U_Ever_Been_Outside (Custom)	Wwise RoomVerb			
+	445187673	Boomerang (Custom)	Wwise Tremolo			
+	557487338	Have_U_Ever_Been_Outside (Custom)	Wwise RoomVerb			
+	575435445	Boomerang (Custom)	Wwise Tremolo			
+	607782237	Rhythmic_Talk (Custom)	Wwise Tremolo			
+	649554299	Boomerang (Custom)	Wwise Tremolo			
+	693708371	Have_U_Ever_Been_Outside (Custom)	Wwise RoomVerb			
+	711389403	Boomerang (Custom)	Wwise Tremolo			
+	714869822	Have_U_Ever_Been_Outside (Custom)	Wwise RoomVerb			
+	746048006	Rhythmic_Talk (Custom)	Wwise Tremolo			
+	891571030	Have_U_Ever_Been_Outside (Custom)	Wwise RoomVerb			
+	900009518	Rhythmic_Talk (Custom)	Wwise Tremolo			
+	911701706	Boomerang (Custom)	Wwise Tremolo			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	128923291	HS_Jazz_07_Cymbal	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Mac\SFX\HS_Jazz_07_Cymbal_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\HS_Jazz_07_Cymbal		366072

@@ -33,9 +33,15 @@ public class NetworkManagerSync : RealtimeComponent<NetworkManagerModel>
     }
 
     private void UpdateNetwork() => _numberPlayers = model.numberPlayers;
+    
 
-    public void SetNumberOfPlayers(int num) {
-        _numberPlayers = num;
-        model.numberPlayers = _numberPlayers;
+    public void PlayerConnected() {
+        _numberPlayers++;
+        model.numberPlayers++;
+    }
+
+    public void PlayerDisconnected() {
+        _numberPlayers--;
+        model.numberPlayers--;
     }
 }

@@ -17,6 +17,11 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
     private int _effect3 = 0;
     private int _effect4 = 0;
     
+    public int Effect1 => _effect1;
+    public int Effect2 => _effect2;
+    public int Effect3 => _effect3;
+    public int Effect4 => _effect4;
+    
     public List<Node> _nodes = new List<Node>();
     
     // getters
@@ -24,33 +29,33 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
     public int NumberOfNodes => _numberOfNodes;
     public int IndexValue => _indexValue;
 
-    public int Effect1 {
-        get => _effect1;
-        set => _effect1 = value;
-    }
-
-    public int Effect2 {
-        get => _effect2;
-        set => _effect2 = value;
-    }
-
-    public int Effect3 {
-        get => _effect3;
-        set => _effect3 = value;
-    }
-
-    public int Effect4 {
-        get => _effect4;
-        set => _effect4 = value;
-    }
-
-
     // setters
     public void SetBpm(int value) => model.bpm = value;
     public void SetNumberOfNodes(int value) => model.numberOfNodes = value;
     public void SetIndexValue(int value) => model.indexValue = value;
-    
-    
+
+    public void SetEffectValue(int index, int effectValue) {
+        switch (index) {
+            case 0:
+                _effect1 = effectValue;
+                model.effect1 = effectValue;
+                break;
+            case 1:
+                _effect2 = effectValue;
+                model.effect2 = effectValue;
+                break;
+            case 2:
+                _effect3 = effectValue;
+                model.effect3 = effectValue;
+                break;
+            case 3:
+                _effect4 = effectValue;
+                model.effect4 = effectValue;
+                break;
+            default: Debug.LogError("Effect index (" + index + ") not found");
+                break;
+        }
+    }
 
     protected override void OnRealtimeModelReplaced(ScreenSyncModel previousModel, ScreenSyncModel currentModel) {
         if (previousModel != null) {

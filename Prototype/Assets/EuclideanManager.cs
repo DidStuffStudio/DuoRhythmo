@@ -211,22 +211,7 @@ public class EuclideanManager : MonoBehaviour {
         var sliderValue = sliders[index].value;
         levels[index] = sliderValue * 100;
         if(effectsChangedOnServer) {
-            switch (index) {
-                case 0:
-                    _screenSync.Effect1 = (int) sliderValue * 100;
-                    break;
-                case 1:
-                    _screenSync.Effect2 = (int) sliderValue * 100;
-                    break;
-                case 2:
-                    _screenSync.Effect3 = (int) sliderValue * 100;
-                    break;
-                case 3:
-                    _screenSync.Effect4 = (int) sliderValue * 100;
-                    break;
-                default: Debug.LogError("Effect index (" + index + ") not found");
-                    break;
-            }
+            _screenSync.SetEffectValue(index, (int) sliderValue * 100);
             effectsChangedOnServer = false;
         }
     }

@@ -37,12 +37,12 @@ public class RealTimeInstance : MonoBehaviour {
 
     private void DidConnectToRoom(Realtime realtime) {
         isConnected = true;
-        _networkManagerSync.SetNumberOfPlayers(numberPlayers + 1);
+        _networkManagerSync.PlayerConnected();
     }
     
     private void DidDisconnectFromRoom(Realtime realtime) {
         isConnected = false;
-        _networkManagerSync.SetNumberOfPlayers(numberPlayers - 1);
+        _networkManagerSync.PlayerDisconnected();
     }
 
     private void OnDisable() {

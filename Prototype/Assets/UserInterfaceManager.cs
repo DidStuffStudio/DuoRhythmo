@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 public class UserInterfaceManager : MonoBehaviour
@@ -15,19 +16,26 @@ public class UserInterfaceManager : MonoBehaviour
     public Material skybox;
     private float timeLeft;
     private Color targetColor;
+    private VisualEffect vfx;
     private IEnumerator WaitUntilConnected() {
         
         while (true) {
             if(RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             yield return new WaitForEndOfFrame();
         }
-        startTimer = true;
+        
     }
     void Start()
     {
+        vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _uiAnimator = GetComponent<Animator>();
         _uiAnimator.speed = 0.0f;
         _playerAnimator.speed = 0.0f;
+        if (RealTimeInstance.Instance.isSoloMode)
+        {
+            startTimer = true;
+            return;
+        }
         StartCoroutine(WaitUntilConnected());
     }
 
@@ -54,7 +62,8 @@ public class UserInterfaceManager : MonoBehaviour
             // transition complete
             // assign the target color
             skybox.SetColor("_Tint", targetColor);
-            
+            vfx.SetVector4("ParticleColor", targetColor);
+            vfx.SetVector4("Core color", targetColor);
             // start a new transition
             targetColor = new Color(Random.value, Random.value, Random.value);
             timeLeft = 30.0f;
@@ -63,7 +72,10 @@ public class UserInterfaceManager : MonoBehaviour
         {
             // transition in progress
             // calculate interpolated color
+            
             skybox.SetColor("_Tint", Color.Lerp(skybox.GetColor("_Tint"), targetColor, Time.deltaTime / timeLeft));
+            vfx.SetVector4("ParticleColor",Color.Lerp(skybox.GetColor("_Tint"), targetColor, Time.deltaTime / timeLeft));
+            vfx.SetVector4("Core color",Color.Lerp(skybox.GetColor("_Tint"), targetColor, Time.deltaTime / timeLeft));
  
             // update the timer
             timeLeft -= Time.deltaTime;

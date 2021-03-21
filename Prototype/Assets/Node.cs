@@ -69,7 +69,7 @@ public class Node : MonoBehaviour {
             case InteractionMethod.dwellFeedback: {
                 if (button.isHover) {
                     if (button.confirmScalerRT.localScale.x < 1.0f)
-                        button.confirmScalerRT.localScale += Vector3.one / 200;
+                        button.confirmScalerRT.localScale += Vector3.one / 100;
                     else {
                         button.confirmScalerRT.localScale = Vector3.zero;
                         if (!activated) {

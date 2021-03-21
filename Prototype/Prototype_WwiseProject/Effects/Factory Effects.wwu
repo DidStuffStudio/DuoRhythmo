@@ -741,7 +741,7 @@
 										<RTPC Name="" ID="{0DF2BAEC-8DA4-409E-8D23-BDA60B0C24FB}" ShortID="265792385">
 											<ReferenceList>
 												<Reference Name="ControlInput">
-													<ObjectRef Name="Kick_Reverb_Level" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+													<ObjectRef Name="Kick_Effect_1" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 												</Reference>
 											</ReferenceList>
 											<Curve Name="" ID="{483C73AD-AFD1-4C15-9A4B-5436603E2AEB}">
@@ -1445,7 +1445,7 @@
 												<RTPC Name="" ID="{B9C681C2-CD0C-46A7-9C61-8F1D19B41CC9}" ShortID="269272347">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="Kick_Reverb_Level" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+															<ObjectRef Name="Kick_Effect_1" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 														</Reference>
 													</ReferenceList>
 													<Curve Name="" ID="{1A4CE33B-94A5-47EE-8AFB-391ECA0C93EB}">
@@ -1570,7 +1570,7 @@
 												<RTPC Name="" ID="{D8D86A9A-7CD3-4B80-A7EA-62507D281A6F}" ShortID="856140457">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="Kick_Reverb_Level" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+															<ObjectRef Name="Kick_Effect_1" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 														</Reference>
 													</ReferenceList>
 													<Curve Name="" ID="{2300F330-5A13-4BEB-8AAB-EC440FB00974}">
@@ -1662,7 +1662,7 @@
 												<RTPC Name="" ID="{7012B4AC-A853-44EF-B74A-E332D0CEC8D4}" ShortID="317503902">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="Kick_Vibrato_Level" ID="{1DC47568-7B3B-4A8E-B39F-C20943E54C6A}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+															<ObjectRef Name="Kick_Effect_2" ID="{1DC47568-7B3B-4A8E-B39F-C20943E54C6A}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 														</Reference>
 													</ReferenceList>
 													<Curve Name="" ID="{5EB6A750-D571-44D9-9A22-C04F9F582276}">
@@ -2012,7 +2012,7 @@
 										<RTPC Name="" ID="{061D730A-B89F-4482-BF76-D283B041FE5C}" ShortID="645716919">
 											<ReferenceList>
 												<Reference Name="ControlInput">
-													<ObjectRef Name="HiHat_Distortion_Level" ID="{C8A4CABD-53E9-42FC-B669-6256104F018F}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+													<ObjectRef Name="HiHat_Effect_3" ID="{C8A4CABD-53E9-42FC-B669-6256104F018F}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 												</Reference>
 											</ReferenceList>
 											<Curve Name="" ID="{08668A0A-E34E-49E5-B568-E9C90CA83240}">

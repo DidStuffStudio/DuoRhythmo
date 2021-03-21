@@ -3,24 +3,24 @@
 	<AudioObjects>
 		<WorkUnit Name="Default Work Unit" ID="{D3110F0B-B237-4284-AD44-0007B592510C}" PersistMode="Standalone">
 			<ChildrenList>
-				<Sound Name="Funk_BD" ID="{02084163-4D37-4B77-AEA4-92B1E29C159D}" ShortID="413073654">
+				<ActorMixer Name="Kicks" ID="{EA28B629-F1A7-4D56-A0F2-0D3852F46FAC}" ShortID="876018659">
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
 						</Reference>
 						<Reference Name="Effect0">
 							<Custom CreatedFrom="{FE29AE8D-FD86-4652-A95D-68D32F5760EC}">
-								<Effect Name="Have_U_Ever_Been_Outside (Custom)" ID="{D04D463C-BB83-4971-8A08-188EE133BE7E}" ShortID="845134075" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+								<Effect Name="Have_U_Ever_Been_Outside (Custom)" ID="{D542E3E3-774A-4D8B-8EA3-7F69FF4CEC0E}" ShortID="487531198" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
 									<PropertyList>
 										<Property Name="DecayTime" Type="Real32" Value="10">
 											<RTPCList>
-												<RTPC Name="" ID="{1A760109-EDD2-4B89-99F1-93ACAED1D651}" ShortID="281998766">
+												<RTPC Name="" ID="{409372D9-141C-46C5-86B0-AEA8F4F133A1}" ShortID="1025711640">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="Kick_Reverb_Level" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+															<ObjectRef Name="Kick_Effect_1" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 														</Reference>
 													</ReferenceList>
-													<Curve Name="" ID="{763EA17E-23C6-4A4A-B783-9B664B3873A6}">
+													<Curve Name="" ID="{B932A98A-ADFB-49DB-A92D-879E8FD6A890}">
 														<PropertyList>
 															<Property Name="Flags" Type="int32" Value="1"/>
 														</PropertyList>
@@ -32,7 +32,7 @@
 															</Point>
 															<Point>
 																<XPos>100</XPos>
-																<YPos>10</YPos>
+																<YPos>2.63891</YPos>
 																<Flags>37</Flags>
 															</Point>
 														</PointList>
@@ -63,35 +63,30 @@
 							</Custom>
 						</Reference>
 						<Reference Name="Effect1">
-							<Custom CreatedFrom="{F0F27454-4BCC-4302-A61D-C324E7187DD0}">
-								<Effect Name="Rhythmic_Talk (Custom)" ID="{B43299DC-DB6D-4489-AD26-84A4271C5FCA}" ShortID="736804145" PluginName="Wwise Tremolo" CompanyID="0" PluginID="131" PluginType="3">
+							<Custom>
+								<Effect Name="Wwise Guitar Distortion (Custom)" ID="{40850F08-2D69-43C6-BE99-088CC8DDBEF5}" ShortID="96592835" PluginName="Wwise Guitar Distortion" CompanyID="0" PluginID="126" PluginType="3">
 									<PropertyList>
-										<Property Name="ModFrequency" Type="Real32" Value="13.58">
+										<Property Name="DistortionDrive" Type="Real32" Value="100">
 											<RTPCList>
-												<RTPC Name="" ID="{33B6C49A-BEFB-48E9-8E00-C30927F58231}" ShortID="64499382">
+												<RTPC Name="" ID="{A331E89D-56EC-4C6C-B3EE-7F8F30811DD0}" ShortID="403028493">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="Kick_Vibrato_Level" ID="{1DC47568-7B3B-4A8E-B39F-C20943E54C6A}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+															<ObjectRef Name="Kick_Effect_2" ID="{1DC47568-7B3B-4A8E-B39F-C20943E54C6A}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 														</Reference>
 													</ReferenceList>
-													<Curve Name="" ID="{404F5A83-DD7C-4C2E-8F26-66F4C1A2C1B3}">
+													<Curve Name="" ID="{F642B63F-95DA-4394-9DC4-F9D35B935484}">
 														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="5"/>
+															<Property Name="Flags" Type="int32" Value="1"/>
 														</PropertyList>
 														<PointList>
 															<Point>
 																<XPos>0</XPos>
-																<YPos>44.41616</YPos>
+																<YPos>-100</YPos>
 																<Flags>5</Flags>
 															</Point>
 															<Point>
-																<XPos>0.4779</XPos>
-																<YPos>134.52086</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
 																<XPos>100</XPos>
-																<YPos>2000</YPos>
+																<YPos>100</YPos>
 																<Flags>37</Flags>
 															</Point>
 														</PointList>
@@ -99,39 +94,37 @@
 												</RTPC>
 											</RTPCList>
 										</Property>
-										<Property Name="ModPWM" Type="Real32" Value="15"/>
-										<Property Name="ModPhaseOffset" Type="Real32" Value="-180"/>
-										<Property Name="ModPhaseSpread" Type="Real32" Value="58"/>
-										<Property Name="ModSmoothing" Type="Real32" Value="100"/>
+										<Property Name="DistortionType" Type="int32" Value="4"/>
+										<Property Name="WetDryMix" Type="Real32" Value="49"/>
 									</PropertyList>
 								</Effect>
 							</Custom>
 						</Reference>
 						<Reference Name="Effect2">
-							<Custom CreatedFrom="{65397B72-19EC-43DB-B2D2-EB84437B6BDC}">
-								<Effect Name="Boomerang (Custom)" ID="{3DC6543E-F190-48D7-9610-01C78FA37AB1}" ShortID="1059835126" PluginName="Wwise Tremolo" CompanyID="0" PluginID="131" PluginType="3">
+							<Custom CreatedFrom="{D20F3717-EBA2-4E3A-84F8-C8BD431563FB}">
+								<Effect Name="Echoes_Linear (Custom)" ID="{B0572E29-DC4F-4F2A-8BA1-3EB8D4954701}" ShortID="454217790" PluginName="Wwise Delay" CompanyID="0" PluginID="106" PluginType="3">
 									<PropertyList>
-										<Property Name="ModFrequency" Type="Real32" Value="20000">
+										<Property Name="Feedback" Type="Real32">
 											<RTPCList>
-												<RTPC Name="" ID="{301BD45B-40D3-44FB-AB2F-D89C007CCF55}" ShortID="336044117">
+												<RTPC Name="" ID="{CC2FD314-AD53-41E9-A82C-EF5CF7D12471}" ShortID="655773507">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="Kick_Distortion_Level" ID="{3E44A7F2-8141-4682-A03B-34537A3F92C9}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+															<ObjectRef Name="Kick_Effect_3" ID="{3E44A7F2-8141-4682-A03B-34537A3F92C9}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 														</Reference>
 													</ReferenceList>
-													<Curve Name="" ID="{2C75E0A2-F89F-4D09-815D-33158115694E}">
+													<Curve Name="" ID="{6AEADB21-C16F-450F-BC78-93F657EA7E2D}">
 														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="5"/>
+															<Property Name="Flags" Type="int32" Value="1"/>
 														</PropertyList>
 														<PointList>
 															<Point>
 																<XPos>0</XPos>
-																<YPos>9.85973</YPos>
+																<YPos>-100</YPos>
 																<Flags>5</Flags>
 															</Point>
 															<Point>
 																<XPos>100</XPos>
-																<YPos>20000</YPos>
+																<YPos>7.79221</YPos>
 																<Flags>37</Flags>
 															</Point>
 														</PointList>
@@ -139,10 +132,39 @@
 												</RTPC>
 											</RTPCList>
 										</Property>
-										<Property Name="ModPWM" Type="Real32" Value="100"/>
-										<Property Name="ModPhaseOffset" Type="Real32" Value="-180"/>
-										<Property Name="ModPhaseSpread" Type="Real32" Value="180"/>
-										<Property Name="ModSmoothing" Type="Real32" Value="100"/>
+										<Property Name="WetDryMix" Type="Real32" Value="0">
+											<RTPCList>
+												<RTPC Name="" ID="{02722363-1A57-4734-A5E9-BFBD71A0B3CE}" ShortID="173941548">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Kick_Effect_3" ID="{3E44A7F2-8141-4682-A03B-34537A3F92C9}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{1656DE8B-A71D-45E8-95A9-D2281A5DB305}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>25</YPos>
+																<Flags>0</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>25</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
 									</PropertyList>
 								</Effect>
 							</Custom>
@@ -152,37 +174,96 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="Funk_BD" ID="{B0C56F01-5B17-410D-97DF-1997620BE774}">
-							<Language>SFX</Language>
-							<AudioFile>Funk_BD.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="97711246"/>
-							</MediaIDList>
-						</AudioFileSource>
+						<Sound Name="Cymatics - Eternity Kick 2 - C" ID="{29F66E86-4354-41B2-A056-27E0FB38EDB0}" ShortID="573998211">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Cymatics - Eternity Kick 2 - C" ID="{BC7515B1-1ACB-46FF-987D-A5835A2EB956}">
+									<Language>SFX</Language>
+									<AudioFile>Cymatics - Eternity Kick 2 - C.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="312939937"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Cymatics - Eternity Kick 2 - C" ID="{BC7515B1-1ACB-46FF-987D-A5835A2EB956}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="HS_Jazz_01_BD" ID="{A5881040-DC6F-418B-A116-4999CD60F3B1}" ShortID="481921026">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="HS_Jazz_01_BD" ID="{D32DE7B5-24FA-4316-9591-6B97FE63F899}">
+									<Language>SFX</Language>
+									<AudioFile>HS_Jazz_01_BD.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="525752949"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="HS_Jazz_01_BD" ID="{D32DE7B5-24FA-4316-9591-6B97FE63F899}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Kick" ID="{9996B9A2-696A-4C0D-98E8-671B2C18B273}" ShortID="339532000">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Kick" ID="{3759A2D3-F100-40FF-9FCB-905016A1B2BC}">
+									<Language>SFX</Language>
+									<AudioFile>Kick.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="500695360"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Kick" ID="{3759A2D3-F100-40FF-9FCB-905016A1B2BC}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="Funk_BD" ID="{B0C56F01-5B17-410D-97DF-1997620BE774}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="Funk_HH" ID="{32C24199-5756-4720-A6D7-92ACB97B1D02}" ShortID="311629962">
+				</ActorMixer>
+				<ActorMixer Name="Snares" ID="{981A95E7-641A-4833-B985-711D1ADAE466}" ShortID="374397921">
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
 						</Reference>
 						<Reference Name="Effect0">
 							<Custom CreatedFrom="{FE29AE8D-FD86-4652-A95D-68D32F5760EC}">
-								<Effect Name="Have_U_Ever_Been_Outside (Custom)" ID="{C91EA5F4-F9F5-4CA3-A807-E01DE31D8421}" ShortID="557487338" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+								<Effect Name="Have_U_Ever_Been_Outside (Custom)" ID="{1C1A069F-E194-4FB1-AD8A-C688DD08DA34}" ShortID="254321231" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
 									<PropertyList>
 										<Property Name="DecayTime" Type="Real32" Value="10">
 											<RTPCList>
-												<RTPC Name="" ID="{B0930F18-4285-46AB-BCF8-9334EC207234}" ShortID="275711725">
+												<RTPC Name="" ID="{C0CC9452-C251-4BE0-AA0D-C29A40ACD523}" ShortID="326796299">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="HiHat_Reverb_Level" ID="{9D3133CB-AB4F-4C3A-B3E8-053C64B99F60}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+															<ObjectRef Name="Snare_Effect_1" ID="{D82B8691-7CE6-4D81-A822-E388E469450D}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 														</Reference>
 													</ReferenceList>
-													<Curve Name="" ID="{70457302-7F58-4C9A-A4D8-5069B3B7BAAC}">
+													<Curve Name="" ID="{BB57F6C3-ABC8-4115-9F5E-604C83C11D0A}">
 														<PropertyList>
 															<Property Name="Flags" Type="int32" Value="1"/>
 														</PropertyList>
@@ -194,7 +275,7 @@
 															</Point>
 															<Point>
 																<XPos>100</XPos>
-																<YPos>10</YPos>
+																<YPos>2.63891</YPos>
 																<Flags>37</Flags>
 															</Point>
 														</PointList>
@@ -225,35 +306,30 @@
 							</Custom>
 						</Reference>
 						<Reference Name="Effect1">
-							<Custom CreatedFrom="{F0F27454-4BCC-4302-A61D-C324E7187DD0}">
-								<Effect Name="Rhythmic_Talk (Custom)" ID="{C651AAEF-303A-47EC-A517-FD3DACD26968}" ShortID="196634411" PluginName="Wwise Tremolo" CompanyID="0" PluginID="131" PluginType="3">
+							<Custom>
+								<Effect Name="Wwise Guitar Distortion (Custom)" ID="{02B78D19-E4D7-4349-B044-D45D20E1B13C}" ShortID="706500383" PluginName="Wwise Guitar Distortion" CompanyID="0" PluginID="126" PluginType="3">
 									<PropertyList>
-										<Property Name="ModFrequency" Type="Real32" Value="13.58">
+										<Property Name="DistortionDrive" Type="Real32" Value="100">
 											<RTPCList>
-												<RTPC Name="" ID="{69C7CC31-524F-414A-B5CA-6F9F2550B021}" ShortID="162821123">
+												<RTPC Name="" ID="{BEE0317D-C88E-4F20-9669-BE328DF7B872}" ShortID="279211278">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="HiHat_Vibrato_Level" ID="{9776B455-57CA-4E5A-AE78-DAFE06DE97B6}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+															<ObjectRef Name="Snare_Effect_2" ID="{14335255-1016-4901-8DA0-A112673C976A}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 														</Reference>
 													</ReferenceList>
-													<Curve Name="" ID="{F8153425-B2A8-4192-A25E-C5DC40B7BCED}">
+													<Curve Name="" ID="{6DD0CE43-B896-483E-B5F8-B54ADD5C3162}">
 														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="5"/>
+															<Property Name="Flags" Type="int32" Value="1"/>
 														</PropertyList>
 														<PointList>
 															<Point>
 																<XPos>0</XPos>
-																<YPos>44.41616</YPos>
+																<YPos>-100</YPos>
 																<Flags>5</Flags>
 															</Point>
 															<Point>
-																<XPos>0.4779</XPos>
-																<YPos>134.52086</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
 																<XPos>100</XPos>
-																<YPos>2000</YPos>
+																<YPos>100</YPos>
 																<Flags>37</Flags>
 															</Point>
 														</PointList>
@@ -261,39 +337,37 @@
 												</RTPC>
 											</RTPCList>
 										</Property>
-										<Property Name="ModPWM" Type="Real32" Value="15"/>
-										<Property Name="ModPhaseOffset" Type="Real32" Value="-180"/>
-										<Property Name="ModPhaseSpread" Type="Real32" Value="58"/>
-										<Property Name="ModSmoothing" Type="Real32" Value="100"/>
+										<Property Name="DistortionType" Type="int32" Value="4"/>
+										<Property Name="WetDryMix" Type="Real32" Value="49"/>
 									</PropertyList>
 								</Effect>
 							</Custom>
 						</Reference>
 						<Reference Name="Effect2">
-							<Custom CreatedFrom="{65397B72-19EC-43DB-B2D2-EB84437B6BDC}">
-								<Effect Name="Boomerang (Custom)" ID="{A8DE9BEA-53DC-459B-AD45-5AAD98CA8D33}" ShortID="575435445" PluginName="Wwise Tremolo" CompanyID="0" PluginID="131" PluginType="3">
+							<Custom CreatedFrom="{D20F3717-EBA2-4E3A-84F8-C8BD431563FB}">
+								<Effect Name="Echoes_Linear (Custom)" ID="{0567B7E8-519C-45CB-867A-BC28746708A8}" ShortID="425366874" PluginName="Wwise Delay" CompanyID="0" PluginID="106" PluginType="3">
 									<PropertyList>
-										<Property Name="ModFrequency" Type="Real32" Value="20000">
+										<Property Name="Feedback" Type="Real32">
 											<RTPCList>
-												<RTPC Name="" ID="{7A091015-39F8-4AE0-9E0E-344D98EBB017}" ShortID="201447641">
+												<RTPC Name="" ID="{47DC81A0-254F-4335-BB22-A5766E96CE26}" ShortID="874186977">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="HiHat_Distortion_Level" ID="{C8A4CABD-53E9-42FC-B669-6256104F018F}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+															<ObjectRef Name="Snare_Effect_3" ID="{285304D0-DC82-43FD-9BC6-6E11DC5832AF}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 														</Reference>
 													</ReferenceList>
-													<Curve Name="" ID="{BD30F4A5-2C9B-4684-A9AE-90731A891E09}">
+													<Curve Name="" ID="{1C41DE1A-8816-45F3-8850-85AC938206B6}">
 														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="5"/>
+															<Property Name="Flags" Type="int32" Value="1"/>
 														</PropertyList>
 														<PointList>
 															<Point>
 																<XPos>0</XPos>
-																<YPos>9.85973</YPos>
+																<YPos>-100</YPos>
 																<Flags>5</Flags>
 															</Point>
 															<Point>
 																<XPos>100</XPos>
-																<YPos>20000</YPos>
+																<YPos>7.79221</YPos>
 																<Flags>37</Flags>
 															</Point>
 														</PointList>
@@ -301,10 +375,39 @@
 												</RTPC>
 											</RTPCList>
 										</Property>
-										<Property Name="ModPWM" Type="Real32" Value="100"/>
-										<Property Name="ModPhaseOffset" Type="Real32" Value="-180"/>
-										<Property Name="ModPhaseSpread" Type="Real32" Value="180"/>
-										<Property Name="ModSmoothing" Type="Real32" Value="100"/>
+										<Property Name="WetDryMix" Type="Real32" Value="0">
+											<RTPCList>
+												<RTPC Name="" ID="{404A13D7-5289-47CB-9A4D-48870BCCFE88}" ShortID="1041204217">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Snare_Effect_3" ID="{285304D0-DC82-43FD-9BC6-6E11DC5832AF}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{C10B27FA-491A-482F-982A-A3D8EF15A5A1}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>25</YPos>
+																<Flags>0</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>25</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
 									</PropertyList>
 								</Effect>
 							</Custom>
@@ -314,37 +417,172 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="Funk_HH" ID="{9F0D8D62-4EDC-4663-B1C3-0C33350D1E7C}">
-							<Language>SFX</Language>
-							<AudioFile>Funk_HH.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="707305554"/>
-							</MediaIDList>
-						</AudioFileSource>
+						<Sound Name="Cymatics - Eterniity Snare 2 - C" ID="{BA7EA7EB-FE9F-4D0B-89E7-8110B65B0C23}" ShortID="453160827">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Cymatics - Eterniity Snare 2 - C" ID="{44714EA5-C7A5-449D-8684-46962A1F55F5}">
+									<Language>SFX</Language>
+									<AudioFile>Cymatics - Eterniity Snare 2 - C.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="520638564"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Cymatics - Eterniity Snare 2 - C" ID="{44714EA5-C7A5-449D-8684-46962A1F55F5}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="HS_Jazz_03_SD" ID="{8B2BCCE9-85B4-488F-B5F6-33FB279488B1}" ShortID="584575329">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="HS_Jazz_03_SD" ID="{086D0A53-3267-4F8F-9D97-ABA60C37D39A}">
+									<Language>SFX</Language>
+									<AudioFile>HS_Jazz_03_SD.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="395345225"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="HS_Jazz_03_SD" ID="{086D0A53-3267-4F8F-9D97-ABA60C37D39A}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Snare" ID="{C1018A37-E439-4697-B120-5F98D53CA9DE}" ShortID="254762970">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Snare" ID="{9D16640B-0C74-4A18-BB89-F535E4E1CB67}">
+									<Language>SFX</Language>
+									<AudioFile>Snare.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="541296549"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Snare" ID="{9D16640B-0C74-4A18-BB89-F535E4E1CB67}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="Funk_HH" ID="{9F0D8D62-4EDC-4663-B1C3-0C33350D1E7C}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="HS_Jazz_01_BD" ID="{A5881040-DC6F-418B-A116-4999CD60F3B1}" ShortID="481921026">
+				</ActorMixer>
+				<ActorMixer Name="Cymbals" ID="{3711B19A-8771-4188-8CEA-48E1EB7E837C}" ShortID="881033895">
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
 						</Reference>
 						<Reference Name="Effect0">
-							<Custom CreatedFrom="{FE29AE8D-FD86-4652-A95D-68D32F5760EC}">
-								<Effect Name="Have_U_Ever_Been_Outside (Custom)" ID="{5A8B8D4E-93E7-4C0D-B336-07CDCAE11DFC}" ShortID="714869822" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+							<Custom CreatedFrom="{2AFD6FB0-C906-4683-A377-FEEEF72967B0}">
+								<Effect Name="High_Impact (Custom)" ID="{3B8C03EE-5519-4198-BB5C-CB12A80C9EF8}" ShortID="260739194" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
 									<PropertyList>
-										<Property Name="DecayTime" Type="Real32" Value="10">
+										<Property Name="AttackTime" Type="Real32" Value="1.35"/>
+										<Property Name="Ratio" Type="Real32" Value="27.6"/>
+										<Property Name="ReleaseTime" Type="Real32" Value="0.48"/>
+										<Property Name="Threshold" Type="Real32" Value="-96.3">
 											<RTPCList>
-												<RTPC Name="" ID="{45FF55AE-005A-4AD7-8602-5FEB09A442F9}" ShortID="635626792">
+												<RTPC Name="" ID="{B5E1CBB8-7679-4000-86E3-BC3225CF5C99}" ShortID="610269992">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="Kick_Reverb_Level" ID="{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+															<ObjectRef Name="Cymbol_Effect_1" ID="{D2AEF77E-632C-4E03-AFE1-242C840C3D64}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 														</Reference>
 													</ReferenceList>
-													<Curve Name="" ID="{FD8A7054-0894-4F07-BBFE-8CF7CF6E0FDE}">
+													<Curve Name="" ID="{DC523F21-C896-4AD5-AF72-9BEBD82C8D04}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>96.3</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>-96.3</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="Effect1">
+							<Custom>
+								<Effect Name="Wwise Time Stretch (Custom)" ID="{6386884E-0B0D-4179-821B-63C5814138AE}" ShortID="1006877635" PluginName="Wwise Time Stretch" CompanyID="0" PluginID="130" PluginType="3">
+									<PropertyList>
+										<Property Name="TimeStretch" Type="Real32">
+											<RTPCList>
+												<RTPC Name="" ID="{43D351CC-83EC-48E0-94B3-CB7DBC98DEF0}" ShortID="343734295">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Cymbol_Effect_2" ID="{9ACD842D-881E-4E55-8D0C-B993667AB55A}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{8374270F-D1BB-4FE1-AF2C-7EA4F720F551}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>100</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>25</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="WindowSize" Type="int32" Value="4096"/>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="Effect2">
+							<Custom CreatedFrom="{CC7B8638-C670-4AD5-B3FB-331EA81037F6}">
+								<Effect Name="Holy (Custom)" ID="{D30E287D-C442-488A-9A46-C51A688EB364}" ShortID="138933265" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+									<PropertyList>
+										<Property Name="DecayTime" Type="Real32" Value="4.7">
+											<RTPCList>
+												<RTPC Name="" ID="{E3680FB7-E136-445A-BB02-78F48A367FBF}" ShortID="925613680">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Cymbol_Effect_3" ID="{D28762B6-E2C2-4DF7-885D-C48226701B86}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{36C068F9-CE6D-427A-BCCD-3B49722029E4}">
 														<PropertyList>
 															<Property Name="Flags" Type="int32" Value="1"/>
 														</PropertyList>
@@ -356,7 +594,366 @@
 															</Point>
 															<Point>
 																<XPos>100</XPos>
-																<YPos>10</YPos>
+																<YPos>4.67742</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Density" Type="Real32" Value="70"/>
+										<Property Name="ERFrontBackDelay" Type="Real32" Value="100"/>
+										<Property Name="ERLevel" Type="Real32" Value="-24"/>
+										<Property Name="ERPattern" Type="int32" Value="18"/>
+										<Property Name="Filter1Freq" Type="Real32" Value="490"/>
+										<Property Name="Filter1Gain" Type="Real32" Value="-0.5"/>
+										<Property Name="Filter1InsertPos" Type="int32" Value="2"/>
+										<Property Name="Filter2InsertPos" Type="int32" Value="0"/>
+										<Property Name="Filter3Freq" Type="Real32" Value="11000"/>
+										<Property Name="Filter3Gain" Type="Real32" Value="-4.5"/>
+										<Property Name="HFDamping" Type="Real32" Value="6.2"/>
+										<Property Name="PreDelay" Type="Real32" Value="0"/>
+										<Property Name="Quality" Type="int32" Value="14"/>
+										<Property Name="ReverbLevel" Type="Real32" Value="-23"/>
+										<Property Name="RoomSize" Type="Real32" Value="100"/>
+										<Property Name="StereoWidth" Type="Real32" Value="172"/>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Cymatics - Eternity Crash 1" ID="{1A2DD734-236F-4C10-AF97-C4471C45C231}" ShortID="490863243">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Cymatics - Eternity Crash 1" ID="{04ECE6DE-60AC-48E5-BA66-29769DA51A32}">
+									<Language>SFX</Language>
+									<AudioFile>Cymatics - Eternity Crash 1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="635555808"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Cymatics - Eternity Crash 1" ID="{04ECE6DE-60AC-48E5-BA66-29769DA51A32}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="HS_Jazz_07_Cymbal" ID="{30DDE0D9-A9CA-4AEC-93C7-E9CBD98F7B19}" ShortID="122498658">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>12</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="HS_Jazz_07_Cymbal" ID="{00670E54-A963-4775-A954-5577ADCCAA40}">
+									<Language>SFX</Language>
+									<AudioFile>HS_Jazz_07_Cymbal.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="128923291"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="HS_Jazz_07_Cymbal" ID="{00670E54-A963-4775-A954-5577ADCCAA40}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Cymbal" ID="{D09C7990-B3C6-4F2F-877D-8FD77B49D831}" ShortID="837965617">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Cymbal" ID="{E101BC63-8619-40CA-921B-4D411C269153}">
+									<Language>SFX</Language>
+									<AudioFile>Cymbal.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="914661757"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Cymbal" ID="{E101BC63-8619-40CA-921B-4D411C269153}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists/>
+				</ActorMixer>
+				<ActorMixer Name="HiHats" ID="{F0A5D91B-DE62-43EE-ADDA-9D2F84B2EB8A}" ShortID="688103362">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+						</Reference>
+						<Reference Name="Effect0">
+							<Custom CreatedFrom="{747A6B61-E953-474C-8227-672C884DA616}">
+								<Effect Name="Noise_Gate_Fast_Attack (Custom)" ID="{C5D5EF90-CDD4-4809-89C5-A8117F843AE2}" ShortID="382643500" PluginName="Wwise Expander" CompanyID="0" PluginID="109" PluginType="3">
+									<PropertyList>
+										<Property Name="AttackTime" Type="Real32" Value="0.96"/>
+										<Property Name="OutputGain" Type="Real32" Value="24"/>
+										<Property Name="Ratio" Type="Real32" Value="50">
+											<RTPCList>
+												<RTPC Name="" ID="{9351037E-97A8-49C3-9EB7-5A75825C5AD8}" ShortID="921613839">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="HiHat_Effect_1" ID="{9D3133CB-AB4F-4C3A-B3E8-053C64B99F60}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{E3414AD0-423D-49D3-A99D-4D76DBBE0BEC}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>1</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>12.13636</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="ReleaseTime" Type="Real32" Value="2"/>
+										<Property Name="Threshold" Type="Real32" Value="0"/>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="Effect1">
+							<Custom>
+								<Effect Name="Wwise Time Stretch (Custom)" ID="{6DCC6E68-E0F4-4075-A3D6-E99094E54DE7}" ShortID="160072551" PluginName="Wwise Time Stretch" CompanyID="0" PluginID="130" PluginType="3">
+									<PropertyList>
+										<Property Name="TimeStretch" Type="Real32">
+											<RTPCList>
+												<RTPC Name="" ID="{5D17E5AB-C105-4762-9830-83D2DF7010C3}" ShortID="427351844">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="HiHat_Effect_2" ID="{9776B455-57CA-4E5A-AE78-DAFE06DE97B6}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{AC5F18AB-D3CC-42AA-98CD-D9AAAF21D006}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>100</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>25</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="WindowSize" Type="int32" Value="4096"/>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="Effect2">
+							<Custom CreatedFrom="{CC7B8638-C670-4AD5-B3FB-331EA81037F6}">
+								<Effect Name="Holy (Custom)" ID="{321BC634-48BF-4B1F-BA66-DED6F840C2FE}" ShortID="2837424" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+									<PropertyList>
+										<Property Name="DecayTime" Type="Real32" Value="4.7">
+											<RTPCList>
+												<RTPC Name="" ID="{E8B339D3-636D-485E-BC3B-D5BC1B8AD388}" ShortID="122929031">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="HiHat_Effect_3" ID="{C8A4CABD-53E9-42FC-B669-6256104F018F}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{ED9B0CEF-86E4-4C5F-95B7-4961946278A1}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0.2</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>4.67742</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Density" Type="Real32" Value="70"/>
+										<Property Name="ERFrontBackDelay" Type="Real32" Value="100"/>
+										<Property Name="ERLevel" Type="Real32" Value="-24"/>
+										<Property Name="ERPattern" Type="int32" Value="18"/>
+										<Property Name="Filter1Freq" Type="Real32" Value="490"/>
+										<Property Name="Filter1Gain" Type="Real32" Value="-0.5"/>
+										<Property Name="Filter1InsertPos" Type="int32" Value="2"/>
+										<Property Name="Filter2InsertPos" Type="int32" Value="0"/>
+										<Property Name="Filter3Freq" Type="Real32" Value="11000"/>
+										<Property Name="Filter3Gain" Type="Real32" Value="-4.5"/>
+										<Property Name="HFDamping" Type="Real32" Value="6.2"/>
+										<Property Name="PreDelay" Type="Real32" Value="0"/>
+										<Property Name="Quality" Type="int32" Value="14"/>
+										<Property Name="ReverbLevel" Type="Real32" Value="-23"/>
+										<Property Name="RoomSize" Type="Real32" Value="100"/>
+										<Property Name="StereoWidth" Type="Real32" Value="172"/>
+									</PropertyList>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Cymatics - Eternity Closed Hihat 1" ID="{67D0D87E-F102-4D2C-936F-537A1025DC66}" ShortID="852139983">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Cymatics - Eternity Closed Hihat 1" ID="{05BBE02A-1B74-42EA-B570-BC6E894A59C4}">
+									<Language>SFX</Language>
+									<AudioFile>Cymatics - Eternity Closed Hihat 1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1071978112"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Cymatics - Eternity Closed Hihat 1" ID="{05BBE02A-1B74-42EA-B570-BC6E894A59C4}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Funk_HH" ID="{32C24199-5756-4720-A6D7-92ACB97B1D02}" ShortID="311629962">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>12</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Funk_HH" ID="{9F0D8D62-4EDC-4663-B1C3-0C33350D1E7C}">
+									<Language>SFX</Language>
+									<AudioFile>Funk_HH.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="707305554"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Funk_HH" ID="{9F0D8D62-4EDC-4663-B1C3-0C33350D1E7C}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="HiHat" ID="{792B88ED-D94C-4A8F-A04C-ACBDF9A4C8B7}" ShortID="223229118">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="HiHat" ID="{D48FC1FD-6D49-4D2B-AAFB-B704B189F266}">
+									<Language>SFX</Language>
+									<AudioFile>HiHat.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="62014626"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="HiHat" ID="{D48FC1FD-6D49-4D2B-AAFB-B704B189F266}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists/>
+				</ActorMixer>
+				<ActorMixer Name="Toms" ID="{BF4F9E5D-6D93-4B29-8762-F17AA125D9BD}" ShortID="4330316">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+						</Reference>
+						<Reference Name="Effect0">
+							<Custom CreatedFrom="{FE29AE8D-FD86-4652-A95D-68D32F5760EC}">
+								<Effect Name="Have_U_Ever_Been_Outside (Custom)" ID="{0C744676-1050-4FC0-8D0D-C84F61DD7505}" ShortID="212767753" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+									<PropertyList>
+										<Property Name="DecayTime" Type="Real32" Value="10">
+											<RTPCList>
+												<RTPC Name="" ID="{E8A54520-55C6-4C3C-8972-92C88BE2656D}" ShortID="869014113">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="TomTom_Effect_1" ID="{085BDD0D-CC23-4A58-925B-9A6A9E2441DF}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{F230E27E-CBC4-413A-B5FA-E40EC9EB145F}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="1"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0.2</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>2.63891</YPos>
 																<Flags>37</Flags>
 															</Point>
 														</PointList>
@@ -387,138 +984,30 @@
 							</Custom>
 						</Reference>
 						<Reference Name="Effect1">
-							<Custom CreatedFrom="{F0F27454-4BCC-4302-A61D-C324E7187DD0}">
-								<Effect Name="Rhythmic_Talk (Custom)" ID="{5CBFB727-50D4-4DD8-81F6-C9D63429FD98}" ShortID="286945859" PluginName="Wwise Tremolo" CompanyID="0" PluginID="131" PluginType="3">
+							<Custom>
+								<Effect Name="Wwise Guitar Distortion (Custom)" ID="{29712784-957D-4783-A6CD-47AA0FB9B3AE}" ShortID="364554783" PluginName="Wwise Guitar Distortion" CompanyID="0" PluginID="126" PluginType="3">
 									<PropertyList>
-										<Property Name="ModFrequency" Type="Real32" Value="13.58">
+										<Property Name="DistortionDrive" Type="Real32" Value="100">
 											<RTPCList>
-												<RTPC Name="" ID="{6F15D813-0F7E-4925-B98C-07C4768B19A2}" ShortID="49284074">
+												<RTPC Name="" ID="{03926330-869B-4A1D-8FB8-8CD67BFD624F}" ShortID="833592083">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="Kick_Vibrato_Level" ID="{1DC47568-7B3B-4A8E-B39F-C20943E54C6A}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+															<ObjectRef Name="TomTom_Effect_2" ID="{9BC57C88-C524-4D94-9E15-3F1E7C58E3B9}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 														</Reference>
 													</ReferenceList>
-													<Curve Name="" ID="{4AA179C0-3FEE-411F-86DB-E468DE46A929}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="5"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>44.41616</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>0.4779</XPos>
-																<YPos>134.52086</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
-																<XPos>100</XPos>
-																<YPos>2000</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
-										<Property Name="ModPWM" Type="Real32" Value="15"/>
-										<Property Name="ModPhaseOffset" Type="Real32" Value="-180"/>
-										<Property Name="ModPhaseSpread" Type="Real32" Value="58"/>
-										<Property Name="ModSmoothing" Type="Real32" Value="100"/>
-									</PropertyList>
-								</Effect>
-							</Custom>
-						</Reference>
-						<Reference Name="Effect2">
-							<Custom CreatedFrom="{65397B72-19EC-43DB-B2D2-EB84437B6BDC}">
-								<Effect Name="Boomerang (Custom)" ID="{B1A3EB4C-ED5A-4E33-9581-A425C1DD273B}" ShortID="649554299" PluginName="Wwise Tremolo" CompanyID="0" PluginID="131" PluginType="3">
-									<PropertyList>
-										<Property Name="ModFrequency" Type="Real32" Value="20000">
-											<RTPCList>
-												<RTPC Name="" ID="{73812A41-88A6-4BE3-870E-190FA9CBD090}" ShortID="162747898">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="Kick_Distortion_Level" ID="{3E44A7F2-8141-4682-A03B-34537A3F92C9}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{78702D1D-C944-44D9-8E6F-0D9C022E6C7E}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="5"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>9.85973</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>100</XPos>
-																<YPos>20000</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
-										<Property Name="ModPWM" Type="Real32" Value="100"/>
-										<Property Name="ModPhaseOffset" Type="Real32" Value="-180"/>
-										<Property Name="ModPhaseSpread" Type="Real32" Value="180"/>
-										<Property Name="ModSmoothing" Type="Real32" Value="100"/>
-									</PropertyList>
-								</Effect>
-							</Custom>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="HS_Jazz_01_BD" ID="{D32DE7B5-24FA-4316-9591-6B97FE63F899}">
-							<Language>SFX</Language>
-							<AudioFile>HS_Jazz_01_BD.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="525752949"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="HS_Jazz_01_BD" ID="{D32DE7B5-24FA-4316-9591-6B97FE63F899}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="HS_Jazz_03_SD" ID="{8B2BCCE9-85B4-488F-B5F6-33FB279488B1}" ShortID="584575329">
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-						</Reference>
-						<Reference Name="Effect0">
-							<Custom CreatedFrom="{FE29AE8D-FD86-4652-A95D-68D32F5760EC}">
-								<Effect Name="Have_U_Ever_Been_Outside (Custom)" ID="{9F665674-B77D-40F1-8C1D-B64262281628}" ShortID="321603720" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
-									<PropertyList>
-										<Property Name="DecayTime" Type="Real32" Value="10">
-											<RTPCList>
-												<RTPC Name="" ID="{42DB5F77-0061-420E-A4C5-A3366A7C0B6B}" ShortID="406096277">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="Snare_Reverb_Level" ID="{D82B8691-7CE6-4D81-A822-E388E469450D}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{7B67F6A8-B851-4EA8-BACF-56F1BD4D0557}">
+													<Curve Name="" ID="{02FC8DF8-B8AD-4D4C-9164-C5C2AA83267C}">
 														<PropertyList>
 															<Property Name="Flags" Type="int32" Value="1"/>
 														</PropertyList>
 														<PointList>
 															<Point>
 																<XPos>0</XPos>
-																<YPos>0.2</YPos>
+																<YPos>-100</YPos>
 																<Flags>5</Flags>
 															</Point>
 															<Point>
 																<XPos>100</XPos>
-																<YPos>10</YPos>
+																<YPos>100</YPos>
 																<Flags>37</Flags>
 															</Point>
 														</PointList>
@@ -526,161 +1015,37 @@
 												</RTPC>
 											</RTPCList>
 										</Property>
-										<Property Name="Density" Type="Real32" Value="100"/>
-										<Property Name="DryLevel" Type="Real32" Value="-0.3"/>
-										<Property Name="ERFrontBackDelay" Type="Real32" Value="50"/>
-										<Property Name="ERLevel" Type="Real32" Value="-11"/>
-										<Property Name="ERPattern" Type="int32" Value="11"/>
-										<Property Name="Filter1Freq" Type="Real32" Value="210"/>
-										<Property Name="Filter1Gain" Type="Real32" Value="-1.5"/>
-										<Property Name="Filter2Freq" Type="Real32" Value="6830"/>
-										<Property Name="Filter2Gain" Type="Real32" Value="-0.5"/>
-										<Property Name="Filter2Q" Type="Real32" Value="0.65"/>
-										<Property Name="Filter3Freq" Type="Real32" Value="8440"/>
-										<Property Name="Filter3Gain" Type="Real32" Value="-4"/>
-										<Property Name="HFDamping" Type="Real32" Value="10"/>
-										<Property Name="PreDelay" Type="Real32" Value="0"/>
-										<Property Name="Quality" Type="int32" Value="12"/>
-										<Property Name="ReverbLevel" Type="Real32" Value="-13"/>
-										<Property Name="RoomSize" Type="Real32" Value="4"/>
-										<Property Name="StereoWidth" Type="Real32" Value="28"/>
-									</PropertyList>
-								</Effect>
-							</Custom>
-						</Reference>
-						<Reference Name="Effect1">
-							<Custom CreatedFrom="{F0F27454-4BCC-4302-A61D-C324E7187DD0}">
-								<Effect Name="Rhythmic_Talk (Custom)" ID="{9B68001D-6AB4-4A85-B38F-6E486420974D}" ShortID="607782237" PluginName="Wwise Tremolo" CompanyID="0" PluginID="131" PluginType="3">
-									<PropertyList>
-										<Property Name="ModFrequency" Type="Real32" Value="13.58">
-											<RTPCList>
-												<RTPC Name="" ID="{CF9044EA-0114-42CC-AE93-458F82842637}" ShortID="314415282">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="Snare_Vibrato_Level" ID="{14335255-1016-4901-8DA0-A112673C976A}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{C7EBAA59-9115-4ADC-ABD5-F4E64DA5C8DD}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="5"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>44.41616</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>0.4779</XPos>
-																<YPos>134.52086</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
-																<XPos>100</XPos>
-																<YPos>2000</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
-										<Property Name="ModPWM" Type="Real32" Value="15"/>
-										<Property Name="ModPhaseOffset" Type="Real32" Value="-180"/>
-										<Property Name="ModPhaseSpread" Type="Real32" Value="58"/>
-										<Property Name="ModSmoothing" Type="Real32" Value="100"/>
+										<Property Name="DistortionType" Type="int32" Value="4"/>
+										<Property Name="WetDryMix" Type="Real32" Value="49"/>
 									</PropertyList>
 								</Effect>
 							</Custom>
 						</Reference>
 						<Reference Name="Effect2">
-							<Custom CreatedFrom="{65397B72-19EC-43DB-B2D2-EB84437B6BDC}">
-								<Effect Name="Boomerang (Custom)" ID="{6555A786-F14C-4137-A789-AD70CAE5FC39}" ShortID="445187673" PluginName="Wwise Tremolo" CompanyID="0" PluginID="131" PluginType="3">
+							<Custom CreatedFrom="{D20F3717-EBA2-4E3A-84F8-C8BD431563FB}">
+								<Effect Name="Echoes_Linear (Custom)" ID="{583C853A-7E8A-499B-9BD6-0DD6C7A41637}" ShortID="951075838" PluginName="Wwise Delay" CompanyID="0" PluginID="106" PluginType="3">
 									<PropertyList>
-										<Property Name="ModFrequency" Type="Real32" Value="20000">
+										<Property Name="Feedback" Type="Real32">
 											<RTPCList>
-												<RTPC Name="" ID="{8ED5A1EE-BD42-4BB8-9160-35E6D7C48EEB}" ShortID="789023936">
+												<RTPC Name="" ID="{2C1EF418-3A55-42AB-B451-C26DB1B7EC80}" ShortID="14991006">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="Cymbol_Reverb_Level" ID="{D2AEF77E-632C-4E03-AFE1-242C840C3D64}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+															<ObjectRef Name="TomTom_Effect_3" ID="{164D730D-0E24-4B78-9BFC-E6016ECB0711}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 														</Reference>
 													</ReferenceList>
-													<Curve Name="" ID="{6219F898-14A4-4D90-BFFE-3EC5AF86EB44}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="5"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>9.85973</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>100</XPos>
-																<YPos>20000</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
-										<Property Name="ModPWM" Type="Real32" Value="100"/>
-										<Property Name="ModPhaseOffset" Type="Real32" Value="-180"/>
-										<Property Name="ModPhaseSpread" Type="Real32" Value="180"/>
-										<Property Name="ModSmoothing" Type="Real32" Value="100"/>
-									</PropertyList>
-								</Effect>
-							</Custom>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="HS_Jazz_03_SD" ID="{086D0A53-3267-4F8F-9D97-ABA60C37D39A}">
-							<Language>SFX</Language>
-							<AudioFile>HS_Jazz_03_SD.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="395345225"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="HS_Jazz_03_SD" ID="{086D0A53-3267-4F8F-9D97-ABA60C37D39A}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="HS_Jazz_07_Cymbal" ID="{30DDE0D9-A9CA-4AEC-93C7-E9CBD98F7B19}" ShortID="122498658">
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-						</Reference>
-						<Reference Name="Effect0">
-							<Custom CreatedFrom="{FE29AE8D-FD86-4652-A95D-68D32F5760EC}">
-								<Effect Name="Have_U_Ever_Been_Outside (Custom)" ID="{DBCDB69B-31EA-4941-9152-A56670EF2627}" ShortID="891571030" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
-									<PropertyList>
-										<Property Name="DecayTime" Type="Real32" Value="10">
-											<RTPCList>
-												<RTPC Name="" ID="{F23B13AB-819E-49DF-97E4-3C6D3B30D513}" ShortID="9570313">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="Cymbol_Reverb_Level" ID="{D2AEF77E-632C-4E03-AFE1-242C840C3D64}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{10C5DF65-B74A-45C6-9A16-DDF8F391AFAC}">
+													<Curve Name="" ID="{D285F74F-C8DC-4FED-9517-C60289408023}">
 														<PropertyList>
 															<Property Name="Flags" Type="int32" Value="1"/>
 														</PropertyList>
 														<PointList>
 															<Point>
 																<XPos>0</XPos>
-																<YPos>0.2</YPos>
+																<YPos>-100</YPos>
 																<Flags>5</Flags>
 															</Point>
 															<Point>
 																<XPos>100</XPos>
-																<YPos>10</YPos>
+																<YPos>7.79221</YPos>
 																<Flags>37</Flags>
 															</Point>
 														</PointList>
@@ -688,220 +1053,32 @@
 												</RTPC>
 											</RTPCList>
 										</Property>
-										<Property Name="Density" Type="Real32" Value="100"/>
-										<Property Name="DryLevel" Type="Real32" Value="-0.3"/>
-										<Property Name="ERFrontBackDelay" Type="Real32" Value="50"/>
-										<Property Name="ERLevel" Type="Real32" Value="-11"/>
-										<Property Name="ERPattern" Type="int32" Value="11"/>
-										<Property Name="Filter1Freq" Type="Real32" Value="210"/>
-										<Property Name="Filter1Gain" Type="Real32" Value="-1.5"/>
-										<Property Name="Filter2Freq" Type="Real32" Value="6830"/>
-										<Property Name="Filter2Gain" Type="Real32" Value="-0.5"/>
-										<Property Name="Filter2Q" Type="Real32" Value="0.65"/>
-										<Property Name="Filter3Freq" Type="Real32" Value="8440"/>
-										<Property Name="Filter3Gain" Type="Real32" Value="-4"/>
-										<Property Name="HFDamping" Type="Real32" Value="10"/>
-										<Property Name="PreDelay" Type="Real32" Value="0"/>
-										<Property Name="Quality" Type="int32" Value="12"/>
-										<Property Name="ReverbLevel" Type="Real32" Value="-13"/>
-										<Property Name="RoomSize" Type="Real32" Value="4"/>
-										<Property Name="StereoWidth" Type="Real32" Value="28"/>
-									</PropertyList>
-								</Effect>
-							</Custom>
-						</Reference>
-						<Reference Name="Effect1">
-							<Custom CreatedFrom="{F0F27454-4BCC-4302-A61D-C324E7187DD0}">
-								<Effect Name="Rhythmic_Talk (Custom)" ID="{2EEECF0A-AF95-4AD2-957E-2AAB2763C578}" ShortID="900009518" PluginName="Wwise Tremolo" CompanyID="0" PluginID="131" PluginType="3">
-									<PropertyList>
-										<Property Name="ModFrequency" Type="Real32" Value="13.58">
+										<Property Name="WetDryMix" Type="Real32" Value="0">
 											<RTPCList>
-												<RTPC Name="" ID="{C45A69E5-6351-439A-A7F1-159250776A83}" ShortID="407724470">
+												<RTPC Name="" ID="{B04E85A7-A9A6-490D-BFAD-719DFEE11A26}" ShortID="806370330">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="Cymbol_Vibrato_Level" ID="{9ACD842D-881E-4E55-8D0C-B993667AB55A}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+															<ObjectRef Name="TomTom_Effect_3" ID="{164D730D-0E24-4B78-9BFC-E6016ECB0711}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
 														</Reference>
 													</ReferenceList>
-													<Curve Name="" ID="{CB5A5343-604A-470E-B0CB-2DB84AE60FAE}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="5"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>44.41616</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>0.4779</XPos>
-																<YPos>134.52086</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
-																<XPos>100</XPos>
-																<YPos>2000</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
-										<Property Name="ModPWM" Type="Real32" Value="15"/>
-										<Property Name="ModPhaseOffset" Type="Real32" Value="-180"/>
-										<Property Name="ModPhaseSpread" Type="Real32" Value="58"/>
-										<Property Name="ModSmoothing" Type="Real32" Value="100"/>
-									</PropertyList>
-								</Effect>
-							</Custom>
-						</Reference>
-						<Reference Name="Effect2">
-							<Custom CreatedFrom="{65397B72-19EC-43DB-B2D2-EB84437B6BDC}">
-								<Effect Name="Boomerang (Custom)" ID="{431B44DF-7D3E-4AD0-ADD3-759031610DF9}" ShortID="911701706" PluginName="Wwise Tremolo" CompanyID="0" PluginID="131" PluginType="3">
-									<PropertyList>
-										<Property Name="ModFrequency" Type="Real32" Value="20000">
-											<RTPCList>
-												<RTPC Name="" ID="{0C7408CA-31EE-4BD4-8184-6A4BEB66245A}" ShortID="360727636">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="Cymbol_Distortion_Level" ID="{D28762B6-E2C2-4DF7-885D-C48226701B86}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{919F5170-397E-4D6C-9781-A100FBF70CDC}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="5"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>9.85973</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>100</XPos>
-																<YPos>20000</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
-										<Property Name="ModPWM" Type="Real32" Value="100"/>
-										<Property Name="ModPhaseOffset" Type="Real32" Value="-180"/>
-										<Property Name="ModPhaseSpread" Type="Real32" Value="180"/>
-										<Property Name="ModSmoothing" Type="Real32" Value="100"/>
-									</PropertyList>
-								</Effect>
-							</Custom>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="HS_Jazz_07_Cymbal" ID="{00670E54-A963-4775-A954-5577ADCCAA40}">
-							<Language>SFX</Language>
-							<AudioFile>HS_Jazz_07_Cymbal.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="128923291"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="HS_Jazz_07_Cymbal" ID="{00670E54-A963-4775-A954-5577ADCCAA40}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="HS_Jazz_09_Tom" ID="{D5F19EF0-3DF1-48A5-AF7C-56807B30F3DD}" ShortID="288528640">
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-						</Reference>
-						<Reference Name="Effect0">
-							<Custom CreatedFrom="{FE29AE8D-FD86-4652-A95D-68D32F5760EC}">
-								<Effect Name="Have_U_Ever_Been_Outside (Custom)" ID="{94489796-FEE4-4D19-97B0-AE9F1296AB65}" ShortID="693708371" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
-									<PropertyList>
-										<Property Name="DecayTime" Type="Real32" Value="10">
-											<RTPCList>
-												<RTPC Name="" ID="{9ABECFFB-2186-4B8C-8349-9AC10E18ADB9}" ShortID="221797267">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="TomTom_Reverb_Level" ID="{085BDD0D-CC23-4A58-925B-9A6A9E2441DF}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{0FB03D57-DC55-4036-87AC-CB7E295D9259}">
+													<Curve Name="" ID="{31EDC0B0-C7E2-46A5-B0D7-F980567FF954}">
 														<PropertyList>
 															<Property Name="Flags" Type="int32" Value="1"/>
 														</PropertyList>
 														<PointList>
 															<Point>
 																<XPos>0</XPos>
-																<YPos>0.2</YPos>
+																<YPos>0</YPos>
 																<Flags>5</Flags>
 															</Point>
 															<Point>
-																<XPos>100</XPos>
-																<YPos>10</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
-										<Property Name="Density" Type="Real32" Value="100"/>
-										<Property Name="DryLevel" Type="Real32" Value="-0.3"/>
-										<Property Name="ERFrontBackDelay" Type="Real32" Value="50"/>
-										<Property Name="ERLevel" Type="Real32" Value="-11"/>
-										<Property Name="ERPattern" Type="int32" Value="11"/>
-										<Property Name="Filter1Freq" Type="Real32" Value="210"/>
-										<Property Name="Filter1Gain" Type="Real32" Value="-1.5"/>
-										<Property Name="Filter2Freq" Type="Real32" Value="6830"/>
-										<Property Name="Filter2Gain" Type="Real32" Value="-0.5"/>
-										<Property Name="Filter2Q" Type="Real32" Value="0.65"/>
-										<Property Name="Filter3Freq" Type="Real32" Value="8440"/>
-										<Property Name="Filter3Gain" Type="Real32" Value="-4"/>
-										<Property Name="HFDamping" Type="Real32" Value="10"/>
-										<Property Name="PreDelay" Type="Real32" Value="0"/>
-										<Property Name="Quality" Type="int32" Value="12"/>
-										<Property Name="ReverbLevel" Type="Real32" Value="-13"/>
-										<Property Name="RoomSize" Type="Real32" Value="4"/>
-										<Property Name="StereoWidth" Type="Real32" Value="28"/>
-									</PropertyList>
-								</Effect>
-							</Custom>
-						</Reference>
-						<Reference Name="Effect1">
-							<Custom CreatedFrom="{F0F27454-4BCC-4302-A61D-C324E7187DD0}">
-								<Effect Name="Rhythmic_Talk (Custom)" ID="{AFC22996-48FE-4362-8D1D-AE5ECD1C5599}" ShortID="746048006" PluginName="Wwise Tremolo" CompanyID="0" PluginID="131" PluginType="3">
-									<PropertyList>
-										<Property Name="ModFrequency" Type="Real32" Value="13.58">
-											<RTPCList>
-												<RTPC Name="" ID="{80214556-B7F8-489F-8667-F8DEF3000F91}" ShortID="954636095">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="TomTom_Vibrato_Level" ID="{9BC57C88-C524-4D94-9E15-3F1E7C58E3B9}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{E4802C3A-7605-4264-AE27-7B41BEFCE412}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="5"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>44.41616</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>0.4779</XPos>
-																<YPos>134.52086</YPos>
+																<XPos>1</XPos>
+																<YPos>25</YPos>
 																<Flags>0</Flags>
 															</Point>
 															<Point>
 																<XPos>100</XPos>
-																<YPos>2000</YPos>
+																<YPos>25</YPos>
 																<Flags>37</Flags>
 															</Point>
 														</PointList>
@@ -909,50 +1086,6 @@
 												</RTPC>
 											</RTPCList>
 										</Property>
-										<Property Name="ModPWM" Type="Real32" Value="15"/>
-										<Property Name="ModPhaseOffset" Type="Real32" Value="-180"/>
-										<Property Name="ModPhaseSpread" Type="Real32" Value="58"/>
-										<Property Name="ModSmoothing" Type="Real32" Value="100"/>
-									</PropertyList>
-								</Effect>
-							</Custom>
-						</Reference>
-						<Reference Name="Effect2">
-							<Custom CreatedFrom="{65397B72-19EC-43DB-B2D2-EB84437B6BDC}">
-								<Effect Name="Boomerang (Custom)" ID="{D3651AC5-5BBE-4C16-A01E-338B67E175D8}" ShortID="711389403" PluginName="Wwise Tremolo" CompanyID="0" PluginID="131" PluginType="3">
-									<PropertyList>
-										<Property Name="ModFrequency" Type="Real32" Value="20000">
-											<RTPCList>
-												<RTPC Name="" ID="{6458935B-3D19-425D-A2CC-7FFAE8609955}" ShortID="139854495">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="TomTom_Distortion_Level" ID="{164D730D-0E24-4B78-9BFC-E6016ECB0711}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{98BFD0CE-2F7E-4CAF-9C3B-0742379B46FE}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="5"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>9.85973</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>100</XPos>
-																<YPos>20000</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
-										<Property Name="ModPWM" Type="Real32" Value="100"/>
-										<Property Name="ModPhaseOffset" Type="Real32" Value="-180"/>
-										<Property Name="ModPhaseSpread" Type="Real32" Value="180"/>
-										<Property Name="ModSmoothing" Type="Real32" Value="100"/>
 									</PropertyList>
 								</Effect>
 							</Custom>
@@ -962,19 +1095,78 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="HS_Jazz_09_Tom" ID="{3A979104-A926-4FB9-98AB-53532588B69F}">
-							<Language>SFX</Language>
-							<AudioFile>HS_Jazz_09_Tom.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="947972333"/>
-							</MediaIDList>
-						</AudioFileSource>
+						<Sound Name="Cymatics - Eternity Clap 2" ID="{1B338D48-E990-4776-B5C9-D69D34B89B7B}" ShortID="234487444">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Cymatics - Eternity Clap 2" ID="{61099F4B-51CA-4A9E-B3F3-D59F344A2573}">
+									<Language>SFX</Language>
+									<AudioFile>Cymatics - Eternity Clap 2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1026524888"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Cymatics - Eternity Clap 2" ID="{61099F4B-51CA-4A9E-B3F3-D59F344A2573}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="HS_Jazz_09_Tom" ID="{D5F19EF0-3DF1-48A5-AF7C-56807B30F3DD}" ShortID="288528640">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="HS_Jazz_09_Tom" ID="{3A979104-A926-4FB9-98AB-53532588B69F}">
+									<Language>SFX</Language>
+									<AudioFile>HS_Jazz_09_Tom.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="947972333"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="HS_Jazz_09_Tom" ID="{3A979104-A926-4FB9-98AB-53532588B69F}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Tom" ID="{5099E285-CE86-4026-8D20-2565B737BE4B}" ShortID="721833910">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Tom" ID="{7BD8CF02-EB48-4ACC-A6BF-8EF7929F44B5}">
+									<Language>SFX</Language>
+									<AudioFile>Tom.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="954323083"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Tom" ID="{7BD8CF02-EB48-4ACC-A6BF-8EF7929F44B5}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="HS_Jazz_09_Tom" ID="{3A979104-A926-4FB9-98AB-53532588B69F}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
+				</ActorMixer>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

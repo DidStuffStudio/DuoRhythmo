@@ -1,0 +1,48 @@
+Event	ID	Name			Wwise Object Path	Notes
+	519310506	PlaySnare			\Default Work Unit\PlaySnare	
+	797559763	PlayCymbol			\Default Work Unit\PlayCymbol	
+	989251011	PlayTomTom			\Default Work Unit\PlayTomTom	
+	2024048025	PlayHiHat			\Default Work Unit\PlayHiHat	
+	3490755565	PlayKick			\Default Work Unit\PlayKick	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1688164492	TomTom_Effect_2			\Default Work Unit\TomTom_Effect_2	
+	1688164493	TomTom_Effect_3			\Default Work Unit\TomTom_Effect_3	
+	1688164495	TomTom_Effect_1			\Default Work Unit\TomTom_Effect_1	
+	2503299904	Cymbol_Effect_2			\Default Work Unit\Cymbol_Effect_2	
+	2503299905	Cymbol_Effect_3			\Default Work Unit\Cymbol_Effect_3	
+	2503299907	Cymbol_Effect_1			\Default Work Unit\Cymbol_Effect_1	
+	2618583616	Snare_Effect_1			\Default Work Unit\Snare_Effect_1	
+	2618583618	Snare_Effect_3			\Default Work Unit\Snare_Effect_3	
+	2618583619	Snare_Effect_2			\Default Work Unit\Snare_Effect_2	
+	2996634841	HiHat_Effect_1			\Default Work Unit\HiHat_Effect_1	
+	2996634842	HiHat_Effect_2			\Default Work Unit\HiHat_Effect_2	
+	2996634843	HiHat_Effect_3			\Default Work Unit\HiHat_Effect_3	
+	3473794589	Kick_Effect_1			\Default Work Unit\Kick_Effect_1	
+	3473794590	Kick_Effect_2			\Default Work Unit\Kick_Effect_2	
+	3473794591	Kick_Effect_3			\Default Work Unit\Kick_Effect_3	
+
+Effect plug-ins	ID	Name	Type				Notes
+	2837424	Holy (Custom)	Wwise RoomVerb			
+	96592835	Wwise Guitar Distortion (Custom)	Wwise Guitar Distortion			
+	138933265	Holy (Custom)	Wwise RoomVerb			
+	160072551	Wwise Time Stretch (Custom)	Wwise Time Stretch			
+	212767753	Have_U_Ever_Been_Outside (Custom)	Wwise RoomVerb			
+	254321231	Have_U_Ever_Been_Outside (Custom)	Wwise RoomVerb			
+	260739194	High_Impact (Custom)	Wwise Compressor			
+	364554783	Wwise Guitar Distortion (Custom)	Wwise Guitar Distortion			
+	382643500	Noise_Gate_Fast_Attack (Custom)	Wwise Expander			
+	425366874	Echoes_Linear (Custom)	Wwise Delay			
+	454217790	Echoes_Linear (Custom)	Wwise Delay			
+	487531198	Have_U_Ever_Been_Outside (Custom)	Wwise RoomVerb			
+	706500383	Wwise Guitar Distortion (Custom)	Wwise Guitar Distortion			
+	951075838	Echoes_Linear (Custom)	Wwise Delay			
+	1006877635	Wwise Time Stretch (Custom)	Wwise Time Stretch			
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	312939937	Cymatics - Eternity Kick 2 - C	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\Cymatics - Eternity Kick 2 - C_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Kicks\Cymatics - Eternity Kick 2 - C		154416
+	520638564	Cymatics - Eterniity Snare 2 - C	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\Cymatics - Eterniity Snare 2 - C_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Snares\Cymatics - Eterniity Snare 2 - C		33140
+	635555808	Cymatics - Eternity Crash 1	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\Cymatics - Eternity Crash 1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Cymbals\Cymatics - Eternity Crash 1		296736
+	1026524888	Cymatics - Eternity Clap 2	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\Cymatics - Eternity Clap 2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Toms\Cymatics - Eternity Clap 2		141184
+	1071978112	Cymatics - Eternity Closed Hihat 1	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\Cymatics - Eternity Closed Hihat 1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\HiHats\Cymatics - Eternity Closed Hihat 1		70624
+

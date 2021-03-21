@@ -31,7 +31,9 @@ public class RealTimeInstance : MonoBehaviour {
         _realtime.didDisconnectFromRoom += DidDisconnectFromRoom;
     }
 
-    private void Update() {
+    private void Update()
+    {
+        if (isSoloMode) return;
         numberPlayers = _networkManagerSync.NumberPlayers;
         print("This is the number of players according to the network model: " + numberPlayers);
         numberPlayers = GameObject.FindObjectsOfType<NetworkManagerSync>().Length;

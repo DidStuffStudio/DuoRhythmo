@@ -53,7 +53,12 @@ public class EuclideanManager : MonoBehaviour {
         previousNumberOfNodes = numberOfNodes;
         _screenSync = GetComponentInParent<ScreenSync>();
         _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = false;
-        if (RealTimeInstance.Instance.isSoloMode) SpawnNodes();
+        if (RealTimeInstance.Instance.isSoloMode)
+        {
+            SpawnNodes();
+            rotation = 0;
+            _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
+        }
         else StartCoroutine(WaitUntilConnected());
         
         rotation = 0;
@@ -66,7 +71,7 @@ public class EuclideanManager : MonoBehaviour {
             sliderIndex++;
         }
 
-        string[] effects = {"_Reverb_Level", "_Vibrato_Level", "_Distortion_Level"};
+        string[] effects = {"_Effect_1", "_Effect_2", "_Effect_3"};
         if (drumType == DrumType.kick)
             for (int i = 0; i < effects.Length; i++)
                 effectNames[i] = "Kick" + effects[i];
@@ -119,6 +124,8 @@ public class EuclideanManager : MonoBehaviour {
 
     private void SpawnNodes() {
 
+        
+        
         // if more nodes exist than is needed, delete them
         if (_nodes.Count > numberOfNodes) {
             for (int i = numberOfNodes - 1; i < _nodes.Count; i++) {

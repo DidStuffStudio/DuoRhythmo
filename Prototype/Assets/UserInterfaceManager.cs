@@ -23,7 +23,7 @@ public class UserInterfaceManager : MonoBehaviour
             if(RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             yield return new WaitForEndOfFrame();
         }
-        
+        startTimer = true;
     }
     void Start()
     {

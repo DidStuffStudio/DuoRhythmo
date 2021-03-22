@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0025589254, g: 0.008679009, b: 0.026049266, a: 1}
+  m_IndirectSpecularColor: {r: 0.00010102225, g: 0.00014233854, b: 0.0010668717, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3157,9 +3157,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   networkManagerPrefab: {fileID: 5179577453407926284, guid: 8686f246862d448dfb7319ce3beb26d5, type: 3}
+  networkManager: {fileID: 0}
   isConnected: 0
   numberPlayers: 0
-  isSoloMode: 1
+  isSoloMode: 0
 --- !u!114 &320708703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3189,6 +3190,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &324655414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 324655415}
+  m_Layer: 0
+  m_Name: NetworkManagerSync
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &324655415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324655414}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 414}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &345130641
 GameObject:
@@ -4067,7 +4098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAnimator: {fileID: 1905188875}
-  roundTime: 12
+  roundTime: 30
   timer: 0
   timerDisplay: {fileID: 812139481}
   startTimer: 0
@@ -4493,8 +4524,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04792667a757c4acfa962f1750e6f014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfNodes: 12
-  _bpm: 500
+  _numberOfNodes: 16
+  _bpm: 420
 --- !u!114 &577469899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13836,8 +13867,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04792667a757c4acfa962f1750e6f014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfNodes: 12
-  _bpm: 500
+  _numberOfNodes: 16
+  _bpm: 450
 --- !u!114 &1226057117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15031,8 +15062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04792667a757c4acfa962f1750e6f014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfNodes: 12
-  _bpm: 500
+  _numberOfNodes: 16
+  _bpm: 450
 --- !u!114 &1361663001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18244,8 +18275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04792667a757c4acfa962f1750e6f014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfNodes: 12
-  _bpm: 500
+  _numberOfNodes: 16
+  _bpm: 450
 --- !u!114 &1986206305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18569,8 +18600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04792667a757c4acfa962f1750e6f014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfNodes: 12
-  _bpm: 500
+  _numberOfNodes: 16
+  _bpm: 450
 --- !u!114 &2083569446
 MonoBehaviour:
   m_ObjectHideFlags: 0

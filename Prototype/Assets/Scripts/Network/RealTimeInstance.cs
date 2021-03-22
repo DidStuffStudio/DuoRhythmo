@@ -13,7 +13,7 @@ public class RealTimeInstance : MonoBehaviour {
     
     private Realtime _realtime;
     [SerializeField] private GameObject networkManagerPrefab;
-    private GameObject networkManager;
+    public GameObject networkManager;
     private NetworkManagerSync _networkManagerSync;
     public bool isConnected;
     public int numberPlayers;
@@ -34,10 +34,10 @@ public class RealTimeInstance : MonoBehaviour {
     private void Update()
     {
         if (isSoloMode) return;
-        numberPlayers = _networkManagerSync.NumberPlayers;
-        print("This is the number of players according to the network model: " + numberPlayers);
-        numberPlayers = GameObject.FindObjectsOfType<NetworkManagerSync>().Length;
-        print("This is the number of players according to the amount ot NetworkManager instances: " + numberPlayers);
+        // numberPlayers = _networkManagerSync.NumberPlayers;
+        // print("This is the number of players according to the network model: " + numberPlayers);
+        if(numberPlayers < 2) numberPlayers = GameObject.FindObjectsOfType<NetworkManagerSync>().Length;
+        // print("This is the number of players according to the amount ot NetworkManager instances: " + numberPlayers);
     }
 
     private void DidConnectToRoom(Realtime realtime) {

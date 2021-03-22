@@ -17,6 +17,9 @@ public class UserInterfaceManager : MonoBehaviour
     private float timeLeft;
     private Color targetColor;
     private VisualEffect vfx;
+
+    public int bpm = 120;
+    private ScreenSyncTest[] _screenSyncTests = new ScreenSyncTest[5];
     private IEnumerator WaitUntilConnected() {
         
         while (true) {
@@ -27,6 +30,12 @@ public class UserInterfaceManager : MonoBehaviour
     }
     void Start()
     {
+        int i = 0;
+        foreach (var screenSync in GetComponentsInChildren<ScreenSyncTest>())
+        {
+            _screenSyncTests[i] = screenSync;
+            i++;
+        }
         vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _uiAnimator = GetComponent<Animator>();
         _uiAnimator.speed = 0.0f;
@@ -57,6 +66,12 @@ public class UserInterfaceManager : MonoBehaviour
 
     public void Update()
     {
+
+        for (int i = 0; i < 5; i++)
+        {
+            _screenSyncTests[i].bpm = bpm;
+        }
+        
         if (timeLeft <= Time.deltaTime)
         {
             // transition complete

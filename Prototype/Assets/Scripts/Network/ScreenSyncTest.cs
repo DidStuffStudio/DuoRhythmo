@@ -7,7 +7,7 @@ using UnityEngine;
 public class ScreenSyncTest : MonoBehaviour {
     [SerializeField] private int _numberOfNodes = 8;
     private int _previousNumberOfNodes = 0;
-    [SerializeField] private int _bpm = 120;
+    public int bpm = 120;
     private int _previousBpm;
     private ScreenSync _screenSync;
     private void Start() {
@@ -15,9 +15,9 @@ public class ScreenSyncTest : MonoBehaviour {
     }
 
     private void Update() {
-        if (_bpm != _previousBpm) {
-            _screenSync.SetBpm(_bpm);
-            _previousBpm = _bpm;
+        if (bpm != _previousBpm) {
+            _screenSync.SetBpm(bpm);
+            _previousBpm = bpm;
         }
 
         if (_numberOfNodes != _previousNumberOfNodes) {

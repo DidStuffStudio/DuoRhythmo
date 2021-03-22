@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0018471221, g: 0.002081217, b: 0.0155494, a: 1}
+  m_IndirectSpecularColor: {r: 0.0020503413, g: 0.007774121, b: 0.0071744826, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 14364379}
   - component: {fileID: 14364381}
   - component: {fileID: 14364380}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 19825640}
   - component: {fileID: 19825639}
   - component: {fileID: 19825637}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: RhythmLineIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19825635}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 30, z: 2}
@@ -2760,7 +2760,7 @@ GameObject:
   - component: {fileID: 268505693}
   - component: {fileID: 268505692}
   - component: {fileID: 268505691}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RhythmLineIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2811,7 +2811,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268505689}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 30, z: 2}
@@ -4324,12 +4324,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAnimator: {fileID: 1905188875}
-  roundTime: 30
+  roundTime: 20
   timer: 0
   timerDisplay: {fileID: 812139481}
   startTimer: 0
   timerRunnning: 0
   skybox: {fileID: 2100000, guid: f531e09e2ad2fb440b4eed7605863143, type: 2}
+  bpm: 420
 --- !u!1 &531059885
 GameObject:
   m_ObjectHideFlags: 0
@@ -4752,7 +4753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberOfNodes: 16
-  _bpm: 60
+  bpm: 120
 --- !u!114 &577469899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4803,7 +4804,7 @@ GameObject:
   - component: {fileID: 593915147}
   - component: {fileID: 593915146}
   - component: {fileID: 593915145}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RhythmLineIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4854,7 +4855,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593915143}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 30, z: 2}
@@ -12125,7 +12126,7 @@ GameObject:
   - component: {fileID: 914261139}
   - component: {fileID: 914261141}
   - component: {fileID: 914261140}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12274,7 +12275,7 @@ GameObject:
   - component: {fileID: 981917764}
   - component: {fileID: 981917763}
   - component: {fileID: 981917762}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RhythmLineIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12325,7 +12326,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 981917760}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 30, z: 2}
@@ -13561,7 +13562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberOfNodes: 12
-  _bpm: 120
+  bpm: 120
 --- !u!114 &1158173523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14148,7 +14149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberOfNodes: 16
-  _bpm: 60
+  bpm: 120
 --- !u!114 &1226057117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14980,7 +14981,7 @@ GameObject:
   - component: {fileID: 1312171121}
   - component: {fileID: 1312171120}
   - component: {fileID: 1312171119}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RhythmLineIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15031,7 +15032,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312171117}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 30, z: 2}
@@ -15396,7 +15397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberOfNodes: 16
-  _bpm: 60
+  bpm: 120
 --- !u!114 &1361663001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15706,7 +15707,7 @@ GameObject:
   - component: {fileID: 1442085504}
   - component: {fileID: 1442085506}
   - component: {fileID: 1442085505}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16003,7 +16004,7 @@ GameObject:
   - component: {fileID: 1538422577}
   - component: {fileID: 1538422581}
   - component: {fileID: 1538422580}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18609,7 +18610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberOfNodes: 16
-  _bpm: 60
+  bpm: 120
 --- !u!114 &1986206305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18658,7 +18659,7 @@ GameObject:
   - component: {fileID: 2012946310}
   - component: {fileID: 2012946312}
   - component: {fileID: 2012946311}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18987,7 +18988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberOfNodes: 16
-  _bpm: 60
+  bpm: 120
 --- !u!114 &2083569446
 MonoBehaviour:
   m_ObjectHideFlags: 0

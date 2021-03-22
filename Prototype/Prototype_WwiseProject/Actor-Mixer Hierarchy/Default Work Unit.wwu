@@ -490,6 +490,13 @@
 					<ObjectLists/>
 				</ActorMixer>
 				<ActorMixer Name="Cymbals" ID="{3711B19A-8771-4188-8CEA-48E1EB7E837C}" ShortID="881033895">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>12</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
@@ -628,6 +635,13 @@
 					</ReferenceList>
 					<ChildrenList>
 						<Sound Name="Cymatics - Eternity Crash 1" ID="{1A2DD734-236F-4C10-AF97-C4471C45C231}" ShortID="490863243">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>12</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
@@ -707,6 +721,13 @@
 					<ObjectLists/>
 				</ActorMixer>
 				<ActorMixer Name="HiHats" ID="{F0A5D91B-DE62-43EE-ADDA-9D2F84B2EB8A}" ShortID="688103362">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>12</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
@@ -846,6 +867,13 @@
 					</ReferenceList>
 					<ChildrenList>
 						<Sound Name="Cymatics - Eternity Closed Hihat 1" ID="{67D0D87E-F102-4D2C-936F-537A1025DC66}" ShortID="852139983">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
@@ -925,6 +953,13 @@
 					<ObjectLists/>
 				</ActorMixer>
 				<ActorMixer Name="Toms" ID="{BF4F9E5D-6D93-4B29-8762-F17AA125D9BD}" ShortID="4330316">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>5</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>

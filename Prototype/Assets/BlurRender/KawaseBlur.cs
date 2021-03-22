@@ -8,7 +8,7 @@ public class KawaseBlur : ScriptableRendererFeature
     [System.Serializable]
     public class KawaseBlurSettings
     {
-        public RenderPassEvent renderPassEvent = RenderPassEvent.AfterRenderingTransparents;
+        public RenderPassEvent renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
         public Material blurMaterial = null;
 
         [Range(2,15)]

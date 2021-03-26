@@ -11,12 +11,12 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="33753010">
+		<SoundBank Id="1355168291" Language="SFX" Hash="3047831965">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3748316847" Language="SFX" Hash="1611945842">
+		<SoundBank Id="3748316847" Language="SFX" Hash="2135938961">
 			<ObjectPath>\SoundBanks\Default Work Unit\DrumKit</ObjectPath>
 			<ShortName>DrumKit</ShortName>
 			<Path>DrumKit.bnk</Path>
@@ -53,16 +53,17 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="989251011" Name="PlayTomTom" ObjectPath="\Events\Default Work Unit\PlayTomTom" DurationType="OneShot" DurationMin="2.720862" DurationMax="2.720862">
+				<Event Id="989251011" Name="PlayTomTom" ObjectPath="\Events\Default Work Unit\PlayTomTom" DurationType="OneShot" DurationMin="1.750794" DurationMax="1.750794">
 					<IncludedMemoryFiles>
-						<File Id="954323083" Language="SFX">
-							<ShortName>Tom.wav</ShortName>
-							<Path>SFX\Tom_10C4C929.wem</Path>
+						<File Id="1009280991" Language="SFX">
+							<ShortName>Tom38 Drums1DOTcom.wav</ShortName>
+							<Path>SFX\Tom38 Drums1DOTcom_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
 			</IncludedEvents>
 			<GameParameters>
+				<GameParameter Id="788319784" Name="Kick_Volume" ObjectPath="\Game Parameters\Default Work Unit\Kick_Volume"/>
 				<GameParameter Id="1688164492" Name="TomTom_Effect_2" ObjectPath="\Game Parameters\Default Work Unit\TomTom_Effect_2"/>
 				<GameParameter Id="1688164493" Name="TomTom_Effect_3" ObjectPath="\Game Parameters\Default Work Unit\TomTom_Effect_3"/>
 				<GameParameter Id="1688164495" Name="TomTom_Effect_1" ObjectPath="\Game Parameters\Default Work Unit\TomTom_Effect_1"/>
@@ -75,9 +76,13 @@
 				<GameParameter Id="2996634841" Name="HiHat_Effect_1" ObjectPath="\Game Parameters\Default Work Unit\HiHat_Effect_1"/>
 				<GameParameter Id="2996634842" Name="HiHat_Effect_2" ObjectPath="\Game Parameters\Default Work Unit\HiHat_Effect_2"/>
 				<GameParameter Id="2996634843" Name="HiHat_Effect_3" ObjectPath="\Game Parameters\Default Work Unit\HiHat_Effect_3"/>
+				<GameParameter Id="3046177845" Name="Snare_Volume" ObjectPath="\Game Parameters\Default Work Unit\Snare_Volume"/>
+				<GameParameter Id="3090948260" Name="HiHat_Volume" ObjectPath="\Game Parameters\Default Work Unit\HiHat_Volume"/>
+				<GameParameter Id="3216986426" Name="TomTom_Volume" ObjectPath="\Game Parameters\Default Work Unit\TomTom_Volume"/>
 				<GameParameter Id="3473794589" Name="Kick_Effect_1" ObjectPath="\Game Parameters\Default Work Unit\Kick_Effect_1"/>
 				<GameParameter Id="3473794590" Name="Kick_Effect_2" ObjectPath="\Game Parameters\Default Work Unit\Kick_Effect_2"/>
 				<GameParameter Id="3473794591" Name="Kick_Effect_3" ObjectPath="\Game Parameters\Default Work Unit\Kick_Effect_3"/>
+				<GameParameter Id="3541970156" Name="Cymbal_Volume" ObjectPath="\Game Parameters\Default Work Unit\Cymbal_Volume"/>
 			</GameParameters>
 		</SoundBank>
 	</SoundBanks>

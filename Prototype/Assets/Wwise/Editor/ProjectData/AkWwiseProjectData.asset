@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 4359b77ad457754e8a9cd706b9cd71ce
     GuidInternal: 
-    m_lastTime: -8585852941464094981
+    m_lastTime: -8585851853754081303
     List:
     - name: PlayCymbol
       guid: a9fde0410cbada4289d1010afb2fa77c
@@ -179,8 +179,8 @@ MonoBehaviour:
         guid: 8c10361c7133d3498889229dc510ca03
       Path: Events\Default Work Unit\PlayTomTom
       maxAttenuation: 0
-      maxDuration: 2.720862
-      minDuration: 2.720862
+      maxDuration: 1.750794
+      minDuration: 1.750794
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -193,8 +193,22 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: 9f2cb0cc16470340a744c7e35cb02879
     GuidInternal: 
-    m_lastTime: -8585853347724119446
+    m_lastTime: -8585848518536383308
     List:
+    - name: Cymbal_Volume
+      guid: 8ca0e63534d96040b913bed9fa1156d6
+      id: 3541970156
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: Cymbal_Volume
+        ObjectType: 13
+        guid: 8ca0e63534d96040b913bed9fa1156d6
+      Path: Game Parameters\Default Work Unit\Cymbal_Volume
     - name: Cymbol_Effect_1
       guid: 7ef7aed22c63034eafe1242c840c3d64
       id: 2503299907
@@ -279,6 +293,20 @@ MonoBehaviour:
         ObjectType: 13
         guid: bdcaa4c8e953fc42b6696256104f018f
       Path: Game Parameters\Default Work Unit\HiHat_Effect_3
+    - name: HiHat_Volume
+      guid: bb68eb1adefc3e41823f978d8af76361
+      id: 3090948260
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: HiHat_Volume
+        ObjectType: 13
+        guid: bb68eb1adefc3e41823f978d8af76361
+      Path: Game Parameters\Default Work Unit\HiHat_Volume
     - name: Kick_Effect_1
       guid: d46f027dba738c41b0294d637a7ccd5e
       id: 3473794589
@@ -321,6 +349,20 @@ MonoBehaviour:
         ObjectType: 13
         guid: f2a7443e41818246a03b34537a3f92c9
       Path: Game Parameters\Default Work Unit\Kick_Effect_3
+    - name: Kick_Volume
+      guid: a98a692597b2eb49ba841557984bdf17
+      id: 788319784
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: Kick_Volume
+        ObjectType: 13
+        guid: a98a692597b2eb49ba841557984bdf17
+      Path: Game Parameters\Default Work Unit\Kick_Volume
     - name: Snare_Effect_1
       guid: 91862bd8e67c814da822e388e469450d
       id: 2618583616
@@ -363,6 +405,20 @@ MonoBehaviour:
         ObjectType: 13
         guid: d004532882dcfd439bc66e11dc5832af
       Path: Game Parameters\Default Work Unit\Snare_Effect_3
+    - name: Snare_Volume
+      guid: a9bbb96a3412024ea9dc75487e592b58
+      id: 3046177845
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: Snare_Volume
+        ObjectType: 13
+        guid: a9bbb96a3412024ea9dc75487e592b58
+      Path: Game Parameters\Default Work Unit\Snare_Volume
     - name: TomTom_Effect_1
       guid: 0ddd5b0823cc584a925b9a6a9e2441df
       id: 1688164495
@@ -405,6 +461,20 @@ MonoBehaviour:
         ObjectType: 13
         guid: 0d734d16240e784b9bfce6016ecb0711
       Path: Game Parameters\Default Work Unit\TomTom_Effect_3
+    - name: TomTom_Volume
+      guid: eb9a3b26da8d1c4eba30214ba61e1203
+      id: 3216986426
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: TomTom_Volume
+        ObjectType: 13
+        guid: eb9a3b26da8d1c4eba30214ba61e1203
+      Path: Game Parameters\Default Work Unit\TomTom_Volume
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     PathAndIcons:

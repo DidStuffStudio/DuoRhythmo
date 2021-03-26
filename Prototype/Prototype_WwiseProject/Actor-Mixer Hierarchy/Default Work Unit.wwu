@@ -4,6 +4,36 @@
 		<WorkUnit Name="Default Work Unit" ID="{D3110F0B-B237-4284-AD44-0007B592510C}" PersistMode="Standalone">
 			<ChildrenList>
 				<ActorMixer Name="Kicks" ID="{EA28B629-F1A7-4D56-A0F2-0D3852F46FAC}" ShortID="876018659">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<RTPCList>
+								<RTPC Name="" ID="{7150236E-2F99-43D8-86E8-882EF7E57EF0}" ShortID="546419656">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="Kick_Volume" ID="{25698AA9-B297-49EB-BA84-1557984BDF17}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{17B40F52-6557-449A-BB81-C47200D2AC3A}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>-3</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
@@ -247,6 +277,36 @@
 					<ObjectLists/>
 				</ActorMixer>
 				<ActorMixer Name="Snares" ID="{981A95E7-641A-4833-B985-711D1ADAE466}" ShortID="374397921">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<RTPCList>
+								<RTPC Name="" ID="{C306CA50-A8CA-42AD-84F7-7A6E79EC950E}" ShortID="698975814">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="Snare_Volume" ID="{6AB9BBA9-1234-4E02-A9DC-75487E592B58}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{1B6A5CA9-1897-4A2E-81A6-9A684232FE9A}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>-1</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
@@ -495,6 +555,32 @@
 							<ValueList>
 								<Value>12</Value>
 							</ValueList>
+							<RTPCList>
+								<RTPC Name="" ID="{C99D237E-BD5B-48DB-8AFB-4C7106166D6C}" ShortID="702752974">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="Cymbal_Volume" ID="{35E6A08C-D934-4060-B913-BED9FA1156D6}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{804FDA2C-A34E-4949-8AAE-B7DC6C4BE4A1}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>10.08197</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
 						</Property>
 					</PropertyList>
 					<ReferenceList>
@@ -726,6 +812,32 @@
 							<ValueList>
 								<Value>12</Value>
 							</ValueList>
+							<RTPCList>
+								<RTPC Name="" ID="{569D1845-87FE-4AC1-8546-2A0BFCA37362}" ShortID="159736868">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="HiHat_Volume" ID="{1AEB68BB-FCDE-413E-823F-978D8AF76361}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{0F35A406-50A8-4436-A53F-FC1F3F7C0071}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>7</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
 						</Property>
 					</PropertyList>
 					<ReferenceList>
@@ -956,8 +1068,34 @@
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>5</Value>
+								<Value>-7</Value>
 							</ValueList>
+							<RTPCList>
+								<RTPC Name="" ID="{BDB77D59-4780-4408-AF16-487319172CA2}" ShortID="165943059">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="TomTom_Volume" ID="{263B9AEB-8DDA-4E1C-BA30-214BA61E1203}" WorkUnitID="{CCB02C9F-4716-4003-A744-C7E35CB02879}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{7758D060-99AB-4C29-9930-602FFD4E90ED}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>7</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
 						</Property>
 					</PropertyList>
 					<ReferenceList>
@@ -1197,6 +1335,29 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="Tom" ID="{7BD8CF02-EB48-4ACC-A6BF-8EF7929F44B5}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Tom38 Drums1DOTcom" ID="{024AA9BC-36F6-42E2-BF0F-85317B9DC2CA}" ShortID="56055428">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Tom38 Drums1DOTcom" ID="{DF6FE2A7-81AD-414F-A6C3-9487E52F7E54}">
+									<Language>SFX</Language>
+									<AudioFile>Tom38 Drums1DOTcom.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1009280991"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Tom38 Drums1DOTcom" ID="{DF6FE2A7-81AD-414F-A6C3-9487E52F7E54}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>

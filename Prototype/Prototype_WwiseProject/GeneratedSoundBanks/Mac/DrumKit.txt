@@ -6,6 +6,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3490755565	PlayKick			\Default Work Unit\PlayKick	
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
+	788319784	Kick_Volume			\Default Work Unit\Kick_Volume	
 	1688164492	TomTom_Effect_2			\Default Work Unit\TomTom_Effect_2	
 	1688164493	TomTom_Effect_3			\Default Work Unit\TomTom_Effect_3	
 	1688164495	TomTom_Effect_1			\Default Work Unit\TomTom_Effect_1	
@@ -18,9 +19,13 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 	2996634841	HiHat_Effect_1			\Default Work Unit\HiHat_Effect_1	
 	2996634842	HiHat_Effect_2			\Default Work Unit\HiHat_Effect_2	
 	2996634843	HiHat_Effect_3			\Default Work Unit\HiHat_Effect_3	
+	3046177845	Snare_Volume			\Default Work Unit\Snare_Volume	
+	3090948260	HiHat_Volume			\Default Work Unit\HiHat_Volume	
+	3216986426	TomTom_Volume			\Default Work Unit\TomTom_Volume	
 	3473794589	Kick_Effect_1			\Default Work Unit\Kick_Effect_1	
 	3473794590	Kick_Effect_2			\Default Work Unit\Kick_Effect_2	
 	3473794591	Kick_Effect_3			\Default Work Unit\Kick_Effect_3	
+	3541970156	Cymbal_Volume			\Default Work Unit\Cymbal_Volume	
 
 Effect plug-ins	ID	Name	Type				Notes
 	2837424	Holy (Custom)	Wwise RoomVerb			
@@ -44,5 +49,5 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	500695360	Kick	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Mac\SFX\Kick_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Kicks\Kick		105904
 	541296549	Snare	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Mac\SFX\Snare_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Snares\Snare		59956
 	914661757	Cymbal	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Mac\SFX\Cymbal_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Cymbals\Cymbal		1033088
-	954323083	Tom	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Mac\SFX\Tom_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Toms\Tom		480024
+	1009280991	Tom38 Drums1DOTcom	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Mac\SFX\Tom38 Drums1DOTcom_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Toms\Tom38 Drums1DOTcom		308904
 

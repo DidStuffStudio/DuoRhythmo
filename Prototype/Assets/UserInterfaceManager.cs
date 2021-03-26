@@ -17,15 +17,24 @@ public class UserInterfaceManager : MonoBehaviour
     private float timeLeft;
     private Color targetColor;
     private VisualEffect vfx;
-
+    private int currentPanel = 0; 
+    [SerializeField] private String[] drumVolumeRtpcStrings = new string[5];
     public int bpm = 120;
     private ScreenSyncTest[] _screenSyncTests = new ScreenSyncTest[5];
+    public CustomButton[] soloButtons = new CustomButton[10];
     private IEnumerator WaitUntilConnected() {
         
         while (true) {
             if(RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             yield return new WaitForEndOfFrame();
         }
+        var index = 0;
+        foreach (var soloButton in GameObject.FindGameObjectsWithTag("SoloButton"))
+        {
+            soloButtons[index] = soloButton.GetComponent<CustomButton>();
+            index++;
+        }
+        
         startTimer = true;
     }
     void Start()
@@ -43,6 +52,12 @@ public class UserInterfaceManager : MonoBehaviour
         if (RealTimeInstance.Instance.isSoloMode)
         {
             startTimer = true;
+            var index = 0;
+            foreach (var soloButton in GameObject.FindGameObjectsWithTag("SoloButton"))
+            {
+                soloButtons[index] = soloButton.GetComponent<CustomButton>();
+                index++;
+            }
             return;
         }
         StartCoroutine(WaitUntilConnected());
@@ -57,6 +72,10 @@ public class UserInterfaceManager : MonoBehaviour
 
     public void PlayAnimation()
     {
+        if (currentPanel >= 4) currentPanel = 0; //Change if adding more drums
+        else currentPanel++;
+        print(currentPanel);
+        Solo(false);
         _uiAnimator.speed = 1.0f;
         _playerAnimator.speed = 1.0f;
         _playerAnimator.Play("PlayerCam");
@@ -103,6 +122,24 @@ public class UserInterfaceManager : MonoBehaviour
         StartCoroutine(Timer());
     }
 
+    public void Solo(bool solo)
+    {
+        if (solo)
+        {
+            for (int i = 0; i < drumVolumeRtpcStrings.Length; i++)
+            {
+                AkSoundEngine.SetRTPCValue(drumVolumeRtpcStrings[i], 10.0f);
+            }
+            
+            AkSoundEngine.SetRTPCValue(drumVolumeRtpcStrings[currentPanel], 100.0f);
+            
+        }
+        else
+        {
+            for (int i = 0; i < drumVolumeRtpcStrings.Length; i++) AkSoundEngine.SetRTPCValue(drumVolumeRtpcStrings[i], 100.0f);
+            for (int i = 0; i < soloButtons.Length; i++) soloButtons[i].SetDefault();
+        }
+    }
     IEnumerator Timer()
     {
         while(timerRunnning)

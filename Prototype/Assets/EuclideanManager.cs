@@ -8,7 +8,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-public enum DrumType {
+public enum DrumType
+{
     kick,
     snare,
     hiHat,
@@ -17,8 +18,9 @@ public enum DrumType {
 }
 
 [RequireComponent(typeof(EuclideanRythm))]
-public class EuclideanManager : MonoBehaviour {
-    [SerializeField] private NodesVisualizer _nodesVisualizer;
+public class EuclideanManager : MonoBehaviour
+{
+    //[SerializeField] private NodesVisualizer _nodesVisualizer;
     private EuclideanRythm _euclideanRythm;
     public InteractionMethod interactionMethod;
     public int numberOfNodes = 4;
@@ -30,13 +32,14 @@ public class EuclideanManager : MonoBehaviour {
     private float rotation = 0;
     public int bpm = 120;
     private float secondsFor360 = 1;
-
+    
     private List<int> _storedRhythm = new List<int>();
     public DrumType drumType;
     private ScreenSync _screenSync;
 
     [SerializeField] private Realtime _realTime;
-
+    public Color defaultColor, activeColor, hintColor;
+    private Color _inactiveHover, _activeHover;
     public float waitingTime = 1;
     private float beatTime;
 
@@ -53,7 +56,20 @@ public class EuclideanManager : MonoBehaviour {
 
     private List<Vector2> nodeSpawningPositions = new List<Vector2>();
 
-    private void Start() {
+    private void Start()
+    {
+        
+        Color.RGBToHSV(defaultColor, out var uH, out var uS, out var uV );
+        uV -= 0.3f;
+        Color.RGBToHSV(activeColor, out var aH, out var aS, out var aV );
+        aV -= 0.3f;
+        
+        _inactiveHover = Color.HSVToRGB(uH, uS, uV);
+        _activeHover = Color.HSVToRGB(aH, aS, aV);
+
+        _inactiveHover.a = 1;
+        _activeHover.a = 1;
+        
         _euclideanRythm = GetComponent<EuclideanRythm>();
         previousNumberOfNodes = numberOfNodes;
         _screenSync = GetComponentInParent<ScreenSync>();
@@ -65,12 +81,13 @@ public class EuclideanManager : MonoBehaviour {
             _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
         }
         else StartCoroutine(WaitUntilConnected());
-        
+
         rotation = 0;
-        
+
         //_realTime = RealTimeInstance.Instance.GetComponent<Realtime>();
         int sliderIndex = 0;
-        foreach (var slider in sliders) {
+        foreach (var slider in sliders)
+        {
             var index = sliderIndex;
             slider.onValueChanged.AddListener(delegate { ChangeEffectValue(index: index); });
             sliderIndex++;
@@ -94,20 +111,25 @@ public class EuclideanManager : MonoBehaviour {
                 effectNames[i] = "Cymbol" + effects[i];
     }
 
-    private IEnumerator WaitUntilConnected() {
-        while (true) {
-            if(RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
+    private IEnumerator WaitUntilConnected()
+    {
+        while (true)
+        {
+            if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             yield return new WaitForEndOfFrame();
         }
+
         SpawnNodes();
         rotation = 0;
         _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
     }
 
-    private void Update() {
+    private void Update()
+    {
         for (int i = 0; i < levels.Length; i++) AkSoundEngine.SetRTPCValue(effectNames[i], levels[i]);
-        
-        if (_screenSync.NumberOfNodes != numberOfNodes && _realTime.connected) {
+
+        if (_screenSync.NumberOfNodes != numberOfNodes && _realTime.connected)
+        {
             numberOfNodes = _screenSync.NumberOfNodes;
             if (numberOfNodes < 2) numberOfNodes = 2; // force the minimum amount of nodes to be 2
             SpawnNodes();
@@ -116,21 +138,26 @@ public class EuclideanManager : MonoBehaviour {
         bpm = _screenSync.Bpm;
     }
 
-    private void LateUpdate() {
+    private void LateUpdate()
+    {
         // check for changes of the effects from the server side
         CheckForChangesEffects();
     }
 
-    private void CheckForChangesEffects() {
+    private void CheckForChangesEffects()
+    {
         sliders[0].value = _screenSync.Effect1;
         sliders[1].value = _screenSync.Effect2;
         sliders[2].value = _screenSync.Effect3;
     }
 
-    private void SpawnNodes() {
+    private void SpawnNodes()
+    {
         // if more nodes exist than is needed, delete them
-        if (_nodes.Count > numberOfNodes) {
-            for (int i = numberOfNodes - 1; i < _nodes.Count; i++) {
+        if (_nodes.Count > numberOfNodes)
+        {
+            for (int i = numberOfNodes - 1; i < _nodes.Count; i++)
+            {
                 Destroy(_nodes[i].gameObject);
                 _nodes.Remove(_nodes[i]);
             }
@@ -142,21 +169,27 @@ public class EuclideanManager : MonoBehaviour {
         }
 
         // position all the nodes (existing nodes and to-be-created ones)
-        for (int i = 0; i < numberOfNodes; i++) {
+        for (int i = 0; i < numberOfNodes; i++)
+        {
             PositionNode(i);
         }
-        
-        _nodesVisualizer.InitializeCircle(nodeSpawningPositions.ToArray());
+
+       // _nodesVisualizer.InitializeCircle(nodeSpawningPositions.ToArray());
     }
 
-    private void MessageReceived(Room room, int senderid, byte[] data, bool reliable) {
+    private void MessageReceived(Room room, int senderid, byte[] data, bool reliable)
+    {
         if (_realTime.room.name != room.name) return;
-        foreach (var d in data) {
+        foreach (var d in data)
+        {
             print(d);
         }
     }
 
-    public void PositionNode(int i) {
+    public void PositionNode(int i)
+    {
+      
+        
         var radians =
             (i * 2 * Mathf.PI) / (-numberOfNodes) +
             (Mathf.PI / 2); // set them starting from 90 degrees = PI / 2 radians
@@ -164,22 +197,24 @@ public class EuclideanManager : MonoBehaviour {
         var x = Mathf.Cos(radians);
         var spawnPos = new Vector2(x, y) * radius;
         nodeSpawningPositions.Add(spawnPos / radius);
-       
+
 
         // if the current node doesn't exist, then create one and add it to the nodes list
-        if (i >= _nodes.Count) {
+        if (i >= _nodes.Count)
+        {
             // var node = Realtime.Instantiate(nodePrefab.name, transform.position, Quaternion.identity, false, false, true, _realTime);
             var node = Instantiate(nodePrefab, transform);
             // node.transform.parent = transform;
             // node.transform.position = transform.position;
-            node.name = "Node " + (i + 1).ToString();
+            node.name = "Node " + (i + 1);
             _nodes.Add(node.GetComponent<Node>());
             node.GetComponent<Node>().indexValue = i;
             _screenSync._nodes.Add(node.GetComponent<Node>());
-            node.GetComponent<Node>()._nodesVisualizer = _nodesVisualizer;
+           // node.GetComponent<Node>()._nodesVisualizer = _nodesVisualizer;
             node.GetComponent<Node>().EuclideanManager = this;
 
-            _nodes[i].drumType = drumType switch {
+            _nodes[i].drumType = drumType switch
+            {
                 DrumType.kick => DrumType.kick,
                 DrumType.snare => DrumType.snare,
                 DrumType.hiHat => DrumType.hiHat,
@@ -187,12 +222,24 @@ public class EuclideanManager : MonoBehaviour {
                 DrumType.cymbal => DrumType.cymbal,
                 _ => _nodes[i].drumType
             };
-            _nodes[i].interactionMethod = interactionMethod switch {
+            _nodes[i].interactionMethod = interactionMethod switch
+            {
                 InteractionMethod.contextSwitch => InteractionMethod.contextSwitch,
                 InteractionMethod.dwellFeedback => InteractionMethod.dwellFeedback,
                 InteractionMethod.spock => InteractionMethod.spock,
                 _ => _nodes[i].interactionMethod
             };
+            
+            foreach(var customButton in _nodes[i].GetComponentsInChildren<CustomButton>()) //Set up button Colors
+            {
+
+                
+                customButton.activeColor = activeColor;
+                customButton.defaultColor = defaultColor;
+                customButton.inactiveHoverColor = _inactiveHover;
+                customButton.activeHoverColor = _activeHover;
+                customButton.hintColor = hintColor;
+            }
         }
 
         var rt = _nodes[i].GetComponent<RectTransform>();
@@ -203,23 +250,23 @@ public class EuclideanManager : MonoBehaviour {
         text.text = (i + 1).ToString();
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         if (!_realTime.connected) return;
         beatTime += Time.fixedDeltaTime;
-        float rpm = (float) bpm / (numberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
-        var rps = (float) rpm / 60.0f;
+        var rpm = (float) bpm / (numberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
+        var rps = rpm / 60.0f;
         var revolutionsPerWaitingSeconds = rps * Time.fixedDeltaTime; //Convert to revolutions per millisecond
         var degreesPerWaitingSeconds = (360.0f - 360.0f / numberOfNodes) * revolutionsPerWaitingSeconds;
         rotation -= degreesPerWaitingSeconds;
         _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
     }
 
-    public void ChangeEffectValue(int index) {
-        print("It's changed" + index);
+    public void ChangeEffectValue(int index)
+    {
         var sliderValue = (int) sliders[index].value;
         levels[index] = sliderValue;
         _screenSync.SetEffectValue(index, sliderValue);
         effectsChangedOnServer = false;
-        
     }
 }

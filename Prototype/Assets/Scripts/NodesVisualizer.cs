@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
@@ -34,7 +33,7 @@ public class NodesVisualizer: MonoBehaviour {
     // call this function to update the appropriate node whenever there has been a bool that has been activated / deactivated
     public void UpdateNode(int drumIndex, int indexValue, bool activated) {
         var nodeImage = rings[drumIndex][indexValue].GetComponent<Image>();
-        if(activated) nodeImage.color = CustomButton.activeColor;
-        else nodeImage.color = CustomButton.defaultColor;
+        //if(activated) nodeImage.color = CustomButton.activeColor;
+        //else nodeImage.color = CustomButton.defaultColor;
     }
 }

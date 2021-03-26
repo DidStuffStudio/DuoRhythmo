@@ -16,7 +16,7 @@ public class Node : MonoBehaviour {
     public CustomButton button, confirm;
     public float confirmWindow = 2.0f;
     [SerializeField] private bool canConfirm;
-    private bool crRunning = false;
+    private bool _crRunning = false;
     public bool activated, canPlay=true;
 
     public int indexValue;
@@ -25,10 +25,10 @@ public class Node : MonoBehaviour {
     
     public bool cameFromButton;
     public AK.Wwise.Event kickEvent, snareEvent, hiHatEvent, tomTomEvent, cymbalEvent;
-    private VisualEffect vfx;
+    private VisualEffect _vfx;
     private void Start() {
         _screenSync = GetComponentInParent<ScreenSync>();
-        vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
+        _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         
         switch (interactionMethod) {
             case InteractionMethod.contextSwitch: {
@@ -50,7 +50,7 @@ public class Node : MonoBehaviour {
                     confirm.ConfirmActivation(true);
                     cameFromButton = true;
                 }
-                else if (!crRunning) StartCoroutine(Window());
+                else if (!_crRunning) StartCoroutine(Window());
 
                 if (!confirm.isHover || !cameFromButton) return;
 
@@ -70,7 +70,12 @@ public class Node : MonoBehaviour {
                 break;
             }
             case InteractionMethod.dwellFeedback: {
-                if (button.isHover) {
+                if (button.isHover)
+                {
+
+                    if (button.isActive) button.confirmScaler.GetComponent<Image>().color = button.defaultColor;
+                    else button.confirmScaler.GetComponent<Image>().color = button.activeColor;
+                    
                     if (button.confirmScalerRT.localScale.x < 1.0f)
                         button.confirmScalerRT.localScale += Vector3.one / 100;
                     else {
@@ -109,7 +114,7 @@ public class Node : MonoBehaviour {
             button.SetDefault();
             activated = false;
         }
-        _nodesVisualizer.UpdateNode(drumIndex, indexValue, activated);
+        //_nodesVisualizer.UpdateNode(drumIndex, indexValue, activated);
     }
 
     public void PlayDrum()
@@ -141,22 +146,22 @@ public class Node : MonoBehaviour {
     }
     private IEnumerator AudioVFX()
     {
-        vfx.SetFloat("SphereSize", vfx.GetFloat("SphereSize") + 1.0f);
+        _vfx.SetFloat("SphereSize", _vfx.GetFloat("SphereSize") + 1.0f);
         bool run = true;
         while (run)
         {
             yield return new WaitForSeconds(Time.fixedDeltaTime);
-            if (vfx.GetFloat("SphereSize") > 1.1f) vfx.SetFloat("SphereSize", vfx.GetFloat("SphereSize") - 0.1f);
+            if (_vfx.GetFloat("SphereSize") > 1.1f) _vfx.SetFloat("SphereSize", _vfx.GetFloat("SphereSize") - 0.1f);
             else run = false;
         }
     }
 
 
     private IEnumerator Window() {
-        crRunning = true;
+        _crRunning = true;
         yield return new WaitForSeconds(confirmWindow);
         canConfirm = false;
         confirm.ConfirmActivation(false);
-        crRunning = false;
+        _crRunning = false;
     }
 }

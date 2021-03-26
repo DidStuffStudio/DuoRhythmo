@@ -15,7 +15,7 @@ public class CustomButton : MonoBehaviour {
     private Collider _collider;
 
     public bool isDefault, isHover, isActive, isHint, isConfirmationButton;
-    public static Color defaultColor, hoverColor, activeColor, hintColor;
+    public Color defaultColor, inactiveHoverColor, activeColor, hintColor, activeHoverColor;
     public GameObject confirmScaler;
     public bool mouseOver;
     public RectTransform confirmScalerRT;
@@ -57,7 +57,8 @@ public class CustomButton : MonoBehaviour {
 
     private void Hover() {
         if (!_canHover) return;
-        _image.color = hoverColor;
+        if (isActive) _image.color = activeHoverColor;
+        else _image.color = inactiveHoverColor;
         if (isHover) return;
         isHover = true;
     }

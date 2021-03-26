@@ -1188,7 +1188,9 @@
 												</RTPC>
 											</RTPCList>
 										</Property>
+										<Property Name="DistortionTone" Type="Real32" Value="100"/>
 										<Property Name="DistortionType" Type="int32" Value="4"/>
+										<Property Name="Rectification" Type="Real32" Value="100"/>
 										<Property Name="WetDryMix" Type="Real32" Value="49"/>
 									</PropertyList>
 								</Effect>

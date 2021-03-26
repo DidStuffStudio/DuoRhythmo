@@ -248,10 +248,6 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 1
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverColor: {r: 1, g: 0, b: 0, a: 1}
-  activeColor: {r: 0.16983688, g: 1, b: 0, a: 1}
-  hintColor: {r: 0, g: 0.26723528, b: 1, a: 1}
   confirmScaler: {fileID: 7078141786073897815}
   mouseOver: 0
   confirmScalerRT: {fileID: 0}
@@ -307,6 +303,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f921df9e7d6d35241ae9d2d599aa4d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _nodesVisualizer: {fileID: 0}
+  EuclideanManager: {fileID: 0}
+  drumIndex: 0
   interactionMethod: 0
   drumType: 0
   button: {fileID: 8002361928869053110}
@@ -482,10 +481,6 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 1, g: 1, b: 1, a: 0.7921569}
-  hoverColor: {r: 1, g: 1, b: 1, a: 1}
-  activeColor: {r: 0.5283019, g: 0.8018868, b: 0.47281063, a: 1}
-  hintColor: {r: 0, g: 0.26723528, b: 1, a: 1}
   confirmScaler: {fileID: 7078141786073897815}
   mouseOver: 0
   confirmScalerRT: {fileID: 0}

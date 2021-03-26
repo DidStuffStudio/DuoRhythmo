@@ -18,6 +18,7 @@ public enum DrumType {
 
 [RequireComponent(typeof(EuclideanRythm))]
 public class EuclideanManager : MonoBehaviour {
+    [SerializeField] private NodesVisualizer _nodesVisualizer;
     private EuclideanRythm _euclideanRythm;
     public InteractionMethod interactionMethod;
     public int numberOfNodes = 4;
@@ -47,6 +48,10 @@ public class EuclideanManager : MonoBehaviour {
     private bool effectsChangedOnServer = false;
 
     private int previousEffectValue;
+
+    public int drumIndex;
+
+    private List<Vector2> nodeSpawningPositions = new List<Vector2>();
 
     private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();
@@ -123,9 +128,6 @@ public class EuclideanManager : MonoBehaviour {
     }
 
     private void SpawnNodes() {
-
-        
-        
         // if more nodes exist than is needed, delete them
         if (_nodes.Count > numberOfNodes) {
             for (int i = numberOfNodes - 1; i < _nodes.Count; i++) {
@@ -143,6 +145,8 @@ public class EuclideanManager : MonoBehaviour {
         for (int i = 0; i < numberOfNodes; i++) {
             PositionNode(i);
         }
+        
+        _nodesVisualizer.InitializeCircle(nodeSpawningPositions.ToArray());
     }
 
     private void MessageReceived(Room room, int senderid, byte[] data, bool reliable) {
@@ -152,13 +156,15 @@ public class EuclideanManager : MonoBehaviour {
         }
     }
 
-    private void PositionNode(int i) {
+    public void PositionNode(int i) {
         var radians =
             (i * 2 * Mathf.PI) / (-numberOfNodes) +
             (Mathf.PI / 2); // set them starting from 90 degrees = PI / 2 radians
         var y = Mathf.Sin(radians);
         var x = Mathf.Cos(radians);
         var spawnPos = new Vector2(x, y) * radius;
+        nodeSpawningPositions.Add(spawnPos / radius);
+       
 
         // if the current node doesn't exist, then create one and add it to the nodes list
         if (i >= _nodes.Count) {
@@ -170,6 +176,8 @@ public class EuclideanManager : MonoBehaviour {
             _nodes.Add(node.GetComponent<Node>());
             node.GetComponent<Node>().indexValue = i;
             _screenSync._nodes.Add(node.GetComponent<Node>());
+            node.GetComponent<Node>()._nodesVisualizer = _nodesVisualizer;
+            node.GetComponent<Node>().EuclideanManager = this;
 
             _nodes[i].drumType = drumType switch {
                 DrumType.kick => DrumType.kick,

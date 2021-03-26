@@ -8,6 +8,9 @@ using UnityEngine.VFX;
 
 
 public class Node : MonoBehaviour {
+    public NodesVisualizer _nodesVisualizer;
+    public EuclideanManager EuclideanManager;
+    public int drumIndex;
     public InteractionMethod interactionMethod;
     public DrumType drumType;
     public CustomButton button, confirm;
@@ -106,6 +109,7 @@ public class Node : MonoBehaviour {
             button.SetDefault();
             activated = false;
         }
+        _nodesVisualizer.UpdateNode(drumIndex, indexValue, activated);
     }
 
     public void PlayDrum()

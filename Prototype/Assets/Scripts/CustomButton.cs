@@ -15,7 +15,7 @@ public class CustomButton : MonoBehaviour {
     private Collider _collider;
 
     public bool isDefault, isHover, isActive, isHint, isConfirmationButton;
-    [SerializeField] private Color defaultColor, hoverColor, activeColor, hintColor;
+    public static Color defaultColor, hoverColor, activeColor, hintColor;
     public GameObject confirmScaler;
     public bool mouseOver;
     public RectTransform confirmScalerRT;

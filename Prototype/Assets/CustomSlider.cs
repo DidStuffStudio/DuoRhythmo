@@ -56,9 +56,7 @@ public class CustomSlider : MonoBehaviour
     
 
     // map a value from one interval to another one
-    private float Map(float value, float min1, float max1, float min2, float max2) {
-        return min2 + (max2 - min2) * ((value - min1) / (max1 - min1));
-    }
+    
 
 
 }

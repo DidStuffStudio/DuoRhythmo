@@ -32,7 +32,7 @@ public class SliderKnob : MonoBehaviour
 
 
     public Transform upperLimit, lowerLimit;
-    
+    public float currentValue,previousValue;
     
     
     //Events
@@ -82,35 +82,41 @@ public class SliderKnob : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
+    private void Update()
     {
-   
-        
-        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(_mainCamera, Input.mousePosition);
-        // convert the screen position to the local anchored position
-        Vector2 anchoredPosition = transform.InverseTransformPoint(screenPoint);
-        
-        print(anchoredPosition);
-        
-        
-        GazePoint gazePoint = TobiiAPI.GetGazePoint();
+        var eyeTracking = false;
+        if (TobiiAPI.IsConnected)
+        {
+            eyeTracking = true;
+            if (_gazeAware.HasGazeFocus) OnKnobFocus?.Invoke(true);
+            else if (!_mouseOver) OnKnobFocus?.Invoke(false);
+        }
         // Mouse Delta
         if (_activated)
         {
             
             var knobScreenPoint = _mainCamera.WorldToScreenPoint(_knobRectTransform.position);
             
-            
-
+            if (eyeTracking)
+            {
+                GazePoint gazePoint = TobiiAPI.GetGazePoint();
                 knobScreenPoint.y = gazePoint.Screen.y;
-                knobScreenPoint.y = Input.mousePosition.y;
+            }
+           
+            else knobScreenPoint.y = Input.mousePosition.y;
                 
                 _knobRectTransform.position = _mainCamera.ScreenToWorldPoint(knobScreenPoint);
                 
                 if (_knobRectTransform.position.y < lowerLimit.position.y) _knobRectTransform.position = lowerLimit.position;
                 if (_knobRectTransform.position.y > upperLimit.position.y) _knobRectTransform.position = upperLimit.position;
+
+
+                currentValue = Map(_knobRectTransform.anchoredPosition.y, _minValue, _maxValue, 0, 100);
                 
- 
+                if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke();
+                
+                previousValue = currentValue;
+                
             switch (_slider.sliderDirection)
             {
                 case CustomSlider.SliderDirection.Horizontal: //Get x delta
@@ -130,10 +136,7 @@ public class SliderKnob : MonoBehaviour
             }
         }
         
-        if (!TobiiAPI.IsConnected) return;
-        // Eye Delta 
-        if (_gazeAware.HasGazeFocus) OnKnobFocus?.Invoke(true);
-        else if (!_mouseOver) OnKnobFocus?.Invoke(false);
+        
     }
 
     private void OnMouseOver() //Mouse hover
@@ -159,6 +162,11 @@ public class SliderKnob : MonoBehaviour
         _activated = activate;
     }
 
+    private void SliderChanged()
+    {
+        print("Slider Changed");
+    }
+
 
     private IEnumerator FadeSignifier(Image imageToFade, bool fadeIn)
     {
@@ -182,16 +190,22 @@ public class SliderKnob : MonoBehaviour
         }
     }
     
+    private float Map(float value, float min1, float max1, float min2, float max2) {
+        return min2 + (max2 - min2) * ((value - min1) / (max1 - min1));
+    }
+    
     private void OnEnable()
     {
         OnKnobFocus += Focused;
         OnActivated += Activated;
+        OnSliderChange += SliderChanged;
     }
 
     private void OnDisable()
     {
         OnKnobFocus -= Focused;
         OnActivated -= Activated;
+        OnSliderChange -= SliderChanged;
     }
     
 }

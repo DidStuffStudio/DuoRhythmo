@@ -87,7 +87,7 @@ public class UserInterfaceManager : MonoBehaviour
     public void Update()
     {
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 1; i++)
         {
             _screenSyncTests[i].bpm = bpm;
         }

@@ -83,14 +83,10 @@ public class EuclideanManager : MonoBehaviour
         else StartCoroutine(WaitUntilConnected());
 
         rotation = 0;
-
-        //_realTime = RealTimeInstance.Instance.GetComponent<Realtime>();
-        int sliderIndex = 0;
+        
         foreach (var slider in sliders)
         {
-            var index = sliderIndex;
             slider.OnSliderChange += ChangeEffectValue;
-            sliderIndex++;
         }
 
         string[] effects = {"_Effect_1", "_Effect_2", "_Effect_3"};
@@ -146,9 +142,10 @@ public class EuclideanManager : MonoBehaviour
 
     private void CheckForChangesEffects()
     {
-        sliders[0].currentValue = _screenSync.Effect1;
-        sliders[1].currentValue = _screenSync.Effect2;
-        sliders[2].currentValue = _screenSync.Effect3;
+        levels[0] = sliders[0].currentValue = _screenSync.Effect1;
+        levels[1] = sliders[1].currentValue = _screenSync.Effect2;
+        levels[2] = sliders[2].currentValue = _screenSync.Effect3;
+        
     }
 
     private void SpawnNodes()
@@ -268,5 +265,6 @@ public class EuclideanManager : MonoBehaviour
         levels[index] = sliderValue;
         _screenSync.SetEffectValue(index, sliderValue);
         effectsChangedOnServer = false;
+        print(index + " " + sliderValue);
     }
 }

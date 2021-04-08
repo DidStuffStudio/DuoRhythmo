@@ -91,10 +91,12 @@ public class SliderKnob : MonoBehaviour
             if (_gazeAware.HasGazeFocus) OnKnobFocus?.Invoke(true);
             else if (!_mouseOver) OnKnobFocus?.Invoke(false);
         }
+        
+        _knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(currentValue, 0,100 , _minValue, _maxValue));
+        
         // Mouse Delta
         if (_activated)
         {
-            
             var knobScreenPoint = _mainCamera.WorldToScreenPoint(_knobRectTransform.position);
             
             if (eyeTracking)
@@ -162,10 +164,7 @@ public class SliderKnob : MonoBehaviour
         _activated = activate;
     }
 
-    private void SliderChanged(int index)
-    {
-
-    }
+    private void SliderChanged(int index) {}
 
 
     private IEnumerator FadeSignifier(Image imageToFade, bool fadeIn)

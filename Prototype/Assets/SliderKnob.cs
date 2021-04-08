@@ -28,8 +28,8 @@ public class SliderKnob : MonoBehaviour
     [SerializeField] private Color defaultColor, activatedColor;
     [SerializeField] private RectTransform upSignifier, downSignifier; //Smooth pursuit signifiers
     [SerializeField] private float sensitivity, offset = 20.0f, threshold = 10.0f;
-
-
+    [SerializeField] private int sliderIndex; // Pass to euclidean manager to tell which slider corresponds to which effect
+    
 
     public Transform upperLimit, lowerLimit;
     public float currentValue,previousValue;
@@ -40,7 +40,7 @@ public class SliderKnob : MonoBehaviour
 
     public event KnobFocusAction OnKnobFocus;
     
-    public delegate void SliderChangeAction();
+    public delegate void SliderChangeAction(int index);
 
     public event SliderChangeAction OnSliderChange;
 
@@ -113,7 +113,7 @@ public class SliderKnob : MonoBehaviour
 
                 currentValue = Map(_knobRectTransform.anchoredPosition.y, _minValue, _maxValue, 0, 100);
                 
-                if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke();
+                if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
                 
                 previousValue = currentValue;
                 
@@ -162,9 +162,9 @@ public class SliderKnob : MonoBehaviour
         _activated = activate;
     }
 
-    private void SliderChanged()
+    private void SliderChanged(int index)
     {
-        print("Slider Changed");
+
     }
 
 

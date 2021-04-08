@@ -47,7 +47,7 @@ public class EuclideanManager : MonoBehaviour
 
     private string[] effectNames = new string[3];
 
-    public Slider[] sliders = new Slider[3];
+    public SliderKnob[] sliders = new SliderKnob[3];
     private bool effectsChangedOnServer = false;
 
     private int previousEffectValue;
@@ -89,7 +89,7 @@ public class EuclideanManager : MonoBehaviour
         foreach (var slider in sliders)
         {
             var index = sliderIndex;
-            slider.onValueChanged.AddListener(delegate { ChangeEffectValue(index: index); });
+            slider.OnSliderChange += ChangeEffectValue;
             sliderIndex++;
         }
 
@@ -146,9 +146,9 @@ public class EuclideanManager : MonoBehaviour
 
     private void CheckForChangesEffects()
     {
-        sliders[0].value = _screenSync.Effect1;
-        sliders[1].value = _screenSync.Effect2;
-        sliders[2].value = _screenSync.Effect3;
+        sliders[0].currentValue = _screenSync.Effect1;
+        sliders[1].currentValue = _screenSync.Effect2;
+        sliders[2].currentValue = _screenSync.Effect3;
     }
 
     private void SpawnNodes()
@@ -264,7 +264,7 @@ public class EuclideanManager : MonoBehaviour
 
     public void ChangeEffectValue(int index)
     {
-        var sliderValue = (int) sliders[index].value;
+        var sliderValue = (int) sliders[index].currentValue;
         levels[index] = sliderValue;
         _screenSync.SetEffectValue(index, sliderValue);
         effectsChangedOnServer = false;

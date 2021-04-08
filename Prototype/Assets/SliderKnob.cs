@@ -5,6 +5,7 @@ using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class SliderKnob : MonoBehaviour
 {
     public enum InteractionTechnique
@@ -27,8 +28,10 @@ public class SliderKnob : MonoBehaviour
     [SerializeField] private Color defaultColor, activatedColor;
     [SerializeField] private RectTransform upSignifier, downSignifier; //Smooth pursuit signifiers
     [SerializeField] private float sensitivity, offset = 20.0f, threshold = 10.0f;
-    
-    
+
+
+
+    public Transform upperLimit, lowerLimit;
     
     
     
@@ -70,8 +73,8 @@ public class SliderKnob : MonoBehaviour
             case CustomSlider.SliderDirection.Vertical: // Get y delta
             {
                 var rect = _slider.GetComponent<RectTransform>().rect;
-                _minValue = -rect.height / 2;
-                _maxValue = rect.height / 2;
+                _minValue = 0;
+                _maxValue = rect.height;
                 _knobRectTransform.anchoredPosition = new Vector2(0, _minValue);
                 break;
             }
@@ -79,11 +82,35 @@ public class SliderKnob : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
+   
+        
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(_mainCamera, Input.mousePosition);
+        // convert the screen position to the local anchored position
+        Vector2 anchoredPosition = transform.InverseTransformPoint(screenPoint);
+        
+        print(anchoredPosition);
+        
+        
+        GazePoint gazePoint = TobiiAPI.GetGazePoint();
         // Mouse Delta
         if (_activated)
         {
+            
+            var knobScreenPoint = _mainCamera.WorldToScreenPoint(_knobRectTransform.position);
+            
+            
+
+                knobScreenPoint.y = gazePoint.Screen.y;
+                knobScreenPoint.y = Input.mousePosition.y;
+                
+                _knobRectTransform.position = _mainCamera.ScreenToWorldPoint(knobScreenPoint);
+                
+                if (_knobRectTransform.position.y < lowerLimit.position.y) _knobRectTransform.position = lowerLimit.position;
+                if (_knobRectTransform.position.y > upperLimit.position.y) _knobRectTransform.position = upperLimit.position;
+                
+ 
             switch (_slider.sliderDirection)
             {
                 case CustomSlider.SliderDirection.Horizontal: //Get x delta
@@ -92,23 +119,11 @@ public class SliderKnob : MonoBehaviour
                 }
                 case CustomSlider.SliderDirection.Vertical: // Get y delta
                 {
-                    var mouseDeltaY = Input.mousePosition.y - _lastMousePosition.y;
-                    _lastMousePosition = Input.mousePosition;
-                    
                     //eye delta is negative, deactivate up arrow and give it a constant position below current mouse/eye position
-                    if (Input.mousePosition.y > _knobRectTransform.position.y)
+                    if (Input.mousePosition.y > knobScreenPoint.y)
                     {
-                        StartCoroutine(FadeSignifier(upSignifier.GetComponent<Image>(), true));
-                        StartCoroutine(FadeSignifier(downSignifier.GetComponent<Image>(), false));
                         
-                        upSignifier.anchoredPosition = new Vector2(0.0f,
-                            Input.mousePosition.y + offset);
                         
-                        // If the mouse has travelled to a point above the knob that is greater than the threshold to start moving the knob
-                        if (_knobRectTransform.anchoredPosition.y < _maxValue)
-                        {
-                            _knobRectTransform.anchoredPosition = new Vector2(0.0f, Input.mousePosition.y - offset);
-                        }
                     } 
                     break;
                 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0019741126, g: 0.00035672664, b: 0.0015263639, a: 1}
+  m_IndirectSpecularColor: {r: 0.000037449947, g: 0.00020703686, b: 0.00055682915, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 19825640}
   - component: {fileID: 19825639}
   - component: {fileID: 19825637}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RhythmLineIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2072,7 +2072,7 @@ GameObject:
   - component: {fileID: 176846165}
   - component: {fileID: 176846167}
   - component: {fileID: 176846166}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5500,6 +5500,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  panels:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _forwardRenderer: {fileID: 11400000, guid: 4a8e21d5c33334b11b34a596161b9360, type: 2}
 --- !u!1 &531059885
 GameObject:
   m_ObjectHideFlags: 0
@@ -6121,7 +6133,7 @@ GameObject:
   - component: {fileID: 577469899}
   - component: {fileID: 577469898}
   - component: {fileID: 577469901}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Kick_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16624,7 +16636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1065797669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17398,7 +17410,7 @@ GameObject:
   - component: {fileID: 1146492092}
   - component: {fileID: 1146492093}
   - component: {fileID: 1146492095}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Kick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18028,7 +18040,7 @@ GameObject:
   - component: {fileID: 1198766670}
   - component: {fileID: 1198766669}
   - component: {fileID: 1198766668}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnergyFieldVFX
   m_TagString: AudioVFX
   m_Icon: {fileID: 0}
@@ -19584,6 +19596,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1146492088}
     m_Modifications:
+    - target: {fileID: 501289949584677014, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714846414173780134, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
       value: Solo
@@ -19648,9 +19668,17 @@ PrefabInstance:
       propertyPath: onDeactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6748157332128358510, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
       value: SoloButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_TagString
@@ -19741,8 +19769,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332993167195, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332993167195, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_TagString
       value: SoloButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078141786073897815, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8002361928869053110, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: defaultColor.a
@@ -20631,7 +20667,7 @@ GameObject:
   - component: {fileID: 1538422577}
   - component: {fileID: 1538422581}
   - component: {fileID: 1538422580}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24749,7 +24785,7 @@ GameObject:
   - component: {fileID: 1925314216}
   - component: {fileID: 1925314215}
   - component: {fileID: 1925314214}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: User Interface
   m_TagString: Untagged
   m_Icon: {fileID: 0}

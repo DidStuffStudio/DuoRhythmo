@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 using Random = UnityEngine.Random;
@@ -17,13 +18,16 @@ public class UserInterfaceManager : MonoBehaviour
     private float _timeLeft;
     private Color _targetColor;
     private VisualEffect _vfx;
-    private int _currentPanel = 0; 
+    private int _currentPanel = 0, _currentRenderPanel = 0; 
+    
     [SerializeField] private String[] drumVolumeRtpcStrings = new string[5];
     public int bpm = 120;
     private ScreenSyncTest[] _screenSyncTests = new ScreenSyncTest[5];
     public CustomButton[] soloButtons = new CustomButton[10];
     private static readonly int Tint = Shader.PropertyToID("_Tint");
-
+    [SerializeField] private GameObject[] panels = new GameObject[10]; //Put panels into array so we can change their layer to blur or render them over blur
+    [SerializeField] private ForwardRendererData _forwardRenderer;
+    
     private IEnumerator WaitUntilConnected() {
         
         while (true) {
@@ -41,6 +45,7 @@ public class UserInterfaceManager : MonoBehaviour
     }
     void Start()
     {
+        
         int i = 0;
         foreach (var screenSync in GetComponentsInChildren<ScreenSyncTest>())
         {
@@ -67,6 +72,7 @@ public class UserInterfaceManager : MonoBehaviour
 
     public void PauseAnimation()
     {
+        SwitchPanelRenderLayers();
         _uiAnimator.speed = 0.0f;
         _playerAnimator.speed = 0.0f;
         startTimer = true;
@@ -74,6 +80,8 @@ public class UserInterfaceManager : MonoBehaviour
 
     public void PlayAnimation()
     {
+        _currentRenderPanel++;
+        if (_currentRenderPanel > 9) _currentRenderPanel = 0;
         if (_currentPanel >= 4) _currentPanel = 0; //Change if adding more drums
         else _currentPanel++;
         Solo(false);
@@ -142,6 +150,26 @@ public class UserInterfaceManager : MonoBehaviour
             foreach (var t in soloButtons) t.SetDefault();
         }
     }
+
+    public void SwitchPanelRenderLayers()
+    {
+
+        for (int i = 0; i < panels.Length; i++) //Loop through panels
+        {
+            foreach (var transform in panels[i].GetComponentsInChildren<Transform>())//Loop through children of the panel
+            {
+                transform.gameObject.layer = LayerMask.NameToLayer("Default");//Change their layer to default so they are blurred
+            }
+        }
+
+        foreach (var transform in panels[_currentRenderPanel].GetComponentsInChildren<Transform>())//Loop through children of the panel
+        {
+            transform.gameObject.layer = LayerMask.NameToLayer("RenderPanel"); //Set current panel to render over blur
+        }
+        
+        
+        
+    }
     private IEnumerator Timer()
     {
         while(timerRunnning)
@@ -157,5 +185,15 @@ public class UserInterfaceManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(true);
+        
+    }
 
+    private void OnDisable()
+    {
+        foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(false);
+        
+    }
 }

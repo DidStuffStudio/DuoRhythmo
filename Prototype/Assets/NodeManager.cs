@@ -10,18 +10,14 @@ using Object = UnityEngine.Object;
 
 public enum DrumType
 {
-    kick,
-    snare,
-    hiHat,
-    tomTom,
-    cymbal
+    Kick,
+    Snare,
+    HiHat,
+    TomTom,
+    Cymbal
 }
-
-[RequireComponent(typeof(EuclideanRythm))]
-public class EuclideanManager : MonoBehaviour
+public class NodeManager : MonoBehaviour
 {
-    //[SerializeField] private NodesVisualizer _nodesVisualizer;
-    private EuclideanRythm _euclideanRythm;
     public InteractionMethod interactionMethod;
     public int numberOfNodes = 4;
     private int previousNumberOfNodes;
@@ -38,8 +34,7 @@ public class EuclideanManager : MonoBehaviour
     private ScreenSync _screenSync;
 
     [SerializeField] private Realtime _realTime;
-    public Color defaultColor, activeColor, hintColor;
-    private Color _inactiveHover, _activeHover;
+    
     public float waitingTime = 1;
     private float beatTime;
 
@@ -56,12 +51,17 @@ public class EuclideanManager : MonoBehaviour
 
     private List<Vector2> nodeSpawningPositions = new List<Vector2>();
 
+    private PanelMaster _panelMaster;
+    
+    private Color _inactiveHover, _activeHover;
+
     private void Start()
     {
+        _panelMaster = GetComponentInParent<PanelMaster>();
         
-        Color.RGBToHSV(defaultColor, out var uH, out var uS, out var uV );
+        Color.RGBToHSV(_panelMaster.defaultColor, out var uH, out var uS, out var uV );
         uV -= 0.3f;
-        Color.RGBToHSV(activeColor, out var aH, out var aS, out var aV );
+        Color.RGBToHSV(_panelMaster.activeColor, out var aH, out var aS, out var aV );
         aV -= 0.3f;
         
         _inactiveHover = Color.HSVToRGB(uH, uS, uV);
@@ -70,7 +70,6 @@ public class EuclideanManager : MonoBehaviour
         _inactiveHover.a = 1;
         _activeHover.a = 1;
         
-        _euclideanRythm = GetComponent<EuclideanRythm>();
         previousNumberOfNodes = numberOfNodes;
         _screenSync = GetComponentInParent<ScreenSync>();
         _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = false;
@@ -90,19 +89,19 @@ public class EuclideanManager : MonoBehaviour
         }
 
         string[] effects = {"_Effect_1", "_Effect_2", "_Effect_3"};
-        if (drumType == DrumType.kick)
+        if (drumType == DrumType.Kick)
             for (int i = 0; i < effects.Length; i++)
                 effectNames[i] = "Kick" + effects[i];
-        else if (drumType == DrumType.snare)
+        else if (drumType == DrumType.Snare)
             for (int i = 0; i < effects.Length; i++)
                 effectNames[i] = "Snare" + effects[i];
-        else if (drumType == DrumType.hiHat)
+        else if (drumType == DrumType.HiHat)
             for (int i = 0; i < effects.Length; i++)
                 effectNames[i] = "HiHat" + effects[i];
-        else if (drumType == DrumType.tomTom)
+        else if (drumType == DrumType.TomTom)
             for (int i = 0; i < effects.Length; i++)
                 effectNames[i] = "TomTom" + effects[i];
-        else if (drumType == DrumType.cymbal)
+        else if (drumType == DrumType.Cymbal)
             for (int i = 0; i < effects.Length; i++)
                 effectNames[i] = "Cymbol" + effects[i];
     }
@@ -170,19 +169,8 @@ public class EuclideanManager : MonoBehaviour
         {
             PositionNode(i);
         }
-
-       // _nodesVisualizer.InitializeCircle(nodeSpawningPositions.ToArray());
     }
-
-    private void MessageReceived(Room room, int senderid, byte[] data, bool reliable)
-    {
-        if (_realTime.room.name != room.name) return;
-        foreach (var d in data)
-        {
-            print(d);
-        }
-    }
-
+    
     public void PositionNode(int i)
     {
       
@@ -208,15 +196,15 @@ public class EuclideanManager : MonoBehaviour
             node.GetComponent<Node>().indexValue = i;
             _screenSync._nodes.Add(node.GetComponent<Node>());
            // node.GetComponent<Node>()._nodesVisualizer = _nodesVisualizer;
-            node.GetComponent<Node>().EuclideanManager = this;
+            node.GetComponent<Node>().nodeManager = this;
 
             _nodes[i].drumType = drumType switch
             {
-                DrumType.kick => DrumType.kick,
-                DrumType.snare => DrumType.snare,
-                DrumType.hiHat => DrumType.hiHat,
-                DrumType.tomTom => DrumType.tomTom,
-                DrumType.cymbal => DrumType.cymbal,
+                DrumType.Kick => DrumType.Kick,
+                DrumType.Snare => DrumType.Snare,
+                DrumType.HiHat => DrumType.HiHat,
+                DrumType.TomTom => DrumType.TomTom,
+                DrumType.Cymbal => DrumType.Cymbal,
                 _ => _nodes[i].drumType
             };
             _nodes[i].interactionMethod = interactionMethod switch
@@ -229,13 +217,11 @@ public class EuclideanManager : MonoBehaviour
             
             foreach(var customButton in _nodes[i].GetComponentsInChildren<CustomButton>()) //Set up button Colors
             {
-
-                
-                customButton.activeColor = activeColor;
-                customButton.defaultColor = defaultColor;
+                customButton.activeColor = _panelMaster.activeColor;
+                customButton.defaultColor = _panelMaster.defaultColor;
                 customButton.inactiveHoverColor = _inactiveHover;
                 customButton.activeHoverColor = _activeHover;
-                customButton.hintColor = hintColor;
+                customButton.hintColor = _panelMaster.hintColor;
             }
         }
 

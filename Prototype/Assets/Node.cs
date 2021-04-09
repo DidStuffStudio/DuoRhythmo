@@ -9,7 +9,7 @@ using UnityEngine.VFX;
 
 public class Node : MonoBehaviour {
     public NodesVisualizer _nodesVisualizer;
-    public EuclideanManager EuclideanManager;
+    public NodeManager nodeManager;
     public int drumIndex;
     public InteractionMethod interactionMethod;
     public DrumType drumType;
@@ -127,19 +127,19 @@ public class Node : MonoBehaviour {
         
         switch (drumType)
         {
-            case DrumType.kick:
+            case DrumType.Kick:
                 kickEvent.Post(gameObject);
                 break;
-            case DrumType.snare:
+            case DrumType.Snare:
                 snareEvent.Post(gameObject);
                 break;
-            case DrumType.hiHat:
+            case DrumType.HiHat:
                 hiHatEvent.Post(gameObject);
                 break;
-            case DrumType.tomTom:
+            case DrumType.TomTom:
                 tomTomEvent.Post(gameObject);
                 break;
-            case DrumType.cymbal:
+            case DrumType.Cymbal:
                 cymbalEvent.Post(gameObject);
                 break;
         }

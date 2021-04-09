@@ -4,8 +4,8 @@ using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
 public class NodesVisualizer: MonoBehaviour {
-    [SerializeField] private List<EuclideanManager> _euclideanManagers = new List<EuclideanManager>();
-    private List<EuclideanManager> _euclideanManagersClones = new List<EuclideanManager>();
+    [SerializeField] private List<NodeManager> _euclideanManagers = new List<NodeManager>();
+    private List<NodeManager> _euclideanManagersClones = new List<NodeManager>();
     private int radiusIndex = 10;
     private List<List<GameObject>> rings = new List<List<GameObject>>();
     [SerializeField] private GameObject nodeVisualization;

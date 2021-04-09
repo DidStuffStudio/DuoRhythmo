@@ -31,7 +31,7 @@ public class UserInterfaceManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         var index = 0;
-        foreach (var soloButton in GameObject.FindGameObjectsWithTag("SoloButton")) //Each euclidean manager should spawn a solo button and assign itself here
+        foreach (var soloButton in GameObject.FindGameObjectsWithTag("SoloButton")) //Each node manager should spawn a solo button and assign itself here
         {
             soloButtons[index] = soloButton.GetComponent<CustomButton>();
             index++;
@@ -87,7 +87,7 @@ public class UserInterfaceManager : MonoBehaviour
     public void Update()
     {
 
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 5; i++)
         {
             _screenSyncTests[i].bpm = bpm;
         }

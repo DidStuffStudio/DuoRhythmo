@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00033934126, g: 0.0006717541, b: 0.0030666795, a: 1}
+  m_IndirectSpecularColor: {r: 0.0019741126, g: 0.00035672664, b: 0.0015263639, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -662,6 +662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 28644032}
+  - component: {fileID: 28644033}
   m_Layer: 0
   m_Name: HiHat_FX_UI
   m_TagString: Untagged
@@ -682,8 +683,25 @@ Transform:
   m_Children:
   - {fileID: 1917817968}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -252, z: 0}
+--- !u!114 &28644033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28644031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d70356ff0c6b654aa6781eb66a07364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drumType: 2
+  uIType: 1
+  defaultColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  activeColor: {r: 0.81581557, g: 0.4237718, b: 0.8396226, a: 1}
+  hintColor: {r: 0.3523496, g: 0.675378, b: 0.6981132, a: 1}
 --- !u!224 &31855366 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
@@ -2027,7 +2045,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 213822381}
+  m_Camera: {fileID: 565050215}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2406,7 +2424,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 213822381}
+  m_Camera: {fileID: 565050215}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2661,7 +2679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &213822378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3635,7 +3653,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 213822381}
+  m_Camera: {fileID: 565050215}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3922,7 +3940,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 213822381}
+  m_Camera: {fileID: 565050215}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -5414,14 +5432,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 577469897}
-  - {fileID: 1194789173}
-  - {fileID: 1226057115}
-  - {fileID: 1307758438}
-  - {fileID: 1361662999}
   - {fileID: 1853700343}
   - {fileID: 2083569444}
+  - {fileID: 1194789173}
+  - {fileID: 1226057115}
   - {fileID: 28644032}
   - {fileID: 1986206303}
+  - {fileID: 1307758438}
+  - {fileID: 1361662999}
   - {fileID: 1629158620}
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -5458,7 +5476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAnimator: {fileID: 1905188875}
-  roundTime: 60
+  roundTime: 15
   timer: 0
   timerDisplay: {fileID: 812139481}
   startTimer: 0
@@ -5963,7 +5981,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &565050214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6190,9 +6208,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drumType: 0
   uIType: 0
-  defaultColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
-  activeColor: {r: 0.3754005, g: 0.7169812, b: 0.44314945, a: 1}
-  hintColor: {r: 0.1782218, g: 0.5724143, b: 0.8396226, a: 1}
+  defaultColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  activeColor: {r: 0.36663404, g: 0.7264151, b: 0.47223997, a: 1}
+  hintColor: {r: 0.3523496, g: 0.675378, b: 0.6981132, a: 1}
 --- !u!1001 &586228151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7543,7 +7561,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 213822381}
+  m_Camera: {fileID: 565050215}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -7892,7 +7910,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 213822381}
+  m_Camera: {fileID: 565050215}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -14640,7 +14658,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 213822381}
+  m_Camera: {fileID: 565050215}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -17236,7 +17254,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 213822381}
+  m_Camera: {fileID: 565050215}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -17959,6 +17977,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1194789173}
+  - component: {fileID: 1194789174}
   m_Layer: 0
   m_Name: Snare_FX_UI
   m_TagString: Untagged
@@ -17979,8 +17998,25 @@ Transform:
   m_Children:
   - {fileID: 1944434587}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -36, z: 0}
+--- !u!114 &1194789174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194789172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d70356ff0c6b654aa6781eb66a07364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drumType: 1
+  uIType: 1
+  defaultColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  activeColor: {r: 0.77254903, g: 0.31764707, b: 0.33011442, a: 1}
+  hintColor: {r: 0.3523496, g: 0.675378, b: 0.6981132, a: 1}
 --- !u!1 &1198766667
 GameObject:
   m_ObjectHideFlags: 0
@@ -18122,6 +18158,7 @@ GameObject:
   - component: {fileID: 1226057118}
   - component: {fileID: 1226057117}
   - component: {fileID: 1226057116}
+  - component: {fileID: 1226057119}
   m_Layer: 0
   m_Name: HiHat_UI
   m_TagString: Untagged
@@ -18142,7 +18179,7 @@ Transform:
   m_Children:
   - {fileID: 852045032}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -72, z: 0}
 --- !u!114 &1226057116
 MonoBehaviour:
@@ -18195,6 +18232,23 @@ MonoBehaviour:
   _childViews:
   - viewID: 1
     view: {fileID: 774570380}
+--- !u!114 &1226057119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226057114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d70356ff0c6b654aa6781eb66a07364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drumType: 2
+  uIType: 0
+  defaultColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  activeColor: {r: 0.81581557, g: 0.4237718, b: 0.8396226, a: 1}
+  hintColor: {r: 0.3523496, g: 0.675378, b: 0.6981132, a: 1}
 --- !u!1 &1235922152
 GameObject:
   m_ObjectHideFlags: 0
@@ -18286,7 +18340,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 213822381}
+  m_Camera: {fileID: 565050215}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -18536,7 +18590,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cymbol
+  m_Text: Cymbal
 --- !u!222 &1261821573
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18737,6 +18791,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1307758438}
+  - component: {fileID: 1307758439}
   m_Layer: 0
   m_Name: Cymbol_FX_UI
   m_TagString: Untagged
@@ -18757,8 +18812,25 @@ Transform:
   m_Children:
   - {fileID: 1235922153}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 3
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -108, z: 0}
+--- !u!114 &1307758439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307758437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d70356ff0c6b654aa6781eb66a07364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drumType: 4
+  uIType: 1
+  defaultColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  activeColor: {r: 0.7830189, g: 0.5713354, b: 0.24007656, a: 1}
+  hintColor: {r: 0.3523496, g: 0.675378, b: 0.6981132, a: 1}
 --- !u!1 &1312171117
 GameObject:
   m_ObjectHideFlags: 0
@@ -19153,6 +19225,7 @@ GameObject:
   - component: {fileID: 1361663002}
   - component: {fileID: 1361663001}
   - component: {fileID: 1361663000}
+  - component: {fileID: 1361663003}
   m_Layer: 0
   m_Name: Tommy_UI
   m_TagString: Untagged
@@ -19173,7 +19246,7 @@ Transform:
   m_Children:
   - {fileID: 717798436}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 4
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -144, z: 0}
 --- !u!114 &1361663000
 MonoBehaviour:
@@ -19226,6 +19299,23 @@ MonoBehaviour:
   _childViews:
   - viewID: 1
     view: {fileID: 778911301}
+--- !u!114 &1361663003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361662998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d70356ff0c6b654aa6781eb66a07364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drumType: 3
+  uIType: 0
+  defaultColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  activeColor: {r: 0.30210927, g: 0.37138283, b: 0.8773585, a: 1}
+  hintColor: {r: 0.3523496, g: 0.675378, b: 0.6981132, a: 1}
 --- !u!1 &1408089198
 GameObject:
   m_ObjectHideFlags: 0
@@ -21583,6 +21673,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1629158620}
+  - component: {fileID: 1629158621}
   m_Layer: 0
   m_Name: Tommy_FX_UI
   m_TagString: Untagged
@@ -21605,6 +21696,23 @@ Transform:
   m_Father: {fileID: 530605013}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -324, z: 0}
+--- !u!114 &1629158621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629158619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d70356ff0c6b654aa6781eb66a07364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drumType: 3
+  uIType: 1
+  defaultColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  activeColor: {r: 0.30210927, g: 0.37138283, b: 0.8773585, a: 1}
+  hintColor: {r: 0.3523496, g: 0.675378, b: 0.6981132, a: 1}
 --- !u!1 &1631976128
 GameObject:
   m_ObjectHideFlags: 0
@@ -24064,6 +24172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1853700343}
+  - component: {fileID: 1853700344}
   m_Layer: 0
   m_Name: Kick_FX_UI
   m_TagString: Untagged
@@ -24084,8 +24193,25 @@ Transform:
   m_Children:
   - {fileID: 378802490}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1853700344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853700342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d70356ff0c6b654aa6781eb66a07364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drumType: 0
+  uIType: 1
+  defaultColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  activeColor: {r: 0.36663404, g: 0.7264151, b: 0.47223997, a: 1}
+  hintColor: {r: 0.3523496, g: 0.675378, b: 0.6981132, a: 1}
 --- !u!224 &1865032115 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
@@ -24600,7 +24726,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 213822381}
+  m_Camera: {fileID: 565050215}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -24680,7 +24806,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 213822381}
+  m_Camera: {fileID: 565050215}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -24801,7 +24927,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 213822381}
+  m_Camera: {fileID: 565050215}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -25533,7 +25659,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 213822381}
+  m_Camera: {fileID: 565050215}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -25631,6 +25757,7 @@ GameObject:
   - component: {fileID: 1986206306}
   - component: {fileID: 1986206305}
   - component: {fileID: 1986206304}
+  - component: {fileID: 1986206307}
   m_Layer: 0
   m_Name: Cymbol_UI
   m_TagString: Untagged
@@ -25651,7 +25778,7 @@ Transform:
   m_Children:
   - {fileID: 1982252133}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: -288, z: 0}
 --- !u!114 &1986206304
 MonoBehaviour:
@@ -25704,6 +25831,23 @@ MonoBehaviour:
   _childViews:
   - viewID: 1
     view: {fileID: 1801813178}
+--- !u!114 &1986206307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986206302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d70356ff0c6b654aa6781eb66a07364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drumType: 4
+  uIType: 0
+  defaultColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  activeColor: {r: 0.7830189, g: 0.5713354, b: 0.24007656, a: 1}
+  hintColor: {r: 0.3523496, g: 0.675378, b: 0.6981132, a: 1}
 --- !u!224 &1988073573 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
@@ -26014,6 +26158,7 @@ GameObject:
   - component: {fileID: 2083569447}
   - component: {fileID: 2083569446}
   - component: {fileID: 2083569445}
+  - component: {fileID: 2083569448}
   m_Layer: 0
   m_Name: Snare_UI
   m_TagString: Untagged
@@ -26034,7 +26179,7 @@ Transform:
   m_Children:
   - {fileID: 314415512}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -216, z: 0}
 --- !u!114 &2083569445
 MonoBehaviour:
@@ -26087,6 +26232,23 @@ MonoBehaviour:
   _childViews:
   - viewID: 1
     view: {fileID: 1631976130}
+--- !u!114 &2083569448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083569443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d70356ff0c6b654aa6781eb66a07364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drumType: 1
+  uIType: 0
+  defaultColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  activeColor: {r: 0.77254903, g: 0.31764707, b: 0.33011442, a: 1}
+  hintColor: {r: 0.3523496, g: 0.675378, b: 0.6981132, a: 1}
 --- !u!1 &2102676812
 GameObject:
   m_ObjectHideFlags: 0

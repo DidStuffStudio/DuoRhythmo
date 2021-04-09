@@ -226,7 +226,7 @@ public class NodeManager : MonoBehaviour
         }
 
         var rt = _nodes[i].GetComponent<RectTransform>();
-        rt.localRotation = Quaternion.Euler(0, 0, i * (360 / -numberOfNodes));
+        rt.localRotation = Quaternion.Euler(0, 0, i * (360.0f / -numberOfNodes));
         rt.anchoredPosition = spawnPos;
         rt.localScale = Vector3.one;
         var text = _nodes[i].transform.GetChild(0).GetChild(0).GetComponent<Text>();

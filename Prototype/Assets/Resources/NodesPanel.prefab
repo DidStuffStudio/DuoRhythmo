@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8248214351985109850}
   - component: {fileID: 8248214351985109845}
   - component: {fileID: 8248214351985109847}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: RhythmLineIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 8248214352146800103}
   - component: {fileID: 8248214352146800101}
   - component: {fileID: 8248214352146800100}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,9 +177,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8248214352534705531}
-  m_Layer: 7
+  - component: {fileID: 2624153787203381659}
+  m_Layer: 0
   m_Name: NodesPanel
-  m_TagString: Untagged
+  m_TagString: RenderTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,6 +200,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2624153787203381659
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248214352534705530}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 50, y: 50, z: 1}
+  m_Center: {x: 0, y: 0, z: -305}
 --- !u!1 &8248214352965214082
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +224,7 @@ GameObject:
   - component: {fileID: 8248214352965214083}
   - component: {fileID: 8248214352965214087}
   - component: {fileID: 8248214352965214086}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +303,7 @@ GameObject:
   - component: {fileID: 8248214353105484814}
   - component: {fileID: 8248214353105484815}
   - component: {fileID: 8248214353105484813}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Kick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +470,7 @@ GameObject:
   - component: {fileID: 8248214353350139418}
   - component: {fileID: 8248214353350139413}
   - component: {fileID: 8248214353350139412}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: User Interface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,11 +567,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 501289949584677014, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4714846414173780134, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
@@ -625,7 +639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332128358510, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
@@ -633,7 +647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_TagString
@@ -725,7 +739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332993167195, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332993167195, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_TagString
@@ -733,7 +747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7078141786073897815, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8002361928869053110, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: defaultColor.a

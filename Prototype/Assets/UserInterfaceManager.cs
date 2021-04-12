@@ -147,12 +147,20 @@ public class UserInterfaceManager : MonoBehaviour {
                     LayerMask.NameToLayer("Default"); //Change their layer to default so they are blurred
             }
         }
-
-        foreach (var transform in panels[_currentRenderPanel].GetComponentsInChildren<Transform>()
-        ) //Loop through children of the panel
-        {
-            transform.gameObject.layer = LayerMask.NameToLayer("RenderPanel"); //Set current panel to render over blur
+        
+        // send a ray from the middle of the camera to see which panel he's currently looking at
+        var ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
+        if (Physics.Raycast(ray, out var hit)) {
+            if (hit.collider.CompareTag("RenderTarget")) {
+                foreach (var t in hit.transform.GetComponentsInChildren<Transform>()
+                ) //Loop through children of the panel
+                {
+                    t.gameObject.layer = LayerMask.NameToLayer("RenderPanel"); //Set current panel to render over blur
+                }
+            }
         }
+
+        
     }
 
     private IEnumerator Timer() {

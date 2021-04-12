@@ -100,9 +100,13 @@ public class MasterManager : MonoBehaviour {
     private void InstantiatePanels() {
         int panelCounter = 1; // to keep track of the panels for the userInterfaceManager
         // instantiate and set up effects panels
+        var effectsPanelsGo = new GameObject("Effects panels");
+        effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
         Vector3 rotationValue = new Vector3(0, 180.0f, 0);
         for (int i = 0; i < effectsPanels.Length; i++) {
             effectsPanels[i] = Instantiate(effectsPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
+            effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
+            effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
             // effectsPanels[i] = Realtime.Instantiate(effectsPanelPrefab.name, transform.position,
             //    Quaternion.Euler(rotationValue), ownedByClient: false);
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
@@ -114,8 +118,13 @@ public class MasterManager : MonoBehaviour {
         
         // instantiate and set up nodes panels
         rotationValue = Vector3.zero;
+        
+        var nodesPanelsGo = new GameObject("Nodes panels");
+        nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
         for (int i = 0; i < nodesPanels.Length; i++) {
             nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
+            nodesPanels[i].transform.SetParent(nodesPanelsGo.transform);
+            nodesPanels[i].name = "NodesPanel_" + (DrumType) i;
             // nodesPanels[i] = Realtime.Instantiate(nodesPanelPrefab.name, transform.position,
             //     Quaternion.Euler(rotationValue), ownedByClient: false);
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
@@ -146,6 +155,7 @@ public class MasterManager : MonoBehaviour {
             panelCounter += 2;
         }
 
+        userInterfaceManager.SwitchPanelRenderLayers();
         gameSetupFinished = true;
     }
 

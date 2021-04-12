@@ -8,32 +8,37 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-public enum DrumType
-{
+public enum DrumType {
     Kick,
     Snare,
     HiHat,
     TomTom,
     Cymbal
 }
-public class NodeManager : MonoBehaviour
-{
+
+public class NodeManager : MonoBehaviour {
     public InteractionMethod interactionMethod;
     public int numberOfNodes = 4;
     private int previousNumberOfNodes;
     public float radius = 3.0f;
     public GameObject nodePrefab;
-    private List<Node> _nodes = new List<Node>();
+
+
+    public List<Node> _nodes = new List<Node>();
+    public int subNodeIndex; // the subnodes on the other panels that this nodemanager corresponds to
+    public Color drumColor { get; set; }
+    public Color defaultColor { get; set; }
+
+
     [SerializeField] private RectTransform _ryhtmIndicator;
     private float rotation = 0;
     public int bpm = 120;
     private float secondsFor360 = 1;
-    
+
     private List<int> _storedRhythm = new List<int>();
     public DrumType drumType;
-    private ScreenSync _screenSync;
-
-    [SerializeField] private Realtime _realTime;
+    
+    public ScreenSync _screenSync;
     
     public float waitingTime = 1;
     private float beatTime;
@@ -52,29 +57,27 @@ public class NodeManager : MonoBehaviour
     private List<Vector2> nodeSpawningPositions = new List<Vector2>();
 
     private PanelMaster _panelMaster;
-    
+
     private Color _inactiveHover, _activeHover;
 
-    private void Start()
-    {
-        _panelMaster = GetComponentInParent<PanelMaster>();
-        
-        Color.RGBToHSV(_panelMaster.defaultColor, out var uH, out var uS, out var uV );
+    private bool _nodeIsSetup;
+
+    public void SetUpNode() {
+        Color.RGBToHSV(defaultColor, out var uH, out var uS, out var uV);
         uV -= 0.3f;
-        Color.RGBToHSV(_panelMaster.activeColor, out var aH, out var aS, out var aV );
+        Color.RGBToHSV(drumColor, out var aH, out var aS, out var aV);
         aV -= 0.3f;
-        
+
         _inactiveHover = Color.HSVToRGB(uH, uS, uV);
         _activeHover = Color.HSVToRGB(aH, aS, aV);
 
         _inactiveHover.a = 1;
         _activeHover.a = 1;
-        
+
         previousNumberOfNodes = numberOfNodes;
-        _screenSync = GetComponentInParent<ScreenSync>();
+        // _screenSync = GetComponentInParent<ScreenSync>();
         _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = false;
-        if (RealTimeInstance.Instance.isSoloMode)
-        {
+        if (RealTimeInstance.Instance.isSoloMode) {
             SpawnNodes();
             rotation = 0;
             _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
@@ -83,8 +86,7 @@ public class NodeManager : MonoBehaviour
 
         rotation = 0;
         
-        foreach (var slider in sliders)
-        {
+        foreach (var slider in sliders) {
             slider.OnSliderChange += ChangeEffectValue;
         }
 
@@ -104,12 +106,12 @@ public class NodeManager : MonoBehaviour
         else if (drumType == DrumType.Cymbal)
             for (int i = 0; i < effects.Length; i++)
                 effectNames[i] = "Cymbol" + effects[i];
+
+        _nodeIsSetup = true;  
     }
 
-    private IEnumerator WaitUntilConnected()
-    {
-        while (true)
-        {
+    private IEnumerator WaitUntilConnected() {
+        while (true) {
             if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             yield return new WaitForEndOfFrame();
         }
@@ -119,12 +121,11 @@ public class NodeManager : MonoBehaviour
         _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
     }
 
-    private void Update()
-    {
+    private void Update() {
+        if (!_nodeIsSetup) return;
         for (int i = 0; i < levels.Length; i++) AkSoundEngine.SetRTPCValue(effectNames[i], levels[i]);
 
-        if (_screenSync.NumberOfNodes != numberOfNodes && _realTime.connected)
-        {
+        if (_screenSync.NumberOfNodes != numberOfNodes && RealTimeInstance.Instance.isConnected) {
             numberOfNodes = _screenSync.NumberOfNodes;
             if (numberOfNodes < 2) numberOfNodes = 2; // force the minimum amount of nodes to be 2
             SpawnNodes();
@@ -133,27 +134,21 @@ public class NodeManager : MonoBehaviour
         bpm = _screenSync.Bpm;
     }
 
-    private void LateUpdate()
-    {
+    private void LateUpdate() {
         // check for changes of the effects from the server side
         CheckForChangesEffects();
     }
 
-    private void CheckForChangesEffects()
-    {
+    private void CheckForChangesEffects() {
         levels[0] = sliders[0].currentValue = _screenSync.Effect1;
         levels[1] = sliders[1].currentValue = _screenSync.Effect2;
         levels[2] = sliders[2].currentValue = _screenSync.Effect3;
-        
     }
 
-    private void SpawnNodes()
-    {
+    private void SpawnNodes() {
         // if more nodes exist than is needed, delete them
-        if (_nodes.Count > numberOfNodes)
-        {
-            for (int i = numberOfNodes - 1; i < _nodes.Count; i++)
-            {
+        if (_nodes.Count > numberOfNodes) {
+            for (int i = numberOfNodes - 1; i < _nodes.Count; i++) {
                 Destroy(_nodes[i].gameObject);
                 _nodes.Remove(_nodes[i]);
             }
@@ -165,16 +160,12 @@ public class NodeManager : MonoBehaviour
         }
 
         // position all the nodes (existing nodes and to-be-created ones)
-        for (int i = 0; i < numberOfNodes; i++)
-        {
+        for (int i = 0; i < numberOfNodes; i++) {
             PositionNode(i);
         }
     }
-    
-    public void PositionNode(int i)
-    {
-      
-        
+
+    private void PositionNode(int i) {
         var radians =
             (i * 2 * Mathf.PI) / (-numberOfNodes) +
             (Mathf.PI / 2); // set them starting from 90 degrees = PI / 2 radians
@@ -185,21 +176,21 @@ public class NodeManager : MonoBehaviour
 
 
         // if the current node doesn't exist, then create one and add it to the nodes list
-        if (i >= _nodes.Count)
-        {
+        if (i >= _nodes.Count) {
             // var node = Realtime.Instantiate(nodePrefab.name, transform.position, Quaternion.identity, false, false, true, _realTime);
             var node = Instantiate(nodePrefab, transform);
+            var n = node.GetComponent<Node>();
             // node.transform.parent = transform;
             // node.transform.position = transform.position;
             node.name = "Node " + (i + 1);
-            _nodes.Add(node.GetComponent<Node>());
-            node.GetComponent<Node>().indexValue = i;
-            _screenSync._nodes.Add(node.GetComponent<Node>());
-           // node.GetComponent<Node>()._nodesVisualizer = _nodesVisualizer;
-            node.GetComponent<Node>().nodeManager = this;
+            _nodes.Add(n);
+            n.indexValue = i;
+            n._screenSync = _screenSync;
+            _screenSync._nodes.Add(n);
+            // node.GetComponent<Node>()._nodesVisualizer = _nodesVisualizer;
+            n.nodeManager = this;
 
-            _nodes[i].drumType = drumType switch
-            {
+            _nodes[i].drumType = drumType switch {
                 DrumType.Kick => DrumType.Kick,
                 DrumType.Snare => DrumType.Snare,
                 DrumType.HiHat => DrumType.HiHat,
@@ -207,21 +198,20 @@ public class NodeManager : MonoBehaviour
                 DrumType.Cymbal => DrumType.Cymbal,
                 _ => _nodes[i].drumType
             };
-            _nodes[i].interactionMethod = interactionMethod switch
-            {
+            _nodes[i].interactionMethod = interactionMethod switch {
                 InteractionMethod.contextSwitch => InteractionMethod.contextSwitch,
                 InteractionMethod.dwellFeedback => InteractionMethod.dwellFeedback,
                 InteractionMethod.spock => InteractionMethod.spock,
                 _ => _nodes[i].interactionMethod
             };
-            
-            foreach(var customButton in _nodes[i].GetComponentsInChildren<CustomButton>()) //Set up button Colors
+
+            foreach (var customButton in _nodes[i].GetComponentsInChildren<CustomButton>()) //Set up button Colors
             {
-                customButton.activeColor = _panelMaster.activeColor;
-                customButton.defaultColor = _panelMaster.defaultColor;
+                customButton.activeColor = drumColor;
+                customButton.defaultColor = defaultColor;
                 customButton.inactiveHoverColor = _inactiveHover;
                 customButton.activeHoverColor = _activeHover;
-                customButton.hintColor = _panelMaster.hintColor;
+                // customButton.hintColor = _panelMaster.hintColor;
             }
         }
 
@@ -233,9 +223,8 @@ public class NodeManager : MonoBehaviour
         text.text = (i + 1).ToString();
     }
 
-    private void FixedUpdate()
-    {
-        if (!_realTime.connected) return;
+    private void FixedUpdate() {
+        if (!RealTimeInstance.Instance.isConnected) return;
         beatTime += Time.fixedDeltaTime;
         var rpm = (float) bpm / (numberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
         var rps = rpm / 60.0f;
@@ -245,12 +234,23 @@ public class NodeManager : MonoBehaviour
         _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
     }
 
-    public void ChangeEffectValue(int index)
-    {
+    public void ChangeEffectValue(int index) {
         var sliderValue = (int) sliders[index].currentValue;
-        levels[index] = sliderValue;
+        // levels[index] = sliderValue;
         _screenSync.SetEffectValue(index, sliderValue);
         effectsChangedOnServer = false;
         print(index + " " + sliderValue);
+    }
+
+    /// <summary>
+    /// Update the subnodes when a node has been updated (activated / deactivated)
+    /// </summary>
+    /// <param name="nodeIndex">Node index that changed</param>
+    /// <param name="activated">is this subnode to be activated or deactivated?</param>
+    public void SetSubNode(int nodeIndex, bool activated) {
+        var node = _nodes[nodeIndex];
+        var subNode = node.subNodes[subNodeIndex];
+        if (activated) subNode.color = drumColor;
+        else subNode.color = defaultColor;
     }
 }

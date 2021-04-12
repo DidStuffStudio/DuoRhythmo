@@ -15,6 +15,8 @@ public class ScreenSyncTest : MonoBehaviour {
     }
 
     private void Update() {
+        if (!RealTimeInstance.Instance.isConnected) return;
+        bpm = MasterManager.Instance.bpm;
         if (bpm != _previousBpm) {
             _screenSync.SetBpm(bpm);
             _previousBpm = bpm;

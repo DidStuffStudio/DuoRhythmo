@@ -15,7 +15,6 @@ public class UI_Gaze_Button : MonoBehaviour {
     [SerializeField] private bool canConfirm;
     private bool crRunning = false;
     public bool activated;
-    public UnityEvent onActivate, onDeactivate;
     [SerializeField] private Text _text;
     [SerializeField] private String _string;
 
@@ -50,12 +49,12 @@ public class UI_Gaze_Button : MonoBehaviour {
                 cameFromButton = false;
                 if (!activated) {
                     button.SetActive();
-                    onActivate?.Invoke();
+                    MasterManager.Instance.userInterfaceManager.Solo(true);
                     activated = true;
                 }
                 else {
                     button.SetDefault();
-                    onDeactivate?.Invoke();
+                    MasterManager.Instance.userInterfaceManager.Solo(false);
                     activated = false;
                 }
 
@@ -71,13 +70,13 @@ public class UI_Gaze_Button : MonoBehaviour {
                         if (!activated) {
                             StartCoroutine(button.InteractionBreakTime());
                             button.SetActive();
-                            onActivate?.Invoke();
+                            MasterManager.Instance.userInterfaceManager.Solo(true);
                             activated = true;
                         }
                         else {
                             StartCoroutine(button.InteractionBreakTime());
                             button.SetDefault();
-                            onDeactivate?.Invoke();
+                            MasterManager.Instance.userInterfaceManager.Solo(false);
                             activated = false;
                             print("Deactivated");
                         }
@@ -104,8 +103,6 @@ public class UI_Gaze_Button : MonoBehaviour {
             activated = false;
         }
     }
-
-   
 
     private IEnumerator Window() {
         crRunning = true;

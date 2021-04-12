@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RhythmSignifier : MonoBehaviour {
     private IEnumerator OnTriggerEnter(Collider other) {
-        if (other.gameObject.layer != 6) yield return null;
+        if (!other.gameObject.CompareTag("BeatCollider")) yield break;
         var node = other.transform.GetComponentInParent<Node>();
         node.PlayDrum();
         var nodeRT = node.GetComponent<RectTransform>();
@@ -17,6 +17,7 @@ public class RhythmSignifier : MonoBehaviour {
 
     IEnumerator  OnTriggerExit(Collider other)
     {
+        if (!other.gameObject.CompareTag("BeatCollider")) yield break;
         var node = other.GetComponentInParent<Node>();
         var nodeRT = node.GetComponent<RectTransform>();
         nodeRT.position = Vector3.Lerp( nodeRT.position,new Vector3(nodeRT.position.x,nodeRT.position.y, nodeRT.position.z-10.0f), 0.1f);

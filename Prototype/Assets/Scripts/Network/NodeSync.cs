@@ -6,16 +6,12 @@ using Normal.Realtime;
 using UnityEngine;
 
 public class NodeSync : RealtimeComponent<NodeModel> {
-
-    private Realtime _realtime;
+    
     private bool _isActivated;
     private Node _node;
     public bool IsActivated => _isActivated;
     
     private void Start() {
-        // TODO: Fix this so that I don't have to find the gameobject RealTime on runtime
-        // _realtime = GameObject.Find("RealTime").GetComponent<Realtime>();
-        _realtime = RealTimeInstance.Instance.GetComponent<Realtime>();
         _node = GetComponent<Node>();
     }
 

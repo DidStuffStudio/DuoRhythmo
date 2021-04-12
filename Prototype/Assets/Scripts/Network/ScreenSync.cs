@@ -30,7 +30,11 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
     public int IndexValue => _indexValue;
 
     // setters
-    public void SetBpm(int value) => model.bpm = value;
+    public void SetBpm(int value) {
+        if(model == null) print("There is no model!!!!!!!!!");
+        if(model.bpm == null) print("there is no bpm on the modeeeelllll");
+        model.bpm = value;
+    }
     public void SetNumberOfNodes(int value) => model.numberOfNodes = value;
     public void SetIndexValue(int value) => model.indexValue = value;
 
@@ -116,6 +120,11 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
     private void Effect3DidChange(ScreenSyncModel model, int value) => _effect3 = model.effect3;
     private void Effect4DidChange(ScreenSyncModel model, int value) => _effect4 = model.effect4;
 
+
+    private void Start() {
+        // GetComponent<RealtimeView>().realtime = RealTimeInstance.Instance;
+        
+    }
 
     private void UpdateNode() {
         // beats

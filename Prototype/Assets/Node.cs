@@ -8,7 +8,6 @@ using UnityEngine.VFX;
 
 
 public class Node : MonoBehaviour {
-    public NodesVisualizer _nodesVisualizer;
     public NodeManager nodeManager;
     public int drumIndex;
     public InteractionMethod interactionMethod;
@@ -21,13 +20,14 @@ public class Node : MonoBehaviour {
 
     public int indexValue;
 
-    private ScreenSync _screenSync;
+    public ScreenSync _screenSync;
+
+    public List<Image> subNodes = new List<Image>();
     
     public bool cameFromButton;
     public AK.Wwise.Event kickEvent, snareEvent, hiHatEvent, tomTomEvent, cymbalEvent;
     private VisualEffect _vfx;
     private void Start() {
-        _screenSync = GetComponentInParent<ScreenSync>();
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         
         switch (interactionMethod) {
@@ -114,7 +114,7 @@ public class Node : MonoBehaviour {
             button.SetDefault();
             activated = false;
         }
-        //_nodesVisualizer.UpdateNode(drumIndex, indexValue, activated);
+        MasterManager.Instance.UpdateSubNodes(indexValue, activated);
     }
 
     public void PlayDrum()

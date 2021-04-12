@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 3618527402362079841}
   m_Layer: 6
   m_Name: BeatCollider
-  m_TagString: Untagged
+  m_TagString: BeatCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -688,7 +688,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f921df9e7d6d35241ae9d2d599aa4d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nodesVisualizer: {fileID: 0}
   nodeManager: {fileID: 0}
   drumIndex: 0
   interactionMethod: 0
@@ -700,6 +699,13 @@ MonoBehaviour:
   activated: 0
   canPlay: 1
   indexValue: 0
+  _screenSync: {fileID: 0}
+  subNodes:
+  - {fileID: 3819916763647728616}
+  - {fileID: 4912954338698616654}
+  - {fileID: 4515273050905676458}
+  - {fileID: 3007614547991746772}
+  - {fileID: 6056214093502456861}
   cameFromButton: 0
   kickEvent:
     idInternal: 0

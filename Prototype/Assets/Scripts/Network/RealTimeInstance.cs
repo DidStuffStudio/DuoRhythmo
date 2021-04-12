@@ -31,7 +31,7 @@ public class RealTimeInstance : MonoBehaviour {
         _realtime.didDisconnectFromRoom += DidDisconnectFromRoom;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (isSoloMode) return;
         // numberPlayers = _networkManagerSync.NumberPlayers;
@@ -45,6 +45,7 @@ public class RealTimeInstance : MonoBehaviour {
         _networkManagerSync = networkManager.GetComponent<NetworkManagerSync>();
         _networkManagerSync.PlayerConnected();
         isConnected = true;
+        MasterManager.Instance.localPlayerNumber = numberPlayers; // set this local player's player number to the current player number
     }
     
     private void DidDisconnectFromRoom(Realtime realtime) {

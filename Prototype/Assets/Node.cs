@@ -114,7 +114,7 @@ public class Node : MonoBehaviour {
             button.SetDefault();
             activated = false;
         }
-        MasterManager.Instance.UpdateSubNodes(indexValue, activated);
+        MasterManager.Instance.UpdateSubNodes(indexValue, activated, nodeManager.subNodeIndex);
     }
 
     public void PlayDrum()

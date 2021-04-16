@@ -35,7 +35,7 @@ public class MasterManager : MonoBehaviour {
     public Color[] defaultNodeColors;
 
     // nodes stuff
-    private List<NodeManager> _nodeManagers = new List<NodeManager>();
+    public List<NodeManager> _nodeManagers = new List<NodeManager>();
 
     public UserInterfaceManager userInterfaceManager;
 
@@ -133,7 +133,8 @@ public class MasterManager : MonoBehaviour {
             // set up the drum type, drum color, and default color of each nodeManager
             // var currentDrumType = Enum.GetValues(typeof(DrumType));
             // _nodeManagers[i].drumType = currentDrumType.GetValue(i) is DrumType ? (DrumType) currentDrumType.GetValue(i) : DrumType.Kick;
-            var nodeManager = nodesPanels[i].transform.GetComponentInChildren<NodeManager>();
+            var nodeManager = nodesPanels[i].transform.GetChild(0).GetChild(0).GetComponent<NodeManager>();
+            
             if (nodeManager == null) Debug.LogError(_nodeManagers[i].name + " has an error getting its NodeManager. Check that it has a NodeManager");
             _nodeManagers.Add(nodeManager);
             nodeManager._screenSync = _screenSyncs[i];
@@ -160,9 +161,9 @@ public class MasterManager : MonoBehaviour {
     }
 
     // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers
-    public void UpdateSubNodes(int node, bool activated) {
+    public void UpdateSubNodes(int node, bool activated, int nodeManagerSubNodeIndex) {
         foreach (var nodeManager in _nodeManagers) {
-            nodeManager.SetSubNode(node, activated);
+            nodeManager.SetSubNode(node, activated, nodeManagerSubNodeIndex);
         }
     }
 }

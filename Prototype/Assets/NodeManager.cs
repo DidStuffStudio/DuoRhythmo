@@ -239,7 +239,6 @@ public class NodeManager : MonoBehaviour {
         // levels[index] = sliderValue;
         _screenSync.SetEffectValue(index, sliderValue);
         effectsChangedOnServer = false;
-        print(index + " " + sliderValue);
     }
 
     /// <summary>
@@ -247,10 +246,11 @@ public class NodeManager : MonoBehaviour {
     /// </summary>
     /// <param name="nodeIndex">Node index that changed</param>
     /// <param name="activated">is this subnode to be activated or deactivated?</param>
-    public void SetSubNode(int nodeIndex, bool activated) {
+    /// <param name="subNodeIndexNumber">NodeManager index - to set the correct subNode index</param>
+    public void SetSubNode(int nodeIndex, bool activated, int subNodeIndexNumber) {
         var node = _nodes[nodeIndex];
-        var subNode = node.subNodes[subNodeIndex];
-        if (activated) subNode.color = drumColor;
+        var subNode = node.subNodes[subNodeIndexNumber];
+        if (activated) subNode.color = MasterManager.Instance.DrumColors[subNodeIndexNumber];
         else subNode.color = defaultColor;
     }
 }

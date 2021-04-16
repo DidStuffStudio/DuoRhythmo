@@ -57,6 +57,7 @@ public class MasterManager : MonoBehaviour {
         Initialize();
     }
 
+  
     private void Initialize() {
         // panels = new GameObject[numberInstruments * 2];
         // _nodeManagers = new NodeManager[numberInstruments];
@@ -165,6 +166,15 @@ public class MasterManager : MonoBehaviour {
     public void UpdateSubNodes(int node, bool activated, int nodeManagerSubNodeIndex) {
         foreach (var nodeManager in _nodeManagers) {
             nodeManager.SetSubNode(node, activated, nodeManagerSubNodeIndex);
+        }
+    }
+    
+    public void SetBPM(int value)
+    {
+        foreach (var nodeManager in _nodeManagers)
+        {
+            nodeManager.bpm = value;
+            nodeManager.sliders[3].currentValue = value;
         }
     }
 }

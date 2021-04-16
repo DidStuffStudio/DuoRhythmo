@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -389,6 +389,7 @@ MonoBehaviour:
   nodePrefab: {fileID: 6748157332143515024, guid: a1fc0a6a038313d48b38d64efb0d9456, type: 3}
   _nodes: []
   subNodeIndex: 0
+  drumText: {fileID: 8248214352146800100}
   _ryhtmIndicator: {fileID: 8248214351985109846}
   bpm: 12
   drumType: 0

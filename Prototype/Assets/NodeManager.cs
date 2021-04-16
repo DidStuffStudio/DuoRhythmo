@@ -29,7 +29,7 @@ public class NodeManager : MonoBehaviour {
     public Color drumColor { get; set; }
     public Color defaultColor { get; set; }
 
-
+    [SerializeField] private Text drumText;
     [SerializeField] private RectTransform _ryhtmIndicator;
     private float rotation = 0;
     public int bpm = 120;
@@ -86,9 +86,9 @@ public class NodeManager : MonoBehaviour {
 
         rotation = 0;
         
-        foreach (var slider in sliders) {
-            slider.OnSliderChange += ChangeEffectValue;
-        }
+       for (int i = 0; i < sliders.Length-1; i++) sliders[i].OnSliderChange += ChangeEffectValue;
+
+       sliders[3].OnSliderChange += ChangeBPM;
 
         string[] effects = {"_Effect_1", "_Effect_2", "_Effect_3"};
         if (drumType == DrumType.Kick)
@@ -110,6 +110,8 @@ public class NodeManager : MonoBehaviour {
         _nodeIsSetup = true;  
     }
 
+   
+
     private IEnumerator WaitUntilConnected() {
         while (true) {
             if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
@@ -122,7 +124,11 @@ public class NodeManager : MonoBehaviour {
     }
 
     private void Update() {
+        
         if (!_nodeIsSetup) return;
+        
+        
+        
         for (int i = 0; i < levels.Length; i++) AkSoundEngine.SetRTPCValue(effectNames[i], levels[i]);
 
         if (_screenSync.NumberOfNodes != numberOfNodes && RealTimeInstance.Instance.isConnected) {
@@ -130,8 +136,9 @@ public class NodeManager : MonoBehaviour {
             if (numberOfNodes < 2) numberOfNodes = 2; // force the minimum amount of nodes to be 2
             SpawnNodes();
         }
-
-        bpm = _screenSync.Bpm;
+        
+        //bpm = _screenSync.Bpm;
+        MasterManager.Instance.SetBPM(_screenSync.Bpm);
     }
 
     private void LateUpdate() {
@@ -163,6 +170,9 @@ public class NodeManager : MonoBehaviour {
         for (int i = 0; i < numberOfNodes; i++) {
             PositionNode(i);
         }
+        
+        drumText.text = drumType.ToString();
+        drumText.color = drumColor;
     }
 
     private void PositionNode(int i) {
@@ -234,6 +244,12 @@ public class NodeManager : MonoBehaviour {
         _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
     }
 
+    void ChangeBPM(int index)
+    {
+        var sliderValue = (int) sliders[3].currentValue;
+        _screenSync.SetBpm(sliderValue);
+    }
+    
     public void ChangeEffectValue(int index) {
         var sliderValue = (int) sliders[index].currentValue;
         // levels[index] = sliderValue;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0017162268, g: 0.0074604983, b: 0.03503433, a: 1}
+  m_IndirectSpecularColor: {r: 0.0021603943, g: 0.0054274364, b: 0.02955787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5400,10 +5400,10 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_RenderPostProcessing: 1
-  m_Antialiasing: 2
+  m_Antialiasing: 0
   m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
+  m_StopNaN: 1
+  m_Dithering: 1
   m_ClearDepth: 1
   m_AllowXRRendering: 1
   m_RequiresDepthTexture: 0
@@ -7021,6 +7021,7 @@ MonoBehaviour:
   nodePrefab: {fileID: 6748157332143515024, guid: a1fc0a6a038313d48b38d64efb0d9456, type: 3}
   _nodes: []
   subNodeIndex: 0
+  drumText: {fileID: 0}
   _ryhtmIndicator: {fileID: 981917761}
   bpm: 12
   drumType: 2
@@ -12059,6 +12060,7 @@ MonoBehaviour:
   nodePrefab: {fileID: 6748157332143515024, guid: a1fc0a6a038313d48b38d64efb0d9456, type: 3}
   _nodes: []
   subNodeIndex: 0
+  drumText: {fileID: 0}
   _ryhtmIndicator: {fileID: 1312171118}
   bpm: 12
   drumType: 3
@@ -14558,7 +14560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1065797669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18868,6 +18870,7 @@ MonoBehaviour:
   nodePrefab: {fileID: 6748157332143515024, guid: a1fc0a6a038313d48b38d64efb0d9456, type: 3}
   _nodes: []
   subNodeIndex: 0
+  drumText: {fileID: 0}
   _ryhtmIndicator: {fileID: 268505690}
   bpm: 12
   drumType: 1
@@ -20652,6 +20655,7 @@ MonoBehaviour:
   nodePrefab: {fileID: 6748157332143515024, guid: a1fc0a6a038313d48b38d64efb0d9456, type: 3}
   _nodes: []
   subNodeIndex: 0
+  drumText: {fileID: 0}
   _ryhtmIndicator: {fileID: 593915144}
   bpm: 12
   drumType: 4

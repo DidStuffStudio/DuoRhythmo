@@ -23,14 +23,15 @@ public class SliderKnob : MonoBehaviour
     private Camera _mainCamera;
     private RectTransform _knobRectTransform;
     private float _minValue, _maxValue;
+    public int maximumValue = 100, minimumValue = 0;
     
     public InteractionTechnique interactionTechnique;
     [SerializeField] private Color defaultColor, activatedColor;
     [SerializeField] private RectTransform upSignifier, downSignifier; //Smooth pursuit signifiers
     [SerializeField] private float sensitivity, offset = 20.0f, threshold = 10.0f;
     [SerializeField] private int sliderIndex; // Pass to euclidean manager to tell which slider corresponds to which effect
-    
 
+    private Text _text;
     public Transform upperLimit, lowerLimit;
     public float currentValue,previousValue;
     
@@ -52,6 +53,7 @@ public class SliderKnob : MonoBehaviour
 
     private void Start()
     {
+        _text = GetComponentInChildren<Text>();
         _mainCamera = Camera.main;
         _slider = GetComponentInParent<CustomSlider>();
         _knobImage = GetComponent<Image>();
@@ -92,7 +94,7 @@ public class SliderKnob : MonoBehaviour
             else if (!_mouseOver) OnKnobFocus?.Invoke(false);
         }
         
-        _knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(currentValue, 0,100 , _minValue, _maxValue));
+        _knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(currentValue, minimumValue,maximumValue , _minValue, _maxValue));
         
         // Mouse Delta
         if (_activated)
@@ -113,7 +115,7 @@ public class SliderKnob : MonoBehaviour
                 if (_knobRectTransform.position.y > upperLimit.position.y) _knobRectTransform.position = upperLimit.position;
 
 
-                currentValue = Map(_knobRectTransform.anchoredPosition.y, _minValue, _maxValue, 0, 100);
+                currentValue = Map(_knobRectTransform.anchoredPosition.y, _minValue, _maxValue, minimumValue, maximumValue);
                 
                 if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
                 
@@ -164,7 +166,11 @@ public class SliderKnob : MonoBehaviour
         _activated = activate;
     }
 
-    private void SliderChanged(int index) {}
+    private void SliderChanged(int index)
+    {
+        var value = (int) currentValue;
+        _text.text = value.ToString();
+    }
 
 
     private IEnumerator FadeSignifier(Image imageToFade, bool fadeIn)

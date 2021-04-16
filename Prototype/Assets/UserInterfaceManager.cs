@@ -48,21 +48,14 @@ public class UserInterfaceManager : MonoBehaviour {
 
             return;
         }
-
-        StartCoroutine(WaitUntilConnected());
     }
 
-    private IEnumerator WaitUntilConnected() {
-        while (true) {
-            if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1 &&
-                MasterManager.Instance.gameSetupFinished) break;
-            yield return new WaitForEndOfFrame();
-        }
-
+    public void SetUpInterface(){
+        
         var index = 0;
-        soloButtons = new CustomButton[MasterManager.Instance.numberInstruments];
-        foreach (var soloButton in GameObject.FindGameObjectsWithTag("SoloButton")
-        ) //Each node manager should spawn a solo button and assign itself here
+        soloButtons = new CustomButton[MasterManager.Instance.numberInstruments * 2];
+
+        foreach (var soloButton in GameObject.FindGameObjectsWithTag("SoloButton"))
         {
             soloButtons[index] = soloButton.GetComponent<CustomButton>();
             index++;
@@ -81,8 +74,8 @@ public class UserInterfaceManager : MonoBehaviour {
     public void PlayAnimation() {
         _currentRenderPanel++;
         if (_currentRenderPanel > 9) _currentRenderPanel = 0;
-        if (_currentPanel >= 4) _currentPanel = 0; //Change if adding more drums
-        else _currentPanel++;
+        _currentPanel++;
+        if (_currentPanel > 4) _currentPanel = 0; //Change if adding more drums
         Solo(false);
         _uiAnimator.speed = 1.0f;
         _playerAnimator.speed = 1.0f;
@@ -133,7 +126,7 @@ public class UserInterfaceManager : MonoBehaviour {
         else {
             foreach (var t in drumVolumeRtpcStrings) AkSoundEngine.SetRTPCValue(t, 100.0f);
 
-            // foreach (var t in soloButtons) t.SetDefault();
+            foreach (var t in soloButtons) t.SetDefault();
         }
     }
 

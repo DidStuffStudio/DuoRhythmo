@@ -17,6 +17,7 @@ public class UI_Gaze_Button : MonoBehaviour {
     public bool activated;
     [SerializeField] private Text _text;
     [SerializeField] private String _string;
+    [SerializeField] private UnityEvent OnActivation, OnDeactivation;
 
     public bool cameFromButton;
     private void Start() {
@@ -27,6 +28,7 @@ public class UI_Gaze_Button : MonoBehaviour {
 
             case InteractionMethod.dwellFeedback: {
                 confirm.gameObject.SetActive(false);
+                button.confirmScaler.GetComponent<Image>().color = button.activeColor;
                 break;
             }
         }
@@ -49,12 +51,12 @@ public class UI_Gaze_Button : MonoBehaviour {
                 cameFromButton = false;
                 if (!activated) {
                     button.SetActive();
-                    MasterManager.Instance.userInterfaceManager.Solo(true);
+                    OnActivation?.Invoke();
                     activated = true;
                 }
                 else {
                     button.SetDefault();
-                    MasterManager.Instance.userInterfaceManager.Solo(false);
+                    OnDeactivation?.Invoke();
                     activated = false;
                 }
 
@@ -70,15 +72,16 @@ public class UI_Gaze_Button : MonoBehaviour {
                         if (!activated) {
                             StartCoroutine(button.InteractionBreakTime());
                             button.SetActive();
-                            MasterManager.Instance.userInterfaceManager.Solo(true);
+                            button.confirmScaler.GetComponent<Image>().color = button.defaultColor;
+                            OnActivation?.Invoke();
                             activated = true;
                         }
                         else {
                             StartCoroutine(button.InteractionBreakTime());
                             button.SetDefault();
-                            MasterManager.Instance.userInterfaceManager.Solo(false);
+                            button.confirmScaler.GetComponent<Image>().color = button.activeColor;
+                            OnDeactivation?.Invoke();
                             activated = false;
-                            print("Deactivated");
                         }
                     }
                 }
@@ -102,6 +105,16 @@ public class UI_Gaze_Button : MonoBehaviour {
             button.SetDefault();
             activated = false;
         }
+    }
+
+    public void SoloButtonActivate(bool activate)
+    {
+        MasterManager.Instance.userInterfaceManager.Solo(activate);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
     private IEnumerator Window() {

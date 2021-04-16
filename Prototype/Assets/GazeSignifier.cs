@@ -10,12 +10,30 @@ public class GazeSignifier : MonoBehaviour {
     private Vector3 _historicPoint;
     public float filterSmoothingFactor = 0.5f;
 
-    void Update() {
-        if (!TobiiAPI.IsConnected) return;
-        GazePoint gazePoint = TobiiAPI.GetGazePoint();
-        Vector3 gazePointInWorld = ProjectToPlaneInWorld(gazePoint);
-        transform.position = Smoothify(gazePointInWorld);
+    void Update()
+    {
+        if (TobiiAPI.IsConnected)
+        {
+            GazePoint gazePoint = TobiiAPI.GetGazePoint();
+            Vector3 gazePointInWorld = ProjectToPlaneInWorld(gazePoint);
+            transform.position = Smoothify(gazePointInWorld);
+        }
+
+        else
+        {
+            Cursor.visible = false;
+            Vector3 mousePointInWorld = MouseProjectToPlaneWorld(Input.mousePosition);
+            transform.position = Smoothify(mousePointInWorld);
+        }
     }
+
+    private Vector3 MouseProjectToPlaneWorld(Vector3 mousePosition)
+    {
+        Vector3 mouseScreenPoint = new Vector2(mousePosition.x,mousePosition.y);
+        mouseScreenPoint += (transform.forward * visualizationDistance);
+        return Camera.main.ScreenToWorldPoint(mouseScreenPoint);
+    }
+    
 
     private Vector3 ProjectToPlaneInWorld(GazePoint gazePoint) {
         Vector3 gazeOnScreen = gazePoint.Screen;

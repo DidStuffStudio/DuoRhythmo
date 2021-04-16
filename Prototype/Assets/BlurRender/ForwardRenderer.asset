@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
   m_Name: RenderCurrentPanel
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     passTag: RenderCurrentPanel
     Event: 600
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e2e32e102e44abeb72209e7ce030c3, type: 3}
   m_Name: KawaseBlur
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     renderPassEvent: 500
     blurMaterial: {fileID: 2100000, guid: a00afda211f274f6ca6cce958e4e13a5, type: 2}

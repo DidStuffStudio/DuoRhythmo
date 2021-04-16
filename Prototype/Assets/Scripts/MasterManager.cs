@@ -158,6 +158,7 @@ public class MasterManager : MonoBehaviour {
 
         userInterfaceManager.SwitchPanelRenderLayers();
         gameSetupFinished = true;
+        userInterfaceManager.SetUpInterface();
     }
 
     // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers

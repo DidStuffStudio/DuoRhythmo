@@ -73,6 +73,7 @@ public class CustomButton : MonoBehaviour {
 
     public void SetDefault() {
         _image.color = defaultColor;
+        confirmScaler.GetComponent<Image>().color = activeColor;
         if (isDefault) return;
         isDefault = true;
         isActive = false;

@@ -19,7 +19,9 @@ public class RealTimeInstance : MonoBehaviour {
     public int numberPlayers;
     public bool isSoloMode = false;
 
-    private void Awake() {
+    [SerializeField] private Transform realtimeInstancesHolder;
+
+        private void Awake() {
         _instance = this;
         _realtime = GetComponent<Realtime>();
         RegisterToEvents();
@@ -34,18 +36,18 @@ public class RealTimeInstance : MonoBehaviour {
     private void LateUpdate()
     {
         if (isSoloMode) return;
-        // numberPlayers = _networkManagerSync.NumberPlayers;
-        // print("This is the number of players according to the network model: " + numberPlayers);
-        if(numberPlayers < 2) numberPlayers = GameObject.FindObjectsOfType<NetworkManagerSync>().Length;
-        // print("This is the number of players according to the amount ot NetworkManager instances: " + numberPlayers);
+        // if(numberPlayers < 2) numberPlayers = GameObject.FindObjectsOfType<NetworkManagerSync>().Length;
+        numberPlayers = realtimeInstancesHolder.childCount - 1;
     }
 
     private void DidConnectToRoom(Realtime realtime) {
         networkManager = Realtime.Instantiate(networkManagerPrefab.name, true);
+        networkManager.transform.SetParent(realtimeInstancesHolder);
         _networkManagerSync = networkManager.GetComponent<NetworkManagerSync>();
         _networkManagerSync.PlayerConnected();
         isConnected = true;
-        MasterManager.Instance.localPlayerNumber = numberPlayers; // set this local player's player number to the current player number
+        // MasterManager.Instance.numberPlayers = numberPlayers;
+        MasterManager.Instance.localPlayerNumber = numberPlayers; // set this local player's player number to the current player number (index value)
     }
     
     private void DidDisconnectFromRoom(Realtime realtime) {

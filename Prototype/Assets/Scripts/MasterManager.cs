@@ -17,8 +17,7 @@ public class MasterManager : MonoBehaviour {
             return _instance;
         }
     }
-
-    public int numberPlayers;
+    
     public int localPlayerNumber = 0;
 
     public int numberInstruments = 5;
@@ -46,6 +45,10 @@ public class MasterManager : MonoBehaviour {
 
     [SerializeField] private ScreenSync[] _screenSyncs;
     public bool gameSetupFinished = false;
+
+    [SerializeField] private Camera playerCamera;
+    [SerializeField] private Transform [] playerPositions;
+    private Vector3 previousPlayerPosition = Vector3.zero;
 
     private void Start() {
         if (_instance == null) {
@@ -94,7 +97,45 @@ public class MasterManager : MonoBehaviour {
         }
 
         print("local player number: " + localPlayerNumber);
+        SetPlayerPosition();
         InstantiatePanels();
+    }
+
+    private void SetPlayerPosition() {
+        // rotate the parent of the camera around the degrees dependant on the number of players and number of instruments
+        // players should be opposite to each other --> so differentiate between even and uneven numbers --> 180 degrees difference between them
+        
+        // degrees:
+        // player 0 --> 0
+        // player 1 --> 180
+        // player 2 --> -36
+        // player 3 --> 180 - 36 = 144
+        // player 4 --> -36 * 2 = -72
+        // player 5 --> 180 - 36 * 2 = 108
+        // ...
+        
+        // evenPlayerCounter:
+        // localPlayerNumber / 2
+
+        float degrees = 0;
+        float degreesPerPlayer = 360.0f / (numberInstruments * 2);
+        // if even player:
+        // degrees = -36 * evenPlayerNumberCounter
+        if (localPlayerNumber % 2 == 0) {
+            degrees = -degreesPerPlayer * (localPlayerNumber / 2.0f);
+            // if 0 --> degrees = -36 * (0 / 2) = -36 * 1 = 0 
+            // if 2 --> degrees = -36 * (2 / 2) = -36 * 1 = -36
+            // if 4 --> degrees = -36 * (4 / 2) = -36 * 2 = -72
+        }
+        // if uneven player:
+        // degrees = 180 - 36 * unevenPlayerNumber
+        else {
+            degrees = 180 - (degreesPerPlayer * ((localPlayerNumber - 1) / 2.0f));
+            // if 1 --> degrees = 180 - 36 * (1 - 1) / 2 = 180 - 36 * 0 = 180
+            // if 3 --> degrees = 180 - 36 * (3 - 1) / 2 = 180 - 36 * (2 / 2) = 180 - 36 = 144
+        }
+        playerCamera.transform.parent.Rotate(0, degrees, 0);
+        
     }
 
 

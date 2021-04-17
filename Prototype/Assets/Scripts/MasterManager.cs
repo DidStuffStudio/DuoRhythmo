@@ -44,11 +44,10 @@ public class MasterManager : MonoBehaviour {
     public int bpm = 280;
 
     [SerializeField] private ScreenSync[] _screenSyncs;
-    public bool gameSetupFinished = false;
-
+    [SerializeField] private GameObject timerPrefab;
+    public float timer;
+    
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private Transform [] playerPositions;
-    private Vector3 previousPlayerPosition = Vector3.zero;
 
     private void Start() {
         if (_instance == null) {
@@ -104,38 +103,14 @@ public class MasterManager : MonoBehaviour {
     private void SetPlayerPosition() {
         // rotate the parent of the camera around the degrees dependant on the number of players and number of instruments
         // players should be opposite to each other --> so differentiate between even and uneven numbers --> 180 degrees difference between them
-        
-        // degrees:
-        // player 0 --> 0
-        // player 1 --> 180
-        // player 2 --> -36
-        // player 3 --> 180 - 36 = 144
-        // player 4 --> -36 * 2 = -72
-        // player 5 --> 180 - 36 * 2 = 108
-        // ...
-        
-        // evenPlayerCounter:
-        // localPlayerNumber / 2
-
         float degrees = 0;
         float degreesPerPlayer = 360.0f / (numberInstruments * 2);
-        // if even player:
-        // degrees = -36 * evenPlayerNumberCounter
-        if (localPlayerNumber % 2 == 0) {
-            degrees = -degreesPerPlayer * (localPlayerNumber / 2.0f);
-            // if 0 --> degrees = -36 * (0 / 2) = -36 * 1 = 0 
-            // if 2 --> degrees = -36 * (2 / 2) = -36 * 1 = -36
-            // if 4 --> degrees = -36 * (4 / 2) = -36 * 2 = -72
-        }
-        // if uneven player:
-        // degrees = 180 - 36 * unevenPlayerNumber
-        else {
-            degrees = 180 - (degreesPerPlayer * ((localPlayerNumber - 1) / 2.0f));
-            // if 1 --> degrees = 180 - 36 * (1 - 1) / 2 = 180 - 36 * 0 = 180
-            // if 3 --> degrees = 180 - 36 * (3 - 1) / 2 = 180 - 36 * (2 / 2) = 180 - 36 = 144
-        }
+        // if even player --> degrees = -36 * evenPlayerNumberCounter
+        if (localPlayerNumber % 2 == 0) degrees = -degreesPerPlayer * (localPlayerNumber / 2.0f);
+        // if uneven player --> degrees = 180 - 36 * unevenPlayerNumber
+        else degrees = 180 - (degreesPerPlayer * ((localPlayerNumber - 1) / 2.0f));
+        // rotate by 60 degrees the parent of the camera around the y axis
         playerCamera.transform.parent.Rotate(0, degrees, 0);
-        
     }
 
 
@@ -202,8 +177,9 @@ public class MasterManager : MonoBehaviour {
         }
 
         userInterfaceManager.SwitchPanelRenderLayers();
-        gameSetupFinished = true;
         userInterfaceManager.SetUpInterface();
+        // only the first player that connects to the room should start the timer - and as Timer is a RealTime instance object, it updates in all clients
+        if (localPlayerNumber == 0) Realtime.Instantiate(prefabName: timerPrefab.name, ownedByClient: true);
     }
 
     // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers

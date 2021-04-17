@@ -73,9 +73,9 @@ public class UserInterfaceManager : MonoBehaviour {
 
     public void PlayAnimation() {
         _currentRenderPanel++;
-        if (_currentRenderPanel > 9) _currentRenderPanel = 0;
+        if (_currentRenderPanel > ((MasterManager.Instance.numberInstruments * 2)- 1)) _currentRenderPanel = 0;
         _currentPanel++;
-        if (_currentPanel > 4) _currentPanel = 0; //Change if adding more drums
+        if (_currentPanel > (MasterManager.Instance.numberInstruments - 1)) _currentPanel = 0;
         Solo(false);
         _uiAnimator.speed = 1.0f;
         _playerAnimator.speed = 1.0f;

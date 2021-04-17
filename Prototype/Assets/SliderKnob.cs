@@ -81,6 +81,8 @@ public class SliderKnob : MonoBehaviour
                 break;
             }
         }
+
+        currentValue = MasterManager.Instance.bpm;
     }
 
 
@@ -166,8 +168,9 @@ public class SliderKnob : MonoBehaviour
         _activated = activate;
     }
 
-    private void SliderChanged(int index)
-    {
+    private void SliderChanged(int index) => UpdateSliderText();
+
+    public void UpdateSliderText() {
         var value = (int) currentValue;
         _text.text = value.ToString();
     }

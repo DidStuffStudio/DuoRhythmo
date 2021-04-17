@@ -48,7 +48,6 @@ public class NodeManager : MonoBehaviour {
     private string[] effectNames = new string[3];
 
     public SliderKnob[] sliders = new SliderKnob[3];
-    private bool effectsChangedOnServer = false;
 
     private int previousEffectValue;
 
@@ -88,7 +87,7 @@ public class NodeManager : MonoBehaviour {
         
        for (int i = 0; i < sliders.Length-1; i++) sliders[i].OnSliderChange += ChangeEffectValue;
 
-       sliders[3].OnSliderChange += ChangeBPM;
+       sliders[3].OnSliderChange += ChangeBpm;
 
         string[] effects = {"_Effect_1", "_Effect_2", "_Effect_3"};
         if (drumType == DrumType.Kick)
@@ -138,18 +137,21 @@ public class NodeManager : MonoBehaviour {
         }
         
         //bpm = _screenSync.Bpm;
-        MasterManager.Instance.SetBPM(_screenSync.Bpm);
     }
 
     private void LateUpdate() {
         // check for changes of the effects from the server side
-        CheckForChangesEffects();
+        CheckForChangesSliders();
     }
 
-    private void CheckForChangesEffects() {
+    private void CheckForChangesSliders() {
         levels[0] = sliders[0].currentValue = _screenSync.Effect1;
         levels[1] = sliders[1].currentValue = _screenSync.Effect2;
         levels[2] = sliders[2].currentValue = _screenSync.Effect3;
+        bpm = _screenSync.Bpm;
+        sliders[3].currentValue = bpm;
+        sliders[3].UpdateSliderText();
+        // if(MasterManager.Instance.bpm != bpm) MasterManager.Instance.SetBpm(bpm);
     }
 
     private void SpawnNodes() {
@@ -244,17 +246,17 @@ public class NodeManager : MonoBehaviour {
         _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
     }
 
-    void ChangeBPM(int index)
-    {
+    void ChangeBpm(int index) {
         var sliderValue = (int) sliders[3].currentValue;
-        _screenSync.SetBpm(sliderValue);
+        bpm = sliderValue;
+        MasterManager.Instance.SetBpm(bpm);
+        // _screenSync.SetBpm(sliderValue);
     }
     
-    public void ChangeEffectValue(int index) {
+    private void ChangeEffectValue(int index) {
         var sliderValue = (int) sliders[index].currentValue;
         // levels[index] = sliderValue;
         _screenSync.SetEffectValue(index, sliderValue);
-        effectsChangedOnServer = false;
     }
 
     /// <summary>

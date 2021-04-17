@@ -42,9 +42,9 @@ public class MasterManager : MonoBehaviour {
     // public Dictionary<NodeManager, int> nodesGlossary = new Dictionary<NodeManager, int>();
     // public Dictionary<DrumType, int> subIndex = new Dictionary<DrumType, int>();
 
-    public int bpm = 0;
+    public int bpm = 280;
 
-    [SerializeField] private ScreenSync [] _screenSyncs;
+    [SerializeField] private ScreenSync[] _screenSyncs;
     public bool gameSetupFinished = false;
 
     private void Start() {
@@ -57,14 +57,14 @@ public class MasterManager : MonoBehaviour {
         Initialize();
     }
 
-  
+
     private void Initialize() {
         // panels = new GameObject[numberInstruments * 2];
         // _nodeManagers = new NodeManager[numberInstruments];
 
         nodesPanels = new GameObject[numberInstruments];
         effectsPanels = new GameObject[numberInstruments];
-        
+
         // _screenSyncs = new ScreenSync[numberInstruments];
         // DrumColors = new Color[numberInstruments];
         // defaultNodeColors = new Color[numberInstruments];
@@ -88,10 +88,11 @@ public class MasterManager : MonoBehaviour {
     private IEnumerator WaitUntilConnected() {
         while (true) {
             // if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
-            if(RealTimeInstance.Instance.isSoloMode && RealTimeInstance.Instance.isConnected) break;
+            if (RealTimeInstance.Instance.isSoloMode && RealTimeInstance.Instance.isConnected) break;
             if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             yield return new WaitForEndOfFrame();
         }
+
         print("local player number: " + localPlayerNumber);
         InstantiatePanels();
     }
@@ -116,10 +117,10 @@ public class MasterManager : MonoBehaviour {
         }
 
         panelCounter = 0;
-        
+
         // instantiate and set up nodes panels
         rotationValue = Vector3.zero;
-        
+
         var nodesPanelsGo = new GameObject("Nodes panels");
         nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
         for (int i = 0; i < nodesPanels.Length; i++) {
@@ -135,15 +136,17 @@ public class MasterManager : MonoBehaviour {
             // var currentDrumType = Enum.GetValues(typeof(DrumType));
             // _nodeManagers[i].drumType = currentDrumType.GetValue(i) is DrumType ? (DrumType) currentDrumType.GetValue(i) : DrumType.Kick;
             var nodeManager = nodesPanels[i].transform.GetChild(0).GetChild(0).GetComponent<NodeManager>();
-            
-            if (nodeManager == null) Debug.LogError(_nodeManagers[i].name + " has an error getting its NodeManager. Check that it has a NodeManager");
+
+            if (nodeManager == null)
+                Debug.LogError(_nodeManagers[i].name +
+                               " has an error getting its NodeManager. Check that it has a NodeManager");
             _nodeManagers.Add(nodeManager);
             nodeManager._screenSync = _screenSyncs[i];
             nodeManager.drumType = (DrumType) i;
             nodeManager.subNodeIndex = i;
             nodeManager.defaultColor = defaultNodeColors[i];
             nodeManager.drumColor = DrumColors[i];
-            
+
             // initialize the knob sliders for this current node manager
             var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
             nodeManager.sliders = new SliderKnob[knobs.Length];
@@ -152,7 +155,7 @@ public class MasterManager : MonoBehaviour {
             }
 
             nodeManager.SetUpNode();
-            
+
             userInterfaceManager.panels[panelCounter] = nodesPanels[i];
             panelCounter += 2;
         }
@@ -168,13 +171,14 @@ public class MasterManager : MonoBehaviour {
             nodeManager.SetSubNode(node, activated, nodeManagerSubNodeIndex);
         }
     }
-    
-    public void SetBPM(int value)
-    {
-        foreach (var nodeManager in _nodeManagers)
-        {
-            nodeManager.bpm = value;
-            nodeManager.sliders[3].currentValue = value;
+
+    public void SetBpm(int value) {
+        bpm = value;
+        foreach (var nodeManager in _nodeManagers) {
+            nodeManager.bpm = bpm;
+            // nodeManager.sliders[3].currentValue = value;
+            nodeManager._screenSync.SetBpm(bpm);
+            // nodeManager.sliders[3].UpdateSliderText();
         }
     }
 }

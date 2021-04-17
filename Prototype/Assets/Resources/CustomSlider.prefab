@@ -577,7 +577,7 @@ MonoBehaviour:
   sliderDirection: 1
   slider: {fileID: 5294159281746629980}
   knob: {fileID: 5294159281873986970}
-  currentValue: 0
+  currentValue: 280
 --- !u!1 &5294159281856798106
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40afc9a4d9afad34a9393c02b842cbf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maximumValue: 100
+  minimumValue: 0
   interactionTechnique: 0
   defaultColor: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
   activatedColor: {r: 0.8490566, g: 0.39797407, b: 0.18823424, a: 1}
@@ -757,8 +759,11 @@ MonoBehaviour:
   sensitivity: 0
   offset: 0
   threshold: 10
+  sliderIndex: 0
   upperLimit: {fileID: 5294159281326039266}
   lowerLimit: {fileID: 5294159282150710938}
+  currentValue: 0
+  previousValue: 0
 --- !u!136 &5294159281873986975
 CapsuleCollider:
   m_ObjectHideFlags: 0

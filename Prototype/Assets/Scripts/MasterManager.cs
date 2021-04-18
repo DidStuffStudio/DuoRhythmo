@@ -17,9 +17,8 @@ public class MasterManager : MonoBehaviour {
             return _instance;
         }
     }
-    
-    public int localPlayerNumber = 0;
 
+    [Header("Drums")]
     public int numberInstruments = 5;
     // private GameObject[] panels;
 
@@ -44,10 +43,21 @@ public class MasterManager : MonoBehaviour {
     public int bpm = 280;
 
     [SerializeField] private ScreenSync[] _screenSyncs;
-    [SerializeField] private GameObject timerPrefab;
-    public float timer;
     
+    [Space]
+    
+    [Header("Timer")]
+    [SerializeField] private GameObject timerPrefab;
+    [SerializeField] private GameObject timerPlaceHolder;
+    private GameObject timerGameObject;
+    public Timer timer;
+    
+    [Space]
+    
+    [Header("Player")]
     [SerializeField] private Camera playerCamera;
+    public int localPlayerNumber = 0;
+    public bool gameSetUpFinished;
 
     private void Start() {
         if (_instance == null) {
@@ -175,11 +185,20 @@ public class MasterManager : MonoBehaviour {
             userInterfaceManager.panels[panelCounter] = nodesPanels[i];
             panelCounter += 2;
         }
-
-        userInterfaceManager.SwitchPanelRenderLayers();
-        userInterfaceManager.SetUpInterface();
+        
         // only the first player that connects to the room should start the timer - and as Timer is a RealTime instance object, it updates in all clients
-        if (localPlayerNumber == 0) Realtime.Instantiate(prefabName: timerPrefab.name, ownedByClient: true);
+        if (localPlayerNumber == 0) {
+            timerGameObject = Realtime.Instantiate(prefabName: timerPrefab.name, ownedByClient: true);
+            timer = timerGameObject.GetComponent<Timer>();
+        }
+        else {
+            timerGameObject = timerPlaceHolder.transform.GetChild(0).gameObject;
+            timer = timerGameObject.GetComponent<Timer>();
+        }
+        
+        userInterfaceManager.SetUpInterface();
+        userInterfaceManager.SwitchPanelRenderLayers();
+        gameSetUpFinished = true;
     }
 
     // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers

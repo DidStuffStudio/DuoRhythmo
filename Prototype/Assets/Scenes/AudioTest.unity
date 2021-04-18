@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00020592606, g: 0.007224534, b: 0.038711827, a: 1}
+  m_IndirectSpecularColor: {r: 0.001864423, g: 0.010130373, b: 0.03080145, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5264,6 +5264,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+--- !u!1 &563879924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 563879925}
+  m_Layer: 0
+  m_Name: Timer_Place_Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &563879925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563879924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &565050213
 GameObject:
   m_ObjectHideFlags: 0
@@ -5278,7 +5308,7 @@ GameObject:
   - component: {fileID: 565050214}
   - component: {fileID: 565050218}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Player_1_Cam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18194,7 +18224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ead05a08db94df0b3741428fa9d1998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localPlayerNumber: 0
   numberInstruments: 5
   nodesPanelPrefab: {fileID: 8248214352534705530, guid: 90e38b4484ad94c7dbaa206482b915b0, type: 3}
   effectsPanelPrefab: {fileID: 5429251461579344684, guid: d9c8eeaec548a48428f9400f2978c582, type: 3}
@@ -18223,8 +18252,11 @@ MonoBehaviour:
   - {fileID: 1846019207}
   - {fileID: 1437889678}
   timerPrefab: {fileID: 8442616855387933849, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
-  timer: 0
+  timerPlaceHolder: {fileID: 563879924}
+  timer: {fileID: 0}
   playerCamera: {fileID: 565050215}
+  localPlayerNumber: 0
+  gameSetUpFinished: 0
 --- !u!4 &1590067203
 Transform:
   m_ObjectHideFlags: 0

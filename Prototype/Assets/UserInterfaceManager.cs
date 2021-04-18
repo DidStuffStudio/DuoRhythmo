@@ -30,7 +30,7 @@ public class UserInterfaceManager : MonoBehaviour {
 
     [SerializeField] private ForwardRendererData _forwardRenderer;
 
-    void Start() {
+    private void Start() {
         int i = 0;
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _uiAnimator = GetComponent<Animator>();
@@ -63,12 +63,13 @@ public class UserInterfaceManager : MonoBehaviour {
 
         startTimer = true;
     }
-
+    
     public void PauseAnimation() {
         SwitchPanelRenderLayers();
         _uiAnimator.speed = 0.0f;
         _playerAnimator.speed = 0.0f;
         startTimer = true;
+        timer = (int) MasterManager.Instance.timer.timer;
     }
 
     public void PlayAnimation() {
@@ -81,10 +82,12 @@ public class UserInterfaceManager : MonoBehaviour {
         _playerAnimator.speed = 1.0f;
         _playerAnimator.Play("PlayerCam");
         timerRunnning = false;
-        StopCoroutine(Timer());
+        // StopCoroutine(Timer());
+        if(MasterManager.Instance.localPlayerNumber == 0) MasterManager.Instance.timer.ToggleTimer(restart: false);
     }
 
     public void Update() {
+        if(!MasterManager.Instance.gameSetUpFinished) return;
         if (_timeLeft <= Time.deltaTime) {
             // transition complete
             // assign the target color
@@ -109,10 +112,12 @@ public class UserInterfaceManager : MonoBehaviour {
         }
 
         timerDisplay.text = timer.ToString();
+        timer = (int) MasterManager.Instance.timer.timer;
         if (!startTimer || timerRunnning) return;
-        timer = roundTime;
+        // timer = roundTime;
         timerRunnning = true;
-        StartCoroutine(Timer());
+        // StartCoroutine(Timer());
+        // if(MasterManager.Instance.localPlayerNumber == 0) MasterManager.Instance.timer.ToggleTimer(restart: true);
     }
 
     public void Solo(bool solo) {
@@ -154,18 +159,6 @@ public class UserInterfaceManager : MonoBehaviour {
         }
 
         
-    }
-
-    private IEnumerator Timer() {
-        while (timerRunnning) {
-            yield return new WaitForSeconds(1.0f);
-            timer--;
-
-            if (timer <= 0.0f) {
-                startTimer = false;
-                PlayAnimation();
-            }
-        }
     }
 
     private void OnEnable() {

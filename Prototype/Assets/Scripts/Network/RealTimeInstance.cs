@@ -36,7 +36,6 @@ public class RealTimeInstance : MonoBehaviour {
     private void LateUpdate()
     {
         if (isSoloMode) return;
-        // if(numberPlayers < 2) numberPlayers = GameObject.FindObjectsOfType<NetworkManagerSync>().Length;
         numberPlayers = realtimeInstancesHolder.childCount - 1;
     }
 
@@ -46,7 +45,6 @@ public class RealTimeInstance : MonoBehaviour {
         _networkManagerSync = networkManager.GetComponent<NetworkManagerSync>();
         _networkManagerSync.PlayerConnected();
         isConnected = true;
-        // MasterManager.Instance.numberPlayers = numberPlayers;
         MasterManager.Instance.localPlayerNumber = numberPlayers; // set this local player's player number to the current player number (index value)
     }
     

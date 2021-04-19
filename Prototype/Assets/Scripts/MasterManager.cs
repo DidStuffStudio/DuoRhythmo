@@ -31,6 +31,7 @@ public class MasterManager : MonoBehaviour {
     public DrumType DrumTypes;
     public Color[] DrumColors;
     public Color[] defaultNodeColors;
+    
 
     // nodes stuff
     public List<NodeManager> _nodeManagers = new List<NodeManager>();
@@ -102,7 +103,7 @@ public class MasterManager : MonoBehaviour {
         while (true) {
             // if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             if (RealTimeInstance.Instance.isSoloMode && RealTimeInstance.Instance.isConnected) break;
-            if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers >= 1) break;
+            if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             yield return new WaitForEndOfFrame();
         }
 
@@ -188,21 +189,13 @@ public class MasterManager : MonoBehaviour {
         }
         
         // only the first player that connects to the room should start the timer - and as Timer is a RealTime instance object, it updates in all clients
-        if (localPlayerNumber == 0) {
+        if (localPlayerNumber == 0)
+        {
             // _timerPlaceHolder = Realtime.Instantiate()
             timerGameObject = Realtime.Instantiate(prefabName: timerPrefab.name, ownedByClient: true);
             timer = timerGameObject.GetComponent<Timer>();
         }
-        else {
-            // timerGameObject = _timerPlaceHolder.transform.GetChild(0).gameObject;
-            // timer = timerGameObject.GetComponent<Timer>();
-            timer = GameObject.FindObjectOfType<Timer>();
-            timerGameObject = timer.gameObject;
-        }
-        
-        userInterfaceManager.SetUpInterface();
-        userInterfaceManager.SwitchPanelRenderLayers();
-        gameSetUpFinished = true;
+        else StartCoroutine(FindTimer());
     }
 
     // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers
@@ -219,6 +212,27 @@ public class MasterManager : MonoBehaviour {
             // nodeManager.sliders[3].currentValue = value;
             nodeManager._screenSync.SetBpm(bpm);
             // nodeManager.sliders[3].UpdateSliderText();
+        }
+    }
+
+    private IEnumerator FindTimer()
+    {
+        var timerFound = false;
+        while (!timerFound)
+        {
+            timer = FindObjectOfType<Timer>();
+            if (timer != null)
+            {
+                timerGameObject = timer.gameObject;
+                userInterfaceManager.SetUpInterface();
+                userInterfaceManager.SwitchPanelRenderLayers();
+                gameSetUpFinished = true;
+                timerFound = true;
+            }
+            else
+            {
+                yield return new WaitForEndOfFrame();
+            }
         }
     }
 }

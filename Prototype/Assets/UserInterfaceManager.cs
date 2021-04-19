@@ -149,6 +149,7 @@ public class UserInterfaceManager : MonoBehaviour {
         // send a ray from the middle of the camera to see which panel he's currently looking at
         var ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
         if (Physics.Raycast(ray, out var hit)) {
+            print("Hit object " + hit.transform.name);
             if (hit.collider.CompareTag("RenderTarget")) {
                 foreach (var t in hit.transform.GetComponentsInChildren<Transform>()
                 ) //Loop through children of the panel

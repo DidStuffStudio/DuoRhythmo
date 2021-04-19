@@ -10,7 +10,7 @@ using UnityEngine.PlayerLoop;
 public class RealTimeInstance : MonoBehaviour {
     private static RealTimeInstance _instance;
     public static RealTimeInstance Instance => _instance;
-    
+
     private Realtime _realtime;
     [SerializeField] private GameObject networkManagerPrefab;
     public GameObject networkManager;
@@ -19,13 +19,20 @@ public class RealTimeInstance : MonoBehaviour {
     public int numberPlayers;
     public bool isSoloMode = false;
 
-    [SerializeField] private Transform realtimeInstancesHolder;
+    [SerializeField] private GameObject realtimeInstancesHolderPrefab;
+    private Transform _realtimeInstancesHolder;
 
-        private void Awake() {
+    private void Awake() {
         _instance = this;
         _realtime = GetComponent<Realtime>();
         RegisterToEvents();
     }
+
+
+    public void JoinRoom(string roomName) {
+        _realtime.Connect(roomName: roomName);
+    }
+
 
     private void RegisterToEvents() {
         // Notify us when Realtime connects to or disconnects from the room
@@ -33,24 +40,31 @@ public class RealTimeInstance : MonoBehaviour {
         _realtime.didDisconnectFromRoom += DidDisconnectFromRoom;
     }
 
-    private void LateUpdate()
-    {
+    private void LateUpdate() {
         if (isSoloMode) return;
-        numberPlayers = realtimeInstancesHolder.childCount - 1;
+        numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length - 1;
+        // MasterManager.Instance.localPlayerNumber = numberPlayers;
+        // numberPlayers = _realtimeInstancesHolder.childCount - 1;
     }
 
     private void DidConnectToRoom(Realtime realtime) {
-        networkManager = Realtime.Instantiate(networkManagerPrefab.name, true);
-        networkManager.transform.SetParent(realtimeInstancesHolder);
-        _networkManagerSync = networkManager.GetComponent<NetworkManagerSync>();
-        _networkManagerSync.PlayerConnected();
         isConnected = true;
+        numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length - 1; // get the number of players
+        // realtime.Connect("Test room");
+        // try to find the realtime instance of the realtimeInstancesHolder. If it doesn't exist, realtimeinstantiate it. Then use this as the 
+        networkManager = Realtime.Instantiate(networkManagerPrefab.name);
+        // if(numberPlayers == 0) _realtimeInstancesHolder = Realtime.Instantiate(realtimeInstancesHolderPrefab.name).transform;
+        // _realtimeInstancesHolder = GameObject.FindWithTag("RealtimeInstancesHolder").transform;
+        // networkManager.transform.SetParent(_realtimeInstancesHolder);
+        // _networkManagerSync = networkManager.GetComponent<NetworkManagerSync>();
+        // _networkManagerSync.PlayerConnected();
+        // isConnected = true;
         MasterManager.Instance.localPlayerNumber = numberPlayers; // set this local player's player number to the current player number (index value)
     }
-    
+
     private void DidDisconnectFromRoom(Realtime realtime) {
-        _networkManagerSync.PlayerDisconnected();
-        _networkManagerSync = networkManager.GetComponent<NetworkManagerSync>();
+        // _networkManagerSync.PlayerDisconnected();
+        // _networkManagerSync = networkManager.GetComponent<NetworkManagerSync>();
         isConnected = false;
     }
 

@@ -18,8 +18,10 @@ public class UI_Gaze_Button : MonoBehaviour {
     [SerializeField] private Text _text;
     [SerializeField] private String _string;
     [SerializeField] private UnityEvent OnActivation, OnDeactivation;
+    public int drumTypeIndex;
 
     public bool cameFromButton;
+
     private void Start() {
         switch (interactionMethod) {
             case InteractionMethod.contextSwitch: {
@@ -107,13 +109,11 @@ public class UI_Gaze_Button : MonoBehaviour {
         }
     }
 
-    public void SoloButtonActivate(bool activate)
-    {
-        MasterManager.Instance.userInterfaceManager.Solo(activate);
+    public void SoloButtonActivate(bool activate) {
+        MasterManager.Instance.userInterfaceManager.Solo(activate, drumTypeIndex);
     }
 
-    public void Quit()
-    {
+    public void Quit() {
         Application.Quit();
     }
 

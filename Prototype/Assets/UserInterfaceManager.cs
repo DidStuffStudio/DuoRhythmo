@@ -25,8 +25,7 @@ public class UserInterfaceManager : MonoBehaviour {
     private static readonly int Tint = Shader.PropertyToID("_Tint");
 
 
-    public GameObject[]
-        panels = new GameObject[10]; //Put panels into array so we can change their layer to blur or render them over blur
+    public List<GameObject> panels = new List<GameObject>(); //Put panels into array so we can change their layer to blur or render them over blur
 
     [SerializeField] private ForwardRendererData _forwardRenderer;
 
@@ -77,7 +76,7 @@ public class UserInterfaceManager : MonoBehaviour {
         if (_currentRenderPanel > ((MasterManager.Instance.numberInstruments * 2)- 1)) _currentRenderPanel = 0;
         _currentPanel++;
         if (_currentPanel > (MasterManager.Instance.numberInstruments - 1)) _currentPanel = 0;
-        Solo(false);
+        Solo(false, 0);
         _uiAnimator.speed = 1.0f;
         _playerAnimator.speed = 1.0f;
         _playerAnimator.Play("PlayerCam");
@@ -120,13 +119,13 @@ public class UserInterfaceManager : MonoBehaviour {
         // if(MasterManager.Instance.localPlayerNumber == 0) MasterManager.Instance.timer.ToggleTimer(restart: true);
     }
 
-    public void Solo(bool solo) {
+    public void Solo(bool solo, int index) {
         if (solo) {
             for (int i = 0; i < drumVolumeRtpcStrings.Length; i++) {
                 AkSoundEngine.SetRTPCValue(drumVolumeRtpcStrings[i], 10.0f);
             }
 
-            AkSoundEngine.SetRTPCValue(drumVolumeRtpcStrings[_currentPanel], 100.0f);
+            AkSoundEngine.SetRTPCValue(drumVolumeRtpcStrings[index], 100.0f);
         }
         else {
             foreach (var t in drumVolumeRtpcStrings) AkSoundEngine.SetRTPCValue(t, 100.0f);
@@ -136,8 +135,8 @@ public class UserInterfaceManager : MonoBehaviour {
     }
 
     public void SwitchPanelRenderLayers() {
-        for (int i = 0; i < panels.Length; i++) //Loop through panels
-        {
+        // Loop through panels 
+        for (int i = 0; i < panels.Count; i++) {
             foreach (var transform in panels[i].GetComponentsInChildren<Transform>()
             ) //Loop through children of the panel
             {

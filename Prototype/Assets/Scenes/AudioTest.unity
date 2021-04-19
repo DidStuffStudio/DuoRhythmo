@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0011864743, g: 0.0072281184, b: 0.002802238, a: 1}
+  m_IndirectSpecularColor: {r: 0.0019168275, g: 0.00474588, b: 0.0042782854, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -312,10 +312,10 @@ MonoBehaviour:
   skybox: {fileID: 2100000, guid: f531e09e2ad2fb440b4eed7605863143, type: 2}
   drumVolumeRtpcStrings:
   - Kick_Volume
-  - TomTom_Volume
   - Snare_Volume
-  - Cymbal_Volume
   - HiHat_Volume
+  - TomTom_Volume
+  - Cymbal_Volume
   bpm: 280
   soloButtons:
   - {fileID: 0}
@@ -328,17 +328,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  panels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  panels: []
   _forwardRenderer: {fileID: 11400000, guid: 4a8e21d5c33334b11b34a596161b9360, type: 2}
 --- !u!1 &565050213
 GameObject:

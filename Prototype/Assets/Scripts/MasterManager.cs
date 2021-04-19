@@ -97,10 +97,67 @@ public class MasterManager : MonoBehaviour {
         // else StartCoroutine(WaitUntilConnected());
         if (RealTimeInstance.Instance.isSoloMode) {
             SetPlayerPosition();
-            InstantiatePanels();
+            InstantiatePanelsSoloMode();
             return;
         }
         StartCoroutine(WaitUntilConnected());
+    }
+
+    private void InstantiatePanelsSoloMode() {
+        Vector3 rotationValue = Vector3.zero;
+        var nodesPanelsGo = new GameObject("Nodes panels");
+        nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
+        var effectsPanelsGo = new GameObject("Effects panels");
+        effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
+
+        for (int i = 0; i < nodesPanels.Length; i++) {
+            nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
+            nodesPanels[i].transform.SetParent(nodesPanelsGo.transform);
+            nodesPanels[i].name = "NodesPanel_" + (DrumType) i;
+            rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1, 0);
+            effectsPanels[i] = Instantiate(effectsPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
+            effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
+            effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
+            var effectsUigazeButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
+            var nodesUigazeButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
+            foreach (var uigazeButton in effectsUigazeButtons) {
+                uigazeButton.drumTypeIndex = i;
+                break;
+            }
+            foreach (var uigazeButton in nodesUigazeButtons) {
+                uigazeButton.drumTypeIndex = i;
+                break;
+            }
+            userInterfaceManager.panels.Add(effectsPanels[i]);
+            rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1, 0);
+            var nodeManager = nodesPanels[i].GetComponentInChildren<NodeManager>();
+            if (nodeManager == null)
+                Debug.LogError(_nodeManagers[i].name +
+                               " has an error getting its NodeManager. Check that it has a NodeManager");
+            _nodeManagers.Add(nodeManager);
+            nodeManager._screenSync = _screenSyncs[i];
+            nodeManager.drumType = (DrumType) i;
+            nodeManager.subNodeIndex = i;
+            nodeManager.defaultColor = defaultNodeColors[i];
+            nodeManager.drumColor = DrumColors[i];
+
+            // initialize the knob sliders for this current node manager
+            var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
+            nodeManager.sliders = new SliderKnob[knobs.Length];
+            for (int j = 0; j < knobs.Length; j++) {
+                nodeManager.sliders[j] = knobs[j];
+            }
+
+            nodeManager.SetUpNode();
+
+            userInterfaceManager.panels.Add(nodesPanels[i]);
+        }
+        
+        timerGameObject = Instantiate(timerPrefab);
+        timer = timerGameObject.GetComponent<Timer>();
+        userInterfaceManager.SetUpInterface();
+        userInterfaceManager.SwitchPanelRenderLayers();
+        gameSetUpFinished = true;
     }
 
 

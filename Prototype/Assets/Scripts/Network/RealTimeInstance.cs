@@ -77,7 +77,7 @@ public class RealTimeInstance : MonoBehaviour {
     }
 
     private void OnApplicationQuit() {
-        _testStringSync.SetMessage("Disconnected," + MasterManager.Instance.localPlayerNumber);
+        // _testStringSync.SetMessage("Disconnected," + MasterManager.Instance.localPlayerNumber);
         // _networkManagerSync.PlayerDisconnected();
         _realtime.Disconnect();
     }

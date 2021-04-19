@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.000841386, g: 0.0023724255, b: 0.0018273892, a: 1}
+  m_IndirectSpecularColor: {r: 0.0011864743, g: 0.0072281184, b: 0.002802238, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -202,7 +202,8 @@ MonoBehaviour:
   networkManager: {fileID: 0}
   isConnected: 0
   numberPlayers: 0
-  isSoloMode: 0
+  isSoloMode: 1
+  _testStringSync: {fileID: 0}
   realtimeInstancesHolderPrefab: {fileID: 2115475420074975216, guid: dfce0e83da22aa34d8dc7023c7fa4d15, type: 3}
 --- !u!114 &320708703
 MonoBehaviour:
@@ -219,7 +220,7 @@ MonoBehaviour:
   _obsoleteAppKey: 
   _normcoreAppSettings: {fileID: 11400000, guid: b385db3c031134ad7be085ad59c0b4e4, type: 2}
   _roomToJoinOnStart: Test Room
-  _joinRoomOnStart: 1
+  _joinRoomOnStart: 0
 --- !u!4 &320708704
 Transform:
   m_ObjectHideFlags: 0

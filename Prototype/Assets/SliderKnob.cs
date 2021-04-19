@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 
@@ -82,7 +83,7 @@ public class SliderKnob : MonoBehaviour
             }
         }
 
-        currentValue = MasterManager.Instance.bpm;
+        // currentValue = MasterManager.Instance.bpm;
     }
 
 
@@ -118,6 +119,7 @@ public class SliderKnob : MonoBehaviour
 
 
                 currentValue = Map(_knobRectTransform.anchoredPosition.y, _minValue, _maxValue, minimumValue, maximumValue);
+            
                 
                 if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
                 
@@ -170,7 +172,10 @@ public class SliderKnob : MonoBehaviour
         _activated = activate;
     }
 
-    private void SliderChanged(int index) => UpdateSliderText();
+    private void SliderChanged(int index) {
+        print("The slider value of " + gameObject.name + " has changed to " + currentValue);
+        UpdateSliderText();
+    }
 
     public void UpdateSliderText() {
         var value = (int) currentValue;

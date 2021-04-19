@@ -19,6 +19,8 @@ public class RealTimeInstance : MonoBehaviour {
     public int numberPlayers;
     public bool isSoloMode = false;
 
+    [SerializeField] private TestStringSync _testStringSync; 
+    
     [SerializeField] private GameObject realtimeInstancesHolderPrefab;
     private Transform _realtimeInstancesHolder;
 
@@ -72,5 +74,11 @@ public class RealTimeInstance : MonoBehaviour {
     private void OnDisable() {
         _realtime.didConnectToRoom -= DidConnectToRoom;
         _realtime.didDisconnectFromRoom -= DidDisconnectFromRoom;
+    }
+
+    private void OnApplicationQuit() {
+        _testStringSync.SetMessage("Disconnected," + MasterManager.Instance.localPlayerNumber);
+        // _networkManagerSync.PlayerDisconnected();
+        _realtime.Disconnect();
     }
 }

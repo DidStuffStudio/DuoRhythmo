@@ -31,14 +31,20 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
 
     // setters
     public void SetBpm(int value) {
-        if(model == null) print("There is no model!!!!!!!!!");
-        if(model.bpm == null) print("there is no bpm on the modeeeelllll");
+        if(RealTimeInstance.Instance.isSoloMode) return;
         model.bpm = value;
     }
-    public void SetNumberOfNodes(int value) => model.numberOfNodes = value;
-    public void SetIndexValue(int value) => model.indexValue = value;
+    public void SetNumberOfNodes(int value) {
+        if (RealTimeInstance.Instance.isSoloMode) return;
+        model.numberOfNodes = value;
+    }
+    public void SetIndexValue(int value) {
+        if (RealTimeInstance.Instance.isSoloMode) return;
+        model.indexValue = value;
+    }
 
     public void SetEffectValue(int index, int effectValue) {
+        if(RealTimeInstance.Instance.isSoloMode) return;
         switch (index) {
             case 0:
                 _effect1 = effectValue;

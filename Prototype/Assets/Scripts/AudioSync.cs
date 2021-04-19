@@ -41,6 +41,7 @@ public class AudioSync : RealtimeComponent<AudioSyncModel> {
     }
     
     public void SetAudio(bool play) {
+        if (RealTimeInstance.Instance.isSoloMode) return;
         // Set the color on the model
         // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
         model.playAudio = play;

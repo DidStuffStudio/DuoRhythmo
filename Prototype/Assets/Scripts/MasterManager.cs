@@ -95,6 +95,11 @@ public class MasterManager : MonoBehaviour {
 
         // if (RealTimeInstance.Instance.isSoloMode && localPlayerNumber == 1) InstantiatePanels();
         // else StartCoroutine(WaitUntilConnected());
+        if (RealTimeInstance.Instance.isSoloMode) {
+            SetPlayerPosition();
+            InstantiatePanels();
+            return;
+        }
         StartCoroutine(WaitUntilConnected());
     }
 
@@ -187,20 +192,31 @@ public class MasterManager : MonoBehaviour {
             userInterfaceManager.panels[panelCounter] = nodesPanels[i];
             panelCounter += 2;
         }
-        
+
         // only the first player that connects to the room should start the timer - and as Timer is a RealTime instance object, it updates in all clients
         if (localPlayerNumber == 0)
         {
             // _timerPlaceHolder = Realtime.Instantiate()
-            timerGameObject = Realtime.Instantiate(prefabName: timerPrefab.name, ownedByClient: true);
-            timer = timerGameObject.GetComponent<Timer>();
+            if (RealTimeInstance.Instance.isSoloMode) {
+                timerGameObject = Instantiate(timerPrefab);
+                timer = timerGameObject.GetComponent<Timer>();
+                userInterfaceManager.SetUpInterface();
+                userInterfaceManager.SwitchPanelRenderLayers();
+                gameSetUpFinished = true;
+            }
+            else {
+                timerGameObject = Realtime.Instantiate(prefabName: timerPrefab.name, ownedByClient: true);
+                timer = timerGameObject.GetComponent<Timer>();
+            }
         }
         else StartCoroutine(FindTimer());
     }
 
     // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers
     public void UpdateSubNodes(int node, bool activated, int nodeManagerSubNodeIndex) {
+        print("Updating subnodes from mastermanager");
         foreach (var nodeManager in _nodeManagers) {
+            print("Updating each nodemanager's subnodes from mastermanager");
             nodeManager.SetSubNode(node, activated, nodeManagerSubNodeIndex);
         }
     }
@@ -217,6 +233,7 @@ public class MasterManager : MonoBehaviour {
 
     private IEnumerator FindTimer()
     {
+        if(RealTimeInstance.Instance.isSoloMode) yield break;
         var timerFound = false;
         while (!timerFound)
         {
@@ -234,5 +251,9 @@ public class MasterManager : MonoBehaviour {
                 yield return new WaitForEndOfFrame();
             }
         }
+    }
+
+    public void ResetLocalPlayerNumber(int disconnectedPlayerNumber) {
+        
     }
 }

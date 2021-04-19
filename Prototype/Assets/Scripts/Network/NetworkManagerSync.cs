@@ -36,12 +36,14 @@ public class NetworkManagerSync : RealtimeComponent<NetworkManagerModel>
     
 
     public void PlayerConnected() {
+        if (RealTimeInstance.Instance.isSoloMode) return;
         _numberPlayers++;
         model.numberPlayers++;
         print("A new player has connected to the server. There are now a total of: " + model.numberPlayers);
     }
 
     public void PlayerDisconnected() {
+        if (RealTimeInstance.Instance.isSoloMode) return;
         _numberPlayers--;
         model.numberPlayers--;
     }

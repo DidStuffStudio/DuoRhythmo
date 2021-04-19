@@ -42,6 +42,7 @@ public class NodeSync : RealtimeComponent<NodeModel> {
     }
 
     public void SetActive(bool value) {
+        if(RealTimeInstance.Instance.isSoloMode) return;
         print("Want to set it to " + value);
         model.nodeActivated = value;
     }

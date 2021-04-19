@@ -83,13 +83,15 @@ public class Node : MonoBehaviour {
                         if (!activated) {
                             StartCoroutine(button.InteractionBreakTime());
                             button.SetActive();
-                            _screenSync.SetIndexValue(indexValue);
+                            if(RealTimeInstance.Instance.isSoloMode) Activate(true);
+                            else _screenSync.SetIndexValue(indexValue);
                             activated = true;
                         }
                         else {
                             StartCoroutine(button.InteractionBreakTime());
                             button.SetDefault();
-                            _screenSync.SetIndexValue(indexValue);
+                            if(RealTimeInstance.Instance.isSoloMode) Activate(false);
+                            else _screenSync.SetIndexValue(indexValue);
                             activated = false;
                         }
                     }

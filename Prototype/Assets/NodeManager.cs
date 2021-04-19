@@ -145,12 +145,22 @@ public class NodeManager : MonoBehaviour {
     }
 
     private void CheckForChangesSliders() {
-        levels[0] = sliders[0].currentValue = _screenSync.Effect1;
-        levels[1] = sliders[1].currentValue = _screenSync.Effect2;
-        levels[2] = sliders[2].currentValue = _screenSync.Effect3;
-        bpm = _screenSync.Bpm;
-        sliders[3].currentValue = bpm;
-        sliders[3].UpdateSliderText();
+        if (RealTimeInstance.Instance.isSoloMode) {
+            levels[0] = sliders[0].currentValue;
+            levels[1] = sliders[1].currentValue;
+            levels[2] = sliders[2].currentValue;
+            bpm = MasterManager.Instance.bpm;
+            sliders[3].currentValue = bpm;
+            sliders[3].UpdateSliderText();
+        }
+        else {
+            levels[0] = sliders[0].currentValue = _screenSync.Effect1;
+            levels[1] = sliders[1].currentValue = _screenSync.Effect2;
+            levels[2] = sliders[2].currentValue = _screenSync.Effect3;
+            bpm = _screenSync.Bpm;
+            sliders[3].currentValue = bpm;
+            sliders[3].UpdateSliderText();
+        }
         // if(MasterManager.Instance.bpm != bpm) MasterManager.Instance.SetBpm(bpm);
     }
 
@@ -236,7 +246,7 @@ public class NodeManager : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (!RealTimeInstance.Instance.isConnected) return;
+        if (!MasterManager.Instance.gameSetUpFinished) return;
         beatTime += Time.fixedDeltaTime;
         var rpm = (float) bpm / (numberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
         var rps = rpm / 60.0f;
@@ -256,7 +266,7 @@ public class NodeManager : MonoBehaviour {
     private void ChangeEffectValue(int index) {
         var sliderValue = (int) sliders[index].currentValue;
         // levels[index] = sliderValue;
-        _screenSync.SetEffectValue(index, sliderValue);
+        if(!RealTimeInstance.Instance.isSoloMode) _screenSync.SetEffectValue(index, sliderValue);
     }
 
     /// <summary>
@@ -266,6 +276,7 @@ public class NodeManager : MonoBehaviour {
     /// <param name="activated">is this subnode to be activated or deactivated?</param>
     /// <param name="subNodeIndexNumber">NodeManager index - to set the correct subNode index</param>
     public void SetSubNode(int nodeIndex, bool activated, int subNodeIndexNumber) {
+        print("Setting subnode");
         var node = _nodes[nodeIndex];
         var subNode = node.subNodes[subNodeIndexNumber];
         if (activated) subNode.color = MasterManager.Instance.DrumColors[subNodeIndexNumber];

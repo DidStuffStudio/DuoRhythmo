@@ -21,8 +21,11 @@ public class CustomButton : MonoBehaviour {
     public RectTransform confirmScalerRT;
     public float interactionBreakTime = 1.0f;
     private bool _canHover = true;
+    
 
-    private void Start() {
+    private void Start()
+    {
+        
         confirmScalerRT = confirmScaler.GetComponent<RectTransform>();
         _gazeAware = GetComponent<GazeAware>();
         _image = GetComponent<Image>();
@@ -37,12 +40,15 @@ public class CustomButton : MonoBehaviour {
         else if (!mouseOver) UnHover();
     }
 
-    private void OnMouseOver() {
+    private void OnMouseOver()
+    {
+        if(gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         mouseOver = true;
         Hover();
     }
 
     private void OnMouseExit() {
+        if(gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         mouseOver = false;
         UnHover();
     }
@@ -56,7 +62,7 @@ public class CustomButton : MonoBehaviour {
     }
 
     private void Hover() {
-        if (!_canHover) return;
+        if (!_canHover || gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         if (isActive) _image.color = activeHoverColor;
         else _image.color = inactiveHoverColor;
         if (isHover) return;

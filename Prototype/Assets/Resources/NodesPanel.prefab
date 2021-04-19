@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 8248214353105484815}
   - component: {fileID: 8248214353105484813}
   m_Layer: 0
-  m_Name: Kick
+  m_Name: DrumPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionMethod: 1
-  numberOfNodes: 12
+  numberOfNodes: 16
   radius: 200
   nodePrefab: {fileID: 6748157332143515024, guid: a1fc0a6a038313d48b38d64efb0d9456, type: 3}
   _nodes: []

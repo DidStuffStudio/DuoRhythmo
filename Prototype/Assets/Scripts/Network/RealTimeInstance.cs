@@ -42,24 +42,25 @@ public class RealTimeInstance : MonoBehaviour {
 
     private void LateUpdate() {
         if (isSoloMode) return;
-        numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length - 1;
+        numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length;
         // MasterManager.Instance.localPlayerNumber = numberPlayers;
         // numberPlayers = _realtimeInstancesHolder.childCount - 1;
     }
 
-    private void DidConnectToRoom(Realtime realtime) {
+    private void DidConnectToRoom(Realtime realtime)
+    {
         isConnected = true;
-        numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length - 1; // get the number of players
+        networkManager = Realtime.Instantiate(networkManagerPrefab.name);
+        numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
         // realtime.Connect("Test room");
         // try to find the realtime instance of the realtimeInstancesHolder. If it doesn't exist, realtimeinstantiate it. Then use this as the 
-        networkManager = Realtime.Instantiate(networkManagerPrefab.name);
         // if(numberPlayers == 0) _realtimeInstancesHolder = Realtime.Instantiate(realtimeInstancesHolderPrefab.name).transform;
         // _realtimeInstancesHolder = GameObject.FindWithTag("RealtimeInstancesHolder").transform;
         // networkManager.transform.SetParent(_realtimeInstancesHolder);
         // _networkManagerSync = networkManager.GetComponent<NetworkManagerSync>();
         // _networkManagerSync.PlayerConnected();
         // isConnected = true;
-        MasterManager.Instance.localPlayerNumber = numberPlayers; // set this local player's player number to the current player number (index value)
+        MasterManager.Instance.localPlayerNumber = numberPlayers - 1; // set this local player's player number to the current player number (index value)
     }
 
     private void DidDisconnectFromRoom(Realtime realtime) {

@@ -147,11 +147,13 @@ public class SliderKnob : MonoBehaviour
 
     private void OnMouseOver() //Mouse hover
     {
+        if (gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         _mouseOver = true;
         OnKnobFocus?.Invoke(true);
     }
 
     private void OnMouseExit() {
+        if (gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         _mouseOver = false;
         OnKnobFocus?.Invoke(false);
     }

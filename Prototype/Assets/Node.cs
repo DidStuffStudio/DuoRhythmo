@@ -7,116 +7,46 @@ using UnityEngine.UI;
 using UnityEngine.VFX;
 
 
-public class Node : MonoBehaviour {
+public class Node : CustomButton {
     public NodeManager nodeManager;
     public int drumIndex;
-    public InteractionMethod interactionMethod;
     public DrumType drumType;
-    public CustomButton button, confirm;
-    public float confirmWindow = 2.0f;
-    [SerializeField] private bool canConfirm;
     private bool _crRunning = false;
-    public bool activated, canPlay=true;
+    public bool canPlay=true;
 
     public int indexValue;
 
     public ScreenSync _screenSync;
 
     public List<Image> subNodes = new List<Image>();
-    
-    public bool cameFromButton;
+
     public AK.Wwise.Event kickEvent, snareEvent, hiHatEvent, tomTomEvent, cymbalEvent;
     private VisualEffect _vfx;
-    private void Start() {
+
+    protected override void Start()
+    {
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
+        base.Start();
+    }
+    
+
+    public void Activate() {
         
-        switch (interactionMethod) {
-            case InteractionMethod.contextSwitch: {
-                break;
-            }
-
-            case InteractionMethod.dwellFeedback: {
-                confirm.gameObject.SetActive(false);
-                break;
-            }
-        }
-    }
-
-    private void Update() {
-        switch (interactionMethod) {
-            case InteractionMethod.contextSwitch: {
-                if (button.isHover) {
-                    canConfirm = true;
-                    confirm.ConfirmActivation(true);
-                    cameFromButton = true;
-                }
-                else if (!_crRunning) StartCoroutine(Window());
-
-                if (!confirm.isHover || !cameFromButton) return;
-
-                cameFromButton = false;
-                if (!activated) {
-                    button.SetActive();
-                    _screenSync.SetIndexValue(indexValue);
-                    activated = true;
-                }
-                else {
-                    button.SetDefault();
-                    _screenSync.SetIndexValue(indexValue);
-                    activated = false;
-                }
-
-
-                break;
-            }
-            case InteractionMethod.dwellFeedback: {
-                if (button.isHover)
-                {
-
-                    if (button.isActive) button.confirmScaler.GetComponent<Image>().color = button.defaultColor;
-                    else button.confirmScaler.GetComponent<Image>().color = button.activeColor;
-                    
-                    if (button.confirmScalerRT.localScale.x < 1.0f)
-                        button.confirmScalerRT.localScale += Vector3.one / 100;
-                    else {
-                        button.confirmScalerRT.localScale = Vector3.zero;
-                        if (!activated) {
-                            StartCoroutine(button.InteractionBreakTime());
-                            button.SetActive();
-                            if(RealTimeInstance.Instance.isSoloMode) Activate(true);
-                            else _screenSync.SetIndexValue(indexValue);
-                            activated = true;
-                        }
-                        else {
-                            StartCoroutine(button.InteractionBreakTime());
-                            button.SetDefault();
-                            if(RealTimeInstance.Instance.isSoloMode) Activate(false);
-                            else _screenSync.SetIndexValue(indexValue);
-                            activated = false;
-                        }
-                    }
-                }
-
-                else {
-                    if (button.confirmScalerRT.localScale.x < 0.0f) return;
-                    button.confirmScalerRT.localScale -= Vector3.one / 100;
-                }
-
-                break;
-            }
-        }
-    }
-
-    public void Activate(bool setActive) {
         if (!activated) {
-            button.SetActive();
+            SetActive();
             activated = true;
         }
         else {
-            button.SetDefault();
+            SetDefault();
             activated = false;
         }
         MasterManager.Instance.UpdateSubNodes(indexValue, activated, nodeManager.subNodeIndex);
+    }
+
+    protected override void SetActive()
+    {
+        base.SetActive();
+        MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
     public void PlayDrum()
@@ -157,13 +87,5 @@ public class Node : MonoBehaviour {
             else run = false;
         }
     }
-
-
-    private IEnumerator Window() {
-        _crRunning = true;
-        yield return new WaitForSeconds(confirmWindow);
-        canConfirm = false;
-        confirm.ConfirmActivation(false);
-        _crRunning = false;
-    }
+    
 }

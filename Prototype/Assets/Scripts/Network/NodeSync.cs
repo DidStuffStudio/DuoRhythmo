@@ -38,7 +38,7 @@ public class NodeSync : RealtimeComponent<NodeModel> {
     private void UpdateNode() => _isActivated = model.nodeActivated;
     private void ActivationDidChange(NodeModel model, bool value) {
         _isActivated = model.nodeActivated;
-        _node.Activate(value);
+        _node.Activate();
     }
 
     public void SetActive(bool value) {

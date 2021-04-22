@@ -1,5 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &154080378687086326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 583094921379488201}
+  - component: {fileID: 4803243806069824903}
+  - component: {fileID: 5354183539882797030}
+  m_Layer: 5
+  m_Name: ConfirmScaler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &583094921379488201
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154080378687086326}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 5294159281873986970}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 33.4, y: 33.4}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4803243806069824903
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154080378687086326}
+  m_CullTransparentMesh: 1
+--- !u!114 &5354183539882797030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154080378687086326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300004, guid: 5462c1a1a3f15004295288cf9d66c3d2, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &5294159281009350874
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5294159281225389496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -449,7 +524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5294159281512441785
 RectTransform:
   m_ObjectHideFlags: 0
@@ -491,7 +566,6 @@ GameObject:
   - component: {fileID: 5294159281746629980}
   - component: {fileID: 5294159281746629982}
   - component: {fileID: 5294159281746629981}
-  - component: {fileID: 5294159281746629983}
   m_Layer: 5
   m_Name: CustomSlider
   m_TagString: Untagged
@@ -562,22 +636,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5294159281746629983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5294159281746629979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da273291868a08a40a28907bc5d584a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sliderDirection: 1
-  slider: {fileID: 5294159281746629980}
-  knob: {fileID: 5294159281873986970}
-  currentValue: 280
 --- !u!1 &5294159281856798106
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,7 +748,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 583094921379488201}
   m_Father: {fileID: 5294159281746629980}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -749,16 +808,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40afc9a4d9afad34a9393c02b842cbf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDefault: 0
+  isHover: 0
+  isActive: 0
+  isHint: 0
+  isConfirmationButton: 0
+  defaultColor: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
+  inactiveHoverColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
+  activeColor: {r: 0.55026037, g: 0.7830189, b: 0.46168566, a: 1}
+  hintColor: {r: 0, g: 0, b: 0, a: 0}
+  activeHoverColor: {r: 0.33249998, g: 0.475, b: 0.28025, a: 1}
+  confirmScaler: {fileID: 154080378687086326}
+  mouseOver: 0
+  interactionBreakTime: 1
+  OnActivation:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeactivation:
+    m_PersistentCalls:
+      m_Calls: []
+  activated: 0
+  _slider: {fileID: 5294159281746629980}
   maximumValue: 100
   minimumValue: 0
-  interactionTechnique: 0
-  defaultColor: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
-  activatedColor: {r: 0.8490566, g: 0.39797407, b: 0.18823424, a: 1}
-  upSignifier: {fileID: 5294159282481153638}
-  downSignifier: {fileID: 5294159281225389496}
-  sensitivity: 0
-  offset: 0
-  threshold: 10
   sliderIndex: 0
   upperLimit: {fileID: 5294159281326039266}
   lowerLimit: {fileID: 5294159282150710938}
@@ -1004,7 +1076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5294159282481153638
 RectTransform:
   m_ObjectHideFlags: 0

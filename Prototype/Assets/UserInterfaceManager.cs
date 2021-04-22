@@ -21,7 +21,7 @@ public class UserInterfaceManager : MonoBehaviour {
 
     [SerializeField] private String[] drumVolumeRtpcStrings = new string[5];
     public int bpm = 120;
-    public CustomButton [] soloButtons;
+    public UI_Gaze_Button [] soloButtons;
     private static readonly int Tint = Shader.PropertyToID("_Tint");
 
 
@@ -41,7 +41,7 @@ public class UserInterfaceManager : MonoBehaviour {
             foreach (var soloButton in GameObject.FindGameObjectsWithTag("SoloButton")
             ) //Each euclidean manager should spawn a solo button and assign itself here
             {
-                soloButtons[index] = soloButton.GetComponent<CustomButton>();
+                soloButtons[index] = soloButton.GetComponent<UI_Gaze_Button>();
                 index++;
             }
 
@@ -52,11 +52,11 @@ public class UserInterfaceManager : MonoBehaviour {
     public void SetUpInterface(){
         
         var index = 0;
-        soloButtons = new CustomButton[MasterManager.Instance.numberInstruments * 2];
+        soloButtons = new UI_Gaze_Button[MasterManager.Instance.numberInstruments * 2];
 
         foreach (var soloButton in GameObject.FindGameObjectsWithTag("SoloButton"))
         {
-            soloButtons[index] = soloButton.GetComponent<CustomButton>();
+            soloButtons[index] = soloButton.GetComponent<UI_Gaze_Button>();
             index++;
         }
 
@@ -130,7 +130,7 @@ public class UserInterfaceManager : MonoBehaviour {
         else {
             foreach (var t in drumVolumeRtpcStrings) AkSoundEngine.SetRTPCValue(t, 100.0f);
 
-            foreach (var t in soloButtons) t.SetDefault();
+            foreach (var t in soloButtons) t.Deactivate();
         }
     }
 
@@ -148,7 +148,6 @@ public class UserInterfaceManager : MonoBehaviour {
         // send a ray from the middle of the camera to see which panel he's currently looking at
         var ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
         if (Physics.Raycast(ray, out var hit)) {
-            print("Hit object " + hit.transform.name);
             if (hit.collider.CompareTag("RenderTarget")) {
                 foreach (var t in hit.transform.GetComponentsInChildren<Transform>()
                 ) //Loop through children of the panel

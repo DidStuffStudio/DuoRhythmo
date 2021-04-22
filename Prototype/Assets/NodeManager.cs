@@ -17,9 +17,8 @@ public enum DrumType {
 }
 
 public class NodeManager : MonoBehaviour {
-    public InteractionMethod interactionMethod;
+    
     public int numberOfNodes = 4;
-    private int previousNumberOfNodes;
     public float radius = 3.0f;
     public GameObject nodePrefab;
 
@@ -34,14 +33,10 @@ public class NodeManager : MonoBehaviour {
     private float rotation = 0;
     public int bpm = 120;
     private float secondsFor360 = 1;
-
-    private List<int> _storedRhythm = new List<int>();
+    
     public DrumType drumType;
     
     public ScreenSync _screenSync;
-    
-    public float waitingTime = 1;
-    private float beatTime;
 
     [Range(0.0f, 100.0f)] [SerializeField] private float[] levels = new float[3];
 
@@ -72,8 +67,7 @@ public class NodeManager : MonoBehaviour {
 
         _inactiveHover.a = 1;
         _activeHover.a = 1;
-
-        previousNumberOfNodes = numberOfNodes;
+        
         // _screenSync = GetComponentInParent<ScreenSync>();
         _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = false;
         if (RealTimeInstance.Instance.isSoloMode) {
@@ -220,12 +214,6 @@ public class NodeManager : MonoBehaviour {
                 DrumType.Cymbal => DrumType.Cymbal,
                 _ => _nodes[i].drumType
             };
-            _nodes[i].interactionMethod = interactionMethod switch {
-                InteractionMethod.contextSwitch => InteractionMethod.contextSwitch,
-                InteractionMethod.dwellFeedback => InteractionMethod.dwellFeedback,
-                InteractionMethod.spock => InteractionMethod.spock,
-                _ => _nodes[i].interactionMethod
-            };
 
             foreach (var customButton in _nodes[i].GetComponentsInChildren<CustomButton>()) //Set up button Colors
             {
@@ -241,13 +229,12 @@ public class NodeManager : MonoBehaviour {
         rt.localRotation = Quaternion.Euler(0, 0, i * (360.0f / -numberOfNodes));
         rt.anchoredPosition = spawnPos;
         rt.localScale = Vector3.one;
-        var text = _nodes[i].transform.GetChild(0).GetChild(0).GetComponent<Text>();
+        var text = _nodes[i].transform.GetComponentInChildren<Text>();
         text.text = (i + 1).ToString();
     }
 
     private void FixedUpdate() {
         if (!MasterManager.Instance.gameSetUpFinished) return;
-        beatTime += Time.fixedDeltaTime;
         var rpm = (float) bpm / (numberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
         var rps = rpm / 60.0f;
         var revolutionsPerWaitingSeconds = rps * Time.fixedDeltaTime; //Convert to revolutions per millisecond

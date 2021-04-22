@@ -158,7 +158,7 @@ public class MasterManager : MonoBehaviour {
         timerGameObject = Instantiate(timerPrefab);
         timer = timerGameObject.GetComponent<Timer>();
         userInterfaceManager.SetUpInterface();
-        userInterfaceManager.SwitchPanelRenderLayers();
+        StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
         gameSetUpFinished = true;
     }
 

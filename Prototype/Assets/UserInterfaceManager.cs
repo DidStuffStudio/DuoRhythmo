@@ -28,6 +28,7 @@ public class UserInterfaceManager : MonoBehaviour {
     public List<GameObject> panels = new List<GameObject>(); //Put panels into array so we can change their layer to blur or render them over blur
 
     [SerializeField] private ForwardRendererData _forwardRenderer;
+    private bool isRenderingAPanel = false;
 
     private void Start() {
         int i = 0;
@@ -64,7 +65,7 @@ public class UserInterfaceManager : MonoBehaviour {
     }
     
     public void PauseAnimation() {
-        SwitchPanelRenderLayers();
+        StartCoroutine(SwitchPanelRenderLayers());
         _uiAnimator.speed = 0.0f;
         _playerAnimator.speed = 0.0f;
         startTimer = true;
@@ -134,7 +135,7 @@ public class UserInterfaceManager : MonoBehaviour {
         }
     }
 
-    public void SwitchPanelRenderLayers() {
+    public IEnumerator SwitchPanelRenderLayers() {
         // Loop through panels 
         for (int i = 0; i < panels.Count; i++) {
             foreach (var transform in panels[i].GetComponentsInChildren<Transform>()
@@ -145,19 +146,31 @@ public class UserInterfaceManager : MonoBehaviour {
             }
         }
         
-        // send a ray from the middle of the camera to see which panel he's currently looking at
-        var ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
-        if (Physics.Raycast(ray, out var hit)) {
-            if (hit.collider.CompareTag("RenderTarget")) {
-                foreach (var t in hit.transform.GetComponentsInChildren<Transform>()
-                ) //Loop through children of the panel
+        isRenderingAPanel = false;
+
+        while (!isRenderingAPanel)
+        {
+            // send a ray from the middle of the camera to see which panel he's currently looking at
+            var ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
+            if (Physics.Raycast(ray, out var hit))
+            {
+                if (hit.collider.CompareTag("RenderTarget"))
                 {
-                    t.gameObject.layer = LayerMask.NameToLayer("RenderPanel"); //Set current panel to render over blur
+                    foreach (var t in hit.transform.GetComponentsInChildren<Transform>()
+                    ) //Loop through children of the panel
+                    {
+                        t.gameObject.layer =
+                            LayerMask.NameToLayer("RenderPanel"); //Set current panel to render over blur
+                    }
+
+                    isRenderingAPanel = true;
                 }
             }
+            
+            yield return new WaitForSeconds(0.1f);
         }
 
-        
+
     }
 
     private void OnEnable() {

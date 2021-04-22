@@ -105,16 +105,15 @@ public class SliderKnob : CustomButton
             _confirmScalerRT.localScale -= Vector3.one / MasterManager.Instance.dwellTimeSpeed;
         }
     }
-    
 
-    protected override void OnMouseExit()
+    protected override void UnHover()
     {
-        base.OnMouseExit();
+        base.UnHover();
         mouseOver = false;
         activated = false;
         SetDefault();
     }
-    
+
 
     private void SliderChanged(int index) {
        

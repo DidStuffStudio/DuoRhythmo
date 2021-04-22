@@ -35,5 +35,10 @@ public class UI_Gaze_Button : CustomButton {
     public void Quit() {
         Application.Quit();
     }
-    
+
+    public void ChangeDwellSpeed()
+    {
+        MasterManager.Instance.dwellTimeSpeed = localDwellTimeSpeed;
+    }
+
 }

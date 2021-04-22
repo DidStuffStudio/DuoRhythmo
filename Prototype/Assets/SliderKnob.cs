@@ -91,7 +91,7 @@ public class SliderKnob : CustomButton
     {
         if (isHover && !activated) {
             if (_confirmScalerRT.localScale.x < 1.0f)
-                _confirmScalerRT.localScale += Vector3.one / dwellTimeSpeed;
+                _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
             else {
                 _confirmScalerRT.localScale = Vector3.zero;
                 SetActive();
@@ -102,7 +102,7 @@ public class SliderKnob : CustomButton
 
         else {
             if (_confirmScalerRT.localScale.x < 0.0f) return;
-            _confirmScalerRT.localScale -= Vector3.one / dwellTimeSpeed;
+            _confirmScalerRT.localScale -= Vector3.one / MasterManager.Instance.dwellTimeSpeed;
         }
     }
     

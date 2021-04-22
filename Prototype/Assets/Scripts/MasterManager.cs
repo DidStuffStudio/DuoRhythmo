@@ -31,6 +31,8 @@ public class MasterManager : MonoBehaviour {
     public DrumType DrumTypes;
     public Color[] DrumColors;
     public Color[] defaultNodeColors;
+
+    public float dwellTimeSpeed = 100.0f;
     
 
     // nodes stuff

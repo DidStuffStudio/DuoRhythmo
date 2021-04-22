@@ -25,7 +25,8 @@ public class CustomButton : MonoBehaviour {
     public UnityEvent OnActivation, OnDeactivation;
     public bool activated;
     protected bool _usingEyeTracking;
-    protected float dwellTimeSpeed = 100.0f;
+    public float localDwellTimeSpeed = 100.0f;
+    [SerializeField] private bool isDwellTimeSetter; 
     
 
     protected virtual void Start()
@@ -53,7 +54,11 @@ public class CustomButton : MonoBehaviour {
     {
         if (isHover) {
             if (_confirmScalerRT.localScale.x < 1.0f)
-                _confirmScalerRT.localScale += Vector3.one / dwellTimeSpeed;
+                if (!isDwellTimeSetter)
+                    _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
+                else
+                    _confirmScalerRT.localScale += Vector3.one / localDwellTimeSpeed;
+                
             else {
                 _confirmScalerRT.localScale = Vector3.zero;
                 if (!activated) {
@@ -75,7 +80,10 @@ public class CustomButton : MonoBehaviour {
 
         else {
             if (_confirmScalerRT.localScale.x < 0.0f) return;
-            _confirmScalerRT.localScale -= Vector3.one / dwellTimeSpeed;
+            if (!isDwellTimeSetter)
+                _confirmScalerRT.localScale -= Vector3.one / MasterManager.Instance.dwellTimeSpeed;
+            else
+                _confirmScalerRT.localScale -= Vector3.one / localDwellTimeSpeed;
         }
     }
     protected virtual void OnMouseOver()

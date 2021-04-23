@@ -22,7 +22,9 @@ public class UserInterfaceManager : MonoBehaviour {
     [SerializeField] private String[] drumVolumeRtpcStrings = new string[5];
     public int bpm = 120;
     public UI_Gaze_Button [] soloButtons;
+    public DwellSpeedButton[] dwellSpeedButtons;
     private static readonly int Tint = Shader.PropertyToID("_Tint");
+    [SerializeField] private int numberOfDwellSpeeds;
 
 
     public List<GameObject> panels = new List<GameObject>(); //Put panels into array so we can change their layer to blur or render them over blur
@@ -31,23 +33,30 @@ public class UserInterfaceManager : MonoBehaviour {
     private bool isRenderingAPanel = false;
 
     private void Start() {
-        int i = 0;
+       
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _uiAnimator = GetComponent<Animator>();
         _uiAnimator.speed = 0.0f;
         _playerAnimator.speed = 0.0f;
-        if (RealTimeInstance.Instance.isSoloMode) {
-            startTimer = true;
-            var index = 0;
-            foreach (var soloButton in GameObject.FindGameObjectsWithTag("SoloButton")
-            ) //Each euclidean manager should spawn a solo button and assign itself here
-            {
-                soloButtons[index] = soloButton.GetComponent<UI_Gaze_Button>();
-                index++;
-            }
+        //if (RealTimeInstance.Instance.isSoloMode) {
+        //    startTimer = true;
+        //    var index = 0;
+        //    soloButtons = new UI_Gaze_Button[MasterManager.Instance.numberInstruments * 2];
+        //    foreach (var soloButton in GameObject.FindGameObjectsWithTag("SoloButton")
+        //    ) //Each euclidean manager should spawn a solo button and assign itself here
+        //    {
+        //        soloButtons[index] = soloButton.GetComponent<UI_Gaze_Button>();
+        //        index++;
+        //    }
+        //    index = 0;
+        //    dwellSpeedButtons = new DwellSpeedButton[MasterManager.Instance.numberInstruments * 2 * numberOfDwellSpeeds];
+        //    foreach (var dwellSpeedButton in GameObject.FindGameObjectsWithTag("DwellSpeedButton"))
+        //    {
+        //        dwellSpeedButtons[index] = dwellSpeedButton.GetComponent<DwellSpeedButton>();
+        //    }
 
-            return;
-        }
+        //    return;
+        //}
     }
 
     public void SetUpInterface(){
@@ -58,6 +67,13 @@ public class UserInterfaceManager : MonoBehaviour {
         foreach (var soloButton in GameObject.FindGameObjectsWithTag("SoloButton"))
         {
             soloButtons[index] = soloButton.GetComponent<UI_Gaze_Button>();
+            index++;
+        }
+        index = 0;
+        dwellSpeedButtons = new DwellSpeedButton[MasterManager.Instance.numberInstruments * 2 * numberOfDwellSpeeds];
+        foreach (var dwellSpeedButton in GameObject.FindGameObjectsWithTag("DwellSpeedButton"))
+        {
+            dwellSpeedButtons[index] = dwellSpeedButton.GetComponent<DwellSpeedButton>();
             index++;
         }
 

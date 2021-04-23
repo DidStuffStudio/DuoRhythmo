@@ -61,19 +61,20 @@ public class CustomButton : MonoBehaviour {
                 
             else {
                 _confirmScalerRT.localScale = Vector3.zero;
-                if (!activated) {
+             
+                if (!isActive) { 
                     StartCoroutine(InteractionBreakTime());
                     SetActive();
                     confirmScaler.GetComponent<Image>().color = defaultColor;
                     OnActivation?.Invoke();
-                    activated = true;
+                  
                 }
                 else {
                     StartCoroutine(InteractionBreakTime());
                     SetDefault();
                     confirmScaler.GetComponent<Image>().color = activeColor;
                     OnDeactivation?.Invoke();
-                    activated = false;
+               
                 }
             }
         }

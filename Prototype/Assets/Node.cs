@@ -11,7 +11,7 @@ public class Node : CustomButton {
     public NodeManager nodeManager;
     public int drumIndex;
     public DrumType drumType;
-    private bool _crRunning = false;
+
     public bool canPlay=true;
 
     public int indexValue;
@@ -32,15 +32,15 @@ public class Node : CustomButton {
 
     public void Activate() {
         
-        if (!activated) {
+        if (!isActive) {
             SetActive();
-            activated = true;
+           
         }
         else {
             SetDefault();
-            activated = false;
+           
         }
-        MasterManager.Instance.UpdateSubNodes(indexValue, activated, nodeManager.subNodeIndex);
+        MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
     protected override void SetActive()
@@ -49,9 +49,15 @@ public class Node : CustomButton {
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
+    protected override void SetDefault()
+    {
+        base.SetDefault();
+        MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
+    }
+
     public void PlayDrum()
     {
-        if (!activated || !canPlay) return;
+        if (!isActive || !canPlay) return;
         
         StartCoroutine(AudioVFX());
         

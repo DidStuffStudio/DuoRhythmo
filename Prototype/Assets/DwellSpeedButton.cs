@@ -53,7 +53,6 @@ public class DwellSpeedButton : CustomButton
 
     protected override void SetActive()
     {
-        MasterManager.Instance.DeactivateDwellButtons();
         base.SetActive();
         isDwellActive = true;
     }

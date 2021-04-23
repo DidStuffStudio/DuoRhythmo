@@ -26,8 +26,8 @@ public class Player : MonoBehaviour {
                 this.pairedPlayer = player;
                 // start the coroutine to place the user in the correct position based on the current timer
                 // StartCoroutine(WaitToPositionCamera());
-                // rotate aaccordingly
-                // transform.Rotate(0, MasterManager.Instance.playerCamera.transform.rotation.y ,0);
+                // rotate accordingly
+                transform.Rotate(0, MasterManager.Instance.playerCamera.transform.rotation.y ,0);
             }
             break;
         }

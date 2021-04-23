@@ -45,18 +45,16 @@ public class Node : CustomButton {
 
     protected override void SetActive()
     {
+        if (!RealTimeInstance.Instance.isSoloMode) _screenSync.SetIndexValue(indexValue);
         base.SetActive();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
-        if (RealTimeInstance.Instance.isSoloMode) return;
-        _screenSync.SetIndexValue(indexValue);
     }
 
     protected override void SetDefault()
     {
+        if (!RealTimeInstance.Instance.isSoloMode) _screenSync.SetIndexValue(indexValue);
         base.SetDefault();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
-        if (RealTimeInstance.Instance.isSoloMode) return;
-        _screenSync.SetIndexValue(indexValue);
     }
 
     public void PlayDrum()

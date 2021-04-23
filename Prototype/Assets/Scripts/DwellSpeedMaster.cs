@@ -5,7 +5,9 @@ using UnityEngine;
 public class DwellSpeedMaster : MonoBehaviour
 {
     
-    DwellSpeedButton[] _dwellSpeedButton = new DwellSpeedButton[5];
+    
+    
+    public DwellSpeedButton[] _dwellSpeedButton = new DwellSpeedButton[5];
 
     private int activeButton; 
     void Start()
@@ -13,7 +15,7 @@ public class DwellSpeedMaster : MonoBehaviour
         _dwellSpeedButton[3].activateOnStart = true;
     }
     
-    void Update()
+    public void UpdateButtons()
     {
         activeButton = isItActive();
         

@@ -11,13 +11,14 @@ public class DwellSpeedButton : CustomButton
     [SerializeField] private String _string;
     public bool activateOnStart;
     public bool isDwellActive;
-    
+
+    [SerializeField] private DwellSpeedMaster _dwellSpeedMaster;
     
 
     protected override void Start()
     {
         base.Start();
-        _text.text = _string;
+        //_text.text = _string;
         if (activateOnStart) SetActive();
     }
 
@@ -53,7 +54,8 @@ public class DwellSpeedButton : CustomButton
 
     protected override void SetActive()
     {
-        MasterManager.Instance.DeactivateDwellButtons();
+
+        _dwellSpeedMaster.UpdateButtons();
         base.SetActive();
         isDwellActive = true;
     }

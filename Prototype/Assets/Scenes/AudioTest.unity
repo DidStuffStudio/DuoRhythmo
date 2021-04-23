@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00045533464, g: 0.0048257094, b: 0.010657774, a: 1}
+  m_IndirectSpecularColor: {r: 0.0016034137, g: 0.0103509445, b: 0.015406555, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -313,6 +313,83 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &66137184
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197379696657073084, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_Name
+      value: SettingsDropdown
+      objectReference: {fileID: 0}
+    - target: {fileID: 3800059697366849109, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: localDwellTimeSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012552843372088515, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138183886783309161, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: localDwellTimeSpeed
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336786357655590173, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: localDwellTimeSpeed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8774049006991494951, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: localDwellTimeSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
 --- !u!1 &191775306
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +814,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  dwellSpeedButtons: []
+  numberOfDwellSpeeds: 0
   panels: []
   _forwardRenderer: {fileID: 11400000, guid: 4a8e21d5c33334b11b34a596161b9360, type: 2}
 --- !u!1 &565050213
@@ -7279,11 +7358,11 @@ MonoBehaviour:
   nodesPanels: []
   effectsPanels: []
   drumColors:
-  - {r: 0.42745098, g: 0.7058824, b: 0.34509805, a: 1}
-  - {r: 0.81960785, g: 0.23529412, b: 0.23529412, a: 1}
-  - {r: 0.93333334, g: 0.92156863, b: 0.32156864, a: 1}
-  - {r: 0.8784314, g: 0.5137255, b: 0.15294118, a: 1}
-  - {r: 0.20392157, g: 0.28627452, b: 0.7529412, a: 1}
+  - {r: 0, g: 0.8430972, b: 1, a: 1}
+  - {r: 0.3882353, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.44031495, b: 0, a: 1}
+  - {r: 0.74272823, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.8064977, b: 0, a: 1}
   defaultNodeColors:
   - {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
   - {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
@@ -7305,8 +7384,8 @@ MonoBehaviour:
   playerCamera: {fileID: 565050215}
   Players: []
   positionSpeed: 10
-  playerStartPosition: {fileID: 525941752}
-  playerPositionDestination: {fileID: 258635028}
+  playerStartPosition: {fileID: 0}
+  playerPositionDestination: {fileID: 0}
   localPlayerNumber: 0
   gameSetUpFinished: 0
 --- !u!4 &1590067203

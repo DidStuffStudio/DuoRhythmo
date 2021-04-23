@@ -1,7 +1,6 @@
-using System;
+using Normal.Realtime;
 using System.Collections;
 using System.Collections.Generic;
-using Normal.Realtime;
 using UnityEngine;
 
 public class MasterManager : MonoBehaviour {
@@ -187,6 +186,7 @@ public class MasterManager : MonoBehaviour {
         // Vector3 playerParentPos = playerParent.position;
         // Quaternion playerParentRot = playerParent.rotation;
         playerCamera.transform.parent.Rotate(0, degrees, 0);
+        userInterfaceManager.SwitchPanelRenderLayers();
     }
 
     private IEnumerator WaitToPositionPlayer() {
@@ -292,7 +292,7 @@ public class MasterManager : MonoBehaviour {
             if (timer != null) {
                 timerGameObject = timer.gameObject;
                 userInterfaceManager.SetUpInterface();
-                userInterfaceManager.SwitchPanelRenderLayers();
+                
                 
                 
                 gameSetUpFinished = true;

@@ -47,12 +47,16 @@ public class Node : CustomButton {
     {
         base.SetActive();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
+        if (RealTimeInstance.Instance.isSoloMode) return;
+        _screenSync.SetIndexValue(indexValue);
     }
 
     protected override void SetDefault()
     {
         base.SetDefault();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
+        if (RealTimeInstance.Instance.isSoloMode) return;
+        _screenSync.SetIndexValue(indexValue);
     }
 
     public void PlayDrum()

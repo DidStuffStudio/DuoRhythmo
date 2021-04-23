@@ -15,7 +15,7 @@ public class CustomButton : MonoBehaviour {
     private Image _image;
     private Collider _collider;
 
-    public bool isDefault, isHover, isActive, isHint, isConfirmationButton;
+    public bool isDefault = true, isHover, isActive, isHint, isConfirmationButton;
     public Color defaultColor, inactiveHoverColor, activeColor, hintColor, activeHoverColor;
     public GameObject confirmScaler;
     public bool mouseOver;
@@ -36,7 +36,8 @@ public class CustomButton : MonoBehaviour {
         _gazeAware = GetComponent<GazeAware>();
         _image = GetComponent<Image>();
         _collider = GetComponent<Collider>();
-        SetDefault();
+        _image.color = defaultColor;
+        confirmScaler.GetComponent<Image>().color = activeColor;
         if (isConfirmationButton) ConfirmActivation(false);
     }
 

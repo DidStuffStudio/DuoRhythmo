@@ -9,7 +9,10 @@ public class DwellSpeedButton : CustomButton
 
     [SerializeField] private Text _text;
     [SerializeField] private String _string;
-    [SerializeField] private bool activateOnStart;
+    public bool activateOnStart;
+    public bool isDwellActive;
+    
+    
 
     protected override void Start()
     {
@@ -52,11 +55,13 @@ public class DwellSpeedButton : CustomButton
     {
         MasterManager.Instance.DeactivateDwellButtons();
         base.SetActive();
+        isDwellActive = true;
     }
 
 
     public void ChangeDwellSpeed()
     {
         MasterManager.Instance.dwellTimeSpeed = localDwellTimeSpeed;
+        
     }
 }

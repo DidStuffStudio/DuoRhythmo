@@ -75,9 +75,9 @@ public class TestStringSync : RealtimeComponent<TestString> {
         }
     }
 
-    private void OnEnable() {
-        if(RealTimeInstance.Instance.isSoloMode) {
-            Destroy(GetComponent<RealtimeView>());
-        }
-    }
+    // private void OnEnable() {
+    //     if(RealTimeInstance.Instance.isSoloMode) {
+    //         Destroy(GetComponent<RealtimeView>());
+    //     }
+    // }
 }

@@ -203,13 +203,17 @@ public class MasterManager : MonoBehaviour {
         // instantiate and set up effects panels
         var effectsPanelsGo = new GameObject("Effects panels");
         effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
+        nodesPanels = new GameObject[numberInstruments];
+        effectsPanels = new GameObject[numberInstruments];
+        
         Vector3 rotationValue = new Vector3(0, 180.0f, 0);
         for (int i = 0; i < effectsPanels.Length; i++) {
             effectsPanels[i] = Instantiate(effectsPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
             effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
             effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
-            userInterfaceManager.panels[panelCounter] = effectsPanels[i];
+            userInterfaceManager.panels.Add(effectsPanels[i]);
+            // userInterfaceManager.panels[panelCounter] = effectsPanels[i];
             panelCounter += 2;
         }
 
@@ -249,23 +253,18 @@ public class MasterManager : MonoBehaviour {
 
             nodeManager.SetUpNode();
 
-            userInterfaceManager.panels[panelCounter] = nodesPanels[i];
+            userInterfaceManager.panels.Add(nodesPanels[i]);
+            // userInterfaceManager.panels[panelCounter] = nodesPanels[i];
             panelCounter += 2;
         }
 
         // only the first player that connects to the room should start the timer - and as Timer is a RealTime instance object, it updates in all clients
         if (localPlayerNumber == 0) {
-            if (RealTimeInstance.Instance.isSoloMode) {
-                timerGameObject = Instantiate(timerPrefab);
-                timer = timerGameObject.GetComponent<Timer>();
-                userInterfaceManager.SetUpInterface();
-                userInterfaceManager.SwitchPanelRenderLayers();
-                gameSetUpFinished = true;
-            }
-            else {
                 timerGameObject = Realtime.Instantiate(prefabName: timerPrefab.name, ownedByClient: true);
                 timer = timerGameObject.GetComponent<Timer>();
-            }
+                userInterfaceManager.SetUpInterface();
+                StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
+                gameSetUpFinished = true;
         }
         else StartCoroutine(FindTimer());
     }

@@ -38,25 +38,6 @@ public class UserInterfaceManager : MonoBehaviour {
         _uiAnimator = GetComponent<Animator>();
         _uiAnimator.speed = 0.0f;
         _playerAnimator.speed = 0.0f;
-        //if (RealTimeInstance.Instance.isSoloMode) {
-        //    startTimer = true;
-        //    var index = 0;
-        //    soloButtons = new UI_Gaze_Button[MasterManager.Instance.numberInstruments * 2];
-        //    foreach (var soloButton in GameObject.FindGameObjectsWithTag("SoloButton")
-        //    ) //Each euclidean manager should spawn a solo button and assign itself here
-        //    {
-        //        soloButtons[index] = soloButton.GetComponent<UI_Gaze_Button>();
-        //        index++;
-        //    }
-        //    index = 0;
-        //    dwellSpeedButtons = new DwellSpeedButton[MasterManager.Instance.numberInstruments * 2 * numberOfDwellSpeeds];
-        //    foreach (var dwellSpeedButton in GameObject.FindGameObjectsWithTag("DwellSpeedButton"))
-        //    {
-        //        dwellSpeedButtons[index] = dwellSpeedButton.GetComponent<DwellSpeedButton>();
-        //    }
-
-        //    return;
-        //}
     }
 
     public void SetUpInterface(){
@@ -69,14 +50,6 @@ public class UserInterfaceManager : MonoBehaviour {
             soloButtons[index] = soloButton.GetComponent<UI_Gaze_Button>();
             index++;
         }
-        index = 0;
-        dwellSpeedButtons = new DwellSpeedButton[MasterManager.Instance.numberInstruments * 2 * numberOfDwellSpeeds];
-        foreach (var dwellSpeedButton in GameObject.FindGameObjectsWithTag("DwellSpeedButton"))
-        {
-            dwellSpeedButtons[index] = dwellSpeedButton.GetComponent<DwellSpeedButton>();
-            index++;
-        }
-
         startTimer = true;
     }
     

@@ -1,12 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Text;
-using Normal.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
-using Object = UnityEngine.Object;
 
 public enum DrumType {
     Kick,
@@ -17,7 +12,6 @@ public enum DrumType {
 }
 
 public class NodeManager : MonoBehaviour {
-    
     public int numberOfNodes = 4;
     public float radius = 3.0f;
     public GameObject nodePrefab;
@@ -33,9 +27,9 @@ public class NodeManager : MonoBehaviour {
     private float rotation = 0;
     public int bpm = 120;
     private float secondsFor360 = 1;
-    
+
     public DrumType drumType;
-    
+
     public ScreenSync _screenSync;
 
     [Range(0.0f, 100.0f)] [SerializeField] private float[] levels = new float[3];
@@ -67,7 +61,7 @@ public class NodeManager : MonoBehaviour {
 
         _inactiveHover.a = 1;
         _activeHover.a = 1;
-        
+
         // _screenSync = GetComponentInParent<ScreenSync>();
         _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = false;
         if (RealTimeInstance.Instance.isSoloMode) {
@@ -78,10 +72,10 @@ public class NodeManager : MonoBehaviour {
         else StartCoroutine(WaitUntilConnected());
 
         rotation = 0;
-        
-       for (int i = 0; i < sliders.Length-1; i++) sliders[i].OnSliderChange += ChangeEffectValue;
 
-       sliders[3].OnSliderChange += ChangeBpm;
+        for (int i = 0; i < sliders.Length - 1; i++) sliders[i].OnSliderChange += ChangeEffectValue;
+
+        sliders[3].OnSliderChange += ChangeBpm;
 
         string[] effects = {"_Effect_1", "_Effect_2", "_Effect_3"};
         if (drumType == DrumType.Kick)
@@ -100,10 +94,8 @@ public class NodeManager : MonoBehaviour {
             for (int i = 0; i < effects.Length; i++)
                 effectNames[i] = "Cymbol" + effects[i];
 
-        _nodeIsSetup = true;  
+        _nodeIsSetup = true;
     }
-
-   
 
     private IEnumerator WaitUntilConnected() {
         while (true) {
@@ -117,11 +109,9 @@ public class NodeManager : MonoBehaviour {
     }
 
     private void Update() {
-        
         if (!_nodeIsSetup) return;
-        
-        
-        
+
+
         for (int i = 0; i < levels.Length; i++) AkSoundEngine.SetRTPCValue(effectNames[i], levels[i]);
 
         if (_screenSync.NumberOfNodes != numberOfNodes && RealTimeInstance.Instance.isConnected) {
@@ -129,7 +119,7 @@ public class NodeManager : MonoBehaviour {
             if (numberOfNodes < 2) numberOfNodes = 2; // force the minimum amount of nodes to be 2
             SpawnNodes();
         }
-        
+
         //bpm = _screenSync.Bpm;
     }
 
@@ -155,6 +145,7 @@ public class NodeManager : MonoBehaviour {
             sliders[3].currentValue = bpm;
             sliders[3].UpdateSliderText();
         }
+
         // if(MasterManager.Instance.bpm != bpm) MasterManager.Instance.SetBpm(bpm);
     }
 
@@ -176,7 +167,7 @@ public class NodeManager : MonoBehaviour {
         for (int i = 0; i < numberOfNodes; i++) {
             PositionNode(i);
         }
-        
+
         drumText.text = drumType.ToString();
         drumText.color = drumColor;
     }
@@ -249,11 +240,11 @@ public class NodeManager : MonoBehaviour {
         MasterManager.Instance.SetBpm(bpm);
         // _screenSync.SetBpm(sliderValue);
     }
-    
+
     private void ChangeEffectValue(int index) {
         var sliderValue = (int) sliders[index].currentValue;
         // levels[index] = sliderValue;
-        if(!RealTimeInstance.Instance.isSoloMode) _screenSync.SetEffectValue(index, sliderValue);
+        if (!RealTimeInstance.Instance.isSoloMode) _screenSync.SetEffectValue(index, sliderValue);
     }
 
     /// <summary>
@@ -266,7 +257,7 @@ public class NodeManager : MonoBehaviour {
         print("Setting subnode");
         var node = _nodes[nodeIndex];
         var subNode = node.subNodes[subNodeIndexNumber];
-        if (activated) subNode.color = MasterManager.Instance.DrumColors[subNodeIndexNumber];
+        if (activated) subNode.color = MasterManager.Instance.drumColors[subNodeIndexNumber];
         else subNode.color = defaultColor;
     }
 }

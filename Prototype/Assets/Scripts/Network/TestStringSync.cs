@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Normal.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,11 @@ public class TestStringSync : RealtimeComponent<TestString> {
     private string _previousMessage;
 
     [SerializeField] private Text networkInfo;
+
+    public struct MessageTypes {
+        public const string NUM_PLAYERS = "NumberPlayers,";
+        public const string DISCONNECTED = "Disconnected,";
+    }
 
     protected override void OnRealtimeModelReplaced(TestString previousModel, TestString currentModel) {
         if (previousModel != null) {
@@ -40,11 +46,19 @@ public class TestStringSync : RealtimeComponent<TestString> {
     private void MessageDidChange(TestString model, string value) {
         _message = model.message;
         print("The message has changed to: " + _message);
-        if (_message.Contains("Disconnected")) {
-            var disconnectedPlayerNumber = _message.Split(',')[1];
+        if (_message.Contains(MessageTypes.DISCONNECTED)) {
+            var disconnectedPlayerNumber = Int32.Parse(_message.Split(',')[1]);
             // MasterManager.Instance.ResetLocalPlayerNumber(disconnectedPlayerNumber);
-            realtime.Disconnect();
-            networkInfo.text = "Player " + disconnectedPlayerNumber + " has disconnected. Quitting application";
+            // realtime.Disconnect();
+            // networkInfo.text = "Player " + disconnectedPlayerNumber + " has disconnected. Quitting application";
+            if (MasterManager.Instance.localPlayerNumber > disconnectedPlayerNumber) MasterManager.Instance.localPlayerNumber--;
+        }
+
+        if (_message.Contains(MessageTypes.NUM_PLAYERS)) {
+            // split the string
+            var numPlayers = Int32.Parse(_message.Split(',')[1]);
+            print("The number of players has changed from the server to: " + numPlayers);
+            RealTimeInstance.Instance.numberPlayers = numPlayers;
         }
     }
     

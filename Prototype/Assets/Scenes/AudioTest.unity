@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0012295535, g: 0.013007553, b: 0.014209484, a: 1}
+  m_IndirectSpecularColor: {r: 0.00045533464, g: 0.0048257094, b: 0.010657774, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -358,6 +358,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &258635027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 258635028}
+  m_Layer: 0
+  m_Name: PlayerPosDestination
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &258635028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258635027}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.91, z: -408}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1905188876}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &288718819
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +619,36 @@ Transform:
   m_Father: {fileID: 740535873}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -288, z: 0}
+--- !u!1 &525941751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 525941752}
+  m_Layer: 0
+  m_Name: PlayerStartPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &525941752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525941751}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1100, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1905188876}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &530605012
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +797,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 1000
+  far clip plane: 2000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -763,7 +823,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565050213}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5.91, z: -408}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7007,11 +7067,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42010fec73b36c5479403cbd2563a971, type: 3}
---- !u!4 &1363002798 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8610787387254243625, guid: 42010fec73b36c5479403cbd2563a971, type: 3}
-  m_PrefabInstance: {fileID: 1363002797}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1437889675
 GameObject:
   m_ObjectHideFlags: 0
@@ -7223,34 +7278,35 @@ MonoBehaviour:
   effectsPanelPrefab: {fileID: 5429251461579344684, guid: d9c8eeaec548a48428f9400f2978c582, type: 3}
   nodesPanels: []
   effectsPanels: []
-  DrumTypes: 0
-  DrumColors:
-  - {r: 0.57606506, g: 0.7735849, b: 0.4707191, a: 1}
-  - {r: 0.8018868, g: 0.4501157, b: 0.5003779, a: 1}
-  - {r: 0.77254903, g: 0.74666333, b: 0.47058824, a: 1}
-  - {r: 0.47058824, g: 0.74149656, b: 0.77254903, a: 1}
-  - {r: 0.77254903, g: 0.47058824, b: 0.74450713, a: 1}
+  drumColors:
+  - {r: 0.42745098, g: 0.7058824, b: 0.34509805, a: 1}
+  - {r: 0.81960785, g: 0.23529412, b: 0.23529412, a: 1}
+  - {r: 0.93333334, g: 0.92156863, b: 0.32156864, a: 1}
+  - {r: 0.8784314, g: 0.5137255, b: 0.15294118, a: 1}
+  - {r: 0.20392157, g: 0.28627452, b: 0.7529412, a: 1}
   defaultNodeColors:
-  - {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
-  - {r: 0.7764706, g: 0.7764706, b: 0.7764706, a: 1}
-  - {r: 0.7764706, g: 0.7764706, b: 0.7764706, a: 1}
-  - {r: 0.7764706, g: 0.7764706, b: 0.7764706, a: 1}
-  - {r: 0.7764706, g: 0.7764706, b: 0.7764706, a: 1}
-  dwellTimeSpeed: 100
+  - {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
+  - {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
+  - {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
+  - {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
+  - {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
   _nodeManagers: []
+  dwellTimeSpeed: 100
   userInterfaceManager: {fileID: 530605015}
-  bpm: 280
   _screenSyncs:
   - {fileID: 2097733663}
   - {fileID: 1694568392}
   - {fileID: 1775356923}
   - {fileID: 1846019207}
   - {fileID: 1437889678}
+  bpm: 280
   timerPrefab: {fileID: 8442616855387933849, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
-  timerPlaceHolderPrefab: {fileID: 8610787387254243624, guid: 42010fec73b36c5479403cbd2563a971, type: 3}
-  _timerPlaceHolder: {fileID: 1363002798}
   timer: {fileID: 0}
   playerCamera: {fileID: 565050215}
+  Players: []
+  positionSpeed: 10
+  playerStartPosition: {fileID: 525941752}
+  playerPositionDestination: {fileID: 258635028}
   localPlayerNumber: 0
   gameSetUpFinished: 0
 --- !u!4 &1590067203
@@ -7848,6 +7904,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 565050216}
+  - {fileID: 258635028}
+  - {fileID: 525941752}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

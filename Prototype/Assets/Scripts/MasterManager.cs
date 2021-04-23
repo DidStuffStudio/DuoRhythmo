@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Normal.Realtime;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class MasterManager : MonoBehaviour {
@@ -18,48 +17,40 @@ public class MasterManager : MonoBehaviour {
         }
     }
 
-    [Header("Drums")]
+    [Header("Drums")] 
     public int numberInstruments = 5;
-    // private GameObject[] panels;
-
     [SerializeField] private GameObject nodesPanelPrefab;
     [SerializeField] private GameObject effectsPanelPrefab;
 
     public GameObject[] nodesPanels;
     public GameObject[] effectsPanels;
 
-    public DrumType DrumTypes;
-    public Color[] DrumColors;
+    public Color[] drumColors;
     public Color[] defaultNodeColors;
-
-    public float dwellTimeSpeed = 100.0f;
-    
 
     // nodes stuff
     public List<NodeManager> _nodeManagers = new List<NodeManager>();
-
+    public float dwellTimeSpeed = 100.0f;
+    
     public UserInterfaceManager userInterfaceManager;
 
-    // public Dictionary<NodeManager, int> nodesGlossary = new Dictionary<NodeManager, int>();
-    // public Dictionary<DrumType, int> subIndex = new Dictionary<DrumType, int>();
-
-    public int bpm = 280;
-
     [SerializeField] private ScreenSync[] _screenSyncs;
-    
-    [Space]
-    
-    [Header("Timer")]
+
+    [Space] [Header("Timer")]
+    public int bpm = 280;
     [SerializeField] private GameObject timerPrefab;
-    [SerializeField] private GameObject timerPlaceHolderPrefab;
-    [SerializeField] private Transform _timerPlaceHolder;
     private GameObject timerGameObject;
     public Timer timer;
-    
-    [Space]
-    
-    [Header("Player")]
-    [SerializeField] private Camera playerCamera;
+
+    [Space] [Header("Player")] 
+    public Camera playerCamera;
+    public List<Player> Players = new List<Player>();
+    private Transform _playerPosition;
+    private float startTime, journeyLength;
+    [SerializeField] private float positionSpeed = 10.0f;
+    [SerializeField] private Transform playerStartPosition, playerPositionDestination;
+    private bool _canPositionPlayer = false;
+
     public int localPlayerNumber = 0;
     public bool gameSetUpFinished;
 
@@ -67,23 +58,27 @@ public class MasterManager : MonoBehaviour {
         if (_instance == null) {
             _instance = this;
             // make instance persistent across scenes
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
 
         Initialize();
     }
 
+    private void Update() {
+        if (_canPositionPlayer && !RealTimeInstance.Instance.isSoloMode) {
+            // Distance moved equals elapsed time times speed..
+            float distCovered = (Time.time - startTime) * positionSpeed;
+            // Fraction of journey completed equals current distance divided by total distance.
+            float fractionOfJourney = distCovered / journeyLength;
+            var playerCameraTransform = playerCamera.transform;
+            playerCamera.transform.position = Vector3.Lerp(playerCameraTransform.position, playerPositionDestination.position, fractionOfJourney);
+            playerCamera.transform.rotation = Quaternion.Lerp(playerCameraTransform.rotation, playerPositionDestination.rotation, fractionOfJourney);
+        }
+    }
 
     private void Initialize() {
-        // panels = new GameObject[numberInstruments * 2];
-        // _nodeManagers = new NodeManager[numberInstruments];
-
         nodesPanels = new GameObject[numberInstruments];
         effectsPanels = new GameObject[numberInstruments];
-
-        // _screenSyncs = new ScreenSync[numberInstruments];
-        // DrumColors = new Color[numberInstruments];
-        // defaultNodeColors = new Color[numberInstruments];
 
         // create the rotations for the panels -->  (360.0f / (numberInstruments * 2) * -1)  degrees difference between each other in the Y axis
         Vector3[] panelRotations = new Vector3[10]; // number of instruments * 2
@@ -92,16 +87,16 @@ public class MasterManager : MonoBehaviour {
         for (int i = 0; i < panelRotations.Length; i++) {
             panelRotations[i] = new Vector3(0, i * rotationValue, 0);
         }
-
+        
         // TODO: Set the size of the panels' canvas (radius distance to the origin point)
-
-        // if (RealTimeInstance.Instance.isSoloMode && localPlayerNumber == 1) InstantiatePanels();
-        // else StartCoroutine(WaitUntilConnected());
+        
         if (RealTimeInstance.Instance.isSoloMode) {
             SetPlayerPosition();
             InstantiatePanelsSoloMode();
             return;
         }
+        // position player at the top view
+        playerCamera.transform.position = playerStartPosition.position;
         StartCoroutine(WaitUntilConnected());
     }
 
@@ -126,10 +121,12 @@ public class MasterManager : MonoBehaviour {
                 uigazeButton.drumTypeIndex = i;
                 break;
             }
+
             foreach (var uigazeButton in nodesUigazeButtons) {
                 uigazeButton.drumTypeIndex = i;
                 break;
             }
+
             userInterfaceManager.panels.Add(effectsPanels[i]);
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1, 0);
             var nodeManager = nodesPanels[i].GetComponentInChildren<NodeManager>();
@@ -141,7 +138,7 @@ public class MasterManager : MonoBehaviour {
             nodeManager.drumType = (DrumType) i;
             nodeManager.subNodeIndex = i;
             nodeManager.defaultColor = defaultNodeColors[i];
-            nodeManager.drumColor = DrumColors[i];
+            nodeManager.drumColor = drumColors[i];
 
             // initialize the knob sliders for this current node manager
             var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
@@ -154,7 +151,7 @@ public class MasterManager : MonoBehaviour {
 
             userInterfaceManager.panels.Add(nodesPanels[i]);
         }
-        
+
         timerGameObject = Instantiate(timerPrefab);
         timer = timerGameObject.GetComponent<Timer>();
         userInterfaceManager.SetUpInterface();
@@ -185,10 +182,20 @@ public class MasterManager : MonoBehaviour {
         if (localPlayerNumber % 2 == 0) degrees = -degreesPerPlayer * (localPlayerNumber / 2.0f);
         // if uneven player --> degrees = 180 - 36 * unevenPlayerNumber
         else degrees = 180 - (degreesPerPlayer * ((localPlayerNumber - 1) / 2.0f));
-        // rotate by 60 degrees the parent of the camera around the y axis
+        // rotate the parent of the camera by the number of degrees around the y axis
+        // Transform playerParent = playerCamera.transform.parent;
+        // Vector3 playerParentPos = playerParent.position;
+        // Quaternion playerParentRot = playerParent.rotation;
         playerCamera.transform.parent.Rotate(0, degrees, 0);
     }
 
+    private IEnumerator WaitToPositionPlayer() {
+        while (timer.timer >= 3.0f) {
+            yield return new WaitForEndOfFrame();
+        }
+
+        _canPositionPlayer = true;
+    }
 
     // call this method when the players have connected
     private void InstantiatePanels() {
@@ -201,8 +208,6 @@ public class MasterManager : MonoBehaviour {
             effectsPanels[i] = Instantiate(effectsPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
             effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
             effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
-            // effectsPanels[i] = Realtime.Instantiate(effectsPanelPrefab.name, transform.position,
-            //    Quaternion.Euler(rotationValue), ownedByClient: false);
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
             userInterfaceManager.panels[panelCounter] = effectsPanels[i];
             panelCounter += 2;
@@ -219,15 +224,11 @@ public class MasterManager : MonoBehaviour {
             nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
             nodesPanels[i].transform.SetParent(nodesPanelsGo.transform);
             nodesPanels[i].name = "NodesPanel_" + (DrumType) i;
-            // nodesPanels[i] = Realtime.Instantiate(nodesPanelPrefab.name, transform.position,
-            //     Quaternion.Euler(rotationValue), ownedByClient: false);
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
 
             // set up nodes managers
             // set up the drum type, drum color, and default color of each nodeManager
-            // var currentDrumType = Enum.GetValues(typeof(DrumType));
-            // _nodeManagers[i].drumType = currentDrumType.GetValue(i) is DrumType ? (DrumType) currentDrumType.GetValue(i) : DrumType.Kick;
-            var nodeManager = nodesPanels[i].transform.GetChild(0).GetChild(0).GetComponent<NodeManager>();
+            var nodeManager = nodesPanels[i].transform.GetComponentInChildren<NodeManager>();
 
             if (nodeManager == null)
                 Debug.LogError(_nodeManagers[i].name +
@@ -237,7 +238,7 @@ public class MasterManager : MonoBehaviour {
             nodeManager.drumType = (DrumType) i;
             nodeManager.subNodeIndex = i;
             nodeManager.defaultColor = defaultNodeColors[i];
-            nodeManager.drumColor = DrumColors[i];
+            nodeManager.drumColor = drumColors[i];
 
             // initialize the knob sliders for this current node manager
             var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
@@ -253,9 +254,7 @@ public class MasterManager : MonoBehaviour {
         }
 
         // only the first player that connects to the room should start the timer - and as Timer is a RealTime instance object, it updates in all clients
-        if (localPlayerNumber == 0)
-        {
-            // _timerPlaceHolder = Realtime.Instantiate()
+        if (localPlayerNumber == 0) {
             if (RealTimeInstance.Instance.isSoloMode) {
                 timerGameObject = Instantiate(timerPrefab);
                 timer = timerGameObject.GetComponent<Timer>();
@@ -273,9 +272,7 @@ public class MasterManager : MonoBehaviour {
 
     // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers
     public void UpdateSubNodes(int node, bool activated, int nodeManagerSubNodeIndex) {
-        print("Updating subnodes from mastermanager");
         foreach (var nodeManager in _nodeManagers) {
-            print("Updating each nodemanager's subnodes from mastermanager");
             nodeManager.SetSubNode(node, activated, nodeManagerSubNodeIndex);
         }
     }
@@ -284,35 +281,33 @@ public class MasterManager : MonoBehaviour {
         bpm = value;
         foreach (var nodeManager in _nodeManagers) {
             nodeManager.bpm = bpm;
-            // nodeManager.sliders[3].currentValue = value;
             nodeManager._screenSync.SetBpm(bpm);
-            // nodeManager.sliders[3].UpdateSliderText();
         }
     }
 
-    private IEnumerator FindTimer()
-    {
-        if(RealTimeInstance.Instance.isSoloMode) yield break;
+    private IEnumerator FindTimer() {
+        if (RealTimeInstance.Instance.isSoloMode) yield break;
         var timerFound = false;
-        while (!timerFound)
-        {
+        while (!timerFound) {
             timer = FindObjectOfType<Timer>();
-            if (timer != null)
-            {
+            if (timer != null) {
                 timerGameObject = timer.gameObject;
                 userInterfaceManager.SetUpInterface();
                 userInterfaceManager.SwitchPanelRenderLayers();
+                
+                
                 gameSetUpFinished = true;
                 timerFound = true;
+                startTime = Time.time;
+                StartCoroutine(WaitToPositionPlayer());
+                // Calculate the journey length.
+                journeyLength = Vector3.Distance(playerStartPosition.position, playerPositionDestination.position);
             }
-            else
-            {
+            else {
                 yield return new WaitForEndOfFrame();
             }
         }
     }
 
-    public void ResetLocalPlayerNumber(int disconnectedPlayerNumber) {
-        
-    }
+    public void ResetLocalPlayerNumber(int disconnectedPlayerNumber) { }
 }

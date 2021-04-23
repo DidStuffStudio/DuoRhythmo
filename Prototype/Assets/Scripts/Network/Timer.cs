@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Timer : MonoBehaviour {
-    [SerializeField] private int roundTime;
+    public int roundTime;
     public float timer;
     private void Start() {
         ToggleTimer(restart: true);

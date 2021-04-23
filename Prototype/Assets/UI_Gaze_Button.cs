@@ -10,7 +10,6 @@ using UnityEngine.VFX;
 
 public class UI_Gaze_Button : CustomButton {
     
-    private bool crRunning = false;
     [SerializeField] private Text _text;
     [SerializeField] private String _string;
     public int drumTypeIndex;
@@ -25,7 +24,7 @@ public class UI_Gaze_Button : CustomButton {
     public void Deactivate() {
         
             SetDefault();
-            activated = false;
+
     }
 
     public void SoloButtonActivate(bool activate) {

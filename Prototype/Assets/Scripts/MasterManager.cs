@@ -290,6 +290,13 @@ public class MasterManager : MonoBehaviour {
         }
     }
 
+    public void DeactivateDwellButtons()
+    {
+        foreach (var dwellButton in userInterfaceManager.dwellSpeedButtons)
+        {
+            dwellButton.Deactivate();
+        }
+    }
     private IEnumerator FindTimer()
     {
         if(RealTimeInstance.Instance.isSoloMode) yield break;

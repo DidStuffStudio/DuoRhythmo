@@ -176,6 +176,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  localDwellTimeSpeed: 100
+  isDwellTimeSetter: 0
   _text: {fileID: 5452321105264058971}
   _string: 
   drumTypeIndex: 0
@@ -190,7 +192,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 30
+  m_Radius: 38.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!222 &2576484997956709018
 CanvasRenderer:

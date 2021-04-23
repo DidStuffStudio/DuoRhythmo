@@ -56,7 +56,7 @@ public class SliderKnob : CustomButton
         _knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(currentValue, minimumValue,maximumValue , _minValue, _maxValue));
         
         // Mouse Delta
-        if (activated)
+        if (isActive)
         {
             var knobScreenPoint = _mainCamera.WorldToScreenPoint(_knobRectTransform.position);
             
@@ -89,14 +89,14 @@ public class SliderKnob : CustomButton
 
     protected override void FixedUpdate()
     {
-        if (isHover && !activated) {
+        if (isHover && !isActive) {
             if (_confirmScalerRT.localScale.x < 1.0f)
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
             else {
                 _confirmScalerRT.localScale = Vector3.zero;
                 SetActive();
                 OnActivation?.Invoke();
-                activated = true;
+ 
             }
         }
 
@@ -110,7 +110,6 @@ public class SliderKnob : CustomButton
     {
         base.UnHover();
         mouseOver = false;
-        activated = false;
         SetDefault();
     }
 

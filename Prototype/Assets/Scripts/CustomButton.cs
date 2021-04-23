@@ -38,6 +38,8 @@ public class CustomButton : MonoBehaviour {
         _collider = GetComponent<Collider>();
         _image.color = defaultColor;
         confirmScaler.GetComponent<Image>().color = activeColor;
+        isDefault = true;
+        isActive = false;
         if (isConfirmationButton) ConfirmActivation(false);
     }
 

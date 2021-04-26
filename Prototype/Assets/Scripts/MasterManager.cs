@@ -53,14 +53,17 @@ public class MasterManager : MonoBehaviour {
     public int localPlayerNumber = 0;
     public bool gameSetUpFinished;
 
+    
+    
     private void Start() {
         if (_instance == null) {
             _instance = this;
             // make instance persistent across scenes
             // DontDestroyOnLoad(gameObject);
         }
-
+        
         Initialize();
+         // Change to UI stuff later
     }
 
     private void Update() {

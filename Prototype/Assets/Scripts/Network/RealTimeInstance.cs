@@ -18,15 +18,19 @@ public class RealTimeInstance : MonoBehaviour {
 
     [SerializeField] private GameObject realtimeInstancesHolderPrefab;
     private Transform _realtimeInstancesHolder;
+    [SerializeField] private string[] roomNames = new string[10];
+    private int roomToJoinIndex;
 
     private void Awake() {
         _instance = this;
         _realtime = GetComponent<Realtime>();
         RegisterToEvents();
+        
     }
 
-    public void JoinRoom(string roomName) {
-        _realtime.Connect(roomName: roomName);
+    public void SetRoomIndex(int i) => roomToJoinIndex = i;
+    public void JoinRoom() {
+        _realtime.Connect(roomNames[roomToJoinIndex]);
     }
 
 

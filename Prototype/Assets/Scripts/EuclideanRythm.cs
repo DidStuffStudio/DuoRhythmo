@@ -3,13 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EuclideanRythm : MonoBehaviour {
     public int pulses = 3; // 
     private int totalSteps = 8; // euclidean cycle
-
+    [SerializeField] private Text feedbackText;
+    [SerializeField] private GameObject decrementButton, incrementButton;
     public List<int> _euclideanValues = new List<int>();
     private int _rotate;
+    private NodeManager _nodeManager;
+
+
+    private void Start()
+    {
+        _nodeManager = GetComponent<NodeManager>();
+        feedbackText.text = pulses.ToString();
+        //feedbackText.gameObject.SetActive(false);
+    }
 
     // gcd recursive calculation of euclidean algorithm
     private int CalculateEuclideanAlgorithm(int a, int b) {
@@ -27,7 +38,7 @@ public class EuclideanRythm : MonoBehaviour {
     // ref --> https://www.computermusicdesign.com/simplest-euclidean-rhythm-algorithm-explained/
     public void GetEuclideanRythm() {
         totalSteps = MasterManager.Instance.numberOfNodes;
-        pulses = MasterManager.Instance.numberOfNodes / 2;
+        
         //the length of the array is equal to the number of steps
         //a value of 1 for each array element indicates a pulse
         _euclideanValues.Clear();
@@ -74,5 +85,21 @@ public class EuclideanRythm : MonoBehaviour {
     private bool IsCurrentBeatPulse(int currentBeat) {
         var curStep = currentBeat % totalSteps; // wraps beat around if it is higher than the number of steps
         return _euclideanValues[curStep] == 1;
+    }
+
+    public void ChangePulse(bool increase)
+    {
+        if(increase && pulses < totalSteps) pulses++;
+        else if (!increase && pulses > 1) pulses--;
+
+        feedbackText.text = pulses.ToString();
+        _nodeManager.ActivateEuclideanRhythm(true);
+    }
+
+    public void TurnOnEuclideanInterface(bool turnOn)
+    {
+        incrementButton.SetActive(turnOn);
+        decrementButton.SetActive(turnOn);
+        feedbackText.gameObject.SetActive(turnOn);
     }
 }

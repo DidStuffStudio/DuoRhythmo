@@ -15,7 +15,7 @@ public class UserInterfaceManager : MonoBehaviour {
     public bool startTimer, timerRunnning;
     public Material skybox;
     private float _timeLeft;
-    private Color _targetColor;
+    private Color _targetVFXColor, _targetSkyColor;
     private VisualEffect _vfx;
     private int _currentPanel = 0, _currentRenderPanel = 0;
 
@@ -81,21 +81,25 @@ public class UserInterfaceManager : MonoBehaviour {
         if (_timeLeft <= Time.deltaTime) {
             // transition complete
             // assign the target color
-            skybox.SetColor(Tint, _targetColor);
-            _vfx.SetVector4("ParticleColor", _targetColor);
-            _vfx.SetVector4("Core color", _targetColor);
+            skybox.SetColor(Tint, _targetVFXColor);
+            _vfx.SetVector4("ParticleColor", _targetVFXColor);
+            _vfx.SetVector4("Core color", _targetVFXColor);
             // start a new transition
-            _targetColor = new Color(Random.value, Random.value, Random.value);
+            var r = Random.value;
+            var g = Random.value;
+            var b = Random.value;
+            _targetVFXColor = new Color(r, g, b);
+            _targetSkyColor = new Color(1-r, 1-b, 1-g);
             _timeLeft = 30.0f;
         }
         else {
             // transition in progress
             // calculate interpolated color
 
-            skybox.SetColor(Tint, Color.Lerp(skybox.GetColor(Tint), _targetColor, Time.deltaTime / _timeLeft));
+            skybox.SetColor(Tint, Color.Lerp(skybox.GetColor(Tint), _targetVFXColor, Time.deltaTime / _timeLeft));
             _vfx.SetVector4("ParticleColor",
-                Color.Lerp(skybox.GetColor(Tint), _targetColor, Time.deltaTime / _timeLeft));
-            _vfx.SetVector4("Core color", Color.Lerp(skybox.GetColor(Tint), _targetColor, Time.deltaTime / _timeLeft));
+                Color.Lerp(skybox.GetColor(Tint), _targetVFXColor, Time.deltaTime / _timeLeft));
+            _vfx.SetVector4("Core color", Color.Lerp(skybox.GetColor(Tint), _targetVFXColor, Time.deltaTime / _timeLeft));
 
             // update the timer
             _timeLeft -= Time.deltaTime;

@@ -256,6 +256,49 @@ public class NodeManager : MonoBehaviour {
         else subNode.color = defaultColor;
     }
 
+
+    public void RotateRythm(bool right)
+    {
+        var nodesActive = new int[_nodes.Count];
+        if (right)
+        {
+            if (_nodes[_nodes.Count-1].isActive) nodesActive[0] = 1;
+            else nodesActive[0] = 0;
+            for (int i = 0; i < _nodes.Count -1; i++)
+            {
+                if (_nodes[i].isActive) nodesActive[i + 1] = 1;
+                else nodesActive[i + 1] = 0;
+            }
+        }
+
+        else
+        {
+            if (_nodes[0].isActive) nodesActive[_nodes.Count-1] = 1;
+            else nodesActive[_nodes.Count-1] = 0;
+            for (int i = _nodes.Count-1; i > 1; i--)
+            {
+                if (_nodes[i].isActive) nodesActive[i - 1] = 1;
+                else nodesActive[i - 1] = 0;
+            } 
+        }
+
+        StartCoroutine(RotateNodesRoutine(nodesActive));
+
+
+    }
+    private IEnumerator RotateNodesRoutine(int[] values)
+    {
+        for (int i = 0; i < _nodes.Count; i++) {
+            var value = values[i];
+            // if the euclidean value is 1, then it means it should be active, so activate
+            if(value == 1 && !_nodes[i].isActive) _nodes[i].Activate(true);
+            else if(value == 0  && _nodes[i].isActive) _nodes[i].Activate(false);
+            yield return new WaitForSeconds(0.05f);
+        }
+        
+    }
+    
+    
     // euclidean rhythm
     public void StartEuclideanRhythmRoutine(bool activate) {
         StartCoroutine(ActivateEuclideanRhythm(activate));
@@ -265,7 +308,7 @@ public class NodeManager : MonoBehaviour {
         if (!activate)
             foreach (var node in _nodes) {
                 node.Deactivate();
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.05f);
             }
         else {
             _euclideanRythm.GetEuclideanRythm();
@@ -274,7 +317,7 @@ public class NodeManager : MonoBehaviour {
                 // if the euclidean value is 1, then it means it should be active, so activate
                 if(euclideanValue == 1 && !_nodes[i].isActive) _nodes[i].Activate(true);
                 else if(euclideanValue == 0  && _nodes[i].isActive) _nodes[i].Activate(false);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.05f);
             }
         }
     }

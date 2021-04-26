@@ -94,6 +94,7 @@ public class EuclideanRythm : MonoBehaviour {
         feedbackText.text = pulses.ToString();
         _nodeManager.StartEuclideanRhythmRoutine(true);
     }
+    
 
     public void TurnOnEuclideanInterface(bool turnOn)
     {

@@ -189,7 +189,6 @@ public class MasterManager : MonoBehaviour {
         // Vector3 playerParentPos = playerParent.position;
         // Quaternion playerParentRot = playerParent.rotation;
         playerCamera.transform.parent.Rotate(0, degrees, 0);
-        userInterfaceManager.SwitchPanelRenderLayers();
     }
 
     private IEnumerator WaitToPositionPlayer() {
@@ -260,13 +259,13 @@ public class MasterManager : MonoBehaviour {
             // userInterfaceManager.panels[panelCounter] = nodesPanels[i];
             panelCounter += 2;
         }
-
+        
+        
         // only the first player that connects to the room should start the timer - and as Timer is a RealTime instance object, it updates in all clients
         if (localPlayerNumber == 0) {
                 timerGameObject = Realtime.Instantiate(prefabName: timerPrefab.name, ownedByClient: true);
                 timer = timerGameObject.GetComponent<Timer>();
                 userInterfaceManager.SetUpInterface();
-                StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
                 gameSetUpFinished = true;
         }
         else StartCoroutine(FindTimer());

@@ -51,6 +51,7 @@ public class UserInterfaceManager : MonoBehaviour {
             index++;
         }
         startTimer = true;
+        StartCoroutine(SwitchPanelRenderLayers());
     }
     
     public void PauseAnimation() {

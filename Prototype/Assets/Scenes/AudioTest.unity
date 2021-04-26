@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00050064496, g: 0.0065664733, b: 0.027372524, a: 1}
+  m_IndirectSpecularColor: {r: 0.0011614693, g: 0.0005798436, b: 0.025807822, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -338,7 +338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: Room 8
+      value: The Taylor Hawkins Room
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a
@@ -355,6 +355,14 @@ PrefabInstance:
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.r
       value: 0.41099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
@@ -511,11 +519,11 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  inactiveHoverColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
-  activeColor: {r: 0.44255075, g: 0.8018868, b: 0.5792393, a: 1}
+  defaultColor: {r: 0.6584, g: 0.75331867, b: 0.8, a: 1}
+  inactiveHoverColor: {r: 0.65882355, g: 0.7529412, b: 0.8, a: 1}
+  activeColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.28194606, g: 0.509, b: 0.36927453, a: 1}
+  activeHoverColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   confirmScaler: {fileID: 125626011}
   mouseOver: 0
   interactionBreakTime: 1
@@ -576,7 +584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: Room 4
+      value: The Dave Grohl Room
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a
@@ -593,6 +601,14 @@ PrefabInstance:
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.r
       value: 0.41099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
@@ -749,11 +765,11 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  inactiveHoverColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
-  activeColor: {r: 0.44255075, g: 0.8018868, b: 0.5792393, a: 1}
+  defaultColor: {r: 0.6584, g: 0.75331867, b: 0.8, a: 1}
+  inactiveHoverColor: {r: 0.65882355, g: 0.7529412, b: 0.8, a: 1}
+  activeColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.28194606, g: 0.509, b: 0.36927453, a: 1}
+  activeHoverColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   confirmScaler: {fileID: 168322547}
   mouseOver: 0
   interactionBreakTime: 1
@@ -1055,7 +1071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: Room 1
+      value: Animal Room
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a
@@ -1072,6 +1088,14 @@ PrefabInstance:
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.r
       value: 0.41099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
@@ -1228,11 +1252,11 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  inactiveHoverColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
-  activeColor: {r: 0.44255075, g: 0.8018868, b: 0.5792393, a: 1}
+  defaultColor: {r: 0.6584, g: 0.75331867, b: 0.8, a: 1}
+  inactiveHoverColor: {r: 0.65882355, g: 0.7529412, b: 0.8, a: 1}
+  activeColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.28194606, g: 0.509, b: 0.36927453, a: 1}
+  activeHoverColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   confirmScaler: {fileID: 379735768}
   mouseOver: 0
   interactionBreakTime: 1
@@ -1963,11 +1987,11 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  inactiveHoverColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
-  activeColor: {r: 0.44255075, g: 0.8018868, b: 0.5792393, a: 1}
+  defaultColor: {r: 0.6584, g: 0.75331867, b: 0.8, a: 1}
+  inactiveHoverColor: {r: 0.65882355, g: 0.7529412, b: 0.8, a: 1}
+  activeColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.28194606, g: 0.509, b: 0.36927453, a: 1}
+  activeHoverColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   confirmScaler: {fileID: 689948717}
   mouseOver: 0
   interactionBreakTime: 1
@@ -2032,7 +2056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: Room 10
+      value: The Fred Below Room
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a
@@ -2049,6 +2073,14 @@ PrefabInstance:
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.r
       value: 0.41099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
@@ -2205,11 +2237,11 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  inactiveHoverColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
-  activeColor: {r: 0.44255075, g: 0.8018868, b: 0.5792393, a: 1}
+  defaultColor: {r: 0.6584, g: 0.75331867, b: 0.8, a: 1}
+  inactiveHoverColor: {r: 0.65882355, g: 0.7529412, b: 0.8, a: 1}
+  activeColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.28194606, g: 0.509, b: 0.36927453, a: 1}
+  activeHoverColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   confirmScaler: {fileID: 693815048}
   mouseOver: 0
   interactionBreakTime: 1
@@ -2270,7 +2302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: Room 5
+      value: The Tommy Lee Room
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a
@@ -2287,6 +2319,14 @@ PrefabInstance:
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.r
       value: 0.41099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
@@ -2443,11 +2483,11 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  inactiveHoverColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
-  activeColor: {r: 0.44255075, g: 0.8018868, b: 0.5792393, a: 1}
+  defaultColor: {r: 0.6584, g: 0.75331867, b: 0.8, a: 1}
+  inactiveHoverColor: {r: 0.65882355, g: 0.7529412, b: 0.8, a: 1}
+  activeColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.28194606, g: 0.509, b: 0.36927453, a: 1}
+  activeHoverColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   confirmScaler: {fileID: 694531496}
   mouseOver: 0
   interactionBreakTime: 1
@@ -8159,8 +8199,8 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
-  inactiveHoverColor: {r: 0.45599997, g: 0.45599997, b: 0.45599997, a: 1}
+  defaultColor: {r: 0.6073294, g: 0.81960785, b: 0.67009, a: 1}
+  inactiveHoverColor: {r: 0.25658596, g: 0.5849056, b: 0.35365435, a: 1}
   activeColor: {r: 0.32941177, g: 0.90588236, b: 0.62352943, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColor: {r: 0.22352941, g: 0.6117647, b: 0.41960785, a: 1}
@@ -8904,7 +8944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: Room 7
+      value: The Ringo Starr Room
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a
@@ -8921,6 +8961,14 @@ PrefabInstance:
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.r
       value: 0.41099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
@@ -9077,11 +9125,11 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  inactiveHoverColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
-  activeColor: {r: 0.44255075, g: 0.8018868, b: 0.5792393, a: 1}
+  defaultColor: {r: 0.6584, g: 0.75331867, b: 0.8, a: 1}
+  inactiveHoverColor: {r: 0.65882355, g: 0.7529412, b: 0.8, a: 1}
+  activeColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.28194606, g: 0.509, b: 0.36927453, a: 1}
+  activeHoverColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   confirmScaler: {fileID: 1395359137}
   mouseOver: 0
   interactionBreakTime: 1
@@ -9551,7 +9599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: Room 9
+      value: The Phil Collins Room
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a
@@ -9568,6 +9616,14 @@ PrefabInstance:
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.r
       value: 0.41099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
@@ -9724,11 +9780,11 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  inactiveHoverColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
-  activeColor: {r: 0.44255075, g: 0.8018868, b: 0.5792393, a: 1}
+  defaultColor: {r: 0.6584, g: 0.75331867, b: 0.8, a: 1}
+  inactiveHoverColor: {r: 0.65882355, g: 0.7529412, b: 0.8, a: 1}
+  activeColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.28194606, g: 0.509, b: 0.36927453, a: 1}
+  activeHoverColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   confirmScaler: {fileID: 1560565225}
   mouseOver: 0
   interactionBreakTime: 1
@@ -10253,11 +10309,11 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  inactiveHoverColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
-  activeColor: {r: 0.44255075, g: 0.8018868, b: 0.5792393, a: 1}
+  defaultColor: {r: 0.6584, g: 0.75331867, b: 0.8, a: 1}
+  inactiveHoverColor: {r: 0.65882355, g: 0.7529412, b: 0.8, a: 1}
+  activeColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.28194606, g: 0.509, b: 0.36927453, a: 1}
+  activeHoverColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   confirmScaler: {fileID: 1720987934}
   mouseOver: 0
   interactionBreakTime: 1
@@ -10495,8 +10551,8 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
-  inactiveHoverColor: {r: 0.376, g: 0.376, b: 0.376, a: 1}
+  defaultColor: {r: 0.8, g: 0.5504, b: 0.5504, a: 1}
+  inactiveHoverColor: {r: 0.816, g: 0.24888, b: 0.24888, a: 1}
   activeColor: {r: 0.506, g: 0.15550244, b: 0.15550244, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColor: {r: 0.478, g: 0.14689755, b: 0.14689755, a: 1}
@@ -10983,7 +11039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: Room 2
+      value: The John Bonhan Room
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a
@@ -11000,6 +11056,14 @@ PrefabInstance:
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.r
       value: 0.41099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
@@ -11156,11 +11220,11 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  inactiveHoverColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
-  activeColor: {r: 0.44255075, g: 0.8018868, b: 0.5792393, a: 1}
+  defaultColor: {r: 0.6584, g: 0.75331867, b: 0.8, a: 1}
+  inactiveHoverColor: {r: 0.65882355, g: 0.7529412, b: 0.8, a: 1}
+  activeColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.28194606, g: 0.509, b: 0.36927453, a: 1}
+  activeHoverColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   confirmScaler: {fileID: 1892863256}
   mouseOver: 0
   interactionBreakTime: 1
@@ -11274,7 +11338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: Room 6
+      value: The Benny Benjamin Room
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a
@@ -11291,6 +11355,14 @@ PrefabInstance:
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.r
       value: 0.41099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
@@ -11447,11 +11519,11 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  inactiveHoverColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
-  activeColor: {r: 0.44255075, g: 0.8018868, b: 0.5792393, a: 1}
+  defaultColor: {r: 0.6584, g: 0.75331867, b: 0.8, a: 1}
+  inactiveHoverColor: {r: 0.65882355, g: 0.7529412, b: 0.8, a: 1}
+  activeColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.28194606, g: 0.509, b: 0.36927453, a: 1}
+  activeHoverColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   confirmScaler: {fileID: 1940917166}
   mouseOver: 0
   interactionBreakTime: 1
@@ -11607,7 +11679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: Room 3
+      value: The Kieth Moon Room
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a
@@ -11624,6 +11696,14 @@ PrefabInstance:
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.r
       value: 0.41099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
@@ -11780,11 +11860,11 @@ MonoBehaviour:
   isActive: 0
   isHint: 0
   isConfirmationButton: 0
-  defaultColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  inactiveHoverColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
-  activeColor: {r: 0.44255075, g: 0.8018868, b: 0.5792393, a: 1}
+  defaultColor: {r: 0.6584, g: 0.75331867, b: 0.8, a: 1}
+  inactiveHoverColor: {r: 0.65882355, g: 0.7529412, b: 0.8, a: 1}
+  activeColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.28194606, g: 0.509, b: 0.36927453, a: 1}
+  activeHoverColor: {r: 0.44313726, g: 0.68235296, b: 0.8, a: 1}
   confirmScaler: {fileID: 2000987222}
   mouseOver: 0
   interactionBreakTime: 1

@@ -19,7 +19,6 @@ public class EuclideanRythm : MonoBehaviour {
     {
         _nodeManager = GetComponent<NodeManager>();
         feedbackText.text = pulses.ToString();
-        //feedbackText.gameObject.SetActive(false);
     }
 
     // gcd recursive calculation of euclidean algorithm
@@ -101,5 +100,6 @@ public class EuclideanRythm : MonoBehaviour {
         incrementButton.SetActive(turnOn);
         decrementButton.SetActive(turnOn);
         feedbackText.gameObject.SetActive(turnOn);
+        incrementButton.layer = decrementButton.layer = LayerMask.NameToLayer("RenderPanel");
     }
 }

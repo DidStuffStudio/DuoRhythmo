@@ -30,9 +30,8 @@ public class Node : CustomButton {
 
 
     public void Activate(bool activate) {
-        if (activate && !isActive) SetActive();
-        else if (!activate && isDefault) SetDefault();
-        MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
+        if (activate) SetActive();
+        else SetDefault();
     }
 
     public void SetNodeFromServer(bool activate) {

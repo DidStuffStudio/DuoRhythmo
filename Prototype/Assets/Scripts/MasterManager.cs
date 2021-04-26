@@ -18,6 +18,7 @@ public class MasterManager : MonoBehaviour {
 
     [Header("Drums")] 
     public int numberInstruments = 5;
+    public int numberOfNodes = 16;
     [SerializeField] private GameObject nodesPanelPrefab;
     [SerializeField] private GameObject effectsPanelPrefab;
 
@@ -49,10 +50,9 @@ public class MasterManager : MonoBehaviour {
     [SerializeField] private float positionSpeed = 10.0f;
     [SerializeField] private Transform playerStartPosition, playerPositionDestination;
     private bool _canPositionPlayer = false;
-
     public int localPlayerNumber = 0;
     public bool gameSetUpFinished;
-
+    
     
     
     private void Start() {
@@ -62,7 +62,7 @@ public class MasterManager : MonoBehaviour {
             // DontDestroyOnLoad(gameObject);
         }
         
-        Initialize();
+        // Initialize();
          // Change to UI stuff later
     }
 
@@ -78,7 +78,7 @@ public class MasterManager : MonoBehaviour {
         }
     }
 
-    private void Initialize() {
+    public void Initialize() {
         nodesPanels = new GameObject[numberInstruments];
         effectsPanels = new GameObject[numberInstruments];
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0017751555, g: 0.0034982613, b: 0.028691543, a: 1}
+  m_IndirectSpecularColor: {r: 0.00010065667, g: 0.00049351447, b: 0.0016867751, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -550,6 +550,7 @@ MonoBehaviour:
   - {fileID: 1395359140}
   - {fileID: 1560565228}
   - {fileID: 693815050}
+  activateOnStart: 0
 --- !u!1001 &168322546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -787,6 +788,7 @@ MonoBehaviour:
   - {fileID: 125626014}
   - {fileID: 1560565228}
   - {fileID: 693815050}
+  activateOnStart: 0
 --- !u!1 &191775306
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,7 +819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pulses: 4
-  totalSteps: 8
+  _euclideanValues: 
 --- !u!4 &191775308
 Transform:
   m_ObjectHideFlags: 0
@@ -1024,7 +1026,7 @@ MonoBehaviour:
   networkManager: {fileID: 0}
   isConnected: 0
   numberPlayers: 0
-  isSoloMode: 0
+  isSoloMode: 1
   _testStringSync: {fileID: 574498498}
   realtimeInstancesHolderPrefab: {fileID: 2115475420074975216, guid: dfce0e83da22aa34d8dc7023c7fa4d15, type: 3}
   roomNames:
@@ -1310,6 +1312,7 @@ MonoBehaviour:
   - {fileID: 1560565228}
   - {fileID: 693815050}
   - {fileID: 125626014}
+  activateOnStart: 0
 --- !u!1 &463355744
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,6 +2031,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 320708702}
+        m_TargetAssemblyTypeName: RealTimeInstance, Assembly-CSharp
+        m_MethodName: SetToSoloMode
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeactivation:
     m_PersistentCalls:
       m_Calls: []
@@ -2036,6 +2051,7 @@ MonoBehaviour:
   isDwellTimeSetter: 0
   otherButtonsToDisable:
   - {fileID: 1720987937}
+  activateOnStart: 0
 --- !u!1001 &693815046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2273,6 +2289,7 @@ MonoBehaviour:
   - {fileID: 1395359140}
   - {fileID: 125626014}
   - {fileID: 1560565228}
+  activateOnStart: 0
 --- !u!1001 &694531495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2510,6 +2527,7 @@ MonoBehaviour:
   - {fileID: 125626014}
   - {fileID: 1560565228}
   - {fileID: 693815050}
+  activateOnStart: 0
 --- !u!1 &740535872
 GameObject:
   m_ObjectHideFlags: 0
@@ -8037,7 +8055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
-      value: UI_Gaze_Button (1)
+      value: Play_Button
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
@@ -8199,7 +8217,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 320708702}
         m_TargetAssemblyTypeName: RealTimeInstance, Assembly-CSharp
-        m_MethodName: JoinRoom
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9143,6 +9161,7 @@ MonoBehaviour:
   - {fileID: 125626014}
   - {fileID: 1560565228}
   - {fileID: 693815050}
+  activateOnStart: 0
 --- !u!1 &1437889675
 GameObject:
   m_ObjectHideFlags: 0
@@ -9261,7 +9280,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -226.70001}
+  m_AnchoredPosition: {x: 0, y: -226.7002}
   m_SizeDelta: {x: 584.8, y: 168.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1482813567
@@ -9314,7 +9333,7 @@ GameObject:
   - component: {fileID: 1485422938}
   - component: {fileID: 1485422937}
   m_Layer: 7
-  m_Name: Play
+  m_Name: Play_Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9338,7 +9357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 218.70001}
+  m_AnchoredPosition: {x: 0, y: 218.7002}
   m_SizeDelta: {x: 584.8, y: 168.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1485422937
@@ -9789,6 +9808,7 @@ MonoBehaviour:
   - {fileID: 1395359140}
   - {fileID: 125626014}
   - {fileID: 693815050}
+  activateOnStart: 0
 --- !u!1 &1568212703
 GameObject:
   m_ObjectHideFlags: 0
@@ -9904,6 +9924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberInstruments: 5
+  numberOfNodes: 16
   nodesPanelPrefab: {fileID: 8248214352534705530, guid: 90e38b4484ad94c7dbaa206482b915b0, type: 3}
   effectsPanelPrefab: {fileID: 5429251461579344684, guid: d9c8eeaec548a48428f9400f2978c582, type: 3}
   nodesPanels: []
@@ -10300,6 +10321,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 320708702}
+        m_TargetAssemblyTypeName: RealTimeInstance, Assembly-CSharp
+        m_MethodName: SetToSoloMode
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   OnDeactivation:
     m_PersistentCalls:
       m_Calls: []
@@ -10308,6 +10341,7 @@ MonoBehaviour:
   isDwellTimeSetter: 0
   otherButtonsToDisable:
   - {fileID: 689948720}
+  activateOnStart: 1
 --- !u!1001 &1721459067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10357,7 +10391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
-      value: UI_Gaze_Button
+      value: Quit_Button
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
@@ -11206,6 +11240,7 @@ MonoBehaviour:
   - {fileID: 125626014}
   - {fileID: 1560565228}
   - {fileID: 693815050}
+  activateOnStart: 0
 --- !u!1 &1905188874
 GameObject:
   m_ObjectHideFlags: 0
@@ -11496,6 +11531,7 @@ MonoBehaviour:
   - {fileID: 125626014}
   - {fileID: 1560565228}
   - {fileID: 693815050}
+  activateOnStart: 0
 --- !u!1 &1957047847
 GameObject:
   m_ObjectHideFlags: 0
@@ -11828,6 +11864,7 @@ MonoBehaviour:
   - {fileID: 125626014}
   - {fileID: 1560565228}
   - {fileID: 693815050}
+  activateOnStart: 0
 --- !u!1 &2097733660
 GameObject:
   m_ObjectHideFlags: 0

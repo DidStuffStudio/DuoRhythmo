@@ -12,7 +12,7 @@ public class RealTimeInstance : MonoBehaviour {
     private NetworkManagerSync _networkManagerSync;
     public bool isConnected;
     public int numberPlayers;
-    public bool isSoloMode = false;
+    public bool isSoloMode = true;
 
     [SerializeField] private TestStringSync _testStringSync;
 
@@ -28,29 +28,20 @@ public class RealTimeInstance : MonoBehaviour {
         
     }
 
-    public void SetRoomIndex(int i) => roomToJoinIndex = i;
-    public void JoinRoom() {
-        _realtime.Connect(roomNames[roomToJoinIndex]);
-    }
+    public void SetToSoloMode(bool value) => isSoloMode = value;
 
+    public void SetRoomIndex(int i) => roomToJoinIndex = i;
+    
+    public void Play() {
+        if(!isSoloMode) _realtime.Connect(roomNames[roomToJoinIndex]);
+        MasterManager.Instance.Initialize();
+    }
 
     private void RegisterToEvents() {
         // Notify us when Realtime connects to or disconnects from the room
         _realtime.didConnectToRoom += DidConnectToRoom;
         _realtime.didDisconnectFromRoom += DidDisconnectFromRoom;
     }
-
-    // private void LateUpdate() {
-    //     if (isSoloMode) return;
-    //     var realtimeModels = _realtime.room.datastore.sceneViewModels;
-    //     byte playersCounter = 0;
-    //     foreach (var rm in realtimeModels) {
-    //         if (rm.Value.realtimeView.gameObject.GetComponent<NetworkManagerSync>()) playersCounter++;
-    //     }
-    //     numberPlayers = playersCounter;
-    //     // numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length;
-    //     // numberPlayers = _realtimeInstancesHolder.childCount - 1;
-    // }
 
     private void DidConnectToRoom(Realtime realtime) {
         isConnected = true;

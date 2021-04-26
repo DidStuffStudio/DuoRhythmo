@@ -43,6 +43,12 @@ public class Node : CustomButton {
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
+    // NOTE --> this is for deactivating the euclidean rhythm
+    public void Deactivate() {
+        this.SetDefault();
+        MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
+    }
+
     protected override void SetActive()
     {
         if (!RealTimeInstance.Instance.isSoloMode) _screenSync.SetIndexValue(indexValue);

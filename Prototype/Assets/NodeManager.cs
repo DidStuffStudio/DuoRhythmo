@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,6 +51,12 @@ public class NodeManager : MonoBehaviour {
 
     private bool _nodeIsSetup;
 
+    private EuclideanRythm _euclideanRythm;
+
+    private void Start() {
+        _euclideanRythm = GetComponent<EuclideanRythm>();
+    }
+
     public void SetUpNode() {
         Color.RGBToHSV(defaultColor, out var uH, out var uS, out var uV);
         uV -= 0.3f;
@@ -64,14 +71,10 @@ public class NodeManager : MonoBehaviour {
 
         // _screenSync = GetComponentInParent<ScreenSync>();
         _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = false;
-        if (RealTimeInstance.Instance.isSoloMode) {
-            SpawnNodes();
-            rotation = 0;
-            _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
-        }
-        else StartCoroutine(WaitUntilConnected());
 
-        rotation = 0;
+        SpawnNodes();
+
+        rotation = 0.0f;
 
         for (int i = 0; i < sliders.Length - 1; i++) sliders[i].OnSliderChange += ChangeEffectValue;
 
@@ -97,20 +100,8 @@ public class NodeManager : MonoBehaviour {
         _nodeIsSetup = true;
     }
 
-    private IEnumerator WaitUntilConnected() {
-        while (true) {
-            if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
-            yield return new WaitForEndOfFrame();
-        }
-
-        SpawnNodes();
-        rotation = 0;
-        _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
-    }
-
     private void Update() {
         if (!_nodeIsSetup) return;
-
 
         for (int i = 0; i < levels.Length; i++) AkSoundEngine.SetRTPCValue(effectNames[i], levels[i]);
 
@@ -150,6 +141,7 @@ public class NodeManager : MonoBehaviour {
     }
 
     private void SpawnNodes() {
+        numberOfNodes = MasterManager.Instance.numberOfNodes;
         // if more nodes exist than is needed, delete them
         if (_nodes.Count > numberOfNodes) {
             for (int i = numberOfNodes - 1; i < _nodes.Count; i++) {
@@ -170,6 +162,9 @@ public class NodeManager : MonoBehaviour {
 
         drumText.text = drumType.ToString();
         drumText.color = drumColor;
+
+        rotation = 0.0f;
+        _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
     }
 
     private void PositionNode(int i) {
@@ -259,5 +254,19 @@ public class NodeManager : MonoBehaviour {
         var subNode = node.subNodes[subNodeIndexNumber];
         if (activated) subNode.color = MasterManager.Instance.drumColors[subNodeIndexNumber];
         else subNode.color = defaultColor;
+    }
+
+    // euclidean rhythm
+    public void ActivateEuclideanRhythm(bool activate) {
+        foreach (var node in _nodes) node.Deactivate();
+        if (activate) {
+            _euclideanRythm.GetEuclideanRythm();
+            for (int i = 0; i < _nodes.Count; i++) {
+                var euclideanValue = _euclideanRythm._euclideanValues[i];
+                if (euclideanValue == 1)
+                    _nodes[i]
+                        .Activate(); // if the euclidean value is 1, then it means it should be active, so activate 
+            }
+        }
     }
 }

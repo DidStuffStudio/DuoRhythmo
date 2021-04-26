@@ -264,7 +264,7 @@ public class NodeManager : MonoBehaviour {
     private IEnumerator ActivateEuclideanRhythm(bool activate) {
         if (!activate)
             foreach (var node in _nodes) {
-                node.Activate(false);
+                node.Deactivate();
                 yield return new WaitForSeconds(0.1f);
             }
         else {
@@ -272,7 +272,8 @@ public class NodeManager : MonoBehaviour {
             for (int i = 0; i < _nodes.Count; i++) {
                 var euclideanValue = _euclideanRythm._euclideanValues[i];
                 // if the euclidean value is 1, then it means it should be active, so activate
-                _nodes[i].Activate(euclideanValue == 1);
+                if(euclideanValue == 1 && !_nodes[i].isActive) _nodes[i].Activate(true);
+                else if(euclideanValue == 0  && _nodes[i].isActive) _nodes[i].Activate(false);
                 yield return new WaitForSeconds(0.1f);
             }
         }

@@ -14,7 +14,7 @@ public class RealTimeInstance : MonoBehaviour {
     public int numberPlayers;
     public bool isSoloMode = true;
 
-    [SerializeField] private TestStringSync _testStringSync;
+    public TestStringSync _testStringSync;
 
     [SerializeField] private GameObject realtimeInstancesHolderPrefab;
     private Transform _realtimeInstancesHolder;

@@ -19,6 +19,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
     public struct MessageTypes {
         public const string NUM_PLAYERS = "NumberPlayers,";
         public const string DISCONNECTED = "Disconnected,";
+        public const string DRUM_NODE_CHANGED = "DrumNodeChanged,"; // DrumIndex,NodeIndex,IsActivated --> eg --> 1,11,1
     }
 
     protected override void OnRealtimeModelReplaced(TestString previousModel, TestString currentModel) {
@@ -59,6 +60,15 @@ public class TestStringSync : RealtimeComponent<TestString> {
             var numPlayers = Int32.Parse(_message.Split(',')[1]);
             print("The number of players has changed from the server to: " + numPlayers);
             RealTimeInstance.Instance.numberPlayers = numPlayers;
+        }
+
+        if (_message.Contains(MessageTypes.DRUM_NODE_CHANGED)) {
+            // DrumIndex,NodeIndex,IsActivated
+            var drumNodeChanged = _message.Split(',');
+            var drumIndex = Int32.Parse(drumNodeChanged[0]);
+            var nodeIndex = Int32.Parse(drumNodeChanged[1]);
+            var activateNode = Int32.Parse(drumNodeChanged[2]);
+            MasterManager.Instance.DrumNodeChangedOnServer(drumIndex, nodeIndex, activateNode == 1);
         }
     }
     

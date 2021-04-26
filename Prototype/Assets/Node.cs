@@ -12,7 +12,7 @@ public class Node : CustomButton {
     public int drumIndex;
     public DrumType drumType;
 
-    public bool canPlay=true;
+    public bool canPlay = true;
 
     public int indexValue;
 
@@ -23,49 +23,45 @@ public class Node : CustomButton {
     public AK.Wwise.Event kickEvent, snareEvent, hiHatEvent, tomTomEvent, cymbalEvent;
     private VisualEffect _vfx;
 
-    protected override void Start()
-    {
+    protected override void Start() {
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         base.Start();
     }
-    
 
-    public void Activate() {
-        if(!isActive) SetActive();
-        else SetDefault();
-        MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
-    }
-    
+
     public void Activate(bool activate) {
-        if(activate) SetActive();
-        else SetDefault();
+        if (activate && !isActive) SetActive();
+        else if (!activate && isDefault) SetDefault();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
-    protected override void SetActive()
-    {
-        if (!RealTimeInstance.Instance.isSoloMode) _screenSync.SetIndexValue(indexValue);
+    public void SetNodeFromServer(bool activate) {
+        if (activate) base.SetActive();
+        else base.SetDefault();
+        MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
+    }
+
+    protected override void SetActive() {
+        if (!RealTimeInstance.Instance.isSoloMode) RealTimeInstance.Instance._testStringSync.SetMessage(drumIndex + "," + indexValue + "," + 1);
         base.SetActive();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
-    protected override void SetDefault()
-    {
-        if (!RealTimeInstance.Instance.isSoloMode) _screenSync.SetIndexValue(indexValue);
+    protected override void SetDefault() {
+        if (!RealTimeInstance.Instance.isSoloMode) RealTimeInstance.Instance._testStringSync.SetMessage(drumIndex + "," + indexValue + "," + 0);
         base.SetDefault();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
-    public void PlayDrum()
-    {
+    public void Deactivate() => SetDefault();
+
+    public void PlayDrum() {
         if (!isActive || !canPlay) return;
-        
+
         StartCoroutine(AudioVFX());
-        
-        
-        
-        switch (drumType)
-        {
+
+
+        switch (drumType) {
             case DrumType.Kick:
                 kickEvent.Post(gameObject);
                 break;
@@ -83,16 +79,14 @@ public class Node : CustomButton {
                 break;
         }
     }
-    private IEnumerator AudioVFX()
-    {
+
+    private IEnumerator AudioVFX() {
         _vfx.SetFloat("SphereSize", _vfx.GetFloat("SphereSize") + 1.0f);
         bool run = true;
-        while (run)
-        {
+        while (run) {
             yield return new WaitForSeconds(Time.fixedDeltaTime);
             if (_vfx.GetFloat("SphereSize") > 1.1f) _vfx.SetFloat("SphereSize", _vfx.GetFloat("SphereSize") - 0.1f);
             else run = false;
         }
     }
-    
 }

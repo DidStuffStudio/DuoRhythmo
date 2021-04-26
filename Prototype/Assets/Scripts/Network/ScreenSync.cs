@@ -8,7 +8,7 @@ using UnityEngine.PlayerLoop;
 public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
     // rhythm (beats)
     private int _bpm = 120;
-    private int _numberOfNodes = 12;
+    private int _numberOfNodes = 16;
     private int _indexValue = 0;
     
     // effects
@@ -89,11 +89,14 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
             if (currentModel.isFreshModel) {
                 // beats
                 currentModel.bpm = _bpm;
-                currentModel.numberOfNodes = _bpm;
+                currentModel.numberOfNodes = _numberOfNodes;
                 currentModel.indexValue = _indexValue;
                 
                 // effects
                 currentModel.effect1 = _effect1;
+                currentModel.effect2 = _effect2;
+                currentModel.effect3 = _effect3;
+                currentModel.effect4 = _effect4;
             }
         
             // Update the mesh render to match the new model

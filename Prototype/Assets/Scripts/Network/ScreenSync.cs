@@ -118,7 +118,7 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
     private void NumberNodesDidChange(ScreenSyncModel model, int value) => _numberOfNodes = model.numberOfNodes;
     private void IndexValueDidChange(ScreenSyncModel model, int value) {
         _indexValue = model.indexValue;
-        _nodes[value].Activate();
+        // _nodes[value].Activate();
     }
     
     private void Effect1DidChange(ScreenSyncModel model, int value) => _effect1 = model.effect1;

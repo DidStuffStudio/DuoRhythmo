@@ -30,22 +30,9 @@ public class Node : CustomButton {
     }
     
 
-    public void Activate() {
-        
-        if (!isActive) {
-            SetActive();
-           
-        }
-        else {
-            SetDefault();
-           
-        }
-        MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
-    }
-
-    // NOTE --> this is for deactivating the euclidean rhythm
-    public void Deactivate() {
-        this.SetDefault();
+    public void Activate(bool activate) {
+        if(activate) SetActive();
+        else SetDefault();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 

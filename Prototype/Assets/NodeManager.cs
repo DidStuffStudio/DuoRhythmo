@@ -258,17 +258,23 @@ public class NodeManager : MonoBehaviour {
 
     // euclidean rhythm
     public void StartEuclideanRhythmRoutine(bool activate) {
-        ActivateEuclideanRhythm(activate);
+        StartCoroutine(ActivateEuclideanRhythm(activate));
     }
 
-    private void ActivateEuclideanRhythm(bool activate) {
-        if (!activate) foreach (var node in _nodes) node.Activate(false);
-        if (!activate) return;
-        _euclideanRythm.GetEuclideanRythm();
-        for (int i = 0; i < _nodes.Count; i++) {
-            var euclideanValue = _euclideanRythm._euclideanValues[i];
-            // if the euclidean value is 1, then it means it should be active, so activate
-            _nodes[i].Activate(euclideanValue == 1);
+    private IEnumerator ActivateEuclideanRhythm(bool activate) {
+        if (!activate)
+            foreach (var node in _nodes) {
+                node.Activate(false);
+                yield return new WaitForSeconds(Time.fixedDeltaTime);
+            }
+        else {
+            _euclideanRythm.GetEuclideanRythm();
+            for (int i = 0; i < _nodes.Count; i++) {
+                var euclideanValue = _euclideanRythm._euclideanValues[i];
+                // if the euclidean value is 1, then it means it should be active, so activate
+                _nodes[i].Activate(euclideanValue == 1);
+                yield return new WaitForSeconds(Time.fixedDeltaTime);
+            }
         }
     }
 }

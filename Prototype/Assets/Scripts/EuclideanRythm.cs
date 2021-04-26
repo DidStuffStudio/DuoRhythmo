@@ -93,7 +93,7 @@ public class EuclideanRythm : MonoBehaviour {
         else if (!increase && pulses > 1) pulses--;
 
         feedbackText.text = pulses.ToString();
-        _nodeManager.ActivateEuclideanRhythm(true);
+        _nodeManager.StartEuclideanRhythmRoutine(true);
     }
 
     public void TurnOnEuclideanInterface(bool turnOn)

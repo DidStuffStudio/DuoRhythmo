@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c4d433862e24de7b4d00488ebd1b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pulses: 1
+  pulses: 8
   feedbackText: {fileID: 6181984227026065267}
   decrementButton: {fileID: 7157217656511206874}
   incrementButton: {fileID: 2565865358055799015}
@@ -990,7 +990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: OnActivation.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ActivateEuclideanRhythm
+      value: StartEuclideanRhythmRoutine
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: OnActivation.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -1026,7 +1026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: OnDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ActivateEuclideanRhythm
+      value: StartEuclideanRhythmRoutine
       objectReference: {fileID: 0}
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: OnDeactivation.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName

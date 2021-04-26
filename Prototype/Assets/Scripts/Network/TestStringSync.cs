@@ -65,9 +65,9 @@ public class TestStringSync : RealtimeComponent<TestString> {
         if (_message.Contains(MessageTypes.DRUM_NODE_CHANGED)) {
             // DrumIndex,NodeIndex,IsActivated
             var drumNodeChanged = _message.Split(',');
-            var drumIndex = Int32.Parse(drumNodeChanged[0]);
-            var nodeIndex = Int32.Parse(drumNodeChanged[1]);
-            var activateNode = Int32.Parse(drumNodeChanged[2]);
+            var drumIndex = Int32.Parse(drumNodeChanged[1]);
+            var nodeIndex = Int32.Parse(drumNodeChanged[2]);
+            var activateNode = Int32.Parse(drumNodeChanged[3]);
             MasterManager.Instance.DrumNodeChangedOnServer(drumIndex, nodeIndex, activateNode == 1);
         }
     }

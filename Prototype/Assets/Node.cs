@@ -42,13 +42,13 @@ public class Node : CustomButton {
     }
 
     protected override void SetActive() {
-        if (!RealTimeInstance.Instance.isSoloMode) RealTimeInstance.Instance._testStringSync.SetMessage(drumIndex + "," + indexValue + "," + 1);
+        if (!RealTimeInstance.Instance.isSoloMode) RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.DRUM_NODE_CHANGED + drumIndex + "," + indexValue + "," + 1);
         base.SetActive();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
     protected override void SetDefault() {
-        if (!RealTimeInstance.Instance.isSoloMode) RealTimeInstance.Instance._testStringSync.SetMessage(drumIndex + "," + indexValue + "," + 0);
+        if (!RealTimeInstance.Instance.isSoloMode) RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.DRUM_NODE_CHANGED + drumIndex + "," + indexValue + "," + 0);
         base.SetDefault();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }

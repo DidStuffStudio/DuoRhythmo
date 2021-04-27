@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.001834068, g: 0.028385522, b: 0.13284612, a: 1}
+  m_IndirectSpecularColor: {r: 0.0018597338, g: 0.0060659484, b: 0.092140175, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1444,7 +1444,7 @@ MonoBehaviour:
   - {fileID: 0}
   dwellSpeedButtons: []
   numberOfDwellSpeeds: 0
-  currentRotationOfUI: 0.15
+  currentRotationOfUI: 0
   panels: []
   _forwardRenderer: {fileID: 11400000, guid: 4a8e21d5c33334b11b34a596161b9360, type: 2}
 --- !u!1 &565050213
@@ -9819,6 +9819,8 @@ MonoBehaviour:
   gameSetUpFinished: 0
   currentRotationOfUI: 0
   player: {fileID: 0}
+  isInPosition: 0
+  isWaitingInLobby: 1
 --- !u!4 &1590067203
 Transform:
   m_ObjectHideFlags: 0

@@ -47,13 +47,13 @@ public class MasterManager : MonoBehaviour
     public List<Player> Players = new List<Player>();
     private Transform _playerPosition;
     private float startTime, journeyLength;
-    [SerializeField] private float positionSpeed = 2.0f;
+    [SerializeField] private float positionSpeed = 10.0f;
     [SerializeField] private Transform playerStartPosition, playerPositionDestination;
     public int localPlayerNumber = 0;
     public bool gameSetUpFinished;
     public float currentRotationOfUI = 0.0f;
     public Player player;
-    private bool isInPosition = false;
+    public bool isInPosition = false;
     public bool isWaitingInLobby = true;
 
 
@@ -70,7 +70,7 @@ public class MasterManager : MonoBehaviour
         // Change to UI stuff later
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!isWaitingInLobby && !isInPosition)
         {

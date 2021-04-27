@@ -71,7 +71,7 @@ public class MasterManager : MonoBehaviour
 
     private void Update()
     {
-        if (_canPositionPlayer && !RealTimeInstance.Instance.isSoloMode)
+        /*if (_canPositionPlayer && !RealTimeInstance.Instance.isSoloMode)
         {
             // Distance moved equals elapsed time times speed..
             float distCovered = (Time.time - startTime) * positionSpeed;
@@ -82,7 +82,7 @@ public class MasterManager : MonoBehaviour
                 playerPositionDestination.position, fractionOfJourney);
             playerCamera.transform.rotation = Quaternion.Lerp(playerCameraTransform.rotation,
                 playerPositionDestination.rotation, fractionOfJourney);
-        }
+        }*/
     }
 
     public void Initialize()
@@ -109,7 +109,7 @@ public class MasterManager : MonoBehaviour
         }
 
         // position player at the top view
-        playerCamera.transform.position = playerStartPosition.position;
+        //playerCamera.transform.position = playerStartPosition.position;
         StartCoroutine(WaitUntilConnected());
     }
 

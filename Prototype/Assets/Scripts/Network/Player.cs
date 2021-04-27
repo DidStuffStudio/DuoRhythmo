@@ -26,7 +26,7 @@ public class Player : MonoBehaviour {
         // once this player has been instantiated into the scene - add it to the master manager
         MasterManager.Instance.Players.Add(this);
         // go through each player and check if he's paired with someone else. If not, then pair this player to that other one
-        foreach (var player in MasterManager.Instance.Players) {
+        /*foreach (var player in MasterManager.Instance.Players) {
             if (!player.isPaired) {
                 // pair the other player with this one
                 player.isPaired = true;
@@ -40,7 +40,9 @@ public class Player : MonoBehaviour {
                 transform.Rotate(0, MasterManager.Instance.playerCamera.transform.rotation.y ,0);
             }
             break;
-        }
+        }*/
+
+        StartCoroutine(WaitToPositionCamera());
     }
 
     private void OnApplicationQuit()

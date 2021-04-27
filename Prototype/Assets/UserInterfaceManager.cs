@@ -89,7 +89,7 @@ public class UserInterfaceManager : MonoBehaviour {
     }
 
     public void Update() {
-        if(!MasterManager.Instance.gameSetUpFinished) return;
+        
         if (_timeLeft <= Time.deltaTime) {
             // transition complete
             // assign the target color
@@ -116,7 +116,7 @@ public class UserInterfaceManager : MonoBehaviour {
             // update the timer
             _timeLeft -= Time.deltaTime;
         }
-
+        if(!MasterManager.Instance.gameSetUpFinished) return;
         timerDisplay.text = timer.ToString();
         timer = (int) MasterManager.Instance.timer.timer;
         if (!startTimer || timerRunnning) return;

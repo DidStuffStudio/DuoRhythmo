@@ -55,7 +55,10 @@ public class MasterManager : MonoBehaviour
     public Player player;
     public bool isInPosition = false;
     public bool isWaitingInLobby = true;
-
+    
+    [Space] [Header("Signifiers")]
+    
+    [SerializeField] private GameObject topDownSignifier, mainSignifier;
 
     private void Start()
     {
@@ -87,6 +90,7 @@ public class MasterManager : MonoBehaviour
             if (Vector3.Distance(playerCameraTransform.position, playerPositionDestination.position) < 0.1f)
             {
                 isInPosition = true;
+                mainSignifier.SetActive(true);
                 StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
             }
         }
@@ -354,6 +358,7 @@ public class MasterManager : MonoBehaviour
     
     private IEnumerator WaitToPositionCamera(float time) {
         SetPlayerPosition();
+        topDownSignifier.SetActive(false);
         yield return new WaitForSeconds(time);
         isWaitingInLobby = false;
         print("Lerp to position");

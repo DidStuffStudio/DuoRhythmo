@@ -12,16 +12,12 @@ public class Player : MonoBehaviour {
     public Transform playerPosition;
     public bool isWaitingInLobby = true;
     [SerializeField] private GameObject gfxCanvasPrefab;
-    private Transform _canvasOffset;
 
     private void Start() {
         if(RealTimeInstance.Instance.isSoloMode) return;
         MasterManager.Instance.player = this;
         //_canvasOffset = Camera.main.transform.GetChild(0);
-        /*var gfx = Realtime.Instantiate(gfxCanvasPrefab.name, true, true, true);
-        gfx.transform.SetParent(_canvasOffset);
-        gfx.transform.localPosition = Vector3.zero;
-        gfx.transform.localRotation = Quaternion.identity;*/
+        Realtime.Instantiate(gfxCanvasPrefab.name, true, true, true);
         playerNumber = MasterManager.Instance.localPlayerNumber;
         // once this player has been instantiated into the scene - add it to the master manager
         MasterManager.Instance.Players.Add(this);

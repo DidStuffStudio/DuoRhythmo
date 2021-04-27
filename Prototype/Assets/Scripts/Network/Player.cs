@@ -17,11 +17,11 @@ public class Player : MonoBehaviour {
     private void Start() {
         if(RealTimeInstance.Instance.isSoloMode) return;
         MasterManager.Instance.player = this;
-        _canvasOffset = Camera.main.transform.GetChild(0);
-        var gfx = Realtime.Instantiate(gfxCanvasPrefab.name, true, true, true);
+        //_canvasOffset = Camera.main.transform.GetChild(0);
+        /*var gfx = Realtime.Instantiate(gfxCanvasPrefab.name, true, true, true);
         gfx.transform.SetParent(_canvasOffset);
         gfx.transform.localPosition = Vector3.zero;
-        gfx.transform.localRotation = Quaternion.identity;
+        gfx.transform.localRotation = Quaternion.identity;*/
         playerNumber = MasterManager.Instance.localPlayerNumber;
         // once this player has been instantiated into the scene - add it to the master manager
         MasterManager.Instance.Players.Add(this);
@@ -47,6 +47,7 @@ public class Player : MonoBehaviour {
 
     private void OnApplicationQuit()
     {
+        if (!pairedPlayer) return;
         pairedPlayer.isPaired = false;
         pairedPlayer.pairedPlayer = null;
     }

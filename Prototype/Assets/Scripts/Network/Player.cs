@@ -20,7 +20,6 @@ public class Player : MonoBehaviour {
 
     private void Start() {
         
-        StartCoroutine(WaitToPositionCamera());
         if(RealTimeInstance.Instance.isSoloMode) return;
         
         //_canvasOffset = Camera.main.transform.GetChild(0);
@@ -55,10 +54,4 @@ public class Player : MonoBehaviour {
         pairedPlayer.pairedPlayer = null;
     }
     
-    private IEnumerator WaitToPositionCamera() {
-        yield return new WaitForSeconds(3.0f);
-        MasterManager.Instance.isWaitingInLobby = false;
-        MasterManager.Instance.SetPlayerPosition();
-        print("Lerp to position");
-    }
 }

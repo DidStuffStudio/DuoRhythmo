@@ -47,7 +47,7 @@ public class MasterManager : MonoBehaviour
     public List<Player> Players = new List<Player>();
     private Transform _playerPosition;
     private float startTime, journeyLength;
-    [SerializeField] private float positionSpeed = 10.0f;
+    [SerializeField] private float positionSpeed = 2.0f;
     [SerializeField] private Transform playerStartPosition, playerPositionDestination;
     public int localPlayerNumber = 0;
     public bool gameSetUpFinished;
@@ -112,7 +112,7 @@ public class MasterManager : MonoBehaviour
         {
             
             InstantiatePanelsSoloMode();
-            StartCoroutine(WaitToPositionCamera());
+            StartCoroutine(WaitToPositionCamera(0.5f));
             return;
         }
 
@@ -190,17 +190,13 @@ public class MasterManager : MonoBehaviour
         print("local player number: " + localPlayerNumber);
         
         InstantiatePanels();
-        while(isWaitingInLobby)
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        StartCoroutine(WaitToPositionCamera(3.0f));
     }
 
     public void SetPlayerPosition()
     {
         
         journeyLength = Vector3.Distance(playerStartPosition.position, playerPositionDestination.position);
-        print("journey length is "+ journeyLength);
         
         // rotate the parent of the camera around the degrees dependant on the number of players and number of instruments
         // players should be opposite to each other --> so differentiate between even and uneven numbers --> 180 degrees difference between them
@@ -214,6 +210,7 @@ public class MasterManager : MonoBehaviour
         // Transform playerParent = playerCamera.transform.parent;
         // Vector3 playerParentPos = playerParent.position;
         // Quaternion playerParentRot = playerParent.rotation;
+        
         playerCamera.transform.parent.Rotate(0, degrees, 0);
     }
     
@@ -355,10 +352,10 @@ public class MasterManager : MonoBehaviour
     }
     
     
-    private IEnumerator WaitToPositionCamera() {
-        yield return new WaitForSeconds(0.1f);
-        MasterManager.Instance.isWaitingInLobby = false;
-        MasterManager.Instance.SetPlayerPosition();
+    private IEnumerator WaitToPositionCamera(float time) {
+        SetPlayerPosition();
+        yield return new WaitForSeconds(time);
+        isWaitingInLobby = false;
         print("Lerp to position");
     }
 }

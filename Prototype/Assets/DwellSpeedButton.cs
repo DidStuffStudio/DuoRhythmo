@@ -52,6 +52,7 @@ public class DwellSpeedButton : CustomButton
        
     }
 
+    
     protected override void SetActive()
     {
 
@@ -65,5 +66,13 @@ public class DwellSpeedButton : CustomButton
     {
         MasterManager.Instance.dwellTimeSpeed = localDwellTimeSpeed;
         
+    }
+
+    public void setThisOne()
+    {
+        if (isDwellActive)
+        {
+            SetActive();
+        }
     }
 }

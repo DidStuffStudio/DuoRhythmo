@@ -12,21 +12,24 @@ public class DwellSpeedMaster : MonoBehaviour
     private int activeButton; 
     void Start()
     {
-        _dwellSpeedButton[3].activateOnStart = true;
+        //_dwellSpeedButton[2].activateOnStart = true;
+        
+        
     }
     
     public void UpdateButtons()
     {
-        activeButton = isItActive();
         
+        activeButton = IsItActive();
+        Debug.Log(activeButton);
         for (int i = 0; i < _dwellSpeedButton.Length; i++)
         {
             _dwellSpeedButton[i].Deactivate();
         }
-        _dwellSpeedButton[activeButton].activateOnStart = true;
+        _dwellSpeedButton[activeButton].setThisOne();
     }
 
-    int isItActive()
+    int IsItActive()
     {
         int j = 0;
         for (int i = 0; i < _dwellSpeedButton.Length; i++)

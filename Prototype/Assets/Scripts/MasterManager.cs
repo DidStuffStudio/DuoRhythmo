@@ -49,11 +49,12 @@ public class MasterManager : MonoBehaviour
     private float startTime, journeyLength;
     [SerializeField] private float positionSpeed = 10.0f;
     [SerializeField] private Transform playerStartPosition, playerPositionDestination;
-    private bool _canPositionPlayer = false;
     public int localPlayerNumber = 0;
     public bool gameSetUpFinished;
     public float currentRotationOfUI = 0.0f;
     public Player player;
+    private bool isInPosition = false;
+    public bool isWaitingInLobby = true;
 
 
     private void Start()
@@ -71,7 +72,7 @@ public class MasterManager : MonoBehaviour
 
     private void Update()
     {
-        /*if (_canPositionPlayer && !RealTimeInstance.Instance.isSoloMode)
+        if (!isWaitingInLobby && !isInPosition)
         {
             // Distance moved equals elapsed time times speed..
             float distCovered = (Time.time - startTime) * positionSpeed;
@@ -82,7 +83,13 @@ public class MasterManager : MonoBehaviour
                 playerPositionDestination.position, fractionOfJourney);
             playerCamera.transform.rotation = Quaternion.Lerp(playerCameraTransform.rotation,
                 playerPositionDestination.rotation, fractionOfJourney);
-        }*/
+
+            if (Vector3.Distance(playerCameraTransform.position, playerPositionDestination.position) < 0.1f)
+            {
+                isInPosition = true;
+                StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
+            }
+        }
     }
 
     public void Initialize()
@@ -103,8 +110,9 @@ public class MasterManager : MonoBehaviour
 
         if (RealTimeInstance.Instance.isSoloMode)
         {
-            SetPlayerPosition();
+            
             InstantiatePanelsSoloMode();
+            StartCoroutine(WaitToPositionCamera());
             return;
         }
 
@@ -182,15 +190,18 @@ public class MasterManager : MonoBehaviour
         print("local player number: " + localPlayerNumber);
         
         InstantiatePanels();
-        while(player.isWaitingInLobby)
+        while(isWaitingInLobby)
         {
             yield return new WaitForEndOfFrame();
         }
-        SetPlayerPosition();
     }
 
-    private void SetPlayerPosition()
+    public void SetPlayerPosition()
     {
+        
+        journeyLength = Vector3.Distance(playerStartPosition.position, playerPositionDestination.position);
+        print("journey length is "+ journeyLength);
+        
         // rotate the parent of the camera around the degrees dependant on the number of players and number of instruments
         // players should be opposite to each other --> so differentiate between even and uneven numbers --> 180 degrees difference between them
         float degrees = 0;
@@ -205,16 +216,7 @@ public class MasterManager : MonoBehaviour
         // Quaternion playerParentRot = playerParent.rotation;
         playerCamera.transform.parent.Rotate(0, degrees, 0);
     }
-
-    private IEnumerator WaitToPositionPlayer()
-    {
-        while (timer.timer >= 3.0f)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        _canPositionPlayer = true;
-    }
+    
 
     // call this method when the players have connected
     private void InstantiatePanels()
@@ -333,9 +335,8 @@ public class MasterManager : MonoBehaviour
                 gameSetUpFinished = true;
                 timerFound = true;
                 startTime = Time.time;
-                StartCoroutine(WaitToPositionPlayer());
                 // Calculate the journey length.
-                journeyLength = Vector3.Distance(playerStartPosition.position, playerPositionDestination.position);
+                
             }
             else
             {
@@ -351,5 +352,13 @@ public class MasterManager : MonoBehaviour
     public void DrumNodeChangedOnServer(int drumIndex, int nodeIndex, bool activate)
     {
         _nodeManagers[drumIndex]._nodes[nodeIndex].SetNodeFromServer(activate);
+    }
+    
+    
+    private IEnumerator WaitToPositionCamera() {
+        yield return new WaitForSeconds(0.1f);
+        MasterManager.Instance.isWaitingInLobby = false;
+        MasterManager.Instance.SetPlayerPosition();
+        print("Lerp to position");
     }
 }

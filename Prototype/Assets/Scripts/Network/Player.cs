@@ -10,12 +10,19 @@ public class Player : MonoBehaviour {
     public bool isPaired; // does this player have someone to play the drums with?
     public Player pairedPlayer;
     public Transform playerPosition;
-    public bool isWaitingInLobby = true;
+    
     [SerializeField] private GameObject gfxCanvasPrefab;
 
-    private void Start() {
-        if(RealTimeInstance.Instance.isSoloMode) return;
+    private void Awake()
+    {
         MasterManager.Instance.player = this;
+    }
+
+    private void Start() {
+        
+        StartCoroutine(WaitToPositionCamera());
+        if(RealTimeInstance.Instance.isSoloMode) return;
+        
         //_canvasOffset = Camera.main.transform.GetChild(0);
         
         playerNumber = MasterManager.Instance.localPlayerNumber;
@@ -38,7 +45,7 @@ public class Player : MonoBehaviour {
             break;
         }*/
 
-        StartCoroutine(WaitToPositionCamera());
+        
     }
 
     private void OnApplicationQuit()
@@ -50,6 +57,8 @@ public class Player : MonoBehaviour {
     
     private IEnumerator WaitToPositionCamera() {
         yield return new WaitForSeconds(3.0f);
-        isWaitingInLobby = false;
+        MasterManager.Instance.isWaitingInLobby = false;
+        MasterManager.Instance.SetPlayerPosition();
+        print("Lerp to position");
     }
 }

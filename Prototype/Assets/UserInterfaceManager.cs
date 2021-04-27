@@ -79,7 +79,7 @@ public class UserInterfaceManager : MonoBehaviour {
         if (_currentPanel > (MasterManager.Instance.numberInstruments - 1)) _currentPanel = 0;
         Solo(false, 0);
         _uiAnimator.speed = 1.0f;
-        if (!MasterManager.Instance.player.isWaitingInLobby)
+        if (!MasterManager.Instance.isWaitingInLobby)
         {
             _playerAnimator.speed = 1.0f;
             _playerAnimator.Play("PlayerCam");

@@ -1,3 +1,4 @@
+using System;
 using Normal.Realtime;
 using UnityEngine;
 
@@ -13,7 +14,6 @@ public class RealTimeInstance : MonoBehaviour {
     public bool isConnected;
     public int numberPlayers;
     public bool isSoloMode = true;
-
     public TestStringSync _testStringSync;
 
     [SerializeField] private GameObject realtimeInstancesHolderPrefab;
@@ -30,6 +30,14 @@ public class RealTimeInstance : MonoBehaviour {
         
     }
 
+    private void Update()
+    {
+        if (_realtime.connected)
+        {
+            print(_realtime.room.time);
+        }
+    }
+
     public void SetToSoloMode(bool value) => isSoloMode = value;
 
     public void SetRoomIndex(int i) => roomToJoinIndex = i;
@@ -39,6 +47,10 @@ public class RealTimeInstance : MonoBehaviour {
         MasterManager.Instance.Initialize();
     }
 
+    public double GetRoomTime()
+    {
+        return _realtime.room.time;
+    }
     private void RegisterToEvents() {
         // Notify us when Realtime connects to or disconnects from the room
         _realtime.didConnectToRoom += DidConnectToRoom;

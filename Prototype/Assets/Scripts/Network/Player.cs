@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
         if(RealTimeInstance.Instance.isSoloMode) return;
         MasterManager.Instance.player = this;
         //_canvasOffset = Camera.main.transform.GetChild(0);
-        Realtime.Instantiate(gfxCanvasPrefab.name, true, true, true);
+        
         playerNumber = MasterManager.Instance.localPlayerNumber;
         // once this player has been instantiated into the scene - add it to the master manager
         MasterManager.Instance.Players.Add(this);

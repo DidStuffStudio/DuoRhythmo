@@ -51,7 +51,7 @@ public class UserInterfaceManager : MonoBehaviour {
             soloButtons[index] = soloButton.GetComponent<UI_Gaze_Button>();
             index++;
         }
-        startTimer = true;
+        //startTimer = true;
         StartCoroutine(SwitchPanelRenderLayers());
         
     }

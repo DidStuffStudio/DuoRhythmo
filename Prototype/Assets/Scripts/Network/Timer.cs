@@ -7,8 +7,9 @@ public class Timer : MonoBehaviour {
     public int roundTime;
     public float timer;
     private void Start() {
-        ToggleTimer(restart: true);
-        MasterManager.Instance.userInterfaceManager.startTimer = true;
+        /*ToggleTimer(restart: true);
+        MasterManager.Instance.userInterfaceManager.startTimer = true;*/
+        timer = roundTime;
     }
 
     public void ToggleTimer(bool restart) {
@@ -16,24 +17,25 @@ public class Timer : MonoBehaviour {
         else StopCoroutine(Time());
     }
 
-    /*private void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (roundTime > 0)
+        if (roundTime > 0 && MasterManager.Instance.userInterfaceManager.startTimer == true)
         {
             timer -= UnityEngine.Time.fixedDeltaTime;
+            if (timer <= 0.0f) {
+                timer = roundTime;
+                MasterManager.Instance.userInterfaceManager.PlayAnimation();
+                MasterManager.Instance.userInterfaceManager.startTimer = false;
+            }
         }
-    }*/
+    }
 
     private IEnumerator Time() {
         timer = roundTime;
         while (true) {
             yield return new WaitForSeconds(1.0f);
             timer--;
-            if (timer <= 0.0f) {
-                timer = roundTime;
-                MasterManager.Instance.userInterfaceManager.PlayAnimation();
-                MasterManager.Instance.userInterfaceManager.startTimer = false;
-            }
+            
         }
     }
 }

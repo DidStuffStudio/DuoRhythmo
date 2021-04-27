@@ -25,7 +25,7 @@ public class UserInterfaceManager : MonoBehaviour {
     public DwellSpeedButton[] dwellSpeedButtons;
     private static readonly int Tint = Shader.PropertyToID("_Tint");
     [SerializeField] private int numberOfDwellSpeeds;
-
+    public float currentRotationOfUI = 0.15f;
 
     public List<GameObject> panels = new List<GameObject>(); //Put panels into array so we can change their layer to blur or render them over blur
 
@@ -36,7 +36,9 @@ public class UserInterfaceManager : MonoBehaviour {
        
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _uiAnimator = GetComponent<Animator>();
+        
         _uiAnimator.speed = 0.0f;
+        
         _playerAnimator.speed = 0.0f;
     }
 
@@ -52,14 +54,22 @@ public class UserInterfaceManager : MonoBehaviour {
         }
         startTimer = true;
         StartCoroutine(SwitchPanelRenderLayers());
+        
+    }
+
+    public void SetUpRotationForNewPlayer()
+    {
+        _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
     }
     
     public void PauseAnimation() {
+        
         StartCoroutine(SwitchPanelRenderLayers());
         _uiAnimator.speed = 0.0f;
         _playerAnimator.speed = 0.0f;
         startTimer = true;
         timer = (int) MasterManager.Instance.timer.timer;
+        SetAnimatorTime();
     }
 
     public void PlayAnimation() {
@@ -69,8 +79,11 @@ public class UserInterfaceManager : MonoBehaviour {
         if (_currentPanel > (MasterManager.Instance.numberInstruments - 1)) _currentPanel = 0;
         Solo(false, 0);
         _uiAnimator.speed = 1.0f;
-        _playerAnimator.speed = 1.0f;
-        _playerAnimator.Play("PlayerCam");
+        if (!MasterManager.Instance.player.isWaitingInLobby)
+        {
+            _playerAnimator.speed = 1.0f;
+            _playerAnimator.Play("PlayerCam");
+        }
         timerRunnning = false;
         // StopCoroutine(Timer());
         if(MasterManager.Instance.localPlayerNumber == 0) MasterManager.Instance.timer.ToggleTimer(restart: false);
@@ -165,6 +178,11 @@ public class UserInterfaceManager : MonoBehaviour {
         }
 
 
+    }
+
+    public void SetAnimatorTime() //At the end of each round Send this to the server so new players can join the experience at the same time as everyone else
+    {
+        //_uiAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
     }
 
     private void OnEnable() {

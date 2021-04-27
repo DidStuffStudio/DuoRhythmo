@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,14 @@ public class Timer : MonoBehaviour {
         if(restart) StartCoroutine(Time());
         else StopCoroutine(Time());
     }
+
+    /*private void FixedUpdate()
+    {
+        if (roundTime > 0)
+        {
+            timer -= UnityEngine.Time.fixedDeltaTime;
+        }
+    }*/
 
     private IEnumerator Time() {
         timer = roundTime;

@@ -52,6 +52,8 @@ public class MasterManager : MonoBehaviour
     private bool _canPositionPlayer = false;
     public int localPlayerNumber = 0;
     public bool gameSetUpFinished;
+    public float currentRotationOfUI = 0.0f;
+    public Player player;
 
 
     private void Start()
@@ -178,8 +180,13 @@ public class MasterManager : MonoBehaviour
         }
 
         print("local player number: " + localPlayerNumber);
-        SetPlayerPosition();
+       
         InstantiatePanels();
+        while(player.isWaitingInLobby)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        SetPlayerPosition();
     }
 
     private void SetPlayerPosition()

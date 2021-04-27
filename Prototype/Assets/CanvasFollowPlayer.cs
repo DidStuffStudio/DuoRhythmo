@@ -6,18 +6,13 @@ using UnityEngine;
 public class CanvasFollowPlayer : MonoBehaviour
 {
     private Transform _cam;
-    
+
+    [SerializeField] private GameObject playerCanvasPrefab;
     void Start()
     {
-        _cam = Camera.main.transform;
-        
-        
+        var gfx = Realtime.Instantiate(playerCanvasPrefab.name, true, true, true);
+        gfx.GetComponent<RealtimeTransform>().RequestOwnership();
+        gfx.transform.SetParent(transform, false);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        transform.position = _cam.position;
-        transform.rotation = _cam.rotation;
-    }
+    
 }

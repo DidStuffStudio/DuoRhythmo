@@ -7,7 +7,7 @@ public class RealTimeInstance : MonoBehaviour {
     public static RealTimeInstance Instance => _instance;
 
     private Realtime _realtime;
-    [SerializeField] private GameObject networkManagerPrefab, playerCanvasPrefab;
+    [SerializeField] private GameObject networkManagerPrefab;
     public GameObject networkManager;
     private NetworkManagerSync _networkManagerSync;
     public bool isConnected;
@@ -46,8 +46,7 @@ public class RealTimeInstance : MonoBehaviour {
     private void DidConnectToRoom(Realtime realtime) {
         isConnected = true;
         networkManager = Realtime.Instantiate(networkManagerPrefab.name);
-        var gfx = Realtime.Instantiate(playerCanvasPrefab.name, true, true, true);
-        gfx.GetComponent<RealtimeTransform>().RequestOwnership();
+        
         numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
         MasterManager.Instance.localPlayerNumber =
             numberPlayers - 1; // set this local player's player number to the current player number (index value)

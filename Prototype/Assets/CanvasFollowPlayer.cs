@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using Normal.Realtime;
 using UnityEngine;
 
-public class CanvasFollowPlayer : MonoBehaviour
-{
+public class CanvasFollowPlayer : MonoBehaviour {
     private Transform _cam;
+    public Vector3 positionOffset;
+    public Vector3 rotationOffset;
 
-    [SerializeField] private GameObject playerCanvasPrefab;
-    void Start()
-    {
-        var gfx = Realtime.Instantiate(playerCanvasPrefab.name, true, true, true);
-        gfx.GetComponent<RealtimeTransform>().RequestOwnership();
-        gfx.transform.SetParent(transform, false);
+    private RealtimeView _realtimeView;
+
+    private void Start() {
+        _cam = Camera.main.transform;
+        _realtimeView = GetComponent<RealtimeView>();
     }
-    
+
+    private void Update() {
+        if (!_realtimeView.isOwnedLocallyInHierarchy) return;
+        transform.position = _cam.position + _cam.TransformDirection(positionOffset);
+        transform.rotation = _cam.rotation * Quaternion.Euler(rotationOffset);
+    }
 }

@@ -20,6 +20,8 @@ public class RealTimeInstance : MonoBehaviour {
     private Transform _realtimeInstancesHolder;
     [SerializeField] private string[] roomNames = new string[10];
     private int roomToJoinIndex;
+    
+    [SerializeField] private GameObject playerCanvasPrefab;
 
     private void Awake() {
         _instance = this;
@@ -51,6 +53,11 @@ public class RealTimeInstance : MonoBehaviour {
         MasterManager.Instance.localPlayerNumber =
             numberPlayers - 1; // set this local player's player number to the current player number (index value)
         _testStringSync.SetMessage(TestStringSync.MessageTypes.NUM_PLAYERS + numberPlayers);
+        
+        var gfx = Realtime.Instantiate(playerCanvasPrefab.name, true, true, true);
+        gfx.transform.SetParent(MasterManager.Instance.playerCamera.transform, false);
+        gfx.transform.localPosition = Vector3.zero;
+        gfx.transform.localRotation = Quaternion.identity;
     }
 
     private void DidDisconnectFromRoom(Realtime realtime) {

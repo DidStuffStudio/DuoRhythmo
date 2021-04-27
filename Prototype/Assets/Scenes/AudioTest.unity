@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.002112207, g: 0.018094491, b: 0.03434566, a: 1}
+  m_IndirectSpecularColor: {r: 0.001834068, g: 0.028385522, b: 0.13284612, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1011,6 +1011,7 @@ MonoBehaviour:
   - The Taylor Hawkins Room
   - The Phil Collins Room
   - The Fred Below Room
+  playerCanvasPrefab: {fileID: 4565159655829226910, guid: abc1102492c7df24981d5534d8fb4438, type: 3}
 --- !u!114 &320708703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1460,8 +1461,6 @@ GameObject:
   - component: {fileID: 565050214}
   - component: {fileID: 565050218}
   - component: {fileID: 565050219}
-  - component: {fileID: 565050221}
-  - component: {fileID: 565050220}
   m_Layer: 0
   m_Name: Player_1_Cam
   m_TagString: MainCamera
@@ -1613,39 +1612,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &565050220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565050213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e2513944b8348d4ca475b0ac48f80be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCanvasPrefab: {fileID: 4565159655829226910, guid: abc1102492c7df24981d5534d8fb4438, type: 3}
---- !u!114 &565050221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565050213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _realtime: {fileID: 320708703}
-  _sceneViewUUID: 
-  _viewUUID: d2087db0-e5ce-44a6-8f5e-4cb43f96ffc2
-  _sceneViewPreventOwnershipTakeover: 0
-  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
-  _components: []
-  _childViews: []
 --- !u!1 &574498497
 GameObject:
   m_ObjectHideFlags: 0

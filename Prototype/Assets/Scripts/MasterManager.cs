@@ -180,7 +180,7 @@ public class MasterManager : MonoBehaviour
         }
 
         print("local player number: " + localPlayerNumber);
-       
+        
         InstantiatePanels();
         while(player.isWaitingInLobby)
         {

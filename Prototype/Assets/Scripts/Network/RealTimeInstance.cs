@@ -55,9 +55,7 @@ public class RealTimeInstance : MonoBehaviour {
         _testStringSync.SetMessage(TestStringSync.MessageTypes.NUM_PLAYERS + numberPlayers);
         
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name, true, true, true);
-        gfx.transform.SetParent(MasterManager.Instance.playerCamera.transform, false);
-        gfx.transform.localPosition = Vector3.zero;
-        gfx.transform.localRotation = Quaternion.identity;
+        gfx.transform.GetComponent<RealtimeTransform>().RequestOwnership();
     }
 
     private void DidDisconnectFromRoom(Realtime realtime) {

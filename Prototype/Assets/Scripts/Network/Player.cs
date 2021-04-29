@@ -47,6 +47,8 @@ public class Player : MonoBehaviour {
         
     }
 
+    public void RequestOwnership(RealtimeView realtimeView) => realtimeView.RequestOwnership();
+    
     private void OnApplicationQuit()
     {
         if (!pairedPlayer) return;

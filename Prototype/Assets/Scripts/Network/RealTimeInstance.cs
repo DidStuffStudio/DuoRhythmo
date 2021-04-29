@@ -30,13 +30,6 @@ public class RealTimeInstance : MonoBehaviour {
         
     }
 
-    private void Update()
-    {
-        if (_realtime.connected)
-        {
-            print(_realtime.room.time);
-        }
-    }
 
     public void SetToSoloMode(bool value) => isSoloMode = value;
 
@@ -79,8 +72,11 @@ public class RealTimeInstance : MonoBehaviour {
         _realtime.didDisconnectFromRoom -= DidDisconnectFromRoom;
     }
 
-    private void OnApplicationQuit() {
-        // _testStringSync.SetMessage("Disconnected," + MasterManager.Instance.localPlayerNumber);
+    private void OnApplicationQuit()
+    {
+        MasterManager.Instance.Players.Remove(MasterManager.Instance.player);
+        MasterManager.Instance.timer.CheckForOwner();
+        _testStringSync.SetMessage("Disconnected," + MasterManager.Instance.localPlayerNumber);
         // _networkManagerSync.PlayerDisconnected();
         _realtime.Disconnect();
     }

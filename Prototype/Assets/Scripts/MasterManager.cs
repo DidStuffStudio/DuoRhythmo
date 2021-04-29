@@ -92,7 +92,7 @@ public class MasterManager : MonoBehaviour
                 isInPosition = true;
                 mainSignifier.SetActive(true);
                 StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
-                userInterfaceManager.startTimer = true;
+                timer.ToggleTimer(true);
             }
         }
     }

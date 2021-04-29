@@ -12,7 +12,6 @@ public class UserInterfaceManager : MonoBehaviour {
     [SerializeField] private Animator _playerAnimator;
     [SerializeField] private int roundTime = 30, timer;
     public Text timerDisplay;
-    public bool startTimer, timerRunnning;
     public Material skybox;
     private float _timeLeft;
     private Color _targetVFXColor, _targetSkyColor;
@@ -66,9 +65,9 @@ public class UserInterfaceManager : MonoBehaviour {
         StartCoroutine(SwitchPanelRenderLayers());
         _uiAnimator.speed = 0.0f;
         _playerAnimator.speed = 0.0f;
-        startTimer = true;
-        timer = (int) MasterManager.Instance.timer.timer;
+        //timer = (int) MasterManager.Instance.timer.timer;
         SetAnimatorTime();
+        MasterManager.Instance.timer.ToggleTimer(true);
     }
 
     public void PlayAnimation() {
@@ -83,9 +82,6 @@ public class UserInterfaceManager : MonoBehaviour {
             _playerAnimator.speed = 1.0f;
             _playerAnimator.Play("PlayerCam");
         }
-        timerRunnning = false;
-        // StopCoroutine(Timer());
-        if(MasterManager.Instance.localPlayerNumber == 0) MasterManager.Instance.timer.ToggleTimer(restart: false);
     }
 
     public void Update() {
@@ -119,11 +115,6 @@ public class UserInterfaceManager : MonoBehaviour {
         if(!MasterManager.Instance.gameSetUpFinished) return;
         timerDisplay.text = timer.ToString();
         timer = (int) MasterManager.Instance.timer.timer;
-        if (!startTimer || timerRunnning) return;
-        // timer = roundTime;
-        timerRunnning = true;
-        // StartCoroutine(Timer());
-        // if(MasterManager.Instance.localPlayerNumber == 0) MasterManager.Instance.timer.ToggleTimer(restart: true);
     }
 
     public void Solo(bool solo, int index) {

@@ -52,7 +52,8 @@ public class TestStringSync : RealtimeComponent<TestString> {
             // MasterManager.Instance.ResetLocalPlayerNumber(disconnectedPlayerNumber);
             // realtime.Disconnect();
             // networkInfo.text = "Player " + disconnectedPlayerNumber + " has disconnected. Quitting application";
-            if (MasterManager.Instance.localPlayerNumber > disconnectedPlayerNumber) MasterManager.Instance.localPlayerNumber--;
+            // Remove player from master manager list
+            
         }
 
         if (_message.Contains(MessageTypes.NUM_PLAYERS)) {

@@ -1,51 +1,49 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using Normal.Realtime;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Timer : MonoBehaviour {
     public int roundTime;
     public float timer;
     private double startingRoomTime;
+    private RealtimeView _realtimeView;
+    
     private void Start() {
-        /*ToggleTimer(restart: true);
-        MasterManager.Instance.userInterfaceManager.startTimer = true;*/
         timer = roundTime;
+        _realtimeView = GetComponent<RealtimeView>();
     }
 
     public void ToggleTimer(bool restart) {
+        if (!RealTimeInstance.Instance.isSoloMode)
+        {
+            if (!_realtimeView.isOwnedLocallyInHierarchy) return;
+        }
+
         if(restart) StartCoroutine(Time());
         else StopCoroutine(Time());
     }
 
-    private void FixedUpdate()
+    public void CheckForOwner()
     {
-        
-        if (roundTime > 0 && MasterManager.Instance.userInterfaceManager.startTimer && RealTimeInstance.Instance.isSoloMode)
-        {
-            timer -= UnityEngine.Time.fixedDeltaTime;
-            if (timer <= 0.0f) {
-                timer = roundTime;
-                MasterManager.Instance.userInterfaceManager.PlayAnimation();
-                MasterManager.Instance.userInterfaceManager.startTimer = false;
-            }
-        }
-        else if (MasterManager.Instance.userInterfaceManager.startTimer)
-        {
-            StartCoroutine(Time());
-            MasterManager.Instance.userInterfaceManager.startTimer = false;
-        }
+        if (RealTimeInstance.Instance.isSoloMode) return;
+        MasterManager.Instance.Players[0].RequestOwnership(_realtimeView);
     }
 
     private IEnumerator Time() {
-        timer = roundTime;
-        var startRoomTime = RealTimeInstance.Instance.GetRoomTime();
-        while (timer > 0) {
+
+        while (timer >= 0.0f) {
             
-            yield return new WaitForEndOfFrame();
-            timer -= (float)(RealTimeInstance.Instance.GetRoomTime()-startRoomTime);
+            yield return new WaitForSeconds(1.0f);
             
+            timer --;
+
         }
+        
+        timer = roundTime;
+        MasterManager.Instance.userInterfaceManager.PlayAnimation();
     }
 }

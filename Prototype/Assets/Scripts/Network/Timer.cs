@@ -11,38 +11,38 @@ public class Timer : MonoBehaviour {
     public float timer;
     private double startingRoomTime;
     private RealtimeView _realtimeView;
-    
+
     private void Start() {
         timer = roundTime;
         _realtimeView = GetComponent<RealtimeView>();
     }
 
     public void ToggleTimer(bool restart) {
-        if (!RealTimeInstance.Instance.isSoloMode)
-        {
+        if (!RealTimeInstance.Instance.isSoloMode) {
             if (!_realtimeView.isOwnedLocallyInHierarchy) return;
         }
 
-        if(restart) StartCoroutine(Time());
+        if (restart) StartCoroutine(Time());
         else StopCoroutine(Time());
     }
 
-    public void CheckForOwner()
-    {
+    public void CheckForOwner() {
         if (RealTimeInstance.Instance.isSoloMode) return;
-        MasterManager.Instance.Players[0].RequestOwnership(_realtimeView);
+        foreach (var player in MasterManager.Instance.Players) {
+            if (player) {
+                player.RequestOwnership(_realtimeView);
+            }
+        }
     }
 
     private IEnumerator Time() {
-
         while (timer >= 0.0f) {
-            
             yield return new WaitForSeconds(1.0f);
-            
-            timer --;
-
+            timer--;
+            if (!RealTimeInstance.Instance.isSoloMode)
+                RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.TIMER + timer);
         }
-        
+
         timer = roundTime;
         MasterManager.Instance.userInterfaceManager.PlayAnimation();
     }

@@ -49,12 +49,8 @@ public class TestStringSync : RealtimeComponent<TestString> {
         _message = model.message;
         print("The message has changed to: " + _message);
         if (_message.Contains(MessageTypes.DISCONNECTED)) {
-            var disconnectedPlayerNumber = Int32.Parse(_message.Split(',')[1]);
-            // MasterManager.Instance.ResetLocalPlayerNumber(disconnectedPlayerNumber);
-            // realtime.Disconnect();
-            // networkInfo.text = "Player " + disconnectedPlayerNumber + " has disconnected. Quitting application";
-            // Remove player from master manager list
-            
+            // var disconnectedPlayerNumber = Int32.Parse(_message.Split(',')[1]);
+            RealTimeInstance.Instance.numberPlayers--;
         }
 
         if (_message.Contains(MessageTypes.NUM_PLAYERS)) {

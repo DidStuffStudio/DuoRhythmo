@@ -75,6 +75,7 @@ public class RealTimeInstance : MonoBehaviour {
     private void OnApplicationQuit()
     {
         MasterManager.Instance.Players.Remove(MasterManager.Instance.player);
+        MasterManager.Instance.timer.gameObject.GetComponent<RealtimeView>().ClearOwnership();
         MasterManager.Instance.timer.CheckForOwner();
         _testStringSync.SetMessage("Disconnected," + MasterManager.Instance.localPlayerNumber);
         // _networkManagerSync.PlayerDisconnected();

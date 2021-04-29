@@ -295,6 +295,7 @@ public class MasterManager : MonoBehaviour
         if (localPlayerNumber == 0)
         {
             timerGameObject = Realtime.Instantiate(prefabName: timerPrefab.name, true);
+            // timerGameObject.GetComponent<RealtimeView>().RequestOwnership();
             timer = timerGameObject.GetComponent<Timer>();
             userInterfaceManager.SetUpInterface();
             gameSetUpFinished = true;

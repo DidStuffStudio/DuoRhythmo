@@ -11,6 +11,7 @@ public class Timer : MonoBehaviour {
     public float timer;
     private double startingRoomTime;
     private RealtimeView _realtimeView;
+    private bool blinking;
 
     private void Start() {
         timer = roundTime;
@@ -39,6 +40,7 @@ public class Timer : MonoBehaviour {
         while (timer >= 0.0f) {
             yield return new WaitForSeconds(1.0f);
             timer--;
+            // if (Math.Abs(timer - 15.0f) < 0.1f) StartCoroutine(BlinkTimer());
             if (!RealTimeInstance.Instance.isSoloMode)
                 RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.TIMER + timer);
         }
@@ -46,4 +48,13 @@ public class Timer : MonoBehaviour {
         timer = roundTime;
         MasterManager.Instance.userInterfaceManager.PlayAnimation();
     }
+
+    // private IEnumerator BlinkTimer() {
+    //     while (true) {
+    //         yield return new WaitForSeconds(0.1f);
+    //         // decrease blink alpha
+    //         yield return new WaitForSeconds(0.1f);
+    //         // increase blink alpha 
+    //     }
+    // }
 }

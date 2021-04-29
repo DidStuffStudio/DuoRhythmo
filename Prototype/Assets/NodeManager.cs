@@ -35,9 +35,9 @@ public class NodeManager : MonoBehaviour {
 
     [Range(0.0f, 100.0f)] [SerializeField] private float[] levels = new float[3];
 
-    private string[] effectNames = new string[3];
+    private string[] effectNames = new string[4];
 
-    public SliderKnob[] sliders = new SliderKnob[3];
+    public SliderKnob[] sliders = new SliderKnob[4];
 
     private int previousEffectValue;
 
@@ -52,23 +52,16 @@ public class NodeManager : MonoBehaviour {
     private bool _nodeIsSetup;
 
     private EuclideanRythm _euclideanRythm;
+    
+    public IncrementButton[] incrementButtons = new IncrementButton[4];
+    public UI_Gaze_Button euclideanButton;
 
     private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();
     }
 
     public void SetUpNode() {
-        Color.RGBToHSV(defaultColor, out var uH, out var uS, out var uV);
-        uV -= 0.3f;
-        Color.RGBToHSV(drumColor, out var aH, out var aS, out var aV);
-        aV -= 0.3f;
-
-        _inactiveHover = Color.HSVToRGB(uH, uS, uV);
-        _activeHover = Color.HSVToRGB(aH, aS, aV);
-
-        _inactiveHover.a = 1;
-        _activeHover.a = 1;
-
+        
         // _screenSync = GetComponentInParent<ScreenSync>();
         _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = false;
 
@@ -78,7 +71,7 @@ public class NodeManager : MonoBehaviour {
 
         for (int i = 0; i < sliders.Length - 1; i++) sliders[i].OnSliderChange += ChangeEffectValue;
 
-        sliders[3].OnSliderChange += ChangeBpm;
+        sliders[4].OnSliderChange += ChangeBpm;
 
         string[] effects = {"_Effect_1", "_Effect_2", "_Effect_3"};
         if (drumType == DrumType.Kick)
@@ -124,17 +117,19 @@ public class NodeManager : MonoBehaviour {
             levels[0] = sliders[0].currentValue;
             levels[1] = sliders[1].currentValue;
             levels[2] = sliders[2].currentValue;
+            //levels[3] = sliders[3].currentValue;
             bpm = MasterManager.Instance.bpm;
-            sliders[3].currentValue = bpm;
-            sliders[3].UpdateSliderText();
+            sliders[4].currentValue = bpm;
+            sliders[4].UpdateSliderText();
         }
         else {
             levels[0] = sliders[0].currentValue = _screenSync.Effect1;
             levels[1] = sliders[1].currentValue = _screenSync.Effect2;
             levels[2] = sliders[2].currentValue = _screenSync.Effect3;
+            //levels[3] = sliders[3].currentValue = _screenSync.Effect3;
             bpm = _screenSync.Bpm;
-            sliders[3].currentValue = bpm;
-            sliders[3].UpdateSliderText();
+            sliders[4].currentValue = bpm;
+            sliders[4].UpdateSliderText();
         }
 
         // if(MasterManager.Instance.bpm != bpm) MasterManager.Instance.SetBpm(bpm);
@@ -205,8 +200,6 @@ public class NodeManager : MonoBehaviour {
             {
                 customButton.activeColor = drumColor;
                 customButton.defaultColor = defaultColor;
-                customButton.inactiveHoverColor = _inactiveHover;
-                customButton.activeHoverColor = _activeHover;
                 // customButton.hintColor = _panelMaster.hintColor;
             }
         }
@@ -230,7 +223,7 @@ public class NodeManager : MonoBehaviour {
     }
 
     void ChangeBpm(int index) {
-        var sliderValue = (int) sliders[3].currentValue;
+        var sliderValue = (int) sliders[4].currentValue;
         bpm = sliderValue;
         MasterManager.Instance.SetBpm(bpm);
         // _screenSync.SetBpm(sliderValue);
@@ -274,7 +267,7 @@ public class NodeManager : MonoBehaviour {
         {
             if (_nodes[0].isActive) nodesActive[_nodes.Count-1] = 1;
             else nodesActive[_nodes.Count-1] = 0;
-            for (int i = _nodes.Count-1; i > 1; i--)
+            for (int i = _nodes.Count-1; i > 0; i--)
             {
                 if (_nodes[i].isActive) nodesActive[i - 1] = 1;
                 else nodesActive[i - 1] = 0;
@@ -292,7 +285,7 @@ public class NodeManager : MonoBehaviour {
             // if the euclidean value is 1, then it means it should be active, so activate
             if(value == 1 && !_nodes[i].isActive) _nodes[i].Activate(true);
             else if(value == 0  && _nodes[i].isActive) _nodes[i].Activate(false);
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.02f);
         }
         
     }
@@ -307,7 +300,7 @@ public class NodeManager : MonoBehaviour {
         if (!activate)
             foreach (var node in _nodes) {
                 node.Deactivate();
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.02f);
             }
         else {
             _euclideanRythm.GetEuclideanRythm();
@@ -316,7 +309,7 @@ public class NodeManager : MonoBehaviour {
                 // if the euclidean value is 1, then it means it should be active, so activate
                 if(euclideanValue == 1 && !_nodes[i].isActive) _nodes[i].Activate(true);
                 else if(euclideanValue == 0  && _nodes[i].isActive) _nodes[i].Activate(false);
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.02f);
             }
         }
     }

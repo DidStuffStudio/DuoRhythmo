@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7455338140076593167}
   - component: {fileID: 8678579488498251742}
   - component: {fileID: 5459121653236086904}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 1886483761313521017}
   - component: {fileID: 2836173999184559371}
   - component: {fileID: 6181984227026065267}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EuclideanFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,16 +170,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9e86dbd0ebbf442bee84ea1e5d3d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.42986825, g: 0.8679245, b: 0.58032185, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.2080543, g: 0.41799998, b: 0.2799276, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 2019602569431696928}
   mouseOver: 0
   interactionBreakTime: 1
@@ -204,6 +203,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 0
 --- !u!114 &1875675201207823354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,16 +216,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9e86dbd0ebbf442bee84ea1e5d3d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
-  inactiveHoverColor: {r: 0.41799998, g: 0.41799998, b: 0.41799998, a: 1}
   activeColor: {r: 0.42986825, g: 0.8679245, b: 0.58032185, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.2080543, g: 0.41799998, b: 0.2799276, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1167764742376313460}
   mouseOver: 0
   interactionBreakTime: 1
@@ -250,6 +249,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 0
 --- !u!1 &6759478934283894707
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 2569787803742482617}
   - component: {fileID: 5222402387991585220}
   - component: {fileID: 6635482382611608894}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EuclideanButton
   m_TagString: UI_Drum_Colour
   m_Icon: {fileID: 0}
@@ -328,16 +328,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec2c832fac4ce946b639a773087da7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 0
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.4734781, g: 0.754717, b: 0.5090399, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.2883938, g: 0.46, b: 0.30984455, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 7084909211656520052}
   mouseOver: 0
   interactionBreakTime: 1
@@ -398,6 +397,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 0
   _text: {fileID: 5459121653236086904}
   _string: Euclidean
   drumTypeIndex: 0
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 8273222312357956039}
   - component: {fileID: 8315258512241835630}
   - component: {fileID: 8973671327442402400}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EuclideanFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 3263392533320624537}
   - component: {fileID: 2872619222723789639}
   - component: {fileID: 3174164866663917190}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Confirm_Scale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,16 +630,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9e86dbd0ebbf442bee84ea1e5d3d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.42986825, g: 0.8679245, b: 0.58032185, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.2080543, g: 0.41799998, b: 0.2799276, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 6687654875969694493}
   mouseOver: 0
   interactionBreakTime: 1
@@ -664,6 +663,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 0
 --- !u!1 &8248214351985109841
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 8248214351985109850}
   - component: {fileID: 8248214351985109845}
   - component: {fileID: 8248214351985109847}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RhythmLineIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 8248214352146800103}
   - component: {fileID: 8248214352146800101}
   - component: {fileID: 8248214352146800100}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,15 +780,15 @@ RectTransform:
   m_GameObject: {fileID: 8248214352146800102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 8248214353105484810}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 427}
-  m_SizeDelta: {x: 800, y: 300}
+  m_AnchoredPosition: {x: 0, y: 431.2}
+  m_SizeDelta: {x: 5000, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8248214352146800101
 CanvasRenderer:
@@ -820,11 +820,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: ca4ea01ea60674a49995c1f6fbeaa154, type: 3}
-    m_FontSize: 214
+    m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 228
+    m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -842,7 +842,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8248214352534705531}
   - component: {fileID: 2624153787203381659}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: NodesPanel
   m_TagString: RenderTarget
   m_Icon: {fileID: 0}
@@ -888,7 +888,7 @@ GameObject:
   - component: {fileID: 8248214352965214083}
   - component: {fileID: 8248214352965214087}
   - component: {fileID: 8248214352965214086}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 8248214353105484815}
   - component: {fileID: 8248214353105484813}
   - component: {fileID: 147387570589692383}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DrumPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1072,6 +1072,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   drumIndex: 0
+  incrementButtons:
+  - {fileID: 5283116718003278164}
+  - {fileID: 6645957986466359653}
+  - {fileID: 6864546359120722105}
+  - {fileID: 1875675201207823354}
+  euclideanButton: {fileID: 5970392630470559572}
 --- !u!114 &8248214353105484814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1160,7 +1166,7 @@ GameObject:
   - component: {fileID: 8248214353350139418}
   - component: {fileID: 8248214353350139413}
   - component: {fileID: 8248214353350139412}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: User Interface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1260,16 +1266,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9e86dbd0ebbf442bee84ea1e5d3d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
-  inactiveHoverColor: {r: 0.41799998, g: 0.41799998, b: 0.41799998, a: 1}
   activeColor: {r: 0.42986825, g: 0.8679245, b: 0.58032185, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.2080543, g: 0.41799998, b: 0.2799276, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 4652359128626248987}
   mouseOver: 0
   interactionBreakTime: 1
@@ -1294,6 +1299,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 0
 --- !u!1 &9200746697280581747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,7 +1311,7 @@ GameObject:
   - component: {fileID: 7638947922711449443}
   - component: {fileID: 3256843084920557114}
   - component: {fileID: 4677789316946579568}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EuclideanFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1382,7 +1388,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 501289949584677014, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 501289949584677014, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_IsActive
@@ -1794,7 +1800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_TagString
@@ -1814,7 +1820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1822,7 +1828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMin.y
@@ -1866,7 +1872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -244.9
+      value: 155.1
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1894,7 +1900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7078141786073897815, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7430540923224279596, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1990,7 +1996,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 501289949584677014, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3198924837567446181, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Sprite
@@ -2242,11 +2248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_TagString
@@ -2358,7 +2364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7078141786073897815, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7430540923224279596, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2454,7 +2460,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 501289949584677014, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 501289949584677014, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_IsActive
@@ -2866,7 +2872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_TagString
@@ -2886,7 +2892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2894,7 +2900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMin.y
@@ -2938,7 +2944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 243.9
+      value: -156.1
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2966,7 +2972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7078141786073897815, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7430540923224279596, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3062,7 +3068,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 501289949584677014, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 501289949584677014, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_IsActive
@@ -3306,7 +3312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_TagString
@@ -3330,7 +3336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3338,7 +3344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3346,7 +3352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 28
+      value: 28.000015
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3382,7 +3388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 273.1
+      value: 39.367287
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3406,7 +3412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7078141786073897815, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8002361928869053110, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: defaultColor.a
@@ -3499,7 +3505,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 501289949584677014, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 501289949584677014, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_IsActive
@@ -3711,7 +3717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_TagString
@@ -3735,7 +3741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3743,7 +3749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3787,7 +3793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -273.95
+      value: -40.217293
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3811,7 +3817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7078141786073897815, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8002361928869053110, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: activeColor.b
@@ -3905,7 +3911,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 501289949584677014, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3198924837567446181, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Sprite
@@ -4157,11 +4163,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_TagString
@@ -4273,7 +4279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7078141786073897815, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7430540923224279596, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.x

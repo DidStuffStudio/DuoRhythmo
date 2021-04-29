@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MasterManager : MonoBehaviour {
     private static MasterManager _instance;
@@ -37,7 +38,7 @@ public class MasterManager : MonoBehaviour {
 
     [SerializeField] private ScreenSync[] _screenSyncs;
 
-    [Space] [Header("Timer")] public int bpm = 280;
+    [Space] [Header("Timer")] public int bpm = 120;
     [SerializeField] private GameObject timerPrefab;
     private GameObject timerGameObject;
     public Timer timer;
@@ -135,10 +136,15 @@ public class MasterManager : MonoBehaviour {
             effectsPanels[i] = Instantiate(effectsPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
             effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
             effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
-            var effectsUigazeButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            var nodesUigazeButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            foreach (var uigazeButton in effectsUigazeButtons) uigazeButton.drumTypeIndex = i;
-            foreach (var uigazeButton in nodesUigazeButtons) uigazeButton.drumTypeIndex = i;
+            
+            foreach(Transform child in transform)
+            {
+                if (child.CompareTag("UI_Drum_Colour"))
+                {
+                    child.GetComponent<Text>().color = drumColors[i];
+                    break;
+                }
+            }
 
             userInterfaceManager.panels.Add(effectsPanels[i]);
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1, 0);
@@ -152,14 +158,21 @@ public class MasterManager : MonoBehaviour {
             nodeManager.subNodeIndex = i;
             nodeManager.defaultColor = defaultNodeColors[i];
             nodeManager.drumColor = drumColors[i];
-
+            foreach (var incButton in nodeManager.incrementButtons) incButton.activeColor = drumColors[i];
+            nodeManager.euclideanButton.activeColor = drumColors[i];
+            
             // initialize the knob sliders for this current node manager
             var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
             nodeManager.sliders = new SliderKnob[knobs.Length];
             for (int j = 0; j < knobs.Length; j++) {
                 nodeManager.sliders[j] = knobs[j];
+                if (!knobs[j].gameObject.CompareTag("BPM_Slider"))
+                    knobs[j].activeColor = drumColors[i];
             }
-
+            var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
+            foreach (var uigazeButton in nodesSoloButtons) uigazeButton.drumTypeIndex = i;
+            var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
+            foreach (var uigazeButton in effectsSoloButtons) uigazeButton.drumTypeIndex = i;
             nodeManager.SetUpNode();
 
             userInterfaceManager.panels.Add(nodesPanels[i]);
@@ -223,10 +236,19 @@ public class MasterManager : MonoBehaviour {
             effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
             userInterfaceManager.panels.Add(effectsPanels[i]);
+            var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
+            foreach (var uigazeButton in effectsSoloButtons) uigazeButton.drumTypeIndex = i;
+            foreach(Transform child in transform)
+            {
+                if (child.CompareTag("UI_Drum_Colour"))
+                {
+                    child.GetComponent<Text>().color = drumColors[i];
+                    break;
+                }
+            }
             // userInterfaceManager.panels[panelCounter] = effectsPanels[i];
             panelCounter += 2;
-            var effectsUigazeButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            foreach (var uigazeButton in effectsUigazeButtons) uigazeButton.drumTypeIndex = i;
+
         }
 
         panelCounter = 0;
@@ -255,12 +277,19 @@ public class MasterManager : MonoBehaviour {
             nodeManager.subNodeIndex = i;
             nodeManager.defaultColor = defaultNodeColors[i];
             nodeManager.drumColor = drumColors[i];
-
+            foreach (var incButton in nodeManager.incrementButtons) incButton.activeColor = drumColors[i];
+            nodeManager.euclideanButton.activeColor = drumColors[i];
+            var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
+            foreach (var uigazeButton in nodesSoloButtons) uigazeButton.drumTypeIndex = i;
+            
+            
             // initialize the knob sliders for this current node manager
             var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
             nodeManager.sliders = new SliderKnob[knobs.Length];
             for (int j = 0; j < knobs.Length; j++) {
                 nodeManager.sliders[j] = knobs[j];
+                if (!knobs[j].gameObject.CompareTag("BPM_Slider"))
+                    knobs[j].activeColor = drumColors[i];
             }
 
             nodeManager.SetUpNode();

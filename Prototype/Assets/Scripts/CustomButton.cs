@@ -14,9 +14,10 @@ public class CustomButton : MonoBehaviour {
     protected GazeAware _gazeAware;
     private Image _image;
     private Collider _collider;
-
-    public bool isDefault = true, isHover, isActive, isHint, isConfirmationButton;
-    public Color defaultColor, inactiveHoverColor, activeColor, hintColor, activeHoverColor;
+    public bool canInteractBeforeStart = false;
+    public bool isDefault = true, isHover, isActive, isConfirmationButton;
+    public Color defaultColor, activeColor, defaultTextColor = Color.black, activeTextColor = Color.white;
+    private Color inactiveHoverColor, activeHoverColor;
     public GameObject confirmScaler;
     public bool mouseOver;
     protected RectTransform _confirmScalerRT;
@@ -26,21 +27,28 @@ public class CustomButton : MonoBehaviour {
     public bool activated;
     protected bool _usingEyeTracking;
     public float localDwellTimeSpeed = 100.0f;
-    [SerializeField] private bool isDwellTimeSetter; 
-    
+    [SerializeField] private bool isDwellTimeSetter;
+    private bool colorsSet = false;
+    private Text buttonText;
+    public bool changeTextColor;
 
     protected virtual void Start()
     {
-        
+        buttonText = GetComponentInChildren<Text>();
         _confirmScalerRT = confirmScaler.GetComponent<RectTransform>();
         _gazeAware = GetComponent<GazeAware>();
         _image = GetComponent<Image>();
         _collider = GetComponent<Collider>();
         _image.color = defaultColor;
-        confirmScaler.GetComponent<Image>().color = activeColor;
+        
         isDefault = true;
         isActive = false;
         if (isConfirmationButton) ConfirmActivation(false);
+        
+        
+       
+
+        
     }
 
     protected virtual void Update() {
@@ -55,6 +63,7 @@ public class CustomButton : MonoBehaviour {
 
     protected virtual void FixedUpdate()
     {
+        if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
         if (isHover) {
             if (_confirmScalerRT.localScale.x < 1.0f)
                 if (!isDwellTimeSetter)
@@ -92,26 +101,45 @@ public class CustomButton : MonoBehaviour {
     }
     protected virtual void OnMouseOver()
     {
+        if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
         if(gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         mouseOver = true;
         Hover();
     }
 
     protected virtual void OnMouseExit() {
+        if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
         if(gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         mouseOver = false;
         UnHover();
     }
 
-    protected virtual void SetActive() {
+    protected virtual void SetActive()
+    {
+        if(changeTextColor) buttonText.color = activeTextColor;
         _image.color = activeColor;
         if (isActive) return;
         isActive = true;
         isDefault = false;
-        if (isHint) isHint = false;
     }
 
     protected virtual void Hover() {
+        if (!colorsSet)
+        {
+            Color.RGBToHSV(defaultColor, out var uH, out var uS, out var uV);
+            uV -= 0.3f;
+            Color.RGBToHSV(activeColor, out var aH, out var aS, out var aV);
+            aV -= 0.3f;
+
+            inactiveHoverColor = Color.HSVToRGB(uH, uS, uV);
+            activeHoverColor = Color.HSVToRGB(aH, aS, aV);
+
+            inactiveHoverColor.a = 1;
+            activeHoverColor.a = 1;
+            confirmScaler.GetComponent<Image>().color = activeColor;
+            colorsSet = true;
+        }
+
         if (!_canHover || gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         if (isActive) _image.color = activeHoverColor;
         else _image.color = inactiveHoverColor;
@@ -128,7 +156,8 @@ public class CustomButton : MonoBehaviour {
     }
 
     protected virtual void SetDefault() {
-        _image.color = defaultColor;
+         _image.color = defaultColor;
+        if(changeTextColor)buttonText.color = defaultTextColor;
         confirmScaler.GetComponent<Image>().color = activeColor;
         if (isDefault) return;
         isDefault = true;
@@ -139,11 +168,7 @@ public class CustomButton : MonoBehaviour {
         _collider.enabled = enabled;
         _image.enabled = enabled;
     }
-
-    protected virtual void SetHint() {
-        _image.color = hintColor;
-        isHint = true;
-    }
+    
 
     protected virtual IEnumerator InteractionBreakTime() {
         _canHover = false;

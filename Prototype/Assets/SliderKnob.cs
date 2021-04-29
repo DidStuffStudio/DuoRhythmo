@@ -44,45 +44,90 @@ public class SliderKnob : CustomButton
         
         
                 var rect = _slider.rect;
-                _minValue = 0;
-                _maxValue = rect.height;
-                _knobRectTransform.anchoredPosition = new Vector2(0, _minValue);
+                if (isHorizontal)
+                {
+                    _minValue = 0;
+                    _maxValue = rect.width;
+                    _knobRectTransform.anchoredPosition = new Vector2(rect.width/2, 0);
+                }
+                else
+                {
+                    _minValue = 0;
+                    _maxValue = rect.height;
+                    _knobRectTransform.anchoredPosition = new Vector2(0, rect.height/2);
+                }
+
+                UpdateSliderText();
     }
 
     protected override void Update()
     {
         base.Update();
+
+        if (isHorizontal) _knobRectTransform.anchoredPosition = new Vector2(Map(currentValue, minimumValue,maximumValue , _minValue, _maxValue), 0.0f);
         
-      
-        _knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(currentValue, minimumValue,maximumValue , _minValue, _maxValue));
+        else _knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(currentValue, minimumValue,maximumValue , _minValue, _maxValue));
         
         // Mouse Delta
         if (isActive)
         {
             var knobScreenPoint = _mainCamera.WorldToScreenPoint(_knobRectTransform.position);
-            
-            if (_usingEyeTracking)
+
+            if (isHorizontal)
             {
-                GazePoint gazePoint = TobiiAPI.GetGazePoint();
-                knobScreenPoint.y = gazePoint.Screen.y;
-            }
-           
-            else knobScreenPoint.y = Input.mousePosition.y;
-                
+                if (_usingEyeTracking)
+                {
+                    GazePoint gazePoint = TobiiAPI.GetGazePoint();
+                    knobScreenPoint.x = gazePoint.Screen.x;
+                }
+
+                else knobScreenPoint.x = Input.mousePosition.x;
+
                 _knobRectTransform.position = _mainCamera.ScreenToWorldPoint(knobScreenPoint);
-                
-                if (_knobRectTransform.position.y < lowerLimit.position.y) _knobRectTransform.position = lowerLimit.position;
-                if (_knobRectTransform.position.y > upperLimit.position.y) _knobRectTransform.position = upperLimit.position;
+
+                if (_knobRectTransform.position.x < lowerLimit.position.x)
+                    _knobRectTransform.position = lowerLimit.position;
+                if (_knobRectTransform.position.x > upperLimit.position.x)
+                    _knobRectTransform.position = upperLimit.position;
 
 
-                currentValue = Map(_knobRectTransform.anchoredPosition.y, _minValue, _maxValue, minimumValue, maximumValue);
-            
-                
+                currentValue = Map(_knobRectTransform.anchoredPosition.x, _minValue, _maxValue, minimumValue,
+                    maximumValue);
+
+
                 if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
-                
+
                 previousValue = currentValue;
+            }
                 
-                
+            
+            else
+            {
+                if (_usingEyeTracking)
+                {
+                    GazePoint gazePoint = TobiiAPI.GetGazePoint();
+                    knobScreenPoint.y = gazePoint.Screen.y;
+                }
+
+                else knobScreenPoint.y = Input.mousePosition.y;
+
+                _knobRectTransform.position = _mainCamera.ScreenToWorldPoint(knobScreenPoint);
+
+                if (_knobRectTransform.position.y < lowerLimit.position.y)
+                    _knobRectTransform.position = lowerLimit.position;
+                if (_knobRectTransform.position.y > upperLimit.position.y)
+                    _knobRectTransform.position = upperLimit.position;
+
+
+                currentValue = Map(_knobRectTransform.anchoredPosition.y, _minValue, _maxValue, minimumValue,
+                    maximumValue);
+
+
+                if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
+
+                previousValue = currentValue;
+            }
+
         }
         
         
@@ -90,6 +135,7 @@ public class SliderKnob : CustomButton
 
     protected override void FixedUpdate()
     {
+        if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
         if (isHover && !isActive) {
             if (_confirmScalerRT.localScale.x < 1.0f)
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;

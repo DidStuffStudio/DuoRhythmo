@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0010572419, g: 0.012357427, b: 0.05492945, a: 1}
+  m_IndirectSpecularColor: {r: 0.006453563, g: 0.0381102, b: 0.16115192, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -313,6 +313,285 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &49904273
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1500954456}
+    m_Modifications:
+    - target: {fileID: 501289949584677014, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198924837567446181, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198924837567446181, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2dfe710981d19014286dbdd9ee168690, type: 3}
+    - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 34.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193081780428962791, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193081780428962791, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2dfe710981d19014286dbdd9ee168690, type: 3}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Text
+      value: Dwell time speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Color.b
+      value: 0.41099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Color.g
+      value: 0.41099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Color.r
+      value: 0.41099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: ca4ea01ea60674a49995c1f6fbeaa154, type: 3}
+    - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: _string
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Name
+      value: DwellTimeSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 34.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.4999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.4999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.4999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -537
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078141786073897815, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430540923224279596, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430540923224279596, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430540923224279596, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517848921195261517, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_positionOffsetData.positionOffset.x
+      value: 5.246644
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517848921195261517, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_positionOffsetData.positionOffset.y
+      value: 0.0000366211
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517848921195261517, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_positionOffsetData.positionOffset.z
+      value: -0.0000068489016
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+--- !u!224 &49904274 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+  m_PrefabInstance: {fileID: 49904273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &49904275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7078141786073897815, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+  m_PrefabInstance: {fileID: 49904273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &49904276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+  m_PrefabInstance: {fileID: 49904273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &49904277
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49904276}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 135.6, y: 42.95, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &49904278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49904276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fec2c832fac4ce946b639a773087da7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteractBeforeStart: 1
+  isDefault: 1
+  isHover: 0
+  isActive: 0
+  isConfirmationButton: 0
+  defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
+  activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
+  confirmScaler: {fileID: 49904275}
+  mouseOver: 0
+  interactionBreakTime: 1
+  OnActivation:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeactivation:
+    m_PersistentCalls:
+      m_Calls: []
+  activated: 0
+  localDwellTimeSpeed: 100
+  isDwellTimeSetter: 0
+  changeTextColor: 0
+  _text: {fileID: 1536880416}
+  _string: Dwell time speed
+  drumTypeIndex: 0
 --- !u!1001 &125626010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -513,16 +792,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.12926267, g: 0.306682, b: 0.55, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 125626011}
   mouseOver: 0
   interactionBreakTime: 1
@@ -547,6 +825,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -758,16 +1037,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.12926267, g: 0.306682, b: 0.55, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 168322547}
   mouseOver: 0
   interactionBreakTime: 1
@@ -792,6 +1070,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -1246,16 +1525,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.12926267, g: 0.306682, b: 0.55, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 379735768}
   mouseOver: 0
   interactionBreakTime: 1
@@ -1280,6 +1558,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 1892863259}
   - {fileID: 2000987225}
@@ -6648,6 +6927,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3198924837567446181, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198924837567446181, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2dfe710981d19014286dbdd9ee168690, type: 3}
+    - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 34.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalScale.x
       value: 0
@@ -6660,11 +6955,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5193081780428962791, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193081780428962791, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2dfe710981d19014286dbdd9ee168690, type: 3}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: 'Multi
-
-        Player'
+      value: Multiplayer
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a
@@ -6689,6 +6990,10 @@ PrefabInstance:
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
@@ -6728,11 +7033,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 40
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 40
+      value: 34.1
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalScale.x
@@ -6756,7 +7061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.000035679146
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6776,11 +7081,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 150
+      value: 186
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 445
+      value: 319
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6800,7 +7105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7430540923224279596, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 7430540923224279596, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6836,16 +7141,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.12926267, g: 0.306682, b: 0.55, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 689948717}
   mouseOver: 0
   interactionBreakTime: 1
@@ -6870,9 +7174,23 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 1720987937}
   activateOnStart: 0
+--- !u!65 &689948729
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689948718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 135.6, y: 42.95, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &693815046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7073,16 +7391,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.12926267, g: 0.306682, b: 0.55, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 693815048}
   mouseOver: 0
   interactionBreakTime: 1
@@ -7107,6 +7424,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -7318,16 +7636,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.12926267, g: 0.306682, b: 0.55, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 694531496}
   mouseOver: 0
   interactionBreakTime: 1
@@ -7352,6 +7669,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -12766,7 +13084,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100553357}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -13037,16 +13355,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec2c832fac4ce946b639a773087da7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.50980395, g: 0.78039217, b: 0.4509804, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.22352941, g: 0.6117647, b: 0.41960785, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1108963517}
   mouseOver: 0
   interactionBreakTime: 1
@@ -13083,6 +13400,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 0
   _text: {fileID: 1842478429}
   _string: Play
   drumTypeIndex: 0
@@ -13801,16 +14119,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.12926267, g: 0.306682, b: 0.55, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1395359137}
   mouseOver: 0
   interactionBreakTime: 1
@@ -13835,6 +14152,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -14055,6 +14373,8 @@ RectTransform:
   - {fileID: 689948719}
   - {fileID: 1720987936}
   - {fileID: 1108963516}
+  - {fileID: 1838709013}
+  - {fileID: 49904274}
   m_Father: {fileID: 1100553361}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14070,21 +14390,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500954455}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21568628, g: 0.21176471, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 07ebad15b3c60fd439d59397796a712e, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 2dfe710981d19014286dbdd9ee168690, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -14101,6 +14421,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500954455}
   m_CullTransparentMesh: 1
+--- !u!114 &1536880416 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+  m_PrefabInstance: {fileID: 49904273}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1560565224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14301,16 +14632,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.12926267, g: 0.306682, b: 0.55, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1560565225}
   mouseOver: 0
   interactionBreakTime: 1
@@ -14335,6 +14665,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -14596,6 +14927,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3198924837567446181, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198924837567446181, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2dfe710981d19014286dbdd9ee168690, type: 3}
+    - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 34.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalScale.x
       value: 0
@@ -14608,11 +14955,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5193081780428962791, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193081780428962791, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2dfe710981d19014286dbdd9ee168690, type: 3}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: 'Single
-
-        Player'
+      value: Single Player
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a
@@ -14637,6 +14990,10 @@ PrefabInstance:
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
@@ -14676,11 +15033,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 40
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 40
+      value: 34.1
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalScale.x
@@ -14704,7 +15061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.000035679146
+      value: -0.000023798832
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14724,11 +15081,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -150
+      value: -186
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 445
+      value: 319
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14748,11 +15105,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7430540923224279596, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 7430540923224279596, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.y
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517848921195261517, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_positionOffsetData.positionOffset.x
+      value: 5.246644
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517848921195261517, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_positionOffsetData.positionOffset.y
+      value: 0.0000366211
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517848921195261517, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_positionOffsetData.positionOffset.z
+      value: -0.0000068489016
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
@@ -14784,16 +15153,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.12926267, g: 0.306682, b: 0.55, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1720987934}
   mouseOver: 0
   interactionBreakTime: 1
@@ -14818,9 +15186,23 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 689948720}
   activateOnStart: 1
+--- !u!65 &1720987946
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720987935}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 135.6, y: 42.95, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1721459067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15030,16 +15412,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec2c832fac4ce946b639a773087da7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 1, g: 0.4627451, b: 0.4627451, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.478, g: 0.14689755, b: 0.14689755, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1721459068}
   mouseOver: 0
   interactionBreakTime: 1
@@ -15064,6 +15445,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 0
   _text: {fileID: 1622300023}
   _string: Quit
   drumTypeIndex: 0
@@ -15405,6 +15787,85 @@ Transform:
   m_Father: {fileID: 740535873}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -144, z: 0}
+--- !u!1 &1838709012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1838709013}
+  - component: {fileID: 1838709015}
+  - component: {fileID: 1838709014}
+  m_Layer: 7
+  m_Name: Title
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1838709013
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838709012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_Children: []
+  m_Father: {fileID: 1500954456}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 528}
+  m_SizeDelta: {x: 5000, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1838709014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838709012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 300
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Disableton
+--- !u!222 &1838709015
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838709012}
+  m_CullTransparentMesh: 1
 --- !u!114 &1842478429 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
@@ -15698,16 +16159,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.12926267, g: 0.306682, b: 0.55, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1892863256}
   mouseOver: 0
   interactionBreakTime: 1
@@ -15732,6 +16192,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 2000987225}
@@ -15976,16 +16437,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.12926267, g: 0.306682, b: 0.55, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1940917166}
   mouseOver: 0
   interactionBreakTime: 1
@@ -16010,6 +16470,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -16316,16 +16777,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  inactiveHoverColor: {r: 0.47, g: 0.47, b: 0.47, a: 1}
   activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0.12926267, g: 0.306682, b: 0.55, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 2000987222}
   mouseOver: 0
   interactionBreakTime: 1
@@ -16350,6 +16810,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}

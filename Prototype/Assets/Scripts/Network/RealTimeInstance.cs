@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Normal.Realtime;
 using UnityEngine;
@@ -33,19 +34,35 @@ public class RealTimeInstance : MonoBehaviour {
         _realtime = GetComponent<Realtime>();
         _realtimeAvatarManager = GetComponent<RealtimeAvatarManager>();
         RegisterToEvents();
+        StartCoroutine(CheckNumberOfPlayers());
     }
 
-    private void Update() {
-        if (!isSoloMode) {
-            numberPlayers = playersHolder.childCount;
-            if (numberPlayers != previousNumberPlayers) {
-                // MasterManager.Instance.timer.CheckForOwner();
-                NumberPlayersChanged(numberPlayers);
-                previousNumberPlayers = numberPlayers;
+    private IEnumerator CheckNumberOfPlayers() {
+        while (true) {
+            if (MasterManager.Instance.gameSetUpFinished) {
+                var players = FindObjectsOfType<Player>();
+                numberPlayers = players.Length;
+                var timerRealtimeView = MasterManager.Instance.GetComponent<RealtimeView>();
+                if (timerRealtimeView.isUnownedSelf) {
+                    players[0].GetComponent<RealtimeView>().RequestOwnership();
+                }
+                yield return new WaitForSeconds(0.1f);
             }
         }
     }
 
+    // private void Update() {
+    //     if (!isSoloMode) {
+    //         numberPlayers = playersHolder.childCount;
+    //         if (numberPlayers != previousNumberPlayers) {
+    //             // MasterManager.Instance.timer.CheckForOwner();
+    //             NumberPlayersChanged(numberPlayers);
+    //             previousNumberPlayers = numberPlayers;
+    //         }
+    //     }
+    // }
+
+    
 
     public void SetToSoloMode(bool value) => isSoloMode = value;
 
@@ -122,32 +139,32 @@ public class RealTimeInstance : MonoBehaviour {
     }
 
     public void NumberPlayersChanged(int numPlayers) {
-        numberPlayers = numPlayers;
+        // numberPlayers = numPlayers;
         // go through each player in the scene
-        foreach (var player in FindObjectsOfType<Player>()) {
-            player.transform.SetParent(playersHolder);
-            var playerClientId = player.GetComponent<RealtimeView>().realtime.clientID;
-            if (!clientIds.Contains(playerClientId)) {
-                clientIds.Add(playerClientId);
-                clients.Add(playerClientId, player.gameObject);
-            }
-        }
+        // foreach (var player in FindObjectsOfType<Player>()) {
+        //     player.transform.SetParent(playersHolder);
+        //     var playerClientId = player.GetComponent<RealtimeView>().realtime.clientID;
+        //     if (!clientIds.Contains(playerClientId)) {
+        //         clientIds.Add(playerClientId);
+        //         clients.Add(playerClientId, player.gameObject);
+        //     }
+        // }
         
-        if(!MasterManager.Instance.gameSetUpFinished) return;
-        
-        var timerRealtimeView = MasterManager.Instance.timer.GetComponent<RealtimeView>();
-        if (timerRealtimeView.isUnownedInHierarchy) {
-            int lowestId = _realtimeAvatarManager.avatars[0].realtime.clientID;
-            foreach (var avatar in _realtimeAvatarManager.avatars) {
-                if (lowestId > avatar.Key) lowestId = avatar.Key;
-                if (!clients[avatar.Key]) {
-                    // it means that this client has disconnected from the game
-                    clientIds.Remove(avatar.Key);
-                    clients.Remove(avatar.Key);
-                }
-            }
-            timerRealtimeView.SetOwnership(lowestId);
-        }
+        // if(!MasterManager.Instance.gameSetUpFinished) return;
+        //
+        // var timerRealtimeView = MasterManager.Instance.timer.GetComponent<RealtimeView>();
+        // if (timerRealtimeView.isUnownedInHierarchy) {
+        //     int lowestId = _realtimeAvatarManager.avatars[0].realtime.clientID;
+        //     foreach (var avatar in _realtimeAvatarManager.avatars) {
+        //         if (lowestId > avatar.Key) lowestId = avatar.Key;
+        //         if (!clients[avatar.Key]) {
+        //             // it means that this client has disconnected from the game
+        //             clientIds.Remove(avatar.Key);
+        //             clients.Remove(avatar.Key);
+        //         }
+        //     }
+        //     timerRealtimeView.SetOwnership(lowestId);
+        // }
 
         // // int counter = 0;
         // // for (int i = 0; i < clientIds.Count; i++) {

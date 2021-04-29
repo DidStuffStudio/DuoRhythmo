@@ -1,16 +1,14 @@
 using Normal.Realtime;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
-public class MasterManager : MonoBehaviour
-{
+public class MasterManager : MonoBehaviour {
     private static MasterManager _instance;
 
-    public static MasterManager Instance
-    {
-        get
-        {
+    public static MasterManager Instance {
+        get {
             if (_instance != null) return _instance;
             var masterManagerGameObject = new GameObject();
             _instance = masterManagerGameObject.AddComponent<MasterManager>();
@@ -55,28 +53,16 @@ public class MasterManager : MonoBehaviour
     public Player player;
     public bool isInPosition = false;
     public bool isWaitingInLobby = true;
-    
-    [Space] [Header("Signifiers")]
-    
-    [SerializeField] private GameObject topDownSignifier, mainSignifier;
 
-    private void Start()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-            // make instance persistent across scenes
-            // DontDestroyOnLoad(gameObject);
-        }
+    [Space] [Header("Signifiers")] [SerializeField]
+    private GameObject topDownSignifier, mainSignifier;
 
-        // Initialize();
-        // Change to UI stuff later
+    private void Start() {
+        if (_instance == null) _instance = this;
     }
 
-    private void FixedUpdate()
-    {
-        if (!isWaitingInLobby && !isInPosition)
-        {
+    private void FixedUpdate() {
+        if (!isWaitingInLobby && !isInPosition) {
             // Distance moved equals elapsed time times speed..
             float distCovered = (Time.time - startTime) * positionSpeed;
             // Fraction of journey completed equals current distance divided by total distance.
@@ -87,8 +73,7 @@ public class MasterManager : MonoBehaviour
             playerCamera.transform.rotation = Quaternion.Lerp(playerCameraTransform.rotation,
                 playerPositionDestination.rotation, fractionOfJourney);
 
-            if (Vector3.Distance(playerCameraTransform.position, playerPositionDestination.position) < 0.1f)
-            {
+            if (Vector3.Distance(playerCameraTransform.position, playerPositionDestination.position) < 0.1f) {
                 isInPosition = true;
                 mainSignifier.SetActive(true);
                 StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
@@ -97,8 +82,7 @@ public class MasterManager : MonoBehaviour
         }
     }
 
-    public void Initialize()
-    {
+    public void Initialize() {
         nodesPanels = new GameObject[numberInstruments];
         effectsPanels = new GameObject[numberInstruments];
 
@@ -106,16 +90,13 @@ public class MasterManager : MonoBehaviour
         Vector3[] panelRotations = new Vector3[10]; // number of instruments * 2
         var rotationValue =
             360.0f / (numberInstruments * 2) * -1; // if 5 instruments --> 360.0f / (5 * 2) * -1 = -36.0f; 
-        for (int i = 0; i < panelRotations.Length; i++)
-        {
+        for (int i = 0; i < panelRotations.Length; i++) {
             panelRotations[i] = new Vector3(0, i * rotationValue, 0);
         }
 
         // TODO: Set the size of the panels' canvas (radius distance to the origin point)
 
-        if (RealTimeInstance.Instance.isSoloMode)
-        {
-            
+        if (RealTimeInstance.Instance.isSoloMode) {
             InstantiatePanelsSoloMode();
             StartCoroutine(WaitToPositionCamera(0.5f));
             return;
@@ -126,16 +107,14 @@ public class MasterManager : MonoBehaviour
         StartCoroutine(WaitUntilConnected());
     }
 
-    private void InstantiatePanelsSoloMode()
-    {
+    private void InstantiatePanelsSoloMode() {
         Vector3 rotationValue = Vector3.zero;
         var nodesPanelsGo = new GameObject("Nodes panels");
         nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
         var effectsPanelsGo = new GameObject("Effects panels");
         effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
 
-        for (int i = 0; i < nodesPanels.Length; i++)
-        {
+        for (int i = 0; i < nodesPanels.Length; i++) {
             nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
             nodesPanels[i].transform.SetParent(nodesPanelsGo.transform);
             nodesPanels[i].name = "NodesPanel_" + (DrumType) i;
@@ -164,8 +143,7 @@ public class MasterManager : MonoBehaviour
             // initialize the knob sliders for this current node manager
             var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
             nodeManager.sliders = new SliderKnob[knobs.Length];
-            for (int j = 0; j < knobs.Length; j++)
-            {
+            for (int j = 0; j < knobs.Length; j++) {
                 nodeManager.sliders[j] = knobs[j];
             }
 
@@ -182,10 +160,8 @@ public class MasterManager : MonoBehaviour
     }
 
 
-    private IEnumerator WaitUntilConnected()
-    {
-        while (true)
-        {
+    private IEnumerator WaitUntilConnected() {
+        while (true) {
             // if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             if (RealTimeInstance.Instance.isSoloMode && RealTimeInstance.Instance.isConnected) break;
             if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
@@ -193,16 +169,14 @@ public class MasterManager : MonoBehaviour
         }
 
         print("local player number: " + localPlayerNumber);
-        
+
         InstantiatePanels();
         StartCoroutine(WaitToPositionCamera(3.0f));
     }
 
-    public void SetPlayerPosition()
-    {
-        
+    public void SetPlayerPosition() {
         journeyLength = Vector3.Distance(playerStartPosition.position, playerPositionDestination.position);
-        
+
         // rotate the parent of the camera around the degrees dependant on the number of players and number of instruments
         // players should be opposite to each other --> so differentiate between even and uneven numbers --> 180 degrees difference between them
         float degrees = 0;
@@ -215,14 +189,13 @@ public class MasterManager : MonoBehaviour
         // Transform playerParent = playerCamera.transform.parent;
         // Vector3 playerParentPos = playerParent.position;
         // Quaternion playerParentRot = playerParent.rotation;
-        
+
         playerCamera.transform.parent.Rotate(0, degrees, 0);
     }
-    
+
 
     // call this method when the players have connected
-    private void InstantiatePanels()
-    {
+    private void InstantiatePanels() {
         int panelCounter = 1; // to keep track of the panels for the userInterfaceManager
         // instantiate and set up effects panels
         var effectsPanelsGo = new GameObject("Effects panels");
@@ -231,8 +204,7 @@ public class MasterManager : MonoBehaviour
         effectsPanels = new GameObject[numberInstruments];
 
         Vector3 rotationValue = new Vector3(0, 180.0f, 0);
-        for (int i = 0; i < effectsPanels.Length; i++)
-        {
+        for (int i = 0; i < effectsPanels.Length; i++) {
             effectsPanels[i] = Instantiate(effectsPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
             effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
             effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
@@ -251,8 +223,7 @@ public class MasterManager : MonoBehaviour
 
         var nodesPanelsGo = new GameObject("Nodes panels");
         nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
-        for (int i = 0; i < nodesPanels.Length; i++)
-        {
+        for (int i = 0; i < nodesPanels.Length; i++) {
             nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
             nodesPanels[i].transform.SetParent(nodesPanelsGo.transform);
             nodesPanels[i].name = "NodesPanel_" + (DrumType) i;
@@ -275,8 +246,7 @@ public class MasterManager : MonoBehaviour
             // initialize the knob sliders for this current node manager
             var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
             nodeManager.sliders = new SliderKnob[knobs.Length];
-            for (int j = 0; j < knobs.Length; j++)
-            {
+            for (int j = 0; j < knobs.Length; j++) {
                 nodeManager.sliders[j] = knobs[j];
             }
 
@@ -292,9 +262,8 @@ public class MasterManager : MonoBehaviour
 
 
         // only the first player that connects to the room should start the timer - and as Timer is a RealTime instance object, it updates in all clients
-        if (localPlayerNumber == 0)
-        {
-            timerGameObject = Realtime.Instantiate(prefabName: timerPrefab.name, true, false,false);
+        if (localPlayerNumber == 0) {
+            timerGameObject = Realtime.Instantiate(prefabName: timerPrefab.name, true, false, false);
             // timerGameObject.GetComponent<RealtimeView>().RequestOwnership();
             timer = timerGameObject.GetComponent<Timer>();
             userInterfaceManager.SetUpInterface();
@@ -304,33 +273,26 @@ public class MasterManager : MonoBehaviour
     }
 
     // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers
-    public void UpdateSubNodes(int node, bool activated, int nodeManagerSubNodeIndex)
-    {
-        foreach (var nodeManager in _nodeManagers)
-        {
+    public void UpdateSubNodes(int node, bool activated, int nodeManagerSubNodeIndex) {
+        foreach (var nodeManager in _nodeManagers) {
             nodeManager.SetSubNode(node, activated, nodeManagerSubNodeIndex);
         }
     }
 
-    public void SetBpm(int value)
-    {
+    public void SetBpm(int value) {
         bpm = value;
-        foreach (var nodeManager in _nodeManagers)
-        {
+        foreach (var nodeManager in _nodeManagers) {
             nodeManager.bpm = bpm;
             nodeManager._screenSync.SetBpm(bpm);
         }
     }
 
-    private IEnumerator FindTimer()
-    {
+    private IEnumerator FindTimer() {
         if (RealTimeInstance.Instance.isSoloMode) yield break;
         var timerFound = false;
-        while (!timerFound)
-        {
+        while (!timerFound) {
             timer = FindObjectOfType<Timer>();
-            if (timer != null)
-            {
+            if (timer != null) {
                 timerGameObject = timer.gameObject;
                 userInterfaceManager.SetUpInterface();
 
@@ -339,25 +301,20 @@ public class MasterManager : MonoBehaviour
                 timerFound = true;
                 startTime = Time.time;
                 // Calculate the journey length.
-                
             }
-            else
-            {
+            else {
                 yield return new WaitForEndOfFrame();
             }
         }
     }
 
-    public void ResetLocalPlayerNumber(int disconnectedPlayerNumber)
-    {
-    }
+    public void ResetLocalPlayerNumber(int disconnectedPlayerNumber) { }
 
-    public void DrumNodeChangedOnServer(int drumIndex, int nodeIndex, bool activate)
-    {
+    public void DrumNodeChangedOnServer(int drumIndex, int nodeIndex, bool activate) {
         _nodeManagers[drumIndex]._nodes[nodeIndex].SetNodeFromServer(activate);
     }
-    
-    
+
+
     private IEnumerator WaitToPositionCamera(float time) {
         SetPlayerPosition();
         topDownSignifier.SetActive(false);

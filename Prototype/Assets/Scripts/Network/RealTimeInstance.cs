@@ -51,6 +51,14 @@ public class RealTimeInstance : MonoBehaviour {
     }
 
     private void DidConnectToRoom(Realtime realtime) {
+        // realtime.room.Dispose();
+        foreach (var timer in FindObjectsOfType<Timer>()) {
+            print("Getting rid of realtime timer");
+            timer.GetComponent<RealtimeView>().RequestOwnership();
+            Realtime.Destroy(timer.gameObject);
+            Destroy(timer);
+        }
+        
         isConnected = true;
         networkManager = Realtime.Instantiate(networkManagerPrefab.name);
         

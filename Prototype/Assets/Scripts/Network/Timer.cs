@@ -37,7 +37,7 @@ public class Timer : MonoBehaviour {
     }
 
     private IEnumerator Time() {
-        while (timer >= 0.0f) {
+        while (timer > 0.0f) {
             yield return new WaitForSeconds(1.0f);
             timer--;
             // if (Math.Abs(timer - 15.0f) < 0.1f) StartCoroutine(BlinkTimer());

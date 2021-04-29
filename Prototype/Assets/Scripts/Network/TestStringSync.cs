@@ -51,6 +51,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
         if (_message.Contains(MessageTypes.DISCONNECTED)) {
             // var disconnectedPlayerNumber = Int32.Parse(_message.Split(',')[1]);
             RealTimeInstance.Instance.numberPlayers--;
+            print("PlayerDisconnected");
         }
 
         if (_message.Contains(MessageTypes.NUM_PLAYERS)) {

@@ -14,13 +14,12 @@ public class TestStringSync : RealtimeComponent<TestString> {
     public string newMessage;
     private string _previousMessage;
 
-    [SerializeField] private Text networkInfo;
-
     public struct MessageTypes {
         public const string NUM_PLAYERS = "NumberPlayers,";
         public const string TIMER = "Timer,";
         public const string DISCONNECTED = "Disconnected,";
         public const string DRUM_NODE_CHANGED = "DrumNodeChanged,"; // DrumIndex,NodeIndex,IsActivated --> eg --> 1,11,1
+        public const string NEW_PLAYER_CONNECTED = "NewPlayerConnected,";
     }
 
     protected override void OnRealtimeModelReplaced(TestString previousModel, TestString currentModel) {
@@ -75,6 +74,14 @@ public class TestStringSync : RealtimeComponent<TestString> {
             var nodeIndex = Int32.Parse(drumNodeChanged[2]);
             var activateNode = Int32.Parse(drumNodeChanged[3]);
             MasterManager.Instance.DrumNodeChangedOnServer(drumIndex, nodeIndex, activateNode == 1);
+        }
+
+        if (_message.Contains(MessageTypes.NEW_PLAYER_CONNECTED)) {
+            // find all the networkmanager s existing currently in the hierarchy, and set their parents to the players holder gameobject
+            var players = GameObject.FindObjectsOfType<NetworkManagerSync>();
+            foreach (var player in players) {
+                RealTimeInstance.Instance.SetParentOfPlayer(player.transform);
+            }
         }
     }
     

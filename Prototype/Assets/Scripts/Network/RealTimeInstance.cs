@@ -22,11 +22,16 @@ public class RealTimeInstance : MonoBehaviour {
     private int roomToJoinIndex;
 
     [SerializeField] private GameObject playerCanvasPrefab;
-
+    [SerializeField] private Transform playersHolder;
+    
     private void Awake() {
         _instance = this;
         _realtime = GetComponent<Realtime>();
         RegisterToEvents();
+    }
+
+    private void Update() {
+        if (!isSoloMode) numberPlayers = playersHolder.childCount;
     }
 
 
@@ -38,6 +43,9 @@ public class RealTimeInstance : MonoBehaviour {
         if (!isSoloMode) _realtime.Connect(roomNames[roomToJoinIndex]);
         MasterManager.Instance.Initialize();
     }
+
+    public void SetParentOfPlayer(Transform p) => p.SetParent(playersHolder);
+    
 
     public double GetRoomTime() {
         return _realtime.room.time;
@@ -60,6 +68,8 @@ public class RealTimeInstance : MonoBehaviour {
 
         isConnected = true;
         networkManager = Realtime.Instantiate(networkManagerPrefab.name);
+        
+        _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED);
 
         numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
         MasterManager.Instance.localPlayerNumber =

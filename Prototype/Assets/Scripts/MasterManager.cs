@@ -70,6 +70,8 @@ public class MasterManager : MonoBehaviour {
         foreach (var p in Players) {
             print("We have this player: " + p);
         }
+
+        RealTimeInstance.Instance.numberPlayers = Players.Count;
     }
 
     private void FixedUpdate() {

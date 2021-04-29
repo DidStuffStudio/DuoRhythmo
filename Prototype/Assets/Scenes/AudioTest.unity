@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.006453563, g: 0.0381102, b: 0.16115192, a: 1}
+  m_IndirectSpecularColor: {r: 0.0016898692, g: 0.0014698497, b: 0.08088986, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -792,7 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
@@ -825,7 +825,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 1
+  changeTextColor: 0
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -1037,7 +1037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
@@ -1070,7 +1070,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 1
+  changeTextColor: 0
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -1251,6 +1251,7 @@ GameObject:
   - component: {fileID: 320708704}
   - component: {fileID: 320708703}
   - component: {fileID: 320708702}
+  - component: {fileID: 320708705}
   m_Layer: 0
   m_Name: RealTime
   m_TagString: Untagged
@@ -1270,10 +1271,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202fb86e5d3e84768909425a46074a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clientIds: 
   networkManagerPrefab: {fileID: 5179577453407926284, guid: 8686f246862d448dfb7319ce3beb26d5, type: 3}
   networkManager: {fileID: 0}
   isConnected: 0
   numberPlayers: 0
+  previousNumberPlayers: 0
   isSoloMode: 1
   _testStringSync: {fileID: 574498498}
   realtimeInstancesHolderPrefab: {fileID: 2115475420074975216, guid: dfce0e83da22aa34d8dc7023c7fa4d15, type: 3}
@@ -1325,6 +1328,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &320708705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320708701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b6ae53fe1e66d429cc41bbf5b29cb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _localAvatarPrefab: {fileID: 0}
+  _localPlayer:
+    root: {fileID: 0}
+    head: {fileID: 0}
+    leftHand: {fileID: 0}
+    rightHand: {fileID: 0}
 --- !u!1001 &379735767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1525,7 +1546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
@@ -1558,7 +1579,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 1
+  changeTextColor: 0
   otherButtonsToDisable:
   - {fileID: 1892863259}
   - {fileID: 2000987225}
@@ -7141,7 +7162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
@@ -7174,7 +7195,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 1
+  changeTextColor: 0
   otherButtonsToDisable:
   - {fileID: 1720987937}
   activateOnStart: 0
@@ -7391,7 +7412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
@@ -7424,7 +7445,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 1
+  changeTextColor: 0
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -7636,7 +7657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
@@ -7669,7 +7690,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 1
+  changeTextColor: 0
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -14119,7 +14140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
@@ -14152,7 +14173,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 1
+  changeTextColor: 0
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -14632,7 +14653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
@@ -14665,7 +14686,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 1
+  changeTextColor: 0
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -15153,7 +15174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
@@ -15186,7 +15207,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 1
+  changeTextColor: 0
   otherButtonsToDisable:
   - {fileID: 689948720}
   activateOnStart: 1
@@ -15412,7 +15433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec2c832fac4ce946b639a773087da7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 1
+  canInteractBeforeStart: 0
   isDefault: 1
   isHover: 0
   isActive: 0
@@ -16159,7 +16180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
@@ -16192,7 +16213,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 1
+  changeTextColor: 0
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 2000987225}
@@ -16437,7 +16458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
@@ -16470,7 +16491,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 1
+  changeTextColor: 0
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -16777,7 +16798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
+  canInteractBeforeStart: 1
   isDefault: 1
   isHover: 0
   isActive: 0
@@ -16810,7 +16831,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 1
+  changeTextColor: 0
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}

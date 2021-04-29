@@ -20,6 +20,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
         public const string DISCONNECTED = "Disconnected,";
         public const string DRUM_NODE_CHANGED = "DrumNodeChanged,"; // DrumIndex,NodeIndex,IsActivated --> eg --> 1,11,1
         public const string NEW_PLAYER_CONNECTED = "NewPlayerConnected,";
+        public const string PLAYER_ZERO_DISCONNECTED = "PlayerZeroDisconnected,";
     }
 
     protected override void OnRealtimeModelReplaced(TestString previousModel, TestString currentModel) {
@@ -57,7 +58,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
             // split the string
             var numPlayers = Int32.Parse(_message.Split(',')[1]);
             print("The number of players has changed from the server to: " + numPlayers);
-            RealTimeInstance.Instance.numberPlayers = numPlayers;
+            RealTimeInstance.Instance.NumberPlayersChanged(numPlayers);
         }
         
         if (_message.Contains(MessageTypes.TIMER))

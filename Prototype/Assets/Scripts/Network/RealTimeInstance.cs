@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Normal.Realtime;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ public class RealTimeInstance : MonoBehaviour {
     public static RealTimeInstance Instance => _instance;
 
     private Realtime _realtime;
+    private RealtimeAvatarManager _realtimeAvatarManager;
+    public List<int> clientIds = new List<int>();
+    public Dictionary<int, GameObject> clients = new Dictionary<int, GameObject>();
     [SerializeField] private GameObject networkManagerPrefab;
     public GameObject networkManager;
     private NetworkManagerSync _networkManagerSync;
@@ -27,6 +31,7 @@ public class RealTimeInstance : MonoBehaviour {
     private void Awake() {
         _instance = this;
         _realtime = GetComponent<Realtime>();
+        _realtimeAvatarManager = GetComponent<RealtimeAvatarManager>();
         RegisterToEvents();
     }
 
@@ -34,7 +39,8 @@ public class RealTimeInstance : MonoBehaviour {
         if (!isSoloMode) {
             numberPlayers = playersHolder.childCount;
             if (numberPlayers != previousNumberPlayers) {
-                MasterManager.Instance.timer.CheckForOwner();
+                // MasterManager.Instance.timer.CheckForOwner();
+                NumberPlayersChanged(numberPlayers);
                 previousNumberPlayers = numberPlayers;
             }
         }
@@ -73,12 +79,15 @@ public class RealTimeInstance : MonoBehaviour {
         }
 
         isConnected = true;
-        _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED);
+        
         networkManager = Realtime.Instantiate(networkManagerPrefab.name);
-
+        
         numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
         MasterManager.Instance.localPlayerNumber =
             numberPlayers - 1; // set this local player's player number to the current player number (index value)
+        
+        clientIds.Add(_realtime.clientID);
+        clients.Add(_realtime.clientID, networkManager.gameObject);
         _testStringSync.SetMessage(TestStringSync.MessageTypes.NUM_PLAYERS + numberPlayers);
 
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name, true, true, true);
@@ -95,6 +104,7 @@ public class RealTimeInstance : MonoBehaviour {
     }
 
     private void OnApplicationQuit() {
+        if(isSoloMode) return;
         _testStringSync.SetMessage(TestStringSync.MessageTypes.DISCONNECTED +
                                    MasterManager.Instance.localPlayerNumber);
         if (numberPlayers <= 1) {
@@ -109,5 +119,54 @@ public class RealTimeInstance : MonoBehaviour {
             MasterManager.Instance.timer.CheckForOwner();
         }
 
+    }
+
+    public void NumberPlayersChanged(int numPlayers) {
+        numberPlayers = numPlayers;
+        // go through each player in the scene
+        foreach (var player in FindObjectsOfType<Player>()) {
+            player.transform.SetParent(playersHolder);
+            var playerClientId = player.GetComponent<RealtimeView>().realtime.clientID;
+            if (!clientIds.Contains(playerClientId)) {
+                clientIds.Add(playerClientId);
+                clients.Add(playerClientId, player.gameObject);
+            }
+        }
+        
+        if(!MasterManager.Instance.gameSetUpFinished) return;
+        
+        var timerRealtimeView = MasterManager.Instance.timer.GetComponent<RealtimeView>();
+        if (timerRealtimeView.isUnownedInHierarchy) {
+            int lowestId = _realtimeAvatarManager.avatars[0].realtime.clientID;
+            foreach (var avatar in _realtimeAvatarManager.avatars) {
+                if (lowestId > avatar.Key) lowestId = avatar.Key;
+                if (!clients[avatar.Key]) {
+                    // it means that this client has disconnected from the game
+                    clientIds.Remove(avatar.Key);
+                    clients.Remove(avatar.Key);
+                }
+            }
+            timerRealtimeView.SetOwnership(lowestId);
+        }
+
+        // // int counter = 0;
+        // // for (int i = 0; i < clientIds.Count; i++) {
+        //     foreach (var avatar in _realtimeAvatarManager.avatars) {
+        //         // if (avatar.Key == clientIds[i]) counter++;
+        //         if (!clients[avatar.Key]) {
+        //             // it means that this client has disconnected from the game
+        //             clientIds.Remove(avatar.Key);
+        //             clients.Remove(avatar.Key);
+        //         }
+        //     }
+        // // }
+
+        if (_realtimeAvatarManager.avatars.Count != clientIds.Count) {
+            // it means a player has disconnected
+            
+        }
+        // foreach (var avatar in _realtimeAvatarManager.avatars) {
+        //     
+        // }
     }
 }

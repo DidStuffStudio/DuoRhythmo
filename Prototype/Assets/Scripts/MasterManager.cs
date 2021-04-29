@@ -312,6 +312,7 @@ public class MasterManager : MonoBehaviour {
             gameSetUpFinished = true;
         }
         else StartCoroutine(FindTimer());
+        RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED);
     }
 
     // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers

@@ -41,12 +41,19 @@ public class RealTimeInstance : MonoBehaviour {
         while (true) {
             var players = FindObjectsOfType<Player>();
                 numberPlayers = players.Length;
+            
                 var timerRealtimeView = MasterManager.Instance.timer.GetComponent<RealtimeView>();
-                if (timerRealtimeView.isUnownedInHierarchy) {
+                if (timerRealtimeView.isUnownedSelf) {
                     print("Setting the timer because the number of players has changed");
                     players[0].GetComponent<RealtimeView>().RequestOwnership();
                 }
-                yield return new WaitForSeconds(0.5f);
+                if (numberPlayers == 1) {
+                    timerRealtimeView.destroyWhenOwnerOrLastClientLeaves = true;
+                }
+                else {
+                    timerRealtimeView.destroyWhenOwnerOrLastClientLeaves = false;
+                }
+                yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -87,12 +94,12 @@ public class RealTimeInstance : MonoBehaviour {
 
     private void DidConnectToRoom(Realtime realtime) {
         // get rid of all the possible existing realtime timers left alive previously from other game-times in the same room
-        // foreach (var timer in FindObjectsOfType<Timer>()) {
-        //     print("Getting rid of realtime timer");
-        //     timer.GetComponent<RealtimeView>().RequestOwnership();
-        //     Realtime.Destroy(timer.gameObject);
-        //     Destroy(timer);
-        // }
+        foreach (var timer in FindObjectsOfType<Timer>()) {
+            print("Getting rid of realtime timer");
+            timer.GetComponent<RealtimeView>().RequestOwnership();
+            Realtime.Destroy(timer.gameObject);
+            Destroy(timer);
+        }
 
         isConnected = true;
         
@@ -118,6 +125,8 @@ public class RealTimeInstance : MonoBehaviour {
 
     private void DidDisconnectFromRoom(Realtime realtime) {
         isConnected = false;
+        _testStringSync.SetMessage(TestStringSync.MessageTypes.DISCONNECTED + MasterManager.Instance.localPlayerNumber);
+        print("I have disconnected successfully");
     }
 
     private void OnDisable() {

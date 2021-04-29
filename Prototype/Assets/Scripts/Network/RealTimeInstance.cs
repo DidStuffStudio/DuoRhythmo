@@ -12,7 +12,7 @@ public class RealTimeInstance : MonoBehaviour {
     public GameObject networkManager;
     private NetworkManagerSync _networkManagerSync;
     public bool isConnected;
-    public int numberPlayers;
+    public int numberPlayers, previousNumberPlayers;
     public bool isSoloMode = true;
     public TestStringSync _testStringSync;
 
@@ -23,7 +23,7 @@ public class RealTimeInstance : MonoBehaviour {
 
     [SerializeField] private GameObject playerCanvasPrefab;
     [SerializeField] private Transform playersHolder;
-    
+
     private void Awake() {
         _instance = this;
         _realtime = GetComponent<Realtime>();
@@ -31,7 +31,13 @@ public class RealTimeInstance : MonoBehaviour {
     }
 
     private void Update() {
-        if (!isSoloMode) numberPlayers = playersHolder.childCount;
+        if (!isSoloMode) {
+            numberPlayers = playersHolder.childCount;
+            if (numberPlayers != previousNumberPlayers) {
+                MasterManager.Instance.timer.CheckForOwner();
+                previousNumberPlayers = numberPlayers;
+            }
+        }
     }
 
 
@@ -58,7 +64,7 @@ public class RealTimeInstance : MonoBehaviour {
     }
 
     private void DidConnectToRoom(Realtime realtime) {
-        // realtime.room.Dispose();
+        // get rid of all the possible existing realtime timers left alive previously from other game-times in the same room
         foreach (var timer in FindObjectsOfType<Timer>()) {
             print("Getting rid of realtime timer");
             timer.GetComponent<RealtimeView>().RequestOwnership();
@@ -67,9 +73,8 @@ public class RealTimeInstance : MonoBehaviour {
         }
 
         isConnected = true;
-        networkManager = Realtime.Instantiate(networkManagerPrefab.name);
-        
         _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED);
+        networkManager = Realtime.Instantiate(networkManagerPrefab.name);
 
         numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
         MasterManager.Instance.localPlayerNumber =
@@ -104,6 +109,5 @@ public class RealTimeInstance : MonoBehaviour {
             MasterManager.Instance.timer.CheckForOwner();
         }
 
-       // _realtime.Disconnect();
     }
 }

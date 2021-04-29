@@ -32,6 +32,7 @@ public class Timer : MonoBehaviour {
         foreach (var player in MasterManager.Instance.Players) {
             if (player) {
                 player.RequestOwnership(_realtimeView);
+                break;
             }
         }
     }

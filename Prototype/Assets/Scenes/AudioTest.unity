@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0066663856, g: 0.027728427, b: 0.13205445, a: 1}
+  m_IndirectSpecularColor: {r: 0.006172917, g: 0.008516026, b: 0.013299426, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -588,7 +588,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 0
+  changeTextColor: 1
   _text: {fileID: 1536880416}
   _string: Dwell time speed
   drumTypeIndex: 0
@@ -838,7 +838,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -1353,7 +1353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b6ae53fe1e66d429cc41bbf5b29cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localAvatarPrefab: {fileID: 0}
+  _localAvatarPrefab: {fileID: 1435502846325602, guid: 132fa799030920d4cb15dfab7ec5c45f, type: 3}
   _localPlayer:
     root: {fileID: 0}
     head: {fileID: 0}
@@ -1592,7 +1592,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 1892863259}
   - {fileID: 2000987225}
@@ -1603,7 +1603,7 @@ MonoBehaviour:
   - {fileID: 1560565228}
   - {fileID: 693815050}
   - {fileID: 125626014}
-  activateOnStart: 0
+  activateOnStart: 1
 --- !u!1 &463355744
 GameObject:
   m_ObjectHideFlags: 0
@@ -7208,7 +7208,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 1720987937}
   activateOnStart: 0
@@ -7471,7 +7471,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -7716,7 +7716,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -14199,7 +14199,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -14712,7 +14712,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -15233,7 +15233,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 689948720}
   activateOnStart: 1
@@ -16252,7 +16252,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 2000987225}
@@ -16530,7 +16530,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}
@@ -16870,7 +16870,7 @@ MonoBehaviour:
   activated: 0
   localDwellTimeSpeed: 100
   isDwellTimeSetter: 0
-  changeTextColor: 0
+  changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
   - {fileID: 1892863259}

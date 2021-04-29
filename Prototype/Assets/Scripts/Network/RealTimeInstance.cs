@@ -45,7 +45,7 @@ public class RealTimeInstance : MonoBehaviour {
                 var timerRealtimeView = MasterManager.Instance.timer.GetComponent<RealtimeView>();
                 if (timerRealtimeView.isUnownedSelf) {
                     print("Setting the timer because the number of players has changed");
-                    players[0].GetComponent<RealtimeView>().RequestOwnership();
+                    timerRealtimeView.RequestOwnership();
                 }
                 if (numberPlayers == 1) {
                     timerRealtimeView.destroyWhenOwnerOrLastClientLeaves = true;
@@ -138,22 +138,25 @@ public class RealTimeInstance : MonoBehaviour {
         if(isSoloMode) return;
         _testStringSync.SetMessage(TestStringSync.MessageTypes.DISCONNECTED +
                                    MasterManager.Instance.localPlayerNumber);
-        if (numberPlayers <= 1) {
+        if (numberPlayers >= 1) {
+            MasterManager.Instance.timer.GetComponent<RealtimeView>().destroyWhenOwnerOrLastClientLeaves = false;
+            MasterManager.Instance.Players.Remove(MasterManager.Instance.player);
+            MasterManager.Instance.timer.gameObject.GetComponent<RealtimeView>().ClearOwnership();
+            MasterManager.Instance.timer.CheckForOwner();
+        }
+
+        else {
+            Realtime.Destroy(MasterManager.Instance.timer.gameObject);
+            MasterManager.Instance.timer.GetComponent<RealtimeView>().destroyWhenOwnerOrLastClientLeaves = true;
             print("All players left");
-            MasterManager.Instance.timer.GetComponent<RealtimeView>().RequestOwnership();
+            /*MasterManager.Instance.timer.GetComponent<RealtimeView>().RequestOwnership();
             var existingTimers = GameObject.FindObjectsOfType<Timer>();
             foreach (var t in existingTimers) {
                 var realtimeView = t.GetComponent<RealtimeView>();
                 realtimeView.RequestOwnership();
                 Realtime.Destroy(t.gameObject);
-            }
-            Realtime.Destroy(MasterManager.Instance.timer.gameObject);
-        }
-
-        else {
-            MasterManager.Instance.Players.Remove(MasterManager.Instance.player);
-            MasterManager.Instance.timer.gameObject.GetComponent<RealtimeView>().ClearOwnership();
-            MasterManager.Instance.timer.CheckForOwner();
+            }*/
+            
         }
 
     }

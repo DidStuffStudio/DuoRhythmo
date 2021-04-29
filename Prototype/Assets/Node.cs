@@ -56,9 +56,9 @@ public class Node : CustomButton {
 
     public void PlayDrum() {
         if (!isActive || !canPlay) return;
-
+        
+        StartCoroutine(Wait());
         StartCoroutine(AudioVFX());
-
 
         switch (drumType) {
             case DrumType.Kick:
@@ -77,6 +77,8 @@ public class Node : CustomButton {
                 cymbalEvent.Post(gameObject);
                 break;
         }
+
+        
     }
 
     private IEnumerator AudioVFX() {
@@ -87,5 +89,10 @@ public class Node : CustomButton {
             if (_vfx.GetFloat("SphereSize") > 1.1f) _vfx.SetFloat("SphereSize", _vfx.GetFloat("SphereSize") - 0.1f);
             else run = false;
         }
+    }    private IEnumerator Wait()
+    {
+        canPlay = false;
+        yield return new WaitForSeconds(0.5f);
+        canPlay = true;
     }
 }

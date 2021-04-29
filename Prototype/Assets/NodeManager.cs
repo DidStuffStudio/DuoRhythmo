@@ -249,7 +249,6 @@ public class NodeManager : MonoBehaviour {
     /// <param name="activated">is this subnode to be activated or deactivated?</param>
     /// <param name="subNodeIndexNumber">NodeManager index - to set the correct subNode index</param>
     public void SetSubNode(int nodeIndex, bool activated, int subNodeIndexNumber) {
-        print("Setting subnode");
         var node = _nodes[nodeIndex];
         var subNode = node.subNodes[subNodeIndexNumber];
         if (activated) subNode.color = MasterManager.Instance.drumColors[subNodeIndexNumber];

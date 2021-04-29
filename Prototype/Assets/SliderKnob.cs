@@ -10,16 +10,17 @@ using UnityEngine.UI;
 public class SliderKnob : CustomButton
 {
 
+    
 
     [SerializeField] private RectTransform _slider;
-
+    [SerializeField] private bool isHorizontal;
     private Vector2 _lastMousePosition, _lastEyePosition;
     private Camera _mainCamera;
     private RectTransform _knobRectTransform;
     private float _minValue, _maxValue;
     public int maximumValue = 100, minimumValue = 0;
     [SerializeField] private int sliderIndex; // Pass to euclidean manager to tell which slider corresponds to which effect
-
+    
     private Text _text;
     public Transform upperLimit, lowerLimit;
     public float currentValue,previousValue;

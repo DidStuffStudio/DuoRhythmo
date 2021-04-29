@@ -305,7 +305,7 @@ public class MasterManager : MonoBehaviour {
 
         // only the first player that connects to the room should start the timer - and as Timer is a RealTime instance object, it updates in all clients
         if (localPlayerNumber == 0) {
-            timerGameObject = Realtime.Instantiate(prefabName: timerPrefab.name, true, false, false);
+            timerGameObject = Realtime.Instantiate(prefabName: timerPrefab.name, true, false, true);
             // timerGameObject.GetComponent<RealtimeView>().RequestOwnership();
             timer = timerGameObject.GetComponent<Timer>();
             userInterfaceManager.SetUpInterface();
@@ -340,9 +340,10 @@ public class MasterManager : MonoBehaviour {
             timer = FindObjectOfType<Timer>();
             if (timer != null) {
                 timerGameObject = timer.gameObject;
+                var realtimeView = timer.GetComponent<RealtimeView>();
+                realtimeView.RequestOwnership();
+                
                 userInterfaceManager.SetUpInterface();
-
-
                 gameSetUpFinished = true;
                 StartCoroutine(RealTimeInstance.Instance.CheckNumberOfPlayers());
                 timerFound = true;

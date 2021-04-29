@@ -42,7 +42,8 @@ public class RealTimeInstance : MonoBehaviour {
             var players = FindObjectsOfType<Player>();
                 numberPlayers = players.Length;
                 var timerRealtimeView = MasterManager.Instance.timer.GetComponent<RealtimeView>();
-                if (timerRealtimeView.isUnownedSelf) {
+                if (timerRealtimeView.isUnownedInHierarchy) {
+                    print("Setting the timer because the number of players has changed");
                     players[0].GetComponent<RealtimeView>().RequestOwnership();
                 }
                 yield return new WaitForSeconds(0.5f);
@@ -86,12 +87,12 @@ public class RealTimeInstance : MonoBehaviour {
 
     private void DidConnectToRoom(Realtime realtime) {
         // get rid of all the possible existing realtime timers left alive previously from other game-times in the same room
-        foreach (var timer in FindObjectsOfType<Timer>()) {
-            print("Getting rid of realtime timer");
-            timer.GetComponent<RealtimeView>().RequestOwnership();
-            Realtime.Destroy(timer.gameObject);
-            Destroy(timer);
-        }
+        // foreach (var timer in FindObjectsOfType<Timer>()) {
+        //     print("Getting rid of realtime timer");
+        //     timer.GetComponent<RealtimeView>().RequestOwnership();
+        //     Realtime.Destroy(timer.gameObject);
+        //     Destroy(timer);
+        // }
 
         isConnected = true;
         
@@ -107,6 +108,12 @@ public class RealTimeInstance : MonoBehaviour {
 
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name, true, true, true);
         gfx.transform.GetComponent<RealtimeTransform>().RequestOwnership();
+
+        // var timer = GameObject.FindObjectOfType<Timer>();
+        // if (timer) {
+        //     var realtimeView = timer.GetComponent<RealtimeView>();
+        //     realtimeView.RequestOwnership();
+        // }
     }
 
     private void DidDisconnectFromRoom(Realtime realtime) {
@@ -125,6 +132,12 @@ public class RealTimeInstance : MonoBehaviour {
         if (numberPlayers <= 1) {
             print("All players left");
             MasterManager.Instance.timer.GetComponent<RealtimeView>().RequestOwnership();
+            var existingTimers = GameObject.FindObjectsOfType<Timer>();
+            foreach (var t in existingTimers) {
+                var realtimeView = t.GetComponent<RealtimeView>();
+                realtimeView.RequestOwnership();
+                Realtime.Destroy(t.gameObject);
+            }
             Realtime.Destroy(MasterManager.Instance.timer.gameObject);
         }
 

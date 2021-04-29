@@ -1,7 +1,8 @@
 using Normal.Realtime;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class MasterManager : MonoBehaviour {
@@ -42,7 +43,9 @@ public class MasterManager : MonoBehaviour {
     public Timer timer;
 
     [Space] [Header("Player")] public Camera playerCamera;
-    public List<Player> Players = new List<Player>();
+    // public List<Player> Players = new List<Player>();
+    public ObservableCollection<Player> Players = new ObservableCollection<Player>();
+    
     private Transform _playerPosition;
     private float startTime, journeyLength;
     [SerializeField] private float positionSpeed = 10.0f;
@@ -59,6 +62,14 @@ public class MasterManager : MonoBehaviour {
 
     private void Start() {
         if (_instance == null) _instance = this;
+        Players.CollectionChanged += OnPlayersChanged;
+    }
+
+    private void OnPlayersChanged(object sender, NotifyCollectionChangedEventArgs e) {
+        print("Players changed");
+        foreach (var p in Players) {
+            print("We have this player: " + p);
+        }
     }
 
     private void FixedUpdate() {

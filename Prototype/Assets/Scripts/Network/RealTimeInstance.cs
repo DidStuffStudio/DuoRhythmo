@@ -74,11 +74,23 @@ public class RealTimeInstance : MonoBehaviour {
 
     private void OnApplicationQuit()
     {
-        MasterManager.Instance.Players.Remove(MasterManager.Instance.player);
-        MasterManager.Instance.timer.gameObject.GetComponent<RealtimeView>().ClearOwnership();
-        MasterManager.Instance.timer.CheckForOwner();
-        _testStringSync.SetMessage("Disconnected," + MasterManager.Instance.localPlayerNumber);
-        // _networkManagerSync.PlayerDisconnected();
+        if (numberPlayers <= 1)
+        {
+            print("All players left");
+            MasterManager.Instance.timer.GetComponent<RealtimeView>().RequestOwnership();
+            Destroy(MasterManager.Instance.timer.gameObject);
+        }
+
+        else
+        {
+
+            MasterManager.Instance.Players.Remove(MasterManager.Instance.player);
+            MasterManager.Instance.timer.gameObject.GetComponent<RealtimeView>().ClearOwnership();
+            MasterManager.Instance.timer.CheckForOwner();
+            _testStringSync.SetMessage("Disconnected," + MasterManager.Instance.localPlayerNumber);
+            // _networkManagerSync.PlayerDisconnected();
+        }
+
         _realtime.Disconnect();
     }
 }

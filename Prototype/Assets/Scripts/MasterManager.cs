@@ -137,7 +137,7 @@ public class MasterManager : MonoBehaviour {
             effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
             effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
             
-            foreach(Transform child in transform)
+            foreach(Transform child in transform.GetComponentsInChildren<Transform>())
             {
                 if (child.CompareTag("UI_Drum_Colour"))
                 {
@@ -310,9 +310,12 @@ public class MasterManager : MonoBehaviour {
             timer = timerGameObject.GetComponent<Timer>();
             userInterfaceManager.SetUpInterface();
             gameSetUpFinished = true;
+            StartCoroutine(RealTimeInstance.Instance.CheckNumberOfPlayers());
+            
         }
         else StartCoroutine(FindTimer());
         RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED);
+        
     }
 
     // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers
@@ -341,6 +344,7 @@ public class MasterManager : MonoBehaviour {
 
 
                 gameSetUpFinished = true;
+                StartCoroutine(RealTimeInstance.Instance.CheckNumberOfPlayers());
                 timerFound = true;
                 startTime = Time.time;
                 // Calculate the journey length.

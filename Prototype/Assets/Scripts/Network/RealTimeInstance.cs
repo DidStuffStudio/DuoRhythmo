@@ -34,20 +34,18 @@ public class RealTimeInstance : MonoBehaviour {
         _realtime = GetComponent<Realtime>();
         _realtimeAvatarManager = GetComponent<RealtimeAvatarManager>();
         RegisterToEvents();
-        StartCoroutine(CheckNumberOfPlayers());
+        
     }
 
-    private IEnumerator CheckNumberOfPlayers() {
+    public IEnumerator CheckNumberOfPlayers() {
         while (true) {
-            if (MasterManager.Instance.gameSetUpFinished) {
-                var players = FindObjectsOfType<Player>();
+            var players = FindObjectsOfType<Player>();
                 numberPlayers = players.Length;
-                var timerRealtimeView = MasterManager.Instance.GetComponent<RealtimeView>();
+                var timerRealtimeView = MasterManager.Instance.timer.GetComponent<RealtimeView>();
                 if (timerRealtimeView.isUnownedSelf) {
                     players[0].GetComponent<RealtimeView>().RequestOwnership();
                 }
-                yield return new WaitForSeconds(0.1f);
-            }
+                yield return new WaitForSeconds(0.5f);
         }
     }
 

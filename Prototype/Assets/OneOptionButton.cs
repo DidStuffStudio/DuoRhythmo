@@ -8,7 +8,7 @@ public class OneOptionButton : CustomButton {
 
     protected override void Start() {
         base.Start();
-        if (activateOnStart) SetActive();
+        if (activateOnStart) base.SetActive();
     }
 
     protected override void SetActive() {

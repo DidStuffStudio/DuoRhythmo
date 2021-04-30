@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Mac\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\GeneratedSoundBanks\Mac\</SoundBanksRoot>
+		<ProjectRoot>/Users/balazsivanyi/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/AAU/6th_semester/MED6_project/Prototype/Prototype_WwiseProject/</ProjectRoot>
+		<SourceFilesRoot>/Users/balazsivanyi/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/AAU/6th_semester/MED6_project/Prototype/Prototype_WwiseProject/.cache/Mac/</SourceFilesRoot>
+		<SoundBanksRoot>/Users/balazsivanyi/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/AAU/6th_semester/MED6_project/Prototype/Prototype_WwiseProject/GeneratedSoundBanks/Mac/</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\GeneratedSoundBanks\Mac</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>/Users/balazsivanyi/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/AAU/6th_semester/MED6_project/Prototype/Prototype_WwiseProject/GeneratedSoundBanks/Mac</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -16,48 +16,48 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3748316847" Language="SFX" Hash="2135938961">
+		<SoundBank Id="3748316847" Language="SFX" Hash="1056141333">
 			<ObjectPath>\SoundBanks\Default Work Unit\DrumKit</ObjectPath>
 			<ShortName>DrumKit</ShortName>
 			<Path>DrumKit.bnk</Path>
 			<IncludedEvents>
-				<Event Id="797559763" Name="PlayCymbol" ObjectPath="\Events\Default Work Unit\PlayCymbol" DurationType="OneShot" DurationMin="5.856145" DurationMax="5.856145">
+				<Event Id="3813384673" Name="PlayCymbol_rock" ObjectPath="\Events\Default Work Unit\PlayCymbol_rock" DurationType="OneShot" DurationMin="5.856145" DurationMax="5.856145">
 					<IncludedMemoryFiles>
 						<File Id="914661757" Language="SFX">
 							<ShortName>Cymbal.wav</ShortName>
-							<Path>SFX\Cymbal_10C4C929.wem</Path>
+							<Path>SFX/Cymbal_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2024048025" Name="PlayHiHat" ObjectPath="\Events\Default Work Unit\PlayHiHat" DurationType="OneShot" DurationMin="0.333265" DurationMax="0.333265">
+				<Event Id="1936238287" Name="PlayHiHat_rock" ObjectPath="\Events\Default Work Unit\PlayHiHat_rock" DurationType="OneShot" DurationMin="0.333265" DurationMax="0.333265">
 					<IncludedMemoryFiles>
 						<File Id="62014626" Language="SFX">
 							<ShortName>HiHat.wav</ShortName>
-							<Path>SFX\HiHat_10C4C929.wem</Path>
+							<Path>SFX/HiHat_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3490755565" Name="PlayKick" ObjectPath="\Events\Default Work Unit\PlayKick" DurationType="OneShot" DurationMin="0.600000" DurationMax="0.600000">
+				<Event Id="1191950315" Name="PlayKick_rock" ObjectPath="\Events\Default Work Unit\PlayKick_rock" DurationType="OneShot" DurationMin="0.600000" DurationMax="0.600000">
 					<IncludedMemoryFiles>
 						<File Id="500695360" Language="SFX">
 							<ShortName>Kick.wav</ShortName>
-							<Path>SFX\Kick_10C4C929.wem</Path>
+							<Path>SFX/Kick_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="519310506" Name="PlaySnare" ObjectPath="\Events\Default Work Unit\PlaySnare" DurationType="OneShot" DurationMin="0.339524" DurationMax="0.339524">
+				<Event Id="662005822" Name="PlaySnare_rock" ObjectPath="\Events\Default Work Unit\PlaySnare_rock" DurationType="OneShot" DurationMin="0.339524" DurationMax="0.339524">
 					<IncludedMemoryFiles>
 						<File Id="541296549" Language="SFX">
 							<ShortName>Snare.wav</ShortName>
-							<Path>SFX\Snare_10C4C929.wem</Path>
+							<Path>SFX/Snare_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="989251011" Name="PlayTomTom" ObjectPath="\Events\Default Work Unit\PlayTomTom" DurationType="OneShot" DurationMin="1.750794" DurationMax="1.750794">
+				<Event Id="3252100785" Name="PlayTomTom_rock" ObjectPath="\Events\Default Work Unit\PlayTomTom_rock" DurationType="OneShot" DurationMin="1.750794" DurationMax="1.750794">
 					<IncludedMemoryFiles>
 						<File Id="1009280991" Language="SFX">
 							<ShortName>Tom38 Drums1DOTcom.wav</ShortName>
-							<Path>SFX\Tom38 Drums1DOTcom_10C4C929.wem</Path>
+							<Path>SFX/Tom38 Drums1DOTcom_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

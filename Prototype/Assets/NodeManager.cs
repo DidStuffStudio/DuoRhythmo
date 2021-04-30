@@ -286,7 +286,7 @@ public class NodeManager : MonoBehaviour {
             // if the euclidean value is 1, then it means it should be active, so activate
             if(value == 1 && !_nodes[i].isActive) _nodes[i].Activate(true);
             else if(value == 0  && _nodes[i].isActive) _nodes[i].Activate(false);
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.1f);
         }
         
     }
@@ -301,7 +301,7 @@ public class NodeManager : MonoBehaviour {
         if (!activate)
             foreach (var node in _nodes) {
                 node.Deactivate();
-                yield return new WaitForSeconds(0.02f);
+                yield return new WaitForSeconds(0.1f);
             }
         else {
             _euclideanRythm.GetEuclideanRythm();
@@ -310,7 +310,7 @@ public class NodeManager : MonoBehaviour {
                 // if the euclidean value is 1, then it means it should be active, so activate
                 if(euclideanValue == 1 && !_nodes[i].isActive) _nodes[i].Activate(true);
                 else if(euclideanValue == 0  && _nodes[i].isActive) _nodes[i].Activate(false);
-                yield return new WaitForSeconds(0.02f);
+                yield return new WaitForSeconds(0.1f);
             }
         }
     }

@@ -13,11 +13,11 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID PLAYCYMBOL = 797559763U;
-        static const AkUniqueID PLAYHIHAT = 2024048025U;
-        static const AkUniqueID PLAYKICK = 3490755565U;
-        static const AkUniqueID PLAYSNARE = 519310506U;
-        static const AkUniqueID PLAYTOMTOM = 989251011U;
+        static const AkUniqueID PLAYCYMBOL_ROCK = 3813384673U;
+        static const AkUniqueID PLAYHIHAT_ROCK = 1936238287U;
+        static const AkUniqueID PLAYKICK_ROCK = 1191950315U;
+        static const AkUniqueID PLAYSNARE_ROCK = 662005822U;
+        static const AkUniqueID PLAYTOMTOM_ROCK = 3252100785U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS

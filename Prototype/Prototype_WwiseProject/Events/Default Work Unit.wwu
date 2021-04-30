@@ -3,7 +3,7 @@
 	<Events>
 		<WorkUnit Name="Default Work Unit" ID="{7AB75943-57D4-4E75-8A9C-D706B9CD71CE}" PersistMode="Standalone">
 			<ChildrenList>
-				<Event Name="PlayKick" ID="{D2CA63A6-D899-4D25-9D63-1E5301AB6F0B}">
+				<Event Name="PlayKick_rock" ID="{D2CA63A6-D899-4D25-9D63-1E5301AB6F0B}">
 					<ChildrenList>
 						<Action Name="" ID="{E53E246A-3E17-4E9B-9D9B-AC4E8D5A70BA}" ShortID="589159502">
 							<ReferenceList>
@@ -14,7 +14,7 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="PlaySnare" ID="{80CD29B9-E282-4C0E-A32F-07EF82809E8F}">
+				<Event Name="PlaySnare_rock" ID="{80CD29B9-E282-4C0E-A32F-07EF82809E8F}">
 					<ChildrenList>
 						<Action Name="" ID="{7D618E97-B8CA-4418-8CE1-D5264DAD7AC4}" ShortID="227913413">
 							<ReferenceList>
@@ -25,7 +25,7 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="PlayHiHat" ID="{6C0484CB-E36C-4F88-AFE8-EB700375971D}">
+				<Event Name="PlayHiHat_rock" ID="{6C0484CB-E36C-4F88-AFE8-EB700375971D}">
 					<ChildrenList>
 						<Action Name="" ID="{C6DB9689-C860-40FF-89C2-088261BA4AB9}" ShortID="959197868">
 							<ReferenceList>
@@ -36,7 +36,7 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="PlayTomTom" ID="{1C36108C-3371-49D3-8889-229DC510CA03}">
+				<Event Name="PlayTomTom_rock" ID="{1C36108C-3371-49D3-8889-229DC510CA03}">
 					<ChildrenList>
 						<Action Name="" ID="{3A71FA82-7B7E-4809-9238-975489BC3AA9}" ShortID="699670892">
 							<ReferenceList>
@@ -47,12 +47,232 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="PlayCymbol" ID="{41E0FDA9-BA0C-42DA-89D1-010AFB2FA77C}">
+				<Event Name="PlayCymbol_rock" ID="{41E0FDA9-BA0C-42DA-89D1-010AFB2FA77C}">
 					<ChildrenList>
 						<Action Name="" ID="{678F65E3-3237-4C65-B3C7-AE2D78BB12EC}" ShortID="587847909">
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Cymbal" ID="{D09C7990-B3C6-4F2F-877D-8FD77B49D831}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayKick__djembe" ID="{7BEEEB94-22FF-4702-A774-4EA7CA5F0778}">
+					<ChildrenList>
+						<Action Name="" ID="{71AC8EDF-AD3B-4F27-AE3B-D842A0F28518}" ShortID="85860604">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ap_djembe_bass" ID="{5145404E-CB56-4140-B9D8-9F67BFBAA9B4}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlaySnare_djembe" ID="{23E5A9F4-11B3-4D61-8BD1-52B58216FEAA}">
+					<ChildrenList>
+						<Action Name="" ID="{6E8B9990-5C6F-44AC-9983-0035E3AEC1C5}" ShortID="685736946">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ap_ghana_bell_low1" ID="{046704E3-1081-4DFD-8850-A50CC0839A29}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayHiHat_djembe" ID="{2357EE45-6703-4017-9B4F-15242591E6F1}">
+					<ChildrenList>
+						<Action Name="" ID="{3185EF08-EBDC-4A81-8E4D-51F3A4FF4D33}" ShortID="265502775">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ap_djembe_open" ID="{3ADD536D-5004-4F2F-977B-B0DC7C4DA5CC}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayTomTom_djembe" ID="{3C6CA279-1977-421A-A99D-B610B1E6CA22}">
+					<ChildrenList>
+						<Action Name="" ID="{100BC9D6-1DB9-4E1B-90A7-82D1F9090972}" ShortID="173049541">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ap_djembe_openflam" ID="{DA657C2E-04AD-4D33-82C9-2AB016A3D030}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayCymbol_djembe" ID="{94EBB852-F8C7-433C-89AD-88A24C0138B4}">
+					<ChildrenList>
+						<Action Name="" ID="{3C97ECE1-58CD-4598-87CD-E765FFE2BB5B}" ShortID="468187251">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ap_djembe_slap" ID="{3CF68FDE-55AA-43D6-A7E0-E8325588003D}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayKick_handpan" ID="{69EC7A84-FD63-48CC-8120-05EE62508104}">
+					<ChildrenList>
+						<Action Name="" ID="{E6645F66-30F2-45E3-8E77-8A22FC6FF3E9}" ShortID="744475885">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="RARE_percussion_Handpan_melodic_dry_B_oneshot" ID="{15CDCA24-2F72-4DE3-A149-0097DC9FF770}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlaySnare_handpan" ID="{46E5A213-37CD-476E-9DE2-A3039A1CC2C8}">
+					<ChildrenList>
+						<Action Name="" ID="{78BD5F05-8943-4379-97CD-268C612D1234}" ShortID="706307559">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="RARE_percussion_Handpan_melodic_dry_E_oneshot" ID="{7ACE0045-4690-4FDB-92B5-4CD8EF88FC02}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayHiHat_handpan" ID="{41B79E26-FB53-4D29-BC92-3FD1AEC1DC04}">
+					<ChildrenList>
+						<Action Name="" ID="{9D198ACA-5BE3-4D94-9AFE-9C8CFC3B2F51}" ShortID="276213909">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="RARE_percussion_Handpan_melodic_dry_Ab_oneshot" ID="{DFC6540B-B914-4F2F-B6E6-7C2A200EA3FA}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayTomTom_handpan" ID="{6A6BBDCE-E49D-481A-B3BA-1193E523DC98}">
+					<ChildrenList>
+						<Action Name="" ID="{EB264606-8A46-4C75-9BD4-80ADC5F6E720}" ShortID="764247332">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="RARE_percussion_Handpan_melodic_dry_C#_oneshot" ID="{8CDE806F-F01A-46E7-A053-69C947A6C2F6}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayCymbol_handpan" ID="{56CD474B-B02C-4D43-BF5C-5C6B44FF5CA1}">
+					<ChildrenList>
+						<Action Name="" ID="{3312C0F8-CBEF-44C6-BAE2-5EA8EE8A4B4E}" ShortID="418932072">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="RARE_percussion_Handpan_melodic_dry_Gb_oneshot2" ID="{8E47C11F-A0C1-4F49-9322-2D7F53FBDF35}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayKick_electro" ID="{F973C74A-96D2-442B-B58D-6A0FD699FB26}">
+					<ChildrenList>
+						<Action Name="" ID="{9C4A3825-6BFD-4455-A15C-2C9813FE412E}" ShortID="1015692907">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Kick_909_PL" ID="{58C06C4B-6244-401F-AA3D-CE4468BE453D}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlaySnare_electro" ID="{30117A07-C013-4413-8ED9-5D43AAD3728E}">
+					<ChildrenList>
+						<Action Name="" ID="{1833378D-AF25-4B27-B0DC-5C611F0F94B8}" ShortID="835533693">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Snare_909_PL_14" ID="{528EC71E-9EB0-4F67-8551-08E4077F7744}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayHiHat_electro" ID="{712CCFD3-393D-4722-9ABE-832F8102A15F}">
+					<ChildrenList>
+						<Action Name="" ID="{24711C9D-F293-4F39-B2EA-6BD4A9FC61B4}" ShortID="618602095">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Open_Hi_Hat_909_PL" ID="{48F27E3A-D0C2-4A0D-9EFE-C0DEE334CDB0}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayTomTom_electro" ID="{647DF469-BCD9-4B6F-8580-4827BCFD2FD1}">
+					<ChildrenList>
+						<Action Name="" ID="{2132D229-F57D-4E8C-8629-532735F7D3BC}" ShortID="756976289">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Closed_Hi_Hat_909_PL_2" ID="{827BF7A5-D02F-4B6F-BA06-3B02712E86A7}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayCymbol_electro" ID="{9C8F0C36-7857-4C62-93EF-36501D98C2F8}">
+					<ChildrenList>
+						<Action Name="" ID="{FEB0A10C-4591-4F11-B3F0-932DA1D11E59}" ShortID="731449735">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Crash_909_PL_2" ID="{56964A9E-99B4-40F0-A9F4-44BE89A44388}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayKick_ambient" ID="{CA392BE5-8BBE-4DD8-8A50-0AE3B6183829}">
+					<ChildrenList>
+						<Action Name="" ID="{B65639BC-A0CA-4CF5-B46A-EAAA8106A306}" ShortID="117077349">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SANDUNES_percussion_one_shot_acousticy" ID="{C11EDFD9-2160-48F8-93D0-38817D46025F}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlaySnare_ambient" ID="{B97788F1-5440-4108-A27A-214FF9553057}">
+					<ChildrenList>
+						<Action Name="" ID="{00A499D4-764B-4FF6-B4D2-FEDE953C589E}" ShortID="91816934">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SANDUNES_percussion_found_sound_one_shot_clank_tail" ID="{20902D74-1126-4286-84C2-907FC0B6B56A}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayHiHat_ambient" ID="{5081005F-E66D-4509-917E-58380C6D4EC2}">
+					<ChildrenList>
+						<Action Name="" ID="{F4FDF501-C045-46F8-8FD8-F3C89623B8CD}" ShortID="476576395">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SANDUNES_percussion_found_sound_one_shot_isnap" ID="{4DE1AE89-F812-4753-82D0-725BF5D62762}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayTomTom_ambient" ID="{4220937C-BA7E-4C9E-BCC0-5555366C3D33}">
+					<ChildrenList>
+						<Action Name="" ID="{E3D2E00A-1990-433C-89EB-04CFE1DEA795}" ShortID="367535075">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SANDUNES_percussion_found_sound_one_shot_mouth_percussion" ID="{C945F538-1D49-4990-A1E4-2B794D6550D6}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayCymbol_ambient" ID="{606B5882-B6AD-456B-B888-D3ACF441CBFD}">
+					<ChildrenList>
+						<Action Name="" ID="{91DD559E-B346-4ED9-82DD-784EE4742850}" ShortID="6475234">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SANDUNES_percussion_found_sound_one_shot_dosa_in_prog" ID="{3D89318B-20A7-4317-B3C2-FD4F49BB9552}" WorkUnitID="{D3110F0B-B237-4284-AD44-0007B592510C}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

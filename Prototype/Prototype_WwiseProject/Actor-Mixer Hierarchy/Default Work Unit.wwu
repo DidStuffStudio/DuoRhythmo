@@ -204,52 +204,6 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<Sound Name="Cymatics - Eternity Kick 2 - C" ID="{29F66E86-4354-41B2-A056-27E0FB38EDB0}" ShortID="573998211">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Cymatics - Eternity Kick 2 - C" ID="{BC7515B1-1ACB-46FF-987D-A5835A2EB956}">
-									<Language>SFX</Language>
-									<AudioFile>Cymatics - Eternity Kick 2 - C.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="312939937"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Cymatics - Eternity Kick 2 - C" ID="{BC7515B1-1ACB-46FF-987D-A5835A2EB956}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="HS_Jazz_01_BD" ID="{A5881040-DC6F-418B-A116-4999CD60F3B1}" ShortID="481921026">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="HS_Jazz_01_BD" ID="{D32DE7B5-24FA-4316-9591-6B97FE63F899}">
-									<Language>SFX</Language>
-									<AudioFile>HS_Jazz_01_BD.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="525752949"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="HS_Jazz_01_BD" ID="{D32DE7B5-24FA-4316-9591-6B97FE63F899}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<Sound Name="Kick" ID="{9996B9A2-696A-4C0D-98E8-671B2C18B273}" ShortID="339532000">
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -271,6 +225,98 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="Kick" ID="{3759A2D3-F100-40FF-9FCB-905016A1B2BC}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Kick_909_PL" ID="{58C06C4B-6244-401F-AA3D-CE4468BE453D}" ShortID="700080777">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Kick_909_PL" ID="{99DBAFDE-FE1F-46CC-83A2-E6C6AEBEDBAB}">
+									<Language>SFX</Language>
+									<AudioFile>Kick_909_PL.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="664323841"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Kick_909_PL" ID="{99DBAFDE-FE1F-46CC-83A2-E6C6AEBEDBAB}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="SANDUNES_percussion_one_shot_acousticy" ID="{C11EDFD9-2160-48F8-93D0-38817D46025F}" ShortID="756981765">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="SANDUNES_percussion_one_shot_acousticy" ID="{7052FE1F-8859-4242-8C36-4D573B54290F}">
+									<Language>SFX</Language>
+									<AudioFile>SANDUNES_percussion_one_shot_acousticy.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="955932567"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="SANDUNES_percussion_one_shot_acousticy" ID="{7052FE1F-8859-4242-8C36-4D573B54290F}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="RARE_percussion_Handpan_melodic_dry_B_oneshot" ID="{15CDCA24-2F72-4DE3-A149-0097DC9FF770}" ShortID="25397166">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="RARE_percussion_Handpan_melodic_dry_B_oneshot" ID="{7DDBD359-015B-4B24-B9A3-262F6547A52A}">
+									<Language>SFX</Language>
+									<AudioFile>RARE_percussion_Handpan_melodic_dry_B_oneshot.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="752389861"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="RARE_percussion_Handpan_melodic_dry_B_oneshot" ID="{7DDBD359-015B-4B24-B9A3-262F6547A52A}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ap_djembe_bass" ID="{5145404E-CB56-4140-B9D8-9F67BFBAA9B4}" ShortID="764374450">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ap_djembe_bass" ID="{C664863E-E381-4F89-A84D-76CE8F60EC70}">
+									<Language>SFX</Language>
+									<AudioFile>ap_djembe_bass.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="724958572"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ap_djembe_bass" ID="{C664863E-E381-4F89-A84D-76CE8F60EC70}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
@@ -477,52 +523,6 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<Sound Name="Cymatics - Eterniity Snare 2 - C" ID="{BA7EA7EB-FE9F-4D0B-89E7-8110B65B0C23}" ShortID="453160827">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Cymatics - Eterniity Snare 2 - C" ID="{44714EA5-C7A5-449D-8684-46962A1F55F5}">
-									<Language>SFX</Language>
-									<AudioFile>Cymatics - Eterniity Snare 2 - C.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="520638564"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Cymatics - Eterniity Snare 2 - C" ID="{44714EA5-C7A5-449D-8684-46962A1F55F5}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="HS_Jazz_03_SD" ID="{8B2BCCE9-85B4-488F-B5F6-33FB279488B1}" ShortID="584575329">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="HS_Jazz_03_SD" ID="{086D0A53-3267-4F8F-9D97-ABA60C37D39A}">
-									<Language>SFX</Language>
-									<AudioFile>HS_Jazz_03_SD.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="395345225"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="HS_Jazz_03_SD" ID="{086D0A53-3267-4F8F-9D97-ABA60C37D39A}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<Sound Name="Snare" ID="{C1018A37-E439-4697-B120-5F98D53CA9DE}" ShortID="254762970">
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -544,6 +544,98 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="Snare" ID="{9D16640B-0C74-4A18-BB89-F535E4E1CB67}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Snare_909_PL_14" ID="{528EC71E-9EB0-4F67-8551-08E4077F7744}" ShortID="778275201">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Snare_909_PL_14" ID="{57C7E6BC-C713-4384-B028-881B6A17F861}">
+									<Language>SFX</Language>
+									<AudioFile>Snare_909_PL_14.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="871471940"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Snare_909_PL_14" ID="{57C7E6BC-C713-4384-B028-881B6A17F861}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="SANDUNES_percussion_found_sound_one_shot_clank_tail" ID="{20902D74-1126-4286-84C2-907FC0B6B56A}" ShortID="903189720">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="SANDUNES_percussion_found_sound_one_shot_clank_tail" ID="{05FA3944-5ABC-4BF5-8C17-74CF7316C7BC}">
+									<Language>SFX</Language>
+									<AudioFile>SANDUNES_percussion_found_sound_one_shot_clank_tail.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="686716830"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="SANDUNES_percussion_found_sound_one_shot_clank_tail" ID="{05FA3944-5ABC-4BF5-8C17-74CF7316C7BC}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="RARE_percussion_Handpan_melodic_dry_E_oneshot" ID="{7ACE0045-4690-4FDB-92B5-4CD8EF88FC02}" ShortID="702298338">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="RARE_percussion_Handpan_melodic_dry_E_oneshot" ID="{A25ACDBC-DEC0-4D31-833F-71AF474A56F4}">
+									<Language>SFX</Language>
+									<AudioFile>RARE_percussion_Handpan_melodic_dry_E_oneshot.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="380562368"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="RARE_percussion_Handpan_melodic_dry_E_oneshot" ID="{A25ACDBC-DEC0-4D31-833F-71AF474A56F4}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ap_ghana_bell_low1" ID="{046704E3-1081-4DFD-8850-A50CC0839A29}" ShortID="761668455">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ap_ghana_bell_low1" ID="{C7E41019-1812-4D3A-BD59-8FF1C0765E87}">
+									<Language>SFX</Language>
+									<AudioFile>ap_ghana_bell_low1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1036151787"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ap_ghana_bell_low1" ID="{C7E41019-1812-4D3A-BD59-8FF1C0765E87}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
@@ -720,66 +812,6 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<Sound Name="Cymatics - Eternity Crash 1" ID="{1A2DD734-236F-4C10-AF97-C4471C45C231}" ShortID="490863243">
-							<PropertyList>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>12</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Cymatics - Eternity Crash 1" ID="{04ECE6DE-60AC-48E5-BA66-29769DA51A32}">
-									<Language>SFX</Language>
-									<AudioFile>Cymatics - Eternity Crash 1.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="635555808"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Cymatics - Eternity Crash 1" ID="{04ECE6DE-60AC-48E5-BA66-29769DA51A32}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="HS_Jazz_07_Cymbal" ID="{30DDE0D9-A9CA-4AEC-93C7-E9CBD98F7B19}" ShortID="122498658">
-							<PropertyList>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>12</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="HS_Jazz_07_Cymbal" ID="{00670E54-A963-4775-A954-5577ADCCAA40}">
-									<Language>SFX</Language>
-									<AudioFile>HS_Jazz_07_Cymbal.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="128923291"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="HS_Jazz_07_Cymbal" ID="{00670E54-A963-4775-A954-5577ADCCAA40}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<Sound Name="Cymbal" ID="{D09C7990-B3C6-4F2F-877D-8FD77B49D831}" ShortID="837965617">
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -801,6 +833,98 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="Cymbal" ID="{E101BC63-8619-40CA-921B-4D411C269153}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Crash_909_PL_2" ID="{56964A9E-99B4-40F0-A9F4-44BE89A44388}" ShortID="89774564">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Crash_909_PL_2" ID="{ED8BB77E-F33E-4E50-A5AE-CA4A63081E05}">
+									<Language>SFX</Language>
+									<AudioFile>Crash_909_PL_2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="659283244"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Crash_909_PL_2" ID="{ED8BB77E-F33E-4E50-A5AE-CA4A63081E05}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="SANDUNES_percussion_found_sound_one_shot_dosa_in_prog" ID="{3D89318B-20A7-4317-B3C2-FD4F49BB9552}" ShortID="622795002">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="SANDUNES_percussion_found_sound_one_shot_dosa_in_prog" ID="{A9329E6E-237E-436B-A872-8DBA70865FB6}">
+									<Language>SFX</Language>
+									<AudioFile>SANDUNES_percussion_found_sound_one_shot_dosa_in_prog.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="79487858"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="SANDUNES_percussion_found_sound_one_shot_dosa_in_prog" ID="{A9329E6E-237E-436B-A872-8DBA70865FB6}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="RARE_percussion_Handpan_melodic_dry_Gb_oneshot2" ID="{8E47C11F-A0C1-4F49-9322-2D7F53FBDF35}" ShortID="593086612">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="RARE_percussion_Handpan_melodic_dry_Gb_oneshot2" ID="{75A7A25A-3DBD-4A53-8349-91F88B77D0B4}">
+									<Language>SFX</Language>
+									<AudioFile>RARE_percussion_Handpan_melodic_dry_Gb_oneshot2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="133384433"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="RARE_percussion_Handpan_melodic_dry_Gb_oneshot2" ID="{75A7A25A-3DBD-4A53-8349-91F88B77D0B4}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ap_djembe_slap" ID="{3CF68FDE-55AA-43D6-A7E0-E8325588003D}" ShortID="964347523">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ap_djembe_slap" ID="{E74546A4-65D6-459A-A02D-34E085D45BB2}">
+									<Language>SFX</Language>
+									<AudioFile>ap_djembe_slap.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="725312000"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ap_djembe_slap" ID="{E74546A4-65D6-459A-A02D-34E085D45BB2}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
@@ -978,66 +1102,6 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<Sound Name="Cymatics - Eternity Closed Hihat 1" ID="{67D0D87E-F102-4D2C-936F-537A1025DC66}" ShortID="852139983">
-							<PropertyList>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>1</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Cymatics - Eternity Closed Hihat 1" ID="{05BBE02A-1B74-42EA-B570-BC6E894A59C4}">
-									<Language>SFX</Language>
-									<AudioFile>Cymatics - Eternity Closed Hihat 1.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="1071978112"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Cymatics - Eternity Closed Hihat 1" ID="{05BBE02A-1B74-42EA-B570-BC6E894A59C4}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="Funk_HH" ID="{32C24199-5756-4720-A6D7-92ACB97B1D02}" ShortID="311629962">
-							<PropertyList>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>12</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Funk_HH" ID="{9F0D8D62-4EDC-4663-B1C3-0C33350D1E7C}">
-									<Language>SFX</Language>
-									<AudioFile>Funk_HH.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="707305554"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Funk_HH" ID="{9F0D8D62-4EDC-4663-B1C3-0C33350D1E7C}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<Sound Name="HiHat" ID="{792B88ED-D94C-4A8F-A04C-ACBDF9A4C8B7}" ShortID="223229118">
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -1059,6 +1123,98 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="HiHat" ID="{D48FC1FD-6D49-4D2B-AAFB-B704B189F266}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ap_djembe_open" ID="{3ADD536D-5004-4F2F-977B-B0DC7C4DA5CC}" ShortID="20132875">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ap_djembe_open" ID="{4E697A90-5DF1-4A37-A24E-3D82102FC39F}">
+									<Language>SFX</Language>
+									<AudioFile>ap_djembe_open.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="183986143"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ap_djembe_open" ID="{4E697A90-5DF1-4A37-A24E-3D82102FC39F}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Open_Hi_Hat_909_PL" ID="{48F27E3A-D0C2-4A0D-9EFE-C0DEE334CDB0}" ShortID="611811175">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Open_Hi_Hat_909_PL" ID="{74E51C59-50B5-495A-AE63-CE5CDC58943B}">
+									<Language>SFX</Language>
+									<AudioFile>Open_Hi_Hat_909_PL.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="261614828"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Open_Hi_Hat_909_PL" ID="{74E51C59-50B5-495A-AE63-CE5CDC58943B}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="SANDUNES_percussion_found_sound_one_shot_isnap" ID="{4DE1AE89-F812-4753-82D0-725BF5D62762}" ShortID="815400546">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="SANDUNES_percussion_found_sound_one_shot_isnap" ID="{854D6D7F-0FC4-4150-A7C5-5B602924A076}">
+									<Language>SFX</Language>
+									<AudioFile>SANDUNES_percussion_found_sound_one_shot_isnap.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="723672675"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="SANDUNES_percussion_found_sound_one_shot_isnap" ID="{854D6D7F-0FC4-4150-A7C5-5B602924A076}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="RARE_percussion_Handpan_melodic_dry_Ab_oneshot" ID="{DFC6540B-B914-4F2F-B6E6-7C2A200EA3FA}" ShortID="373728249">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="RARE_percussion_Handpan_melodic_dry_Ab_oneshot" ID="{48A3E2BC-4146-4DF8-91E0-4D8AA9324000}">
+									<Language>SFX</Language>
+									<AudioFile>RARE_percussion_Handpan_melodic_dry_Ab_oneshot.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="162934384"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="RARE_percussion_Handpan_melodic_dry_Ab_oneshot" ID="{48A3E2BC-4146-4DF8-91E0-4D8AA9324000}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
@@ -1270,75 +1426,6 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<Sound Name="Cymatics - Eternity Clap 2" ID="{1B338D48-E990-4776-B5C9-D69D34B89B7B}" ShortID="234487444">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Cymatics - Eternity Clap 2" ID="{61099F4B-51CA-4A9E-B3F3-D59F344A2573}">
-									<Language>SFX</Language>
-									<AudioFile>Cymatics - Eternity Clap 2.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="1026524888"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Cymatics - Eternity Clap 2" ID="{61099F4B-51CA-4A9E-B3F3-D59F344A2573}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="HS_Jazz_09_Tom" ID="{D5F19EF0-3DF1-48A5-AF7C-56807B30F3DD}" ShortID="288528640">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="HS_Jazz_09_Tom" ID="{3A979104-A926-4FB9-98AB-53532588B69F}">
-									<Language>SFX</Language>
-									<AudioFile>HS_Jazz_09_Tom.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="947972333"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="HS_Jazz_09_Tom" ID="{3A979104-A926-4FB9-98AB-53532588B69F}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="Tom" ID="{5099E285-CE86-4026-8D20-2565B737BE4B}" ShortID="721833910">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Tom" ID="{7BD8CF02-EB48-4ACC-A6BF-8EF7929F44B5}">
-									<Language>SFX</Language>
-									<AudioFile>Tom.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="954323083"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Tom" ID="{7BD8CF02-EB48-4ACC-A6BF-8EF7929F44B5}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<Sound Name="Tom38 Drums1DOTcom" ID="{024AA9BC-36F6-42E2-BF0F-85317B9DC2CA}" ShortID="56055428">
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -1360,6 +1447,98 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="Tom38 Drums1DOTcom" ID="{DF6FE2A7-81AD-414F-A6C3-9487E52F7E54}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Closed_Hi_Hat_909_PL_2" ID="{827BF7A5-D02F-4B6F-BA06-3B02712E86A7}" ShortID="250624526">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Closed_Hi_Hat_909_PL_2" ID="{DA6A9D80-855F-45B2-A98F-087E215B7109}">
+									<Language>SFX</Language>
+									<AudioFile>Closed_Hi_Hat_909_PL_2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="955934526"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Closed_Hi_Hat_909_PL_2" ID="{DA6A9D80-855F-45B2-A98F-087E215B7109}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="SANDUNES_percussion_found_sound_one_shot_mouth_percussion" ID="{C945F538-1D49-4990-A1E4-2B794D6550D6}" ShortID="668734520">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="SANDUNES_percussion_found_sound_one_shot_mouth_percussion" ID="{92162175-0B4A-4F2C-8A85-F72F085232C7}">
+									<Language>SFX</Language>
+									<AudioFile>SANDUNES_percussion_found_sound_one_shot_mouth_percussion.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="50112841"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="SANDUNES_percussion_found_sound_one_shot_mouth_percussion" ID="{92162175-0B4A-4F2C-8A85-F72F085232C7}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="RARE_percussion_Handpan_melodic_dry_C#_oneshot" ID="{8CDE806F-F01A-46E7-A053-69C947A6C2F6}" ShortID="854094672">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="RARE_percussion_Handpan_melodic_dry_C#_oneshot" ID="{501CE911-D622-4961-A487-684E0F75FE31}">
+									<Language>SFX</Language>
+									<AudioFile>RARE_percussion_Handpan_melodic_dry_C#_oneshot.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="243891991"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="RARE_percussion_Handpan_melodic_dry_C#_oneshot" ID="{501CE911-D622-4961-A487-684E0F75FE31}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ap_djembe_openflam" ID="{DA657C2E-04AD-4D33-82C9-2AB016A3D030}" ShortID="131833940">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{198F035E-0F1C-413B-887F-565135C2CD14}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B11B4F55-382F-4069-AF6E-508CAD75EBE4}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ap_djembe_openflam" ID="{D67581B7-4A3B-4EAA-9B6E-B964B5E01D42}">
+									<Language>SFX</Language>
+									<AudioFile>ap_djembe_openflam.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="312329991"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ap_djembe_openflam" ID="{D67581B7-4A3B-4EAA-9B6E-B964B5E01D42}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>

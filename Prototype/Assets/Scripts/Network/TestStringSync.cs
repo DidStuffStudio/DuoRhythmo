@@ -65,7 +65,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
         {
             var time = Int32.Parse(_message.Split(',')[1]);
             MasterManager.Instance.timer.timer = time;
-            if(time <= 0.0f) MasterManager.Instance.userInterfaceManager.PlayAnimation();
+            if(time <= 0.0f) MasterManager.Instance.userInterfaceManager.PlayAnimation(true);
         }
 
         if (_message.Contains(MessageTypes.DRUM_NODE_CHANGED)) {

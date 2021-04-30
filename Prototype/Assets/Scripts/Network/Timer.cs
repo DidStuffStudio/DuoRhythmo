@@ -47,7 +47,7 @@ public class Timer : MonoBehaviour {
         }
 
         timer = roundTime;
-        MasterManager.Instance.userInterfaceManager.PlayAnimation();
+        MasterManager.Instance.userInterfaceManager.PlayAnimation(true);
     }
 
     // private IEnumerator BlinkTimer() {

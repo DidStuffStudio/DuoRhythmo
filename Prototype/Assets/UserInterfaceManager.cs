@@ -70,17 +70,34 @@ public class UserInterfaceManager : MonoBehaviour {
         MasterManager.Instance.timer.ToggleTimer(true);
     }
 
-    public void PlayAnimation() {
-        _currentRenderPanel++;
-        if (_currentRenderPanel > ((MasterManager.Instance.numberInstruments * 2)- 1)) _currentRenderPanel = 0;
-        _currentPanel++;
-        if (_currentPanel > (MasterManager.Instance.numberInstruments - 1)) _currentPanel = 0;
-        Solo(false, 0);
-        _uiAnimator.speed = 1.0f;
-        if (!MasterManager.Instance.isInPosition)
+    public void PlayAnimation(bool forward) {
+        if (forward)
         {
-            _playerAnimator.speed = 1.0f;
-            _playerAnimator.Play("PlayerCam");
+            _currentRenderPanel++;
+            if (_currentRenderPanel > ((MasterManager.Instance.numberInstruments * 2) - 1)) _currentRenderPanel = 0;
+            _currentPanel++;
+            if (_currentPanel > (MasterManager.Instance.numberInstruments - 1)) _currentPanel = 0;
+            Solo(false, 0);
+            _uiAnimator.speed = 1.0f;
+            if (!MasterManager.Instance.isInPosition)
+            {
+                _playerAnimator.speed = 1.0f;
+                _playerAnimator.Play("PlayerCam");
+            }
+        }
+        else
+        {
+            _currentRenderPanel--;
+            if (_currentRenderPanel <= 0) _currentRenderPanel =  (MasterManager.Instance.numberInstruments * 2) - 1;
+            _currentPanel--;
+            if (_currentPanel <= 0) _currentPanel = MasterManager.Instance.numberInstruments - 1;
+            Solo(false, 0);
+            _uiAnimator.speed = -1.0f;
+            if (!MasterManager.Instance.isInPosition)
+            {
+                _playerAnimator.speed = -1.0f;
+                _playerAnimator.Play("PlayerCam");
+            }
         }
     }
 

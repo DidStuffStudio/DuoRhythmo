@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00020393817, g: 0.049055345, b: 0.027523052, a: 1}
+  m_IndirectSpecularColor: {r: 0.0017999794, g: 0.000413092, b: 0.008067779, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -586,8 +586,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 1
   _text: {fileID: 1536880416}
   _string: Dwell time speed
@@ -832,12 +830,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1590067202}
+        m_TargetAssemblyTypeName: MasterManager, Assembly-CSharp
+        m_MethodName: SwitchDrumKits
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeactivation:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -850,6 +858,8 @@ MonoBehaviour:
   - {fileID: 1560565228}
   - {fileID: 693815050}
   activateOnStart: 0
+  isDwellTimeSetter: 0
+  localDwellTimeSpeed: 100
 --- !u!1001 &168322546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1077,12 +1087,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1590067202}
+        m_TargetAssemblyTypeName: MasterManager, Assembly-CSharp
+        m_MethodName: SwitchDrumKits
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeactivation:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -1095,6 +1115,8 @@ MonoBehaviour:
   - {fileID: 1560565228}
   - {fileID: 693815050}
   activateOnStart: 0
+  isDwellTimeSetter: 0
+  localDwellTimeSpeed: 100
 --- !u!1 &258635027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,12 +1608,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1590067202}
+        m_TargetAssemblyTypeName: MasterManager, Assembly-CSharp
+        m_MethodName: SwitchDrumKits
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeactivation:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 1892863259}
@@ -1604,6 +1636,8 @@ MonoBehaviour:
   - {fileID: 693815050}
   - {fileID: 125626014}
   activateOnStart: 1
+  isDwellTimeSetter: 0
+  localDwellTimeSpeed: 100
 --- !u!1 &463355744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,6 +1790,7 @@ MonoBehaviour:
   currentRotationOfUI: 0
   panels: []
   _forwardRenderer: {fileID: 11400000, guid: 4a8e21d5c33334b11b34a596161b9360, type: 2}
+  dwellSpeedPrefab: {fileID: 0}
 --- !u!1 &565050213
 GameObject:
   m_ObjectHideFlags: 0
@@ -7206,12 +7241,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 1720987937}
   activateOnStart: 0
+  isDwellTimeSetter: 0
+  localDwellTimeSpeed: 100
 --- !u!114 &689948721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7465,12 +7500,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1590067202}
+        m_TargetAssemblyTypeName: MasterManager, Assembly-CSharp
+        m_MethodName: SwitchDrumKits
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeactivation:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -7483,6 +7528,8 @@ MonoBehaviour:
   - {fileID: 125626014}
   - {fileID: 1560565228}
   activateOnStart: 0
+  isDwellTimeSetter: 0
+  localDwellTimeSpeed: 100
 --- !u!1001 &694531495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7710,12 +7757,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1590067202}
+        m_TargetAssemblyTypeName: MasterManager, Assembly-CSharp
+        m_MethodName: SwitchDrumKits
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeactivation:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -7728,6 +7785,8 @@ MonoBehaviour:
   - {fileID: 1560565228}
   - {fileID: 693815050}
   activateOnStart: 0
+  isDwellTimeSetter: 0
+  localDwellTimeSpeed: 100
 --- !u!1 &740535872
 GameObject:
   m_ObjectHideFlags: 0
@@ -12869,14 +12928,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc454cd2595cf5548a39a2ed95ca8364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerList: f7e1664c
+  triggerList: ae8d9d44f7e1664c
   useOtherObject: 0
   data:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 96543b011a550ef4c9bf04ef8b3b86ee, type: 2}
   decodeBank: 0
-  loadAsynchronous: 0
+  loadAsynchronous: 1
   saveDecodedBank: 0
   unloadTriggerList: 958ca0ea
   bankNameInternal: 
@@ -13445,8 +13504,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 0
   _text: {fileID: 1842478429}
   _string: Play
@@ -14193,12 +14250,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1590067202}
+        m_TargetAssemblyTypeName: MasterManager, Assembly-CSharp
+        m_MethodName: SwitchDrumKits
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeactivation:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -14211,6 +14278,8 @@ MonoBehaviour:
   - {fileID: 1560565228}
   - {fileID: 693815050}
   activateOnStart: 0
+  isDwellTimeSetter: 0
+  localDwellTimeSpeed: 100
 --- !u!1 &1437889675
 GameObject:
   m_ObjectHideFlags: 0
@@ -14706,12 +14775,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1590067202}
+        m_TargetAssemblyTypeName: MasterManager, Assembly-CSharp
+        m_MethodName: SwitchDrumKits
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeactivation:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -14724,6 +14803,8 @@ MonoBehaviour:
   - {fileID: 125626014}
   - {fileID: 693815050}
   activateOnStart: 0
+  isDwellTimeSetter: 0
+  localDwellTimeSpeed: 100
 --- !u!1 &1590067201
 GameObject:
   m_ObjectHideFlags: 0
@@ -14771,6 +14852,102 @@ MonoBehaviour:
   - {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
   - {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
   - {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
+  classicDrums:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: ae8361425a2ed684eb4cc41f60934a66, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 002a8fa724d7b84488def34dea0e011a, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 030901a2e7451014982be8a03db889e3, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: a0d12ad59751f6e46b22c204429efe1f, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6dd43599664cb8e4fa19584d469edcea, type: 2}
+  djembeDrums:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 36bb772c6f07f4449b83752486c7411e, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 9ce839d95227abb4ea13e1cca0d02df3, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e867ddf2bb2814a4fa0898a0123b36c6, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 3af7d730b50d5fc41a4e734bac7faf4d, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 80a49b305c8e62847bfc3b000f2dd1c0, type: 2}
+  edmDrums:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: ec44c14b2206d6942a6a5f58ad350cdb, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 691dbb8bd83d1124ab8213ea2a148a02, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 456b0f684bcc2954487a1e16dcd4ea4c, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: a48a8ff752218134681de44b0cd19340, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 412698a2e999e8146a040de90644b6d9, type: 2}
+  hangDrums:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b1af1bc2ec9467140b66f09b66b03ae2, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 3ea172e8f2681b14f9d0bd81376d2754, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 35ef47559f6167447b9cd1734053c793, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e219dedf05da5394993c240bee84b55d, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 07acd06ec6922c044a4cf11c8640a3a1, type: 2}
+  ambientDrums:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 05eeac72142531d459a6d370c958863c, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: cb7fab621f20a6c44b058b6b21be7d3d, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c4afc1263d6b08b45998b68f97369571, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 7942df9b730394e4b89cc6df57e6df27, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 5722e161ac1696340ab3079f7d9a8b7b, type: 2}
+  currentDrums:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
   _nodeManagers: []
   dwellTimeSpeed: 100
   userInterfaceManager: {fileID: 530605015}
@@ -14795,6 +14972,8 @@ MonoBehaviour:
   isWaitingInLobby: 1
   topDownSignifier: {fileID: 775170859}
   mainSignifier: {fileID: 689322139}
+  DwellSettingsActive: 0
+  dwellSettingsPrefab: {fileID: 0}
 --- !u!4 &1590067203
 Transform:
   m_ObjectHideFlags: 0
@@ -15231,12 +15410,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 689948720}
   activateOnStart: 1
+  isDwellTimeSetter: 0
+  localDwellTimeSpeed: 100
 --- !u!114 &1720987938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15503,8 +15682,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 0
   _text: {fileID: 1622300023}
   _string: Quit
@@ -16246,12 +16423,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1590067202}
+        m_TargetAssemblyTypeName: MasterManager, Assembly-CSharp
+        m_MethodName: SwitchDrumKits
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeactivation:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -16264,6 +16451,8 @@ MonoBehaviour:
   - {fileID: 1560565228}
   - {fileID: 693815050}
   activateOnStart: 0
+  isDwellTimeSetter: 0
+  localDwellTimeSpeed: 100
 --- !u!1 &1905188874
 GameObject:
   m_ObjectHideFlags: 0
@@ -16524,12 +16713,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1590067202}
+        m_TargetAssemblyTypeName: MasterManager, Assembly-CSharp
+        m_MethodName: SwitchDrumKits
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeactivation:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -16542,6 +16741,8 @@ MonoBehaviour:
   - {fileID: 1560565228}
   - {fileID: 693815050}
   activateOnStart: 0
+  isDwellTimeSetter: 0
+  localDwellTimeSpeed: 100
 --- !u!1 &1957047847
 GameObject:
   m_ObjectHideFlags: 0
@@ -16864,12 +17065,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1590067202}
+        m_TargetAssemblyTypeName: MasterManager, Assembly-CSharp
+        m_MethodName: SwitchDrumKits
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeactivation:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -16882,6 +17093,8 @@ MonoBehaviour:
   - {fileID: 1560565228}
   - {fileID: 693815050}
   activateOnStart: 0
+  isDwellTimeSetter: 0
+  localDwellTimeSpeed: 100
 --- !u!1 &2097733660
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 
-
 public class Node : CustomButton {
     public NodeManager nodeManager;
     public int drumIndex;
@@ -20,7 +19,9 @@ public class Node : CustomButton {
 
     public List<Image> subNodes = new List<Image>();
 
-    public AK.Wwise.Event kickEvent, snareEvent, hiHatEvent, tomTomEvent, cymbalEvent;
+    //public AK.Wwise.Event kickEvent, snareEvent, hiHatEvent, tomTomEvent, cymbalEvent;
+
+
     private VisualEffect _vfx;
 
     protected override void Start() {
@@ -62,19 +63,19 @@ public class Node : CustomButton {
 
         switch (drumType) {
             case DrumType.Kick:
-                kickEvent.Post(gameObject);
+                MasterManager.Instance.currentDrums[0].Post(gameObject);
                 break;
             case DrumType.Snare:
-                snareEvent.Post(gameObject);
+                MasterManager.Instance.currentDrums[1].Post(gameObject);
                 break;
             case DrumType.HiHat:
-                hiHatEvent.Post(gameObject);
+                MasterManager.Instance.currentDrums[2].Post(gameObject);
                 break;
             case DrumType.TomTom:
-                tomTomEvent.Post(gameObject);
+                MasterManager.Instance.currentDrums[3].Post(gameObject);
                 break;
             case DrumType.Cymbal:
-                cymbalEvent.Post(gameObject);
+                MasterManager.Instance.currentDrums[4].Post(gameObject);
                 break;
         }
 

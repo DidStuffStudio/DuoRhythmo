@@ -30,6 +30,15 @@ public class MasterManager : MonoBehaviour {
     public Color[] drumColors;
     public Color[] defaultNodeColors;
 
+    [SerializeField] private AK.Wwise.Event[] classicDrums = new AK.Wwise.Event[5];
+    [SerializeField] private AK.Wwise.Event[] djembeDrums = new AK.Wwise.Event[5];
+    [SerializeField] private AK.Wwise.Event[] edmDrums = new AK.Wwise.Event[5];
+    [SerializeField] private AK.Wwise.Event[] hangDrums = new AK.Wwise.Event[5];
+    [SerializeField] private AK.Wwise.Event[] ambientDrums = new AK.Wwise.Event[5];
+
+    public AK.Wwise.Event[] currentDrums = new AK.Wwise.Event[5];
+
+    [SerializeField] private Dictionary<int, AK.Wwise.Event[]> drumDictionary = new Dictionary<int, AK.Wwise.Event[]>();
     // nodes stuff
     public List<NodeManager> _nodeManagers = new List<NodeManager>();
     public float dwellTimeSpeed = 100.0f;
@@ -67,6 +76,12 @@ public class MasterManager : MonoBehaviour {
     private void Start() {
         if (_instance == null) _instance = this;
         Players.CollectionChanged += OnPlayersChanged;
+        drumDictionary.Add(0, classicDrums);
+        drumDictionary.Add(1, djembeDrums);
+        drumDictionary.Add(2, edmDrums);
+        drumDictionary.Add(3, hangDrums);
+        drumDictionary.Add(4, ambientDrums);
+        
     }
 
     private void OnPlayersChanged(object sender, NotifyCollectionChangedEventArgs e) {
@@ -188,6 +203,10 @@ public class MasterManager : MonoBehaviour {
         gameSetUpFinished = true;
     }
 
+    public void SwitchDrumKits(int drumkitIndex)
+    {
+        currentDrums = drumDictionary[drumkitIndex];
+    }
 
     private IEnumerator WaitUntilConnected() {
         while (true) {

@@ -64,7 +64,7 @@ public class DwellSpeedButton : CustomButton
 
     public void ChangeDwellSpeed()
     {
-        MasterManager.Instance.dwellTimeSpeed = localDwellTimeSpeed;
+       // MasterManager.Instance.dwellTimeSpeed = localDwellTimeSpeed;
         
     }
 

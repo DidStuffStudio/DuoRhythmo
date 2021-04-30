@@ -31,6 +31,8 @@ public class UserInterfaceManager : MonoBehaviour {
     [SerializeField] private ForwardRendererData _forwardRenderer;
     private bool isRenderingAPanel = false;
 
+    public GameObject dwellSpeedPrefab;
+
     private void Start() {
        
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
@@ -181,5 +183,10 @@ public class UserInterfaceManager : MonoBehaviour {
 
     private void OnDisable() {
         foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(false);
+    }
+
+    public void InstantiateDwellSpeedPrefab()
+    {
+        Instantiate(dwellSpeedPrefab, Camera.main.transform);
     }
 }

@@ -61,6 +61,9 @@ public class MasterManager : MonoBehaviour {
     [Space] [Header("Signifiers")] [SerializeField]
     private GameObject topDownSignifier, mainSignifier;
 
+    public bool DwellSettingsActive;
+    public GameObject dwellSettingsPrefab;
+
     private void Start() {
         if (_instance == null) _instance = this;
         Players.CollectionChanged += OnPlayersChanged;
@@ -369,5 +372,10 @@ public class MasterManager : MonoBehaviour {
         yield return new WaitForSeconds(time);
         isWaitingInLobby = false;
         print("Lerp to position");
+    }
+
+    public void setDwellSettingsActive(bool set)
+    {
+        dwellSettingsPrefab.SetActive(set);
     }
 }

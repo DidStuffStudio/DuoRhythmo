@@ -5,6 +5,9 @@ using UnityEngine;
 public class OneOptionButton : CustomButton {
     [SerializeField] private OneOptionButton[] otherButtonsToDisable;
     [SerializeField] private bool activateOnStart = false;
+    [SerializeField] private bool isDwellTimeSetter;
+    public float localDwellTimeSpeed = 100.0f;
+    
 
     protected override void Start() {
         base.Start();
@@ -23,19 +26,40 @@ public class OneOptionButton : CustomButton {
     }
 
     protected override void FixedUpdate() {
-        if (isHover && !isActive) {
+        if (isHover && !isActive)
+        {
             if (_confirmScalerRT.localScale.x < 1.0f)
-                _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
-            else {
+                if (!isDwellTimeSetter)
+                    _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
+                else
+                    _confirmScalerRT.localScale += Vector3.one / localDwellTimeSpeed;
+            else
+            {
                 _confirmScalerRT.localScale = Vector3.zero;
                 SetActive();
                 OnActivation?.Invoke();
             }
         }
-
-        else {
+        else
+        {
             if (_confirmScalerRT.localScale.x < 0.0f) return;
-            _confirmScalerRT.localScale -= Vector3.one / MasterManager.Instance.dwellTimeSpeed;
+
+            if (!isDwellTimeSetter)
+            {
+                _confirmScalerRT.localScale -= Vector3.one / MasterManager.Instance.dwellTimeSpeed;
+
+            }
+            else
+            {
+                _confirmScalerRT.localScale -= Vector3.one / localDwellTimeSpeed;
+            }
+
+           
         }
+
+        }
+    public void ChangeDwellSpeed()
+    {
+        MasterManager.Instance.dwellTimeSpeed = localDwellTimeSpeed;
     }
 }

@@ -203,6 +203,28 @@ public class MasterManager : MonoBehaviour {
         gameSetUpFinished = true;
     }
 
+    public void PlayDrum(DrumType drum)
+    {
+        switch (drum)
+        {
+            case DrumType.Kick:
+                currentDrums[0].Post(gameObject);
+                break;
+            case DrumType.Snare:
+                currentDrums[1].Post(gameObject);
+                break;
+            case DrumType.HiHat:
+                currentDrums[2].Post(gameObject);
+                break;
+            case DrumType.TomTom:
+                currentDrums[3].Post(gameObject);
+                break;
+            case DrumType.Cymbal:
+                currentDrums[4].Post(gameObject);
+                break;
+        }
+    }
+
     public void SwitchDrumKits(int drumkitIndex)
     {
         currentDrums = drumDictionary[drumkitIndex];

@@ -61,23 +61,7 @@ public class Node : CustomButton {
         StartCoroutine(Wait());
         StartCoroutine(AudioVFX());
 
-        switch (drumType) {
-            case DrumType.Kick:
-                MasterManager.Instance.currentDrums[0].Post(gameObject);
-                break;
-            case DrumType.Snare:
-                MasterManager.Instance.currentDrums[1].Post(gameObject);
-                break;
-            case DrumType.HiHat:
-                MasterManager.Instance.currentDrums[2].Post(gameObject);
-                break;
-            case DrumType.TomTom:
-                MasterManager.Instance.currentDrums[3].Post(gameObject);
-                break;
-            case DrumType.Cymbal:
-                MasterManager.Instance.currentDrums[4].Post(gameObject);
-                break;
-        }
+        MasterManager.Instance.PlayDrum(drumType);
 
         
     }

@@ -81,6 +81,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
             }
             var splitMessage = _message.Split(',');
             var connectedPlayer = Int32.Parse(splitMessage[1]);
+            MasterManager.Instance.dataMaster.SetConnectedPlayer(connectedPlayer, true);
             if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
             SetMessage(MessageTypes.TIMER+MasterManager.Instance.timer.timer);
         } 

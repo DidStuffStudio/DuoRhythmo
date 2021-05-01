@@ -7,7 +7,7 @@ public class DataSync : MonoBehaviour
     
     private List<float> times = new List<float>();
     public float averagedTime = 0.0f;
-
+    public int[] conectedPlayers = new int[10];
     public void AddTime(float time) => times.Add(time);
     public IEnumerator CalculateAverageTime()
     {
@@ -24,6 +24,11 @@ public class DataSync : MonoBehaviour
         }
     }
 
+    public void SetConnectedPlayer(int index, bool connected)
+    {
+        if (connected) conectedPlayers[index] = 1;
+        else conectedPlayers[index] = 0;
+    }
     void SendTimeToOtherPlayers() =>
         RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.AVERAGED_TIME + averagedTime);
 

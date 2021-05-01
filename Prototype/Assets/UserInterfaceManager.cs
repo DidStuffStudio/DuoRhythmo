@@ -41,21 +41,7 @@ public class UserInterfaceManager : MonoBehaviour {
         _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
         _playerAnimator.speed = 0.0f;
     }
-
-    public void SetUpInterface(){
-        
-        var index = 0;
-        soloButtons = new UI_Gaze_Button[MasterManager.Instance.numberInstruments * 2];
-
-        foreach (var soloButton in GameObject.FindGameObjectsWithTag("SoloButton"))
-        {
-            soloButtons[index] = soloButton.GetComponent<UI_Gaze_Button>();
-            index++;
-        }
-        //startTimer = true;
-        StartCoroutine(SwitchPanelRenderLayers());
-        
-    }
+    
 
     public void SetUpRotationForNewPlayer()
     {

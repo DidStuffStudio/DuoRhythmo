@@ -116,7 +116,7 @@ public class MasterManager : MonoBehaviour {
                 {
                     timerUI.SetActive(true);
 
-                    if (RealTimeInstance.Instance.numberPlayers > 2)
+                    if (RealTimeInstance.Instance.numberPlayers > 1)
                     {
                         timer.newPlayer = true;
                         RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED);
@@ -156,6 +156,7 @@ public class MasterManager : MonoBehaviour {
     }
 
     private void InstantiatePanelsSoloMode() {
+        userInterfaceManager.soloButtons = new UI_Gaze_Button[numberInstruments*2];
         Vector3 rotationValue = Vector3.zero;
         var nodesPanelsGo = new GameObject("Nodes panels");
         nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
@@ -206,15 +207,22 @@ public class MasterManager : MonoBehaviour {
             
             
             var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            foreach (var uigazeButton in nodesSoloButtons) uigazeButton.drumTypeIndex = i;
+            foreach (var uigazeButton in nodesSoloButtons)
+            {
+                userInterfaceManager.soloButtons[i] = uigazeButton;
+                uigazeButton.drumTypeIndex = i;
+            }
             var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            foreach (var uigazeButton in effectsSoloButtons) uigazeButton.drumTypeIndex = i;
+            foreach (var uigazeButton in effectsSoloButtons)
+            {
+                userInterfaceManager.soloButtons[i + 5] = uigazeButton;
+                uigazeButton.drumTypeIndex = i;
+            }
             nodeManager.SetUpNode();
 
             userInterfaceManager.panels.Add(nodesPanels[i]);
         }
         
-        userInterfaceManager.SetUpInterface();
         gameSetUpFinished = true;
     }
 
@@ -246,7 +254,7 @@ public class MasterManager : MonoBehaviour {
         while (true) {
             // if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             if (RealTimeInstance.Instance.isSoloMode && RealTimeInstance.Instance.isConnected) break;
-            if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 0) break;
+            if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             yield return new WaitForEndOfFrame();
         }
 
@@ -283,7 +291,7 @@ public class MasterManager : MonoBehaviour {
         var effectsPanelsGo = new GameObject("Effects panels");
         effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
         
-        
+        userInterfaceManager.soloButtons = new UI_Gaze_Button[numberInstruments*2];
         Vector3 rotationValue = new Vector3(0, 180.0f, 0);
         for (int i = 0; i < numberInstruments; i++) {
             effectsPanels[i] = Instantiate(effectsPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
@@ -292,7 +300,11 @@ public class MasterManager : MonoBehaviour {
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
             userInterfaceManager.panels.Add(effectsPanels[i]);
             var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            foreach (var uigazeButton in effectsSoloButtons) uigazeButton.drumTypeIndex = i;
+            foreach (var uigazeButton in effectsSoloButtons)
+            {
+                userInterfaceManager.soloButtons[i + 5] = uigazeButton;
+                uigazeButton.drumTypeIndex = i;
+            }
             foreach(Transform child in transform)
             {
                 if (child.CompareTag("UI_Drum_Colour"))
@@ -313,7 +325,8 @@ public class MasterManager : MonoBehaviour {
 
         var nodesPanelsGo = new GameObject("Nodes panels");
         nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
-        for (int i = 0; i < numberInstruments; i++) {
+        for (int i = 0; i < numberInstruments; i++)
+        {
             nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
             nodesPanels[i].transform.SetParent(nodesPanelsGo.transform);
             nodesPanels[i].name = "NodesPanel_" + (DrumType) i;
@@ -333,23 +346,26 @@ public class MasterManager : MonoBehaviour {
             nodeManager.defaultColor = defaultNodeColors[i];
             nodeManager.drumColor = drumColors[i];
             foreach (var incButton in nodeManager.incrementButtons) incButton.activeColor = drumColors[i];
-            foreach (var navigationButton in nodeManager.navigationButtons) navigationButton.gameObject.SetActive(false);
-            
+            foreach (var navigationButton in nodeManager.navigationButtons)
+                navigationButton.gameObject.SetActive(false);
+
             nodeManager.euclideanButton.activeColor = drumColors[i];
-          
-            
-            
+
+
+
             // initialize the knob sliders for this current node manager
             nodeManager.bpmSlider = effectsPanels[i].GetComponentInChildren<SliderKnob>();
             var knobs = effectsPanels[i].GetComponentsInChildren<RadialSlider>();
             nodeManager.sliders = new RadialSlider[knobs.Length];
-            for (int j = 0; j < knobs.Length; j++) {
+            for (int j = 0; j < knobs.Length; j++)
+            {
                 nodeManager.sliders[j] = knobs[j];
                 knobs[j].activeColor = drumColors[i];
             }
-            
+
             foreach (var incButton in effectsPanels[i].GetComponentsInChildren<IncrementButton>())
-                if (incButton.transform.CompareTag("NavigationButtons")) incButton.gameObject.SetActive(false);
+                if (incButton.transform.CompareTag("NavigationButtons"))
+                    incButton.gameObject.SetActive(false);
 
             nodeManager.SetUpNode();
 
@@ -357,19 +373,14 @@ public class MasterManager : MonoBehaviour {
             // userInterfaceManager.panels[panelCounter] = nodesPanels[i];
             panelCounter += 2;
 
-            var nodesUigazeButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            foreach (var uigazeButton in nodesUigazeButtons) uigazeButton.drumTypeIndex = i;
+            var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
+            foreach (var uigazeButton in nodesSoloButtons)
+            {
+                userInterfaceManager.soloButtons[i] = uigazeButton;
+                uigazeButton.drumTypeIndex = i;
+            }
         }
 
-
-        // only the first player that connects to the room should start the timer - and as Timer is a RealTime instance object, it updates in all clients
-        if (localPlayerNumber == 0) {
-            userInterfaceManager.SetUpInterface();
-            gameSetUpFinished = true;
-            StartCoroutine(RealTimeInstance.Instance.CheckNumberOfPlayers());
-        }
-        RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED);
-        
     }
 
     // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers

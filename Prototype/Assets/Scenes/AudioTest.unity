@@ -331,7 +331,7 @@ PrefabInstance:
     - target: {fileID: 3198924837567446181, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 25fe4067aee4c6d438035ae4d4f2f0b9, type: 3}
+      objectReference: {fileID: 21300004, guid: 5462c1a1a3f15004295288cf9d66c3d2, type: 3}
     - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.x
       value: 150
@@ -1134,7 +1134,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1438,7 +1438,7 @@ Transform:
   - {fileID: 1846019205}
   - {fileID: 1437889676}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &320708705
 MonoBehaviour:
@@ -7081,7 +7081,7 @@ PrefabInstance:
     - target: {fileID: 3198924837567446181, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 25fe4067aee4c6d438035ae4d4f2f0b9, type: 3}
+      objectReference: {fileID: 21300004, guid: 5462c1a1a3f15004295288cf9d66c3d2, type: 3}
     - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.x
       value: 150
@@ -14053,7 +14053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8610787387254243625, guid: 42010fec73b36c5479403cbd2563a971, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8610787387254243625, guid: 42010fec73b36c5479403cbd2563a971, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15249,7 +15249,7 @@ PrefabInstance:
     - target: {fileID: 3198924837567446181, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 25fe4067aee4c6d438035ae4d4f2f0b9, type: 3}
+      objectReference: {fileID: 21300004, guid: 5462c1a1a3f15004295288cf9d66c3d2, type: 3}
     - target: {fileID: 3252123570097779642, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_SizeDelta.x
       value: 150

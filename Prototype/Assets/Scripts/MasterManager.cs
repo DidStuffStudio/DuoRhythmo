@@ -119,7 +119,7 @@ public class MasterManager : MonoBehaviour {
                     if (RealTimeInstance.Instance.numberPlayers > 1)
                     {
                         timer.newPlayer = true;
-                        RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED);
+                        RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED+localPlayerNumber);
                     }
                     else
                     {
@@ -381,6 +381,7 @@ public class MasterManager : MonoBehaviour {
             }
         }
 
+        gameSetUpFinished = true;
     }
 
     // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers

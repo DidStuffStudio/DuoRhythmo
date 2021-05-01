@@ -44,7 +44,7 @@ public class Timer : MonoBehaviour {
 
         }
 
-        timer = roundTime;
+        timer = tempRoundTime;
         MasterManager.Instance.userInterfaceManager.PlayAnimation(true);
         newPlayer = false;
     }

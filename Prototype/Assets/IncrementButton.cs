@@ -15,6 +15,7 @@ public class IncrementButton : CustomButton
                 _confirmScalerRT.localScale = Vector3.zero;
                 StartCoroutine(InteractionBreakTime());
                 OnActivation?.Invoke();
+                SetDefault();
             }
         }
 

@@ -963,8 +963,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 0
   nodeManager: {fileID: 0}
   drumIndex: 0
@@ -978,26 +977,6 @@ MonoBehaviour:
   - {fileID: 8974504510909347821}
   - {fileID: 369019702576887865}
   - {fileID: 5314852712595482575}
-  kickEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: ae8361425a2ed684eb4cc41f60934a66, type: 2}
-  snareEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 002a8fa724d7b84488def34dea0e011a, type: 2}
-  hiHatEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 030901a2e7451014982be8a03db889e3, type: 2}
-  tomTomEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: a0d12ad59751f6e46b22c204429efe1f, type: 2}
-  cymbalEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 6dd43599664cb8e4fa19584d469edcea, type: 2}
 --- !u!114 &8517848921195261517
 MonoBehaviour:
   m_ObjectHideFlags: 0

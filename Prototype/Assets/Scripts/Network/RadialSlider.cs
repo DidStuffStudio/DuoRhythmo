@@ -29,6 +29,17 @@ public class RadialSlider : CustomButton {
     protected override void Start() {
         base.Start();
         _mainCamera = Camera.main;
+        SetCurrentValue(currentValue);
+    }
+
+    public void SetCurrentValue(float value)
+    {
+        currentValue = value;
+        _angle = MasterManager.Instance.Map(currentValue, minimumValue, maximumValue, angleConstraint,
+            -angleConstraint);
+        transform.parent.localRotation = Quaternion.Euler(0, 0, _angle);
+        OnSliderChange?.Invoke(sliderIndex);
+        
     }
 
     protected override void Update() {

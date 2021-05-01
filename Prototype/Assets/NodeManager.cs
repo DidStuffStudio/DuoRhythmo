@@ -124,11 +124,14 @@ public class NodeManager : MonoBehaviour {
             bpmSlider.currentValue = bpm;
             bpmSlider.UpdateSliderText();
         }
-        else {
-            levels[0] = sliders[0].currentValue = _screenSync.Effect1;
-            levels[1] = sliders[1].currentValue = _screenSync.Effect2;
-            levels[2] = sliders[2].currentValue = _screenSync.Effect3;
-            //levels[3] = sliders[3].currentValue = _screenSync.Effect3;
+        else
+        {
+
+            sliders[0].SetCurrentValue(levels[0] = _screenSync.Effect1);
+            sliders[1].SetCurrentValue(levels[1] = _screenSync.Effect1);
+            sliders[2].SetCurrentValue(levels[2] = _screenSync.Effect1);
+            //sliders[3].SetCurrentValue(levels[3] = _screenSync.Effect1);
+            
             bpm = _screenSync.Bpm;
             bpmSlider.currentValue = bpm;
             bpmSlider.UpdateSliderText();

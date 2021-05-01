@@ -60,8 +60,17 @@ public class SliderKnob : CustomButton
                     _knobRectTransform.anchoredPosition = new Vector2(0, rect.height/2);
                 }
 
-                UpdateSliderText();
+                
     }
+    
+    public void SetCurrentValue(float value)
+    {
+        currentValue = value;
+        OnSliderChange?.Invoke(sliderIndex);
+        _knobRectTransform.anchoredPosition =
+            new Vector2(0.0f, Map(currentValue, minimumValue, maximumValue, _minValue, _maxValue));
+    }
+
 
     protected override void Update()
     {

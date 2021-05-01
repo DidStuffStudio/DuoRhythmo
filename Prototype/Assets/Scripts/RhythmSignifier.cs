@@ -4,23 +4,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RhythmSignifier : MonoBehaviour {
-    private IEnumerator OnTriggerEnter(Collider other) {
-        if (!other.gameObject.CompareTag("BeatCollider")) yield break;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.gameObject.CompareTag("BeatCollider")) return;
         var node = other.transform.GetComponentInParent<Node>();
         node.PlayDrum();
-        var nodeRT = node.GetComponent<RectTransform>();
-        nodeRT.position = Vector3.Lerp( nodeRT.position,new Vector3(nodeRT.position.x,nodeRT.position.y, nodeRT.position.z+10.0f), 0.1f);
-        node.canPlay = false;
-        yield return new WaitForSeconds(0.01f);
-        node.canPlay = true;
+        if (node.isActive)
+        {
+            var nodeRT = node.GetComponent<RectTransform>();
+            nodeRT.localPosition = new Vector3(nodeRT.localPosition.x, nodeRT.localPosition.y, -11.0f);
+            StartCoroutine(LerpBack(node));
+        }
+        
     }
 
-    IEnumerator  OnTriggerExit(Collider other)
+    IEnumerator LerpBack(Node node)
     {
-        if (!other.gameObject.CompareTag("BeatCollider")) yield break;
-        var node = other.GetComponentInParent<Node>();
         var nodeRT = node.GetComponent<RectTransform>();
-        nodeRT.position = Vector3.Lerp( nodeRT.position,new Vector3(nodeRT.position.x,nodeRT.position.y, nodeRT.position.z-10.0f), 0.1f);
-        yield return new WaitForSeconds(0.01f);
+        while (nodeRT.localPosition.z < 0.0f)
+        {
+            nodeRT.localPosition = Vector3.Lerp(nodeRT.localPosition,
+                new Vector3(nodeRT.localPosition.x, nodeRT.localPosition.y, 0.1f), 0.05f);
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 }

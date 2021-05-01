@@ -57,7 +57,7 @@ public class Node : CustomButton {
 
     public void PlayDrum() {
         if (!isActive || !canPlay) return;
-        
+        print("play");
         StartCoroutine(Wait());
         StartCoroutine(AudioVFX());
 

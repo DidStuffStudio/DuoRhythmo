@@ -46,12 +46,12 @@ public class RealTimeInstance : MonoBehaviour {
                 //     possiblyConnectedPlayer = 1;
                 // }
                 
-                _testStringSync.SetMessage(TestStringSync.MessageTypes.REQUEST_PLAYER_NUMBERS);
-                /*for (int i = 0; i < MasterManager.Instance.dataMaster.conectedPlayers.Length; i++) {
+                // _testStringSync.SetMessage(TestStringSync.MessageTypes.REQUEST_PLAYER_NUMBERS);
+                for (int i = 0; i < MasterManager.Instance.dataMaster.conectedPlayers.Length; i++) {
                     if (numberPlayers > i) MasterManager.Instance.dataMaster.conectedPlayers[i] = 1;
                     else MasterManager.Instance.dataMaster.conectedPlayers[i] = 0;
                     // if (MasterManager.Instance.dataMaster.conectedPlayers[i] == 1) counter++;
-                }*/
+                }
 
                 // if (counter != numberPlayers) {
                 //     // there's something off - someone has disconnected

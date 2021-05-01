@@ -419,4 +419,16 @@ public class MasterManager : MonoBehaviour {
     {
         dwellSettingsPrefab.SetActive(set);
     }
+    /// <summary>
+    /// Map a value from one interval to another interval.
+    /// </summary>
+    /// <param name="value">Value to map</param>
+    /// <param name="min1">Minimum value of the first interval</param>
+    /// <param name="max1">Maximum value of the second interval</param>
+    /// <param name="min2">Minimum value of the second interval</param>
+    /// <param name="max2">Maximum value of the second interval</param>
+    /// <returns>Mapped value</returns>
+    public float Map(float value, float min1, float max1, float min2, float max2) {
+        return min2 + (max2 - min2) * ((value - min1) / (max1 - min1));
+    }
 }

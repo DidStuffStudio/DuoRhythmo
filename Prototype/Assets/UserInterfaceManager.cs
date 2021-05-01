@@ -10,7 +10,6 @@ using Random = UnityEngine.Random;
 public class UserInterfaceManager : MonoBehaviour {
     private Animator _uiAnimator;
     [SerializeField] private Animator _playerAnimator;
-    [SerializeField] private int roundTime = 30, timer;
     public Text timerDisplay;
     public Material skybox;
     private float _timeLeft;
@@ -132,10 +131,8 @@ public class UserInterfaceManager : MonoBehaviour {
             // update the timer
             _timeLeft -= Time.deltaTime;
         }
-        if(!MasterManager.Instance.gameSetUpFinished || RealTimeInstance.Instance.isSoloMode) return;
         
-        timer = (int) MasterManager.Instance.timer.timer;
-        timerDisplay.text = timer.ToString();
+        timerDisplay.text = MasterManager.Instance.timer.timer.ToString();
     }
 
     public void Solo(bool solo, int index) {

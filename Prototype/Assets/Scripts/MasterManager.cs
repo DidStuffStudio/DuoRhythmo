@@ -209,7 +209,6 @@ public class MasterManager : MonoBehaviour {
         }
         
         userInterfaceManager.SetUpInterface();
-        StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
         gameSetUpFinished = true;
     }
 

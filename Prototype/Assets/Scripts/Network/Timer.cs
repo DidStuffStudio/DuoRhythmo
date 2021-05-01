@@ -28,10 +28,8 @@ public class Timer : MonoBehaviour {
         while (localTimer > 0.0f) {
             yield return new WaitForSeconds(1.0f);
             localTimer--;
-            // if (Math.Abs(timer - 15.0f) < 0.1f) StartCoroutine(BlinkTimer());
-            if (!RealTimeInstance.Instance.isSoloMode)
-                RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.TIMER + localTimer);
-            else timer = localTimer;
+            RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.TIMER + localTimer);
+            
         }
 
         localTimer = roundTime;

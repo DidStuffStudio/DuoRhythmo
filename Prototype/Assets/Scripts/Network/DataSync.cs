@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class DataSync : MonoBehaviour
@@ -7,8 +10,9 @@ public class DataSync : MonoBehaviour
     
     private List<float> times = new List<float>();
     public float averagedTime = 0.0f;
-    public int[] conectedPlayers = new int[10];
+    public int [] conectedPlayers = new int[10];
     public void AddTime(float time) => times.Add(time);
+
     public IEnumerator CalculateAverageTime()
     {
         

@@ -25,10 +25,10 @@ public class Timer : MonoBehaviour {
     public void ToggleTimer(bool restart) {
         if (restart)
         {
-            StopCoroutine("Time");
-            StartCoroutine("Time");
+            StopCoroutine(nameof(Time));
+            StartCoroutine(nameof(Time));
         }
-        else StopCoroutine("Time");
+        else StopCoroutine(nameof(Time));
     }
 
 

@@ -15,6 +15,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
     private string _previousMessage;
 
     public struct MessageTypes {
+        public static string SET_PLAYER_NUMBER = "SetPlayerNumber,";
         public const string TIMER = "Timer,";
         public const string DISCONNECTED = "Disconnected,";
         public const string DRUM_NODE_CHANGED = "DrumNodeChanged,"; // DrumIndex,NodeIndex,IsActivated --> eg --> 1,11,1
@@ -84,7 +85,26 @@ public class TestStringSync : RealtimeComponent<TestString> {
             MasterManager.Instance.dataMaster.SetConnectedPlayer(connectedPlayer, true);
             if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
             SetMessage(MessageTypes.TIMER+MasterManager.Instance.timer.timer);
-        } 
+            
+            // send that player his new player number
+            for (int i = 0; i < MasterManager.Instance.dataMaster.conectedPlayers.Length; i++) {
+                // if 2 <= 0 --> numberPlayers 
+                if (RealTimeInstance.Instance.numberPlayers <= i) {
+                    MasterManager.Instance.dataMaster.conectedPlayers[i] = 0;
+                    SetMessage(MessageTypes.SET_PLAYER_NUMBER + i);
+                    print("Sending the player number to player number " + i);
+                    break;
+                }
+                // if (MasterManager.Instance.dataMaster.conectedPlayers[i] == 1) counter++;
+            }
+        }
+
+        if (_message.Contains(MessageTypes.SET_PLAYER_NUMBER)) {
+            var playerIndex = Int32.Parse(_message.Split(',')[1]);
+            if (MasterManager.Instance.localPlayerNumber != playerIndex) {
+                MasterManager.Instance.localPlayerNumber = playerIndex;
+            }
+        }
         
         if (_message.Contains(MessageTypes.AVERAGED_TIME)) {
             var averageTime = _message.Split(',');

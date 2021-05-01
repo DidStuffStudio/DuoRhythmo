@@ -32,13 +32,32 @@ public class RealTimeInstance : MonoBehaviour {
         _instance = this;
         _realtime = GetComponent<Realtime>();
         RegisterToEvents();
-        
+        StartCoroutine(CheckNumberOfPlayers());
     }
 
     public IEnumerator CheckNumberOfPlayers() {
         while (true) {
             var players = FindObjectsOfType<Player>();
             numberPlayers = players.Length;
+            if (numberPlayers != previousNumberPlayers) {
+                var counter = 0; 
+                // foreach (var possiblyConnectedPlayer in MasterManager.Instance.dataMaster.conectedPlayers) {
+                //     // if (possiblyConnectedPlayer == 1) counter++;
+                //     possiblyConnectedPlayer = 1;
+                // }
+
+                for (int i = 0; i < MasterManager.Instance.dataMaster.conectedPlayers.Length; i++) {
+                    if (numberPlayers > i) MasterManager.Instance.dataMaster.conectedPlayers[i] = 1;
+                    else MasterManager.Instance.dataMaster.conectedPlayers[i] = 0;
+                    // if (MasterManager.Instance.dataMaster.conectedPlayers[i] == 1) counter++;
+                }
+
+                // if (counter != numberPlayers) {
+                //     // there's something off - someone has disconnected
+                //     MasterManager.Instance.dataMaster.
+                // }
+                previousNumberPlayers = numberPlayers;
+            }
             yield return new WaitForSeconds(0.1f);
         }
     }

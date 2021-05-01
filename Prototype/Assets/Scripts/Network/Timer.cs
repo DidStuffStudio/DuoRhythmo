@@ -8,32 +8,45 @@ using Random = UnityEngine.Random;
 
 public class Timer : MonoBehaviour {
     public int roundTime;
-    public float timer;
+    public int timer;
     public float localTimer;
     private double startingRoomTime;
     private RealtimeView _realtimeView;
     private bool blinking;
+    public bool newPlayer = false;
+    public int tempRoundTime = 30;
 
     private void Start() {
-        localTimer = roundTime;
+        timer = roundTime;
+        tempRoundTime = roundTime;
     }
 
     public void ToggleTimer(bool restart) {
-        if (restart) StartCoroutine(Time());
+        if (restart)
+        {
+            StartCoroutine(Time());
+        }
         else StopCoroutine(Time());
     }
-    
 
-    private IEnumerator Time() {
-        while (localTimer > 0.0f) {
-            yield return new WaitForSeconds(1.0f);
-            localTimer--;
-            RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.TIMER + localTimer);
-            
+   
+
+    private IEnumerator Time()
+    {
+        var startTime = RealTimeInstance.Instance.GetRoomTime();
+        
+        while (timer > 0.0f)
+        {
+            yield return new WaitForSeconds(0.1f);
+            var roomTimeDelta = (float)(RealTimeInstance.Instance.GetRoomTime() - startTime);
+            timer = (int) (tempRoundTime - roomTimeDelta);
+            //RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.TIMER + localTimer);
+
         }
 
-        localTimer = roundTime;
+        timer = roundTime;
         MasterManager.Instance.userInterfaceManager.PlayAnimation(true);
+        newPlayer = false;
     }
 
     // private IEnumerator BlinkTimer() {

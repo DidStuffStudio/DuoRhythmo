@@ -57,8 +57,11 @@ public class TestStringSync : RealtimeComponent<TestString> {
         if (_message.Contains(MessageTypes.TIMER))
         {
             var time = Int32.Parse(_message.Split(',')[1]);
-            MasterManager.Instance.dataMaster.AddTime(time);
-            if(time <= 0.0f) MasterManager.Instance.userInterfaceManager.PlayAnimation(true);
+            if (MasterManager.Instance.timer.newPlayer)
+            {
+                MasterManager.Instance.timer.tempRoundTime = time;
+                MasterManager.Instance.timer.ToggleTimer(true);
+            }
         }
 
         if (_message.Contains(MessageTypes.DRUM_NODE_CHANGED)) {
@@ -76,7 +79,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
             foreach (var player in players) {
                 RealTimeInstance.Instance.SetParentOfPlayer(player.transform);
             }
-
+            SetMessage(MessageTypes.TIMER+MasterManager.Instance.timer.timer);
         } 
         
         if (_message.Contains(MessageTypes.AVERAGED_TIME)) {

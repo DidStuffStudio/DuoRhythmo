@@ -39,11 +39,6 @@ public class RealTimeInstance : MonoBehaviour {
         while (true) {
             var players = FindObjectsOfType<Player>();
             numberPlayers = players.Length;
-            /*if (numberPlayers != previousNumberPlayers)
-            {
-                _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED + MasterManager.Instance.timer.localTimer);
-                previousNumberPlayers = numberPlayers;
-            }*/
             yield return new WaitForSeconds(0.1f);
         }
     }

@@ -115,10 +115,16 @@ public class MasterManager : MonoBehaviour {
                 if (!RealTimeInstance.Instance.isSoloMode)
                 {
                     timerUI.SetActive(true);
+
                     if (RealTimeInstance.Instance.numberPlayers > 2)
-                        timer.localTimer = timer.timer;
-                    timer.ToggleTimer(true);
-                    StartCoroutine(dataMaster.CalculateAverageTime());
+                    {
+                        timer.newPlayer = true;
+                        RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED);
+                    }
+                    else
+                    {
+                        timer.ToggleTimer(true);
+                    }
                 }
             }
         }
@@ -240,7 +246,7 @@ public class MasterManager : MonoBehaviour {
         while (true) {
             // if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             if (RealTimeInstance.Instance.isSoloMode && RealTimeInstance.Instance.isConnected) break;
-            if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
+            if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 0) break;
             yield return new WaitForEndOfFrame();
         }
 

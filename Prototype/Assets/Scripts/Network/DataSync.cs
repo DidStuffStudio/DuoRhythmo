@@ -11,14 +11,16 @@ public class DataSync : MonoBehaviour
     public void AddTime(float time) => times.Add(time);
     public IEnumerator CalculateAverageTime()
     {
+        
+        
         while (true)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(1.0f);
             float totalTime = 0.0f;
             foreach (var t in times) totalTime += t;
             averagedTime = totalTime / times.Count;
             times.Clear();
-            SendTimeToOtherPlayers();
+            if(!float.IsNaN(averagedTime)) SendTimeToOtherPlayers();
         }
     }
 

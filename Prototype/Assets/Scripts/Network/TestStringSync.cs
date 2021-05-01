@@ -15,7 +15,6 @@ public class TestStringSync : RealtimeComponent<TestString> {
     private string _previousMessage;
 
     public struct MessageTypes {
-        public const string NUM_PLAYERS = "NumberPlayers,";
         public const string TIMER = "Timer,";
         public const string DISCONNECTED = "Disconnected,";
         public const string DRUM_NODE_CHANGED = "DrumNodeChanged,"; // DrumIndex,NodeIndex,IsActivated --> eg --> 1,11,1
@@ -53,13 +52,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
             RealTimeInstance.Instance.numberPlayers--;
             print("PlayerDisconnected");
         }
-
-        if (_message.Contains(MessageTypes.NUM_PLAYERS)) {
-            // split the string
-            var numPlayers = Int32.Parse(_message.Split(',')[1]);
-            print("The number of players has changed from the server to: " + numPlayers);
-            RealTimeInstance.Instance.NumberPlayersChanged(numPlayers);
-        }
+        
         
         if (_message.Contains(MessageTypes.TIMER))
         {

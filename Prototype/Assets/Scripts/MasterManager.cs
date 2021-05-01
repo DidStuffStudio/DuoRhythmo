@@ -357,15 +357,10 @@ public class MasterManager : MonoBehaviour {
 
         // only the first player that connects to the room should start the timer - and as Timer is a RealTime instance object, it updates in all clients
         if (localPlayerNumber == 0) {
-            timerGameObject = Realtime.Instantiate(prefabName: timerPrefab.name, true, false, false);
-            // timerGameObject.GetComponent<RealtimeView>().RequestOwnership();
-            timer = timerGameObject.GetComponent<Timer>();
             userInterfaceManager.SetUpInterface();
             gameSetUpFinished = true;
             StartCoroutine(RealTimeInstance.Instance.CheckNumberOfPlayers());
-            
         }
-        else StartCoroutine(FindTimer());
         RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED);
         
     }
@@ -384,30 +379,7 @@ public class MasterManager : MonoBehaviour {
             nodeManager._screenSync.SetBpm(bpm);
         }
     }
-
-    private IEnumerator FindTimer() {
-        if (RealTimeInstance.Instance.isSoloMode) yield break;
-        var timerFound = false;
-        while (!timerFound) {
-            timer = FindObjectOfType<Timer>();
-            if (timer != null) {
-                timerGameObject = timer.gameObject;
-                var realtimeView = timer.GetComponent<RealtimeView>();
-                realtimeView.RequestOwnership();
-                
-                userInterfaceManager.SetUpInterface();
-                gameSetUpFinished = true;
-                StartCoroutine(RealTimeInstance.Instance.CheckNumberOfPlayers());
-                timerFound = true;
-                startTime = Time.time;
-                // Calculate the journey length.
-            }
-            else {
-                yield return new WaitForEndOfFrame();
-            }
-        }
-    }
-
+    
     public void ResetLocalPlayerNumber(int disconnectedPlayerNumber) { }
 
     public void DrumNodeChangedOnServer(int drumIndex, int nodeIndex, bool activate) {

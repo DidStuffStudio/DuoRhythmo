@@ -16,27 +16,13 @@ public class Timer : MonoBehaviour {
 
     private void Start() {
         localTimer = roundTime;
-        _realtimeView = GetComponent<RealtimeView>();
     }
 
     public void ToggleTimer(bool restart) {
-        if (!RealTimeInstance.Instance.isSoloMode) {
-            if (!_realtimeView.isOwnedLocallyInHierarchy) return;
-        }
-
         if (restart) StartCoroutine(Time());
         else StopCoroutine(Time());
     }
-
-    public void CheckForOwner() {
-        if (RealTimeInstance.Instance.isSoloMode) return;
-        foreach (var player in MasterManager.Instance.Players) {
-            if (player) {
-                player.RequestOwnership(_realtimeView);
-                break;
-            }
-        }
-    }
+    
 
     private IEnumerator Time() {
         while (localTimer > 0.0f) {

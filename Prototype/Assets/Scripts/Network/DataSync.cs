@@ -22,8 +22,7 @@ public class DataSync : MonoBehaviour
         }
     }
 
-    void SendTimeToOtherPlayers()
-    {
-        
-    }
+    void SendTimeToOtherPlayers() =>
+        RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.AVERAGED_TIME + averagedTime);
+
 }

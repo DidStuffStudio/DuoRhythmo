@@ -133,8 +133,9 @@ public class UserInterfaceManager : MonoBehaviour {
             _timeLeft -= Time.deltaTime;
         }
         if(!MasterManager.Instance.gameSetUpFinished || RealTimeInstance.Instance.isSoloMode) return;
-        timerDisplay.text = timer.ToString();
+        
         timer = (int) MasterManager.Instance.timer.timer;
+        timerDisplay.text = timer.ToString();
     }
 
     public void Solo(bool solo, int index) {

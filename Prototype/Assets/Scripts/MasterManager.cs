@@ -324,11 +324,9 @@ public class MasterManager : MonoBehaviour {
             nodeManager.subNodeIndex = i;
             nodeManager.defaultColor = defaultNodeColors[i];
             nodeManager.drumColor = drumColors[i];
-            foreach (var incButton in nodeManager.incrementButtons)
-            {
-                incButton.activeColor = drumColors[i];
-                if (incButton.transform.CompareTag("NavigationButtons")) incButton.gameObject.SetActive(false);
-            }
+            foreach (var incButton in nodeManager.incrementButtons) incButton.activeColor = drumColors[i];
+            foreach (var navigationButton in nodeManager.navigationButtons) navigationButton.gameObject.SetActive(false);
+            
             nodeManager.euclideanButton.activeColor = drumColors[i];
           
             

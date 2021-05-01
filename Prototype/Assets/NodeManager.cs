@@ -56,7 +56,7 @@ public class NodeManager : MonoBehaviour {
     
     public IncrementButton[] incrementButtons = new IncrementButton[4];
     public UI_Gaze_Button euclideanButton;
-    public IncrementButton[] navigationButtons = new IncrementButton[4];
+    public IncrementButton[] navigationButtons = new IncrementButton[2];
 
     private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();

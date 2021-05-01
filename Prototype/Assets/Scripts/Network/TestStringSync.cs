@@ -21,6 +21,8 @@ public class TestStringSync : RealtimeComponent<TestString> {
         public const string DRUM_NODE_CHANGED = "DrumNodeChanged,"; // DrumIndex,NodeIndex,IsActivated --> eg --> 1,11,1
         public const string NEW_PLAYER_CONNECTED = "NewPlayerConnected,";
         public const string NEW_PLAYER_UPDATE_TIME = "NewPlayerUpdateTime,";
+        public const string REQUEST_PLAYER_NUMBERS = "RequestPlayerNumbers,";
+        public const string SEND_PLAYER_NUMBER = "RequestPlayerNumber,";
     }
 
     protected override void OnRealtimeModelReplaced(TestString previousModel, TestString currentModel) {
@@ -114,6 +116,21 @@ public class TestStringSync : RealtimeComponent<TestString> {
             MasterManager.Instance.dataMaster.SetConnectedPlayer(playerIndex, true);
         }
         
+        
+        if(_message.Contains(MessageTypes.REQUEST_PLAYER_NUMBERS))
+        {
+            for (int i = 0; i < 10; i++) MasterManager.Instance.dataMaster.SetConnectedPlayer(i,false);
+            
+            if (!MasterManager.Instance.player.hasPlayerNumber) return;
+            SetMessage(MessageTypes.SEND_PLAYER_NUMBER+MasterManager.Instance.localPlayerNumber);
+        }
+
+        if (_message.Contains(MessageTypes.SEND_PLAYER_NUMBER))
+        {
+            var splitMessage = _message.Split(',');
+            var playerIdentified = Int32.Parse(splitMessage[1]);
+            MasterManager.Instance.dataMaster.SetConnectedPlayer(playerIdentified, true);
+        }
     }
     
     public void SetMessage(string value) {

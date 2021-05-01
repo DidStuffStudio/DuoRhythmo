@@ -115,7 +115,7 @@ public class MasterManager : MonoBehaviour {
                 if (!RealTimeInstance.Instance.isSoloMode)
                 {
                     timerUI.SetActive(true);
-                    if (RealTimeInstance.Instance.numberPlayers >= 2)
+                    if (RealTimeInstance.Instance.numberPlayers > 2)
                         timer.localTimer = timer.timer;
                     timer.ToggleTimer(true);
                     StartCoroutine(dataMaster.CalculateAverageTime());

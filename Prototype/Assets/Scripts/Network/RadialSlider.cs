@@ -34,6 +34,7 @@ public class RadialSlider : CustomButton {
 
     public void SetCurrentValue(float value)
     {
+        if (Mathf.Abs(value - currentValue) < 0.1f) return;
         currentValue = value;
         _angle = MasterManager.Instance.Map(currentValue, minimumValue, maximumValue, angleConstraint,
             -angleConstraint);

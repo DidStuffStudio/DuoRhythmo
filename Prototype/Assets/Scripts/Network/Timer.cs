@@ -9,12 +9,13 @@ using Random = UnityEngine.Random;
 public class Timer : MonoBehaviour {
     public int roundTime;
     public float timer;
+    private float localTimer;
     private double startingRoomTime;
     private RealtimeView _realtimeView;
     private bool blinking;
 
     private void Start() {
-        timer = roundTime;
+        localTimer = roundTime;
         _realtimeView = GetComponent<RealtimeView>();
     }
 
@@ -38,15 +39,16 @@ public class Timer : MonoBehaviour {
     }
 
     private IEnumerator Time() {
-        while (timer > 0.0f) {
+        while (localTimer > 0.0f) {
             yield return new WaitForSeconds(1.0f);
-            timer--;
+            localTimer--;
             // if (Math.Abs(timer - 15.0f) < 0.1f) StartCoroutine(BlinkTimer());
             if (!RealTimeInstance.Instance.isSoloMode)
-                RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.TIMER + timer);
+                RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.TIMER + localTimer);
+            else timer = localTimer;
         }
 
-        timer = roundTime;
+        localTimer = roundTime;
         MasterManager.Instance.userInterfaceManager.PlayAnimation(true);
     }
 

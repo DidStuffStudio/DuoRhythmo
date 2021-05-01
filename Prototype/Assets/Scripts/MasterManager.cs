@@ -73,7 +73,7 @@ public class MasterManager : MonoBehaviour {
     [SerializeField] private GameObject timerUI;
     public bool DwellSettingsActive;
     public GameObject dwellSettingsPrefab;
-
+    public DataSync dataMaster;
     private void Start() {
         if (_instance == null) _instance = this;
         Players.CollectionChanged += OnPlayersChanged;
@@ -116,6 +116,7 @@ public class MasterManager : MonoBehaviour {
                 {
                     timerUI.SetActive(true);
                     timer.ToggleTimer(true);
+                    StartCoroutine(dataMaster.CalculateAverageTime());
                 }
             }
         }

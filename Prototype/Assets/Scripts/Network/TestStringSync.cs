@@ -20,7 +20,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
         public const string DISCONNECTED = "Disconnected,";
         public const string DRUM_NODE_CHANGED = "DrumNodeChanged,"; // DrumIndex,NodeIndex,IsActivated --> eg --> 1,11,1
         public const string NEW_PLAYER_CONNECTED = "NewPlayerConnected,";
-        public const string PLAYER_ZERO_DISCONNECTED = "PlayerZeroDisconnected,";
+        public const string AVERAGED_TIME = "AveragedTime,";
     }
 
     protected override void OnRealtimeModelReplaced(TestString previousModel, TestString currentModel) {
@@ -64,7 +64,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
         if (_message.Contains(MessageTypes.TIMER))
         {
             var time = Int32.Parse(_message.Split(',')[1]);
-            MasterManager.Instance.timer.timer = time;
+            MasterManager.Instance.dataMaster.AddTime(time);
             if(time <= 0.0f) MasterManager.Instance.userInterfaceManager.PlayAnimation(true);
         }
 
@@ -83,6 +83,11 @@ public class TestStringSync : RealtimeComponent<TestString> {
             foreach (var player in players) {
                 RealTimeInstance.Instance.SetParentOfPlayer(player.transform);
             }
+        } 
+        
+        if (_message.Contains(MessageTypes.AVERAGED_TIME)) {
+            var averageTime = _message.Split(',');
+            MasterManager.Instance.timer.timer = Int32.Parse(averageTime[1]);
         }
     }
     

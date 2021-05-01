@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class Timer : MonoBehaviour {
     public int roundTime;
     public float timer;
-    private float localTimer;
+    public float localTimer;
     private double startingRoomTime;
     private RealtimeView _realtimeView;
     private bool blinking;

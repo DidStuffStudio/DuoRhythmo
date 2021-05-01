@@ -76,6 +76,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
             foreach (var player in players) {
                 RealTimeInstance.Instance.SetParentOfPlayer(player.transform);
             }
+
         } 
         
         if (_message.Contains(MessageTypes.AVERAGED_TIME)) {

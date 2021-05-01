@@ -21,6 +21,11 @@ public class RadialSlider : CustomButton {
 
     public event SliderChangeAction OnSliderChange;
 
+    protected override void GetImageComponent()
+    {
+        
+    }
+
     protected override void Start() {
         base.Start();
         _mainCamera = Camera.main;
@@ -50,7 +55,7 @@ public class RadialSlider : CustomButton {
         // if (_angle < 0) _angle = 180 -_angle; // turn it to full 360 instead of from 180 to -180
         // only rotate if within the angle constraints
         if(_angle <= angleConstraint && _angle >= -angleConstraint) {
-            transform.parent.rotation = Quaternion.Euler(0, 0, _angle);
+            transform.parent.localRotation = Quaternion.Euler(0, 0, _angle);
             currentValue = MasterManager.Instance.Map(_angle, angleConstraint, -angleConstraint, minimumValue, maximumValue);
             if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
             previousValue = currentValue;
@@ -64,8 +69,8 @@ public class RadialSlider : CustomButton {
             if (_confirmScalerRT.localScale.x < 1.0f)
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
             else {
-                _confirmScalerRT.localScale = Vector3.zero;
                 SetActive();
+                _confirmScalerRT.localScale = Vector3.zero;
                 OnActivation?.Invoke();
             }
         }

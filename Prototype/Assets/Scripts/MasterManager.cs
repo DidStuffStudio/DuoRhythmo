@@ -70,6 +70,7 @@ public class MasterManager : MonoBehaviour {
     [Space] [Header("Signifiers")] [SerializeField]
     private GameObject topDownSignifier, mainSignifier;
 
+    [SerializeField] private GameObject timerUI;
     public bool DwellSettingsActive;
     public GameObject dwellSettingsPrefab;
 
@@ -82,6 +83,8 @@ public class MasterManager : MonoBehaviour {
         drumDictionary.Add(3, hangDrums);
         drumDictionary.Add(4, ambientDrums);
         
+        currentDrums = classicDrums;
+
     }
 
     private void OnPlayersChanged(object sender, NotifyCollectionChangedEventArgs e) {
@@ -109,7 +112,11 @@ public class MasterManager : MonoBehaviour {
                 isInPosition = true;
                 mainSignifier.SetActive(true);
                 StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
-                timer.ToggleTimer(true);
+                if (!RealTimeInstance.Instance.isSoloMode)
+                {
+                    timerUI.SetActive(true);
+                    timer.ToggleTimer(true);
+                }
             }
         }
     }
@@ -180,13 +187,15 @@ public class MasterManager : MonoBehaviour {
             nodeManager.euclideanButton.activeColor = drumColors[i];
             
             // initialize the knob sliders for this current node manager
-            var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
-            nodeManager.sliders = new SliderKnob[knobs.Length];
+            nodeManager.bpmSlider = effectsPanels[i].GetComponentInChildren<SliderKnob>();
+            var knobs = effectsPanels[i].GetComponentsInChildren<RadialSlider>();
+            nodeManager.sliders = new RadialSlider[knobs.Length];
             for (int j = 0; j < knobs.Length; j++) {
                 nodeManager.sliders[j] = knobs[j];
-                if (!knobs[j].gameObject.CompareTag("BPM_Slider"))
-                    knobs[j].activeColor = drumColors[i];
+                knobs[j].activeColor = drumColors[i];
             }
+            
+            
             var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
             foreach (var uigazeButton in nodesSoloButtons) uigazeButton.drumTypeIndex = i;
             var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
@@ -195,9 +204,7 @@ public class MasterManager : MonoBehaviour {
 
             userInterfaceManager.panels.Add(nodesPanels[i]);
         }
-
-        timerGameObject = Instantiate(timerPrefab);
-        timer = timerGameObject.GetComponent<Timer>();
+        
         userInterfaceManager.SetUpInterface();
         StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
         gameSetUpFinished = true;
@@ -225,10 +232,7 @@ public class MasterManager : MonoBehaviour {
         }
     }
 
-    public void SwitchDrumKits(int drumkitIndex)
-    {
-        currentDrums = drumDictionary[drumkitIndex];
-    }
+    public void SwitchDrumKits(int drumKitIndex) => currentDrums = drumDictionary[drumKitIndex];
 
     private IEnumerator WaitUntilConnected() {
         while (true) {
@@ -270,11 +274,10 @@ public class MasterManager : MonoBehaviour {
         // instantiate and set up effects panels
         var effectsPanelsGo = new GameObject("Effects panels");
         effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
-        nodesPanels = new GameObject[numberInstruments];
-        effectsPanels = new GameObject[numberInstruments];
-
+        
+        
         Vector3 rotationValue = new Vector3(0, 180.0f, 0);
-        for (int i = 0; i < effectsPanels.Length; i++) {
+        for (int i = 0; i < numberInstruments; i++) {
             effectsPanels[i] = Instantiate(effectsPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
             effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
             effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
@@ -302,7 +305,7 @@ public class MasterManager : MonoBehaviour {
 
         var nodesPanelsGo = new GameObject("Nodes panels");
         nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
-        for (int i = 0; i < nodesPanels.Length; i++) {
+        for (int i = 0; i < numberInstruments; i++) {
             nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
             nodesPanels[i].transform.SetParent(nodesPanelsGo.transform);
             nodesPanels[i].name = "NodesPanel_" + (DrumType) i;
@@ -328,12 +331,12 @@ public class MasterManager : MonoBehaviour {
             
             
             // initialize the knob sliders for this current node manager
-            var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
-            nodeManager.sliders = new SliderKnob[knobs.Length];
+            nodeManager.bpmSlider = effectsPanels[i].GetComponentInChildren<SliderKnob>();
+            var knobs = effectsPanels[i].GetComponentsInChildren<RadialSlider>();
+            nodeManager.sliders = new RadialSlider[knobs.Length];
             for (int j = 0; j < knobs.Length; j++) {
                 nodeManager.sliders[j] = knobs[j];
-                if (!knobs[j].gameObject.CompareTag("BPM_Slider"))
-                    knobs[j].activeColor = drumColors[i];
+                knobs[j].activeColor = drumColors[i];
             }
 
             nodeManager.SetUpNode();
@@ -415,7 +418,7 @@ public class MasterManager : MonoBehaviour {
         print("Lerp to position");
     }
 
-    public void setDwellSettingsActive(bool set)
+    public void SetDwellSettingsActive(bool set)
     {
         dwellSettingsPrefab.SetActive(set);
     }

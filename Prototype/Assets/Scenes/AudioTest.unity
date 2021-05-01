@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0017999794, g: 0.000413092, b: 0.008067779, a: 1}
+  m_IndirectSpecularColor: {r: 0.0029685784, g: 0.003552346, b: 0.069184236, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -586,6 +586,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 1
   _text: {fileID: 1536880416}
   _string: Dwell time speed
@@ -846,6 +847,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -1103,6 +1105,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -1117,6 +1120,80 @@ MonoBehaviour:
   activateOnStart: 0
   isDwellTimeSetter: 0
   localDwellTimeSpeed: 100
+--- !u!1 &178173721 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3197379696657073084, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+  m_PrefabInstance: {fileID: 229943379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &229943379
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 524.67236
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 243.53073
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -467.3374
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197379696657073084, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_Name
+      value: SettingsDropdown
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197379696657073084, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916564051848942916, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 565050215}
+    - target: {fileID: 6916564051848942916, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
 --- !u!1 &258635027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,7 +1438,7 @@ Transform:
   - {fileID: 1846019205}
   - {fileID: 1437889676}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &320708705
 MonoBehaviour:
@@ -1624,6 +1701,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 1892863259}
@@ -1729,7 +1807,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &530605014
 Animator:
@@ -2021,7 +2099,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &615418819
 GameObject:
@@ -6978,7 +7056,7 @@ RectTransform:
   m_LocalScale: {x: 0.24701305, y: 0.24701305, z: 0.24701305}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7241,6 +7319,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 1720987937}
@@ -7516,6 +7595,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -7773,6 +7853,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -7825,7 +7906,7 @@ Transform:
   - {fileID: 463355745}
   - {fileID: 1195046304}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &759241543
 GameObject:
@@ -8018,7 +8099,7 @@ RectTransform:
   - {fileID: 2145342780}
   - {fileID: 1721459070}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8057,7 +8138,7 @@ RectTransform:
   m_LocalScale: {x: 0.24701305, y: 0.24701305, z: 0.24701305}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12914,7 +12995,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &786602506
 MonoBehaviour:
@@ -13114,7 +13195,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1065797668
 GameObject:
@@ -13162,7 +13243,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1100553357
 GameObject:
@@ -13257,7 +13338,7 @@ RectTransform:
   m_Children:
   - {fileID: 1500954456}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13314,6 +13395,10 @@ PrefabInstance:
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6446969321013716812, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
@@ -13504,6 +13589,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 0
   _text: {fileID: 1842478429}
   _string: Play
@@ -13553,7 +13639,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1143099682
 MonoBehaviour:
@@ -13921,7 +14007,7 @@ Transform:
   m_LocalScale: {x: 15.998825, y: 15.998825, z: 15.998825}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1238680534
 GameObject:
@@ -14266,6 +14352,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -14791,6 +14878,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -14972,8 +15060,9 @@ MonoBehaviour:
   isWaitingInLobby: 1
   topDownSignifier: {fileID: 775170859}
   mainSignifier: {fileID: 689322139}
+  timerUI: {fileID: 2145342779}
   DwellSettingsActive: 0
-  dwellSettingsPrefab: {fileID: 0}
+  dwellSettingsPrefab: {fileID: 178173721}
 --- !u!4 &1590067203
 Transform:
   m_ObjectHideFlags: 0
@@ -15027,7 +15116,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1688550963
 GameObject:
@@ -15410,6 +15499,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 689948720}
@@ -15682,6 +15772,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 0
   _text: {fileID: 1622300023}
   _string: Quit
@@ -16439,6 +16530,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -16484,7 +16576,7 @@ Transform:
   - {fileID: 258635028}
   - {fileID: 525941752}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1940917165
 PrefabInstance:
@@ -16729,6 +16821,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -17081,6 +17174,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
+  mainButtonImage: {fileID: 0}
   changeTextColor: 1
   otherButtonsToDisable:
   - {fileID: 379735771}
@@ -17194,7 +17288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2145342780
 RectTransform:
   m_ObjectHideFlags: 0

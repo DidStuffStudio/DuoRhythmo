@@ -31,8 +31,11 @@ public class SliderKnob : CustomButton
 
     public event SliderChangeAction OnSliderChange;
 
- 
 
+    protected override void GetImageComponent()
+    {
+        
+    }
 
     protected override void Start()
     {

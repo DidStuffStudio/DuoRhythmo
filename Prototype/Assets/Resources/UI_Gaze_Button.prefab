@@ -156,16 +156,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec2c832fac4ce946b639a773087da7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 0
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
-  inactiveHoverColor: {r: 0, g: 0, b: 0, a: 0}
   activeColor: {r: 0, g: 0, b: 0, a: 0}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0, g: 0, b: 0, a: 0}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 7078141786073897815}
   mouseOver: 0
   interactionBreakTime: 1
@@ -176,8 +175,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
+  mainButtonImage: {fileID: 0}
+  changeTextColor: 0
   _text: {fileID: 5452321105264058971}
   _string: 
   drumTypeIndex: 0

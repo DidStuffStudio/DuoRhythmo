@@ -32,13 +32,14 @@ public class UserInterfaceManager : MonoBehaviour {
     private bool isRenderingAPanel = false;
 
     public GameObject dwellSpeedPrefab;
+    private bool animateUIBackward = false;
 
     private void Start() {
        
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _uiAnimator = GetComponent<Animator>();
         _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
-        _uiAnimator.speed = 0.0f;
+        _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
         _playerAnimator.speed = 0.0f;
     }
 
@@ -62,14 +63,22 @@ public class UserInterfaceManager : MonoBehaviour {
         _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
     }
     
-    public void PauseAnimation() {
-        
+    public void PauseAnimation()
+    {
+        print("Paused");
         StartCoroutine(SwitchPanelRenderLayers());
-        _uiAnimator.speed = 0.0f;
+        /*if (animateUIBackward)
+        {
+            print("Called from within");
+            animateUIBackward = false;
+            return;
+        }
+        print("Called from outside");*/
+        _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
         _playerAnimator.speed = 0.0f;
         //timer = (int) MasterManager.Instance.timer.timer;
         SetAnimatorTime();
-        MasterManager.Instance.timer.ToggleTimer(true);
+        if(!RealTimeInstance.Instance.isSoloMode)MasterManager.Instance.timer.ToggleTimer(true);
     }
 
     public void PlayAnimation(bool forward) {
@@ -80,7 +89,7 @@ public class UserInterfaceManager : MonoBehaviour {
             _currentPanel++;
             if (_currentPanel > (MasterManager.Instance.numberInstruments - 1)) _currentPanel = 0;
             Solo(false, 0);
-            _uiAnimator.speed = 1.0f;
+            _uiAnimator.SetFloat("SpeedMultiplier", 1.0f);
             if (!MasterManager.Instance.isInPosition)
             {
                 _playerAnimator.speed = 1.0f;
@@ -90,16 +99,13 @@ public class UserInterfaceManager : MonoBehaviour {
         else
         {
             _currentRenderPanel--;
-            if (_currentRenderPanel <= 0) _currentRenderPanel =  (MasterManager.Instance.numberInstruments * 2) - 1;
+            if (_currentRenderPanel < 0) _currentRenderPanel =  (MasterManager.Instance.numberInstruments * 2) - 1;
             _currentPanel--;
             if (_currentPanel <= 0) _currentPanel = MasterManager.Instance.numberInstruments - 1;
             Solo(false, 0);
-            _uiAnimator.speed = -1.0f;
-            if (!MasterManager.Instance.isInPosition)
-            {
-                _playerAnimator.speed = -1.0f;
-                _playerAnimator.Play("PlayerCam");
-            }
+            animateUIBackward = true;
+            _uiAnimator.SetFloat("SpeedMultiplier", -1.0f);
+            print("Rotating back");
         }
     }
 
@@ -108,30 +114,25 @@ public class UserInterfaceManager : MonoBehaviour {
         if (_timeLeft <= Time.deltaTime) {
             // transition complete
             // assign the target color
-            skybox.SetColor(Tint, _targetVFXColor);
             _vfx.SetVector4("ParticleColor", _targetVFXColor);
             _vfx.SetVector4("Core color", _targetVFXColor);
             // start a new transition
-            var r = Random.value;
-            var g = Random.value;
-            var b = Random.value;
-            _targetVFXColor = new Color(r, g, b);
-            _targetSkyColor = new Color(1-r, 1-b, 1-g);
+            var index = Random.Range(0, MasterManager.Instance.numberInstruments);
+            _targetVFXColor = MasterManager.Instance.drumColors[index];
             _timeLeft = 30.0f;
         }
         else {
             // transition in progress
             // calculate interpolated color
-
-            skybox.SetColor(Tint, Color.Lerp(skybox.GetColor(Tint), _targetVFXColor, Time.deltaTime / _timeLeft));
+            
             _vfx.SetVector4("ParticleColor",
-                Color.Lerp(skybox.GetColor(Tint), _targetVFXColor, Time.deltaTime / _timeLeft));
-            _vfx.SetVector4("Core color", Color.Lerp(skybox.GetColor(Tint), _targetVFXColor, Time.deltaTime / _timeLeft));
+                Color.Lerp(_vfx.GetVector4("ParticleColor"), _targetVFXColor, Time.deltaTime / _timeLeft));
+            _vfx.SetVector4("Core color", Color.Lerp(_vfx.GetVector4("Core color"), _targetVFXColor, Time.deltaTime / _timeLeft));
 
             // update the timer
             _timeLeft -= Time.deltaTime;
         }
-        if(!MasterManager.Instance.gameSetUpFinished) return;
+        if(!MasterManager.Instance.gameSetUpFinished || RealTimeInstance.Instance.isSoloMode) return;
         timerDisplay.text = timer.ToString();
         timer = (int) MasterManager.Instance.timer.timer;
     }

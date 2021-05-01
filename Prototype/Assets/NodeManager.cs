@@ -37,8 +37,9 @@ public class NodeManager : MonoBehaviour {
 
     private string[] effectNames = new string[4];
 
-    public SliderKnob[] sliders = new SliderKnob[4];
+    public RadialSlider[] sliders = new RadialSlider[4];
 
+    public SliderKnob bpmSlider;
     private int previousEffectValue;
 
     public int drumIndex;
@@ -72,7 +73,7 @@ public class NodeManager : MonoBehaviour {
 
         for (int i = 0; i < sliders.Length - 1; i++) sliders[i].OnSliderChange += ChangeEffectValue;
 
-        sliders[4].OnSliderChange += ChangeBpm;
+        bpmSlider.OnSliderChange += ChangeBpm;
 
         string[] effects = {"_Effect_1", "_Effect_2", "_Effect_3"};
         if (drumType == DrumType.Kick)
@@ -120,8 +121,8 @@ public class NodeManager : MonoBehaviour {
             levels[2] = sliders[2].currentValue;
             //levels[3] = sliders[3].currentValue;
             bpm = MasterManager.Instance.bpm;
-            sliders[4].currentValue = bpm;
-            sliders[4].UpdateSliderText();
+            bpmSlider.currentValue = bpm;
+            bpmSlider.UpdateSliderText();
         }
         else {
             levels[0] = sliders[0].currentValue = _screenSync.Effect1;
@@ -129,8 +130,8 @@ public class NodeManager : MonoBehaviour {
             levels[2] = sliders[2].currentValue = _screenSync.Effect3;
             //levels[3] = sliders[3].currentValue = _screenSync.Effect3;
             bpm = _screenSync.Bpm;
-            sliders[4].currentValue = bpm;
-            sliders[4].UpdateSliderText();
+            bpmSlider.currentValue = bpm;
+            bpmSlider.UpdateSliderText();
         }
 
         // if(MasterManager.Instance.bpm != bpm) MasterManager.Instance.SetBpm(bpm);
@@ -224,7 +225,7 @@ public class NodeManager : MonoBehaviour {
     }
 
     void ChangeBpm(int index) {
-        var sliderValue = (int) sliders[4].currentValue;
+        var sliderValue = (int) bpmSlider.currentValue;
         bpm = sliderValue;
         MasterManager.Instance.SetBpm(bpm);
         // _screenSync.SetBpm(sliderValue);

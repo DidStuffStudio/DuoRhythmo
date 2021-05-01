@@ -24,23 +24,23 @@ public class IncrementButton : CustomButton
         }
     }
 
-    public void activateDwellSettings()
+    public void Navigation(bool forward)
+    {
+        MasterManager.Instance.userInterfaceManager.PlayAnimation(forward);
+    }
+    public void ActivateDwellSettings()
     {
         bool dwellActive = MasterManager.Instance.DwellSettingsActive;
         
         if (dwellActive)
         {
             MasterManager.Instance.DwellSettingsActive = false;
-            //GameObject.FindGameObjectWithTag("DwellSettings").SetActive(false);
-            //MasterManager.Instance.dwellSettingsPrefab.SetActive(false);
-            MasterManager.Instance.setDwellSettingsActive(false);
+            MasterManager.Instance.SetDwellSettingsActive(false);
         }
         else
         {
             MasterManager.Instance.DwellSettingsActive = true;
-            //GameObject.FindGameObjectWithTag("DwellSettings").SetActive(true);
-            //MasterManager.Instance.dwellSettingsPrefab.SetActive(true);
-            MasterManager.Instance.setDwellSettingsActive(true);
+            MasterManager.Instance.SetDwellSettingsActive(true);
         }
 
         

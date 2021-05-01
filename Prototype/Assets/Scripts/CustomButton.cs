@@ -16,7 +16,7 @@ public class CustomButton : MonoBehaviour {
     private Collider _collider;
     public bool canInteractBeforeStart = false;
     public bool isDefault = true, isHover, isActive, isConfirmationButton;
-    public Color defaultColor, activeColor, defaultTextColor = Color.black, activeTextColor = Color.white;
+    public Color defaultColor, activeColor, defaultTextColor = new Color(33,33,33,1), activeTextColor = new Color(238,238,238,1);
     private Color inactiveHoverColor, activeHoverColor;
     public GameObject confirmScaler;
     public bool mouseOver;
@@ -26,8 +26,8 @@ public class CustomButton : MonoBehaviour {
     public UnityEvent OnActivation, OnDeactivation;
     public bool activated;
     protected bool _usingEyeTracking;
-    
-    
+
+    [SerializeField] private Image mainButtonImage;
     private bool colorsSet = false;
     private Text buttonText;
     public bool changeTextColor;
@@ -37,9 +37,9 @@ public class CustomButton : MonoBehaviour {
         buttonText = GetComponentInChildren<Text>();
         _confirmScalerRT = confirmScaler.GetComponent<RectTransform>();
         _gazeAware = GetComponent<GazeAware>();
-        _image = GetComponent<Image>();
         _collider = GetComponent<Collider>();
-        _image.color = defaultColor;
+        GetImageComponent();
+        mainButtonImage.color = defaultColor;
         
         isDefault = true;
         isActive = false;
@@ -50,6 +50,8 @@ public class CustomButton : MonoBehaviour {
 
         
     }
+    
+    protected virtual void GetImageComponent()=> mainButtonImage = GetComponent<Image>();
 
     protected virtual void Update() {
         if (TobiiAPI.IsConnected)
@@ -114,7 +116,7 @@ public class CustomButton : MonoBehaviour {
     protected virtual void SetActive()
     {
         if(changeTextColor) buttonText.color = activeTextColor;
-        _image.color = activeColor;
+        mainButtonImage.color = activeColor;
         if (isActive) return;
         isActive = true;
         isDefault = false;
@@ -138,8 +140,8 @@ public class CustomButton : MonoBehaviour {
         }
 
         if (!_canHover || gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
-        if (isActive) _image.color = activeHoverColor;
-        else _image.color = inactiveHoverColor;
+        if (isActive) mainButtonImage.color = activeHoverColor;
+        else mainButtonImage.color = inactiveHoverColor;
         if (isHover) return;
         isHover = true;
     }
@@ -153,7 +155,7 @@ public class CustomButton : MonoBehaviour {
     }
 
     protected virtual void SetDefault() {
-         _image.color = defaultColor;
+         mainButtonImage.color = defaultColor;
         if(changeTextColor)buttonText.color = defaultTextColor;
         confirmScaler.GetComponent<Image>().color = activeColor;
         if (isDefault) return;
@@ -163,7 +165,7 @@ public class CustomButton : MonoBehaviour {
 
     protected virtual void ConfirmActivation(bool enabled) {
         _collider.enabled = enabled;
-        _image.enabled = enabled;
+        mainButtonImage.enabled = enabled;
     }
     
 

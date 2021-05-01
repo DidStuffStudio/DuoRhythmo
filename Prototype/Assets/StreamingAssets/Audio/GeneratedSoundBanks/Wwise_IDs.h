@@ -13,10 +13,30 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID PLAYCYMBOL_AMBIENT = 630641514U;
+        static const AkUniqueID PLAYCYMBOL_DJEMBE = 422172225U;
+        static const AkUniqueID PLAYCYMBOL_ELECTRO = 2806388898U;
+        static const AkUniqueID PLAYCYMBOL_HANDPAN = 3836904914U;
         static const AkUniqueID PLAYCYMBOL_ROCK = 3813384673U;
+        static const AkUniqueID PLAYHIHAT_AMBIENT = 3446490876U;
+        static const AkUniqueID PLAYHIHAT_DJEMBE = 1088060463U;
+        static const AkUniqueID PLAYHIHAT_ELECTRO = 91571600U;
+        static const AkUniqueID PLAYHIHAT_HANDPAN = 706298204U;
         static const AkUniqueID PLAYHIHAT_ROCK = 1936238287U;
+        static const AkUniqueID PLAYKICK__DJEMBE = 1164760368U;
+        static const AkUniqueID PLAYKICK_AMBIENT = 2612158904U;
+        static const AkUniqueID PLAYKICK_ELECTRO = 1732463492U;
+        static const AkUniqueID PLAYKICK_HANDPAN = 608285856U;
         static const AkUniqueID PLAYKICK_ROCK = 1191950315U;
+        static const AkUniqueID PLAYSNARE_AMBIENT = 2118830823U;
+        static const AkUniqueID PLAYSNARE_DJEMBE = 3723532370U;
+        static const AkUniqueID PLAYSNARE_ELECTRO = 475625447U;
+        static const AkUniqueID PLAYSNARE_HANDPAN = 2736354835U;
         static const AkUniqueID PLAYSNARE_ROCK = 662005822U;
+        static const AkUniqueID PLAYTOMTOM_AMBIENT = 545452506U;
+        static const AkUniqueID PLAYTOMTOM_DJEMBE = 2460777649U;
+        static const AkUniqueID PLAYTOMTOM_ELECTRO = 6072882U;
+        static const AkUniqueID PLAYTOMTOM_HANDPAN = 3049799938U;
         static const AkUniqueID PLAYTOMTOM_ROCK = 3252100785U;
     } // namespace EVENTS
 

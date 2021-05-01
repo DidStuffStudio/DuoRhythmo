@@ -58,16 +58,10 @@ public class TestStringSync : RealtimeComponent<TestString> {
         {
             var time = Int32.Parse(_message.Split(',')[1]);
             
-            
-            if (MasterManager.Instance.timer.newPlayer)
-            {
+        
                 MasterManager.Instance.timer.tempRoundTime = time;
                 MasterManager.Instance.timer.ToggleTimer(true);
-            }
-
-
-
-
+                
         }
 
         if (_message.Contains(MessageTypes.DRUM_NODE_CHANGED)) {

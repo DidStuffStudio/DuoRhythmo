@@ -90,13 +90,18 @@ public class RealTimeInstance : MonoBehaviour {
         networkManager = Realtime.Instantiate(networkManagerPrefab.name);
         
         numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
-        MasterManager.Instance.localPlayerNumber =
-            numberPlayers - 1; // set this local player's player number to the current player number (index value)
+        //MasterManager.Instance.localPlayerNumber =
+            //numberPlayers - 1; // set this local player's player number to the current player number (index value)
         
 
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name, true, true, true);
         gfx.transform.GetComponent<RealtimeTransform>().RequestOwnership();
-
+        if (numberPlayers == 1)
+        {
+            MasterManager.Instance.localPlayerNumber = 0;
+            MasterManager.Instance.player.hasPlayerNumber = true;
+        }
+        _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED+MasterManager.Instance.localPlayerNumber);
 
     }
     

@@ -20,7 +20,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
         public const string DISCONNECTED = "Disconnected,";
         public const string DRUM_NODE_CHANGED = "DrumNodeChanged,"; // DrumIndex,NodeIndex,IsActivated --> eg --> 1,11,1
         public const string NEW_PLAYER_CONNECTED = "NewPlayerConnected,";
-        public const string AVERAGED_TIME = "AveragedTime,";
+        public const string NEW_PLAYER_UPDATE_TIME = "NewPlayerUpdateTime,";
     }
 
     protected override void OnRealtimeModelReplaced(TestString previousModel, TestString currentModel) {
@@ -82,34 +82,38 @@ public class TestStringSync : RealtimeComponent<TestString> {
             }
             var splitMessage = _message.Split(',');
             var connectedPlayer = Int32.Parse(splitMessage[1]);
-            MasterManager.Instance.dataMaster.SetConnectedPlayer(connectedPlayer, true);
-            if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
-            SetMessage(MessageTypes.TIMER+MasterManager.Instance.timer.timer);
             
+            if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
+
             // send that player his new player number
             for (int i = 0; i < MasterManager.Instance.dataMaster.conectedPlayers.Length; i++) {
                 // if 2 <= 0 --> numberPlayers 
-                if (RealTimeInstance.Instance.numberPlayers <= i) {
-                    MasterManager.Instance.dataMaster.conectedPlayers[i] = 0;
+                if (MasterManager.Instance.dataMaster.conectedPlayers[i] == 0) {
                     SetMessage(MessageTypes.SET_PLAYER_NUMBER + i);
                     print("Sending the player number to player number " + i);
                     break;
                 }
                 // if (MasterManager.Instance.dataMaster.conectedPlayers[i] == 1) counter++;
             }
+        } if (_message.Contains(MessageTypes.NEW_PLAYER_UPDATE_TIME)) {
+            
+            var splitMessage = _message.Split(',');
+            var connectedPlayer = Int32.Parse(splitMessage[1]);
+            if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
+            SetMessage(MessageTypes.TIMER+MasterManager.Instance.timer.timer);
         }
 
         if (_message.Contains(MessageTypes.SET_PLAYER_NUMBER)) {
             var playerIndex = Int32.Parse(_message.Split(',')[1]);
-            if (MasterManager.Instance.localPlayerNumber != playerIndex) {
+            if (!MasterManager.Instance.player.hasPlayerNumber)
+            {
                 MasterManager.Instance.localPlayerNumber = playerIndex;
-            }
+                MasterManager.Instance.player.hasPlayerNumber = true;
+            } 
+        
+            MasterManager.Instance.dataMaster.SetConnectedPlayer(playerIndex, true);
         }
         
-        if (_message.Contains(MessageTypes.AVERAGED_TIME)) {
-            var averageTime = _message.Split(',');
-            MasterManager.Instance.timer.timer = Int32.Parse(averageTime[1]);
-        }
     }
     
     public void SetMessage(string value) {

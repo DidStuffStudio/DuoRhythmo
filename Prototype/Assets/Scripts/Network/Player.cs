@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     public bool isPaired; // does this player have someone to play the drums with?
     public Player pairedPlayer;
     public Transform playerPosition;
-    
+    public bool hasPlayerNumber = false;
     [SerializeField] private GameObject gfxCanvasPrefab;
 
     private void Awake()

@@ -60,7 +60,7 @@ public class MasterManager : MonoBehaviour {
     private float startTime, journeyLength;
     [SerializeField] private float positionSpeed = 10.0f;
     [SerializeField] private Transform playerStartPosition, playerPositionDestination;
-    public int localPlayerNumber = 0;
+    public int localPlayerNumber = -1;
     public bool gameSetUpFinished;
     public float currentRotationOfUI = 0.0f;
     public Player player;
@@ -119,10 +119,12 @@ public class MasterManager : MonoBehaviour {
                     if (RealTimeInstance.Instance.numberPlayers > 1)
                     {
                         timer.newPlayer = true;
-                        RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED+localPlayerNumber);
+                        RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_UPDATE_TIME+localPlayerNumber);
                     }
                     else
                     {
+                        localPlayerNumber = 0;
+                        player.hasPlayerNumber = true;
                         timer.ToggleTimer(true);
                     }
                 }

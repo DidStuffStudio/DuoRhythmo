@@ -324,10 +324,13 @@ public class MasterManager : MonoBehaviour {
             nodeManager.subNodeIndex = i;
             nodeManager.defaultColor = defaultNodeColors[i];
             nodeManager.drumColor = drumColors[i];
-            foreach (var incButton in nodeManager.incrementButtons) incButton.activeColor = drumColors[i];
+            foreach (var incButton in nodeManager.incrementButtons)
+            {
+                incButton.activeColor = drumColors[i];
+                if (incButton.transform.CompareTag("NavigationButtons")) incButton.gameObject.SetActive(false);
+            }
             nodeManager.euclideanButton.activeColor = drumColors[i];
-            var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            foreach (var uigazeButton in nodesSoloButtons) uigazeButton.drumTypeIndex = i;
+          
             
             
             // initialize the knob sliders for this current node manager
@@ -338,6 +341,9 @@ public class MasterManager : MonoBehaviour {
                 nodeManager.sliders[j] = knobs[j];
                 knobs[j].activeColor = drumColors[i];
             }
+            
+            foreach (var incButton in effectsPanels[i].GetComponentsInChildren<IncrementButton>())
+                if (incButton.transform.CompareTag("NavigationButtons")) incButton.gameObject.SetActive(false);
 
             nodeManager.SetUpNode();
 

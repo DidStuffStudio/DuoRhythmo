@@ -8,7 +8,8 @@ public class RadialSlider : CustomButton {
     private Vector2 _targetPosition = Vector2.zero;
     private float _minValue, _maxValue;
     public int maximumValue = 100, minimumValue = 0;
-
+    [SerializeField] private float angleConstraint;
+    
     [SerializeField]
     private int sliderIndex; // Pass to euclidean manager to tell which slider corresponds to which effect 
 
@@ -30,6 +31,7 @@ public class RadialSlider : CustomButton {
 
     protected override void Update() {
         base.Update();
+        if(!isActive) return;
         if (_usingEyeTracking) {
             GazePoint gazePoint = TobiiAPI.GetGazePoint();
             _targetPosition = gazePoint.Screen;
@@ -53,7 +55,7 @@ public class RadialSlider : CustomButton {
         // angle = Mathf.Acos(cosAngle) * Mathf.Rad2Deg;
         // Vector3.up (y axis) --> (0,1,0) 
         /*
-         Full angle between two vectors:
+         Full angle (from 0 to 360) between two vectors:
             dot = x1*x2 + y1*y2 --> dot product
             det = x1*y2 - y1*x2 --> determinant
             angle = atan2(det, dot) --> atan2(y, x) or atan2(sin, cos)
@@ -62,7 +64,7 @@ public class RadialSlider : CustomButton {
         var determinant = 0 * projectedVector.y - 1 * projectedVector.x;
         angle = Mathf.Atan2(determinant, dotProduct) * Mathf.Rad2Deg;
         print(angle);
-        transform.parent.rotation = Quaternion.Euler(0, 0, angle);
+        if(angle <= angleConstraint && angle > -angleConstraint) transform.parent.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     private float SignedAngleBetween(Vector3 a, Vector3 b, bool clockwise) {

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Normal.Realtime;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Realtime))]
 public class RealTimeInstance : MonoBehaviour {
@@ -111,6 +112,9 @@ public class RealTimeInstance : MonoBehaviour {
             MasterManager.Instance.localPlayerNumber = 0;
             MasterManager.Instance.player.hasPlayerNumber = true;
         }
+        MasterManager.Instance.localPlayerNumber = Random.Range(0, 10000000);
+        MasterManager.Instance.timer.newPlayer = true;
+        _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_UPDATE_TIME+MasterManager.Instance.localPlayerNumber);
         _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED+MasterManager.Instance.localPlayerNumber);
         
 

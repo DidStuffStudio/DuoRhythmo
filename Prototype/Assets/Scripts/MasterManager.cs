@@ -122,13 +122,8 @@ public class MasterManager : MonoBehaviour {
                 if (!RealTimeInstance.Instance.isSoloMode)
                 {
                     timerUI.SetActive(true);
-                    localPlayerNumber = Random.Range(0, 10000000);
-                    if (RealTimeInstance.Instance.numberPlayers > 1)
-                    {
-                        timer.newPlayer = true;
-                        RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_UPDATE_TIME+localPlayerNumber);
-                    }
-                    else
+                    
+                    if (RealTimeInstance.Instance.numberPlayers < 2)
                     {
                         localPlayerNumber = 0;
                         player.hasPlayerNumber = true;

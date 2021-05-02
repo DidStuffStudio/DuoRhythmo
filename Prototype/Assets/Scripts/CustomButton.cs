@@ -27,9 +27,9 @@ public class CustomButton : MonoBehaviour {
     public bool activated;
     protected bool _usingEyeTracking;
 
-    [SerializeField] private Image mainButtonImage;
+    [SerializeField] protected Image mainButtonImage;
     private bool colorsSet = false;
-    private Text buttonText;
+    protected Text buttonText;
     public bool changeTextColor;
 
     protected virtual void Start()

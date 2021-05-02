@@ -36,8 +36,23 @@ public class Node : CustomButton {
     }
 
     public void SetNodeFromServer(bool activate) {
-        if (activate) base.SetActive();
-        else base.SetDefault();
+        if (activate)
+        {
+            if(changeTextColor) buttonText.color = activeTextColor;
+            mainButtonImage.color = activeColor;
+            if (isActive) return;
+            isActive = true;
+            isDefault = false;
+        }
+        else
+        {
+            mainButtonImage.color = defaultColor;
+            if(changeTextColor)buttonText.color = defaultTextColor;
+            confirmScaler.GetComponent<Image>().color = activeColor;
+            if (isDefault) return;
+            isDefault = true;
+            isActive = false;
+        }
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 

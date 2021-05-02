@@ -47,6 +47,7 @@ public class RealTimeInstance : MonoBehaviour {
                     if (numberPlayers > i) MasterManager.Instance.dataMaster.conectedPlayers[i] = 1;
                     else MasterManager.Instance.dataMaster.conectedPlayers[i] = 0;
                 }
+
                 previousNumberPlayers = numberPlayers;
             }
 
@@ -84,8 +85,10 @@ public class RealTimeInstance : MonoBehaviour {
 
         numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
 
-        Realtime.Instantiate(playerCanvasPrefab.name, true, true);
-        print("This is my player number: " + MasterManager.Instance.localPlayerNumber );
+        var gfx = Realtime.Instantiate(playerCanvasPrefab.name);
+        gfx.GetComponent<RealtimeView>().RequestOwnership();
+        gfx.GetComponent<RealtimeTransform>().RequestOwnership();
+        print("This is my player number: " + MasterManager.Instance.localPlayerNumber);
         stringSync.SetNewPlayerUpdateTime(MasterManager.Instance.localPlayerNumber);
         stringSync.SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
         StartCoroutine(SeniorPlayer());

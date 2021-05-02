@@ -1697,7 +1697,6 @@ GameObject:
   - component: {fileID: 320708704}
   - component: {fileID: 320708703}
   - component: {fileID: 320708702}
-  - component: {fileID: 320708705}
   m_Layer: 0
   m_Name: RealTime
   m_TagString: Untagged
@@ -1775,36 +1774,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &320708705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 320708701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _realtime: {fileID: 320708703}
-  _sceneViewUUID: 
-  _viewUUID: 1d105dd7-6d2f-4f57-8660-57eac551aba7
-  _sceneViewPreventOwnershipTakeover: 0
-  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
-  _components: []
-  _childViews:
-  - viewID: 1
-    view: {fileID: 2097733664}
-  - viewID: 2
-    view: {fileID: 1694568393}
-  - viewID: 3
-    view: {fileID: 1775356924}
-  - viewID: 4
-    view: {fileID: 1846019208}
-  - viewID: 5
-    view: {fileID: 1437889679}
 --- !u!1001 &379735767
 PrefabInstance:
   m_ObjectHideFlags: 0

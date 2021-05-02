@@ -57,6 +57,7 @@ public class NodeManager : MonoBehaviour {
     public IncrementButton[] incrementButtons = new IncrementButton[4];
     public UI_Gaze_Button euclideanButton;
     public IncrementButton[] navigationButtons = new IncrementButton[2];
+    private int[] _savedValues = new int[16];
 
     private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();
@@ -305,7 +306,15 @@ public class NodeManager : MonoBehaviour {
         }
         
     }
-    
+
+    public void StoreRythm()
+    {
+        for (int i = 0; i < _nodes.Count; i++)
+        {
+            if (_nodes[i].isActive) _savedValues[i] = 1;
+            else _savedValues[i] = 0;
+        }
+    }
     
     // euclidean rhythm
     public void StartEuclideanRhythmRoutine(bool activate) {
@@ -313,11 +322,23 @@ public class NodeManager : MonoBehaviour {
     }
 
     private IEnumerator ActivateEuclideanRhythm(bool activate) {
-        if (!activate)
-            foreach (var node in _nodes) {
-                node.Deactivate();
+        if (!activate){
+            for (int i = 0; i < _nodes.Count; i++) {
+            var value = _savedValues[i];
+            // if the euclidean value is 1, then it means it should be active, so activate
+            if (value == 1 && !_nodes[i].isActive)
+            {
+                _nodes[i].Activate(true);
                 yield return new WaitForSeconds(0.1f);
             }
+            else if (value == 0 && _nodes[i].isActive)
+            {
+                _nodes[i].Activate(false);
+                yield return new WaitForSeconds(0.1f);
+            }
+                
+        }
+        }
         else {
             _euclideanRythm.GetEuclideanRythm();
             for (int i = 0; i < _nodes.Count; i++) {

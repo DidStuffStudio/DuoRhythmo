@@ -12,6 +12,7 @@ public class GazeSignifier : MonoBehaviour {
 
     void Update()
     {
+        transform.LookAt(Camera.main.transform.forward);
         if (TobiiAPI.IsConnected)
         {
             GazePoint gazePoint = TobiiAPI.GetGazePoint();
@@ -30,14 +31,14 @@ public class GazeSignifier : MonoBehaviour {
     private Vector3 MouseProjectToPlaneWorld(Vector3 mousePosition)
     {
         Vector3 mouseScreenPoint = new Vector2(mousePosition.x,mousePosition.y);
-        mouseScreenPoint += (Camera.main.transform.forward * visualizationDistance);
+        mouseScreenPoint += (Camera.main.transform.forward + (Vector3.one*visualizationDistance));
         return Camera.main.ScreenToWorldPoint(mouseScreenPoint);
     }
     
 
     private Vector3 ProjectToPlaneInWorld(GazePoint gazePoint) {
         Vector3 gazeOnScreen = gazePoint.Screen;
-        gazeOnScreen += (Camera.main.transform.forward * visualizationDistance);
+        gazeOnScreen += (Camera.main.transform.forward + (Vector3.one*visualizationDistance));
         return Camera.main.ScreenToWorldPoint(gazeOnScreen);
     }
 

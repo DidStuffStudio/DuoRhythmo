@@ -524,8 +524,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8248214353105484809}
         m_TargetAssemblyTypeName: NodeManager, Assembly-CSharp
-        m_MethodName: StartEuclideanRhythmRoutine
-        m_Mode: 6
+        m_MethodName: StoreRythm
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -537,6 +537,18 @@ MonoBehaviour:
       - m_Target: {fileID: 8248214353105484814}
         m_TargetAssemblyTypeName: EuclideanRythm, Assembly-CSharp
         m_MethodName: TurnOnEuclideanInterface
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8248214353105484809}
+        m_TargetAssemblyTypeName: NodeManager, Assembly-CSharp
+        m_MethodName: StartEuclideanRhythmRoutine
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

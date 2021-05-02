@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -67,8 +68,7 @@ public class MasterManager : MonoBehaviour {
     public bool isInPosition = false;
     public bool isWaitingInLobby = true;
 
-    [Space] [Header("Signifiers")] [SerializeField]
-    private GameObject topDownSignifier, mainSignifier;
+    [SerializeField] private GameObject mainSignifier;
 
     [SerializeField] private GameObject timerUI;
     public bool DwellSettingsActive;
@@ -125,6 +125,7 @@ public class MasterManager : MonoBehaviour {
                     
                     if (RealTimeInstance.Instance.numberPlayers < 2)
                     {
+                        
                         localPlayerNumber = 0;
                         player.hasPlayerNumber = true;
                         timer.ToggleTimer(true);
@@ -406,10 +407,9 @@ public class MasterManager : MonoBehaviour {
 
     private IEnumerator WaitToPositionCamera(float time) {
         SetPlayerPosition();
-        topDownSignifier.SetActive(false);
         yield return new WaitForSeconds(time);
+        mainSignifier.SetActive(false);
         isWaitingInLobby = false;
-        print("Lerp to position");
     }
 
     public void SetDwellSettingsActive(bool set)

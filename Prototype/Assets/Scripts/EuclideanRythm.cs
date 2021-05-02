@@ -13,6 +13,7 @@ public class EuclideanRythm : MonoBehaviour {
     public List<int> _euclideanValues = new List<int>();
     private int _rotate;
     private NodeManager _nodeManager;
+    
 
 
     private void Start()

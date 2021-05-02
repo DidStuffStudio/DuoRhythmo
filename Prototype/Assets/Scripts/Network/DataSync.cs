@@ -31,6 +31,20 @@ public class DataSync : MonoBehaviour
             for (int i = 0; i < 16; i++) nodeString += nodesActivated[drumIndex, i];
             RealTimeInstance.Instance._testStringSync.SetMessage(nodeString);
         }
+        else
+        {
+            var nodeString = TestStringSync.MessageTypes.DRUM_NODES_ALL_DRUM;
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 16; j++)
+                {
+                    nodeString += nodesActivated[i, j];
+                }
+
+                nodeString += ",";
+            }
+            RealTimeInstance.Instance._testStringSync.SetMessage(nodeString);
+        }
     }
     
 

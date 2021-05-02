@@ -48,8 +48,8 @@ public class Node : CustomButton {
             
         }
         //MasterManager.Instance.dataMaster.nodes[drumIndex] = 1;
-        MasterManager.Instance.dataMaster.nodesActivated[drumIndex, indexValue] = 1;
-        MasterManager.Instance.dataMaster.SendNodes(drumIndex, false);
+        MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 1;
+        MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
         base.SetActive();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
@@ -60,8 +60,8 @@ public class Node : CustomButton {
             //RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.DRUM_NODE_CHANGED + (int)drumType + "," + indexValue + "," + 0);
         }
         //MasterManager.Instance.dataMaster.nodes[drumIndex] = 0;
-        MasterManager.Instance.dataMaster.nodesActivated[drumIndex, indexValue] = 0;
-        MasterManager.Instance.dataMaster.SendNodes(drumIndex, false);
+        MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 0;
+        MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
         base.SetDefault();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }

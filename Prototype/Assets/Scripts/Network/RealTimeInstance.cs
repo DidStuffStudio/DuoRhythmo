@@ -115,7 +115,7 @@ public class RealTimeInstance : MonoBehaviour {
         MasterManager.Instance.localPlayerNumber = Random.Range(0, 10000000);
         MasterManager.Instance.timer.newPlayer = true;
         _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_UPDATE_TIME+MasterManager.Instance.localPlayerNumber);
-        _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED+MasterManager.Instance.localPlayerNumber);
+        
         
 
         StartCoroutine(SeniorPlayer());
@@ -125,7 +125,9 @@ public class RealTimeInstance : MonoBehaviour {
 
     IEnumerator SeniorPlayer()
     {
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(0.2f);
+        _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED+MasterManager.Instance.localPlayerNumber);
+        yield return new WaitForSeconds(1.0f);
         isNewPlayer = false;
     }
     

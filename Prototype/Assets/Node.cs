@@ -62,12 +62,10 @@ public class Node : CustomButton {
     protected override void SetActive() {
         if (!RealTimeInstance.Instance.isSoloMode)
         {
-            //RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.DRUM_NODE_CHANGED + (int)drumType + "," + indexValue + "," + 1);
-            
+            MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 1;
+            MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
         }
-        //MasterManager.Instance.dataMaster.nodes[drumIndex] = 1;
-        MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 1;
-        MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
+        
         base.SetActive();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
@@ -75,11 +73,9 @@ public class Node : CustomButton {
     protected override void SetDefault() {
         if (!RealTimeInstance.Instance.isSoloMode)
         {
-            //RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.DRUM_NODE_CHANGED + (int)drumType + "," + indexValue + "," + 0);
+            MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 0;
+            MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
         }
-        //MasterManager.Instance.dataMaster.nodes[drumIndex] = 0;
-        MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 0;
-        MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
         base.SetDefault();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }

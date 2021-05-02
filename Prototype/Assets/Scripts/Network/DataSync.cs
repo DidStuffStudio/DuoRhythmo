@@ -13,11 +13,24 @@ public class DataSync : MonoBehaviour
     public int [] conectedPlayers = new int[10];
     public void AddTime(float time) => times.Add(time);
     
+    
+    public int[,] nodesActivated = new int[5,16];
+    
 
     public void SetConnectedPlayer(int index, bool connected)
     {
         if (connected) conectedPlayers[index] = 1;
         else conectedPlayers[index] = 0;
+    }
+
+    public void SendNodes(int drumIndex, bool sendAll)
+    {
+        if (!sendAll)
+        {
+            var nodeString = TestStringSync.MessageTypes.DRUM_NODES_SINGLE_DRUM + drumIndex + ",";
+            for (int i = 0; i < 16; i++) nodeString += nodesActivated[drumIndex, i];
+            RealTimeInstance.Instance._testStringSync.SetMessage(nodeString);
+        }
     }
     
 

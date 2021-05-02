@@ -23,6 +23,8 @@ public class TestStringSync : RealtimeComponent<TestString> {
         public const string NEW_PLAYER_UPDATE_TIME = "NewPlayerUpdateTime,";
         public const string REQUEST_PLAYER_NUMBERS = "RequestPlayerNumbers,";
         public const string SEND_PLAYER_NUMBER = "RequestPlayerNumber,";
+        public const string DRUM_NODES_SINGLE_DRUM = "DrumNodesSingle,";
+        public const string DRUM_NODES_ALL_DRUM = "DrumNodesALL,";
     }
 
     protected override void OnRealtimeModelReplaced(TestString previousModel, TestString currentModel) {
@@ -64,6 +66,13 @@ public class TestStringSync : RealtimeComponent<TestString> {
                 MasterManager.Instance.timer.tempRoundTime = time;
                 MasterManager.Instance.timer.ToggleTimer(true);
                 
+        }
+
+        if (_message.Contains(MessageTypes.DRUM_NODES_SINGLE_DRUM))
+        {
+            var drumNodeChanged = _message.Split(',');
+            var nodeCharArray = drumNodeChanged[2].ToCharArray();
+            for (int i = 0; i < 16; i++) MasterManager.Instance.DrumNodeChangedOnServer(Int32.Parse(drumNodeChanged[1]), i, nodeCharArray[i] == 1);
         }
 
         if (_message.Contains(MessageTypes.DRUM_NODE_CHANGED)) {

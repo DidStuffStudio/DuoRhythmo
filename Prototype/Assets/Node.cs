@@ -42,13 +42,26 @@ public class Node : CustomButton {
     }
 
     protected override void SetActive() {
-        if (!RealTimeInstance.Instance.isSoloMode) RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.DRUM_NODE_CHANGED + (int)drumType + "," + indexValue + "," + 1);
+        if (!RealTimeInstance.Instance.isSoloMode)
+        {
+            //RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.DRUM_NODE_CHANGED + (int)drumType + "," + indexValue + "," + 1);
+            
+        }
+        //MasterManager.Instance.dataMaster.nodes[drumIndex] = 1;
+        MasterManager.Instance.dataMaster.nodesActivated[drumIndex, indexValue] = 1;
+        MasterManager.Instance.dataMaster.SendNodes(drumIndex, false);
         base.SetActive();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
     protected override void SetDefault() {
-        if (!RealTimeInstance.Instance.isSoloMode) RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.DRUM_NODE_CHANGED + (int)drumType + "," + indexValue + "," + 0);
+        if (!RealTimeInstance.Instance.isSoloMode)
+        {
+            //RealTimeInstance.Instance._testStringSync.SetMessage(TestStringSync.MessageTypes.DRUM_NODE_CHANGED + (int)drumType + "," + indexValue + "," + 0);
+        }
+        //MasterManager.Instance.dataMaster.nodes[drumIndex] = 0;
+        MasterManager.Instance.dataMaster.nodesActivated[drumIndex, indexValue] = 0;
+        MasterManager.Instance.dataMaster.SendNodes(drumIndex, false);
         base.SetDefault();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
@@ -57,9 +70,8 @@ public class Node : CustomButton {
 
     public void PlayDrum() {
         if (!isActive || !canPlay) return;
-        print("play");
         StartCoroutine(Wait());
-        StartCoroutine(AudioVFX());
+        //StartCoroutine(AudioVFX());
 
         MasterManager.Instance.PlayDrum(drumType);
 

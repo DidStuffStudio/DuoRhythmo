@@ -88,8 +88,17 @@ public class RealTimeInstance : MonoBehaviour {
         {
             List<int> occupiedRotations = new List<int>();
             var partnerFound = false;
-            foreach (var playerCanvas in FindObjectsOfType<CanvasFollowPlayer>())
-            {
+
+            var playerCanvases = FindObjectsOfType<CanvasFollowPlayer>();
+            var ownerIds = new List<int>();
+            foreach (var c in playerCanvases) {
+                var realtimeView = c.GetComponent<RealtimeView>();
+                ownerIds.Add(realtimeView.ownerIDSelf);
+                realtimeView.RequestOwnership();
+            }
+
+            var counter = 0;
+            foreach (var playerCanvas in playerCanvases) {
                 print(playerCanvas.name);
                 if (!playerCanvas.RaycastSearchForPartner())
                 {
@@ -101,6 +110,11 @@ public class RealTimeInstance : MonoBehaviour {
                     break;
                 }
                 else occupiedRotations.Add((int) playerCanvas.transform.rotation.y);
+                
+                var realtimeView = playerCanvas.GetComponent<RealtimeView>();
+                realtimeView.SetOwnership(ownerIds[counter]);
+                
+                counter++;
             }
 
             if (!partnerFound && numberPlayers > 1)

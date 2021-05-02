@@ -25,7 +25,7 @@ public class CanvasFollowPlayer : MonoBehaviour
     public bool RaycastSearchForPartner()
     {
         Debug.DrawRay(transform.position, transform.forward * 1000, Color.green, 30.0f);
-        if (Physics.Raycast(transform.position, transform.forward, out var hit, 1000, LayerMask.GetMask("Player")))
+        if (Physics.Raycast(transform.position, transform.forward, out var hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Player")))
         {
             print(hit.transform);
             return true;

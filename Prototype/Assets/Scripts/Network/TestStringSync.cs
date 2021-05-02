@@ -71,8 +71,9 @@ public class TestStringSync : RealtimeComponent<TestString> {
         if (_message.Contains(MessageTypes.DRUM_NODES_SINGLE_DRUM))
         {
             var drumNodeChanged = _message.Split(',');
-            var nodeCharArray = drumNodeChanged[2].ToCharArray();
-            for (int i = 0; i < 16; i++) MasterManager.Instance.DrumNodeChangedOnServer(Int32.Parse(drumNodeChanged[1]), i, nodeCharArray[i] == 1);
+            if (Int32.Parse(drumNodeChanged[1]) == MasterManager.Instance.localPlayerNumber) return;
+            var nodeCharArray = drumNodeChanged[3].ToCharArray();
+            for (int i = 0; i < 16; i++) MasterManager.Instance.DrumNodeChangedOnServer(Int32.Parse(drumNodeChanged[2]), i, nodeCharArray[i] == 1);
         }
 
         if (_message.Contains(MessageTypes.DRUM_NODE_CHANGED)) {

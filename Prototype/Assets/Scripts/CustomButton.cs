@@ -77,7 +77,7 @@ public class CustomButton : MonoBehaviour {
                 if (!isActive) { 
                     StartCoroutine(InteractionBreakTime());
                     SetActive();
-                    confirmScaler.GetComponent<Image>().color = defaultColor;
+                    
                     OnActivation?.Invoke();
                   
                 }
@@ -117,6 +117,7 @@ public class CustomButton : MonoBehaviour {
     {
         if(changeTextColor) buttonText.color = activeTextColor;
         mainButtonImage.color = activeColor;
+        confirmScaler.GetComponent<Image>().color = defaultColor;
         if (isActive) return;
         isActive = true;
         isDefault = false;

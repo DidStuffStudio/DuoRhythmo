@@ -40,7 +40,6 @@ public class Node : CustomButton {
         {
             if(changeTextColor) buttonText.color = activeTextColor;
             mainButtonImage.color = activeColor;
-            if (isActive) return;
             isActive = true;
             isDefault = false;
         }
@@ -49,7 +48,6 @@ public class Node : CustomButton {
             mainButtonImage.color = defaultColor;
             if(changeTextColor)buttonText.color = defaultTextColor;
             confirmScaler.GetComponent<Image>().color = activeColor;
-            if (isDefault) return;
             isDefault = true;
             isActive = false;
         }

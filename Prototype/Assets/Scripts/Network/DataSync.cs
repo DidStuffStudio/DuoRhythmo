@@ -27,7 +27,7 @@ public class DataSync : MonoBehaviour
     {
         if (!sendAll)
         {
-            var nodeString = TestStringSync.MessageTypes.DRUM_NODES_SINGLE_DRUM + drumIndex + ",";
+            var nodeString = TestStringSync.MessageTypes.DRUM_NODES_SINGLE_DRUM + "," + MasterManager.Instance.localPlayerNumber + drumIndex + ",";
             for (int i = 0; i < 16; i++) nodeString += nodesActivated[drumIndex, i];
             RealTimeInstance.Instance._testStringSync.SetMessage(nodeString);
         }

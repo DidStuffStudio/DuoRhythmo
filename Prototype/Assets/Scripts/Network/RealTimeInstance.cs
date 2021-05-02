@@ -88,6 +88,7 @@ public class RealTimeInstance : MonoBehaviour {
             List<int> occupiedRotations = new List<int>();
             foreach (var playerCanvas in GameObject.FindObjectsOfType<CanvasFollowPlayer>()) {
                 if (!playerCanvas.RaycastSearchForPartner()) {
+                    if (numberPlayers == 1) break;
                     MasterManager.Instance.playerPositionDestination.position = playerCanvas.transform.forward * 408;
                     MasterManager.Instance.playerPositionDestination.LookAt(Vector3.zero);
                     break;
@@ -95,11 +96,13 @@ public class RealTimeInstance : MonoBehaviour {
                 else occupiedRotations.Add((int) playerCanvas.transform.rotation.y);
             }
 
-            for (int i = 0; i < 360; i -= 36) {
+            for (int i = 360; i > 0; i -= 36) {
                 if (!occupiedRotations.Contains(i) || !occupiedRotations.Contains(i + 180)) {
                     // 360 || 0 --> -180
                     // 359 --> -179 --> Abs(-179 + 180) = Abs(1) = 1
+                    if (numberPlayers == 1) break;
                     MasterManager.Instance.playerCamera.transform.parent.Rotate(0, i, 0);
+                    break;
                 }
             }
         }

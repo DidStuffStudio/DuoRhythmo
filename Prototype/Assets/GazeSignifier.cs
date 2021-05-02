@@ -30,14 +30,14 @@ public class GazeSignifier : MonoBehaviour {
     private Vector3 MouseProjectToPlaneWorld(Vector3 mousePosition)
     {
         Vector3 mouseScreenPoint = new Vector2(mousePosition.x,mousePosition.y);
-        mouseScreenPoint += (transform.forward * visualizationDistance);
+        mouseScreenPoint += (Camera.main.transform.forward * visualizationDistance);
         return Camera.main.ScreenToWorldPoint(mouseScreenPoint);
     }
     
 
     private Vector3 ProjectToPlaneInWorld(GazePoint gazePoint) {
         Vector3 gazeOnScreen = gazePoint.Screen;
-        gazeOnScreen += (transform.forward * visualizationDistance);
+        gazeOnScreen += (Camera.main.transform.forward * visualizationDistance);
         return Camera.main.ScreenToWorldPoint(gazeOnScreen);
     }
 

@@ -78,16 +78,13 @@ public class RealTimeInstance : MonoBehaviour {
     private void DidConnectToRoom(Realtime realtime) {
         isConnected = true;
 
-        networkManager = Realtime.Instantiate(networkManagerPrefab.name);
+        networkManager = Realtime.Instantiate(networkManagerPrefab.name, true, true);
+        var realtimeView = networkManager.GetComponent<RealtimeView>();
+        MasterManager.Instance.localPlayerNumber = realtimeView.ownerIDSelf;
 
         numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
-        //MasterManager.Instance.localPlayerNumber =
-        //numberPlayers - 1; // set this local player's player number to the current player number (index value)
 
-        var gfx = Realtime.Instantiate(playerCanvasPrefab.name, true, true, true);
-        gfx.transform.GetComponent<RealtimeTransform>().RequestOwnership();
-        GetComponent<RealtimeView>().realtimeView.RequestOwnership();
-        MasterManager.Instance.localPlayerNumber = GetComponent<RealtimeView>().ownerIDSelf;
+        Realtime.Instantiate(playerCanvasPrefab.name, true, true);
         print("This is my player number: " + MasterManager.Instance.localPlayerNumber );
         stringSync.SetNewPlayerUpdateTime(MasterManager.Instance.localPlayerNumber);
         stringSync.SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);

@@ -99,8 +99,7 @@ public class RealTimeInstance : MonoBehaviour {
 
                 if (!playerCanvas.RaycastSearchForPartner())
                 {
-                    MasterManager.Instance.playerPositionDestination.position =
-                        playerCanvas.transform.position + playerCanvas.transform.forward * 816;
+                    MasterManager.Instance.playerPositionDestination.position = playerCanvas.transform.forward * 408;
                     MasterManager.Instance.playerPositionDestination.LookAt(Vector3.zero);
                 }
             }

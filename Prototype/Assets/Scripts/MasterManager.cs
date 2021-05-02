@@ -263,7 +263,7 @@ public class MasterManager : MonoBehaviour {
         while (true) {
             // if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             if (RealTimeInstance.Instance.isSoloMode && RealTimeInstance.Instance.isConnected) break;
-            if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
+            if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 0) break;
             yield return new WaitForEndOfFrame();
         }
 

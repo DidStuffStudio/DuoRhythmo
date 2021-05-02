@@ -79,7 +79,15 @@ public class StringSync : RealtimeComponent<StringModel> {
         }
     }
 
-    private void EffectsValuesDidChange(StringModel stringModel, string value) { }
+    private void EffectsValuesDidChange(StringModel stringModel, string value) {
+        var drumValueDidChanged = value.Split(',');
+        if (int.Parse(drumValueDidChanged[0]) == MasterManager.Instance.localPlayerNumber ||
+            !RealTimeInstance.Instance.isNewPlayer) return;
+        for (int i = 1; i < drumValueDidChanged.Length; i++) { // go through each drum
+            var effectsCharArray = drumValueDidChanged[i].ToCharArray();
+            MasterManager.Instance.EffectsDidChangeOnServer(i - 1, effectsCharArray);
+        }
+    }
 
     private void AnimatorTimeDidChange(StringModel stringModel, string value) =>
         MasterManager.Instance.userInterfaceManager.SetUpRotationForNewPlayer(float.Parse(value));
@@ -103,6 +111,7 @@ public class StringSync : RealtimeComponent<StringModel> {
     private void NewPlayerConnectedDidChange(StringModel stringModel, string value) {
         if (!RealTimeInstance.Instance.isNewPlayer) {
             MasterManager.Instance.dataMaster.SendNodes(0, true);
+            MasterManager.Instance.dataMaster.SendEffects(0, true);
             SetAnimatorTime(MasterManager.Instance.userInterfaceManager.currentRotationOfUI);
         }
 

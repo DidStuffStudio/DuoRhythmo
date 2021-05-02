@@ -59,7 +59,7 @@ public class MasterManager : MonoBehaviour {
     private Transform _playerPosition;
     private float startTime, journeyLength;
     [SerializeField] private float positionSpeed = 10.0f;
-    [SerializeField] private Transform playerStartPosition, playerPositionDestination;
+    public Transform playerStartPosition, playerPositionDestination;
     public int localPlayerNumber = -1;
     public bool gameSetUpFinished;
     public float currentRotationOfUI = 0.0f;
@@ -74,6 +74,9 @@ public class MasterManager : MonoBehaviour {
     public bool DwellSettingsActive;
     public GameObject dwellSettingsPrefab;
     public DataSync dataMaster;
+    
+    
+    [SerializeField] private Dictionary<float, bool> playerTransforms = new Dictionary<float, bool>();
     private void Start() {
         if (_instance == null) _instance = this;
         Players.CollectionChanged += OnPlayersChanged;
@@ -84,6 +87,10 @@ public class MasterManager : MonoBehaviour {
         drumDictionary.Add(4, ambientDrums);
         
         currentDrums = classicDrums;
+        for (int i = 0; i < numberInstruments*2; i++)
+        {
+            playerTransforms.Add(-36*i,false);
+        }
 
     }
 
@@ -269,7 +276,7 @@ public class MasterManager : MonoBehaviour {
     public void SetPlayerPosition() {
         journeyLength = Vector3.Distance(playerStartPosition.position, playerPositionDestination.position);
 
-        // rotate the parent of the camera around the degrees dependant on the number of players and number of instruments
+        /*// rotate the parent of the camera around the degrees dependant on the number of players and number of instruments
         // players should be opposite to each other --> so differentiate between even and uneven numbers --> 180 degrees difference between them
         float degrees = 0;
         float degreesPerPlayer = 360.0f / (numberInstruments * 2);
@@ -277,12 +284,9 @@ public class MasterManager : MonoBehaviour {
         if (localPlayerNumber % 2 == 0) degrees = -degreesPerPlayer * (localPlayerNumber / 2.0f);
         // if uneven player --> degrees = 180 - 36 * unevenPlayerNumber
         else degrees = 180 - (degreesPerPlayer * ((localPlayerNumber - 1) / 2.0f));
-        // rotate the parent of the camera by the number of degrees around the y axis
-        // Transform playerParent = playerCamera.transform.parent;
-        // Vector3 playerParentPos = playerParent.position;
-        // Quaternion playerParentRot = playerParent.rotation;
-
-        playerCamera.transform.parent.Rotate(0, degrees, 0);
+        
+        //if(RealTimeInstance.Instance.numberPlayers != 1)
+        //playerCamera.transform.parent.Rotate(0, degrees, 0);*/
     }
 
 

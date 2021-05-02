@@ -32,6 +32,7 @@ public class UserInterfaceManager : MonoBehaviour {
 
     public GameObject dwellSpeedPrefab;
     private bool animateUIBackward = false;
+    private bool ignoreEvents;
 
     private void Start() {
        
@@ -50,15 +51,8 @@ public class UserInterfaceManager : MonoBehaviour {
     
     public void PauseAnimation()
     {
-        print("Paused");
+        if (ignoreEvents) return;
         StartCoroutine(SwitchPanelRenderLayers());
-        /*if (animateUIBackward)
-        {
-            print("Called from within");
-            animateUIBackward = false;
-            return;
-        }
-        print("Called from outside");*/
         _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
         _playerAnimator.speed = 0.0f;
         //timer = (int) MasterManager.Instance.timer.timer;
@@ -66,7 +60,9 @@ public class UserInterfaceManager : MonoBehaviour {
         if(!RealTimeInstance.Instance.isSoloMode)MasterManager.Instance.timer.ToggleTimer(true);
     }
 
-    public void PlayAnimation(bool forward) {
+    public void PlayAnimation(bool forward)
+    {
+        StartCoroutine(IgnoreEvents());
         if (forward)
         {
             _currentRenderPanel++;
@@ -190,5 +186,13 @@ public class UserInterfaceManager : MonoBehaviour {
     public void InstantiateDwellSpeedPrefab()
     {
         Instantiate(dwellSpeedPrefab, Camera.main.transform);
+    }
+
+
+    private IEnumerator IgnoreEvents()
+    {
+        ignoreEvents = true;
+        yield return new WaitForSeconds(0.1f);
+        ignoreEvents = false;
     }
 }

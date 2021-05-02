@@ -8,7 +8,7 @@ public class RadialSlider : CustomButton {
     private float _minValue, _maxValue;
     public int maximumValue = 100, minimumValue = 0;
     [SerializeField] private float angleConstraint;
-    
+    [SerializeField] private float startingValue = 0.0f;
     [SerializeField] private int sliderIndex; // Pass to euclidean manager to tell which slider corresponds to which effect 
 
     private Camera _mainCamera;
@@ -29,7 +29,7 @@ public class RadialSlider : CustomButton {
     protected override void Start() {
         base.Start();
         _mainCamera = Camera.main;
-        SetCurrentValue(currentValue);
+        SetCurrentValue(startingValue);
     }
 
     public void SetCurrentValue(float value)

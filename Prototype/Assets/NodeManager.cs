@@ -285,12 +285,23 @@ public class NodeManager : MonoBehaviour {
     }
     private IEnumerator RotateNodesRoutine(int[] values)
     {
-        for (int i = 0; i < _nodes.Count; i++) {
+        for (int i = 0; i < _nodes.Count; i++)
+        {
             var value = values[i];
             // if the euclidean value is 1, then it means it should be active, so activate
-            if(value == 1 && !_nodes[i].isActive) _nodes[i].Activate(true);
-            else if(value == 0  && _nodes[i].isActive) _nodes[i].Activate(false);
-            yield return new WaitForSeconds(0.1f);
+            if (value == 1 && !_nodes[i].isActive)
+            {
+                _nodes[i].Activate(true);
+                yield return new WaitForSeconds(0.1f);
+            }
+            else if (value == 0 && _nodes[i].isActive)
+            {
+                _nodes[i].Activate(false);
+                yield return new WaitForSeconds(0.1f);
+            }
+
+              
+            
         }
         
     }
@@ -312,9 +323,17 @@ public class NodeManager : MonoBehaviour {
             for (int i = 0; i < _nodes.Count; i++) {
                 var euclideanValue = _euclideanRythm._euclideanValues[i];
                 // if the euclidean value is 1, then it means it should be active, so activate
-                if(euclideanValue == 1 && !_nodes[i].isActive) _nodes[i].Activate(true);
-                else if(euclideanValue == 0  && _nodes[i].isActive) _nodes[i].Activate(false);
-                yield return new WaitForSeconds(0.1f);
+                if (euclideanValue == 1 && !_nodes[i].isActive)
+                {
+                    _nodes[i].Activate(true);
+                    yield return new WaitForSeconds(0.1f);
+                }
+                else if (euclideanValue == 0 && _nodes[i].isActive)
+                {
+                    _nodes[i].Activate(false);
+                    yield return new WaitForSeconds(0.1f);
+                }
+                
             }
         }
     }

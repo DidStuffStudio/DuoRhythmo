@@ -93,8 +93,18 @@ public class RealTimeInstance : MonoBehaviour {
         numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
         //MasterManager.Instance.localPlayerNumber =
             //numberPlayers - 1; // set this local player's player number to the current player number (index value)
-        
 
+            foreach (var playerCanvas in GameObject.FindObjectsOfType<CanvasFollowPlayer>())
+            {
+
+                if (!playerCanvas.RaycastSearchForPartner())
+                {
+                    MasterManager.Instance.playerPositionDestination.position =
+                        playerCanvas.transform.position + playerCanvas.transform.forward * 816;
+                    MasterManager.Instance.playerPositionDestination.LookAt(Vector3.zero);
+                }
+            }
+            
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name, true, true, true);
         gfx.transform.GetComponent<RealtimeTransform>().RequestOwnership();
         if (numberPlayers == 1)

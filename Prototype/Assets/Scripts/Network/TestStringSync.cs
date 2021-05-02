@@ -88,10 +88,10 @@ public class TestStringSync : RealtimeComponent<TestString> {
             if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
 
             // send that player his new player number
-            for (int i = 0; i < MasterManager.Instance.dataMaster.conectedPlayers.Length; i++) {
+            /*for (int i = 0; i < MasterManager.Instance.dataMaster.conectedPlayers.Length; i++) {
                 // 0 <= (2 - 1) = 1 --> connectedPLayer = 1;
                 // 1 < (2 - 1) = 1 --> connectedPlayer = 0; --> set the current player index
-                if (i < (RealTimeInstance.Instance.numberPlayers - 1)) {
+                if (i <= RealTimeInstance.Instance.numberPlayers) {
                     MasterManager.Instance.dataMaster.conectedPlayers[i] = 1;
                 }
                 else {
@@ -101,7 +101,10 @@ public class TestStringSync : RealtimeComponent<TestString> {
                     break;
                 }
                 // if (MasterManager.Instance.dataMaster.conectedPlayers[i] == 1) counter++;
-            }
+            }*/
+            var nextPlayer = MasterManager.Instance.player.transform.parent.childCount;
+            SetMessage(MessageTypes.SET_PLAYER_NUMBER + nextPlayer);
+            print("sending " + nextPlayer);
         } if (_message.Contains(MessageTypes.NEW_PLAYER_UPDATE_TIME)) {
             
             // var splitMessage = _message.Split(',');
@@ -111,18 +114,18 @@ public class TestStringSync : RealtimeComponent<TestString> {
         }
 
         if (_message.Contains(MessageTypes.SET_PLAYER_NUMBER)) {
-            // var playerIndex = Int32.Parse(_message.Split(',')[1]);
-            // if (!MasterManager.Instance.player.hasPlayerNumber)
-            // {
-            //     MasterManager.Instance.localPlayerNumber = playerIndex;
-            //     MasterManager.Instance.player.hasPlayerNumber = true;
-            // } 
-            //
-            // MasterManager.Instance.dataMaster.SetConnectedPlayer(playerIndex, true);
+            var playerIndex = Int32.Parse(_message.Split(',')[1]);
+            if (!MasterManager.Instance.player.hasPlayerNumber)
+            {
+                MasterManager.Instance.localPlayerNumber = playerIndex;
+                MasterManager.Instance.player.hasPlayerNumber = true;
+            } 
+            
+            MasterManager.Instance.dataMaster.SetConnectedPlayer(playerIndex, true);
         }
         
         
-        if(_message.Contains(MessageTypes.REQUEST_PLAYER_NUMBERS))
+        /*if(_message.Contains(MessageTypes.REQUEST_PLAYER_NUMBERS))
         {
             for (int i = 0; i < 10; i++) MasterManager.Instance.dataMaster.SetConnectedPlayer(i,false);
             
@@ -135,7 +138,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
             var splitMessage = _message.Split(',');
             var playerIdentified = Int32.Parse(splitMessage[1]);
             MasterManager.Instance.dataMaster.SetConnectedPlayer(playerIdentified, true);
-        }
+        }*/
     }
     
     public void SetMessage(string value) {

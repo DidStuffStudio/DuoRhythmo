@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3882045310439854335}
   - component: {fileID: 3882045310439854329}
   - component: {fileID: 3882045310439854334}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,8 @@ GameObject:
   - component: {fileID: 3882045310493096546}
   - component: {fileID: 3882045310493096547}
   - component: {fileID: 2181196123848879784}
-  m_Layer: 0
+  - component: {fileID: 6139679973083020932}
+  m_Layer: 8
   m_Name: GFXCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,6 +197,19 @@ MonoBehaviour:
   _isRootPrefabView: 1
   _components: []
   _childViews: []
+--- !u!65 &6139679973083020932
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3882045310493096545}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 200, y: 200, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4565159655829226910
 GameObject:
   m_ObjectHideFlags: 0

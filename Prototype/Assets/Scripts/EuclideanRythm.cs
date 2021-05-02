@@ -101,6 +101,7 @@ public class EuclideanRythm : MonoBehaviour {
         incrementButton.SetActive(turnOn);
         decrementButton.SetActive(turnOn);
         feedbackText.gameObject.SetActive(turnOn);
+        feedbackText.text = pulses.ToString();
         incrementButton.layer = decrementButton.layer = LayerMask.NameToLayer("RenderPanel");
     }
 }

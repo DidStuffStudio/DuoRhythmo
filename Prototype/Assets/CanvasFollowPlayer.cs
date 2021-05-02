@@ -7,7 +7,7 @@ public class CanvasFollowPlayer : MonoBehaviour {
     public Vector3 rotationOffset;
 
     private RealtimeView _realtimeView;
-
+    
     private void Start() {
         _cam = Camera.main.transform;
         _realtimeView = GetComponent<RealtimeView>();
@@ -18,4 +18,6 @@ public class CanvasFollowPlayer : MonoBehaviour {
         transform.position = _cam.position + _cam.TransformDirection(positionOffset);
         transform.rotation = _cam.rotation * Quaternion.Euler(rotationOffset);
     }
+
+    public bool RaycastSearchForPartner() => Physics.Raycast(transform.position, transform.forward, 1000, LayerMask.NameToLayer("Player"));
 }

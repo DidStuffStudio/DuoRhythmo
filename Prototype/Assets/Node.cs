@@ -85,7 +85,7 @@ public class Node : CustomButton {
     public void PlayDrum() {
         if (!isActive || !canPlay) return;
         StartCoroutine(Wait());
-        //StartCoroutine(AudioVFX());
+        StartCoroutine(AudioVFX());
 
         MasterManager.Instance.PlayDrum(drumType);
 

@@ -84,63 +84,11 @@ public class RealTimeInstance : MonoBehaviour {
         //MasterManager.Instance.localPlayerNumber =
         //numberPlayers - 1; // set this local player's player number to the current player number (index value)
 
-        if (numberPlayers <= 10)
-        {
-            List<int> occupiedRotations = new List<int>();
-            var partnerFound = false;
-
-            var playerCanvases = FindObjectsOfType<CanvasFollowPlayer>();
-            var ownerIds = new List<int>();
-            foreach (var c in playerCanvases) {
-                var realtimeView = c.GetComponent<RealtimeView>();
-                ownerIds.Add(realtimeView.ownerIDSelf);
-                realtimeView.RequestOwnership();
-            }
-
-            var counter = 0;
-            foreach (var playerCanvas in playerCanvases) {
-                print(playerCanvas.name);
-                if (!playerCanvas.RaycastSearchForPartner())
-                {
-                    print("Player " + playerCanvas + "does not have a partner");
-                    if (numberPlayers == 1) break;
-                    MasterManager.Instance.playerPositionDestination.position = playerCanvas.transform.forward * 408;
-                    MasterManager.Instance.playerPositionDestination.LookAt(Vector3.zero);
-                    partnerFound = true;
-                    break;
-                }
-                else occupiedRotations.Add((int) playerCanvas.transform.rotation.y);
-                
-                var realtimeView = playerCanvas.GetComponent<RealtimeView>();
-                realtimeView.SetOwnership(ownerIds[counter]);
-                
-                counter++;
-            }
-
-            if (!partnerFound && numberPlayers > 1)
-            {
-                for (int i = 360; i > 0; i -= 36)
-                {
-                    if (!occupiedRotations.Contains(i) || !occupiedRotations.Contains(i + 180))
-                    {
-                        // 360 || 0 --> -180
-                        // 359 --> -179 --> Abs(-179 + 180) = Abs(1) = 1
-                        if (numberPlayers == 1) break;
-                        MasterManager.Instance.playerCamera.transform.parent.Rotate(0, i, 0);
-                        break;
-                    }
-                }
-            }
-        }
-        else {
-            // TODO: add to queue, and if someone disconnects, check if there is someone in queue. If there is, set the first person in queue's position
-            MasterManager.Instance.playerPositionDestination.position = MasterManager.Instance.playerStartPosition.position;
-            MasterManager.Instance.playerPositionDestination.LookAt(Vector3.zero);
-        }
-
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name, true, true, true);
         gfx.transform.GetComponent<RealtimeTransform>().RequestOwnership();
-        MasterManager.Instance.localPlayerNumber = Random.Range(0, 10000000);
+        GetComponent<RealtimeView>().realtimeView.RequestOwnership();
+        MasterManager.Instance.localPlayerNumber = GetComponent<RealtimeView>().ownerIDSelf;
+        print("This is my player number: " + MasterManager.Instance.localPlayerNumber );
         stringSync.SetNewPlayerUpdateTime(MasterManager.Instance.localPlayerNumber);
         stringSync.SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
         StartCoroutine(SeniorPlayer());

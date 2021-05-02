@@ -271,7 +271,7 @@ public class MasterManager : MonoBehaviour {
     public void SetPlayerPosition() {
         journeyLength = Vector3.Distance(playerStartPosition.position, playerPositionDestination.position);
 
-        /*// rotate the parent of the camera around the degrees dependant on the number of players and number of instruments
+        // rotate the parent of the camera around the degrees dependant on the number of players and number of instruments
         // players should be opposite to each other --> so differentiate between even and uneven numbers --> 180 degrees difference between them
         float degrees = 0;
         float degreesPerPlayer = 360.0f / (numberInstruments * 2);
@@ -279,9 +279,7 @@ public class MasterManager : MonoBehaviour {
         if (localPlayerNumber % 2 == 0) degrees = -degreesPerPlayer * (localPlayerNumber / 2.0f);
         // if uneven player --> degrees = 180 - 36 * unevenPlayerNumber
         else degrees = 180 - (degreesPerPlayer * ((localPlayerNumber - 1) / 2.0f));
-        
-        //if(RealTimeInstance.Instance.numberPlayers != 1)
-        //playerCamera.transform.parent.Rotate(0, degrees, 0);*/
+        if(RealTimeInstance.Instance.numberPlayers != 1) playerCamera.transform.parent.Rotate(0, degrees, 0);
     }
 
 

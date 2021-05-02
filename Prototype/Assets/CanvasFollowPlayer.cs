@@ -1,23 +1,36 @@
 using Normal.Realtime;
 using UnityEngine;
 
-public class CanvasFollowPlayer : MonoBehaviour {
+public class CanvasFollowPlayer : MonoBehaviour
+{
     private Transform _cam;
     public Vector3 positionOffset;
     public Vector3 rotationOffset;
 
     private RealtimeView _realtimeView;
-    
-    private void Start() {
+
+    private void Start()
+    {
         _cam = Camera.main.transform;
         _realtimeView = GetComponent<RealtimeView>();
     }
 
-    private void Update() {
+    private void Update()
+    {
         if (!_realtimeView.isOwnedLocallyInHierarchy) return;
         transform.position = _cam.position + _cam.TransformDirection(positionOffset);
         transform.rotation = _cam.rotation * Quaternion.Euler(rotationOffset);
     }
 
-    public bool RaycastSearchForPartner() => Physics.Raycast(transform.position, transform.forward, 1000, LayerMask.NameToLayer("Player"));
+    public bool RaycastSearchForPartner()
+    {
+        Debug.DrawRay(transform.position, transform.forward * 1000, Color.green, 30.0f);
+        if (Physics.Raycast(transform.position, transform.forward, out var hit, 1000, LayerMask.GetMask("Player")))
+        {
+            print(hit.transform);
+            return true;
+        }
+        else return false;
+
+    }
 }

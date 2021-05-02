@@ -86,8 +86,10 @@ public class RealTimeInstance : MonoBehaviour {
 
         if(numberPlayers <= 10) {
             List<int> occupiedRotations = new List<int>();
-            foreach (var playerCanvas in GameObject.FindObjectsOfType<CanvasFollowPlayer>()) {
+            foreach (var playerCanvas in FindObjectsOfType<CanvasFollowPlayer>()) {
+                print(playerCanvas.name);
                 if (!playerCanvas.RaycastSearchForPartner()) {
+                    print("Player " + playerCanvas + "does not have a partner");
                     if (numberPlayers == 1) break;
                     MasterManager.Instance.playerPositionDestination.position = playerCanvas.transform.forward * 408;
                     MasterManager.Instance.playerPositionDestination.LookAt(Vector3.zero);

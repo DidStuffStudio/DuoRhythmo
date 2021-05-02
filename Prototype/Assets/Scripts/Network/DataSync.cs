@@ -46,6 +46,10 @@ public class DataSync : MonoBehaviour
             RealTimeInstance.Instance._testStringSync.SetMessage(nodeString);
         }
     }
-    
+
+    public void SendEffectsToNewPlayer()
+    {
+        
+    }
 
 }

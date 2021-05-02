@@ -112,6 +112,7 @@ public class RealTimeInstance : MonoBehaviour {
             MasterManager.Instance.player.hasPlayerNumber = true;
         }
         _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED+MasterManager.Instance.localPlayerNumber);
+        
 
         StartCoroutine(SeniorPlayer());
 

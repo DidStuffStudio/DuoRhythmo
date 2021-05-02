@@ -25,6 +25,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
         public const string SEND_PLAYER_NUMBER = "RequestPlayerNumber,";
         public const string DRUM_NODES_SINGLE_DRUM = "DrumNodesSingle,";
         public const string DRUM_NODES_ALL_DRUM = "DrumNodesALL,";
+        public const string ANIMATOR_TIME = "AnimatorTime,";
     }
 
     protected override void OnRealtimeModelReplaced(TestString previousModel, TestString currentModel) {
@@ -80,12 +81,13 @@ public class TestStringSync : RealtimeComponent<TestString> {
         {
             var drumNodeChanged = _message.Split(',');
             if (Int32.Parse(drumNodeChanged[1]) == MasterManager.Instance.localPlayerNumber || !RealTimeInstance.Instance.isNewPlayer) return;
-            var nodeCharArray = drumNodeChanged[3].ToCharArray();
-            for (int j = 0; j < 5; j++)
+            
+            for (int j = 2; j < drumNodeChanged.Length; j++)
             {
+                var nodeCharArray = drumNodeChanged[j].ToCharArray();
                 for (int i = 0; i < 16; i++)
                 {
-                    MasterManager.Instance.DrumNodeChangedOnServer(j, i, Int32.Parse(nodeCharArray[i].ToString()) == 1);
+                    MasterManager.Instance.DrumNodeChangedOnServer(j-2, i, Int32.Parse(nodeCharArray[i].ToString()) == 1);
                 }
             }
             
@@ -100,10 +102,23 @@ public class TestStringSync : RealtimeComponent<TestString> {
             MasterManager.Instance.DrumNodeChangedOnServer(drumIndex, nodeIndex, activateNode == 1);
         }
 
+
+        if (_message.Contains(MessageTypes.ANIMATOR_TIME))
+        {
+            var time = _message.Split(',');
+            MasterManager.Instance.userInterfaceManager.SetUpRotationForNewPlayer(float.Parse(time[1]));
+        }
+        
         if (_message.Contains(MessageTypes.NEW_PLAYER_CONNECTED)) {
-            // find all the networkmanager s existing currently in the hierarchy, and set their parents to the players holder gameobject
             
-            MasterManager.Instance.dataMaster.SendNodes(0,true);
+            // find all the networkmanager s existing currently in the hierarchy, and set their parents to the players holder gameobject
+            if (!RealTimeInstance.Instance.isNewPlayer)
+            {
+                MasterManager.Instance.dataMaster.SendNodes(0,true);
+                SetMessage(MessageTypes.ANIMATOR_TIME + MasterManager.Instance.userInterfaceManager.currentRotationOfUI);
+            }
+            
+            
             var players = GameObject.FindObjectsOfType<NetworkManagerSync>();
             foreach (var player in players) {
                 RealTimeInstance.Instance.SetParentOfPlayer(player.transform);
@@ -112,7 +127,7 @@ public class TestStringSync : RealtimeComponent<TestString> {
             var connectedPlayer = Int32.Parse(splitMessage[1]);
             
             if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
-
+                
             // send that player his new player number
             /*for (int i = 0; i < MasterManager.Instance.dataMaster.conectedPlayers.Length; i++) {
                 // 0 <= (2 - 1) = 1 --> connectedPLayer = 1;

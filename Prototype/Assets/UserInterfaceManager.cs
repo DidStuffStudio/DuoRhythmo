@@ -44,9 +44,9 @@ public class UserInterfaceManager : MonoBehaviour {
     }
     
 
-    public void SetUpRotationForNewPlayer()
+    public void SetUpRotationForNewPlayer(float time)
     {
-        _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
+        _uiAnimator.Play("Rotation", 0, time);
     }
     
     public void PauseAnimation()
@@ -170,10 +170,8 @@ public class UserInterfaceManager : MonoBehaviour {
 
     }
 
-    public void SetAnimatorTime() //At the end of each round Send this to the server so new players can join the experience at the same time as everyone else
-    {
-        //_uiAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-    }
+    public void SetAnimatorTime() => currentRotationOfUI = _uiAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+    
 
     private void OnEnable() {
         foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(true);

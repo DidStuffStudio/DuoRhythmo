@@ -41,7 +41,7 @@ public class Node : CustomButton {
         {
             if(changeTextColor) buttonText.color = activeTextColor;
             mainButtonImage.color = activeColor;
-            confirmScaler.GetComponent<Image>().color = default;
+            confirmScaler.GetComponent<Image>().color = defaultColor;
             isActive = true;
             isDefault = false;
             MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 1;

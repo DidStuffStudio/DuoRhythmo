@@ -33,7 +33,7 @@ public class DataSync : MonoBehaviour
         }
         else
         {
-            var nodeString = TestStringSync.MessageTypes.DRUM_NODES_ALL_DRUM;
+            var nodeString = TestStringSync.MessageTypes.DRUM_NODES_ALL_DRUM + MasterManager.Instance.localPlayerNumber + ",";
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 16; j++)

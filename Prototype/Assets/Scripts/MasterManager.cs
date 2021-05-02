@@ -407,10 +407,9 @@ public class MasterManager : MonoBehaviour {
     
     public void ResetLocalPlayerNumber(int disconnectedPlayerNumber) { }
 
-    public void DrumNodeChangedOnServer(int drumIndex, int nodeIndex, bool activate) {
-        _nodeManagers[drumIndex]._nodes[nodeIndex].SetNodeFromServer(activate);
-    }
+    public void DrumNodeChangedOnServer(int drumIndex, int nodeIndex, bool activate) => _nodeManagers[drumIndex]._nodes[nodeIndex].SetNodeFromServer(activate);
 
+    
 
     private IEnumerator WaitToPositionCamera(float time) {
         SetPlayerPosition();

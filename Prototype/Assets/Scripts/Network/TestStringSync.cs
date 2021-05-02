@@ -73,8 +73,22 @@ public class TestStringSync : RealtimeComponent<TestString> {
             var drumNodeChanged = _message.Split(',');
             if (Int32.Parse(drumNodeChanged[1]) == MasterManager.Instance.localPlayerNumber) return;
             var nodeCharArray = drumNodeChanged[3].ToCharArray();
-            foreach (var node in nodeCharArray) print(node);
-            for (int i = 0; i < 16; i++) MasterManager.Instance.DrumNodeChangedOnServer(Int32.Parse(drumNodeChanged[2]), i, nodeCharArray[i] == 1);
+            for (int i = 0; i < 16; i++) MasterManager.Instance.DrumNodeChangedOnServer(Int32.Parse(drumNodeChanged[2]), i, Int32.Parse(nodeCharArray[i].ToString()) == 1);
+        }
+        
+        if (_message.Contains(MessageTypes.DRUM_NODES_ALL_DRUM))
+        {
+            var drumNodeChanged = _message.Split(',');
+            if (Int32.Parse(drumNodeChanged[1]) == MasterManager.Instance.localPlayerNumber || !RealTimeInstance.Instance.isNewPlayer) return;
+            var nodeCharArray = drumNodeChanged[3].ToCharArray();
+            for (int j = 0; j < 5; j++)
+            {
+                for (int i = 0; i < 16; i++)
+                {
+                    MasterManager.Instance.DrumNodeChangedOnServer(j, i, Int32.Parse(nodeCharArray[i].ToString()) == 1);
+                }
+            }
+            
         }
 
         if (_message.Contains(MessageTypes.DRUM_NODE_CHANGED)) {
@@ -88,6 +102,8 @@ public class TestStringSync : RealtimeComponent<TestString> {
 
         if (_message.Contains(MessageTypes.NEW_PLAYER_CONNECTED)) {
             // find all the networkmanager s existing currently in the hierarchy, and set their parents to the players holder gameobject
+            
+            MasterManager.Instance.dataMaster.SendNodes(0,true);
             var players = GameObject.FindObjectsOfType<NetworkManagerSync>();
             foreach (var player in players) {
                 RealTimeInstance.Instance.SetParentOfPlayer(player.transform);

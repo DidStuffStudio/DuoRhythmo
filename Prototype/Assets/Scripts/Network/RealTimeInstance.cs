@@ -27,7 +27,7 @@ public class RealTimeInstance : MonoBehaviour {
 
     [SerializeField] private GameObject playerCanvasPrefab;
     [SerializeField] private Transform playersHolder;
-
+    public bool isNewPlayer = true;
     private void Awake() {
         _instance = this;
         _realtime = GetComponent<Realtime>();
@@ -113,6 +113,15 @@ public class RealTimeInstance : MonoBehaviour {
         }
         _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED+MasterManager.Instance.localPlayerNumber);
 
+        StartCoroutine(SeniorPlayer());
+
+
+    }
+
+    IEnumerator SeniorPlayer()
+    {
+        yield return new WaitForSeconds(10.0f);
+        isNewPlayer = false;
     }
     
     private void OnDisable()

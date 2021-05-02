@@ -36,12 +36,15 @@ public class Node : CustomButton {
     }
 
     public void SetNodeFromServer(bool activate) {
+        
         if (activate)
         {
             if(changeTextColor) buttonText.color = activeTextColor;
             mainButtonImage.color = activeColor;
+            confirmScaler.GetComponent<Image>().color = default;
             isActive = true;
             isDefault = false;
+            MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 1;
         }
         else
         {
@@ -50,7 +53,9 @@ public class Node : CustomButton {
             confirmScaler.GetComponent<Image>().color = activeColor;
             isDefault = true;
             isActive = false;
+            MasterManager.Instance.dataMaster.nodesActivated[(int) drumType, indexValue] = 0;
         }
+        
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 

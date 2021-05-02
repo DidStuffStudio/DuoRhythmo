@@ -61,7 +61,6 @@ public class TestStringSync : RealtimeComponent<TestString> {
         {
             var time = Int32.Parse(_message.Split(',')[1]);
             
-        
                 MasterManager.Instance.timer.tempRoundTime = time;
                 MasterManager.Instance.timer.ToggleTimer(true);
                 
@@ -107,10 +106,10 @@ public class TestStringSync : RealtimeComponent<TestString> {
             print("sending " + nextPlayer);
         } if (_message.Contains(MessageTypes.NEW_PLAYER_UPDATE_TIME)) {
             
-            // var splitMessage = _message.Split(',');
-            // var connectedPlayer = Int32.Parse(splitMessage[1]);
-            // if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
-            // SetMessage(MessageTypes.TIMER+MasterManager.Instance.timer.timer);
+            var splitMessage = _message.Split(',');
+            var connectedPlayer = Int32.Parse(splitMessage[1]);
+            if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
+            SetMessage(MessageTypes.TIMER+MasterManager.Instance.timer.timer);
         }
 
         if (_message.Contains(MessageTypes.SET_PLAYER_NUMBER)) {

@@ -19,7 +19,7 @@ public class RealTimeInstance : MonoBehaviour {
     public bool isConnected;
     public int numberPlayers, previousNumberPlayers;
     public bool isSoloMode = true;
-    public TestStringSync _testStringSync;
+    public StringSync stringSync;
 
     [SerializeField] private GameObject realtimeInstancesHolderPrefab;
     private Transform _realtimeInstancesHolder;
@@ -29,6 +29,7 @@ public class RealTimeInstance : MonoBehaviour {
     [SerializeField] private GameObject playerCanvasPrefab;
     [SerializeField] private Transform playersHolder;
     public bool isNewPlayer = true;
+
     private void Awake() {
         _instance = this;
         _realtime = GetComponent<Realtime>();
@@ -41,25 +42,14 @@ public class RealTimeInstance : MonoBehaviour {
             var players = FindObjectsOfType<Player>();
             numberPlayers = players.Length;
             if (numberPlayers != previousNumberPlayers) {
-                var counter = 0; 
-                // foreach (var possiblyConnectedPlayer in MasterManager.Instance.dataMaster.conectedPlayers) {
-                //     // if (possiblyConnectedPlayer == 1) counter++;
-                //     possiblyConnectedPlayer = 1;
-                // }
-                
-                // _testStringSync.SetMessage(TestStringSync.MessageTypes.REQUEST_PLAYER_NUMBERS);
+                var counter = 0;
                 for (int i = 0; i < MasterManager.Instance.dataMaster.conectedPlayers.Length; i++) {
                     if (numberPlayers > i) MasterManager.Instance.dataMaster.conectedPlayers[i] = 1;
                     else MasterManager.Instance.dataMaster.conectedPlayers[i] = 0;
-                    // if (MasterManager.Instance.dataMaster.conectedPlayers[i] == 1) counter++;
                 }
-
-                // if (counter != numberPlayers) {
-                //     // there's something off - someone has disconnected
-                //     MasterManager.Instance.dataMaster.
-                // }
                 previousNumberPlayers = numberPlayers;
             }
+
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -74,7 +64,7 @@ public class RealTimeInstance : MonoBehaviour {
     }
 
     public void SetParentOfPlayer(Transform p) => p.SetParent(playersHolder);
-    
+
 
     public double GetRoomTime() {
         return _realtime.room.time;
@@ -86,54 +76,38 @@ public class RealTimeInstance : MonoBehaviour {
     }
 
     private void DidConnectToRoom(Realtime realtime) {
-      
         isConnected = true;
-        
+
         networkManager = Realtime.Instantiate(networkManagerPrefab.name);
-        
+
         numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
         //MasterManager.Instance.localPlayerNumber =
-            //numberPlayers - 1; // set this local player's player number to the current player number (index value)
+        //numberPlayers - 1; // set this local player's player number to the current player number (index value)
 
-            foreach (var playerCanvas in GameObject.FindObjectsOfType<CanvasFollowPlayer>())
-            {
-
-                if (!playerCanvas.RaycastSearchForPartner())
-                {
-                    MasterManager.Instance.playerPositionDestination.position = playerCanvas.transform.forward * 408;
-                    MasterManager.Instance.playerPositionDestination.LookAt(Vector3.zero);
-                }
+        foreach (var playerCanvas in GameObject.FindObjectsOfType<CanvasFollowPlayer>()) {
+            if (!playerCanvas.RaycastSearchForPartner()) {
+                MasterManager.Instance.playerPositionDestination.position = playerCanvas.transform.forward * 408;
+                MasterManager.Instance.playerPositionDestination.LookAt(Vector3.zero);
             }
-            
+        }
+
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name, true, true, true);
         gfx.transform.GetComponent<RealtimeTransform>().RequestOwnership();
-        if (numberPlayers == 1)
-        {
+        if (numberPlayers == 1) {
             MasterManager.Instance.localPlayerNumber = 0;
             MasterManager.Instance.player.hasPlayerNumber = true;
         }
+
         MasterManager.Instance.localPlayerNumber = Random.Range(0, 10000000);
-        MasterManager.Instance.timer.newPlayer = true;
-        _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_UPDATE_TIME+MasterManager.Instance.localPlayerNumber);
-        
-        
-
+        stringSync.SetNewPlayerUpdateTime(MasterManager.Instance.localPlayerNumber);
+        stringSync.SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
         StartCoroutine(SeniorPlayer());
-
-
     }
 
-    IEnumerator SeniorPlayer()
-    {
-        yield return new WaitForSeconds(0.2f);
-        _testStringSync.SetMessage(TestStringSync.MessageTypes.NEW_PLAYER_CONNECTED+MasterManager.Instance.localPlayerNumber);
+    IEnumerator SeniorPlayer() {
         yield return new WaitForSeconds(1.0f);
         isNewPlayer = false;
     }
-    
-    private void OnDisable()
-    {
-        _realtime.didConnectToRoom -= DidConnectToRoom;
-    }
 
+    private void OnDisable() => _realtime.didConnectToRoom -= DidConnectToRoom;
 }

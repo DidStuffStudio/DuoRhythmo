@@ -27,13 +27,13 @@ public class DataSync : MonoBehaviour
     {
         if (!sendAll)
         {
-            var nodeString = TestStringSync.MessageTypes.DRUM_NODES_SINGLE_DRUM + MasterManager.Instance.localPlayerNumber + ","  + drumIndex + ",";
+            var nodeString = MasterManager.Instance.localPlayerNumber + ","  + drumIndex + ",";
             for (int i = 0; i < 16; i++) nodeString += nodesActivated[drumIndex, i];
-            RealTimeInstance.Instance._testStringSync.SetMessage(nodeString);
+            RealTimeInstance.Instance.stringSync.SetDrumNodesSingle(nodeString);
         }
         else
         {
-            var nodeString = TestStringSync.MessageTypes.DRUM_NODES_ALL_DRUM + MasterManager.Instance.localPlayerNumber + ",";
+            var nodeString = MasterManager.Instance.localPlayerNumber + ",";
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 16; j++)
@@ -43,7 +43,7 @@ public class DataSync : MonoBehaviour
 
                 nodeString += ",";
             }
-            RealTimeInstance.Instance._testStringSync.SetMessage(nodeString);
+            RealTimeInstance.Instance.stringSync.SetDrumNodesAllDrums(nodeString);
         }
     }
 

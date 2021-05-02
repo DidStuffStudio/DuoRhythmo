@@ -33,8 +33,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5753830764758855234}
   - {fileID: 5753830764758855413}
+  - {fileID: 5753830764758855234}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -140,16 +140,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28a3b188d157c6489d00738ed0d891f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
   isDefault: 0
   isHover: 0
   isActive: 0
-  isHint: 0
   isConfirmationButton: 0
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
-  inactiveHoverColor: {r: 0, g: 0, b: 0, a: 0}
   activeColor: {r: 0, g: 0, b: 0, a: 0}
-  hintColor: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColor: {r: 0, g: 0, b: 0, a: 0}
+  defaultTextColor: {r: 33, g: 33, b: 33, a: 1}
+  activeTextColor: {r: 238, g: 238, b: 238, a: 1}
   confirmScaler: {fileID: 0}
   mouseOver: 0
   interactionBreakTime: 1
@@ -160,10 +159,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   activated: 0
-  localDwellTimeSpeed: 100
-  isDwellTimeSetter: 0
+  mainButtonImage: {fileID: 0}
+  changeTextColor: 0
   _text: {fileID: 0}
   _string: 
+  activateOnStart: 0
+  isDwellActive: 0
+  _dwellSpeedMaster: {fileID: 0}
 --- !u!1 &5753830764758854893
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +196,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 5753830764758855261}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -269,7 +271,7 @@ RectTransform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 5753830764758855261}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -22,7 +22,7 @@ public class CustomButton : MonoBehaviour {
     public bool mouseOver;
     protected RectTransform _confirmScalerRT;
     public float interactionBreakTime = 1.0f;
-    private bool _canHover = true;
+    protected bool _canHover = true;
     public UnityEvent OnActivation, OnDeactivation;
     public bool activated;
     protected bool _usingEyeTracking;

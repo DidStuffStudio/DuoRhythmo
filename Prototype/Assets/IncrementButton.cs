@@ -29,21 +29,14 @@ public class IncrementButton : CustomButton
     {
         MasterManager.Instance.userInterfaceManager.PlayAnimation(forward);
     }
-    public void ActivateDwellSettings()
+    public void ActivateDwellSettings(bool activate)
     {
-        bool dwellActive = MasterManager.Instance.DwellSettingsActive;
+        SetDefault();
+        _canHover = true;
         
-        if (dwellActive)
-        {
-            MasterManager.Instance.DwellSettingsActive = false;
-            MasterManager.Instance.SetDwellSettingsActive(false);
-        }
-        else
-        {
-            MasterManager.Instance.DwellSettingsActive = true;
-            MasterManager.Instance.SetDwellSettingsActive(true);
-        }
-
+        MasterManager.Instance.DwellSettingsActive = activate;
+        MasterManager.Instance.SetDwellSettingsActive(activate);
+        
         
     }
 }

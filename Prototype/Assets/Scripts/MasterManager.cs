@@ -181,13 +181,13 @@ public class MasterManager : MonoBehaviour {
             effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
             effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
             
-            foreach(Transform child in transform.GetComponentsInChildren<Transform>())
+            foreach(Transform child in effectsPanels[i].transform.GetComponentsInChildren<Transform>())
             {
-                if (child.CompareTag("UI_Drum_Colour"))
-                {
-                    child.GetComponent<Text>().color = drumColors[i];
-                    break;
-                }
+
+                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().color = drumColors[i];
+                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().text = (DrumType) i + " Effects";
+                if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<Text>().color = drumColors[i];
+                
             }
 
             userInterfaceManager.panels.Add(effectsPanels[i]);
@@ -248,7 +248,7 @@ public class MasterManager : MonoBehaviour {
             case DrumType.HiHat:
                 currentDrums[2].Post(gameObject);
                 break;
-            case DrumType.TomTom:
+            case DrumType.Tom:
                 currentDrums[3].Post(gameObject);
                 break;
             case DrumType.Cymbal:
@@ -311,13 +311,13 @@ public class MasterManager : MonoBehaviour {
                 userInterfaceManager.soloButtons[i + 5] = uigazeButton;
                 uigazeButton.drumTypeIndex = i;
             }
-            foreach(Transform child in transform)
+            foreach(Transform child in effectsPanels[i].transform.GetComponentsInChildren<Transform>())
             {
-                if (child.CompareTag("UI_Drum_Colour"))
-                {
-                    child.GetComponent<Text>().color = drumColors[i];
-                    break;
-                }
+
+                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().color = drumColors[i];
+                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().text = (DrumType) i + " Effects";
+                if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<Text>().color = drumColors[i];
+                   
             }
             // userInterfaceManager.panels[panelCounter] = effectsPanels[i];
             panelCounter += 2;

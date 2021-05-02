@@ -8,7 +8,7 @@ public enum DrumType {
     Kick,
     Snare,
     HiHat,
-    TomTom,
+    Tom,
     Cymbal
 }
 
@@ -85,7 +85,7 @@ public class NodeManager : MonoBehaviour {
         else if (drumType == DrumType.HiHat)
             for (int i = 0; i < effects.Length; i++)
                 effectNames[i] = "HiHat" + effects[i];
-        else if (drumType == DrumType.TomTom)
+        else if (drumType == DrumType.Tom)
             for (int i = 0; i < effects.Length; i++)
                 effectNames[i] = "TomTom" + effects[i];
         else if (drumType == DrumType.Cymbal)
@@ -196,7 +196,7 @@ public class NodeManager : MonoBehaviour {
                 DrumType.Kick => DrumType.Kick,
                 DrumType.Snare => DrumType.Snare,
                 DrumType.HiHat => DrumType.HiHat,
-                DrumType.TomTom => DrumType.TomTom,
+                DrumType.Tom => DrumType.Tom,
                 DrumType.Cymbal => DrumType.Cymbal,
                 _ => _nodes[i].drumType
             };

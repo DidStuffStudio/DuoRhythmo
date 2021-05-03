@@ -21,7 +21,6 @@ public class StringSync : RealtimeComponent<StringModel> {
         if (previousModel != null) {
             // Unregister from events
             previousModel.messageDidChange -= MessageDidChange;
-            previousModel.setPlayerNumberDidChange -= SetPlayerNumberDidChange;
             previousModel.timerDidChange -= TimerDidChange;
             previousModel.newPlayerConnectedDidChange -= NewPlayerConnectedDidChange;
             previousModel.newPlayerUpdateTimeDidChange -= NewPlayerUpdateTimeDidChange;
@@ -50,7 +49,6 @@ public class StringSync : RealtimeComponent<StringModel> {
 
             // Register for events so we'll know if the strings change later
             currentModel.messageDidChange += MessageDidChange;
-            currentModel.setPlayerNumberDidChange += SetPlayerNumberDidChange;
             currentModel.timerDidChange += TimerDidChange;
             currentModel.newPlayerConnectedDidChange += NewPlayerConnectedDidChange;
             currentModel.newPlayerUpdateTimeDidChange += NewPlayerUpdateTimeDidChange;
@@ -80,7 +78,7 @@ public class StringSync : RealtimeComponent<StringModel> {
     }
 
     private void EffectsValuesDidChange(StringModel stringModel, string value) {
-        print("Got effects string "+value);
+        print("Got effects string " + value);
         var drumValueDidChanged = value.Split(',');
         if (int.Parse(drumValueDidChanged[0]) == MasterManager.Instance.localPlayerNumber ||
             !RealTimeInstance.Instance.isNewPlayer) return;
@@ -95,11 +93,11 @@ public class StringSync : RealtimeComponent<StringModel> {
 
     private void DrumNodesSingleDidChange(StringModel stringModel, string value) {
         var drumNodeChanged = value.Split(',');
-        if (Int32.Parse(drumNodeChanged[0]) == MasterManager.Instance.localPlayerNumber) return;
+        if (int.Parse(drumNodeChanged[0]) == MasterManager.Instance.localPlayerNumber) return;
         var nodeCharArray = drumNodeChanged[2].ToCharArray();
         for (int i = 0; i < 16; i++)
             MasterManager.Instance.DrumNodeChangedOnServer(int.Parse(drumNodeChanged[1]), i,
-                Int32.Parse(nodeCharArray[i].ToString()) == 1);
+                int.Parse(nodeCharArray[i].ToString()) == 1);
     }
 
     private void NewPlayerUpdateTimeDidChange(StringModel stringModel, string value) {
@@ -110,25 +108,20 @@ public class StringSync : RealtimeComponent<StringModel> {
     }
 
     private void NewPlayerConnectedDidChange(StringModel stringModel, string value) {
-        if (!RealTimeInstance.Instance.isNewPlayer) {
+
+        var splitMessage = value.Split(',');
+
+        if (!RealTimeInstance.Instance.isNewPlayer && int.Parse(splitMessage[0]) != MasterManager.Instance.localPlayerNumber) {
             MasterManager.Instance.dataMaster.SendNodes(0, true);
             MasterManager.Instance.dataMaster.SendEffects(0, true);
             SetAnimatorTime(MasterManager.Instance.userInterfaceManager.currentRotationOfUI);
         }
-
 
         // find all the networkmanager s existing currently in the hierarchy, and set their parents to the players holder gameobject
         var players = GameObject.FindObjectsOfType<NetworkManagerSync>();
         foreach (var player in players) {
             RealTimeInstance.Instance.SetParentOfPlayer(player.transform);
         }
-
-        var connectedPlayer = int.Parse(value);
-
-        if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
-
-        var nextPlayer = MasterManager.Instance.player.transform.parent.childCount;
-        print("sending " + nextPlayer);
     }
 
     private void TimerDidChange(StringModel stringModel, string value) {
@@ -143,16 +136,6 @@ public class StringSync : RealtimeComponent<StringModel> {
             StartCoroutine(MasterManager.Instance.WaitToPositionCamera(3.0f));
         }
 
-    }
-
-    private void SetPlayerNumberDidChange(StringModel stringModel, string value) {
-        var playerIndex = int.Parse(value);
-        if (!MasterManager.Instance.player.hasPlayerNumber) {
-            MasterManager.Instance.localPlayerNumber = playerIndex;
-            MasterManager.Instance.player.hasPlayerNumber = true;
-        }
-
-        MasterManager.Instance.dataMaster.SetConnectedPlayer(playerIndex, true);
     }
 
     private void UpdateStrings() {

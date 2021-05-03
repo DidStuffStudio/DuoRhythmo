@@ -91,11 +91,11 @@ public class RealTimeInstance : MonoBehaviour {
         networkManager = Realtime.Instantiate(networkManagerPrefab.name, true, true);
         var realtimeView = networkManager.GetComponent<RealtimeView>();
         MasterManager.Instance.localPlayerNumber = realtimeView.ownerIDSelf;
-        StartCoroutine(nameof(WaitForPreviousPlayersToConnect));
+        StartCoroutine(WaitForPreviousPlayersToConnect());
     }
 
     private IEnumerator WaitForPreviousPlayersToConnect() {
-        yield return new WaitForSeconds((MasterManager.Instance.localPlayerNumber + 1) / 2.0f);
+        yield return new WaitForSeconds((MasterManager.Instance.localPlayerNumber + 1.0f) / 2.0f);
         numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
 
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name);

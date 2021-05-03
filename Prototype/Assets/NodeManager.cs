@@ -128,6 +128,7 @@ public class NodeManager : MonoBehaviour {
         else
         {
 
+            
             sliders[0].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 0] = (int) (levels[0] = _screenSync.Effect1));
             sliders[1].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 1] = (int) (levels[1] = _screenSync.Effect2));
             sliders[2].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 2] = (int) (levels[2] = _screenSync.Effect3));

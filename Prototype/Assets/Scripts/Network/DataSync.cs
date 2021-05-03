@@ -51,12 +51,13 @@ public class DataSync : MonoBehaviour {
             for (int i = 0; i < MasterManager.Instance.numberInstruments; i++) {
                 for (int j = 0; j < 4; j++) {
                     effectsString += effectValues[i, j];
-                    if(j < 3) effectsString += "-";
+                    if (j < 3) effectsString += "-";
                 }
                 effectsString += ",";
             }
 
-            effectsString = effectsString.TrimEnd(',');
+            effectsString += MasterManager.Instance.bpm.ToString();
+            // effectsString = effectsString.TrimEnd(',');
         }
         RealTimeInstance.Instance.stringSync.SetEffectValues(effectsString);
     }

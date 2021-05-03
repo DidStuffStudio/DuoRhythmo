@@ -29,6 +29,7 @@ public class RealTimeInstance : MonoBehaviour {
     [SerializeField] private GameObject playerCanvasPrefab;
     [SerializeField] private Transform playersHolder;
     public bool isNewPlayer = true;
+    
 
     private void Awake() {
         _instance = this;
@@ -76,26 +77,30 @@ public class RealTimeInstance : MonoBehaviour {
         _realtime.didConnectToRoom += DidConnectToRoom;
     }
 
-    private void DidConnectToRoom(Realtime realtime) {
-        isConnected = true;
 
-        networkManager = Realtime.Instantiate(networkManagerPrefab.name, true, true);
+    
+    private void DidConnectToRoom(Realtime realtime) {
+
         var realtimeView = networkManager.GetComponent<RealtimeView>();
         MasterManager.Instance.localPlayerNumber = realtimeView.ownerIDSelf;
-
+        if (_realtime.room.datastore.prefabViewModels.Count < 3 && MasterManager.Instance.localPlayerNumber == 0) MasterManager.Instance.isFirstPlayer = true;
+        isConnected = true;
+        networkManager = Realtime.Instantiate(networkManagerPrefab.name, true, true);
+        
         numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
-
+        
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name);
+        
         gfx.GetComponent<RealtimeView>().RequestOwnership();
         gfx.GetComponent<RealtimeTransform>().RequestOwnership();
-        print("This is my player number: " + MasterManager.Instance.localPlayerNumber);
+        
         stringSync.SetNewPlayerUpdateTime(MasterManager.Instance.localPlayerNumber);
         stringSync.SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
         StartCoroutine(SeniorPlayer());
     }
 
     IEnumerator SeniorPlayer() {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(5.0f);
         isNewPlayer = false;
     }
 

@@ -34,7 +34,7 @@ public class DataSync : MonoBehaviour {
 
                 nodeString += ",";
             }
-
+            nodeString = nodeString.TrimEnd(',');
             RealTimeInstance.Instance.stringSync.SetDrumNodesAllDrums(nodeString);
         }
     }
@@ -48,11 +48,15 @@ public class DataSync : MonoBehaviour {
         else {
             effectsString = MasterManager.Instance.localPlayerNumber + ",";
             for (int i = 0; i < MasterManager.Instance.numberInstruments; i++) {
-                for (int j = 0; j < MasterManager.Instance.numberOfNodes; j++) {
+                for (int j = 0; j < 4; j++) {
                     effectsString += effectValues[i, j];
+                    if (j < 3) effectsString += "-";
                 }
                 effectsString += ",";
+                
             }
+            effectsString += MasterManager.Instance.bpm;
+            // effectsString = effectsString.TrimEnd(',');
         }
         RealTimeInstance.Instance.stringSync.SetEffectValues(effectsString);
     }

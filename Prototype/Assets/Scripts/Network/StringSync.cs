@@ -83,9 +83,18 @@ public class StringSync : RealtimeComponent<StringModel> {
         var drumValueDidChanged = value.Split(',');
         if (int.Parse(drumValueDidChanged[0]) == MasterManager.Instance.localPlayerNumber ||
             !RealTimeInstance.Instance.isNewPlayer) return;
+            
         for (int i = 1; i < drumValueDidChanged.Length; i++) { // go through each drum
-            var effectsCharArray = drumValueDidChanged[i].ToCharArray();
-            MasterManager.Instance.EffectsDidChangeOnServer(i - 1, effectsCharArray);
+
+            var separatedValues = drumValueDidChanged[i].Split('-');
+            int[] separatedValuesArray = new int[4];
+            for (int j = 0; i < 4; j++)
+            {
+                separatedValuesArray[j] = int.Parse(separatedValues[j]);
+            }
+
+            MasterManager.Instance.bpm = int.Parse(drumValueDidChanged[drumValueDidChanged.Length - 1]);
+            MasterManager.Instance.EffectsDidChangeOnServer(i - 1, separatedValuesArray);
         }
     }
 
@@ -134,7 +143,7 @@ public class StringSync : RealtimeComponent<StringModel> {
     private void TimerDidChange(StringModel stringModel, string value) {
         var time = int.Parse(value.Split(',')[0]);
         MasterManager.Instance.timer.tempRoundTime = time;
-        MasterManager.Instance.timer.ToggleTimer(true);
+        StartCoroutine(MasterManager.Instance.timer.TemporaryTime());
     }
 
     private void SetPlayerNumberDidChange(StringModel stringModel, string value) {

@@ -74,7 +74,7 @@ public class MasterManager : MonoBehaviour {
     public bool DwellSettingsActive;
     public GameObject dwellSettingsPrefab;
     public DataSync dataMaster;
-    
+    public bool isFirstPlayer;
     
     [SerializeField] private Dictionary<float, bool> playerTransforms = new Dictionary<float, bool>();
     private void Start() {
@@ -123,13 +123,8 @@ public class MasterManager : MonoBehaviour {
                 {
                     timerUI.SetActive(true);
                     
-                    if (RealTimeInstance.Instance.numberPlayers < 2)
-                    {
-                        
-                        localPlayerNumber = 0;
-                        player.hasPlayerNumber = true;
-                        timer.ToggleTimer(true);
-                    }
+                    if (isFirstPlayer) StartCoroutine(timer.MainTime());
+                  
                 }
             }
         }
@@ -402,8 +397,8 @@ public class MasterManager : MonoBehaviour {
     
     public void DrumNodeChangedOnServer(int drumIndex, int nodeIndex, bool activate) => _nodeManagers[drumIndex]._nodes[nodeIndex].SetNodeFromServer(activate);
 
-    public void EffectsDidChangeOnServer(int drumIndex, char[] drumEffects) {
-        for (int i = 0; i < 4; i++) _nodeManagers[drumIndex].SetEffectsFromServer(i, int.Parse(drumEffects[i].ToString()));
+    public void EffectsDidChangeOnServer(int drumIndex, int[] drumEffects) {
+        for (int i = 0; i < 4; i++) _nodeManagers[drumIndex].SetEffectsFromServer(i, drumEffects[i]);
     }
 
 

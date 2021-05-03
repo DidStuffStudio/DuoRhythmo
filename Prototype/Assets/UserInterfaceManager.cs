@@ -57,12 +57,12 @@ public class UserInterfaceManager : MonoBehaviour {
         _playerAnimator.speed = 0.0f;
         //timer = (int) MasterManager.Instance.timer.timer;
         SetAnimatorTime();
-        if(!RealTimeInstance.Instance.isSoloMode)MasterManager.Instance.timer.ToggleTimer(true);
+        if(!RealTimeInstance.Instance.isSoloMode) StartCoroutine(MasterManager.Instance.timer.MainTime());
     }
 
     public void PlayAnimation(bool forward)
     {
-        StartCoroutine(IgnoreEvents());
+        if(RealTimeInstance.Instance.isSoloMode)StartCoroutine(IgnoreEvents());
         if (forward)
         {
             _currentRenderPanel++;

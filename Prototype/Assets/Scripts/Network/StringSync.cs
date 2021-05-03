@@ -130,7 +130,7 @@ public class StringSync : RealtimeComponent<StringModel> {
     }
 
     private void TimerDidChange(StringModel stringModel, string value) {
-        print("Timer did change");
+        print("Timer did change" + value);
         var time = int.Parse(value);
         MasterManager.Instance.timer.tempRoundTime = time;
         MasterManager.Instance.timer.StartTimer();

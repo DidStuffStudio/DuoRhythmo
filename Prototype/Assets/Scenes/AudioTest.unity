@@ -2695,8 +2695,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ca0f514cafedb4d9a95b824676cf89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualizationDistance: 3
-  filterSmoothingFactor: 0.5
+  visualizationDistance: 2
+  filterSmoothingFactor: 0
 --- !u!222 &689322141
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2962,7 +2962,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.22799999, g: 0.22799999, b: 0.22799999, a: 0.15686275}
+      maxColor: {r: 0.22745098, g: 0.22745098, b: 0.22745098, a: 0.043137256}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10708,7 +10708,7 @@ MonoBehaviour:
   positionSpeed: 2.5
   playerStartPosition: {fileID: 525941752}
   playerPositionDestination: {fileID: 258635028}
-  localPlayerNumber: 0
+  localPlayerNumber: 351534
   gameSetUpFinished: 0
   currentRotationOfUI: 0
   player: {fileID: 0}

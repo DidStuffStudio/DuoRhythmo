@@ -84,8 +84,15 @@ public class StringSync : RealtimeComponent<StringModel> {
         if (int.Parse(drumValueDidChanged[0]) == MasterManager.Instance.localPlayerNumber ||
             !RealTimeInstance.Instance.isNewPlayer) return;
         for (int i = 1; i < drumValueDidChanged.Length; i++) { // go through each drum
-            var effectsCharArray = drumValueDidChanged[i].ToCharArray();
-            MasterManager.Instance.EffectsDidChangeOnServer(i - 1, effectsCharArray);
+            var separatedValues = drumValueDidChanged[i].Split('-');
+            int[] effectArray = new int[4];
+            for (int j = 0; j < 4; j++)
+            {
+                effectArray[j] = int.Parse(separatedValues[j]);
+            }
+
+            MasterManager.Instance.bpm = int.Parse(drumValueDidChanged[drumValueDidChanged.Length - 1]); // bpm is the last
+            MasterManager.Instance.EffectsDidChangeOnServer(i - 1, effectArray);
         }
     }
 

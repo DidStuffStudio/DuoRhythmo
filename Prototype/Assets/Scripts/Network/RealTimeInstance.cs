@@ -37,6 +37,10 @@ public class RealTimeInstance : MonoBehaviour {
         StartCoroutine(CheckNumberOfPlayers());
     }
 
+    private void Update() {
+        if (_realtime.room.connectionState == Room.ConnectionState.Error) Play();
+    }
+
     public IEnumerator CheckNumberOfPlayers() {
         while (true) {
             var players = FindObjectsOfType<Player>();

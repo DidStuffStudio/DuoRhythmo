@@ -28,7 +28,7 @@ public class Timer : MonoBehaviour {
         else StopCoroutine(nameof(Time));
     }
 
-    public void StartTimer() => StartCoroutine(nameof(ToggleTimer));
+    public void StartTimer() => StartCoroutine(nameof(Time));
 
     private IEnumerator Time() {
         var startTime = RealTimeInstance.Instance.GetRoomTime();

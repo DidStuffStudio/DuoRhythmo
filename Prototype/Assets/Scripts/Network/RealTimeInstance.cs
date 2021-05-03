@@ -78,6 +78,11 @@ public class RealTimeInstance : MonoBehaviour {
     private void RegisterToEvents() {
         // Notify us when Realtime connects to or disconnects from the room
         _realtime.didConnectToRoom += DidConnectToRoom;
+        _realtime.room.connectionStateChanged += ConnectionStateChanged;
+    }
+
+    private void ConnectionStateChanged(Room room, Room.ConnectionState previousconnectionstate, Room.ConnectionState connectionstate) {
+        if(_realtime.room.connectionState == Room.ConnectionState.Error) Play();
     }
 
     private void DidConnectToRoom(Realtime realtime) {
@@ -107,5 +112,8 @@ public class RealTimeInstance : MonoBehaviour {
     }
 
 
-    private void OnDisable() => _realtime.didConnectToRoom -= DidConnectToRoom;
+    private void OnDisable() {
+        _realtime.didConnectToRoom -= DidConnectToRoom;
+        _realtime.room.connectionStateChanged -= ConnectionStateChanged;
+    }
 }

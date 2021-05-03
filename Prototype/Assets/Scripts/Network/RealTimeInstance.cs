@@ -73,10 +73,10 @@ public class RealTimeInstance : MonoBehaviour {
 
         networkManager = Realtime.Instantiate(networkManagerPrefab.name, true, true);
         var realtimeView = networkManager.GetComponent<RealtimeView>();
+        realtimeView.RequestOwnership();
         MasterManager.Instance.localPlayerNumber = realtimeView.ownerIDSelf;
         if (_realtime.room.datastore.prefabViewModels.Count < 3 && MasterManager.Instance.localPlayerNumber == 0) MasterManager.Instance.isFirstPlayer = true;
-        isConnected = true;     
-        numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players       
+        isConnected = true;        
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name);       
         gfx.GetComponent<RealtimeView>().RequestOwnership();
         gfx.GetComponent<RealtimeTransform>().RequestOwnership();        

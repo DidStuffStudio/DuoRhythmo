@@ -123,21 +123,6 @@ public class StringSync : RealtimeComponent<StringModel> {
             MasterManager.Instance.dataMaster.SendEffects(0, true);
             SetAnimatorTime(MasterManager.Instance.userInterfaceManager.currentRotationOfUI);
         }
-
-
-        // find all the networkmanager s existing currently in the hierarchy, and set their parents to the players holder gameobject
-        var players = GameObject.FindObjectsOfType<NetworkManagerSync>();
-        foreach (var player in players) {
-            RealTimeInstance.Instance.SetParentOfPlayer(player.transform);
-        }
-
-        var connectedPlayer = int.Parse(value);
-
-        if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
-
-        var nextPlayer = MasterManager.Instance.player.transform.parent.childCount;
-        SetPlayerNumber(nextPlayer);
-        print("sending " + nextPlayer);
     }
 
     private void TimerDidChange(StringModel stringModel, string value) {

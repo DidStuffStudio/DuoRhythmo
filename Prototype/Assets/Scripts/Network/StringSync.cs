@@ -63,7 +63,8 @@ public class StringSync : RealtimeComponent<StringModel> {
 
     private void MessageDidChange(StringModel model, string value) {
         print("Received new message from the server: " + model.message);
-        _message = model.message;
+        // _message = model.message;
+        MasterManager.Instance.timer.timer = int.Parse(value);
     }
     
     private void DrumNodesAllDidChange(StringModel stringModel, string value) {

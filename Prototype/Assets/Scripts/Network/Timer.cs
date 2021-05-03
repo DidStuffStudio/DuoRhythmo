@@ -18,23 +18,27 @@ public class Timer : MonoBehaviour {
 
     private void Start() {
         timer = roundTime;
-        tempRoundTime = roundTime;
     }
 
-   
 
 
-    public IEnumerator TemporaryTime() {
+
+    public IEnumerator TemporaryTime()
+    {
         var startTime = RealTimeInstance.Instance.GetRoomTime();
 
-        while (timer > 0.0f && !mainTimerRunning ) {
+        while (timer > 0.0f && !mainTimerRunning)
+        {
             yield return new WaitForSeconds(0.1f);
-            var roomTimeDelta = (float) (RealTimeInstance.Instance.GetRoomTime() - startTime);
-            timer = (int) (tempRoundTime - roomTimeDelta);
+            var roomTimeDelta = (float)(RealTimeInstance.Instance.GetRoomTime() - startTime);
+            timer = (int)(tempRoundTime - roomTimeDelta);
         }
-        timer = roundTime;
-        MasterManager.Instance.userInterfaceManager.PlayAnimation(true);
-    }   
+        if (!mainTimerRunning)
+        {
+            timer = roundTime;
+            MasterManager.Instance.userInterfaceManager.PlayAnimation(true);
+        }
+    }
     
     public IEnumerator MainTime() {
         mainTimerRunning = true;

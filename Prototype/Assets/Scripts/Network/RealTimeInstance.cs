@@ -35,23 +35,13 @@ public class RealTimeInstance : MonoBehaviour {
         _instance = this;
         _realtime = GetComponent<Realtime>();
         RegisterToEvents();
-        StartCoroutine(CheckNumberOfPlayers());
+        
     }
 
     public IEnumerator CheckNumberOfPlayers() {
         while (true) {
-            var players = FindObjectsOfType<Player>();
-            numberPlayers = players.Length;
-            if (numberPlayers != previousNumberPlayers) {
-                var counter = 0;
-                for (int i = 0; i < MasterManager.Instance.dataMaster.conectedPlayers.Length; i++) {
-                    if (numberPlayers > i) MasterManager.Instance.dataMaster.conectedPlayers[i] = 1;
-                    else MasterManager.Instance.dataMaster.conectedPlayers[i] = 0;
-                }
-
-                previousNumberPlayers = numberPlayers;
-            }
-
+            
+            numberPlayers = _realtime.room.datastore.prefabViewModels.Count/2;
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -81,21 +71,18 @@ public class RealTimeInstance : MonoBehaviour {
     
     private void DidConnectToRoom(Realtime realtime) {
 
+        networkManager = Realtime.Instantiate(networkManagerPrefab.name, true, true);
         var realtimeView = networkManager.GetComponent<RealtimeView>();
         MasterManager.Instance.localPlayerNumber = realtimeView.ownerIDSelf;
         if (_realtime.room.datastore.prefabViewModels.Count < 3 && MasterManager.Instance.localPlayerNumber == 0) MasterManager.Instance.isFirstPlayer = true;
-        isConnected = true;
-        networkManager = Realtime.Instantiate(networkManagerPrefab.name, true, true);
-        
-        numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
-        
-        var gfx = Realtime.Instantiate(playerCanvasPrefab.name);
-        
+        isConnected = true;     
+        numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players       
+        var gfx = Realtime.Instantiate(playerCanvasPrefab.name);       
         gfx.GetComponent<RealtimeView>().RequestOwnership();
-        gfx.GetComponent<RealtimeTransform>().RequestOwnership();
-        
+        gfx.GetComponent<RealtimeTransform>().RequestOwnership();        
         stringSync.SetNewPlayerUpdateTime(MasterManager.Instance.localPlayerNumber);
         stringSync.SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
+        StartCoroutine(CheckNumberOfPlayers());
         StartCoroutine(SeniorPlayer());
     }
 

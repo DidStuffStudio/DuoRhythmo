@@ -36,11 +36,7 @@ public class RealTimeInstance : MonoBehaviour {
         RegisterToEvents();
         StartCoroutine(CheckNumberOfPlayers());
     }
-
-    private void Update() {
-        if (_realtime.room.connectionState == Room.ConnectionState.Error) Play();
-    }
-
+    
     public IEnumerator CheckNumberOfPlayers() {
         while (true) {
             var players = FindObjectsOfType<Player>();
@@ -78,7 +74,11 @@ public class RealTimeInstance : MonoBehaviour {
     private void RegisterToEvents() {
         // Notify us when Realtime connects to or disconnects from the room
         _realtime.didConnectToRoom += DidConnectToRoom;
-        _realtime.room.connectionStateChanged += ConnectionStateChanged;
+        _realtime.didDisconnectFromRoom += DidDisconnectToRoom;
+    }
+
+    private void DidDisconnectToRoom(Realtime realtime) {
+        _realtime.room.connectionStateChanged -= ConnectionStateChanged;
     }
 
     private void ConnectionStateChanged(Room room, Room.ConnectionState previousconnectionstate, Room.ConnectionState connectionstate) {
@@ -86,8 +86,8 @@ public class RealTimeInstance : MonoBehaviour {
     }
 
     private void DidConnectToRoom(Realtime realtime) {
+        _realtime.room.connectionStateChanged += ConnectionStateChanged;
         isConnected = true;
-
         networkManager = Realtime.Instantiate(networkManagerPrefab.name, true, true);
         var realtimeView = networkManager.GetComponent<RealtimeView>();
         MasterManager.Instance.localPlayerNumber = realtimeView.ownerIDSelf;
@@ -111,9 +111,7 @@ public class RealTimeInstance : MonoBehaviour {
         isNewPlayer = false;
     }
 
-
     private void OnDisable() {
         _realtime.didConnectToRoom -= DidConnectToRoom;
-        _realtime.room.connectionStateChanged -= ConnectionStateChanged;
     }
 }

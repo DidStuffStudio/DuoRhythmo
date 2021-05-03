@@ -44,7 +44,7 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
     }
 
     public void SetEffectValue(int index, int effectValue) {
-        if(RealTimeInstance.Instance.isSoloMode) return;
+        if(RealTimeInstance.Instance.isSoloMode || RealTimeInstance.Instance.isNewPlayer) return;
         switch (index) {
             case 0:
                 _effect1 = effectValue;

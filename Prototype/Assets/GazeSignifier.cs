@@ -12,7 +12,8 @@ public class GazeSignifier : MonoBehaviour {
 
     void Update()
     {
-        transform.LookAt(Camera.main.transform.forward);
+        transform.LookAt(Camera.main.transform.forward*5000);
+
         if (TobiiAPI.IsConnected)
         {
             GazePoint gazePoint = TobiiAPI.GetGazePoint();

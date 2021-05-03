@@ -43,6 +43,9 @@ public class RadialSlider : CustomButton {
         
     }
 
+    public void ForceDefault() => UnHover();
+    
+
     protected override void Update() {
         base.Update();
         if(!isActive) return;
@@ -93,7 +96,10 @@ public class RadialSlider : CustomButton {
         }
     }
 
-    protected override void UnHover() {
+
+
+    protected override void UnHover()
+    {
         base.UnHover();
         mouseOver = false;
         SetDefault();

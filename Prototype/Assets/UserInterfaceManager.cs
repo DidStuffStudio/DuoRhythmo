@@ -12,7 +12,7 @@ public class UserInterfaceManager : MonoBehaviour {
     [SerializeField] private Animator _playerAnimator;
     public Text timerDisplay;
     public Material skybox;
-    private float _timeLeft;
+    private float _timeLeft = 10.0f;
     private Color _targetVFXColor, _targetSkyColor;
     private VisualEffect _vfx;
     private int _currentPanel = 0, _currentRenderPanel = 0;
@@ -99,8 +99,8 @@ public class UserInterfaceManager : MonoBehaviour {
             _vfx.SetVector4("Core color", _targetVFXColor);
             // start a new transition
             var index = Random.Range(0, MasterManager.Instance.numberInstruments);
-            _targetVFXColor = MasterManager.Instance.drumColors[index];
-            _timeLeft = 30.0f;
+            _targetVFXColor = MasterManager.Instance.drumColors[_currentPanel];
+            _timeLeft = 10.0f;
         }
         else {
             // transition in progress

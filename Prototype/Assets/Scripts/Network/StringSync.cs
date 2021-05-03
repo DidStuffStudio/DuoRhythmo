@@ -136,6 +136,13 @@ public class StringSync : RealtimeComponent<StringModel> {
         var time = int.Parse(value.Split(',')[0]);
         MasterManager.Instance.timer.tempRoundTime = time;
         MasterManager.Instance.timer.ToggleTimer(true);
+        if (MasterManager.Instance.timer.timer < 2.0f) StartCoroutine(WaitToRequestInfo());
+        else
+        {
+            SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
+            StartCoroutine(MasterManager.Instance.WaitToPositionCamera(3.0f));
+        }
+
     }
 
     private void SetPlayerNumberDidChange(StringModel stringModel, string value) {
@@ -206,5 +213,15 @@ public class StringSync : RealtimeComponent<StringModel> {
         if (RealTimeInstance.Instance.isSoloMode) return;
         model.effectsValues = value;
         print("Sent effect values to the server: " + value);
+    }
+
+    IEnumerator WaitToRequestInfo()
+    {
+        while(MasterManager.Instance.timer.timer <= 28)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
+        StartCoroutine(MasterManager.Instance.WaitToPositionCamera(0.5f));
     }
 }

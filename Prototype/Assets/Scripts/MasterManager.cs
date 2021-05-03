@@ -263,10 +263,8 @@ public class MasterManager : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
 
-        print("local player number: " + localPlayerNumber);
-
         InstantiatePanels();
-        StartCoroutine(WaitToPositionCamera(3.0f));
+        //StartCoroutine(WaitToPositionCamera(3.0f));
     }
 
     public void SetPlayerPosition() {
@@ -407,7 +405,7 @@ public class MasterManager : MonoBehaviour {
     }
 
 
-    private IEnumerator WaitToPositionCamera(float time) {
+    public IEnumerator WaitToPositionCamera(float time) {
         SetPlayerPosition();
         yield return new WaitForSeconds(time);
         mainSignifier.SetActive(false);

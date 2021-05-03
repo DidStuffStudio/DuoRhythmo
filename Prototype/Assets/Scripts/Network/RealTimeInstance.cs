@@ -90,8 +90,7 @@ public class RealTimeInstance : MonoBehaviour {
         gfx.GetComponent<RealtimeTransform>().RequestOwnership();
         print("This is my player number: " + MasterManager.Instance.localPlayerNumber);
         stringSync.SetNewPlayerUpdateTime(MasterManager.Instance.localPlayerNumber);
-        if (MasterManager.Instance.timer.timer < 2.0f) StartCoroutine(WaitToSendAnimatorInfo());
-        else stringSync.SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
+        
 
         StartCoroutine(SeniorPlayer());
     }
@@ -101,10 +100,7 @@ public class RealTimeInstance : MonoBehaviour {
         isNewPlayer = false;
     }
     
-    IEnumerator WaitToSendAnimatorInfo() {
-        yield return new WaitForSeconds(5.0f);
-        stringSync.SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
-    }
+  
 
     private void OnDisable() => _realtime.didConnectToRoom -= DidConnectToRoom;
 }

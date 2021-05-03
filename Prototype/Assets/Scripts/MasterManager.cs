@@ -264,7 +264,7 @@ public class MasterManager : MonoBehaviour {
         }
 
         InstantiatePanels();
-        //StartCoroutine(WaitToPositionCamera(3.0f));
+        if(RealTimeInstance.Instance.numberPlayers < 2) StartCoroutine(WaitToPositionCamera(3.0f));
     }
 
     public void SetPlayerPosition() {

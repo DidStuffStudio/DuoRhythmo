@@ -128,14 +128,14 @@ public class StringSync : RealtimeComponent<StringModel> {
         if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
 
         var nextPlayer = MasterManager.Instance.player.transform.parent.childCount;
-        SetPlayerNumber(nextPlayer);
         print("sending " + nextPlayer);
     }
 
     private void TimerDidChange(StringModel stringModel, string value) {
-        var time = int.Parse(value.Split(',')[0]);
+        print("Timer did change");
+        var time = int.Parse(value);
         MasterManager.Instance.timer.tempRoundTime = time;
-        MasterManager.Instance.timer.ToggleTimer(true);
+        MasterManager.Instance.timer.StartTimer();
         if (MasterManager.Instance.timer.timer < 2.0f) StartCoroutine(WaitToRequestInfo());
         else
         {
@@ -171,11 +171,6 @@ public class StringSync : RealtimeComponent<StringModel> {
         if (RealTimeInstance.Instance.isSoloMode) return;
         model.message = value;
         print("Sent a new message to the server: " + value);
-    }
-    public void SetPlayerNumber(int value) {
-        if (RealTimeInstance.Instance.isSoloMode) return;
-        model.setPlayerNumber = value.ToString();
-        print("Sent a new player number to the server: " + value);
     }
 
     public void SetTimer(int value) {

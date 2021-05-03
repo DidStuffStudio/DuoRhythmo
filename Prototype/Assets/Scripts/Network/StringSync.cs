@@ -129,6 +129,7 @@ public class StringSync : RealtimeComponent<StringModel> {
         var time = int.Parse(value.Split(',')[0]);
         MasterManager.Instance.timer.tempRoundTime = time;
         StartCoroutine(MasterManager.Instance.timer.TemporaryTime());
+        SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
     }
 
     private void SetPlayerNumberDidChange(StringModel stringModel, string value) {

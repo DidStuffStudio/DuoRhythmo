@@ -79,9 +79,9 @@ public class RealTimeInstance : MonoBehaviour {
         isConnected = true;        
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name);       
         gfx.GetComponent<RealtimeView>().RequestOwnership();
-        gfx.GetComponent<RealtimeTransform>().RequestOwnership();        
+        gfx.GetComponent<RealtimeTransform>().RequestOwnership();      
         stringSync.SetNewPlayerUpdateTime(MasterManager.Instance.localPlayerNumber);
-        stringSync.SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
+        
         StartCoroutine(CheckNumberOfPlayers());
         StartCoroutine(SeniorPlayer());
     }

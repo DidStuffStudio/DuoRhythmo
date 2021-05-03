@@ -80,6 +80,7 @@ public class StringSync : RealtimeComponent<StringModel> {
     }
 
     private void EffectsValuesDidChange(StringModel stringModel, string value) {
+        print("Got effects string "+value);
         var drumValueDidChanged = value.Split(',');
         if (int.Parse(drumValueDidChanged[0]) == MasterManager.Instance.localPlayerNumber ||
             !RealTimeInstance.Instance.isNewPlayer) return;

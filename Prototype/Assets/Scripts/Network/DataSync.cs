@@ -40,19 +40,21 @@ public class DataSync : MonoBehaviour {
     }
 
     public void SendEffects(int drumIndex, bool sendAll) {
-        var effectsString = "";
+        var effectsString = MasterManager.Instance.localPlayerNumber.ToString();
         if (!sendAll) {
-            effectsString = MasterManager.Instance.localPlayerNumber + "," + drumIndex + ",";
+            effectsString += "," + drumIndex + ",";
             for (int i = 0; i < 4; i++) effectsString += effectValues[drumIndex, i];
         }
         else {
-            effectsString = MasterManager.Instance.localPlayerNumber + ",";
+            effectsString += ",";
             for (int i = 0; i < MasterManager.Instance.numberInstruments; i++) {
-                for (int j = 0; j < MasterManager.Instance.numberOfNodes; j++) {
+                for (int j = 0; j < 4; j++) {
                     effectsString += effectValues[i, j];
                 }
                 effectsString += ",";
             }
+
+            effectsString.TrimEnd(',');
         }
         RealTimeInstance.Instance.stringSync.SetEffectValues(effectsString);
     }

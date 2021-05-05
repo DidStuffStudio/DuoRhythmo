@@ -163,7 +163,8 @@ public class NodeManager : MonoBehaviour {
 
         drumText.text = drumType.ToString();
         drumText.color = drumColor;
-
+        drumText.color = new Color(drumColor.r, drumColor.g, drumColor.b, 0);
+        
         rotation = 0.0f;
         _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
     }

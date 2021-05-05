@@ -203,6 +203,8 @@ public class MasterManager : MonoBehaviour {
             for (int j = 0; j < knobs.Length; j++) {
                 nodeManager.sliders[j] = knobs[j];
                 knobs[j].activeColor = drumColors[i];
+                knobs[j].GetComponentInParent<Image>().color = drumColors[i];
+                knobs[j].transform.parent.parent.GetComponent<Image>().color =  drumColors[i];
             }
             
             
@@ -303,7 +305,7 @@ public class MasterManager : MonoBehaviour {
             foreach(Transform child in effectsPanels[i].transform.GetComponentsInChildren<Transform>())
             {
 
-                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().color = drumColors[i];
+                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().color = new Color(drumColors[i].r, drumColors[i].g, drumColors[i].b, 0);
                 if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().text = (DrumType) i + " Effects";
                 if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<Text>().color = drumColors[i];
                    
@@ -356,6 +358,8 @@ public class MasterManager : MonoBehaviour {
             {
                 nodeManager.sliders[j] = knobs[j];
                 knobs[j].activeColor = drumColors[i];
+                // knobs[j].GetComponentInParent<Image>().color = drumColors[i];
+                knobs[j].transform.parent.parent.GetComponent<Image>().color =  drumColors[i];
             }
 
             foreach (var incButton in effectsPanels[i].GetComponentsInChildren<IncrementButton>())

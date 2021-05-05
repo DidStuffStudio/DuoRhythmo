@@ -2048,12 +2048,16 @@ PrefabInstance:
       value: 0.12941177
       objectReference: {fileID: 0}
     - target: {fileID: 5294159281873986974, guid: b5f25fecd5a406f4196cea55f0c5f050, type: 3}
+      propertyPath: currentValue
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294159281873986974, guid: b5f25fecd5a406f4196cea55f0c5f050, type: 3}
       propertyPath: maximumValue
-      value: 310
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 5294159281873986974, guid: b5f25fecd5a406f4196cea55f0c5f050, type: 3}
       propertyPath: minimumValue
-      value: 90
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5294159281969900024, guid: b5f25fecd5a406f4196cea55f0c5f050, type: 3}
       propertyPath: m_Color.b

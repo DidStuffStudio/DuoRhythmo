@@ -231,7 +231,7 @@ public class NodeManager : MonoBehaviour {
         var rps = rpm / 60.0f;
         var revolutionsPerWaitingSeconds = rps * Time.fixedDeltaTime; //Convert to revolutions per millisecond
         var degreesPerWaitingSeconds = (360.0f - 360.0f / numberOfNodes) * revolutionsPerWaitingSeconds;
-        rotation -= degreesPerWaitingSeconds;
+        rotation -= degreesPerWaitingSeconds * 4.0f;
         _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
     }
 

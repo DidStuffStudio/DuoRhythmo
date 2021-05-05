@@ -175,7 +175,7 @@ public class MasterManager : MonoBehaviour {
             foreach(Transform child in effectsPanels[i].transform.GetComponentsInChildren<Transform>())
             {
 
-                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().color = drumColors[i];
+                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().color = new Color(drumColors[i].r, drumColors[i].g, drumColors[i].b, 0);;
                 if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().text = (DrumType) i + " Effects";
                 if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<Text>().color = drumColors[i];
                 

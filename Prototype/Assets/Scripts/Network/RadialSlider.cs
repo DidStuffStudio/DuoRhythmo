@@ -39,31 +39,32 @@ public class RadialSlider : CustomButton {
         {
             var x = MasterManager.Instance.Map(_angle, 180, 90, 0, 100);
             quadrants[0].sizeDelta = new Vector2(x,x);
-            for (int i = 1; i < 3; i++) quadrants[i].sizeDelta = Vector2.zero;
+            for (int i = 1; i < 4; i++) quadrants[i].sizeDelta = Vector2.zero;
         }
         
         else if (currentValue <= 50 && currentValue > 20)
         {
             var x = MasterManager.Instance.Map(_angle, 90, 0, 0, 100);
             quadrants[1].sizeDelta = new Vector2(x,x);
-            for (int i = 2; i < 3; i++) quadrants[i].sizeDelta = Vector2.zero;
-            quadrants[0].sizeDelta = new Vector2(100, 100);
+            quadrants[0].sizeDelta = new Vector2(100,100);
+            for (int i = 2; i < 4; i++) quadrants[i].sizeDelta = Vector2.zero;
         }
         
         else if (currentValue <= 80 && currentValue > 50)
         {
             var x = MasterManager.Instance.Map(_angle, 0, -90, 0, 100);
             quadrants[2].sizeDelta = new Vector2(x,x);
-            for (int i = 0; i < 1; i++)quadrants[i].sizeDelta = new Vector2(100, 100);
+            for (int i = 0; i < 2; i++)quadrants[i].sizeDelta = new Vector2(100, 100);
             quadrants[3].sizeDelta = Vector2.zero;
         }
         
-        else if (currentValue <= 99 && currentValue > 80)
+        else if (currentValue > 80)
         {
             var x = MasterManager.Instance.Map(_angle, -90, -180, 0, 100);
-            for (int i = 0; i < 2; i++)quadrants[i].sizeDelta = new Vector2(100, 100);
+            for (int i = 0; i < 3; i++)quadrants[i].sizeDelta = new Vector2(100, 100);
             quadrants[3].sizeDelta = new Vector2(x,x);
         }
+        
     }
 
     protected override void Start() {

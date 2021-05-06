@@ -30,8 +30,14 @@ public class IncrementButton : CustomButton
 
     protected override void MouseInteraction()
     {
-        if (mouseOver && Input.GetMouseButtonDown(0)) OnActivation?.Invoke();
-
+        if(!mouseOver) return;
+        if (Input.GetMouseButton(0)) SetActive();
+        if (Input.GetMouseButtonUp(0))
+        {
+            SetDefault();
+            OnActivation?.Invoke();
+        }
+        
     }
 
     public void Navigation(bool forward)

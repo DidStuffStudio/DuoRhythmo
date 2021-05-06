@@ -107,7 +107,8 @@ public class CustomButton : MonoBehaviour {
 
     protected virtual void MouseInteraction()
     {
-        if (mouseOver && Input.GetMouseButtonDown(0))
+        if(!mouseOver) return;
+        if (Input.GetMouseButtonDown(0))
         {
             if (isDefault)
             {

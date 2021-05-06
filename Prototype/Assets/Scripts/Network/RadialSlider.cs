@@ -76,6 +76,7 @@ public class RadialSlider : CustomButton {
 
     public void SetCurrentValue(float value)
     {
+        FillSlider();
         if (Mathf.Abs(value - currentValue) < 0.1f) return;
         currentValue = value;
         _angle = MasterManager.Instance.Map(currentValue, minimumValue, maximumValue, angleConstraint,
@@ -169,6 +170,7 @@ public class RadialSlider : CustomButton {
     public void UpdateSliderText() {
         var value = (int) currentValue;
         _text.text = value.ToString();
+        FillSlider();
     }
 
     private void OnEnable() => OnSliderChange += SliderChanged;

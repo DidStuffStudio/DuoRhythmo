@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>/Users/balazsivanyi/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/AAU/6th_semester/MED6_project/Prototype/Prototype_WwiseProject/</ProjectRoot>
-		<SourceFilesRoot>/Users/balazsivanyi/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/AAU/6th_semester/MED6_project/Prototype/Prototype_WwiseProject/.cache/Windows/</SourceFilesRoot>
-		<SoundBanksRoot>/Users/balazsivanyi/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/AAU/6th_semester/MED6_project/Prototype/Prototype_WwiseProject/GeneratedSoundBanks/Windows/</SoundBanksRoot>
+		<ProjectRoot>C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>/Users/balazsivanyi/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/AAU/6th_semester/MED6_project/Prototype/Prototype_WwiseProject/GeneratedSoundBanks/Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3748316847" Language="SFX" Hash="1432031116">
+		<SoundBank Id="3748316847" Language="SFX" Hash="2493973673">
 			<ObjectPath>\SoundBanks\Default Work Unit\DrumKit</ObjectPath>
 			<ShortName>DrumKit</ShortName>
 			<Path>DrumKit.bnk</Path>
@@ -25,7 +25,7 @@
 					<IncludedMemoryFiles>
 						<File Id="79487858" Language="SFX">
 							<ShortName>SANDUNES_percussion_found_sound_one_shot_dosa_in_prog.wav</ShortName>
-							<Path>SFX/SANDUNES_percussion_found_sound_one_shot_dosa_in_prog_10C4C929.wem</Path>
+							<Path>SFX\SANDUNES_percussion_found_sound_one_shot_dosa_in_prog_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -33,7 +33,7 @@
 					<IncludedMemoryFiles>
 						<File Id="725312000" Language="SFX">
 							<ShortName>ap_djembe_slap.wav</ShortName>
-							<Path>SFX/ap_djembe_slap_10C4C929.wem</Path>
+							<Path>SFX\ap_djembe_slap_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -41,7 +41,7 @@
 					<IncludedMemoryFiles>
 						<File Id="659283244" Language="SFX">
 							<ShortName>Crash_909_PL_2.wav</ShortName>
-							<Path>SFX/Crash_909_PL_2_10C4C929.wem</Path>
+							<Path>SFX\Crash_909_PL_2_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -49,7 +49,7 @@
 					<IncludedMemoryFiles>
 						<File Id="133384433" Language="SFX">
 							<ShortName>RARE_percussion_Handpan_melodic_dry_Gb_oneshot2.wav</ShortName>
-							<Path>SFX/RARE_percussion_Handpan_melodic_dry_Gb_oneshot2_10C4C929.wem</Path>
+							<Path>SFX\RARE_percussion_Handpan_melodic_dry_Gb_oneshot2_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -57,7 +57,7 @@
 					<IncludedMemoryFiles>
 						<File Id="914661757" Language="SFX">
 							<ShortName>Cymbal.wav</ShortName>
-							<Path>SFX/Cymbal_10C4C929.wem</Path>
+							<Path>SFX\Cymbal_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -65,7 +65,7 @@
 					<IncludedMemoryFiles>
 						<File Id="723672675" Language="SFX">
 							<ShortName>SANDUNES_percussion_found_sound_one_shot_isnap.wav</ShortName>
-							<Path>SFX/SANDUNES_percussion_found_sound_one_shot_isnap_10C4C929.wem</Path>
+							<Path>SFX\SANDUNES_percussion_found_sound_one_shot_isnap_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -73,7 +73,7 @@
 					<IncludedMemoryFiles>
 						<File Id="183986143" Language="SFX">
 							<ShortName>ap_djembe_open.wav</ShortName>
-							<Path>SFX/ap_djembe_open_10C4C929.wem</Path>
+							<Path>SFX\ap_djembe_open_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -81,7 +81,7 @@
 					<IncludedMemoryFiles>
 						<File Id="261614828" Language="SFX">
 							<ShortName>Open_Hi_Hat_909_PL.wav</ShortName>
-							<Path>SFX/Open_Hi_Hat_909_PL_10C4C929.wem</Path>
+							<Path>SFX\Open_Hi_Hat_909_PL_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -89,7 +89,7 @@
 					<IncludedMemoryFiles>
 						<File Id="162934384" Language="SFX">
 							<ShortName>RARE_percussion_Handpan_melodic_dry_Ab_oneshot.wav</ShortName>
-							<Path>SFX/RARE_percussion_Handpan_melodic_dry_Ab_oneshot_10C4C929.wem</Path>
+							<Path>SFX\RARE_percussion_Handpan_melodic_dry_Ab_oneshot_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -97,7 +97,7 @@
 					<IncludedMemoryFiles>
 						<File Id="62014626" Language="SFX">
 							<ShortName>HiHat.wav</ShortName>
-							<Path>SFX/HiHat_10C4C929.wem</Path>
+							<Path>SFX\HiHat_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -105,7 +105,7 @@
 					<IncludedMemoryFiles>
 						<File Id="724958572" Language="SFX">
 							<ShortName>ap_djembe_bass.wav</ShortName>
-							<Path>SFX/ap_djembe_bass_10C4C929.wem</Path>
+							<Path>SFX\ap_djembe_bass_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -113,7 +113,7 @@
 					<IncludedMemoryFiles>
 						<File Id="955932567" Language="SFX">
 							<ShortName>SANDUNES_percussion_one_shot_acousticy.wav</ShortName>
-							<Path>SFX/SANDUNES_percussion_one_shot_acousticy_10C4C929.wem</Path>
+							<Path>SFX\SANDUNES_percussion_one_shot_acousticy_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -121,7 +121,7 @@
 					<IncludedMemoryFiles>
 						<File Id="664323841" Language="SFX">
 							<ShortName>Kick_909_PL.wav</ShortName>
-							<Path>SFX/Kick_909_PL_10C4C929.wem</Path>
+							<Path>SFX\Kick_909_PL_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -129,7 +129,7 @@
 					<IncludedMemoryFiles>
 						<File Id="752389861" Language="SFX">
 							<ShortName>RARE_percussion_Handpan_melodic_dry_B_oneshot.wav</ShortName>
-							<Path>SFX/RARE_percussion_Handpan_melodic_dry_B_oneshot_10C4C929.wem</Path>
+							<Path>SFX\RARE_percussion_Handpan_melodic_dry_B_oneshot_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -137,7 +137,7 @@
 					<IncludedMemoryFiles>
 						<File Id="500695360" Language="SFX">
 							<ShortName>Kick.wav</ShortName>
-							<Path>SFX/Kick_10C4C929.wem</Path>
+							<Path>SFX\Kick_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -145,7 +145,7 @@
 					<IncludedMemoryFiles>
 						<File Id="686716830" Language="SFX">
 							<ShortName>SANDUNES_percussion_found_sound_one_shot_clank_tail.wav</ShortName>
-							<Path>SFX/SANDUNES_percussion_found_sound_one_shot_clank_tail_10C4C929.wem</Path>
+							<Path>SFX\SANDUNES_percussion_found_sound_one_shot_clank_tail_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -153,7 +153,7 @@
 					<IncludedMemoryFiles>
 						<File Id="1036151787" Language="SFX">
 							<ShortName>ap_ghana_bell_low1.wav</ShortName>
-							<Path>SFX/ap_ghana_bell_low1_10C4C929.wem</Path>
+							<Path>SFX\ap_ghana_bell_low1_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -161,7 +161,7 @@
 					<IncludedMemoryFiles>
 						<File Id="871471940" Language="SFX">
 							<ShortName>Snare_909_PL_14.wav</ShortName>
-							<Path>SFX/Snare_909_PL_14_10C4C929.wem</Path>
+							<Path>SFX\Snare_909_PL_14_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -169,7 +169,7 @@
 					<IncludedMemoryFiles>
 						<File Id="380562368" Language="SFX">
 							<ShortName>RARE_percussion_Handpan_melodic_dry_E_oneshot.wav</ShortName>
-							<Path>SFX/RARE_percussion_Handpan_melodic_dry_E_oneshot_10C4C929.wem</Path>
+							<Path>SFX\RARE_percussion_Handpan_melodic_dry_E_oneshot_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -177,7 +177,7 @@
 					<IncludedMemoryFiles>
 						<File Id="541296549" Language="SFX">
 							<ShortName>Snare.wav</ShortName>
-							<Path>SFX/Snare_10C4C929.wem</Path>
+							<Path>SFX\Snare_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -185,7 +185,7 @@
 					<IncludedMemoryFiles>
 						<File Id="50112841" Language="SFX">
 							<ShortName>SANDUNES_percussion_found_sound_one_shot_mouth_percussion.wav</ShortName>
-							<Path>SFX/SANDUNES_percussion_found_sound_one_shot_mouth_percussion_10C4C929.wem</Path>
+							<Path>SFX\SANDUNES_percussion_found_sound_one_shot_mouth_percussion_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -193,7 +193,7 @@
 					<IncludedMemoryFiles>
 						<File Id="312329991" Language="SFX">
 							<ShortName>ap_djembe_openflam.wav</ShortName>
-							<Path>SFX/ap_djembe_openflam_10C4C929.wem</Path>
+							<Path>SFX\ap_djembe_openflam_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -201,7 +201,7 @@
 					<IncludedMemoryFiles>
 						<File Id="955934526" Language="SFX">
 							<ShortName>Closed_Hi_Hat_909_PL_2.wav</ShortName>
-							<Path>SFX/Closed_Hi_Hat_909_PL_2_10C4C929.wem</Path>
+							<Path>SFX\Closed_Hi_Hat_909_PL_2_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -209,7 +209,7 @@
 					<IncludedMemoryFiles>
 						<File Id="243891991" Language="SFX">
 							<ShortName>RARE_percussion_Handpan_melodic_dry_C#_oneshot.wav</ShortName>
-							<Path>SFX/RARE_percussion_Handpan_melodic_dry_C#_oneshot_10C4C929.wem</Path>
+							<Path>SFX\RARE_percussion_Handpan_melodic_dry_C#_oneshot_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -217,7 +217,7 @@
 					<IncludedMemoryFiles>
 						<File Id="1009280991" Language="SFX">
 							<ShortName>Tom38 Drums1DOTcom.wav</ShortName>
-							<Path>SFX/Tom38 Drums1DOTcom_10C4C929.wem</Path>
+							<Path>SFX\Tom38 Drums1DOTcom_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

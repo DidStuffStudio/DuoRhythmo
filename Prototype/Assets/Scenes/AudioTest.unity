@@ -400,6 +400,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -569,7 +573,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -815,7 +820,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -1073,7 +1079,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -2097,7 +2104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -7724,7 +7732,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -7988,7 +7997,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -8246,7 +8256,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -9148,7 +9159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -9977,7 +9989,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -10492,7 +10505,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -11220,7 +11234,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -11493,7 +11508,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -12239,7 +12255,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -12530,7 +12547,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -12883,7 +12901,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}

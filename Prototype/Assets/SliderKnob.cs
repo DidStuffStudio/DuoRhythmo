@@ -68,6 +68,7 @@ public class SliderKnob : CustomButton
     
     public void SetCurrentValue(float value)
     {
+        FillSlider();
         currentValue = value;
         OnSliderChange?.Invoke(sliderIndex);
         _knobRectTransform.anchoredPosition =
@@ -205,6 +206,7 @@ public class SliderKnob : CustomButton
     }
 
     public void UpdateSliderText() {
+        FillSlider();
         var value = (int) currentValue;
         _text.text = value.ToString();
     }

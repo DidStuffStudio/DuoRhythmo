@@ -72,7 +72,7 @@ public class NodeManager : MonoBehaviour {
 
         rotation = 0.0f;
 
-        for (int i = 0; i < sliders.Length - 1; i++) sliders[i].OnSliderChange += ChangeEffectValue;
+        for (int i = 0; i < sliders.Length; i++) sliders[i].OnSliderChange += ChangeEffectValue;
 
         bpmSlider.OnSliderChange += ChangeBpm;
 
@@ -125,8 +125,7 @@ public class NodeManager : MonoBehaviour {
             levels[0] = sliders[0].currentValue;
             levels[1] = sliders[1].currentValue;
             levels[2] = sliders[2].currentValue;
-            levels[3] = 
-                sliders[3].currentValue;
+            levels[3] = sliders[3].currentValue;
             bpm = MasterManager.Instance.bpm;
             bpmSlider.currentValue = bpm;
             bpmSlider.UpdateSliderText();

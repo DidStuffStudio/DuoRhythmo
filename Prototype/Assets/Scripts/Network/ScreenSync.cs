@@ -12,7 +12,7 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
     private int _indexValue = 0;
     
     // effects
-    private int _effect1 = 0;
+    private int _effect1 = 50;
     private int _effect2 = 0;
     private int _effect3 = 0;
     private int _effect4 = 0;

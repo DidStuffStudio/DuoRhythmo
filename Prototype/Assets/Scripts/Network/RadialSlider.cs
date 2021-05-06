@@ -104,6 +104,17 @@ public class RadialSlider : CustomButton {
         }
         
     }
+
+    protected override void SetActive()
+    {
+        if(changeTextColor) buttonText.color = activeTextColor;
+        mainButtonImage.color = activeHoverColor;
+        confirmScaler.GetComponent<Image>().color = defaultColor;
+        if (isActive) return;
+        isActive = true;
+        isDefault = false;
+    }
+
     protected override void Update() {
         base.Update();
         if(!isActive) return;

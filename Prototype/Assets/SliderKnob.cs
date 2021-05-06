@@ -66,6 +66,16 @@ public class SliderKnob : CustomButton
                 
     }
     
+    protected override void SetActive()
+    {
+        if(changeTextColor) buttonText.color = activeTextColor;
+        mainButtonImage.color = activeHoverColor;
+        confirmScaler.GetComponent<Image>().color = defaultColor;
+        if (isActive) return;
+        isActive = true;
+        isDefault = false;
+    }
+    
     public void SetCurrentValue(float value)
     {
         FillSlider();

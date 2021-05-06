@@ -17,7 +17,8 @@ public class CustomButton : MonoBehaviour {
     public bool canInteractBeforeStart = false;
     public bool isDefault = true, isEyeHover, isMouseHover, isActive, isConfirmationButton;
     public Color defaultColor, activeColor, defaultTextColor = new Color(33,33,33,1), activeTextColor = new Color(238,238,238,1);
-    private Color inactiveHoverColor, activeHoverColor;
+    private Color inactiveHoverColor;
+    protected Color activeHoverColor;
     public GameObject confirmScaler;
     public bool mouseOver;
     protected RectTransform _confirmScalerRT;

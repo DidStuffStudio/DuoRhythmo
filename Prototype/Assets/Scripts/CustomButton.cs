@@ -55,6 +55,8 @@ public class CustomButton : MonoBehaviour {
     protected virtual void GetImageComponent()=> mainButtonImage = GetComponent<Image>();
 
     protected virtual void Update() {
+        
+        if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
         if (TobiiAPI.IsConnected)
         {
             _usingEyeTracking = true;

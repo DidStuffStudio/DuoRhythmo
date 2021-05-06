@@ -102,7 +102,6 @@ public class NodeManager : MonoBehaviour {
         print(levels.Length);
         for (int i = 0; i < levels.Length; i++)
         {
-            print("LEVELS " + levels[i]);
             AkSoundEngine.SetRTPCValue(effectNames[i], levels[i]);
         }
 

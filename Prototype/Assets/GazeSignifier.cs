@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tobii.Gaming;
@@ -9,6 +10,14 @@ public class GazeSignifier : MonoBehaviour {
     private bool _hasHistoricPoint;
     private Vector3 _historicPoint;
     public float filterSmoothingFactor = 0.5f;
+    private ParticleSystem _particleSystem;
+    private bool particleSystemPlaying;
+
+
+    private void Start()
+    {
+        _particleSystem = GetComponent<ParticleSystem>();
+    }
 
     void Update()
     {
@@ -19,24 +28,21 @@ public class GazeSignifier : MonoBehaviour {
             GazePoint gazePoint = TobiiAPI.GetGazePoint();
             Vector3 gazePointInWorld = ProjectToPlaneInWorld(gazePoint);
             transform.position = Smoothify(gazePointInWorld);
+            if (!particleSystemPlaying)
+            {
+                _particleSystem.Play();
+                particleSystemPlaying = true;
+            }
+            
         }
 
         else
         {
-            Cursor.visible = false;
-            Vector3 mousePointInWorld = MouseProjectToPlaneWorld(Input.mousePosition);
-            transform.position = Smoothify(mousePointInWorld);
+            _particleSystem.Stop();
+            particleSystemPlaying = false;
         }
     }
-
-    private Vector3 MouseProjectToPlaneWorld(Vector3 mousePosition)
-    {
-        Vector3 mouseScreenPoint = new Vector2(mousePosition.x,mousePosition.y);
-        mouseScreenPoint += (Camera.main.transform.forward + (Vector3.one*visualizationDistance));
-        return Camera.main.ScreenToWorldPoint(mouseScreenPoint);
-    }
     
-
     private Vector3 ProjectToPlaneInWorld(GazePoint gazePoint) {
         Vector3 gazeOnScreen = gazePoint.Screen;
         gazeOnScreen += (Camera.main.transform.forward + (Vector3.one*visualizationDistance));

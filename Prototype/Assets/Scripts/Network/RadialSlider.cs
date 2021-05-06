@@ -15,6 +15,7 @@ public class RadialSlider : CustomButton {
     [SerializeField] private Text _text;
     public float currentValue, previousValue;
     private float _angle = 0;
+    private bool isDraggingWithMouse;
 
     //Events
     public delegate void SliderChangeAction(int index);
@@ -45,16 +46,30 @@ public class RadialSlider : CustomButton {
 
     public void ForceDefault() => UnHover();
     
+    protected override void MouseInteraction()
+    {
 
+        if (mouseOver && Input.GetMouseButton(0))
+        {
+            SetActive();
+            isDraggingWithMouse = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            SetDefault();
+            isDraggingWithMouse = false;
+        }
+        
+    }
     protected override void Update() {
         base.Update();
         if(!isActive) return;
-        if (_usingEyeTracking) {
+        if (isEyeHover && !isDraggingWithMouse) {
             GazePoint gazePoint = TobiiAPI.GetGazePoint();
             _targetPosition = gazePoint.Screen;
         }
 
-        else _targetPosition = Input.mousePosition;
+        else if(mouseOver) _targetPosition = Input.mousePosition;
 
         Vector3 targetVector = new Vector3(_targetPosition.x, _targetPosition.y, 0) -
                                _mainCamera.WorldToScreenPoint(transform.parent.position);
@@ -80,7 +95,8 @@ public class RadialSlider : CustomButton {
     
     protected override void FixedUpdate() {
         if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
-        if (isHover && !isActive) {
+       
+        if (isEyeHover && !isActive) {
             if (_confirmScalerRT.localScale.x < 1.0f)
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
             else {
@@ -94,6 +110,7 @@ public class RadialSlider : CustomButton {
             if (_confirmScalerRT.localScale.x < 0.0f) return;
             _confirmScalerRT.localScale -= Vector3.one / MasterManager.Instance.dwellTimeSpeed;
         }
+       
     }
 
 

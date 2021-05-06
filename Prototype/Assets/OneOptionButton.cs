@@ -26,7 +26,8 @@ public class OneOptionButton : CustomButton {
     }
 
     protected override void FixedUpdate() {
-        if (isHover && !isActive)
+        
+        if (isEyeHover && !isActive)
         {
             if (_confirmScalerRT.localScale.x < 1.0f)
                 if (!isDwellTimeSetter)
@@ -56,7 +57,7 @@ public class OneOptionButton : CustomButton {
 
            
         }
-
+        
         }
     public void ChangeDwellSpeed()
     {

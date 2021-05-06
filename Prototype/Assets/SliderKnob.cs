@@ -25,7 +25,7 @@ public class SliderKnob : CustomButton
     public Transform upperLimit, lowerLimit;
     public float currentValue,previousValue;
     private bool isDraggingWithMouse = false;
-    
+    [SerializeField] private RectTransform fillRect;
     
     //Events
     public delegate void SliderChangeAction(int index);
@@ -41,13 +41,15 @@ public class SliderKnob : CustomButton
     protected override void Start()
     {
         base.Start();
-    
+        
         _text = GetComponentInChildren<Text>();
         _mainCamera = Camera.main;
         _knobRectTransform = GetComponent<RectTransform>();
         
         
-                var rect = _slider.rect;
+        FillSlider();
+
+        var rect = _slider.rect;
                 if (isHorizontal)
                 {
                     _minValue = 0;
@@ -86,6 +88,11 @@ public class SliderKnob : CustomButton
             isDraggingWithMouse = false;
         }
         
+    }
+
+    private void FillSlider()
+    {
+        fillRect.sizeDelta = new Vector2(20, _knobRectTransform.anchoredPosition.y);
     }
 
     protected override void Update()
@@ -131,7 +138,7 @@ public class SliderKnob : CustomButton
             
             else
             {
-                if (isEyeHover)
+                if (isEyeHover && !isDraggingWithMouse)
                 {
                     GazePoint gazePoint = TobiiAPI.GetGazePoint();
                     knobScreenPoint.y = gazePoint.Screen.y;
@@ -154,6 +161,8 @@ public class SliderKnob : CustomButton
                 if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
 
                 previousValue = currentValue;
+                
+                FillSlider();
             }
 
         }
@@ -191,7 +200,7 @@ public class SliderKnob : CustomButton
 
 
     private void SliderChanged(int index) {
-       
+        FillSlider();
         UpdateSliderText();
     }
 

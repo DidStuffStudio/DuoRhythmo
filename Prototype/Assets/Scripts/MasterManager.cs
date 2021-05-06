@@ -204,7 +204,8 @@ public class MasterManager : MonoBehaviour {
                 nodeManager.sliders[j] = knobs[j];
                 knobs[j].activeColor = drumColors[i];
                 knobs[j].GetComponentInParent<Image>().color = drumColors[i];
-                knobs[j].transform.parent.parent.GetComponent<Image>().color =  drumColors[i];
+                knobs[j].knobBorder.color = drumColors[i];
+                foreach (var quad in knobs[j].quadrants) quad.transform.GetComponent<Image>().color = drumColors[i];
             }
             
             
@@ -359,7 +360,7 @@ public class MasterManager : MonoBehaviour {
                 nodeManager.sliders[j] = knobs[j];
                 knobs[j].activeColor = drumColors[i];
                 // knobs[j].GetComponentInParent<Image>().color = drumColors[i];
-                knobs[j].transform.parent.parent.GetComponent<Image>().color =  drumColors[i];
+                foreach (var quad in knobs[j].quadrants) quad.transform.GetComponent<Image>().color = drumColors[i];
             }
 
             foreach (var incButton in effectsPanels[i].GetComponentsInChildren<IncrementButton>())

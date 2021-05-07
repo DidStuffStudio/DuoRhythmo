@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22062764, g: 0.21670589, b: 0.20102039, a: 1}
+  m_IndirectSpecularColor: {r: 0.22063464, g: 0.21671247, b: 0.20102707, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -902,7 +902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: Djemba Room - 2
+      value: Djembe Room - 2
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a
@@ -7730,7 +7730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 1
+  canInteractBeforeStart: 0
   isDefault: 1
   isEyeHover: 0
   isMouseHover: 0
@@ -12724,7 +12724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Text
-      value: Djemba Room - 1
+      value: Djembe Room - 1
       objectReference: {fileID: 0}
     - target: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Color.a

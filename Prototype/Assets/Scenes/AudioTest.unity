@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22062764, g: 0.21670589, b: 0.20102039, a: 1}
+  m_IndirectSpecularColor: {r: 0.22063464, g: 0.21671247, b: 0.20102707, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10722,7 +10722,7 @@ MonoBehaviour:
   positionSpeed: 2.5
   playerStartPosition: {fileID: 525941752}
   playerPositionDestination: {fileID: 258635028}
-  localPlayerNumber: 351534
+  localPlayerNumber: 0
   gameSetUpFinished: 0
   currentRotationOfUI: 0
   player: {fileID: 0}

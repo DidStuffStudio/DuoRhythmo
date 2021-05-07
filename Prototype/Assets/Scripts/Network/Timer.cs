@@ -14,33 +14,44 @@ public class Timer : MonoBehaviour {
     private RealtimeView _realtimeView;
     private bool blinking;
     public int tempRoundTime = 30;
+    private bool mainTimerRunning;
 
     private void Start() {
         timer = roundTime;
-        tempRoundTime = roundTime;
     }
 
-    public void ToggleTimer(bool restart) {
-        if (restart) {
-            StopCoroutine(nameof(Time));
-            StartCoroutine(nameof(Time));
-        }
-        else StopCoroutine(nameof(Time));
-    }
 
     public void StartTimer() => StartCoroutine(nameof(Time));
 
-    private IEnumerator Time() {
+
+    public IEnumerator TemporaryTime()
+    {
+        var startTime = RealTimeInstance.Instance.GetRoomTime();
+
+        while (timer > 0.0f && !mainTimerRunning)
+        {
+            yield return new WaitForSeconds(0.1f);
+            var roomTimeDelta = (float)(RealTimeInstance.Instance.GetRoomTime() - startTime);
+            timer = (int)(tempRoundTime - roomTimeDelta);
+        }
+        if (!mainTimerRunning)
+        {
+            timer = roundTime;
+            MasterManager.Instance.userInterfaceManager.PlayAnimation(true);
+        }
+    }
+    
+    public IEnumerator MainTime() {
+        mainTimerRunning = true;
         var startTime = RealTimeInstance.Instance.GetRoomTime();
 
         while (timer > 0.0f) {
             yield return new WaitForSeconds(0.1f);
             var roomTimeDelta = (float) (RealTimeInstance.Instance.GetRoomTime() - startTime);
-            timer = (int) (tempRoundTime - roomTimeDelta);
+            timer = (int) (roundTime - roomTimeDelta);
         }
 
-        tempRoundTime = roundTime;
-        timer = tempRoundTime;
+        timer = roundTime;
         MasterManager.Instance.userInterfaceManager.PlayAnimation(true);
     }
 

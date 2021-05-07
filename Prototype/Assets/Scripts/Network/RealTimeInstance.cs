@@ -30,28 +30,29 @@ public class RealTimeInstance : MonoBehaviour {
     [SerializeField] private Transform playersHolder;
     public bool isNewPlayer = true;
 
+
     private void Awake() {
         _instance = this;
         _realtime = GetComponent<Realtime>();
         RegisterToEvents();
-        StartCoroutine(CheckNumberOfPlayers());
     }
     
     public IEnumerator CheckNumberOfPlayers() {
         while (true) {
-            var players = FindObjectsOfType<Player>();
-            numberPlayers = players.Length;
-            if (numberPlayers != previousNumberPlayers) {
-                var counter = 0;
-                for (int i = 0; i < MasterManager.Instance.dataMaster.conectedPlayers.Length; i++) {
-                    if (numberPlayers > i) MasterManager.Instance.dataMaster.conectedPlayers[i] = 1;
-                    else MasterManager.Instance.dataMaster.conectedPlayers[i] = 0;
+            numberPlayers = _realtime.room.datastore.prefabViewModels.Count / 2;
+            int smallestOwnerId = 10;
+            foreach (var viewModel in _realtime.room.datastore.prefabViewModels) {
+                var networkManager = viewModel.realtimeView.gameObject.GetComponent<NetworkManagerSync>();
+                if (networkManager) {
+                    var realtimeView = networkManager.GetComponent<RealtimeView>();
+                    if (realtimeView) {
+                        var ownerId = realtimeView.ownerIDSelf;
+                        if (smallestOwnerId > ownerId) smallestOwnerId = ownerId;
+                    }
                 }
-
-                previousNumberPlayers = numberPlayers;
             }
-
-            yield return new WaitForSeconds(0.1f);
+            if(MasterManager.Instance.localPlayerNumber == smallestOwnerId) stringSync.SetMessage(MasterManager.Instance.timer.timer.ToString());
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
@@ -85,24 +86,21 @@ public class RealTimeInstance : MonoBehaviour {
         if(_realtime.room.connectionState == Room.ConnectionState.Error) Play();
     }
 
+
     private void DidConnectToRoom(Realtime realtime) {
-        _realtime.room.connectionStateChanged += ConnectionStateChanged;
-        isConnected = true;
         networkManager = Realtime.Instantiate(networkManagerPrefab.name, true, true);
         var realtimeView = networkManager.GetComponent<RealtimeView>();
+        realtimeView.RequestOwnership();
         MasterManager.Instance.localPlayerNumber = realtimeView.ownerIDSelf;
-        StartCoroutine(WaitForPreviousPlayersToConnect());
-    }
-
-    private IEnumerator WaitForPreviousPlayersToConnect() {
-        yield return new WaitForSeconds((MasterManager.Instance.localPlayerNumber + 1.0f) / 2.0f);
-        numberPlayers = FindObjectsOfType<NetworkManagerSync>().Length; // get the number of players
-
+        if (_realtime.room.datastore.prefabViewModels.Count < 3 && MasterManager.Instance.localPlayerNumber == 0)
+            MasterManager.Instance.isFirstPlayer = true;
+        isConnected = true;
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name);
         gfx.GetComponent<RealtimeView>().RequestOwnership();
         gfx.GetComponent<RealtimeTransform>().RequestOwnership();
-        print("This is my player number: " + MasterManager.Instance.localPlayerNumber);
         stringSync.SetNewPlayerUpdateTime(MasterManager.Instance.localPlayerNumber);
+
+        StartCoroutine(CheckNumberOfPlayers());
         StartCoroutine(SeniorPlayer());
     }
 

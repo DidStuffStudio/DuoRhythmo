@@ -74,7 +74,7 @@ public class MasterManager : MonoBehaviour {
     public bool DwellSettingsActive;
     public GameObject dwellSettingsPrefab;
     public DataSync dataMaster;
-    
+    public bool isFirstPlayer;
     
     [SerializeField] private Dictionary<float, bool> playerTransforms = new Dictionary<float, bool>();
     private void Start() {
@@ -123,13 +123,8 @@ public class MasterManager : MonoBehaviour {
                 {
                     timerUI.SetActive(true);
                     
-                    if (RealTimeInstance.Instance.numberPlayers < 2)
-                    {
-                        
-                        localPlayerNumber = 0;
-                        player.hasPlayerNumber = true;
-                        timer.ToggleTimer(true);
-                    }
+                    if (isFirstPlayer) StartCoroutine(timer.MainTime());
+                  
                 }
             }
         }
@@ -180,7 +175,7 @@ public class MasterManager : MonoBehaviour {
             foreach(Transform child in effectsPanels[i].transform.GetComponentsInChildren<Transform>())
             {
 
-                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().color = drumColors[i];
+                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().color = new Color(drumColors[i].r, drumColors[i].g, drumColors[i].b, 0);;
                 if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().text = (DrumType) i + " Effects";
                 if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<Text>().color = drumColors[i];
                 
@@ -208,6 +203,9 @@ public class MasterManager : MonoBehaviour {
             for (int j = 0; j < knobs.Length; j++) {
                 nodeManager.sliders[j] = knobs[j];
                 knobs[j].activeColor = drumColors[i];
+                knobs[j].GetComponentInParent<Image>().color = drumColors[i];
+                knobs[j].knobBorder.color = drumColors[i];
+                foreach (var quad in knobs[j].quadrants) quad.transform.GetComponent<Image>().color = drumColors[i];
             }
             
             
@@ -306,7 +304,7 @@ public class MasterManager : MonoBehaviour {
             foreach(Transform child in effectsPanels[i].transform.GetComponentsInChildren<Transform>())
             {
 
-                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().color = drumColors[i];
+                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().color = new Color(drumColors[i].r, drumColors[i].g, drumColors[i].b, 0);
                 if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().text = (DrumType) i + " Effects";
                 if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<Text>().color = drumColors[i];
                    
@@ -359,6 +357,8 @@ public class MasterManager : MonoBehaviour {
             {
                 nodeManager.sliders[j] = knobs[j];
                 knobs[j].activeColor = drumColors[i];
+                // knobs[j].GetComponentInParent<Image>().color = drumColors[i];
+                foreach (var quad in knobs[j].quadrants) quad.transform.GetComponent<Image>().color = drumColors[i];
             }
 
             foreach (var incButton in effectsPanels[i].GetComponentsInChildren<IncrementButton>())
@@ -400,7 +400,7 @@ public class MasterManager : MonoBehaviour {
     
     public void DrumNodeChangedOnServer(int drumIndex, int nodeIndex, bool activate) => _nodeManagers[drumIndex]._nodes[nodeIndex].SetNodeFromServer(activate);
 
-    public void EffectsDidChangeOnServer(int drumIndex, int [] drumEffects) {
+    public void EffectsDidChangeOnServer(int drumIndex, int[] drumEffects) {
         for (int i = 0; i < 4; i++) _nodeManagers[drumIndex].SetEffectsFromServer(i, drumEffects[i]);
     }
 

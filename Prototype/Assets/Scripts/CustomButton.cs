@@ -15,9 +15,10 @@ public class CustomButton : MonoBehaviour {
     private Image _image;
     private Collider _collider;
     public bool canInteractBeforeStart = false;
-    public bool isDefault = true, isHover, isActive, isConfirmationButton;
+    public bool isDefault = true, isEyeHover, isMouseHover, isActive, isConfirmationButton;
     public Color defaultColor, activeColor, defaultTextColor = new Color(33,33,33,1), activeTextColor = new Color(238,238,238,1);
-    private Color inactiveHoverColor, activeHoverColor;
+    private Color inactiveHoverColor;
+    protected Color activeHoverColor;
     public GameObject confirmScaler;
     public bool mouseOver;
     protected RectTransform _confirmScalerRT;
@@ -54,19 +55,24 @@ public class CustomButton : MonoBehaviour {
     protected virtual void GetImageComponent()=> mainButtonImage = GetComponent<Image>();
 
     protected virtual void Update() {
+        
+        if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
         if (TobiiAPI.IsConnected)
         {
             _usingEyeTracking = true;
             if (_gazeAware.HasGazeFocus) Hover();
-            else if (!mouseOver) UnHover();
+            else if(!mouseOver)UnHover();
         }
+
+        MouseInteraction();
         
     }
 
     protected virtual void FixedUpdate()
     {
         if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
-        if (isHover) {
+        
+        if (isEyeHover) {
             if (_confirmScalerRT.localScale.x < 1.0f)
                 
                     _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
@@ -97,20 +103,62 @@ public class CustomButton : MonoBehaviour {
                 _confirmScalerRT.localScale -= Vector3.one / MasterManager.Instance.dwellTimeSpeed;
             
         }
+
+       
+        
+    }
+
+    protected virtual void MouseInteraction()
+    {
+        if(!mouseOver) return;
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (isDefault)
+            {
+                OnActivation?.Invoke();
+                SetActive();
+                
+            }
+            else
+            {
+                OnDeactivation?.Invoke();
+                SetDefault();
+                
+            }
+        }
     }
     protected virtual void OnMouseOver()
     {
         if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
         if(gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         mouseOver = true;
-        Hover();
+        if (!colorsSet)
+        {
+            Color.RGBToHSV(defaultColor, out var uH, out var uS, out var uV);
+            uV -= 0.3f;
+            Color.RGBToHSV(activeColor, out var aH, out var aS, out var aV);
+            aV -= 0.3f;
+
+            inactiveHoverColor = Color.HSVToRGB(uH, uS, uV);
+            activeHoverColor = Color.HSVToRGB(aH, aS, aV);
+
+            inactiveHoverColor.a = 1;
+            activeHoverColor.a = 1;
+            confirmScaler.GetComponent<Image>().color = activeColor;
+            colorsSet = true;
+        }
+
+        if (!_canHover || gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
+        if (isActive) mainButtonImage.color = activeHoverColor;
+        else mainButtonImage.color = inactiveHoverColor;
     }
 
     protected virtual void OnMouseExit() {
         if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
         if(gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         mouseOver = false;
-        UnHover();
+        if (isDefault) SetDefault();
+        else if (isActive) SetActive();
     }
 
     protected virtual void SetActive()
@@ -143,15 +191,13 @@ public class CustomButton : MonoBehaviour {
         if (!_canHover || gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         if (isActive) mainButtonImage.color = activeHoverColor;
         else mainButtonImage.color = inactiveHoverColor;
-        if (isHover) return;
-        isHover = true;
+        isEyeHover = true;
     }
 
     protected virtual void UnHover() {
-        if (!isHover) return;
-        isHover = false;
-        if (isConfirmationButton) SetDefault();
-        else if (isDefault) SetDefault();
+        if (!isEyeHover) return;
+        isEyeHover = false;
+        if (isDefault) SetDefault();
         else if (isActive) SetActive();
     }
 
@@ -172,7 +218,7 @@ public class CustomButton : MonoBehaviour {
 
     protected virtual IEnumerator InteractionBreakTime() {
         _canHover = false;
-        isHover = false;
+        isEyeHover = false;
         yield return new WaitForSeconds(interactionBreakTime);
         _canHover = true;
     }

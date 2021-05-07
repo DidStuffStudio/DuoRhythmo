@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: cc717317cdad8743bf9108ba7a4faf4f
     GuidInternal: 
-    m_lastTime: -8585825022801348883
+    m_lastTime: -8585860534100689011
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: 554f1bb12f386940af6e508cad75ebe4
     GuidInternal: 
-    m_lastTime: -8585825022804061347
+    m_lastTime: -8585860534101689921
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: a81dc75788825b409833e16fa7d911ed
     GuidInternal: 
-    m_lastTime: -8585815793570541446
+    m_lastTime: -8585817317812339896
     List:
     - name: DrumKit
       guid: 9b12486e84dacd4fbb559b2f24703957
@@ -533,7 +533,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: 9f2cb0cc16470340a744c7e35cb02879
     GuidInternal: 
-    m_lastTime: -8585825022804271541
+    m_lastTime: -8585813251634709975
     List:
     - name: Cymbal_Volume
       guid: 8ca0e63534d96040b913bed9fa1156d6
@@ -591,6 +591,20 @@ MonoBehaviour:
         ObjectType: 13
         guid: b66287d2c2e2f74d885dc48226701b86
       Path: Game Parameters\Default Work Unit\Cymbol_Effect_3
+    - name: Cymbol_Effect_4
+      guid: 0c9b0c01cb84904ebf7a4dfbdb7b1529
+      id: 2503299910
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: Cymbol_Effect_4
+        ObjectType: 13
+        guid: 0c9b0c01cb84904ebf7a4dfbdb7b1529
+      Path: Game Parameters\Default Work Unit\Cymbol_Effect_4
     - name: HiHat_Effect_1
       guid: cb33319d4fab3a4cb3e8053c64b99f60
       id: 2996634841
@@ -633,6 +647,20 @@ MonoBehaviour:
         ObjectType: 13
         guid: bdcaa4c8e953fc42b6696256104f018f
       Path: Game Parameters\Default Work Unit\HiHat_Effect_3
+    - name: HiHat_Effect_4
+      guid: 475741908af43746b5bd4f3709f715e9
+      id: 2996634844
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: HiHat_Effect_4
+        ObjectType: 13
+        guid: 475741908af43746b5bd4f3709f715e9
+      Path: Game Parameters\Default Work Unit\HiHat_Effect_4
     - name: HiHat_Volume
       guid: bb68eb1adefc3e41823f978d8af76361
       id: 3090948260
@@ -689,6 +717,20 @@ MonoBehaviour:
         ObjectType: 13
         guid: f2a7443e41818246a03b34537a3f92c9
       Path: Game Parameters\Default Work Unit\Kick_Effect_3
+    - name: Kick_Effect_4
+      guid: 3c41abb02c9f9b41bf0d60e5dde3d1a6
+      id: 3473794584
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: Kick_Effect_4
+        ObjectType: 13
+        guid: 3c41abb02c9f9b41bf0d60e5dde3d1a6
+      Path: Game Parameters\Default Work Unit\Kick_Effect_4
     - name: Kick_Volume
       guid: a98a692597b2eb49ba841557984bdf17
       id: 788319784
@@ -745,6 +787,20 @@ MonoBehaviour:
         ObjectType: 13
         guid: d004532882dcfd439bc66e11dc5832af
       Path: Game Parameters\Default Work Unit\Snare_Effect_3
+    - name: Snare_Effect_4
+      guid: ef2911cb96450f4cb8967d1eaca76762
+      id: 2618583621
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: Snare_Effect_4
+        ObjectType: 13
+        guid: ef2911cb96450f4cb8967d1eaca76762
+      Path: Game Parameters\Default Work Unit\Snare_Effect_4
     - name: Snare_Volume
       guid: a9bbb96a3412024ea9dc75487e592b58
       id: 3046177845
@@ -801,6 +857,20 @@ MonoBehaviour:
         ObjectType: 13
         guid: 0d734d16240e784b9bfce6016ecb0711
       Path: Game Parameters\Default Work Unit\TomTom_Effect_3
+    - name: TomTom_Effect_4
+      guid: 8cce1c25c2d6c142bbcf2d6198d542a4
+      id: 1688164490
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 9f2cb0cc16470340a744c7e35cb02879
+      - ElementName: TomTom_Effect_4
+        ObjectType: 13
+        guid: 8cce1c25c2d6c142bbcf2d6198d542a4
+      Path: Game Parameters\Default Work Unit\TomTom_Effect_4
     - name: TomTom_Volume
       guid: eb9a3b26da8d1c4eba30214ba61e1203
       id: 3216986426
@@ -827,7 +897,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: ba344542904ca04a98ce712d30215dd1
     GuidInternal: 
-    m_lastTime: -8585825022801358887
+    m_lastTime: -8585860534101299566
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
@@ -841,7 +911,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 541c3cedf1a47c48a34807edffd80ac5
     GuidInternal: 
-    m_lastTime: -8585825022801358887
+    m_lastTime: -8585855861194074638
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
@@ -855,7 +925,7 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: fee7b98ddcd7774dade11d762a153c5a
     GuidInternal: 
-    m_lastTime: -8585825022801358887
+    m_lastTime: -8585860534101239506
     List: []
   ExpandedFileSystemItemIds: 0200000003000000050000000600000007000000080000000a0000000b0000000c0000000d0000000f0000002100000022000000
   ExpandedWaapiItemIds: 0200000003000000050000000600000007000000080000000a0000000b0000000c0000000d0000000f000000

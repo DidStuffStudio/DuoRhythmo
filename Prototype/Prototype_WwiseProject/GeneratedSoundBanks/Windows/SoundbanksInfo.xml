@@ -11,12 +11,12 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="3047831965">
+		<SoundBank Id="1355168291" Language="SFX" Hash="3244928560">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3748316847" Language="SFX" Hash="1940528975">
+		<SoundBank Id="3748316847" Language="SFX" Hash="2493973673">
 			<ObjectPath>\SoundBanks\Default Work Unit\DrumKit</ObjectPath>
 			<ShortName>DrumKit</ShortName>
 			<Path>DrumKit.bnk</Path>
@@ -224,21 +224,26 @@
 			</IncludedEvents>
 			<GameParameters>
 				<GameParameter Id="788319784" Name="Kick_Volume" ObjectPath="\Game Parameters\Default Work Unit\Kick_Volume"/>
+				<GameParameter Id="1688164490" Name="TomTom_Effect_4" ObjectPath="\Game Parameters\Default Work Unit\TomTom_Effect_4"/>
 				<GameParameter Id="1688164492" Name="TomTom_Effect_2" ObjectPath="\Game Parameters\Default Work Unit\TomTom_Effect_2"/>
 				<GameParameter Id="1688164493" Name="TomTom_Effect_3" ObjectPath="\Game Parameters\Default Work Unit\TomTom_Effect_3"/>
 				<GameParameter Id="1688164495" Name="TomTom_Effect_1" ObjectPath="\Game Parameters\Default Work Unit\TomTom_Effect_1"/>
 				<GameParameter Id="2503299904" Name="Cymbol_Effect_2" ObjectPath="\Game Parameters\Default Work Unit\Cymbol_Effect_2"/>
 				<GameParameter Id="2503299905" Name="Cymbol_Effect_3" ObjectPath="\Game Parameters\Default Work Unit\Cymbol_Effect_3"/>
 				<GameParameter Id="2503299907" Name="Cymbol_Effect_1" ObjectPath="\Game Parameters\Default Work Unit\Cymbol_Effect_1"/>
+				<GameParameter Id="2503299910" Name="Cymbol_Effect_4" ObjectPath="\Game Parameters\Default Work Unit\Cymbol_Effect_4"/>
 				<GameParameter Id="2618583616" Name="Snare_Effect_1" ObjectPath="\Game Parameters\Default Work Unit\Snare_Effect_1"/>
 				<GameParameter Id="2618583618" Name="Snare_Effect_3" ObjectPath="\Game Parameters\Default Work Unit\Snare_Effect_3"/>
 				<GameParameter Id="2618583619" Name="Snare_Effect_2" ObjectPath="\Game Parameters\Default Work Unit\Snare_Effect_2"/>
+				<GameParameter Id="2618583621" Name="Snare_Effect_4" ObjectPath="\Game Parameters\Default Work Unit\Snare_Effect_4"/>
 				<GameParameter Id="2996634841" Name="HiHat_Effect_1" ObjectPath="\Game Parameters\Default Work Unit\HiHat_Effect_1"/>
 				<GameParameter Id="2996634842" Name="HiHat_Effect_2" ObjectPath="\Game Parameters\Default Work Unit\HiHat_Effect_2"/>
 				<GameParameter Id="2996634843" Name="HiHat_Effect_3" ObjectPath="\Game Parameters\Default Work Unit\HiHat_Effect_3"/>
+				<GameParameter Id="2996634844" Name="HiHat_Effect_4" ObjectPath="\Game Parameters\Default Work Unit\HiHat_Effect_4"/>
 				<GameParameter Id="3046177845" Name="Snare_Volume" ObjectPath="\Game Parameters\Default Work Unit\Snare_Volume"/>
 				<GameParameter Id="3090948260" Name="HiHat_Volume" ObjectPath="\Game Parameters\Default Work Unit\HiHat_Volume"/>
 				<GameParameter Id="3216986426" Name="TomTom_Volume" ObjectPath="\Game Parameters\Default Work Unit\TomTom_Volume"/>
+				<GameParameter Id="3473794584" Name="Kick_Effect_4" ObjectPath="\Game Parameters\Default Work Unit\Kick_Effect_4"/>
 				<GameParameter Id="3473794589" Name="Kick_Effect_1" ObjectPath="\Game Parameters\Default Work Unit\Kick_Effect_1"/>
 				<GameParameter Id="3473794590" Name="Kick_Effect_2" ObjectPath="\Game Parameters\Default Work Unit\Kick_Effect_2"/>
 				<GameParameter Id="3473794591" Name="Kick_Effect_3" ObjectPath="\Game Parameters\Default Work Unit\Kick_Effect_3"/>

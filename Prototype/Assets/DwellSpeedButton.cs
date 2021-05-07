@@ -24,7 +24,8 @@ public class DwellSpeedButton : CustomButton
 
     protected override void FixedUpdate()
     {
-        if (isHover && !isActive)
+       
+        if (isEyeHover && !isActive)
         {
             if (_confirmScalerRT.localScale.x < 1.0f)
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
@@ -42,6 +43,8 @@ public class DwellSpeedButton : CustomButton
             if (_confirmScalerRT.localScale.x < 0.0f) return;
             _confirmScalerRT.localScale -= Vector3.one / MasterManager.Instance.dwellTimeSpeed;
         }
+        
+        MouseInteraction();
     }
 
 

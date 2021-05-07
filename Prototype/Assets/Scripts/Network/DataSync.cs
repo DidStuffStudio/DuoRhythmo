@@ -35,7 +35,6 @@ public class DataSync : MonoBehaviour {
                 nodeString += ",";
             }
             nodeString = nodeString.TrimEnd(',');
-
             RealTimeInstance.Instance.stringSync.SetDrumNodesAllDrums(nodeString);
         }
     }
@@ -54,9 +53,9 @@ public class DataSync : MonoBehaviour {
                     if (j < 3) effectsString += "-";
                 }
                 effectsString += ",";
+                
             }
-
-            effectsString += MasterManager.Instance.bpm.ToString();
+            effectsString += MasterManager.Instance.bpm;
             // effectsString = effectsString.TrimEnd(',');
         }
         RealTimeInstance.Instance.stringSync.SetEffectValues(effectsString);

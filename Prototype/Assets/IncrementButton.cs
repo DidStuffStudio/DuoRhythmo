@@ -8,7 +8,8 @@ public class IncrementButton : CustomButton
 
     protected override void FixedUpdate()
     {
-        if (isHover && !isActive) {
+        
+        if (isEyeHover && !isActive) {
             if (_confirmScalerRT.localScale.x < 1.0f)
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
             else {
@@ -23,6 +24,20 @@ public class IncrementButton : CustomButton
             if (_confirmScalerRT.localScale.x < 0.0f) return;
             _confirmScalerRT.localScale -= Vector3.one / MasterManager.Instance.dwellTimeSpeed;
         }
+        
+        
+    }
+
+    protected override void MouseInteraction()
+    {
+        if(!mouseOver) return;
+        if (Input.GetMouseButton(0)) SetActive();
+        if (Input.GetMouseButtonUp(0))
+        {
+            SetDefault();
+            OnActivation?.Invoke();
+        }
+        
     }
 
     public void Navigation(bool forward)

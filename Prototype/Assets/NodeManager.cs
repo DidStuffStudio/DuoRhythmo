@@ -33,7 +33,7 @@ public class NodeManager : MonoBehaviour {
 
     public ScreenSync _screenSync;
 
-    [Range(0.0f, 100.0f)] [SerializeField] private float[] levels = new float[3];
+    [Range(0.0f, 100.0f)] [SerializeField] private float[] levels = new float[4];
 
     private string[] effectNames = new string[4];
 
@@ -72,11 +72,11 @@ public class NodeManager : MonoBehaviour {
 
         rotation = 0.0f;
 
-        for (int i = 0; i < sliders.Length - 1; i++) sliders[i].OnSliderChange += ChangeEffectValue;
+        for (int i = 0; i < sliders.Length; i++) sliders[i].OnSliderChange += ChangeEffectValue;
 
         bpmSlider.OnSliderChange += ChangeBpm;
 
-        string[] effects = {"_Effect_1", "_Effect_2", "_Effect_3"};
+        string[] effects = {"_Effect_1", "_Effect_2", "_Effect_3", "_Effect_4"};
         if (drumType == DrumType.Kick)
             for (int i = 0; i < effects.Length; i++)
                 effectNames[i] = "Kick" + effects[i];
@@ -99,7 +99,11 @@ public class NodeManager : MonoBehaviour {
     private void Update() {
         if (!_nodeIsSetup) return;
 
-        for (int i = 0; i < levels.Length; i++) AkSoundEngine.SetRTPCValue(effectNames[i], levels[i]);
+        print(levels.Length);
+        for (int i = 0; i < levels.Length; i++)
+        {
+            AkSoundEngine.SetRTPCValue(effectNames[i], levels[i]);
+        }
 
         if (_screenSync.NumberOfNodes != numberOfNodes && RealTimeInstance.Instance.isConnected) {
             numberOfNodes = _screenSync.NumberOfNodes;
@@ -120,7 +124,7 @@ public class NodeManager : MonoBehaviour {
             levels[0] = sliders[0].currentValue;
             levels[1] = sliders[1].currentValue;
             levels[2] = sliders[2].currentValue;
-            //levels[3] = sliders[3].currentValue;
+            levels[3] = sliders[3].currentValue;
             bpm = MasterManager.Instance.bpm;
             bpmSlider.currentValue = bpm;
             bpmSlider.UpdateSliderText();
@@ -132,7 +136,7 @@ public class NodeManager : MonoBehaviour {
             sliders[0].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 0] = (int) (levels[0] = _screenSync.Effect1));
             sliders[1].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 1] = (int) (levels[1] = _screenSync.Effect2));
             sliders[2].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 2] = (int) (levels[2] = _screenSync.Effect3));
-            // sliders[3].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 3] = (int) (levels[3] = _screenSync.Effect4)); 
+            sliders[3].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 3] = (int) (levels[3] = _screenSync.Effect4)); 
             
             bpm = _screenSync.Bpm;
             bpmSlider.currentValue = bpm;
@@ -164,7 +168,8 @@ public class NodeManager : MonoBehaviour {
 
         drumText.text = drumType.ToString();
         drumText.color = drumColor;
-
+        drumText.color = new Color(drumColor.r, drumColor.g, drumColor.b, 0);
+        
         rotation = 0.0f;
         _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
     }
@@ -225,7 +230,7 @@ public class NodeManager : MonoBehaviour {
         var rps = rpm / 60.0f;
         var revolutionsPerWaitingSeconds = rps * Time.fixedDeltaTime; //Convert to revolutions per millisecond
         var degreesPerWaitingSeconds = (360.0f - 360.0f / numberOfNodes) * revolutionsPerWaitingSeconds;
-        rotation -= degreesPerWaitingSeconds;
+        rotation -= degreesPerWaitingSeconds * 4.0f;
         _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
     }
 

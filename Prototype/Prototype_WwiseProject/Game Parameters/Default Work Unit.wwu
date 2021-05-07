@@ -63,6 +63,11 @@
 						<Property Name="InitialValue" Type="Real64" Value="100"/>
 					</PropertyList>
 				</GameParameter>
+				<GameParameter Name="Cymbol_Effect_4" ID="{010C9B0C-84CB-4E90-BF7A-4DFBDB7B1529}"/>
+				<GameParameter Name="HiHat_Effect_4" ID="{90415747-F48A-4637-B5BD-4F3709F715E9}"/>
+				<GameParameter Name="Kick_Effect_4" ID="{B0AB413C-9F2C-419B-BF0D-60E5DDE3D1A6}"/>
+				<GameParameter Name="Snare_Effect_4" ID="{CB1129EF-4596-4C0F-B896-7D1EACA76762}"/>
+				<GameParameter Name="TomTom_Effect_4" ID="{251CCE8C-D6C2-42C1-BBCF-2D6198D542A4}"/>
 			</ChildrenList>
 		</WorkUnit>
 	</GameParameters>

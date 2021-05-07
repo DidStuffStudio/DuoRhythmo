@@ -27,42 +27,52 @@ Event	ID	Name			Wwise Object Path	Notes
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	788319784	Kick_Volume			\Default Work Unit\Kick_Volume	
+	1688164490	TomTom_Effect_4			\Default Work Unit\TomTom_Effect_4	
 	1688164492	TomTom_Effect_2			\Default Work Unit\TomTom_Effect_2	
 	1688164493	TomTom_Effect_3			\Default Work Unit\TomTom_Effect_3	
 	1688164495	TomTom_Effect_1			\Default Work Unit\TomTom_Effect_1	
 	2503299904	Cymbol_Effect_2			\Default Work Unit\Cymbol_Effect_2	
 	2503299905	Cymbol_Effect_3			\Default Work Unit\Cymbol_Effect_3	
 	2503299907	Cymbol_Effect_1			\Default Work Unit\Cymbol_Effect_1	
+	2503299910	Cymbol_Effect_4			\Default Work Unit\Cymbol_Effect_4	
 	2618583616	Snare_Effect_1			\Default Work Unit\Snare_Effect_1	
 	2618583618	Snare_Effect_3			\Default Work Unit\Snare_Effect_3	
 	2618583619	Snare_Effect_2			\Default Work Unit\Snare_Effect_2	
+	2618583621	Snare_Effect_4			\Default Work Unit\Snare_Effect_4	
 	2996634841	HiHat_Effect_1			\Default Work Unit\HiHat_Effect_1	
 	2996634842	HiHat_Effect_2			\Default Work Unit\HiHat_Effect_2	
 	2996634843	HiHat_Effect_3			\Default Work Unit\HiHat_Effect_3	
+	2996634844	HiHat_Effect_4			\Default Work Unit\HiHat_Effect_4	
 	3046177845	Snare_Volume			\Default Work Unit\Snare_Volume	
 	3090948260	HiHat_Volume			\Default Work Unit\HiHat_Volume	
 	3216986426	TomTom_Volume			\Default Work Unit\TomTom_Volume	
+	3473794584	Kick_Effect_4			\Default Work Unit\Kick_Effect_4	
 	3473794589	Kick_Effect_1			\Default Work Unit\Kick_Effect_1	
 	3473794590	Kick_Effect_2			\Default Work Unit\Kick_Effect_2	
 	3473794591	Kick_Effect_3			\Default Work Unit\Kick_Effect_3	
 	3541970156	Cymbal_Volume			\Default Work Unit\Cymbal_Volume	
 
 Effect plug-ins	ID	Name	Type				Notes
-	2837424	Holy (Custom)	Wwise RoomVerb			
-	96592835	Wwise Guitar Distortion (Custom)	Wwise Guitar Distortion			
-	138933265	Holy (Custom)	Wwise RoomVerb			
+	101479154	Room_Large (Custom)	Wwise RoomVerb			
+	140885695	Wwise Gain (Custom)	Wwise Gain			
+	141308045	Room_Large (Custom)	Wwise RoomVerb			
 	160072551	Wwise Time Stretch (Custom)	Wwise Time Stretch			
-	212767753	Have_U_Ever_Been_Outside (Custom)	Wwise RoomVerb			
-	254321231	Have_U_Ever_Been_Outside (Custom)	Wwise RoomVerb			
-	260739194	High_Impact (Custom)	Wwise Compressor			
-	364554783	Wwise Guitar Distortion (Custom)	Wwise Guitar Distortion			
-	382643500	Noise_Gate_Fast_Attack (Custom)	Wwise Expander			
-	425366874	Echoes_Linear (Custom)	Wwise Delay			
-	454217790	Echoes_Linear (Custom)	Wwise Delay			
-	487531198	Have_U_Ever_Been_Outside (Custom)	Wwise RoomVerb			
-	706500383	Wwise Guitar Distortion (Custom)	Wwise Guitar Distortion			
-	951075838	Echoes_Linear (Custom)	Wwise Delay			
+	275238028	Room_Large (Custom)	Wwise RoomVerb			
+	436087673	Low_Pass_20KHz (Custom)	Wwise Parametric EQ			
+	489261524	Room_Large (Custom)	Wwise RoomVerb			
+	504105301	Low_Pass_20KHz (Custom)	Wwise Parametric EQ			
+	514234982	Wwise Time Stretch (Custom)	Wwise Time Stretch			
+	594062140	Wwise Gain (Custom)	Wwise Gain			
+	643465710	Wwise Gain (Custom)	Wwise Gain			
+	645823956	Low_Pass_20KHz (Custom)	Wwise Parametric EQ			
+	710767786	Wwise Gain (Custom)	Wwise Gain			
+	780769555	Low_Pass_20KHz (Custom)	Wwise Parametric EQ			
+	795239018	Room_Large (Custom)	Wwise RoomVerb			
 	1006877635	Wwise Time Stretch (Custom)	Wwise Time Stretch			
+	1031063187	Wwise Time Stretch (Custom)	Wwise Time Stretch			
+	1049034804	Wwise Gain (Custom)	Wwise Gain			
+	1061631462	Low_Pass_20KHz (Custom)	Wwise Parametric EQ			
+	1069933165	Wwise Time Stretch (Custom)	Wwise Time Stretch			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	50112841	SANDUNES_percussion_found_sound_one_shot_mouth_percussion	C:\Users\scott\Documents\GitHub\MED6_project\Prototype\Prototype_WwiseProject\.cache\Windows\SFX\SANDUNES_percussion_found_sound_one_shot_mouth_percussion_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Toms\SANDUNES_percussion_found_sound_one_shot_mouth_percussion		12096

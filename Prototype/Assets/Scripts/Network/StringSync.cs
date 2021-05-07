@@ -61,7 +61,8 @@ public class StringSync : RealtimeComponent<StringModel> {
 
     private void MessageDidChange(StringModel model, string value) {
         print("Received new message from the server: " + model.message);
-        _message = model.message;
+        // _message = model.message;
+        MasterManager.Instance.timer.timer = int.Parse(value);
     }
     
     private void DrumNodesAllDidChange(StringModel stringModel, string value) {
@@ -82,16 +83,18 @@ public class StringSync : RealtimeComponent<StringModel> {
         var drumValueDidChanged = value.Split(',');
         if (int.Parse(drumValueDidChanged[0]) == MasterManager.Instance.localPlayerNumber ||
             !RealTimeInstance.Instance.isNewPlayer) return;
+            
         for (int i = 1; i < drumValueDidChanged.Length; i++) { // go through each drum
+
             var separatedValues = drumValueDidChanged[i].Split('-');
-            int[] effectArray = new int[4];
-            for (int j = 0; j < 4; j++)
+            int[] separatedValuesArray = new int[4];
+            for (int j = 0; i < 4; j++)
             {
-                effectArray[j] = int.Parse(separatedValues[j]);
+                separatedValuesArray[j] = int.Parse(separatedValues[j]);
             }
 
-            MasterManager.Instance.bpm = int.Parse(drumValueDidChanged[drumValueDidChanged.Length - 1]); // bpm is the last
-            MasterManager.Instance.EffectsDidChangeOnServer(i - 1, effectArray);
+            MasterManager.Instance.bpm = int.Parse(drumValueDidChanged[drumValueDidChanged.Length - 1]);
+            MasterManager.Instance.EffectsDidChangeOnServer(i - 1, separatedValuesArray);
         }
     }
 
@@ -123,24 +126,21 @@ public class StringSync : RealtimeComponent<StringModel> {
             MasterManager.Instance.dataMaster.SendEffects(0, true);
             SetAnimatorTime(MasterManager.Instance.userInterfaceManager.currentRotationOfUI);
         }
-
-        // find all the networkmanager s existing currently in the hierarchy, and set their parents to the players holder gameobject
-        var players = GameObject.FindObjectsOfType<NetworkManagerSync>();
-        foreach (var player in players) {
-            RealTimeInstance.Instance.SetParentOfPlayer(player.transform);
-        }
     }
 
     private void TimerDidChange(StringModel stringModel, string value) {
         print("Timer did change" + value);
         var time = int.Parse(value);
         MasterManager.Instance.timer.tempRoundTime = time;
-        MasterManager.Instance.timer.StartTimer();
-        if (MasterManager.Instance.timer.timer < 2.0f) StartCoroutine(WaitToRequestInfo());
-        else
-        {
-            SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
-            StartCoroutine(MasterManager.Instance.WaitToPositionCamera(3.0f));
+        StartCoroutine(MasterManager.Instance.timer.TemporaryTime());
+        SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
+    }
+
+    private void SetPlayerNumberDidChange(StringModel stringModel, string value) {
+        var playerIndex = int.Parse(value);
+        if (!MasterManager.Instance.player.hasPlayerNumber) {
+            MasterManager.Instance.localPlayerNumber = playerIndex;
+            MasterManager.Instance.player.hasPlayerNumber = true;
         }
 
     }

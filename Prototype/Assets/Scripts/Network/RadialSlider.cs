@@ -15,6 +15,10 @@ public class RadialSlider : CustomButton {
     [SerializeField] private Text _text;
     public float currentValue, previousValue;
     private float _angle = 0;
+    private bool isDraggingWithMouse;
+
+    public RectTransform[] quadrants = new RectTransform[4];
+    public Image knobBorder;
 
     //Events
     public delegate void SliderChangeAction(int index);
@@ -26,14 +30,54 @@ public class RadialSlider : CustomButton {
         
     }
 
+
+    void FillSlider()
+    {
+
+        
+        if (currentValue <= 20)
+        {
+            var x = MasterManager.Instance.Map(_angle, 180, 90, 0, 100);
+            quadrants[0].sizeDelta = new Vector2(x,x);
+            for (int i = 1; i < 4; i++) quadrants[i].sizeDelta = Vector2.zero;
+        }
+        
+        else if (currentValue <= 50 && currentValue > 20)
+        {
+            var x = MasterManager.Instance.Map(_angle, 90, 0, 0, 100);
+            quadrants[1].sizeDelta = new Vector2(x,x);
+            quadrants[0].sizeDelta = new Vector2(100,100);
+            for (int i = 2; i < 4; i++) quadrants[i].sizeDelta = Vector2.zero;
+        }
+        
+        else if (currentValue <= 80 && currentValue > 50)
+        {
+            var x = MasterManager.Instance.Map(_angle, 0, -90, 0, 100);
+            quadrants[2].sizeDelta = new Vector2(x,x);
+            for (int i = 0; i < 2; i++)quadrants[i].sizeDelta = new Vector2(100, 100);
+            quadrants[3].sizeDelta = Vector2.zero;
+        }
+        
+        else if (currentValue > 80)
+        {
+            var x = MasterManager.Instance.Map(_angle, -90, -180, 0, 100);
+            for (int i = 0; i < 3; i++)quadrants[i].sizeDelta = new Vector2(100, 100);
+            quadrants[3].sizeDelta = new Vector2(x,x);
+        }
+        
+    }
+
     protected override void Start() {
         base.Start();
         _mainCamera = Camera.main;
         SetCurrentValue(startingValue);
+        UpdateSliderText();
+        FillSlider();
     }
 
     public void SetCurrentValue(float value)
     {
+        FillSlider();
         if (Mathf.Abs(value - currentValue) < 0.1f) return;
         currentValue = value;
         _angle = MasterManager.Instance.Map(currentValue, minimumValue, maximumValue, angleConstraint,
@@ -45,16 +89,41 @@ public class RadialSlider : CustomButton {
 
     public void ForceDefault() => UnHover();
     
+    protected override void MouseInteraction()
+    {
+
+        if (mouseOver && Input.GetMouseButton(0))
+        {
+            SetActive();
+            isDraggingWithMouse = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            SetDefault();
+            isDraggingWithMouse = false;
+        }
+        
+    }
+
+    protected override void SetActive()
+    {
+        if(changeTextColor) buttonText.color = activeTextColor;
+        mainButtonImage.color = activeHoverColor;
+        confirmScaler.GetComponent<Image>().color = defaultColor;
+        if (isActive) return;
+        isActive = true;
+        isDefault = false;
+    }
 
     protected override void Update() {
         base.Update();
         if(!isActive) return;
-        if (_usingEyeTracking) {
+        if (isEyeHover && !isDraggingWithMouse) {
             GazePoint gazePoint = TobiiAPI.GetGazePoint();
             _targetPosition = gazePoint.Screen;
         }
 
-        else _targetPosition = Input.mousePosition;
+        else if(mouseOver) _targetPosition = Input.mousePosition;
 
         Vector3 targetVector = new Vector3(_targetPosition.x, _targetPosition.y, 0) -
                                _mainCamera.WorldToScreenPoint(transform.parent.position);
@@ -74,13 +143,15 @@ public class RadialSlider : CustomButton {
             currentValue = MasterManager.Instance.Map(_angle, angleConstraint, -angleConstraint, minimumValue, maximumValue);
             if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
             previousValue = currentValue;
+            FillSlider();
         }
 
     }
     
     protected override void FixedUpdate() {
         if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
-        if (isHover && !isActive) {
+       
+        if (isEyeHover && !isActive) {
             if (_confirmScalerRT.localScale.x < 1.0f)
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
             else {
@@ -94,6 +165,7 @@ public class RadialSlider : CustomButton {
             if (_confirmScalerRT.localScale.x < 0.0f) return;
             _confirmScalerRT.localScale -= Vector3.one / MasterManager.Instance.dwellTimeSpeed;
         }
+       
     }
 
 
@@ -110,6 +182,7 @@ public class RadialSlider : CustomButton {
     public void UpdateSliderText() {
         var value = (int) currentValue;
         _text.text = value.ToString();
+        FillSlider();
     }
 
     private void OnEnable() => OnSliderChange += SliderChanged;

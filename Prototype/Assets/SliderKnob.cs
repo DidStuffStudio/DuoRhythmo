@@ -24,7 +24,8 @@ public class SliderKnob : CustomButton
     private Text _text;
     public Transform upperLimit, lowerLimit;
     public float currentValue,previousValue;
-    
+    private bool isDraggingWithMouse = false;
+    [SerializeField] private RectTransform fillRect;
     
     //Events
     public delegate void SliderChangeAction(int index);
@@ -40,13 +41,15 @@ public class SliderKnob : CustomButton
     protected override void Start()
     {
         base.Start();
-    
+        
         _text = GetComponentInChildren<Text>();
         _mainCamera = Camera.main;
         _knobRectTransform = GetComponent<RectTransform>();
         
         
-                var rect = _slider.rect;
+        FillSlider();
+
+        var rect = _slider.rect;
                 if (isHorizontal)
                 {
                     _minValue = 0;
@@ -63,14 +66,45 @@ public class SliderKnob : CustomButton
                 
     }
     
+    protected override void SetActive()
+    {
+        if(changeTextColor) buttonText.color = activeTextColor;
+        mainButtonImage.color = activeHoverColor;
+        confirmScaler.GetComponent<Image>().color = defaultColor;
+        if (isActive) return;
+        isActive = true;
+        isDefault = false;
+    }
+    
     public void SetCurrentValue(float value)
     {
+        FillSlider();
         currentValue = value;
         OnSliderChange?.Invoke(sliderIndex);
         _knobRectTransform.anchoredPosition =
             new Vector2(0.0f, Map(currentValue, minimumValue, maximumValue, _minValue, _maxValue));
     }
 
+    protected override void MouseInteraction()
+    {
+
+        if (mouseOver && Input.GetMouseButton(0))
+        {
+            SetActive();
+            isDraggingWithMouse = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            SetDefault();
+            isDraggingWithMouse = false;
+        }
+        
+    }
+
+    private void FillSlider()
+    {
+        fillRect.sizeDelta = new Vector2(20, _knobRectTransform.anchoredPosition.y);
+    }
 
     protected override void Update()
     {
@@ -87,13 +121,13 @@ public class SliderKnob : CustomButton
 
             if (isHorizontal)
             {
-                if (_usingEyeTracking)
+                if (isEyeHover && !isDraggingWithMouse)
                 {
                     GazePoint gazePoint = TobiiAPI.GetGazePoint();
                     knobScreenPoint.x = gazePoint.Screen.x;
                 }
 
-                else knobScreenPoint.x = Input.mousePosition.x;
+                else if(mouseOver)knobScreenPoint.x = Input.mousePosition.x;
 
                 _knobRectTransform.position = _mainCamera.ScreenToWorldPoint(knobScreenPoint);
 
@@ -115,13 +149,13 @@ public class SliderKnob : CustomButton
             
             else
             {
-                if (_usingEyeTracking)
+                if (isEyeHover && !isDraggingWithMouse)
                 {
                     GazePoint gazePoint = TobiiAPI.GetGazePoint();
                     knobScreenPoint.y = gazePoint.Screen.y;
                 }
 
-                else knobScreenPoint.y = Input.mousePosition.y;
+                else if(mouseOver)knobScreenPoint.y = Input.mousePosition.y;
 
                 _knobRectTransform.position = _mainCamera.ScreenToWorldPoint(knobScreenPoint);
 
@@ -138,6 +172,8 @@ public class SliderKnob : CustomButton
                 if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
 
                 previousValue = currentValue;
+                
+                FillSlider();
             }
 
         }
@@ -148,7 +184,8 @@ public class SliderKnob : CustomButton
     protected override void FixedUpdate()
     {
         if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
-        if (isHover && !isActive) {
+        
+        if (isEyeHover && !isActive) {
             if (_confirmScalerRT.localScale.x < 1.0f)
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
             else {
@@ -163,22 +200,23 @@ public class SliderKnob : CustomButton
             if (_confirmScalerRT.localScale.x < 0.0f) return;
             _confirmScalerRT.localScale -= Vector3.one / MasterManager.Instance.dwellTimeSpeed;
         }
+        
     }
 
     protected override void UnHover()
     {
         base.UnHover();
-        mouseOver = false;
         SetDefault();
     }
 
 
     private void SliderChanged(int index) {
-       
+        FillSlider();
         UpdateSliderText();
     }
 
     public void UpdateSliderText() {
+        FillSlider();
         var value = (int) currentValue;
         _text.text = value.ToString();
     }

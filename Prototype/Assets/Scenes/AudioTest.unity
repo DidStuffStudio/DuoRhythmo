@@ -1239,6 +1239,10 @@ PrefabInstance:
       propertyPath: activeColor.r
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 421614145, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: changeTextColor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 577274885, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: activeColor.b
       value: 0.8509804
@@ -1250,6 +1254,10 @@ PrefabInstance:
     - target: {fileID: 577274885, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: activeColor.r
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 577274885, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: changeTextColor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1528621139, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: activeColor.b
@@ -1263,6 +1271,10 @@ PrefabInstance:
       propertyPath: activeColor.r
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1528621139, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: changeTextColor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1528621140, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: activeColor.b
       value: 0.8509804
@@ -1275,6 +1287,10 @@ PrefabInstance:
       propertyPath: activeColor.r
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1528621140, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: changeTextColor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1528621141, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: activeColor.b
       value: 0.8509804
@@ -1286,6 +1302,10 @@ PrefabInstance:
     - target: {fileID: 1528621141, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: activeColor.r
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528621141, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: changeTextColor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 920787894009099029, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: m_RootOrder
@@ -1457,7 +1477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3197379696657073084, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4446432193417736708, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2979,7 +2999,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.22799999, g: 0.22799999, b: 0.22799999, a: 0.15686275}
+      maxColor: {r: 0.22799999, g: 0.22799999, b: 0.22799999, a: 0.05882353}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

@@ -580,7 +580,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 70, z: 3}
+  m_Size: {x: 3, y: 70, z: 31.33}
   m_Center: {x: 0, y: -15, z: 0}
 --- !u!1 &5726267742136591739
 GameObject:
@@ -946,7 +946,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 0
   isDefault: 0
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0, g: 0, b: 0, a: 0}

@@ -21,6 +21,14 @@ public class OneOptionButton : CustomButton {
         }
     }
 
+    protected override void MouseInteraction()
+    {
+        if(!mouseOver || !Input.GetMouseButtonDown(0)) return;
+        if (!isDefault) return;
+        OnActivation?.Invoke();
+        SetActive();
+    }
+
     public void Deactivate() {
         base.SetDefault();
     }

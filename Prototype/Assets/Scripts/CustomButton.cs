@@ -22,7 +22,7 @@ public class CustomButton : MonoBehaviour {
     public GameObject confirmScaler;
     public bool mouseOver;
     protected RectTransform _confirmScalerRT;
-    public float interactionBreakTime = 1.0f;
+    private float _interactionBreakTime = 3.0f;
     protected bool _canHover = true;
     public UnityEvent OnActivation, OnDeactivation;
     public bool activated;
@@ -157,6 +157,7 @@ public class CustomButton : MonoBehaviour {
         if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
         if(gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         mouseOver = false;
+        _canHover = true;
         if (isDefault) SetDefault();
         else if (isActive) SetActive();
     }
@@ -197,6 +198,7 @@ public class CustomButton : MonoBehaviour {
     protected virtual void UnHover() {
         if (!isEyeHover) return;
         isEyeHover = false;
+        _canHover = true;
         if (isDefault) SetDefault();
         else if (isActive) SetActive();
     }
@@ -219,7 +221,7 @@ public class CustomButton : MonoBehaviour {
     protected virtual IEnumerator InteractionBreakTime() {
         _canHover = false;
         isEyeHover = false;
-        yield return new WaitForSeconds(interactionBreakTime);
+        yield return new WaitForSeconds(_interactionBreakTime);
         _canHover = true;
     }
 }

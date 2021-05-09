@@ -24,9 +24,9 @@ public class SliderKnob : CustomButton
     private Text _text;
     public Transform upperLimit, lowerLimit;
     public float currentValue,previousValue;
-    private bool isDraggingWithMouse = false;
-    [SerializeField] private RectTransform fillRect;
-    
+    private bool isDraggingWithMouse = false; 
+    public RectTransform fillRect;
+    public Image knobBorder;
     //Events
     public delegate void SliderChangeAction(int index);
 
@@ -43,10 +43,11 @@ public class SliderKnob : CustomButton
         base.Start();
         
         _text = GetComponentInChildren<Text>();
+        
         _mainCamera = Camera.main;
         _knobRectTransform = GetComponent<RectTransform>();
         
-        
+        UpdateSliderText();
         FillSlider();
 
         var rect = _slider.rect;
@@ -78,11 +79,22 @@ public class SliderKnob : CustomButton
     
     public void SetCurrentValue(float value)
     {
+        if (isHorizontal)
+        {
+            currentValue = value;
+            OnSliderChange?.Invoke(sliderIndex);
+            _knobRectTransform.anchoredPosition =
+                new Vector2(Map(currentValue, minimumValue, maximumValue, _minValue, _maxValue),00.0f);
+        }
+        else
+        {
+            currentValue = value;
+            OnSliderChange?.Invoke(sliderIndex);
+            _knobRectTransform.anchoredPosition =
+                new Vector2(0.0f, Map(currentValue, minimumValue, maximumValue, _minValue, _maxValue));
+        }
+
         FillSlider();
-        currentValue = value;
-        OnSliderChange?.Invoke(sliderIndex);
-        _knobRectTransform.anchoredPosition =
-            new Vector2(0.0f, Map(currentValue, minimumValue, maximumValue, _minValue, _maxValue));
     }
 
     protected override void MouseInteraction()
@@ -103,7 +115,8 @@ public class SliderKnob : CustomButton
 
     private void FillSlider()
     {
-        fillRect.sizeDelta = new Vector2(20, _knobRectTransform.anchoredPosition.y);
+        var anchoredPosition = _knobRectTransform.anchoredPosition;
+        fillRect.sizeDelta = isHorizontal ? new Vector2(anchoredPosition.y,20) : new Vector2(20, anchoredPosition.y);
     }
 
     protected override void Update()

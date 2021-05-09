@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 5429251461579344685}
   - component: {fileID: 4404906543262051622}
   m_Layer: 7
-  m_Name: EffectsPanel
+  m_Name: R_EffectsPanel
   m_TagString: RenderTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3008,6 +3008,18 @@ PrefabInstance:
     - target: {fileID: 633707233459313261, guid: ea748307fe5d8421b96a3520c49adfbb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 633707233459313262, guid: ea748307fe5d8421b96a3520c49adfbb, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 633707233459313262, guid: ea748307fe5d8421b96a3520c49adfbb, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 633707233459313262, guid: ea748307fe5d8421b96a3520c49adfbb, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 633707233941936154, guid: ea748307fe5d8421b96a3520c49adfbb, type: 3}
       propertyPath: m_Color.b

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22063464, g: 0.21671247, b: 0.20102707, a: 1}
+  m_IndirectSpecularColor: {r: 0.22062764, g: 0.21670589, b: 0.20102039, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -583,7 +583,6 @@ MonoBehaviour:
   activeTextColor: {r: 238, g: 238, b: 238, a: 1}
   confirmScaler: {fileID: 49904275}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -830,7 +829,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 125626011}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -1089,7 +1087,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 168322547}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -2114,7 +2111,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 379735768}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -7730,7 +7726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84aa2872b2f436345ae17d215e7470e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
+  canInteractBeforeStart: 1
   isDefault: 1
   isEyeHover: 0
   isMouseHover: 0
@@ -7742,7 +7738,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 689948717}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -8007,7 +8002,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 693815048}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -8266,7 +8260,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 694531496}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -9169,7 +9162,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1108963517}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -9999,7 +9991,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1395359137}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -10515,7 +10506,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1560565225}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -10595,7 +10585,7 @@ MonoBehaviour:
   numberInstruments: 5
   numberOfNodes: 16
   nodesPanelPrefab: {fileID: 8248214352534705530, guid: 90e38b4484ad94c7dbaa206482b915b0, type: 3}
-  effectsPanelPrefab: {fileID: 5429251461579344684, guid: d9c8eeaec548a48428f9400f2978c582, type: 3}
+  effectsPanelPrefab: {fileID: 5429251461579344684, guid: dd8b92b9533f7da4ca1dd93ecb5a31e4, type: 3}
   nodesPanels: []
   effectsPanels: []
   drumColors:
@@ -10732,6 +10722,7 @@ MonoBehaviour:
   timerUI: {fileID: 2145342779}
   DwellSettingsActive: 0
   dwellSettingsPrefab: {fileID: 178173721}
+  exitButtonPanel: {fileID: 1721459069}
   dataMaster: {fileID: 1590067204}
   isFirstPlayer: 0
 --- !u!4 &1590067203
@@ -11244,7 +11235,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1720987934}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -11367,6 +11357,10 @@ PrefabInstance:
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Pivot.x
@@ -11518,7 +11512,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1721459068}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -12265,7 +12258,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1892863256}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -12557,7 +12549,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 1940917166}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
@@ -12911,7 +12902,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 2000987222}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:

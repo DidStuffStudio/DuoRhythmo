@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using TMPro;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -72,7 +73,7 @@ public class MasterManager : MonoBehaviour {
 
     [SerializeField] private GameObject timerUI;
     public bool DwellSettingsActive;
-    public GameObject dwellSettingsPrefab;
+    public GameObject dwellSettingsPrefab, exitButtonPanel;
     public DataSync dataMaster;
     public bool isFirstPlayer;
     
@@ -80,6 +81,13 @@ public class MasterManager : MonoBehaviour {
     private void Start() {
         if (_instance == null) _instance = this;
         Players.CollectionChanged += OnPlayersChanged;
+
+        var height =  Screen.currentResolution.height;
+
+        var width = (height / 1824) * 2736;
+        Screen.SetResolution(width,height,false);
+
+
         drumDictionary.Add(0, classicDrums);
         drumDictionary.Add(1, djembeDrums);
         drumDictionary.Add(2, edmDrums);
@@ -93,6 +101,8 @@ public class MasterManager : MonoBehaviour {
         }
 
     }
+
+    public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);
 
     private void OnPlayersChanged(object sender, NotifyCollectionChangedEventArgs e) {
         print("Players changed");
@@ -119,6 +129,7 @@ public class MasterManager : MonoBehaviour {
                 isInPosition = true;
                 mainSignifier.SetActive(true);
                 StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
+                SetExitButtonActive(true);
                 if (!RealTimeInstance.Instance.isSoloMode)
                 {
                     timerUI.SetActive(true);
@@ -196,7 +207,7 @@ public class MasterManager : MonoBehaviour {
             foreach (var incButton in nodeManager.incrementButtons) incButton.activeColor = drumColors[i];
             nodeManager.euclideanButton.activeColor = drumColors[i];
             
-            // initialize the knob sliders for this current node manager
+            /*// initialize the knob sliders for this current node manager ////////UNCOMMENT FOR RADIAL SLIDERS
             nodeManager.bpmSlider = effectsPanels[i].GetComponentInChildren<SliderKnob>();
             var knobs = effectsPanels[i].GetComponentsInChildren<RadialSlider>();
             nodeManager.sliders = new RadialSlider[knobs.Length];
@@ -206,15 +217,31 @@ public class MasterManager : MonoBehaviour {
                 knobs[j].GetComponentInParent<Image>().color = drumColors[i];
                 knobs[j].knobBorder.color = drumColors[i];
                 foreach (var quad in knobs[j].quadrants) quad.transform.GetComponent<Image>().color = drumColors[i];
+            }*/
+            
+            var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
+            nodeManager.sliders = new SliderKnob[knobs.Length-1];
+            var indexCount = 0;
+            for (int j = 0; j < knobs.Length; j++)
+            {
+                if (knobs[j].transform.CompareTag("BPM_Slider")) nodeManager.bpmSlider = knobs[j];
+                else
+                {
+                    nodeManager.sliders[indexCount] = knobs[j];
+                    knobs[j].knobBorder.color = drumColors[i];
+                    knobs[j].fillRect.GetComponent<Image>().color = drumColors[i];
+                    knobs[j].activeColor = drumColors[i];
+                    indexCount++;
+                }
             }
-            
-            
+            print("1");
             var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
             foreach (var uigazeButton in nodesSoloButtons)
             {
                 userInterfaceManager.soloButtons[i] = uigazeButton;
                 uigazeButton.drumTypeIndex = i;
             }
+            print("2");
             var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
             foreach (var uigazeButton in effectsSoloButtons)
             {
@@ -222,8 +249,9 @@ public class MasterManager : MonoBehaviour {
                 uigazeButton.drumTypeIndex = i;
             }
             nodeManager.SetUpNode();
-
+            
             userInterfaceManager.panels.Add(nodesPanels[i]);
+            print("3");
         }
         
         gameSetUpFinished = true;
@@ -351,8 +379,8 @@ public class MasterManager : MonoBehaviour {
 
 
 
-            // initialize the knob sliders for this current node manager
-            nodeManager.bpmSlider = effectsPanels[i].GetComponentInChildren<SliderKnob>();
+            // initialize the knob sliders for this current node manager ///////////UNCOMMENT FOR RADIAL SLIDERS
+            /*nodeManager.bpmSlider = effectsPanels[i].GetComponentInChildren<SliderKnob>();
             var knobs = effectsPanels[i].GetComponentsInChildren<RadialSlider>();
             nodeManager.sliders = new RadialSlider[knobs.Length];
             for (int j = 0; j < knobs.Length; j++)
@@ -361,6 +389,23 @@ public class MasterManager : MonoBehaviour {
                 knobs[j].activeColor = drumColors[i];
                 // knobs[j].GetComponentInParent<Image>().color = drumColors[i];
                 foreach (var quad in knobs[j].quadrants) quad.transform.GetComponent<Image>().color = drumColors[i];
+            }*/
+            
+            var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
+            nodeManager.sliders = new SliderKnob[knobs.Length-1];
+            var indexCount = 0;
+            for (int j = 0; j < knobs.Length; j++)
+            {
+                if (knobs[j].transform.CompareTag("BPM_Slider")) nodeManager.bpmSlider = knobs[j];
+                else
+                {
+                    
+                    nodeManager.sliders[indexCount] = knobs[j];
+                    knobs[j].knobBorder.color = drumColors[i];
+                    knobs[j].fillRect.GetComponent<Image>().color = drumColors[i];
+                    knobs[j].activeColor = drumColors[i];
+                    indexCount++;
+                }
             }
 
             foreach (var incButton in effectsPanels[i].GetComponentsInChildren<IncrementButton>())
@@ -417,6 +462,7 @@ public class MasterManager : MonoBehaviour {
     public void SetDwellSettingsActive(bool set)
     {
         dwellSettingsPrefab.SetActive(set);
+        if(isInPosition)SetExitButtonActive(!set);
     }
     /// <summary>
     /// Map a value from one interval to another interval.

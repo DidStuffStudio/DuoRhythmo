@@ -37,7 +37,7 @@ public class NodeManager : MonoBehaviour {
 
     private string[] effectNames = new string[4];
 
-    public RadialSlider[] sliders = new RadialSlider[4];
+    public SliderKnob[] sliders = new SliderKnob[4];
 
     public SliderKnob bpmSlider;
     private int previousEffectValue;

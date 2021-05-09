@@ -34,6 +34,7 @@ public class IncrementButton : CustomButton
         if (Input.GetMouseButton(0)) SetActive();
         if (Input.GetMouseButtonUp(0))
         {
+            _confirmScalerRT.localScale = Vector3.one;
             SetDefault();
             OnActivation?.Invoke();
         }

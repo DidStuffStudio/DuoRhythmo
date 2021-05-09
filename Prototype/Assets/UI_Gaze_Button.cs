@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 
@@ -31,8 +32,9 @@ public class UI_Gaze_Button : CustomButton {
         MasterManager.Instance.userInterfaceManager.Solo(activate, drumTypeIndex);
     }
 
-    public void Quit() {
-        Application.Quit();
+    public void Quit()
+    {
+        SceneManager.LoadScene(0);
     }
 
 

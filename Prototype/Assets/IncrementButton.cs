@@ -55,6 +55,22 @@ public class IncrementButton : CustomButton
             SetDefault();
             OnActivation?.Invoke();
         }
+        if (Input.touchCount > 0) {
+            Touch touch = Input.GetTouch(0);
+            
+            if (Physics.Raycast(Camera.main.ScreenToWorldPoint(touch.position), Vector3.forward, out var hit, LayerMask.GetMask("RenderPanel"))) {
+                if (hit.transform == this.transform) {
+                    if (touch.phase == TouchPhase.Began) {
+                        SetActive();
+                    }
+                    if (touch.phase == TouchPhase.Ended) {
+                        _confirmScalerRT.localScale = Vector3.one;
+                        SetDefault();
+                        OnActivation?.Invoke();
+                    }
+                }
+            }
+        }
         
     }
 

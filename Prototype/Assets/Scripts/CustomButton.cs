@@ -126,6 +126,23 @@ public class CustomButton : MonoBehaviour {
                 
             }
         }
+
+        if (Input.touchCount > 0) {
+            Touch touch = Input.GetTouch(0);
+            if (Physics.Raycast(Camera.main.ScreenToWorldPoint(touch.position), Vector3.forward, out var hit, LayerMask.GetMask("RenderPanel"))) {
+                if (hit.transform == this.transform) {
+                    if (isDefault) {
+                        OnActivation?.Invoke();
+                        SetActive();
+                    }
+                    else {
+                        OnDeactivation?.Invoke();
+                        SetDefault();
+                
+                    }
+                }
+            }
+        }
     }
     protected virtual void OnMouseOver()
     {

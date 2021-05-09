@@ -113,6 +113,23 @@ public class SliderKnob : CustomButton
             isDraggingWithMouse = false;
         }
         
+        if (Input.touchCount > 0) {
+            Touch touch = Input.GetTouch(0);
+            
+            if (Physics.Raycast(Camera.main.ScreenToWorldPoint(touch.position), Vector3.forward, out var hit, LayerMask.GetMask("RenderPanel"))) {
+                if (hit.transform == this.transform) {
+                    switch (touch.phase) {
+                        case TouchPhase.Began:
+                            SetActive();
+                            break;
+                        case TouchPhase.Ended:
+                            SetDefault();
+                            break;
+                    }
+                }
+            }
+        }
+        
     }
 
     private void FillSlider()

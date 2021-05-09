@@ -23,10 +23,20 @@ public class OneOptionButton : CustomButton {
 
     protected override void MouseInteraction()
     {
-        if(!mouseOver || !Input.GetMouseButtonDown(0)) return;
+        if((!mouseOver || !Input.GetMouseButtonDown(0)) && Input.touchCount <= 0) return;
         if (!isDefault) return;
         OnActivation?.Invoke();
         SetActive();
+
+        if (Input.touchCount > 0) {
+            Touch touch = Input.GetTouch(0);
+            if (Physics.Raycast(Camera.main.ScreenToWorldPoint(touch.position), Vector3.forward, out var hit, LayerMask.GetMask("RenderPanel"))) {
+                if (hit.transform == this.transform) {
+                    OnActivation?.Invoke();
+                    SetActive();
+                }
+            }
+        }
     }
 
     public void Deactivate() {

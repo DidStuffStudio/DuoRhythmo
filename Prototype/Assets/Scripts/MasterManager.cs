@@ -81,12 +81,15 @@ public class MasterManager : MonoBehaviour {
         if (_instance == null) _instance = this;
         Players.CollectionChanged += OnPlayersChanged;
 
+
+    // #if !UNITY_IOS && !UNITY_ANDROID
+        // Debug.Log("We're not in IOS nor Android, so set the resolution");
         var height =  Screen.currentResolution.height;
 
         var width = height * 2736/ 1824;
         Screen.SetResolution(width,height,false);
-
-
+    // #endif
+        
         drumDictionary.Add(0, classicDrums);
         drumDictionary.Add(1, djembeDrums);
         drumDictionary.Add(2, edmDrums);

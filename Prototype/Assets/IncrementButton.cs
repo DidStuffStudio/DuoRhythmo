@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class IncrementButton : CustomButton
 {
-
+    [SerializeField] private SliderKnob bpmSlider;
     protected override void FixedUpdate()
     {
         
@@ -26,6 +26,23 @@ public class IncrementButton : CustomButton
         }
         
         
+    }
+
+    protected override void SetActive()
+    {
+        if(changeTextColor) buttonText.color = activeTextColor;
+        if (isActive) return;
+        isActive = true;
+        isDefault = false;
+    }
+
+    protected override void SetDefault()
+    {
+        if(changeTextColor)buttonText.color = defaultTextColor;
+        mainButtonImage.color = defaultColor;
+        if (isDefault) return;
+        isDefault = true;
+        isActive = false;
     }
 
     protected override void MouseInteraction()
@@ -54,5 +71,18 @@ public class IncrementButton : CustomButton
         MasterManager.Instance.SetDwellSettingsActive(activate);
         
         
+    }
+
+    public void IncrementBpm(bool increase)
+    {
+        if (RealTimeInstance.Instance.isSoloMode)
+        {
+            if (increase && bpmSlider.currentValue < bpmSlider.maximumValue)MasterManager.Instance.bpm++;
+            else if(bpmSlider.currentValue > bpmSlider.minimumValue ) MasterManager.Instance.bpm--;
+        }
+        else
+        {
+            bpmSlider.SetCurrentValue(increase ? bpmSlider.currentValue++ : bpmSlider.currentValue--);
+        }
     }
 }

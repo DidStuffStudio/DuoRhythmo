@@ -188,7 +188,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -0.5}
+  m_AnchoredPosition: {x: -1.32, y: 0}
   m_SizeDelta: {x: 15, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2486318830019826750
@@ -372,7 +372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 0
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -381,7 +382,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 0}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:

@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using TMPro;
-using UnityEditor.PackageManager.UI;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -84,7 +83,7 @@ public class MasterManager : MonoBehaviour {
 
         var height =  Screen.currentResolution.height;
 
-        var width = (height / 1824) * 2736;
+        var width = height * 2736/ 1824;
         Screen.SetResolution(width,height,false);
 
 

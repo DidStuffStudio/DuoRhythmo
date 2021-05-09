@@ -27,6 +27,8 @@ public class SliderKnob : CustomButton
     private bool isDraggingWithMouse = false; 
     public RectTransform fillRect;
     public Image knobBorder;
+
+    
     //Events
     public delegate void SliderChangeAction(int index);
 

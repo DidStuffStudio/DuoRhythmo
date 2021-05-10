@@ -72,7 +72,7 @@ public class MasterManager : MonoBehaviour {
 
     [SerializeField] private GameObject timerUI;
     public bool DwellSettingsActive;
-    public GameObject dwellSettingsPrefab, exitButtonPanel;
+    public GameObject exitButtonPanel;
     public DataSync dataMaster;
     public bool isFirstPlayer;
     
@@ -464,7 +464,6 @@ public class MasterManager : MonoBehaviour {
     public void SetDwellSettingsActive(bool set)
     {
         GameObject.FindWithTag("DwellSettings").transform.GetChild(0).gameObject.SetActive(set);
-        //dwellSettingsPrefab.SetActive(set);
         if(isInPosition)SetExitButtonActive(!set);
     }
     /// <summary>

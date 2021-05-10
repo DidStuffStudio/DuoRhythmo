@@ -252,8 +252,18 @@ public class SliderKnob : CustomButton
         var value = (int) currentValue;
         _text.text = value.ToString();
     }
+
+    protected override void OnMouseExit()
+    {
     
+        if (!MasterManager.Instance.isInPosition && !canInteractBeforeStart) return;
+        if(gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
+        mouseOver = false;
+        _canHover = true;
+        SetDefault();
     
+    }
+
     private float Map(float value, float min1, float max1, float min2, float max2) {
         return min2 + (max2 - min2) * ((value - min1) / (max1 - min1));
     }

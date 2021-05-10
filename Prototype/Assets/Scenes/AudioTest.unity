@@ -677,6 +677,10 @@ PrefabInstance:
       propertyPath: _string
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Radius
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
       value: Room 8
@@ -934,6 +938,10 @@ PrefabInstance:
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Radius
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
@@ -1991,6 +1999,10 @@ PrefabInstance:
       propertyPath: _string
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Radius
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
       value: Room 1
@@ -2057,7 +2069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2077,11 +2089,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 18
+      value: 18.9
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 55
+      value: 54
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7882,6 +7894,10 @@ PrefabInstance:
       propertyPath: _string
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Radius
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
       value: Room 10
@@ -8139,6 +8155,10 @@ PrefabInstance:
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Radius
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
@@ -9033,6 +9053,10 @@ PrefabInstance:
       propertyPath: _string
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Radius
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6446969321013716812, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -9231,6 +9255,20 @@ MonoBehaviour:
   _text: {fileID: 1842478429}
   _string: Play
   drumTypeIndex: 0
+--- !u!114 &1108963528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108963518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6d3de8a0a30de428efd327211ad063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfRooms: 10
+  radius: 42
 --- !u!1 &1143099680
 GameObject:
   m_ObjectHideFlags: 0
@@ -9871,6 +9909,10 @@ PrefabInstance:
       propertyPath: _string
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Radius
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
       value: Room 7
@@ -10464,6 +10506,10 @@ PrefabInstance:
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Radius
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
@@ -12300,6 +12346,10 @@ PrefabInstance:
       propertyPath: _string
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Radius
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
       value: Room 2
@@ -12590,6 +12640,10 @@ PrefabInstance:
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Radius
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name
@@ -12943,6 +12997,10 @@ PrefabInstance:
     - target: {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: _string
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065468819450830523, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+      propertyPath: m_Radius
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
       propertyPath: m_Name

@@ -10,14 +10,12 @@ public class PositionRooms : MonoBehaviour
 
     void Start()
     {
-        
         for (var index = 0; index < 10; index++)
         {
-            var angleInDegrees = index*36;
-            float x = (float)(radius * Mathf.Cos(angleInDegrees * Mathf.PI / 180F));
-            float y = (float)(radius * Mathf.Sin(angleInDegrees * Mathf.PI / 180F));
-
-            print("x = " + x + ", y = " + y);
+            var angleInDegrees = index*(-360/numberOfRooms);
+            float x = (float)(radius * Mathf.Cos((angleInDegrees+90) * Mathf.PI / 180F));
+            float y = (float)(radius * Mathf.Sin((angleInDegrees+90) * Mathf.PI / 180F));
+            transform.GetChild(index + 2).GetComponent<RectTransform>().anchoredPosition = new Vector2(x,y);
         }
     }
 }

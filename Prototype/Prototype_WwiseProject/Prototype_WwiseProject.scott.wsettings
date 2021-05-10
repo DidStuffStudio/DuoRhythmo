@@ -33,25 +33,30 @@
 				<Property Name="EventView\FilterMode1" Type="int32" Value="61"/>
 				<Property Name="ExternalSourcesInputPath" Type="string">
 					<ValueList>
+						<Value Platform="Android"></Value>
 						<Value Platform="Mac"></Value>
+						<Value Platform="iOS"></Value>
 						<Value Platform="Windows"></Value>
 					</ValueList>
 				</Property>
 				<Property Name="ExternalSourcesOutputPath" Type="string">
 					<ValueList>
+						<Value Platform="Android">GeneratedSoundBanks\Android\</Value>
 						<Value Platform="Mac">GeneratedSoundBanks\Mac\</Value>
+						<Value Platform="iOS">GeneratedSoundBanks\iOS\</Value>
 						<Value Platform="Windows">GeneratedSoundBanks\Windows\</Value>
 					</ValueList>
 				</Property>
 				<Property Name="Game Profiler\Voice Monitor\LastBus" Type="string" Value="{00000000-0000-0000-0000-000000000000}"/>
 				<Property Name="General\LatestLanguage" Type="int32" Value="684519430"/>
 				<Property Name="General\LatestPlatform" Type="string" Value="Windows"/>
+				<Property Name="General\SourceControlPluginID" Type="string" Value="{C403A906-0C19-4ED5-808E-748707065301}"/>
 				<Property Name="GenerateSoundBanks\ListMode" Type="string" Value="Flat"/>
 				<Property Name="GenerateSoundBanks\x64_SelectedLanguages" Type="string" Value="BvDMKA=="/>
-				<Property Name="GenerateSoundBanks\x64_SelectedPlatforms" Type="string" Value="dJKofGOCR0mwWfMycvvruxO7w4neD3pLgVPXabumE9I="/>
+				<Property Name="GenerateSoundBanks\x64_SelectedPlatforms" Type="string" Value="zJSIylCdV0G9PDcEZzw6syggI2KJh6BKoFactftnNtZ0kqh8Y4JHSbBZ8zJy++u7E7vDid4PekuBU9dpu6YT0g=="/>
 				<Property Name="GenerateSoundBanks\x64_SelectedSoundBanks" Type="string" Value="mxJIboTazU+7VZsvJHA5Vw=="/>
 				<Property Name="HardwareController\CurrentSession" Type="string" Value="{2451DD2E-A7B2-45E6-B93B-6F49B9B887AD}"/>
-				<Property Name="HardwareController\{2451DD2E-A7B2-45E6-B93B-6F49B9B887AD}\x64_ActiveGroups" Type="string" Value="8itK5oQMUUefx5iI9LypdgHapVX/////Gv44EDouhE6QKPQaKnSCbAHapVX/////"/>
+				<Property Name="HardwareController\{2451DD2E-A7B2-45E6-B93B-6F49B9B887AD}\x64_ActiveGroups" Type="string" Value="8itK5oQMUUefx5iI9LypdgHanbX/////Gv44EDouhE6QKPQaKnSCbAHanbX/////"/>
 				<Property Name="MeterView\LastObject1" Type="string" Value="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"/>
 				<Property Name="MeterView\MeterMode1" Type="int32" Value="1"/>
 				<Property Name="MeterView\MeterMode1Viewpoint0" Type="int32" Value="1"/>
@@ -98,7 +103,7 @@
 				<Property Name="ProjectExplorer\x64_Expanded_7_1" Type="string" Value="qB3HV4iCW0CYM+Fvp9kR7Q=="/>
 				<Property Name="ProjectExplorer\x64_Expanded_8_1" Type="string" Value="nyywzBZHA0CnRMfjXLAoeQ=="/>
 				<Property Name="ProjectExplorer\x64_Expanded_9_1" Type="string" Value="fT9h6NO6zUWj7VBVdvMSd7Af7t9uXPFLq144NebdByO9VW7RGbi+ToxmLKWl/hZTPl1TKraf+U6uFA3MQEpM2g=="/>
-				<Property Name="RTPC\GameParameterSimValue\{010C9B0C-84CB-4E90-BF7A-4DFBDB7B1529}" Type="Real64" Value="0"/>
+				<Property Name="RTPC\GameParameterSimValue\{010C9B0C-84CB-4E90-BF7A-4DFBDB7B1529}" Type="Real64" Value="50"/>
 				<Property Name="RTPC\GameParameterSimValue\{085BDD0D-CC23-4A58-925B-9A6A9E2441DF}" Type="Real64" Value="50"/>
 				<Property Name="RTPC\GameParameterSimValue\{14335255-1016-4901-8DA0-A112673C976A}" Type="Real64" Value="50"/>
 				<Property Name="RTPC\GameParameterSimValue\{164D730D-0E24-4B78-9BFC-E6016ECB0711}" Type="Real64" Value="50"/>
@@ -112,46 +117,56 @@
 				<Property Name="RTPC\GameParameterSimValue\{3E44A7F2-8141-4682-A03B-34537A3F92C9}" Type="Real64" Value="50"/>
 				<Property Name="RTPC\GameParameterSimValue\{6AB9BBA9-1234-4E02-A9DC-75487E592B58}" Type="Real64" Value="100"/>
 				<Property Name="RTPC\GameParameterSimValue\{7D026FD4-73BA-418C-B029-4D637A7CCD5E}" Type="Real64" Value="50"/>
-				<Property Name="RTPC\GameParameterSimValue\{90415747-F48A-4637-B5BD-4F3709F715E9}" Type="Real64" Value="0"/>
-				<Property Name="RTPC\GameParameterSimValue\{9776B455-57CA-4E5A-AE78-DAFE06DE97B6}" Type="Real64" Value="0"/>
-				<Property Name="RTPC\GameParameterSimValue\{9ACD842D-881E-4E55-8D0C-B993667AB55A}" Type="Real64" Value="0"/>
+				<Property Name="RTPC\GameParameterSimValue\{90415747-F48A-4637-B5BD-4F3709F715E9}" Type="Real64" Value="50"/>
+				<Property Name="RTPC\GameParameterSimValue\{9776B455-57CA-4E5A-AE78-DAFE06DE97B6}" Type="Real64" Value="50"/>
+				<Property Name="RTPC\GameParameterSimValue\{9ACD842D-881E-4E55-8D0C-B993667AB55A}" Type="Real64" Value="50"/>
 				<Property Name="RTPC\GameParameterSimValue\{9BC57C88-C524-4D94-9E15-3F1E7C58E3B9}" Type="Real64" Value="96.6916354556804"/>
 				<Property Name="RTPC\GameParameterSimValue\{9D3133CB-AB4F-4C3A-B3E8-053C64B99F60}" Type="Real64" Value="50"/>
 				<Property Name="RTPC\GameParameterSimValue\{B0AB413C-9F2C-419B-BF0D-60E5DDE3D1A6}" Type="Real64" Value="50"/>
-				<Property Name="RTPC\GameParameterSimValue\{C8A4CABD-53E9-42FC-B669-6256104F018F}" Type="Real64" Value="0"/>
+				<Property Name="RTPC\GameParameterSimValue\{C8A4CABD-53E9-42FC-B669-6256104F018F}" Type="Real64" Value="50"/>
 				<Property Name="RTPC\GameParameterSimValue\{CB1129EF-4596-4C0F-B896-7D1EACA76762}" Type="Real64" Value="50"/>
-				<Property Name="RTPC\GameParameterSimValue\{D28762B6-E2C2-4DF7-885D-C48226701B86}" Type="Real64" Value="0"/>
+				<Property Name="RTPC\GameParameterSimValue\{D28762B6-E2C2-4DF7-885D-C48226701B86}" Type="Real64" Value="50"/>
 				<Property Name="RTPC\GameParameterSimValue\{D2AEF77E-632C-4E03-AFE1-242C840C3D64}" Type="Real64" Value="50"/>
 				<Property Name="RTPC\GameParameterSimValue\{D82B8691-7CE6-4D81-A822-E388E469450D}" Type="Real64" Value="50"/>
 				<Property Name="SoundBank Manager\x64_Expand States" Type="string" Value="qB3HV4iCW0CYM+Fvp9kR7Q=="/>
 				<Property Name="SoundBankHeaderFilePath" Type="string" Value="GeneratedSoundBanks\"/>
 				<Property Name="SoundBankPaths" Type="string">
 					<ValueList>
+						<Value Platform="Android">GeneratedSoundBanks\Android\</Value>
 						<Value Platform="Mac">GeneratedSoundBanks\Mac\</Value>
+						<Value Platform="iOS">GeneratedSoundBanks\iOS\</Value>
 						<Value Platform="Windows">GeneratedSoundBanks\Windows\</Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPostGenerateCustomCmdDescription" Type="string">
 					<ValueList>
+						<Value Platform="Android">Copy Streamed Files</Value>
 						<Value Platform="Mac">Copy Streamed Files</Value>
+						<Value Platform="iOS">Copy Streamed Files</Value>
 						<Value Platform="Windows">Copy Streamed Files</Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPostGenerateCustomCmdLines" Type="string">
 					<ValueList>
+						<Value Platform="Android">"$(CopyStreamedFilesExePath)" -info "$(InfoFilePath)" -outputpath "$(SoundBankPath)" -banks "$(SoundBankListAsTextFile)" -languages "$(LanguageList)"</Value>
 						<Value Platform="Mac">"$(CopyStreamedFilesExePath)" -info "$(InfoFilePath)" -outputpath "$(SoundBankPath)" -banks "$(SoundBankListAsTextFile)" -languages "$(LanguageList)"</Value>
+						<Value Platform="iOS">"$(CopyStreamedFilesExePath)" -info "$(InfoFilePath)" -outputpath "$(SoundBankPath)" -banks "$(SoundBankListAsTextFile)" -languages "$(LanguageList)"</Value>
 						<Value Platform="Windows">"$(CopyStreamedFilesExePath)" -info "$(InfoFilePath)" -outputpath "$(SoundBankPath)" -banks "$(SoundBankListAsTextFile)" -languages "$(LanguageList)"</Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPreGenerateCustomCmdDescription" Type="string">
 					<ValueList>
+						<Value Platform="Android"></Value>
 						<Value Platform="Mac"></Value>
+						<Value Platform="iOS"></Value>
 						<Value Platform="Windows"></Value>
 					</ValueList>
 				</Property>
 				<Property Name="SoundBankPreGenerateCustomCmdLines" Type="string">
 					<ValueList>
+						<Value Platform="Android"></Value>
 						<Value Platform="Mac"></Value>
+						<Value Platform="iOS"></Value>
 						<Value Platform="Windows"></Value>
 					</ValueList>
 				</Property>

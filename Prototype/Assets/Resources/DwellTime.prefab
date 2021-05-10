@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 2174219346939873034}
   - component: {fileID: 8501788741733602935}
   - component: {fileID: 7030154819041804941}
-  - component: {fileID: 338462616741516406}
+  - component: {fileID: 8280518726396628651}
   m_Layer: 7
   m_Name: DwellTime
   m_TagString: Untagged
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d87d489c55fc504987b709bbe1e4ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &338462616741516406
+--- !u!114 &8280518726396628651
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,12 +292,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6938823108554622976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d9e86dbd0ebbf442bee84ea1e5d3d26, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d8eb96a1f667da4eba0d7936e7d7e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 0
   isDefault: 1
-  isHover: 0
+  isEyeHover: 0
+  isMouseHover: 0
   isActive: 0
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
@@ -306,12 +307,11 @@ MonoBehaviour:
   activeTextColor: {r: 238, g: 238, b: 238, a: 1}
   confirmScaler: {fileID: 6906129284151097031}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 338462616741516406}
-        m_TargetAssemblyTypeName: IncrementButton, Assembly-CSharp
+      - m_Target: {fileID: 8280518726396628651}
+        m_TargetAssemblyTypeName: PanelSwitcherButton, Assembly-CSharp
         m_MethodName: ActivateDwellSettings
         m_Mode: 6
         m_Arguments:

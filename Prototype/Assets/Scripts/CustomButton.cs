@@ -12,12 +12,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Collider))]
 public class CustomButton : MonoBehaviour {
     protected GazeAware _gazeAware;
-    private Image _image;
     private Collider _collider;
     public bool canInteractBeforeStart = false;
     public bool isDefault = true, isEyeHover, isMouseHover, isActive, isConfirmationButton;
     public Color defaultColor, activeColor, defaultTextColor = new Color(33,33,33,1), activeTextColor = new Color(238,238,238,1);
-    private Color inactiveHoverColor;
+    protected Color inactiveHoverColor;
     protected Color activeHoverColor;
     public GameObject confirmScaler;
     public bool mouseOver;
@@ -29,7 +28,7 @@ public class CustomButton : MonoBehaviour {
     protected bool _usingEyeTracking;
 
     [SerializeField] protected Image mainButtonImage;
-    private bool colorsSet = false;
+    protected bool colorsSet = false;
     protected Text buttonText;
     public bool changeTextColor;
 
@@ -41,15 +40,9 @@ public class CustomButton : MonoBehaviour {
         _collider = GetComponent<Collider>();
         GetImageComponent();
         mainButtonImage.color = defaultColor;
-        
         isDefault = true;
         isActive = false;
         if (isConfirmationButton) ConfirmActivation(false);
-        
-        
-       
-
-        
     }
     
     protected virtual void GetImageComponent()=> mainButtonImage = GetComponent<Image>();

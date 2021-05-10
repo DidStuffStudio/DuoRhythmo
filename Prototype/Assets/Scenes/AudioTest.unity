@@ -559,7 +559,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 135.6, y: 42.95, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &49904278
+--- !u!114 &49904279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -568,7 +568,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 49904276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d9e86dbd0ebbf442bee84ea1e5d3d26, type: 3}
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
+--- !u!114 &49904288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49904276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8eb96a1f667da4eba0d7936e7d7e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canInteractBeforeStart: 1
@@ -579,16 +592,16 @@ MonoBehaviour:
   isConfirmationButton: 0
   defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  defaultTextColor: {r: 33, g: 33, b: 33, a: 1}
+  defaultTextColor: {r: 0.09411765, g: 0.09411765, b: 0.09411765, a: 1}
   activeTextColor: {r: 238, g: 238, b: 238, a: 1}
   confirmScaler: {fileID: 49904275}
   mouseOver: 0
   OnActivation:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1590067202}
-        m_TargetAssemblyTypeName: MasterManager, Assembly-CSharp
-        m_MethodName: SetDwellSettingsActive
+      - m_Target: {fileID: 49904288}
+        m_TargetAssemblyTypeName: PanelSwitcherButton, Assembly-CSharp
+        m_MethodName: ActivateDwellSettings
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -604,20 +617,6 @@ MonoBehaviour:
   activated: 0
   mainButtonImage: {fileID: 0}
   changeTextColor: 0
-  bpmSlider: {fileID: 0}
---- !u!114 &49904279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49904276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 1
 --- !u!1001 &125626010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1147,6 +1146,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3197379696657073084, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
   m_PrefabInstance: {fileID: 229943379}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &178173723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178173721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b82047483270e234dbdd594bdd4179a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &180608647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1456,6 +1467,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2543612901066078776, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2543612901066078776, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: activeColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -1485,7 +1500,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3197379696657073084, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4446432193417736708, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1511,6 +1526,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 78726eff21c40ed4fbcf2be4dfe78d0a, type: 3}
+    - target: {fileID: 4770802886566446633, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5005817221144121832, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1687,13 +1706,64 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2543612901066078776, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
 --- !u!224 &229943380 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7906260494015411610, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
   m_PrefabInstance: {fileID: 229943379}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &241130540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4446432193417736381, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+  m_PrefabInstance: {fileID: 229943379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &241130541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241130540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8eb96a1f667da4eba0d7936e7d7e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteractBeforeStart: 1
+  isDefault: 1
+  isEyeHover: 0
+  isMouseHover: 0
+  isActive: 0
+  isConfirmationButton: 0
+  defaultColor: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 1}
+  activeColor: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 238, g: 238, b: 238, a: 1}
+  confirmScaler: {fileID: 1109413423}
+  mouseOver: 0
+  OnActivation:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 241130541}
+        m_TargetAssemblyTypeName: PanelSwitcherButton, Assembly-CSharp
+        m_MethodName: ActivateDwellSettings
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeactivation:
+    m_PersistentCalls:
+      m_Calls: []
+  activated: 0
+  mainButtonImage: {fileID: 0}
+  changeTextColor: 0
 --- !u!1 &258635027
 GameObject:
   m_ObjectHideFlags: 0
@@ -9269,6 +9339,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfRooms: 10
   radius: 42
+--- !u!1 &1109413423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4446432193417736372, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
+  m_PrefabInstance: {fileID: 229943379}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1143099680
 GameObject:
   m_ObjectHideFlags: 0

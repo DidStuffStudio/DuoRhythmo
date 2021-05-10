@@ -101,7 +101,7 @@ public class MasterManager : MonoBehaviour {
         {
             playerTransforms.Add(-36*i,false);
         }
-
+        GameObject.FindWithTag("DwellSettings").transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
     }
 
     public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);
@@ -463,7 +463,8 @@ public class MasterManager : MonoBehaviour {
 
     public void SetDwellSettingsActive(bool set)
     {
-        dwellSettingsPrefab.SetActive(set);
+        GameObject.FindWithTag("DwellSettings").transform.GetChild(0).gameObject.SetActive(set);
+        //dwellSettingsPrefab.SetActive(set);
         if(isInPosition)SetExitButtonActive(!set);
     }
     /// <summary>

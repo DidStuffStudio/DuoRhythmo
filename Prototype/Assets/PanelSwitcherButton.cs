@@ -50,6 +50,7 @@ public class PanelSwitcherButton : CustomButton
         if (!_canHover || gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         
         mainButtonImage.color = inactiveHoverColor;
+
     }
 
     protected override void SetActive()

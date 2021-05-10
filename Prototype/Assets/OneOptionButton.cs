@@ -78,6 +78,7 @@ public class OneOptionButton : CustomButton {
         }
     public void ChangeDwellSpeed()
     {
+        DontDestroyDwell.Instance.dwellTimeSpeed = localDwellTimeSpeed;
         MasterManager.Instance.dwellTimeSpeed = localDwellTimeSpeed;
     }
 }

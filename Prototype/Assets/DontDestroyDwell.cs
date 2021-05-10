@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DontDestroyOnLoad : MonoBehaviour
+public class DontDestroyDwell : MonoBehaviour
 {
-    private static DontDestroyOnLoad _instance;
-    
-    public static DontDestroyOnLoad Instance {
+    private static DontDestroyDwell _instance;
+    public float dwellTimeSpeed = 100.0f;
+    public static DontDestroyDwell Instance {
         get {
             if (_instance != null)return _instance;
             var dontDestroyGameObject = new GameObject();
-            _instance = dontDestroyGameObject.AddComponent<DontDestroyOnLoad>();
-            dontDestroyGameObject.name = typeof(DontDestroyOnLoad).ToString();
+            _instance = dontDestroyGameObject.AddComponent<DontDestroyDwell>();
+            dontDestroyGameObject.name = typeof(DontDestroyDwell).ToString();
             return _instance;
         }
     }

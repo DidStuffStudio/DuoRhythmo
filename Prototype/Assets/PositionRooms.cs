@@ -8,7 +8,7 @@ public class PositionRooms : MonoBehaviour
     [SerializeField] private float radius;
 
 
-    void Start()
+    void Update()
     {
         for (var index = 0; index < 10; index++)
         {

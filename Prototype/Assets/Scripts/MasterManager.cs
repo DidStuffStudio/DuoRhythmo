@@ -101,7 +101,10 @@ public class MasterManager : MonoBehaviour {
         {
             playerTransforms.Add(-36*i,false);
         }
+        
         GameObject.FindWithTag("DwellSettings").transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
+        dwellTimeSpeed = DontDestroyDwell.Instance.dwellTimeSpeed;
+        
     }
 
     public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);

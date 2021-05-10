@@ -161,6 +161,7 @@ public class CustomButton : MonoBehaviour {
         if (!_canHover || gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         if (isActive) mainButtonImage.color = activeHoverColor;
         else mainButtonImage.color = inactiveHoverColor;
+        
     }
 
     protected virtual void OnMouseExit() {
@@ -206,9 +207,9 @@ public class CustomButton : MonoBehaviour {
     }
 
     protected virtual void UnHover() {
+        _canHover = true;
         if (!isEyeHover) return;
         isEyeHover = false;
-        _canHover = true;
         if (isDefault) SetDefault();
         else if (isActive) SetActive();
     }

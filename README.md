@@ -1,2 +1,1 @@
-# MED6_project
-Code made in MED6 bachelor project.
+DuoRythmo - A collaborative accessible digital musical interface (CADMI) for people with ALS and their caretakers (PALS/CALS)

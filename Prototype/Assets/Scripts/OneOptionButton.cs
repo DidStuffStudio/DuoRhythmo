@@ -11,24 +11,32 @@ public class OneOptionButton : CustomButton {
 
     protected override void Start() {
         base.Start();
-        if (activateOnStart) base.SetActive();
+        if (activateOnStart)
+        {
+            base.SetActive();
+            _canHover = false;
+        }
     }
 
     protected override void SetActive() {
         base.SetActive();
+        _canHover = false;
         foreach (var button in otherButtonsToDisable) {
             button.Deactivate();
+            button._canHover = true;
         }
     }
 
     protected override void MouseInteraction()
     {
+        if (!_canHover) return;
         if (Input.touchCount > 0) {
             Touch touch = Input.GetTouch(0);
             if (Physics.Raycast(Camera.main.ScreenToWorldPoint(touch.position), Vector3.forward, out var hit, LayerMask.GetMask("RenderPanel"))) {
                 if (hit.transform == this.transform) {
                     OnActivation?.Invoke();
                     SetActive();
+                    _canHover = false;
                 }
             }
         }
@@ -36,6 +44,7 @@ public class OneOptionButton : CustomButton {
         if (!isDefault) return;
         OnActivation?.Invoke();
         SetActive();
+        _canHover = false;
     }
 
     public void Deactivate() {
@@ -58,7 +67,7 @@ public class OneOptionButton : CustomButton {
                 OnActivation?.Invoke();
             }
         }
-        else
+        else if(_canHover)
         {
             if (_confirmScalerRT.localScale.x < 0.0f) return;
 
@@ -75,7 +84,7 @@ public class OneOptionButton : CustomButton {
            
         }
         
-        }
+    }
     public void ChangeDwellSpeed()
     {
         DontDestroyDwell.Instance.dwellTimeSpeed = localDwellTimeSpeed;

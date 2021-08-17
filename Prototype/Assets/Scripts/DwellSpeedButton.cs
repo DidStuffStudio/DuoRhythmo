@@ -19,7 +19,11 @@ public class DwellSpeedButton : CustomButton
     {
         base.Start();
         //_text.text = _string;
-        if (activateOnStart) SetActive();
+        if (activateOnStart)
+        {
+            SetActive();
+            _canHover = false;
+        }
     }
 
     protected override void FixedUpdate()
@@ -29,7 +33,7 @@ public class DwellSpeedButton : CustomButton
         {
             if (_confirmScalerRT.localScale.x < 1.0f)
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
-            else
+            else if(_canHover)
             {
                 _confirmScalerRT.localScale = Vector3.zero;
                 SetActive();

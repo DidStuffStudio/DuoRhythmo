@@ -70,7 +70,7 @@ public class CustomButton : MonoBehaviour {
                 
                     _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
 
-            else {
+            else if(_canHover) {
                 _confirmScalerRT.localScale = Vector3.zero;
              
                 if (!isActive) { 

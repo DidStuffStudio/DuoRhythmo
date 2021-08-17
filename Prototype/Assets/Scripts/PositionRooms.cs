@@ -11,11 +11,11 @@ public class PositionRooms : MonoBehaviour
     void Start()
     {
         
-        for (var index = 0; index < 10; index++)
+        for (var index = 0; index < numberOfRooms; index++)
         {
-            var angleInDegrees = index*36;
-            float x = (float)(radius * Mathf.Cos(angleInDegrees * Mathf.PI / 180F));
-            float y = (float)(radius * Mathf.Sin(angleInDegrees * Mathf.PI / 180F));
+            var angleInDegrees = index*(360/numberOfRooms);
+            float x = (float)(radius * Mathf.Cos((angleInDegrees * Mathf.PI / 180F)+Mathf.PI/2));
+            float y = (float)(radius * Mathf.Sin((angleInDegrees * Mathf.PI / 180F)+Mathf.PI/2));
 
             print("x = " + x + ", y = " + y);
         }

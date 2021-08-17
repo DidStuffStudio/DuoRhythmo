@@ -35,6 +35,7 @@ public class IncrementButton : CustomButton
         if (Input.GetMouseButtonUp(0))
         {
             SetDefault();
+            StartCoroutine(InteractionBreakTime());
             OnActivation?.Invoke();
         }
         

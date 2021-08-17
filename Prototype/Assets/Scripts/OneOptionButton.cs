@@ -11,15 +11,23 @@ public class OneOptionButton : CustomButton {
 
     protected override void Start() {
         base.Start();
-        if (activateOnStart) base.SetActive();
+        if (activateOnStart)
+        {
+            base.SetActive();
+            _canHover = false;
+        }
     }
 
     protected override void SetActive() {
         base.SetActive();
+        _canHover = false;
         foreach (var button in otherButtonsToDisable) {
             button.Deactivate();
+            button._canHover = true;
         }
     }
+
+
 
     public void Deactivate() {
         base.SetDefault();
@@ -58,7 +66,13 @@ public class OneOptionButton : CustomButton {
            
         }
         
-        }
+    }
+
+    protected override void MouseInteraction()
+    {
+        if(_canHover) base.MouseInteraction();
+    }
+
     public void ChangeDwellSpeed()
     {
         MasterManager.Instance.dwellTimeSpeed = localDwellTimeSpeed;

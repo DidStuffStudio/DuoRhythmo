@@ -58,6 +58,7 @@ public class NodeManager : MonoBehaviour {
     public UI_Gaze_Button euclideanButton;
     public IncrementButton[] navigationButtons = new IncrementButton[2];
     private int[] _savedValues = new int[16];
+    private bool canRotate = true;
 
     private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();
@@ -292,6 +293,8 @@ public class NodeManager : MonoBehaviour {
     }
     private IEnumerator RotateNodesRoutine(int[] values)
     {
+        if (!canRotate) yield break;
+        canRotate = false;
         for (int i = 0; i < _nodes.Count; i++)
         {
             var value = values[i];
@@ -299,18 +302,16 @@ public class NodeManager : MonoBehaviour {
             if (value == 1 && !_nodes[i].isActive)
             {
                 _nodes[i].Activate(true);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.01f);
             }
             else if (value == 0 && _nodes[i].isActive)
             {
                 _nodes[i].Activate(false);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.01f);
             }
-
-              
-            
         }
-        
+
+        canRotate = true;
     }
 
     public void StoreRythm()

@@ -1078,7 +1078,6 @@ GameObject:
   - component: {fileID: 8248214353105484809}
   - component: {fileID: 8248214353105484814}
   - component: {fileID: 8248214353105484815}
-  - component: {fileID: 8248214353105484813}
   - component: {fileID: 147387570589692383}
   m_Layer: 7
   m_Name: DrumPanel
@@ -1176,7 +1175,6 @@ MonoBehaviour:
   _ryhtmIndicator: {fileID: 8248214351985109846}
   bpm: 120
   drumType: 0
-  _screenSync: {fileID: 0}
   levels:
   - 0
   - 0
@@ -1237,26 +1235,6 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
---- !u!114 &8248214353105484813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8248214353105484805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _realtime: {fileID: 0}
-  _sceneViewUUID: 
-  _viewUUID: 
-  _sceneViewPreventOwnershipTakeover: 0
-  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 1
-  _components: []
-  _childViews: []
 --- !u!114 &147387570589692383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2837,6 +2815,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
   m_PrefabInstance: {fileID: 6827745252175445746}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4394275539080078757 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7078141786073897815, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+  m_PrefabInstance: {fileID: 6827745252175445746}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1543484568746056873 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5452321105264058971, guid: 003ead14673720d46a74cd8862313afb, type: 3}
@@ -2848,11 +2831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &4394275539080078757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7078141786073897815, guid: 003ead14673720d46a74cd8862313afb, type: 3}
-  m_PrefabInstance: {fileID: 6827745252175445746}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7587847240905775497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2986,11 +2964,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
---- !u!224 &5830729160860093665 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4154460268921754984, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
-  m_PrefabInstance: {fileID: 7587847240905775497}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6751257790225513187 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3817992476575605610, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
@@ -3005,6 +2978,11 @@ MonoBehaviour:
 --- !u!1 &8031660189579473447 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 449025973822303150, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
+  m_PrefabInstance: {fileID: 7587847240905775497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &5830729160860093665 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4154460268921754984, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
   m_PrefabInstance: {fileID: 7587847240905775497}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8391207752242084783

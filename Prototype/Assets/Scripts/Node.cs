@@ -14,8 +14,7 @@ public class Node : CustomButton {
     public bool canPlay = true;
 
     public int indexValue;
-
-    public ScreenSync _screenSync;
+    
 
     public List<Image> subNodes = new List<Image>();
 
@@ -44,7 +43,6 @@ public class Node : CustomButton {
             confirmScaler.GetComponent<Image>().color = defaultColor;
             isActive = true;
             isDefault = false;
-            MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 1;
         }
         else
         {
@@ -53,29 +51,18 @@ public class Node : CustomButton {
             confirmScaler.GetComponent<Image>().color = activeColor;
             isDefault = true;
             isActive = false;
-            MasterManager.Instance.dataMaster.nodesActivated[(int) drumType, indexValue] = 0;
+
         }
         
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
     protected override void SetActive() {
-        if (!RealTimeInstance.Instance.isSoloMode)
-        {
-            MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 1;
-            MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
-        }
-        
         base.SetActive();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
     protected override void SetDefault() {
-        if (!RealTimeInstance.Instance.isSoloMode)
-        {
-            MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 0;
-            MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
-        }
         base.SetDefault();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }

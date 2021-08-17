@@ -1,4 +1,4 @@
-using Normal.Realtime;
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -45,44 +45,30 @@ public class MasterManager : MonoBehaviour {
     public float dwellTimeSpeed = 100.0f;
 
     public UserInterfaceManager userInterfaceManager;
-
-    [SerializeField] private ScreenSync[] _screenSyncs;
-
-    [Space] [Header("Timer")] public int bpm = 120;
-    [SerializeField] private GameObject timerPrefab;
-    private GameObject timerGameObject;
-    public Timer timer;
+    public int bpm;
 
     [Space] [Header("Player")] public Camera playerCamera;
     // public List<Player> Players = new List<Player>();
-    public ObservableCollection<Player> Players = new ObservableCollection<Player>();
-    
+
     private Transform _playerPosition;
     private float startTime, journeyLength;
     [SerializeField] private float positionSpeed = 10.0f;
     public Transform playerStartPosition, playerPositionDestination;
-    public int localPlayerNumber = -1;
     public bool gameSetUpFinished;
     public float currentRotationOfUI = 0.0f;
-    public Player player;
     public bool isInPosition = false;
-    public bool isWaitingInLobby = true;
 
     [SerializeField] private GameObject mainSignifier;
 
     [SerializeField] private GameObject timerUI;
     public bool DwellSettingsActive;
     public GameObject exitButtonPanel;
-    public DataSync dataMaster;
-    public bool isFirstPlayer;
     
-    [SerializeField] private Dictionary<float, bool> playerTransforms = new Dictionary<float, bool>();
     private void Start() {
         if (_instance == null) _instance = this;
-        Players.CollectionChanged += OnPlayersChanged;
 
 
-    // #if !UNITY_IOS && !UNITY_ANDROID
+        // #if !UNITY_IOS && !UNITY_ANDROID
         // Debug.Log("We're not in IOS nor Android, so set the resolution");
         var height =  Screen.currentResolution.height;
 
@@ -97,11 +83,7 @@ public class MasterManager : MonoBehaviour {
         drumDictionary.Add(4, ambientDrums);
         
         currentDrums = classicDrums;
-        for (int i = 0; i < numberInstruments*2; i++)
-        {
-            playerTransforms.Add(-36*i,false);
-        }
-        
+
         GameObject.FindWithTag("DwellSettings").transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
         dwellTimeSpeed = DontDestroyDwell.Instance.dwellTimeSpeed;
         
@@ -109,17 +91,9 @@ public class MasterManager : MonoBehaviour {
 
     public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);
 
-    private void OnPlayersChanged(object sender, NotifyCollectionChangedEventArgs e) {
-        print("Players changed");
-        foreach (var p in Players) {
-            print("We have this player: " + p);
-        }
-
-        RealTimeInstance.Instance.numberPlayers = Players.Count;
-    }
 
     private void FixedUpdate() {
-        if (!isWaitingInLobby && !isInPosition) {
+        if (!isInPosition) {
             // Distance moved equals elapsed time times speed..
             float distCovered = (Time.time - startTime) * positionSpeed;
             // Fraction of journey completed equals current distance divided by total distance.
@@ -135,13 +109,6 @@ public class MasterManager : MonoBehaviour {
                 mainSignifier.SetActive(true);
                 StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
                 SetExitButtonActive(true);
-                if (!RealTimeInstance.Instance.isSoloMode)
-                {
-                    timerUI.SetActive(true);
-                    
-                    if (isFirstPlayer) StartCoroutine(timer.MainTime());
-                  
-                }
             }
         }
     }
@@ -158,17 +125,8 @@ public class MasterManager : MonoBehaviour {
             panelRotations[i] = new Vector3(0, i * rotationValue, 0);
         }
 
-        // TODO: Set the size of the panels' canvas (radius distance to the origin point)
-
-        if (RealTimeInstance.Instance.isSoloMode) {
-            InstantiatePanelsSoloMode();
-            StartCoroutine(WaitToPositionCamera(0.5f));
-            return;
-        }
-
-        // position player at the top view
-        //playerCamera.transform.position = playerStartPosition.position;
-        StartCoroutine(WaitUntilConnected());
+        InstantiatePanelsSoloMode();
+        StartCoroutine(WaitToPositionCamera(0.5f));
     }
 
     private void InstantiatePanelsSoloMode() {
@@ -204,7 +162,6 @@ public class MasterManager : MonoBehaviour {
                 Debug.LogError(_nodeManagers[i].name +
                                " has an error getting its NodeManager. Check that it has a NodeManager");
             _nodeManagers.Add(nodeManager);
-            nodeManager._screenSync = _screenSyncs[i];
             nodeManager.drumType = (DrumType) i;
             nodeManager.subNodeIndex = i;
             nodeManager.defaultColor = defaultNodeColors[i];
@@ -239,14 +196,12 @@ public class MasterManager : MonoBehaviour {
                     indexCount++;
                 }
             }
-            print("1");
             var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
             foreach (var uigazeButton in nodesSoloButtons)
             {
                 userInterfaceManager.soloButtons[i] = uigazeButton;
                 uigazeButton.drumTypeIndex = i;
             }
-            print("2");
             var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
             foreach (var uigazeButton in effectsSoloButtons)
             {
@@ -256,7 +211,6 @@ public class MasterManager : MonoBehaviour {
             nodeManager.SetUpNode();
             
             userInterfaceManager.panels.Add(nodesPanels[i]);
-            print("3");
         }
         
         gameSetUpFinished = true;
@@ -286,154 +240,8 @@ public class MasterManager : MonoBehaviour {
 
     public void SwitchDrumKits(int drumKitIndex) => currentDrums = drumDictionary[drumKitIndex];
 
-    private IEnumerator WaitUntilConnected() {
-        while (true) {
-            // if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
-            if (RealTimeInstance.Instance.isSoloMode && RealTimeInstance.Instance.isConnected) break;
-            if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 0) break;
-            yield return new WaitForEndOfFrame();
-        }
-
-        print("local player number: " + localPlayerNumber);
-
-        InstantiatePanels();
-        StartCoroutine(WaitToPositionCamera(3.0f));
-    }
-
-    public void SetPlayerPosition() {
-        journeyLength = Vector3.Distance(playerStartPosition.position, playerPositionDestination.position);
-
-        // rotate the parent of the camera around the degrees dependant on the number of players and number of instruments
-        // players should be opposite to each other --> so differentiate between even and uneven numbers --> 180 degrees difference between them
-        float degrees = 0;
-        float degreesPerPlayer = 360.0f / (numberInstruments * 2);
-        // if even player --> degrees = -36 * evenPlayerNumberCounter
-        if (localPlayerNumber % 2 == 0) degrees = -degreesPerPlayer * (localPlayerNumber / 2.0f);
-        // if uneven player --> degrees = 180 - 36 * unevenPlayerNumber
-        else degrees = 180 - (degreesPerPlayer * ((localPlayerNumber - 1) / 2.0f));
-        if(RealTimeInstance.Instance.numberPlayers != 1) playerCamera.transform.parent.Rotate(0, degrees, 0);
-    }
-
-
-    // call this method when the players have connected
-    private void InstantiatePanels() {
-        int panelCounter = 1; // to keep track of the panels for the userInterfaceManager
-        // instantiate and set up effects panels
-        var effectsPanelsGo = new GameObject("Effects panels");
-        effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
-        
-        userInterfaceManager.soloButtons = new UI_Gaze_Button[numberInstruments*2];
-        Vector3 rotationValue = new Vector3(0, 180.0f, 0);
-        for (int i = 0; i < numberInstruments; i++) {
-            effectsPanels[i] = Instantiate(effectsPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
-            effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
-            effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
-            rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
-            userInterfaceManager.panels.Add(effectsPanels[i]);
-            var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            foreach (var uigazeButton in effectsSoloButtons)
-            {
-                userInterfaceManager.soloButtons[i + 5] = uigazeButton;
-                uigazeButton.drumTypeIndex = i;
-            }
-            foreach(Transform child in effectsPanels[i].transform.GetComponentsInChildren<Transform>())
-            {
-
-                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().color = new Color(drumColors[i].r, drumColors[i].g, drumColors[i].b, 0);
-                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().text = (DrumType) i + " Effects";
-                if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<Text>().color = drumColors[i];
-                   
-            }
-            // userInterfaceManager.panels[panelCounter] = effectsPanels[i];
-            panelCounter += 2;
-
-        }
-
-        panelCounter = 0;
-
-        // instantiate and set up nodes panels
-        rotationValue = Vector3.zero;
-
-        var nodesPanelsGo = new GameObject("Nodes panels");
-        nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
-        for (int i = 0; i < numberInstruments; i++)
-        {
-            nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
-            nodesPanels[i].transform.SetParent(nodesPanelsGo.transform);
-            nodesPanels[i].name = "NodesPanel_" + (DrumType) i;
-            rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
-
-            // set up nodes managers
-            // set up the drum type, drum color, and default color of each nodeManager
-            var nodeManager = nodesPanels[i].transform.GetComponentInChildren<NodeManager>();
-
-            if (nodeManager == null)
-                Debug.LogError(_nodeManagers[i].name +
-                               " has an error getting its NodeManager. Check that it has a NodeManager");
-            _nodeManagers.Add(nodeManager);
-            nodeManager._screenSync = _screenSyncs[i];
-            nodeManager.drumType = (DrumType) i;
-            nodeManager.subNodeIndex = i;
-            nodeManager.defaultColor = defaultNodeColors[i];
-            nodeManager.drumColor = drumColors[i];
-            foreach (var incButton in nodeManager.incrementButtons) incButton.activeColor = drumColors[i];
-            foreach (var navigationButton in nodeManager.navigationButtons)
-                navigationButton.gameObject.SetActive(false);
-
-            nodeManager.euclideanButton.activeColor = drumColors[i];
-
-
-
-            // initialize the knob sliders for this current node manager ///////////UNCOMMENT FOR RADIAL SLIDERS
-            /*nodeManager.bpmSlider = effectsPanels[i].GetComponentInChildren<SliderKnob>();
-            var knobs = effectsPanels[i].GetComponentsInChildren<RadialSlider>();
-            nodeManager.sliders = new RadialSlider[knobs.Length];
-            for (int j = 0; j < knobs.Length; j++)
-            {
-                nodeManager.sliders[j] = knobs[j];
-                knobs[j].activeColor = drumColors[i];
-                // knobs[j].GetComponentInParent<Image>().color = drumColors[i];
-                foreach (var quad in knobs[j].quadrants) quad.transform.GetComponent<Image>().color = drumColors[i];
-            }*/
-            
-            var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
-            nodeManager.sliders = new SliderKnob[knobs.Length-1];
-            var indexCount = 0;
-            for (int j = 0; j < knobs.Length; j++)
-            {
-                if (knobs[j].transform.CompareTag("BPM_Slider")) nodeManager.bpmSlider = knobs[j];
-                else
-                {
-                    
-                    nodeManager.sliders[indexCount] = knobs[j];
-                    knobs[j].knobBorder.color = drumColors[i];
-                    knobs[j].fillRect.GetComponent<Image>().color = drumColors[i];
-                    knobs[j].activeColor = drumColors[i];
-                    indexCount++;
-                }
-            }
-
-            foreach (var incButton in effectsPanels[i].GetComponentsInChildren<IncrementButton>())
-                if (incButton.transform.CompareTag("NavigationButtons"))
-                    incButton.gameObject.SetActive(false);
-
-            nodeManager.SetUpNode();
-
-            userInterfaceManager.panels.Add(nodesPanels[i]);
-            // userInterfaceManager.panels[panelCounter] = nodesPanels[i];
-            panelCounter += 2;
-
-            var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            foreach (var uigazeButton in nodesSoloButtons)
-            {
-                userInterfaceManager.soloButtons[i] = uigazeButton;
-                uigazeButton.drumTypeIndex = i;
-            }
-        }
-
-        gameSetUpFinished = true;
-    }
-
+    public void SetPlayerPosition() => journeyLength = Vector3.Distance(playerStartPosition.position, playerPositionDestination.position);
+    
     // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers
     public void UpdateSubNodes(int node, bool activated, int nodeManagerSubNodeIndex) {
         foreach (var nodeManager in _nodeManagers) {
@@ -445,23 +253,14 @@ public class MasterManager : MonoBehaviour {
         bpm = value;
         foreach (var nodeManager in _nodeManagers) {
             nodeManager.bpm = bpm;
-            nodeManager._screenSync.SetBpm(bpm);
         }
     }
     
-    
-    public void DrumNodeChangedOnServer(int drumIndex, int nodeIndex, bool activate) => _nodeManagers[drumIndex]._nodes[nodeIndex].SetNodeFromServer(activate);
-
-    public void EffectsDidChangeOnServer(int drumIndex, int[] drumEffects) {
-        for (int i = 0; i < 4; i++) _nodeManagers[drumIndex].SetEffectsFromServer(i, drumEffects[i]);
-    }
-
 
     private IEnumerator WaitToPositionCamera(float time) {
         SetPlayerPosition();
         yield return new WaitForSeconds(time);
         mainSignifier.SetActive(false);
-        isWaitingInLobby = false;
     }
 
     public void SetDwellSettingsActive(bool set)

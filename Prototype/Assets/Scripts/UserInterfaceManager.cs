@@ -9,8 +9,6 @@ using Random = UnityEngine.Random;
 
 public class UserInterfaceManager : MonoBehaviour {
     private Animator _uiAnimator;
-    [SerializeField] private Animator _playerAnimator;
-    public Text timerDisplay;
     public Material skybox;
     private float _timeLeft = 10.0f;
     private Color _targetVFXColor, _targetSkyColor;
@@ -23,14 +21,12 @@ public class UserInterfaceManager : MonoBehaviour {
     public DwellSpeedButton[] dwellSpeedButtons;
     private static readonly int Tint = Shader.PropertyToID("_Tint");
     [SerializeField] private int numberOfDwellSpeeds;
-    public float currentRotationOfUI = 0.0f;
 
     public List<GameObject> panels = new List<GameObject>(); //Put panels into array so we can change their layer to blur or render them over blur
 
     [SerializeField] private ForwardRendererData _forwardRenderer;
     private bool isRenderingAPanel = false;
 
-    public GameObject dwellSpeedPrefab;
     private bool animateUIBackward = false;
     private bool ignoreEvents;
 
@@ -38,15 +34,8 @@ public class UserInterfaceManager : MonoBehaviour {
        
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _uiAnimator = GetComponent<Animator>();
-        _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
         _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
-        _playerAnimator.speed = 0.0f;
-    }
-    
-
-    public void SetUpRotationForNewPlayer(float time)
-    {
-        _uiAnimator.Play("Rotation", 0, time);
+        _uiAnimator.Play("Rotation", 0, 0.0f);
     }
     
     public void PauseAnimation()
@@ -54,15 +43,11 @@ public class UserInterfaceManager : MonoBehaviour {
         if (ignoreEvents) return;
         StartCoroutine(SwitchPanelRenderLayers());
         _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
-        _playerAnimator.speed = 0.0f;
-        //timer = (int) MasterManager.Instance.timer.timer;
-        SetAnimatorTime();
-        if(!RealTimeInstance.Instance.isSoloMode) StartCoroutine(MasterManager.Instance.timer.MainTime());
     }
 
     public void PlayAnimation(bool forward)
     {
-        if(RealTimeInstance.Instance.isSoloMode)StartCoroutine(IgnoreEvents());
+        StartCoroutine(IgnoreEvents());
         if (forward)
         {
             _currentRenderPanel++;
@@ -71,11 +56,6 @@ public class UserInterfaceManager : MonoBehaviour {
             if (_currentPanel > (MasterManager.Instance.numberInstruments - 1)) _currentPanel = 0;
             Solo(false, 0);
             _uiAnimator.SetFloat("SpeedMultiplier", 1.0f);
-            if (!MasterManager.Instance.isInPosition)
-            {
-                _playerAnimator.speed = 1.0f;
-                _playerAnimator.Play("PlayerCam");
-            }
         }
         else
         {
@@ -86,7 +66,6 @@ public class UserInterfaceManager : MonoBehaviour {
             Solo(false, 0);
             animateUIBackward = true;
             _uiAnimator.SetFloat("SpeedMultiplier", -1.0f);
-            print("Rotating back");
         }
     }
 
@@ -113,8 +92,6 @@ public class UserInterfaceManager : MonoBehaviour {
             // update the timer
             _timeLeft -= Time.deltaTime;
         }
-        
-        timerDisplay.text = MasterManager.Instance.timer.timer.ToString();
     }
 
     public void Solo(bool solo, int index) {
@@ -169,10 +146,7 @@ public class UserInterfaceManager : MonoBehaviour {
 
 
     }
-
-    public void SetAnimatorTime() => currentRotationOfUI = _uiAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
     
-
     private void OnEnable() {
         foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(true);
     }
@@ -180,13 +154,7 @@ public class UserInterfaceManager : MonoBehaviour {
     private void OnDisable() {
         foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(false);
     }
-
-    public void InstantiateDwellSpeedPrefab()
-    {
-        Instantiate(dwellSpeedPrefab, Camera.main.transform);
-    }
-
-
+    
     private IEnumerator IgnoreEvents()
     {
         ignoreEvents = true;

@@ -30,8 +30,7 @@ public class NodeManager : MonoBehaviour {
     private float secondsFor360 = 1;
 
     public DrumType drumType;
-
-    public ScreenSync _screenSync;
+    
 
     [Range(0.0f, 100.0f)] [SerializeField] private float[] levels = new float[4];
 
@@ -104,14 +103,7 @@ public class NodeManager : MonoBehaviour {
         {
             AkSoundEngine.SetRTPCValue(effectNames[i], levels[i]);
         }
-
-        if (_screenSync.NumberOfNodes != numberOfNodes && RealTimeInstance.Instance.isConnected) {
-            numberOfNodes = _screenSync.NumberOfNodes;
-            if (numberOfNodes < 2) numberOfNodes = 2; // force the minimum amount of nodes to be 2
-            SpawnNodes();
-        }
-
-        //bpm = _screenSync.Bpm;
+        
     }
 
     private void LateUpdate() {
@@ -120,8 +112,7 @@ public class NodeManager : MonoBehaviour {
     }
 
     private void CheckForChangesSliders() {
-        if (RealTimeInstance.Instance.isSoloMode) {
-            levels[0] = sliders[0].currentValue;
+        levels[0] = sliders[0].currentValue;
             levels[1] = sliders[1].currentValue;
             levels[2] = sliders[2].currentValue;
             levels[3] = sliders[3].currentValue;
@@ -129,22 +120,7 @@ public class NodeManager : MonoBehaviour {
             bpmSlider.currentValue = bpm;
             bpmSlider.UpdateSliderText();
         }
-        else
-        {
-
-            sliders[0].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 0] = (int) (levels[0] = _screenSync.Effect1));
-            sliders[1].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 1] = (int) (levels[1] = _screenSync.Effect2));
-            sliders[2].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 2] = (int) (levels[2] = _screenSync.Effect3));
-            sliders[3].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 3] = (int) (levels[3] = _screenSync.Effect4)); 
-            
-            bpm = _screenSync.Bpm;
-            bpmSlider.currentValue = bpm;
-            bpmSlider.UpdateSliderText();
-        }
-
-        // if(MasterManager.Instance.bpm != bpm) MasterManager.Instance.SetBpm(bpm);
-    }
-
+        
     private void SpawnNodes() {
         numberOfNodes = MasterManager.Instance.numberOfNodes;
         // if more nodes exist than is needed, delete them
@@ -193,8 +169,6 @@ public class NodeManager : MonoBehaviour {
             node.name = "Node " + (i + 1);
             _nodes.Add(n);
             n.indexValue = i;
-            n._screenSync = _screenSync;
-            _screenSync._nodes.Add(n);
             // node.GetComponent<Node>()._nodesVisualizer = _nodesVisualizer;
             n.nodeManager = this;
 
@@ -242,8 +216,7 @@ public class NodeManager : MonoBehaviour {
 
     private void ChangeEffectValue(int index) {
         var sliderValue = (int) sliders[index].currentValue;
-        // levels[index] = sliderValue;
-        if (!RealTimeInstance.Instance.isSoloMode) _screenSync.SetEffectValue(index, sliderValue);
+
     }
 
     /// <summary>
@@ -344,8 +317,7 @@ public class NodeManager : MonoBehaviour {
                 _nodes[i].Activate(false);
                 yield return new WaitForSeconds(0.1f);
             }
-                
-        }
+            }
         }
         else {
             _euclideanRythm.GetEuclideanRythm();
@@ -366,9 +338,5 @@ public class NodeManager : MonoBehaviour {
             }
         }
     }
-    
-    public void SetEffectsFromServer(int effectIndex, int effectValue) {
-        sliders[effectIndex].SetCurrentValue(effectValue);
-        MasterManager.Instance.dataMaster.effectValues[(int)drumType, effectIndex] = effectValue;
-    }
+
 }

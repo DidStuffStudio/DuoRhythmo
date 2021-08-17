@@ -91,14 +91,7 @@ public class IncrementButton : CustomButton
 
     public void IncrementBpm(bool increase)
     {
-        if (RealTimeInstance.Instance.isSoloMode)
-        {
-            if (increase && bpmSlider.currentValue < bpmSlider.maximumValue)MasterManager.Instance.bpm++;
-            else if(bpmSlider.currentValue > bpmSlider.minimumValue ) MasterManager.Instance.bpm--;
-        }
-        else
-        {
-            bpmSlider.SetCurrentValue(increase ? bpmSlider.currentValue++ : bpmSlider.currentValue--);
-        }
+        if (increase && bpmSlider.currentValue < bpmSlider.maximumValue)MasterManager.Instance.bpm++;
+        else if(bpmSlider.currentValue > bpmSlider.minimumValue ) MasterManager.Instance.bpm--;
     }
 }

@@ -298,7 +298,7 @@ public class MasterManager : MonoBehaviour {
 
         print("local player number: " + localPlayerNumber);
 
-        InstantiatePanels();
+        InstantiatePanelsMultiplayer();
         StartCoroutine(WaitToPositionCamera(3.0f));
     }
 
@@ -318,7 +318,7 @@ public class MasterManager : MonoBehaviour {
 
 
     // call this method when the players have connected
-    private void InstantiatePanels() {
+    private void InstantiatePanelsMultiplayer() {
         int panelCounter = 1; // to keep track of the panels for the userInterfaceManager
         // instantiate and set up effects panels
         var effectsPanelsGo = new GameObject("Effects panels");
@@ -331,7 +331,7 @@ public class MasterManager : MonoBehaviour {
             effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
             effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
-            userInterfaceManager.panels.Add(effectsPanels[i]);
+            //userInterfaceManager.panels.Add(effectsPanels[i]);
             var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
             foreach (var uigazeButton in effectsSoloButtons)
             {
@@ -346,7 +346,7 @@ public class MasterManager : MonoBehaviour {
                 if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<Text>().color = drumColors[i];
                    
             }
-            // userInterfaceManager.panels[panelCounter] = effectsPanels[i];
+            //userInterfaceManager.panels[panelCounter] = effectsPanels[i];
             panelCounter += 2;
 
         }
@@ -421,8 +421,8 @@ public class MasterManager : MonoBehaviour {
 
             nodeManager.SetUpNode();
 
-            userInterfaceManager.panels.Add(nodesPanels[i]);
-            // userInterfaceManager.panels[panelCounter] = nodesPanels[i];
+            //userInterfaceManager.panels.Add(nodesPanels[i]);
+            //userInterfaceManager.panels[panelCounter] = nodesPanels[i];
             panelCounter += 2;
 
             var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
@@ -431,6 +431,18 @@ public class MasterManager : MonoBehaviour {
                 userInterfaceManager.soloButtons[i] = uigazeButton;
                 uigazeButton.drumTypeIndex = i;
             }
+        }
+
+        for (int i = 0; i < nodesPanels.Length; i++)
+        {
+            if(i%2==1) userInterfaceManager.panels.Insert(i+5, nodesPanels[i]);
+            else userInterfaceManager.panels.Insert(i,nodesPanels[i]);
+        }
+        
+        for (int i = 0; i < effectsPanels.Length; i++)
+        {
+            if(i%2==0) userInterfaceManager.panels.Insert(i+5, effectsPanels[i]);
+            else userInterfaceManager.panels.Insert(i,effectsPanels[i]);
         }
 
         gameSetUpFinished = true;

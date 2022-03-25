@@ -25,7 +25,7 @@ public class UserInterfaceManager : MonoBehaviour {
     [SerializeField] private int numberOfDwellSpeeds;
     public float currentRotationOfUI = 0.0f;
 
-    public List<GameObject> panels = new List<GameObject>(); //Put panels into array so we can change their layer to blur or render them over blur
+    public List<GameObject> panels = new List<GameObject>(); //Put panels into list so we can change their layer to blur or render them over blur
 
     [SerializeField] private ForwardRendererData _forwardRenderer;
     private bool isRenderingAPanel = false;
@@ -42,6 +42,10 @@ public class UserInterfaceManager : MonoBehaviour {
         _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
         _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
         _playerAnimator.speed = 0.0f;
+        /*for (int i = 0; i < MasterManager.Instance.numberInstruments*2; i++)
+        {
+            panels.Add(null);
+        }*/
     }
 
     public void ToggleVFX(bool activate)

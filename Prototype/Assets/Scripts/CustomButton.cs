@@ -43,6 +43,7 @@ public class CustomButton : MonoBehaviour {
         isDefault = true;
         isActive = false;
         if (isConfirmationButton) ConfirmActivation(false);
+        ToggleConfirmScaler(false);
     }
     
     protected virtual void GetImageComponent()=> mainButtonImage = GetComponent<Image>();
@@ -67,11 +68,13 @@ public class CustomButton : MonoBehaviour {
         
         if (isEyeHover) {
             if (_confirmScalerRT.localScale.x < 1.0f)
-                
-                    _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
-
+            {
+                ToggleConfirmScaler(true);
+                _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
+            }
             else if(_canHover) {
                 _confirmScalerRT.localScale = Vector3.zero;
+                ToggleConfirmScaler(false);
              
                 if (!isActive) { 
                     StartCoroutine(InteractionBreakTime());
@@ -91,7 +94,11 @@ public class CustomButton : MonoBehaviour {
         }
 
         else {
-            if (_confirmScalerRT.localScale.x < 0.0f) return;
+            if (_confirmScalerRT.localScale.x < 0.0f)
+            {
+                ToggleConfirmScaler(false);
+                return;
+            }
             
                 _confirmScalerRT.localScale -= Vector3.one / MasterManager.Instance.dwellTimeSpeed;
             
@@ -101,6 +108,12 @@ public class CustomButton : MonoBehaviour {
         
     }
 
+    protected virtual void ToggleConfirmScaler(bool activate)
+    {
+        if (confirmScaler.activeInHierarchy == activate) return;
+        _confirmScalerRT.transform.gameObject.SetActive(activate);
+    }
+    
     protected virtual void MouseInteraction()
     {
         if(!mouseOver) return;

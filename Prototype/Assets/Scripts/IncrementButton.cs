@@ -11,9 +11,13 @@ public class IncrementButton : CustomButton
         
         if (isEyeHover && !isActive) {
             if (_confirmScalerRT.localScale.x < 1.0f)
+            {
+                ToggleConfirmScaler(true);
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
+            }
             else {
                 _confirmScalerRT.localScale = Vector3.zero;
+                ToggleConfirmScaler(false);
                 StartCoroutine(InteractionBreakTime());
                 OnActivation?.Invoke();
                 SetDefault();
@@ -21,7 +25,11 @@ public class IncrementButton : CustomButton
         }
 
         else {
-            if (_confirmScalerRT.localScale.x < 0.0f) return;
+            if (_confirmScalerRT.localScale.x < 0.0f)
+            {
+                ToggleConfirmScaler(false);
+                return;
+            }
             _confirmScalerRT.localScale -= Vector3.one / MasterManager.Instance.dwellTimeSpeed;
         }
         
@@ -51,6 +59,7 @@ public class IncrementButton : CustomButton
         if (Input.GetMouseButton(0)) SetActive();
         if (Input.GetMouseButtonUp(0))
         {
+            ToggleConfirmScaler(true);
             _confirmScalerRT.localScale = Vector3.one;
             SetDefault();
             OnActivation?.Invoke();
@@ -64,6 +73,7 @@ public class IncrementButton : CustomButton
                         SetActive();
                     }
                     if (touch.phase == TouchPhase.Ended) {
+                        ToggleConfirmScaler(true);
                         _confirmScalerRT.localScale = Vector3.one;
                         SetDefault();
                         OnActivation?.Invoke();

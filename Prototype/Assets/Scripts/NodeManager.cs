@@ -285,11 +285,16 @@ public class NodeManager : MonoBehaviour {
             } 
         }
 
-        StartCoroutine(RotateNodesRoutine(nodesActive));
+        RotateNodesRoutine(nodesActive);
 
 
     }
-    private IEnumerator RotateNodesRoutine(int[] values)
+    
+    /// <summary>
+    /// ///// Below --> Old coroutine which delays the rotation of nodes. can be deleted when the networking part is fixed
+    /// </summary>
+    /// 
+    /*private IEnumerator RotateNodesRoutine(int[] values)
     {
         if (!canRotate) yield break;
         canRotate = false;
@@ -313,6 +318,30 @@ public class NodeManager : MonoBehaviour {
         }
 
         canRotate = true;
+    }*/
+    
+    private void RotateNodesRoutine(int[] values)
+    {
+        if (!canRotate) return;
+        canRotate = false;
+        for (int i = 0; i < _nodes.Count; i++)
+        {
+            var value = values[i];
+            // if the euclidean value is 1, then it means it should be active, so activate
+            if (value == 1 && !_nodes[i].isActive)
+            {
+                _nodes[i].Activate(true);
+            }
+            else if (value == 0 && _nodes[i].isActive)
+            {
+                _nodes[i].Activate(false);
+            }
+
+              
+            
+        }
+
+        canRotate = true;
     }
 
     public void StoreRythm()
@@ -326,10 +355,16 @@ public class NodeManager : MonoBehaviour {
     
     // euclidean rhythm
     public void StartEuclideanRhythmRoutine(bool activate) {
-        StartCoroutine(ActivateEuclideanRhythm(activate));
+        //StartCoroutine(ActivateEuclideanRhythm(activate));
+        ActivateEuclideanRhythm(activate);
     }
-
-    private IEnumerator ActivateEuclideanRhythm(bool activate) {
+    
+    /// <summary>
+    /// ///// Below --> Old coroutine which delays the activate of each nod on the euclidean rhythm can be deleted when the networking part is fixed
+    /// </summary>
+    
+    
+    /*private IEnumerator ActivateEuclideanRhythm(bool activate) {
         if (!activate){
             for (int i = 0; i < _nodes.Count; i++) {
             var value = _savedValues[i];
@@ -361,6 +396,44 @@ public class NodeManager : MonoBehaviour {
                 {
                     _nodes[i].Activate(false);
                     yield return new WaitForSeconds(0.1f);
+                }
+                
+            }
+        }
+    } */
+    
+    private void ActivateEuclideanRhythm(bool activate) {
+        if (!activate){
+            for (int i = 0; i < _nodes.Count; i++) {
+            var value = _savedValues[i];
+            // if the euclidean value is 1, then it means it should be active, so activate
+            if (value == 1 && !_nodes[i].isActive)
+            {
+                _nodes[i].Activate(true);
+                
+            }
+            else if (value == 0 && _nodes[i].isActive)
+            {
+                _nodes[i].Activate(false);
+                
+            }
+                
+        }
+        }
+        else {
+            _euclideanRythm.GetEuclideanRythm();
+            for (int i = 0; i < _nodes.Count; i++) {
+                var euclideanValue = _euclideanRythm._euclideanValues[i];
+                // if the euclidean value is 1, then it means it should be active, so activate
+                if (euclideanValue == 1 && !_nodes[i].isActive)
+                {
+                    _nodes[i].Activate(true);
+                    
+                }
+                else if (euclideanValue == 0 && _nodes[i].isActive)
+                {
+                    _nodes[i].Activate(false);
+                    
                 }
                 
             }

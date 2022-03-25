@@ -55,6 +55,7 @@ public class OneOptionButton : CustomButton {
         
         if (isEyeHover && !isActive)
         {
+            ToggleConfirmScaler(true);
             if (_confirmScalerRT.localScale.x < 1.0f)
                 if (!isDwellTimeSetter)
                     _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
@@ -63,13 +64,18 @@ public class OneOptionButton : CustomButton {
             else
             {
                 _confirmScalerRT.localScale = Vector3.zero;
+                ToggleConfirmScaler(false);
                 SetActive();
                 OnActivation?.Invoke();
             }
         }
         else if(_canHover)
         {
-            if (_confirmScalerRT.localScale.x < 0.0f) return;
+            if (_confirmScalerRT.localScale.x < 0.0f)
+            {
+                ToggleConfirmScaler(false);
+                return;
+            }
 
             if (!isDwellTimeSetter)
             {

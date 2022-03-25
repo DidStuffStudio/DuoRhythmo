@@ -15,7 +15,7 @@ public class UserInterfaceManager : MonoBehaviour {
     private float _timeLeft = 10.0f;
     private Color _targetVFXColor, _targetSkyColor;
     private VisualEffect _vfx;
-    private int _currentPanel = 0, _currentRenderPanel = 0;
+    private int _currentPanel = 0, _lastPanel = 0;
 
     [SerializeField] private String[] drumVolumeRtpcStrings = new string[5];
     public int bpm = 120;
@@ -37,13 +37,18 @@ public class UserInterfaceManager : MonoBehaviour {
     private void Start() {
        
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
+        _vfx.transform.gameObject.SetActive(false);
         _uiAnimator = GetComponent<Animator>();
         _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
         _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
         _playerAnimator.speed = 0.0f;
     }
-    
 
+    public void ToggleVFX(bool activate)
+    {
+        if(_vfx.transform.gameObject.activeInHierarchy == activate) return;
+        _vfx.transform.gameObject.SetActive(activate);
+    }
     public void SetUpRotationForNewPlayer(float time)
     {
         _uiAnimator.Play("Rotation", 0, time);
@@ -52,25 +57,27 @@ public class UserInterfaceManager : MonoBehaviour {
     public void PauseAnimation()
     {
         if (ignoreEvents) return;
-        StartCoroutine(SwitchPanelRenderLayers());
+        BlurBackground();
         _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
         _playerAnimator.speed = 0.0f;
         //timer = (int) MasterManager.Instance.timer.timer;
         SetAnimatorTime();
         if(!RealTimeInstance.Instance.isSoloMode) StartCoroutine(MasterManager.Instance.timer.MainTime());
+        
     }
 
     public void PlayAnimation(bool forward)
     {
+        _lastPanel = _currentPanel;
         if(RealTimeInstance.Instance.isSoloMode)StartCoroutine(IgnoreEvents());
+        
         if (forward)
         {
-            _currentRenderPanel++;
-            if (_currentRenderPanel > ((MasterManager.Instance.numberInstruments * 2) - 1)) _currentRenderPanel = 0;
-            _currentPanel++;
-            if (_currentPanel > (MasterManager.Instance.numberInstruments - 1)) _currentPanel = 0;
+            if(_currentPanel < panels.Count - 1)_currentPanel++;
+            else _currentPanel = 0;
             Solo(false, 0);
             _uiAnimator.SetFloat("SpeedMultiplier", 1.0f);
+            
             if (!MasterManager.Instance.isInPosition)
             {
                 _playerAnimator.speed = 1.0f;
@@ -79,10 +86,8 @@ public class UserInterfaceManager : MonoBehaviour {
         }
         else
         {
-            _currentRenderPanel--;
-            if (_currentRenderPanel < 0) _currentRenderPanel =  (MasterManager.Instance.numberInstruments * 2) - 1;
-            _currentPanel--;
-            if (_currentPanel <= 0) _currentPanel = MasterManager.Instance.numberInstruments - 1;
+            if(_currentPanel > 0)_currentPanel--;
+            else _currentPanel = panels.Count -1 ;
             Solo(false, 0);
             animateUIBackward = true;
             _uiAnimator.SetFloat("SpeedMultiplier", -1.0f);
@@ -98,9 +103,11 @@ public class UserInterfaceManager : MonoBehaviour {
             _vfx.SetVector4("ParticleColor", _targetVFXColor);
             _vfx.SetVector4("Core color", _targetVFXColor);
             // start a new transition
-            var index = Random.Range(0, MasterManager.Instance.numberInstruments);
-            _targetVFXColor = MasterManager.Instance.drumColors[_currentPanel];
-            _timeLeft = 10.0f;
+            var index = 0;
+            if (_currentPanel % 2 == 1) index = _currentPanel - 1;
+            else index = _currentPanel;
+            _targetVFXColor = MasterManager.Instance.drumColors[index/2];
+            _timeLeft = 5.0f;
         }
         else {
             // transition in progress
@@ -132,7 +139,22 @@ public class UserInterfaceManager : MonoBehaviour {
         }
     }
 
-    public IEnumerator SwitchPanelRenderLayers() {
+    private void BlurBackground()
+    {
+        print("Last panel is " + _lastPanel + ", current panel is " + _currentPanel);
+        foreach (var t in panels[_lastPanel].GetComponentsInChildren<Transform>())
+        {
+            t.gameObject.layer =
+                LayerMask.NameToLayer("Default"); //Change their layer to default so they are blurred
+        }
+        foreach (var t in panels[_currentPanel].GetComponentsInChildren<Transform>())
+        {
+            t.gameObject.layer =
+                LayerMask.NameToLayer("RenderPanel"); //Change their layer to default so they are blurred
+        }
+        
+    }
+    public void InitialiseBlur() {
         // Loop through panels 
         for (int i = 0; i < panels.Count; i++) {
             foreach (var transform in panels[i].GetComponentsInChildren<Transform>()
@@ -144,7 +166,7 @@ public class UserInterfaceManager : MonoBehaviour {
         }
         
         isRenderingAPanel = false;
-
+        var panelLandedOn = 0;
         while (!isRenderingAPanel)
         {
             // send a ray from the middle of the camera to see which panel he's currently looking at
@@ -153,6 +175,7 @@ public class UserInterfaceManager : MonoBehaviour {
             {
                 if (hit.collider.CompareTag("RenderTarget"))
                 {
+                    panelLandedOn = panels.IndexOf(hit.transform.gameObject);
                     foreach (var t in hit.transform.GetComponentsInChildren<Transform>()
                     ) //Loop through children of the panel
                     {
@@ -161,10 +184,9 @@ public class UserInterfaceManager : MonoBehaviour {
                     }
 
                     isRenderingAPanel = true;
+                    _currentPanel = panelLandedOn;
                 }
             }
-            
-            yield return new WaitForSeconds(0.1f);
         }
 
 

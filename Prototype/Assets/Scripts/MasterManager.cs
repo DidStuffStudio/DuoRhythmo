@@ -133,7 +133,8 @@ public class MasterManager : MonoBehaviour {
             if (Vector3.Distance(playerCameraTransform.position, playerPositionDestination.position) < 0.1f) {
                 isInPosition = true;
                 mainSignifier.SetActive(true);
-                StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
+                //StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
+                userInterfaceManager.InitialiseBlur();
                 SetExitButtonActive(true);
                 if (!RealTimeInstance.Instance.isSoloMode)
                 {
@@ -196,7 +197,7 @@ public class MasterManager : MonoBehaviour {
                 if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<Text>().color = drumColors[i];
                 
             }
-
+            userInterfaceManager.panels.Add(nodesPanels[i]);
             userInterfaceManager.panels.Add(effectsPanels[i]);
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1, 0);
             var nodeManager = nodesPanels[i].GetComponentInChildren<NodeManager>();
@@ -239,14 +240,14 @@ public class MasterManager : MonoBehaviour {
                     indexCount++;
                 }
             }
-            print("1");
+
             var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
             foreach (var uigazeButton in nodesSoloButtons)
             {
                 userInterfaceManager.soloButtons[i] = uigazeButton;
                 uigazeButton.drumTypeIndex = i;
             }
-            print("2");
+
             var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
             foreach (var uigazeButton in effectsSoloButtons)
             {
@@ -255,11 +256,12 @@ public class MasterManager : MonoBehaviour {
             }
             nodeManager.SetUpNode();
             
-            userInterfaceManager.panels.Add(nodesPanels[i]);
-            print("3");
+            
+
         }
         
         gameSetUpFinished = true;
+        userInterfaceManager.ToggleVFX(true);
     }
 
     public void PlayDrum(DrumType drum)

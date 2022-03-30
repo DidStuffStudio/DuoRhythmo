@@ -38,12 +38,16 @@ public class UserInterfaceManager : MonoBehaviour {
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _vfx.transform.gameObject.SetActive(false);
         _uiAnimator = GetComponent<Animator>();
+       
+    }
+
+    public void SetUpRotationOfCarousel()
+    {
         _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
         _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
         _playerAnimator.speed = 0.0f;
 
     }
-
     public void ToggleVFX(bool activate)
     {
         if(_vfx.transform.gameObject.activeInHierarchy == activate) return;

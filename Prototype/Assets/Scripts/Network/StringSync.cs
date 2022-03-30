@@ -9,12 +9,9 @@ using UnityEngine.UI;
 public class StringSync : RealtimeComponent<StringModel> {
     private string _message;
     private int _playerNumber;
-    private int _timer;
     private int _newPlayerConnected;
-    private int _newPlayerUpdateTime;
     private string _drumNodesSingle;
     private string _drumNodesAllDrum;
-    private float _animatorTime;
     private string _effectsValues;
 
     protected override void OnRealtimeModelReplaced(StringModel previousModel, StringModel currentModel) {
@@ -22,12 +19,9 @@ public class StringSync : RealtimeComponent<StringModel> {
             // Unregister from events
             previousModel.messageDidChange -= MessageDidChange;
             previousModel.setPlayerNumberDidChange -= SetPlayerNumberDidChange;
-            previousModel.timerDidChange -= TimerDidChange;
             previousModel.newPlayerConnectedDidChange -= NewPlayerConnectedDidChange;
-            previousModel.newPlayerUpdateTimeDidChange -= NewPlayerUpdateTimeDidChange;
             previousModel.drumNodesSingleDidChange -= DrumNodesSingleDidChange;
             previousModel.drumNodesALLDidChange -= DrumNodesAllDidChange;
-            previousModel.animatorTimeDidChange -= AnimatorTimeDidChange;
             previousModel.effectsValuesDidChange -= EffectsValuesDidChange;
         }
 
@@ -36,12 +30,9 @@ public class StringSync : RealtimeComponent<StringModel> {
             if (currentModel.isFreshModel) {
                 currentModel.message = _message;
                 currentModel.setPlayerNumber = _playerNumber.ToString();
-                currentModel.timer = _timer.ToString();
                 currentModel.newPlayerConnected = _newPlayerConnected.ToString();
-                currentModel.newPlayerUpdateTime = _newPlayerUpdateTime.ToString();
                 currentModel.drumNodesSingle = _drumNodesSingle;
                 currentModel.drumNodesALL = _drumNodesAllDrum;
-                currentModel.animatorTime = _animatorTime.ToString();
                 currentModel.effectsValues= _effectsValues;
             }
 
@@ -51,12 +42,9 @@ public class StringSync : RealtimeComponent<StringModel> {
             // Register for events so we'll know if the strings change later
             currentModel.messageDidChange += MessageDidChange;
             currentModel.setPlayerNumberDidChange += SetPlayerNumberDidChange;
-            currentModel.timerDidChange += TimerDidChange;
             currentModel.newPlayerConnectedDidChange += NewPlayerConnectedDidChange;
-            currentModel.newPlayerUpdateTimeDidChange += NewPlayerUpdateTimeDidChange;
             currentModel.drumNodesSingleDidChange += DrumNodesSingleDidChange;
             currentModel.drumNodesALLDidChange += DrumNodesAllDidChange;
-            currentModel.animatorTimeDidChange += AnimatorTimeDidChange;
             currentModel.effectsValuesDidChange += EffectsValuesDidChange;
         }
     }
@@ -99,9 +87,7 @@ public class StringSync : RealtimeComponent<StringModel> {
             MasterManager.Instance.EffectsDidChangeOnServer(i - 1, separatedValuesArray);
         }
     }
-
-    private void AnimatorTimeDidChange(StringModel stringModel, string value) =>
-        MasterManager.Instance.userInterfaceManager.SetUpRotationForNewPlayer(float.Parse(value));
+    
 
     private void DrumNodesSingleDidChange(StringModel stringModel, string value) {
         var drumNodeChanged = value.Split(',');
@@ -112,27 +98,14 @@ public class StringSync : RealtimeComponent<StringModel> {
                 Int32.Parse(nodeCharArray[i].ToString()) == 1);
     }
 
-    private void NewPlayerUpdateTimeDidChange(StringModel stringModel, string value) {
-        var splitMessage = value.Split(',');
-        var connectedPlayer = int.Parse(splitMessage[0]);
-        if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
-        //SetTimer(MasterManager.Instance.timer.timer);
-    }
 
     private void NewPlayerConnectedDidChange(StringModel stringModel, string value) {
         if (!RealTimeInstance.Instance.isNewPlayer) {
             MasterManager.Instance.dataMaster.SendNodes(0, true);
             MasterManager.Instance.dataMaster.SendEffects(0, true);
-            SetAnimatorTime(MasterManager.Instance.userInterfaceManager.currentRotationOfUI);
         }
     }
-
-    private void TimerDidChange(StringModel stringModel, string value) {
-        var time = int.Parse(value.Split(',')[0]);
-        //MasterManager.Instance.timer.tempRoundTime = time;
-        //StartCoroutine(MasterManager.Instance.timer.TemporaryTime());
-        SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
-    }
+    
 
     private void SetPlayerNumberDidChange(StringModel stringModel, string value) {
         var playerIndex = int.Parse(value);
@@ -147,12 +120,9 @@ public class StringSync : RealtimeComponent<StringModel> {
     private void UpdateStrings() {
         _message = model.message;
         _playerNumber = int.Parse(model.setPlayerNumber);
-        _timer = int.Parse(model.timer);
         _newPlayerConnected = int.Parse(model.newPlayerConnected);
-        _newPlayerUpdateTime = int.Parse(model.newPlayerUpdateTime);
         _drumNodesSingle = model.drumNodesSingle;
         _drumNodesAllDrum = model.drumNodesALL;
-        _animatorTime = float.Parse(model.animatorTime);
         _effectsValues = model.effectsValues;
     }
 
@@ -166,27 +136,10 @@ public class StringSync : RealtimeComponent<StringModel> {
         model.setPlayerNumber = value.ToString();
         print("Sent a new player number to the server: " + value);
     }
-
-    public void SetTimer(int value) {
-        if (RealTimeInstance.Instance.isSoloMode) return;
-        model.timer = value.ToString();
-        print("Sent timer to the server: " + value);
-    }
     public void SetNewPlayerConnected(int value) {
         if (RealTimeInstance.Instance.isSoloMode) return;
         model.newPlayerConnected = value.ToString();
         print("Sent new player connected to the server: " + value);
-    }
-    public void SetNewPlayerUpdateTime(int value) {
-        if (RealTimeInstance.Instance.isSoloMode) return;
-        model.newPlayerUpdateTime = value.ToString();
-        print("Sent new player update time to the server: " + value);
-    }
-
-    public void SetAnimatorTime(float value) {
-        if (RealTimeInstance.Instance.isSoloMode) return;
-        model.animatorTime = value.ToString();
-        print("Sent animator time to the server: " + value);
     }
     public void SetDrumNodesSingle(string value) {
         if (RealTimeInstance.Instance.isSoloMode) return;

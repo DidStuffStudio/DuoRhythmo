@@ -157,7 +157,7 @@ public class MasterManager : MonoBehaviour {
                     timerUI.SetActive(true);
                     
                     if (isFirstPlayer) RealTimeInstance.Instance.stopwatch.StartStopwatch();
-                  
+                    
                 }
             }
         }
@@ -291,6 +291,7 @@ public class MasterManager : MonoBehaviour {
         
         gameSetUpFinished = true;
         userInterfaceManager.ToggleVFX(true);
+        userInterfaceManager.SetUpRotationOfCarousel();
     }
 
     public void PlayDrum(DrumType drum)

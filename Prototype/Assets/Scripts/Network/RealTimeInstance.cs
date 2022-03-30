@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Normal.Realtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Realtime))]
@@ -23,8 +24,8 @@ public class RealTimeInstance : MonoBehaviour {
 
     [SerializeField] private GameObject realtimeInstancesHolderPrefab;
     private Transform _realtimeInstancesHolder;
-    [SerializeField] private string[] roomNames = new string[10];
-    private int roomToJoinIndex;
+    public string[] roomNames = new string[10];
+    public int roomToJoinIndex;
 
     [SerializeField] private GameObject playerCanvasPrefab;
     [SerializeField] private Transform playersHolder;
@@ -79,6 +80,11 @@ public class RealTimeInstance : MonoBehaviour {
 
 
     private void DidConnectToRoom(Realtime realtime) {
+        if (numberPlayers >= 2)
+        {
+            SceneManager.LoadScene(0);
+            return;
+        }
         networkManager = Realtime.Instantiate(networkManagerPrefab.name, true, true);
         var realtimeView = networkManager.GetComponent<RealtimeView>();
         realtimeView.RequestOwnership();

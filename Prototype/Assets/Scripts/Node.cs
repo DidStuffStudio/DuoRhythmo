@@ -24,8 +24,9 @@ public class Node : CustomButton {
 
     private VisualEffect _vfx;
 
-    protected override void Start() {
-        _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
+    protected override void Start()
+    {
+        _vfx = MasterManager.Instance.userInterfaceManager._vfx;
         base.Start();
     }
 

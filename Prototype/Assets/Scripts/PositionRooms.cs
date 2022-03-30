@@ -8,9 +8,9 @@ public class PositionRooms : MonoBehaviour
     [SerializeField] private float radius;
 
 
-    void Update()
+    void Start()
     {
-        for (var index = 0; index < 10; index++)
+        for (var index = 0; index < numberOfRooms; index++)
         {
             var angleInDegrees = index*(-360/numberOfRooms);
             float x = (float)(radius * Mathf.Cos((angleInDegrees+90) * Mathf.PI / 180F));

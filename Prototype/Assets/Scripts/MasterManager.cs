@@ -40,6 +40,8 @@ public class MasterManager : MonoBehaviour {
     public AK.Wwise.Event[] currentDrums = new AK.Wwise.Event[5];
 
     [SerializeField] private Dictionary<int, AK.Wwise.Event[]> drumDictionary = new Dictionary<int, AK.Wwise.Event[]>();
+
+    
     // nodes stuff
     public List<NodeManager> _nodeManagers = new List<NodeManager>();
     public float dwellTimeSpeed = 100.0f;
@@ -75,12 +77,18 @@ public class MasterManager : MonoBehaviour {
     public GameObject exitButtonPanel;
     public DataSync dataMaster;
     public bool isFirstPlayer;
-    
+    [SerializeField] private string[] classicDrumNames = {"Kick", "Snare", "Hi-hat", "Tom", "Crash"};
+    [SerializeField] private string[] djembeDrumNames = {"Kick", "Snare", "Hi-hat", "Tom", "Crash"};
+    [SerializeField] private string[] electronicDrumNames = {"Kick", "Snare", "Open Hi-hat", "Closed Hi-hat", "Crash"};
+    [SerializeField] private string[] handpanDrumNames = {"B note", "E note", "Ab note", "C# note", "Gb note"};
+    [SerializeField] private string[] ambientDrumNames = {"Kick", "Snare", "Hi-hat", "Tom", "Cymbal"};
+    private Dictionary<int, string[]> drumNames = new Dictionary<int, string[]>();
     [SerializeField] private Dictionary<float, bool> playerTransforms = new Dictionary<float, bool>();
+    private int currentDrumKitIndex = 0;
     private void Start() {
         if (_instance == null) _instance = this;
         Players.CollectionChanged += OnPlayersChanged;
-
+        
 
     // #if !UNITY_IOS && !UNITY_ANDROID
         // Debug.Log("We're not in IOS nor Android, so set the resolution");
@@ -95,8 +103,15 @@ public class MasterManager : MonoBehaviour {
         drumDictionary.Add(2, edmDrums);
         drumDictionary.Add(3, hangDrums);
         drumDictionary.Add(4, ambientDrums);
-        
+
         currentDrums = classicDrums;
+        
+        drumNames.Add(0, classicDrumNames);
+        drumNames.Add(1, djembeDrumNames);
+        drumNames.Add(2, electronicDrumNames);
+        drumNames.Add(3, handpanDrumNames);
+        drumNames.Add(4, ambientDrumNames);
+        
         for (int i = 0; i < numberInstruments*2; i++)
         {
             playerTransforms.Add(-36*i,false);
@@ -150,7 +165,12 @@ public class MasterManager : MonoBehaviour {
     public void Initialize() {
         nodesPanels = new GameObject[numberInstruments];
         effectsPanels = new GameObject[numberInstruments];
-
+        
+        userInterfaceManager.soloButtons = new UI_Gaze_Button[numberInstruments*2];
+        /*for (int i = 0; i < numberInstruments*2; i++)
+        {
+            userInterfaceManager.panels.Add(null);
+        }*/
         // create the rotations for the panels -->  (360.0f / (numberInstruments * 2) * -1)  degrees difference between each other in the Y axis
         Vector3[] panelRotations = new Vector3[10]; // number of instruments * 2
         var rotationValue =
@@ -173,29 +193,37 @@ public class MasterManager : MonoBehaviour {
     }
 
     private void InstantiatePanelsSoloMode() {
-        userInterfaceManager.soloButtons = new UI_Gaze_Button[numberInstruments*2];
+        print("Got here 1");
+        
         Vector3 rotationValue = Vector3.zero;
         var nodesPanelsGo = new GameObject("Nodes panels");
+        print("Got here 2");
         nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
         var effectsPanelsGo = new GameObject("Effects panels");
         effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
+        
 
         for (int i = 0; i < nodesPanels.Length; i++) {
             nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
             nodesPanels[i].transform.SetParent(nodesPanelsGo.transform);
-            nodesPanels[i].name = "NodesPanel_" + (DrumType) i;
+            nodesPanels[i].name = "NodesPanel_" + drumNames[currentDrumKitIndex][i];
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1, 0);
             effectsPanels[i] = Instantiate(effectsPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
             effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
-            effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
+            effectsPanels[i].name = "EffectsPanel_" + drumNames[currentDrumKitIndex][i];
             
             foreach(Transform child in effectsPanels[i].transform.GetComponentsInChildren<Transform>())
             {
 
-                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().color = new Color(drumColors[i].r, drumColors[i].g, drumColors[i].b, 0);;
-                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().text = (DrumType) i + " Effects";
+                if (child.CompareTag("PanelTitle")) child.GetComponent<Text>().color = new Color(drumColors[i].r, drumColors[i].g, drumColors[i].b, 255);;
+                if (child.CompareTag("PanelTitle")) child.GetComponent<Text>().text = drumNames[currentDrumKitIndex][i] + " Effects";
                 if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<Text>().color = drumColors[i];
                 
+            }
+            foreach(Text child in nodesPanels[i].transform.GetComponentsInChildren<Text>())
+            {
+                if (child.transform.CompareTag("PanelTitle"))child.color = new Color(drumColors[i].r, drumColors[i].g, drumColors[i].b, 255);;
+                if (child.transform.CompareTag("PanelTitle")) child.text = drumNames[currentDrumKitIndex][i];
             }
             userInterfaceManager.panels.Add(nodesPanels[i]);
             userInterfaceManager.panels.Add(effectsPanels[i]);
@@ -286,7 +314,11 @@ public class MasterManager : MonoBehaviour {
         }
     }
 
-    public void SwitchDrumKits(int drumKitIndex) => currentDrums = drumDictionary[drumKitIndex];
+    public void SwitchDrumKits(int drumKitIndex)
+    {
+        currentDrums = drumDictionary[drumKitIndex];
+        currentDrumKitIndex = drumKitIndex;
+    }
 
     private IEnumerator WaitUntilConnected() {
         while (true) {
@@ -319,17 +351,20 @@ public class MasterManager : MonoBehaviour {
 
     // call this method when the players have connected
     private void InstantiatePanelsMultiplayer() {
-        int panelCounter = 1; // to keep track of the panels for the userInterfaceManager
         // instantiate and set up effects panels
         var effectsPanelsGo = new GameObject("Effects panels");
         effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
         
         userInterfaceManager.soloButtons = new UI_Gaze_Button[numberInstruments*2];
+        for (int i = 0; i < numberInstruments*2; i++)
+        {
+            userInterfaceManager.panels.Add(null);
+        }
         Vector3 rotationValue = new Vector3(0, 180.0f, 0);
         for (int i = 0; i < numberInstruments; i++) {
             effectsPanels[i] = Instantiate(effectsPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
             effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
-            effectsPanels[i].name = "EffectsPanel_" + (DrumType) i;
+            effectsPanels[i].name = "EffectsPanel_" + drumNames[currentDrumKitIndex][i];
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
             //userInterfaceManager.panels.Add(effectsPanels[i]);
             var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
@@ -341,17 +376,14 @@ public class MasterManager : MonoBehaviour {
             foreach(Transform child in effectsPanels[i].transform.GetComponentsInChildren<Transform>())
             {
 
-                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().color = new Color(drumColors[i].r, drumColors[i].g, drumColors[i].b, 0);
-                if (child.CompareTag("EffectTitle")) child.GetComponent<Text>().text = (DrumType) i + " Effects";
+                if (child.CompareTag("PanelTitle")) child.GetComponent<Text>().color = new Color(drumColors[i].r, drumColors[i].g, drumColors[i].b, 255);
+                if (child.CompareTag("PanelTitle")) child.GetComponent<Text>().text = drumNames[currentDrumKitIndex][i] + " Effects";
                 if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<Text>().color = drumColors[i];
                    
             }
-            //userInterfaceManager.panels[panelCounter] = effectsPanels[i];
-            panelCounter += 2;
 
         }
-
-        panelCounter = 0;
+        
 
         // instantiate and set up nodes panels
         rotationValue = Vector3.zero;
@@ -360,11 +392,18 @@ public class MasterManager : MonoBehaviour {
         nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
         for (int i = 0; i < numberInstruments; i++)
         {
-            nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
+            //nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
+            nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.identity);
             nodesPanels[i].transform.SetParent(nodesPanelsGo.transform);
-            nodesPanels[i].name = "NodesPanel_" + (DrumType) i;
+            nodesPanels[i].name = "NodesPanel_" + (DrumType) i;//drumNames[currentDrumKitIndex][i];
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
 
+            foreach(Text child in nodesPanels[i].transform.GetComponentsInChildren<Text>())
+            {
+                if (child.transform.CompareTag("PanelTitle"))child.color = new Color(drumColors[i].r, drumColors[i].g, drumColors[i].b, 255);;
+                if (child.transform.CompareTag("PanelTitle")) child.text = drumNames[currentDrumKitIndex][i];
+            }
+            
             // set up nodes managers
             // set up the drum type, drum color, and default color of each nodeManager
             var nodeManager = nodesPanels[i].transform.GetComponentInChildren<NodeManager>();
@@ -421,10 +460,6 @@ public class MasterManager : MonoBehaviour {
 
             nodeManager.SetUpNode();
 
-            //userInterfaceManager.panels.Add(nodesPanels[i]);
-            //userInterfaceManager.panels[panelCounter] = nodesPanels[i];
-            panelCounter += 2;
-
             var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
             foreach (var uigazeButton in nodesSoloButtons)
             {
@@ -433,18 +468,25 @@ public class MasterManager : MonoBehaviour {
             }
         }
 
+
+         
+        
         for (int i = 0; i < nodesPanels.Length; i++)
         {
-            if(i%2==1) userInterfaceManager.panels.Insert(i+5, nodesPanels[i]);
-            else userInterfaceManager.panels.Insert(i,nodesPanels[i]);
+            if(i%2==1) userInterfaceManager.panels[i+5] = nodesPanels[i];
+            else userInterfaceManager.panels[i] = nodesPanels[i];
         }
         
         for (int i = 0; i < effectsPanels.Length; i++)
         {
-            if(i%2==0) userInterfaceManager.panels.Insert(i+5, effectsPanels[i]);
-            else userInterfaceManager.panels.Insert(i,effectsPanels[i]);
+            if(i%2==0) userInterfaceManager.panels[i+5] = effectsPanels[i];
+            else userInterfaceManager.panels[i] =effectsPanels[i];
         }
 
+        for (int i = 0; i < numberInstruments*2; i++)
+        {
+            userInterfaceManager.panels[i].transform.rotation = Quaternion.Euler(new Vector3(0,-36*i,0));
+        }
         gameSetUpFinished = true;
     }
 

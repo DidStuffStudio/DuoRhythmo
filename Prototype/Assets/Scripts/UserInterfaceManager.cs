@@ -14,7 +14,7 @@ public class UserInterfaceManager : MonoBehaviour {
     public Material skybox;
     private float _timeLeft = 10.0f;
     private Color _targetVFXColor, _targetSkyColor;
-    private VisualEffect _vfx;
+    public VisualEffect _vfx;
     private int _currentPanel = 0, _lastPanel = 0;
 
     [SerializeField] private String[] drumVolumeRtpcStrings = new string[5];
@@ -29,23 +29,19 @@ public class UserInterfaceManager : MonoBehaviour {
 
     [SerializeField] private ForwardRendererData _forwardRenderer;
     private bool isRenderingAPanel = false;
-
-    public GameObject dwellSpeedPrefab;
     private bool animateUIBackward = false;
     private bool ignoreEvents;
+    [SerializeField] private GameObject hostLeftToast, roomFullToast;
 
     private void Start() {
-       
+        
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _vfx.transform.gameObject.SetActive(false);
         _uiAnimator = GetComponent<Animator>();
         _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
         _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
         _playerAnimator.speed = 0.0f;
-        /*for (int i = 0; i < MasterManager.Instance.numberInstruments*2; i++)
-        {
-            panels.Add(null);
-        }*/
+
     }
 
     public void ToggleVFX(bool activate)
@@ -99,8 +95,10 @@ public class UserInterfaceManager : MonoBehaviour {
         }
     }
 
-    public void Update() {
-        
+    public void Update()
+    {
+
+        if (!MasterManager.Instance.gameSetUpFinished) return;
         if (_timeLeft <= Time.deltaTime) {
             // transition complete
             // assign the target color
@@ -206,17 +204,28 @@ public class UserInterfaceManager : MonoBehaviour {
     private void OnDisable() {
         foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(false);
     }
-
-    public void InstantiateDwellSpeedPrefab()
-    {
-        Instantiate(dwellSpeedPrefab, Camera.main.transform);
-    }
-
-
+    
     private IEnumerator IgnoreEvents()
     {
         ignoreEvents = true;
         yield return new WaitForSeconds(0.1f);
         ignoreEvents = false;
     }
+
+    public IEnumerator DisplayRoomFullToast()
+    {
+        roomFullToast.GetComponentInChildren<Text>().text =
+            RealTimeInstance.Instance.roomNames[RealTimeInstance.Instance.roomToJoinIndex] +
+            " is full, please try another room.";
+        roomFullToast.SetActive(true);
+        yield return new WaitForSeconds(2);
+        roomFullToast.SetActive(false);
+    }
+    public IEnumerator DisplayHostLeftToast()
+    {
+        hostLeftToast.SetActive(true);
+        yield return new WaitForSeconds(2);
+        hostLeftToast.SetActive(false);
+    }
+    
 }

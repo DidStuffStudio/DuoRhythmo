@@ -12,7 +12,6 @@ public class Stopwatch : RealtimeComponent<StopwatchModel>
 
     private void Start()
     {
-        model.startTime = 30;
         StartCoroutine(BlinkTimer());
     }
 

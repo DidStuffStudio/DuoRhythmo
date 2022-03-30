@@ -156,7 +156,7 @@ public class MasterManager : MonoBehaviour {
                 {
                     timerUI.SetActive(true);
                     
-                    //if (isFirstPlayer) StartCoroutine(timer.MainTime());
+                    if (isFirstPlayer) RealTimeInstance.Instance.stopwatch.StartStopwatch();
                   
                 }
             }
@@ -331,10 +331,12 @@ public class MasterManager : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
 
-        if (RealTimeInstance.Instance.numberPlayers >= 2)
+        if (RealTimeInstance.Instance.numberPlayers > 2)
         {
-            SceneManager.LoadScene(0);
+            print("Kicked");
             StartCoroutine(userInterfaceManager.DisplayRoomFullToast());
+            SceneManager.LoadScene(0);
+            
         }
 
         else

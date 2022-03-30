@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Normal.Realtime;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
+
 
 [RequireComponent(typeof(Realtime))]
 public class RealTimeInstance : MonoBehaviour {
@@ -52,7 +51,7 @@ public class RealTimeInstance : MonoBehaviour {
                     }
                 }
             }
-            //if(MasterManager.Instance.localPlayerNumber == smallestOwnerId) stringSync.SetMessage(MasterManager.Instance.timer.timer.ToString());
+            if(MasterManager.Instance.localPlayerNumber == smallestOwnerId) stringSync.SetMessage("Dummy");
             yield return new WaitForSeconds(0.2f);
         }
     }
@@ -89,7 +88,7 @@ public class RealTimeInstance : MonoBehaviour {
         {
             MasterManager.Instance.isFirstPlayer = true;
             stopwatch.SetFirstPlayer();
-            stopwatch.StartStopwatch();
+            
         }
             
         isConnected = true;

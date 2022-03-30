@@ -4,6 +4,7 @@ using Normal.Realtime.Serialization;
 [RealtimeModel]
 public partial class StopwatchModel {
     [RealtimeProperty(1, true)] private double _startTime;
+    [RealtimeProperty(3, true)] private float _animatorTime;
     [RealtimeProperty(2, true)] private bool _firstPlayer;
 }
 
@@ -16,6 +17,17 @@ public partial class StopwatchModel : RealtimeModel {
         set {
             if (this.startTime == value) return;
             _cache.UpdateLocalCache(entry => { entry.startTimeSet = true; entry.startTime = value; return entry; });
+            InvalidateReliableLength();
+        }
+    }
+    
+    public float animatorTime {
+        get {
+            return _cache.LookForValueInCache(_animatorTime, entry => entry.animatorTimeSet, entry => entry.animatorTime);
+        }
+        set {
+            if (this.animatorTime == value) return;
+            _cache.UpdateLocalCache(entry => { entry.animatorTimeSet = true; entry.animatorTime = value; return entry; });
             InvalidateReliableLength();
         }
     }
@@ -34,6 +46,8 @@ public partial class StopwatchModel : RealtimeModel {
     private struct LocalCacheEntry {
         public bool startTimeSet;
         public double startTime;
+        public bool animatorTimeSet;
+        public float animatorTime;
         public bool firstPlayerSet;
         public bool firstPlayer;
     }
@@ -42,6 +56,7 @@ public partial class StopwatchModel : RealtimeModel {
     
     public enum PropertyID : uint {
         StartTime = 1,
+        AnimatorTime = 3,
         FirstPlayer = 2,
     }
     
@@ -60,11 +75,15 @@ public partial class StopwatchModel : RealtimeModel {
         if (context.fullModel) {
             FlattenCache();
             length += WriteStream.WriteDoubleLength((uint)PropertyID.StartTime);
+            length += WriteStream.WriteFloatLength((uint)PropertyID.AnimatorTime);
             length += WriteStream.WriteVarint32Length((uint)PropertyID.FirstPlayer, _firstPlayer ? 1u : 0u);
         } else if (context.reliableChannel) {
             LocalCacheEntry entry = _cache.localCache;
             if (entry.startTimeSet) {
                 length += WriteStream.WriteDoubleLength((uint)PropertyID.StartTime);
+            }
+            if (entry.animatorTimeSet) {
+                length += WriteStream.WriteFloatLength((uint)PropertyID.AnimatorTime);
             }
             if (entry.firstPlayerSet) {
                 length += WriteStream.WriteVarint32Length((uint)PropertyID.FirstPlayer, entry.firstPlayer ? 1u : 0u);
@@ -78,15 +97,20 @@ public partial class StopwatchModel : RealtimeModel {
         
         if (context.fullModel) {
             stream.WriteDouble((uint)PropertyID.StartTime, _startTime);
+            stream.WriteFloat((uint)PropertyID.AnimatorTime, _animatorTime);
             stream.WriteVarint32((uint)PropertyID.FirstPlayer, _firstPlayer ? 1u : 0u);
         } else if (context.reliableChannel) {
             LocalCacheEntry entry = _cache.localCache;
-            if (entry.startTimeSet || entry.firstPlayerSet) {
+            if (entry.startTimeSet || entry.animatorTimeSet || entry.firstPlayerSet) {
                 _cache.PushLocalCacheToInflight(context.updateID);
                 ClearCacheOnStreamCallback(context);
             }
             if (entry.startTimeSet) {
                 stream.WriteDouble((uint)PropertyID.StartTime, entry.startTime);
+                didWriteProperties = true;
+            }
+            if (entry.animatorTimeSet) {
+                stream.WriteFloat((uint)PropertyID.AnimatorTime, entry.animatorTime);
                 didWriteProperties = true;
             }
             if (entry.firstPlayerSet) {
@@ -103,6 +127,10 @@ public partial class StopwatchModel : RealtimeModel {
             switch (propertyID) {
                 case (uint)PropertyID.StartTime: {
                     _startTime = stream.ReadDouble();
+                    break;
+                }
+                case (uint)PropertyID.AnimatorTime: {
+                    _animatorTime = stream.ReadFloat();
                     break;
                 }
                 case (uint)PropertyID.FirstPlayer: {
@@ -123,6 +151,7 @@ public partial class StopwatchModel : RealtimeModel {
     
     private void FlattenCache() {
         _startTime = startTime;
+        _animatorTime = animatorTime;
         _firstPlayer = firstPlayer;
         _cache.Clear();
     }

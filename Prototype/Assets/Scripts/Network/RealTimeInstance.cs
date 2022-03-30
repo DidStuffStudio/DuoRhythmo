@@ -95,8 +95,8 @@ public class RealTimeInstance : MonoBehaviour {
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name);
         gfx.GetComponent<RealtimeView>().RequestOwnership();
         gfx.GetComponent<RealtimeTransform>().RequestOwnership();
-        //stringSync.SetNewPlayerUpdateTime(MasterManager.Instance.localPlayerNumber);
-
+        stringSync.SetNewPlayerUpdateTime(MasterManager.Instance.localPlayerNumber);
+        MasterManager.Instance.userInterfaceManager.currentRotationOfUI = stopwatch.GetAnimatorTime();
         StartCoroutine(CheckNumberOfPlayers());
         StartCoroutine(SeniorPlayer());
     }

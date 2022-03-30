@@ -15,6 +15,12 @@ public class Stopwatch : RealtimeComponent<StopwatchModel>
         StartCoroutine(BlinkTimer());
     }
 
+    public float GetAnimatorTime() {
+        return model.animatorTime;
+    }
+
+    public void SetAnimatorTime(float t) => model.animatorTime = t;
+    
     public int time {
         get {
             // Return 0 if we're not connected to the room yet.

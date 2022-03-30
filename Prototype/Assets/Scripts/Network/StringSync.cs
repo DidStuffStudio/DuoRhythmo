@@ -63,7 +63,7 @@ public class StringSync : RealtimeComponent<StringModel> {
 
     private void MessageDidChange(StringModel model, string value) {
         print("Received new message from the server: " + model.message);
-        NewPlayerConnectedDidChange(model, value);
+        //NewPlayerConnectedDidChange(model, value);
         // _message = model.message;
         //MasterManager.Instance.timer.timer = int.Parse(value);
     }

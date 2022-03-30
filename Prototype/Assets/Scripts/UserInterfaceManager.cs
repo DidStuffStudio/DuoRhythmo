@@ -195,8 +195,11 @@ public class UserInterfaceManager : MonoBehaviour {
 
     }
 
-    public void SetAnimatorTime() => currentRotationOfUI = _uiAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-    
+    public void SetAnimatorTime()
+    {
+        currentRotationOfUI = _uiAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        RealTimeInstance.Instance.stopwatch.SetAnimatorTime(currentRotationOfUI);
+    }
 
     private void OnEnable() {
         foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(true);

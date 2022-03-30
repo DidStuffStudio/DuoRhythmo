@@ -760,18 +760,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6233583081900808132, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
+    - {fileID: 747763859926717427, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
---- !u!114 &180608648 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 747763859926717427, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
-  m_PrefabInstance: {fileID: 180608647}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67809986}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc69dc7bde5bc4073a85ce723736150e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &229943379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1977,8 +1967,11 @@ MonoBehaviour:
   currentRotationOfUI: 0
   panels: []
   _forwardRenderer: {fileID: 11400000, guid: 4a8e21d5c33334b11b34a596161b9360, type: 2}
+  ignoreEvents: 0
   hostLeftToast: {fileID: 987903973}
   roomFullToast: {fileID: 970573507}
+  playingAnim: 0
+  justJoined: 0
 --- !u!1 &565050213
 GameObject:
   m_ObjectHideFlags: 0
@@ -10528,7 +10521,6 @@ MonoBehaviour:
   - {fileID: 1437889678}
   bpm: 90
   timerPrefab: {fileID: 8442616855387933849, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
-  timer: {fileID: 180608648}
   playerCamera: {fileID: 565050215}
   positionSpeed: 2.5
   playerStartPosition: {fileID: 525941752}

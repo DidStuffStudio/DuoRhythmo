@@ -95,7 +95,7 @@ public class RealTimeInstance : MonoBehaviour {
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name);
         gfx.GetComponent<RealtimeView>().RequestOwnership();
         gfx.GetComponent<RealtimeTransform>().RequestOwnership();
-        MasterManager.Instance.userInterfaceManager.SetUpRotationForNewPlayer(stopwatch.GetAnimatorTime());
+        
         StartCoroutine(CheckNumberOfPlayers());
         StartCoroutine(SeniorPlayer());
     }

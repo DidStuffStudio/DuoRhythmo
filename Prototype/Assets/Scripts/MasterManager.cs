@@ -291,7 +291,7 @@ public class MasterManager : MonoBehaviour {
         
         gameSetUpFinished = true;
         userInterfaceManager.ToggleVFX(true);
-        userInterfaceManager.SetUpRotationOfCarousel();
+        //userInterfaceManager.SetUpRotationOfCarousel();
     }
 
     public void PlayDrum(DrumType drum)
@@ -344,6 +344,8 @@ public class MasterManager : MonoBehaviour {
         {
             print("local player number: " + localPlayerNumber);
             InstantiatePanelsMultiplayer();
+            MasterManager.Instance.userInterfaceManager.justJoined = true;
+            MasterManager.Instance.userInterfaceManager.SetUpRotationForNewPlayer(RealTimeInstance.Instance.stopwatch.GetAnimatorTime());
             StartCoroutine(WaitToPositionCamera(3.0f));
         }
     }

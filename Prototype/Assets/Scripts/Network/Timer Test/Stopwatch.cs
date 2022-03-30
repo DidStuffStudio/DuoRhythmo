@@ -19,8 +19,12 @@ public class Stopwatch : RealtimeComponent<StopwatchModel>
         return model.animatorTime;
     }
 
-    public void SetAnimatorTime(float t) => model.animatorTime = t;
-    
+    public void SetAnimatorTime(float t)
+    {
+        GetComponent<RealtimeView>().RequestOwnership();
+        model.animatorTime = t;
+    }
+
     public int time {
         get {
             // Return 0 if we're not connected to the room yet.
@@ -34,8 +38,10 @@ public class Stopwatch : RealtimeComponent<StopwatchModel>
             if (t <= 0)
             {
                 t = 30;
+
                 if (!MasterManager.Instance.userInterfaceManager.playingAnim)
                 {
+                    print("Called from here");
                     MasterManager.Instance.userInterfaceManager.playingAnim = true;
                     MasterManager.Instance.userInterfaceManager.PlayAnimation(true);
                 }
@@ -51,9 +57,7 @@ public class Stopwatch : RealtimeComponent<StopwatchModel>
         model.startTime = realtime.room.time;
         
     }
-
-
-
+    
     private IEnumerator BlinkTimer()
     {
         while (true)

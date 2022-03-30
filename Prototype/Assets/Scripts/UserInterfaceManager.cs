@@ -30,23 +30,20 @@ public class UserInterfaceManager : MonoBehaviour {
     [SerializeField] private ForwardRendererData _forwardRenderer;
     private bool isRenderingAPanel = false;
     private bool animateUIBackward = false;
-    private bool ignoreEvents;
+    public bool ignoreEvents;
     [SerializeField] private GameObject hostLeftToast, roomFullToast;
     public bool playingAnim;
+    public bool justJoined;
     private void Start() {
         
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _vfx.transform.gameObject.SetActive(false);
         _uiAnimator = GetComponent<Animator>();
        
-    }
-
-    public void SetUpRotationOfCarousel()
-    {
+   
+        if(justJoined) return;
         _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
         _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
-        _playerAnimator.speed = 0.0f;
-
     }
     public void ToggleVFX(bool activate)
     {
@@ -55,20 +52,27 @@ public class UserInterfaceManager : MonoBehaviour {
     }
     public void SetUpRotationForNewPlayer(float time)
     {
-        _uiAnimator.Play("Rotation", 0, time);
+        _uiAnimator.Play("Rotation", 0, time-(int)time);
+        _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
+        print("SETTING ROTATION OF VALUE " + (time-(int)time));
+        currentRotationOfUI = time - (int) time;
+        justJoined = false;
     }
     
     public void PauseAnimation()
     {
+        
         if (ignoreEvents) return;
+
+        print("CALLED PAUSE");
         BlurBackground();
         _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
-        _playerAnimator.speed = 0.0f;
+        //_playerAnimator.speed = 0.0f;
         //timer = (int) MasterManager.Instance.timer.timer;
         SetAnimatorTime();
         /*if(!RealTimeInstance.Instance.isSoloMode) StartCoroutine(MasterManager.Instance.timer.MainTime());*/
         if(!RealTimeInstance.Instance.isSoloMode)RealTimeInstance.Instance.stopwatch.StartStopwatch();
-        playingAnim = false;
+        StartCoroutine(WaitToEnableRot());
     }
 
     public void PlayAnimation(bool forward)
@@ -83,11 +87,11 @@ public class UserInterfaceManager : MonoBehaviour {
             Solo(false, 0);
             _uiAnimator.SetFloat("SpeedMultiplier", 1.0f);
             
-            if (!MasterManager.Instance.isInPosition)
+            /*if (!MasterManager.Instance.isInPosition)
             {
                 _playerAnimator.speed = 1.0f;
                 _playerAnimator.Play("PlayerCam");
-            }
+            }*/
         }
         else
         {
@@ -195,12 +199,11 @@ public class UserInterfaceManager : MonoBehaviour {
                 }
             }
         }
-
-
     }
 
     public void SetAnimatorTime()
     {
+        if(justJoined) return;
         currentRotationOfUI = _uiAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         RealTimeInstance.Instance.stopwatch.SetAnimatorTime(currentRotationOfUI);
     }
@@ -218,6 +221,12 @@ public class UserInterfaceManager : MonoBehaviour {
         ignoreEvents = true;
         yield return new WaitForSeconds(0.1f);
         ignoreEvents = false;
+    }
+    
+    private IEnumerator WaitToEnableRot()
+    {
+        yield return new WaitForSeconds(1.0f);
+        playingAnim = false;
     }
 
     public IEnumerator DisplayRoomFullToast()

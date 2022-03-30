@@ -190,7 +190,7 @@ public class MasterManager : MonoBehaviour {
 
         // position player at the top view
         //playerCamera.transform.position = playerStartPosition.position;
-        StartCoroutine(WaitUntilConnected());
+        
     }
 
     private void InstantiatePanelsSoloMode() {
@@ -322,7 +322,7 @@ public class MasterManager : MonoBehaviour {
         currentDrumKitIndex = drumKitIndex;
     }
 
-    private IEnumerator WaitUntilConnected()
+    public IEnumerator WaitUntilConnected()
     {
         while (true)
         {
@@ -332,16 +332,15 @@ public class MasterManager : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
 
-        if (RealTimeInstance.Instance.numberPlayers > 2)
+        if (RealTimeInstance.Instance.numberPlayers > 1)
         {
             print("Kicked");
-            StartCoroutine(userInterfaceManager.DisplayRoomFullToast());
-            SceneManager.LoadScene(0);
-            
+            userInterfaceManager.DisplayRoomFullToast();
         }
 
         else
         {
+            Initialize();
             print("local player number: " + localPlayerNumber);
             InstantiatePanelsMultiplayer();
             MasterManager.Instance.userInterfaceManager.justJoined = true;

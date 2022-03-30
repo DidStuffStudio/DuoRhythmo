@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 using Random = UnityEngine.Random;
@@ -31,11 +32,11 @@ public class UserInterfaceManager : MonoBehaviour {
     private bool isRenderingAPanel = false;
     private bool animateUIBackward = false;
     public bool ignoreEvents;
-    [SerializeField] private GameObject hostLeftToast, roomFullToast;
+    [SerializeField] private GameObject roomFullToast;
     public bool playingAnim;
     public bool justJoined;
     private void Start() {
-        
+        roomFullToast = GameObject.FindWithTag("RoomFullToast");
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _vfx.transform.gameObject.SetActive(false);
         _uiAnimator = GetComponent<Animator>();
@@ -229,20 +230,15 @@ public class UserInterfaceManager : MonoBehaviour {
         playingAnim = false;
     }
 
-    public IEnumerator DisplayRoomFullToast()
+    public void DisplayRoomFullToast()
     {
         roomFullToast.GetComponentInChildren<Text>().text =
             RealTimeInstance.Instance.roomNames[RealTimeInstance.Instance.roomToJoinIndex] +
             " is full, please try another room.";
         roomFullToast.SetActive(true);
-        yield return new WaitForSeconds(2);
-        roomFullToast.SetActive(false);
+        RealTimeInstance.Instance._realtime.Disconnect();
+        SceneManager.LoadScene(0);
     }
-    public IEnumerator DisplayHostLeftToast()
-    {
-        hostLeftToast.SetActive(true);
-        yield return new WaitForSeconds(2);
-        hostLeftToast.SetActive(false);
-    }
+    
     
 }

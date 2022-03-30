@@ -10,7 +10,7 @@ public class RealTimeInstance : MonoBehaviour {
     private static RealTimeInstance _instance;
     public static RealTimeInstance Instance => _instance;
 
-    private Realtime _realtime;
+    public Realtime _realtime;
     public List<int> clientIds = new List<int>();
     public Dictionary<int, GameObject> clients = new Dictionary<int, GameObject>();
     [SerializeField] private GameObject networkManagerPrefab;
@@ -62,7 +62,7 @@ public class RealTimeInstance : MonoBehaviour {
 
     public void Play() {
         if (!isSoloMode) _realtime.Connect(roomNames[roomToJoinIndex]);
-        MasterManager.Instance.Initialize();
+        StartCoroutine(MasterManager.Instance.WaitUntilConnected());
     }
 
     public void SetParentOfPlayer(Transform p) => p.SetParent(playersHolder);

@@ -64,7 +64,7 @@ public class StringSync : RealtimeComponent<StringModel> {
     private void MessageDidChange(StringModel model, string value) {
         print("Received new message from the server: " + model.message);
         // _message = model.message;
-        MasterManager.Instance.timer.timer = int.Parse(value);
+        //MasterManager.Instance.timer.timer = int.Parse(value);
     }
     
     private void DrumNodesAllDidChange(StringModel stringModel, string value) {
@@ -115,7 +115,7 @@ public class StringSync : RealtimeComponent<StringModel> {
         var splitMessage = value.Split(',');
         var connectedPlayer = int.Parse(splitMessage[0]);
         if (connectedPlayer == MasterManager.Instance.localPlayerNumber) return;
-        SetTimer(MasterManager.Instance.timer.timer);
+        //SetTimer(MasterManager.Instance.timer.timer);
     }
 
     private void NewPlayerConnectedDidChange(StringModel stringModel, string value) {
@@ -128,8 +128,8 @@ public class StringSync : RealtimeComponent<StringModel> {
 
     private void TimerDidChange(StringModel stringModel, string value) {
         var time = int.Parse(value.Split(',')[0]);
-        MasterManager.Instance.timer.tempRoundTime = time;
-        StartCoroutine(MasterManager.Instance.timer.TemporaryTime());
+        //MasterManager.Instance.timer.tempRoundTime = time;
+        //StartCoroutine(MasterManager.Instance.timer.TemporaryTime());
         SetNewPlayerConnected(MasterManager.Instance.localPlayerNumber);
     }
 

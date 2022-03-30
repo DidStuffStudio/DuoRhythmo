@@ -32,7 +32,7 @@ public class UserInterfaceManager : MonoBehaviour {
     private bool animateUIBackward = false;
     private bool ignoreEvents;
     [SerializeField] private GameObject hostLeftToast, roomFullToast;
-
+    public bool playingAnim;
     private void Start() {
         
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
@@ -62,8 +62,9 @@ public class UserInterfaceManager : MonoBehaviour {
         _playerAnimator.speed = 0.0f;
         //timer = (int) MasterManager.Instance.timer.timer;
         SetAnimatorTime();
-        if(!RealTimeInstance.Instance.isSoloMode) StartCoroutine(MasterManager.Instance.timer.MainTime());
-        
+        /*if(!RealTimeInstance.Instance.isSoloMode) StartCoroutine(MasterManager.Instance.timer.MainTime());*/
+        if(!RealTimeInstance.Instance.isSoloMode)RealTimeInstance.Instance.stopwatch.StartStopwatch();
+        playingAnim = false;
     }
 
     public void PlayAnimation(bool forward)
@@ -123,7 +124,7 @@ public class UserInterfaceManager : MonoBehaviour {
             _timeLeft -= Time.deltaTime;
         }
         
-        timerDisplay.text = MasterManager.Instance.timer.timer.ToString();
+        timerDisplay.text = RealTimeInstance.Instance.stopwatch.time.ToString();
     }
 
     public void Solo(bool solo, int index) {

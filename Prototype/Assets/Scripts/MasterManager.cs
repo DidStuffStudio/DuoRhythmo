@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MasterManager : MonoBehaviour {
@@ -53,7 +54,7 @@ public class MasterManager : MonoBehaviour {
     [Space] [Header("Timer")] public int bpm = 120;
     [SerializeField] private GameObject timerPrefab;
     private GameObject timerGameObject;
-    public Timer timer;
+    //public Timer timer;
 
     [Space] [Header("Player")] public Camera playerCamera;
     // public List<Player> Players = new List<Player>();
@@ -155,7 +156,7 @@ public class MasterManager : MonoBehaviour {
                 {
                     timerUI.SetActive(true);
                     
-                    if (isFirstPlayer) StartCoroutine(timer.MainTime());
+                    //if (isFirstPlayer) StartCoroutine(timer.MainTime());
                   
                 }
             }
@@ -320,18 +321,28 @@ public class MasterManager : MonoBehaviour {
         currentDrumKitIndex = drumKitIndex;
     }
 
-    private IEnumerator WaitUntilConnected() {
-        while (true) {
+    private IEnumerator WaitUntilConnected()
+    {
+        while (true)
+        {
             // if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             if (RealTimeInstance.Instance.isSoloMode && RealTimeInstance.Instance.isConnected) break;
             if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 0) break;
             yield return new WaitForEndOfFrame();
         }
 
-        print("local player number: " + localPlayerNumber);
+        if (RealTimeInstance.Instance.numberPlayers >= 2)
+        {
+            SceneManager.LoadScene(0);
+            StartCoroutine(userInterfaceManager.DisplayRoomFullToast());
+        }
 
-        InstantiatePanelsMultiplayer();
-        StartCoroutine(WaitToPositionCamera(3.0f));
+        else
+        {
+            print("local player number: " + localPlayerNumber);
+            InstantiatePanelsMultiplayer();
+            StartCoroutine(WaitToPositionCamera(3.0f));
+        }
     }
 
     public void SetPlayerPosition() {

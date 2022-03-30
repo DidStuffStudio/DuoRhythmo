@@ -617,6 +617,46 @@ MonoBehaviour:
   activated: 0
   mainButtonImage: {fileID: 0}
   changeTextColor: 0
+--- !u!1 &67809986 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8442616855387933849, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
+  m_PrefabInstance: {fileID: 180608647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &67809987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67809986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2a4f4ebe7ded34b95da0158241b58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roundTime: 30
+--- !u!114 &67809988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67809986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _realtime: {fileID: 320708703}
+  _sceneViewUUID: 
+  _viewUUID: 6b5ec567-b7eb-4f30-b8fb-6393ec58c211
+  _sceneViewPreventOwnershipTakeover: 1
+  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
+  _isRootPrefabView: 0
+  _components:
+  - componentID: 1
+    component: {fileID: 67809987}
+  _childViews: []
 --- !u!1 &178173721 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3197379696657073084, guid: 1ddd3fcf082419540afb1ee25a46c9d0, type: 3}
@@ -643,12 +683,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 747763859926717427, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 747763859926717427, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
       propertyPath: roundTime
-      value: 5
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 747763859926717427, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
       propertyPath: tempRoundTime
-      value: 5
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4526613026129235860, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
       propertyPath: m_RootOrder
@@ -710,6 +754,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Realtime_Timer
       objectReference: {fileID: 0}
+    - target: {fileID: 8442616855387933849, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6233583081900808132, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
@@ -718,8 +766,8 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 747763859926717427, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
   m_PrefabInstance: {fileID: 180608647}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_GameObject: {fileID: 67809986}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc69dc7bde5bc4073a85ce723736150e, type: 3}
   m_Name: 
@@ -1485,6 +1533,7 @@ MonoBehaviour:
   playerCanvasPrefab: {fileID: 4565159655829226910, guid: abc1102492c7df24981d5534d8fb4438, type: 3}
   playersHolder: {fileID: 1664850039}
   isNewPlayer: 1
+  stopwatch: {fileID: 67809987}
 --- !u!114 &320708703
 MonoBehaviour:
   m_ObjectHideFlags: 0

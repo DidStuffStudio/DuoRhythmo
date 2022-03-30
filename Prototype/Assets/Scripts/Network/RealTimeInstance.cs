@@ -30,8 +30,8 @@ public class RealTimeInstance : MonoBehaviour {
     [SerializeField] private GameObject playerCanvasPrefab;
     [SerializeField] private Transform playersHolder;
     public bool isNewPlayer = true;
-
-
+    public Stopwatch stopwatch;
+    
     private void Awake() {
         _instance = this;
         _realtime = GetComponent<Realtime>();
@@ -52,7 +52,7 @@ public class RealTimeInstance : MonoBehaviour {
                     }
                 }
             }
-            if(MasterManager.Instance.localPlayerNumber == smallestOwnerId) stringSync.SetMessage(MasterManager.Instance.timer.timer.ToString());
+            //if(MasterManager.Instance.localPlayerNumber == smallestOwnerId) stringSync.SetMessage(MasterManager.Instance.timer.timer.ToString());
             yield return new WaitForSeconds(0.2f);
         }
     }
@@ -80,22 +80,23 @@ public class RealTimeInstance : MonoBehaviour {
 
 
     private void DidConnectToRoom(Realtime realtime) {
-        if (numberPlayers >= 2)
-        {
-            SceneManager.LoadScene(0);
-            return;
-        }
+        
         networkManager = Realtime.Instantiate(networkManagerPrefab.name, true, true);
         var realtimeView = networkManager.GetComponent<RealtimeView>();
         realtimeView.RequestOwnership();
         MasterManager.Instance.localPlayerNumber = realtimeView.ownerIDSelf;
         if (_realtime.room.datastore.prefabViewModels.Count < 3 && MasterManager.Instance.localPlayerNumber == 0)
+        {
             MasterManager.Instance.isFirstPlayer = true;
+            stopwatch.SetFirstPlayer();
+            stopwatch.StartStopwatch();
+        }
+            
         isConnected = true;
         var gfx = Realtime.Instantiate(playerCanvasPrefab.name);
         gfx.GetComponent<RealtimeView>().RequestOwnership();
         gfx.GetComponent<RealtimeTransform>().RequestOwnership();
-        stringSync.SetNewPlayerUpdateTime(MasterManager.Instance.localPlayerNumber);
+        //stringSync.SetNewPlayerUpdateTime(MasterManager.Instance.localPlayerNumber);
 
         StartCoroutine(CheckNumberOfPlayers());
         StartCoroutine(SeniorPlayer());

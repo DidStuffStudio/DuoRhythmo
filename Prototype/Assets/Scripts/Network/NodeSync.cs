@@ -14,6 +14,7 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
     private void Start()
     {
         drumModel = model;
+        nodeManagers = MasterManager.Instance._nodeManagers.ToArray();
         StartCoroutine(CheckForUpdates());
     }
 
@@ -110,6 +111,7 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
     
      public void SetNodeOnServer(DrumType drumType, int index, bool activate)
     {
+        GetComponent<RealtimeView>().RequestOwnership();
         switch (drumType)
         {
             case DrumType.Kick:
@@ -215,7 +217,8 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
          while (true)
          {
              yield return new WaitForSeconds(updateDelta);
-             if(drumModel.isFreshModel)GetNodeFromServer();
+             print("Called");
+             GetNodeFromServer();
          }
      }
      

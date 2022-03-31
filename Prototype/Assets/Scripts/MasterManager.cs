@@ -86,6 +86,8 @@ public class MasterManager : MonoBehaviour {
     private Dictionary<int, string[]> drumNames = new Dictionary<int, string[]>();
     [SerializeField] private Dictionary<float, bool> playerTransforms = new Dictionary<float, bool>();
     private int currentDrumKitIndex = 0;
+    [SerializeField] private int maxNumberOfPlayers = 2;
+
     private void Start() {
         if (_instance == null) _instance = this;
         Players.CollectionChanged += OnPlayersChanged;
@@ -332,7 +334,7 @@ public class MasterManager : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
 
-        if (RealTimeInstance.Instance.numberPlayers > 1)
+        if (RealTimeInstance.Instance.numberPlayers > maxNumberOfPlayers)
         {
             print("Kicked");
             userInterfaceManager.DisplayRoomFullToast();

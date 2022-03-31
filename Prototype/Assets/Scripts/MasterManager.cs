@@ -1,3 +1,4 @@
+using System;
 using Normal.Realtime;
 using System.Collections;
 using System.Collections.Generic;
@@ -88,9 +89,17 @@ public class MasterManager : MonoBehaviour {
     private int currentDrumKitIndex = 0;
     [SerializeField] private int maxNumberOfPlayers = 2;
 
-    private void Start() {
+    private void Awake()
+    {
         if (_instance == null) _instance = this;
-        Players.CollectionChanged += OnPlayersChanged;
+    }
+
+    private void Start()
+    {
+
+
+
+    Players.CollectionChanged += OnPlayersChanged;
         
 
     // #if !UNITY_IOS && !UNITY_ANDROID

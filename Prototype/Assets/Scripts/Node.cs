@@ -23,10 +23,12 @@ public class Node : CustomButton {
 
 
     private VisualEffect _vfx;
+    private NodeSync _nodeSync;
 
     protected override void Start()
     {
         _vfx = MasterManager.Instance.userInterfaceManager._vfx;
+        _nodeSync = MasterManager.Instance.transform.GetComponent<NodeSync>();
         base.Start();
     }
 
@@ -40,21 +42,28 @@ public class Node : CustomButton {
         
         if (activate)
         {
+            
+            //Call node sync get node
+            
+            
             if(changeTextColor) buttonText.color = activeTextColor;
             mainButtonImage.color = activeColor;
             confirmScaler.GetComponent<Image>().color = defaultColor;
             isActive = true;
             isDefault = false;
-            MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 1;
+            //MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 1;
         }
         else
         {
+            
+            //Call node sync get node
+            
             mainButtonImage.color = defaultColor;
             if(changeTextColor)buttonText.color = defaultTextColor;
             confirmScaler.GetComponent<Image>().color = activeColor;
             isDefault = true;
             isActive = false;
-            MasterManager.Instance.dataMaster.nodesActivated[(int) drumType, indexValue] = 0;
+            //MasterManager.Instance.dataMaster.nodesActivated[(int) drumType, indexValue] = 0;
         }
         
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
@@ -63,8 +72,14 @@ public class Node : CustomButton {
     protected override void SetActive() {
         if (!RealTimeInstance.Instance.isSoloMode)
         {
-            MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 1;
-            MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
+            
+            //Call node sync set node
+            _nodeSync.SetNodeOnServer(drumType, indexValue, true);
+            
+            
+            //MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 1;
+            
+            //MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
         }
         
         base.SetActive();
@@ -74,8 +89,13 @@ public class Node : CustomButton {
     protected override void SetDefault() {
         if (!RealTimeInstance.Instance.isSoloMode)
         {
-            MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 0;
-            MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
+            //Call node sync set node
+            _nodeSync.SetNodeOnServer(drumType, indexValue, false);
+            
+            
+            
+            //MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 0;
+            //MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
         }
         base.SetDefault();
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);

@@ -21,7 +21,7 @@ public class Stopwatch : RealtimeComponent<StopwatchModel>
 
     public void SetAnimatorTime(float t)
     {
-        GetComponent<RealtimeView>().RequestOwnership();
+        //GetComponent<RealtimeView>().RequestOwnership();
         model.animatorTime = t;
     }
 

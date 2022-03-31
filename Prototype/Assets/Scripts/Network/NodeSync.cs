@@ -9,18 +9,20 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
     [SerializeField] private float updateDelta = 0.5f;
     private RealtimeModel drumModel;
     public NodeManager[] nodeManagers = new NodeManager[5];
+    public bool startedJammin = false;
 
 
     private void Start()
     {
         drumModel = model;
-        nodeManagers = MasterManager.Instance._nodeManagers.ToArray();
+        
         StartCoroutine(CheckForUpdates());
     }
 
 
     public void GetNodeFromServer()
     {
+
         nodeManagers[0].SetNodeFromServer(0, model.kickNode1);
         nodeManagers[0].SetNodeFromServer(1, model.kickNode2);
         nodeManagers[0].SetNodeFromServer(2, model.kickNode3);
@@ -214,11 +216,12 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
 
      private IEnumerator CheckForUpdates()
      {
+         
          while (true)
          {
              yield return new WaitForSeconds(updateDelta);
-             print("Called");
-             GetNodeFromServer();
+             print("Called"); 
+             if(startedJammin)GetNodeFromServer();
          }
      }
      

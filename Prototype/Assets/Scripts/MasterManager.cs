@@ -88,6 +88,7 @@ public class MasterManager : MonoBehaviour {
     [SerializeField] private Dictionary<float, bool> playerTransforms = new Dictionary<float, bool>();
     private int currentDrumKitIndex = 0;
     [SerializeField] private int maxNumberOfPlayers = 2;
+    private NodeSync nodeSync;
 
     private void Awake()
     {
@@ -131,7 +132,7 @@ public class MasterManager : MonoBehaviour {
         
         GameObject.FindWithTag("DwellSettings").transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
         dwellTimeSpeed = DontDestroyDwell.Instance.dwellTimeSpeed;
-        
+        nodeSync = GetComponent<NodeSync>();
     }
 
     public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);
@@ -166,7 +167,7 @@ public class MasterManager : MonoBehaviour {
                 if (!RealTimeInstance.Instance.isSoloMode)
                 {
                     timerUI.SetActive(true);
-                    
+                    nodeSync.startedJammin = true;
                     if (isFirstPlayer) RealTimeInstance.Instance.stopwatch.StartStopwatch();
                     
                 }
@@ -513,6 +514,9 @@ public class MasterManager : MonoBehaviour {
         {
             userInterfaceManager.panels[i].transform.rotation = Quaternion.Euler(new Vector3(0,-36*i,0));
         }
+       nodeSync = GetComponent<NodeSync>();
+       nodeSync.nodeManagers = _nodeManagers.ToArray();
+            
         gameSetUpFinished = true;
     }
 

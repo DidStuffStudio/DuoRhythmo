@@ -25,6 +25,8 @@ public class Node : CustomButton {
     private VisualEffect _vfx;
     private NodeSync _nodeSync;
 
+    public bool activatedFromServer;
+
     protected override void Start()
     {
         _vfx = MasterManager.Instance.userInterfaceManager._vfx;

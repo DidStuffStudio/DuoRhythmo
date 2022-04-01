@@ -367,7 +367,7 @@ public class NodeManager : MonoBehaviour {
         }
     }
 
-    public void SetNodeFromServer(int index, bool activate) => _nodes[index].Activate(activate);
+    public void SetNodeFromServer(int index, bool activate) => _nodes[index].SetNodeFromServer(activate);
     
     
     public void SetEffectsFromServer(int effectIndex, int effectValue) {

@@ -94,8 +94,6 @@ public class Node : CustomButton {
             //Call node sync set node
             _nodeSync.SetNodeOnServer(drumType, indexValue, false);
             
-            
-            
             //MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 0;
             //MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
         }

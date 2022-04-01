@@ -41,7 +41,6 @@ public class Stopwatch : RealtimeComponent<StopwatchModel>
 
                 if (!MasterManager.Instance.userInterfaceManager.playingAnim)
                 {
-                    print("Called from here");
                     MasterManager.Instance.userInterfaceManager.playingAnim = true;
                     MasterManager.Instance.userInterfaceManager.PlayAnimation(true);
                 }

@@ -12,15 +12,381 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
     public bool startedJammin = false;
 
 
-    private void Start()
+    private void Start() => drumModel = model;
+
+    protected override void OnRealtimeModelReplaced(NodeSyncModel previousModel, NodeSyncModel currentModel)
     {
-        drumModel = model;
-        
-        StartCoroutine(CheckForUpdates());
+        if(!startedJammin) return;
+        if (previousModel != null) {
+            // Unregister from events
+            previousModel.kickNode1DidChange -= KickNode1DidChange;
+            previousModel.kickNode2DidChange -= KickNode2DidChange;
+            previousModel.kickNode3DidChange -= KickNode3DidChange;
+            previousModel.kickNode4DidChange -= KickNode4DidChange;
+            previousModel.kickNode5DidChange -= KickNode5DidChange;
+            previousModel.kickNode6DidChange -= KickNode6DidChange;
+            previousModel.kickNode7DidChange -= KickNode7DidChange;
+            previousModel.kickNode8DidChange -= KickNode8DidChange;
+            previousModel.kickNode9DidChange -= KickNode9DidChange;
+            previousModel.kickNode10DidChange -= KickNode10DidChange;
+            previousModel.kickNode11DidChange -= KickNode11DidChange;
+            previousModel.kickNode12DidChange -= KickNode12DidChange;
+            previousModel.kickNode13DidChange -= KickNode13DidChange;
+            previousModel.kickNode14DidChange -= KickNode14DidChange;
+            previousModel.kickNode15DidChange -= KickNode15DidChange;
+            previousModel.kickNode16DidChange -= KickNode16DidChange;
+            
+            
+            previousModel.snareNode1DidChange -= SnareNode1DidChange;
+            previousModel.snareNode2DidChange -= SnareNode2DidChange;
+            previousModel.snareNode3DidChange -= SnareNode3DidChange;
+            previousModel.snareNode4DidChange -= SnareNode4DidChange;
+            previousModel.snareNode5DidChange -= SnareNode5DidChange;
+            previousModel.snareNode6DidChange -= SnareNode6DidChange;
+            previousModel.snareNode7DidChange -= SnareNode7DidChange;
+            previousModel.snareNode8DidChange -= SnareNode8DidChange;
+            previousModel.snareNode9DidChange -= SnareNode9DidChange;
+            previousModel.snareNode10DidChange -= SnareNode10DidChange;
+            previousModel.snareNode11DidChange -= SnareNode11DidChange;
+            previousModel.snareNode12DidChange -= SnareNode12DidChange;
+            previousModel.snareNode13DidChange -= SnareNode13DidChange;
+            previousModel.snareNode14DidChange -= SnareNode14DidChange;
+            previousModel.snareNode15DidChange -= SnareNode15DidChange;
+            previousModel.snareNode16DidChange -= SnareNode16DidChange;
+            
+            previousModel.hiHatNode1DidChange -= HiHatNode1DidChange;
+            previousModel.hiHatNode2DidChange -= HiHatNode2DidChange;
+            previousModel.hiHatNode3DidChange -= HiHatNode3DidChange;
+            previousModel.hiHatNode4DidChange -= HiHatNode4DidChange;
+            previousModel.hiHatNode5DidChange -= HiHatNode5DidChange;
+            previousModel.hiHatNode6DidChange -= HiHatNode6DidChange;
+            previousModel.hiHatNode7DidChange -= HiHatNode7DidChange;
+            previousModel.hiHatNode8DidChange -= HiHatNode8DidChange;
+            previousModel.hiHatNode9DidChange -= HiHatNode9DidChange;
+            previousModel.hiHatNode10DidChange -= HiHatNode10DidChange;
+            previousModel.hiHatNode11DidChange -= HiHatNode11DidChange;
+            previousModel.hiHatNode12DidChange -= HiHatNode12DidChange;
+            previousModel.hiHatNode13DidChange -= HiHatNode13DidChange;
+            previousModel.hiHatNode14DidChange -= HiHatNode14DidChange;
+            previousModel.hiHatNode15DidChange -= HiHatNode15DidChange;
+            previousModel.hiHatNode16DidChange -= HiHatNode16DidChange;
+            
+            previousModel.tomNode1DidChange -= TomNode1DidChange;
+            previousModel.tomNode2DidChange -= TomNode2DidChange;
+            previousModel.tomNode3DidChange -= TomNode3DidChange;
+            previousModel.tomNode4DidChange -= TomNode4DidChange;
+            previousModel.tomNode5DidChange -= TomNode5DidChange;
+            previousModel.tomNode6DidChange -= TomNode6DidChange;
+            previousModel.tomNode7DidChange -= TomNode7DidChange;
+            previousModel.tomNode8DidChange -= TomNode8DidChange;
+            previousModel.tomNode9DidChange -= TomNode9DidChange;
+            previousModel.tomNode10DidChange -= TomNode10DidChange;
+            previousModel.tomNode11DidChange -= TomNode11DidChange;
+            previousModel.tomNode12DidChange -= TomNode12DidChange;
+            previousModel.tomNode13DidChange -= TomNode13DidChange;
+            previousModel.tomNode14DidChange -= TomNode14DidChange;
+            previousModel.tomNode15DidChange -= TomNode15DidChange;
+            previousModel.tomNode16DidChange -= TomNode16DidChange;
+            
+            previousModel.cymbalNode1DidChange -= CymbalNode1DidChange;
+            previousModel.cymbalNode2DidChange -= CymbalNode2DidChange;
+            previousModel.cymbalNode3DidChange -= CymbalNode3DidChange;
+            previousModel.cymbalNode4DidChange -= CymbalNode4DidChange;
+            previousModel.cymbalNode5DidChange -= CymbalNode5DidChange;
+            previousModel.cymbalNode6DidChange -= CymbalNode6DidChange;
+            previousModel.cymbalNode7DidChange -= CymbalNode7DidChange;
+            previousModel.cymbalNode8DidChange -= CymbalNode8DidChange;
+            previousModel.cymbalNode9DidChange -= CymbalNode9DidChange;
+            previousModel.cymbalNode10DidChange -= CymbalNode10DidChange;
+            previousModel.cymbalNode11DidChange -= CymbalNode11DidChange;
+            previousModel.cymbalNode12DidChange -= CymbalNode12DidChange;
+            previousModel.cymbalNode13DidChange -= CymbalNode13DidChange;
+            previousModel.cymbalNode14DidChange -= CymbalNode14DidChange;
+            previousModel.cymbalNode15DidChange -= CymbalNode15DidChange;
+            previousModel.cymbalNode16DidChange -= CymbalNode16DidChange;
+        }
+
+        if (currentModel != null) {
+            // If this is a model that has no data set on it, populate it with the current mesh renderer color.
+            if (currentModel.isFreshModel)
+            {
+                currentModel.kickNode1 = false;
+                currentModel.kickNode2 = false;
+                currentModel.kickNode3 = false;
+                currentModel.kickNode4 = false;
+                currentModel.kickNode5 = false;
+                currentModel.kickNode6 = false;
+                currentModel.kickNode7 = false;
+                currentModel.kickNode8 = false;
+                currentModel.kickNode9 = false;
+                currentModel.kickNode10 = false;
+                currentModel.kickNode11 = false;
+                currentModel.kickNode12 = false;
+                currentModel.kickNode13 = false;
+                currentModel.kickNode14 = false;
+                currentModel.kickNode15 = false;
+                currentModel.kickNode16 = false;
+                
+                currentModel.snareNode1 = false;
+                currentModel.snareNode2 = false;
+                currentModel.snareNode3 = false;
+                currentModel.snareNode4 = false;
+                currentModel.snareNode5 = false;
+                currentModel.snareNode6 = false;
+                currentModel.snareNode7 = false;
+                currentModel.snareNode8 = false;
+                currentModel.snareNode9 = false;
+                currentModel.snareNode10 = false;
+                currentModel.snareNode11 = false;
+                currentModel.snareNode12 = false;
+                currentModel.snareNode13 = false;
+                currentModel.snareNode14 = false;
+                currentModel.snareNode15 = false;
+                currentModel.snareNode16 = false;
+                
+                currentModel.hiHatNode1 = false;
+                currentModel.hiHatNode2 = false;
+                currentModel.hiHatNode3 = false;
+                currentModel.hiHatNode4 = false;
+                currentModel.hiHatNode5 = false;
+                currentModel.hiHatNode6 = false;
+                currentModel.hiHatNode7 = false;
+                currentModel.hiHatNode8 = false;
+                currentModel.hiHatNode9 = false;
+                currentModel.hiHatNode10 = false;
+                currentModel.hiHatNode11 = false;
+                currentModel.hiHatNode12 = false;
+                currentModel.hiHatNode13 = false;
+                currentModel.hiHatNode14 = false;
+                currentModel.hiHatNode15 = false;
+                currentModel.hiHatNode16 = false;
+                
+                currentModel.tomNode1 = false;
+                currentModel.tomNode2 = false;
+                currentModel.tomNode3 = false;
+                currentModel.tomNode4 = false;
+                currentModel.tomNode5 = false;
+                currentModel.tomNode6 = false;
+                currentModel.tomNode7 = false;
+                currentModel.tomNode8 = false;
+                currentModel.tomNode9 = false;
+                currentModel.tomNode10 = false;
+                currentModel.tomNode11 = false;
+                currentModel.tomNode12 = false;
+                currentModel.tomNode13 = false;
+                currentModel.tomNode14 = false;
+                currentModel.tomNode15 = false;
+                currentModel.tomNode16 = false;
+                
+                currentModel.cymbalNode1 = false;
+                currentModel.cymbalNode2 = false;
+                currentModel.cymbalNode3 = false;
+                currentModel.cymbalNode4 = false;
+                currentModel.cymbalNode5 = false;
+                currentModel.cymbalNode6 = false;
+                currentModel.cymbalNode7 = false;
+                currentModel.cymbalNode8 = false;
+                currentModel.cymbalNode9 = false;
+                currentModel.cymbalNode10 = false;
+                currentModel.cymbalNode11 = false;
+                currentModel.cymbalNode12 = false;
+                currentModel.cymbalNode13 = false;
+                currentModel.cymbalNode14 = false;
+                currentModel.cymbalNode15 = false;
+                currentModel.cymbalNode16 = false;
+                
+                
+            }
+
+            // Update the mesh render to match the new model
+            UpdateNodes();
+
+            // Register for events so we'll know if the color changes later
+            currentModel.kickNode1DidChange += KickNode1DidChange;
+            currentModel.kickNode2DidChange += KickNode2DidChange;
+            currentModel.kickNode3DidChange += KickNode3DidChange;
+            currentModel.kickNode4DidChange += KickNode4DidChange;
+            currentModel.kickNode5DidChange += KickNode5DidChange;
+            currentModel.kickNode6DidChange += KickNode6DidChange;
+            currentModel.kickNode7DidChange += KickNode7DidChange;
+            currentModel.kickNode8DidChange += KickNode8DidChange;
+            currentModel.kickNode9DidChange += KickNode9DidChange;
+            currentModel.kickNode10DidChange += KickNode10DidChange;
+            currentModel.kickNode11DidChange += KickNode11DidChange;
+            currentModel.kickNode12DidChange += KickNode12DidChange;
+            currentModel.kickNode13DidChange += KickNode13DidChange;
+            currentModel.kickNode14DidChange += KickNode14DidChange;
+            currentModel.kickNode15DidChange += KickNode15DidChange;
+            currentModel.kickNode16DidChange += KickNode16DidChange;
+            
+            
+            currentModel.snareNode1DidChange += SnareNode1DidChange;
+            currentModel.snareNode2DidChange += SnareNode2DidChange;
+            currentModel.snareNode3DidChange += SnareNode3DidChange;
+            currentModel.snareNode4DidChange += SnareNode4DidChange;
+            currentModel.snareNode5DidChange += SnareNode5DidChange;
+            currentModel.snareNode6DidChange += SnareNode6DidChange;
+            currentModel.snareNode7DidChange += SnareNode7DidChange;
+            currentModel.snareNode8DidChange += SnareNode8DidChange;
+            currentModel.snareNode9DidChange += SnareNode9DidChange;
+            currentModel.snareNode10DidChange += SnareNode10DidChange;
+            currentModel.snareNode11DidChange += SnareNode11DidChange;
+            currentModel.snareNode12DidChange += SnareNode12DidChange;
+            currentModel.snareNode13DidChange += SnareNode13DidChange;
+            currentModel.snareNode14DidChange += SnareNode14DidChange;
+            currentModel.snareNode15DidChange += SnareNode15DidChange;
+            currentModel.snareNode16DidChange += SnareNode16DidChange;
+            
+            currentModel.hiHatNode1DidChange += HiHatNode1DidChange;
+            currentModel.hiHatNode2DidChange += HiHatNode2DidChange;
+            currentModel.hiHatNode3DidChange += HiHatNode3DidChange;
+            currentModel.hiHatNode4DidChange += HiHatNode4DidChange;
+            currentModel.hiHatNode5DidChange += HiHatNode5DidChange;
+            currentModel.hiHatNode6DidChange += HiHatNode6DidChange;
+            currentModel.hiHatNode7DidChange += HiHatNode7DidChange;
+            currentModel.hiHatNode8DidChange += HiHatNode8DidChange;
+            currentModel.hiHatNode9DidChange += HiHatNode9DidChange;
+            currentModel.hiHatNode10DidChange += HiHatNode10DidChange;
+            currentModel.hiHatNode11DidChange += HiHatNode11DidChange;
+            currentModel.hiHatNode12DidChange += HiHatNode12DidChange;
+            currentModel.hiHatNode13DidChange += HiHatNode13DidChange;
+            currentModel.hiHatNode14DidChange += HiHatNode14DidChange;
+            currentModel.hiHatNode15DidChange += HiHatNode15DidChange;
+            currentModel.hiHatNode16DidChange += HiHatNode16DidChange;
+            
+            currentModel.tomNode1DidChange += TomNode1DidChange;
+            currentModel.tomNode2DidChange += TomNode2DidChange;
+            currentModel.tomNode3DidChange += TomNode3DidChange;
+            currentModel.tomNode4DidChange += TomNode4DidChange;
+            currentModel.tomNode5DidChange += TomNode5DidChange;
+            currentModel.tomNode6DidChange += TomNode6DidChange;
+            currentModel.tomNode7DidChange += TomNode7DidChange;
+            currentModel.tomNode8DidChange += TomNode8DidChange;
+            currentModel.tomNode9DidChange += TomNode9DidChange;
+            currentModel.tomNode10DidChange += TomNode10DidChange;
+            currentModel.tomNode11DidChange += TomNode11DidChange;
+            currentModel.tomNode12DidChange += TomNode12DidChange;
+            currentModel.tomNode13DidChange += TomNode13DidChange;
+            currentModel.tomNode14DidChange += TomNode14DidChange;
+            currentModel.tomNode15DidChange += TomNode15DidChange;
+            currentModel.tomNode16DidChange += TomNode16DidChange;
+            
+            currentModel.cymbalNode1DidChange += CymbalNode1DidChange;
+            currentModel.cymbalNode2DidChange += CymbalNode2DidChange;
+            currentModel.cymbalNode3DidChange += CymbalNode3DidChange;
+            currentModel.cymbalNode4DidChange += CymbalNode4DidChange;
+            currentModel.cymbalNode5DidChange += CymbalNode5DidChange;
+            currentModel.cymbalNode6DidChange += CymbalNode6DidChange;
+            currentModel.cymbalNode7DidChange += CymbalNode7DidChange;
+            currentModel.cymbalNode8DidChange += CymbalNode8DidChange;
+            currentModel.cymbalNode9DidChange += CymbalNode9DidChange;
+            currentModel.cymbalNode10DidChange += CymbalNode10DidChange;
+            currentModel.cymbalNode11DidChange += CymbalNode11DidChange;
+            currentModel.cymbalNode12DidChange += CymbalNode12DidChange;
+            currentModel.cymbalNode13DidChange += CymbalNode13DidChange;
+            currentModel.cymbalNode14DidChange += CymbalNode14DidChange;
+            currentModel.cymbalNode15DidChange += CymbalNode15DidChange;
+            currentModel.cymbalNode16DidChange += CymbalNode16DidChange;
+        }
     }
 
+    private void KickNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(1, value);
+    private void KickNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(2, value);
+    private void KickNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(3, value);
+    private void KickNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(4, value);
+    private void KickNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(5, value);
+    private void KickNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(6, value);
+    private void KickNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(7, value);
+    private void KickNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(8, value);
+    private void KickNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(9, value);
+    private void KickNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(10, value);
+    private void KickNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(11, value);
+    private void KickNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(12, value);
+    private void KickNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(13, value);
+    private void KickNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(14, value);
+    private void KickNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(15, value);
+    private void KickNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(16, value);
+    
+    
+    
+    
+    private void SnareNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(1, value);
+    private void SnareNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(2, value);
+    private void SnareNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(3, value);
+    private void SnareNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(4, value);
+    private void SnareNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(5, value);
+    private void SnareNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(6, value);
+    private void SnareNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(7, value);
+    private void SnareNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(8, value);
+    private void SnareNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(9, value);
+    private void SnareNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(10, value);
+    private void SnareNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(11, value);
+    private void SnareNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(12, value);
+    private void SnareNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(13, value);
+    private void SnareNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(14, value);
+    private void SnareNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(15, value);
+    private void SnareNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(16, value);
+    
+    
+    
+    private void HiHatNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(1, value);
+    private void HiHatNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(2, value);
+    private void HiHatNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(3, value);
+    private void HiHatNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(4, value);
+    private void HiHatNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(5, value);
+    private void HiHatNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(6, value);
+    private void HiHatNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(7, value);
+    private void HiHatNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(8, value);
+    private void HiHatNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(9, value);
+    private void HiHatNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(10, value);
+    private void HiHatNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(11, value);
+    private void HiHatNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(12, value);
+    private void HiHatNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(13, value);
+    private void HiHatNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(14, value);
+    private void HiHatNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(15, value);
+    private void HiHatNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(16, value);
+    
+    
+    
+    
+    private void TomNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(1, value);
+    private void TomNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(2, value);
+    private void TomNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(3, value);
+    private void TomNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(4, value);
+    private void TomNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(5, value);
+    private void TomNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(6, value);
+    private void TomNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(7, value);
+    private void TomNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(8, value);
+    private void TomNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(9, value);
+    private void TomNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(10, value);
+    private void TomNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(11, value);
+    private void TomNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(12, value);
+    private void TomNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(13, value);
+    private void TomNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(14, value);
+    private void TomNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(15, value);
+    private void TomNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(16, value);
+    
+    
+    
+    private void CymbalNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(1, value);
+    private void CymbalNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(2, value);
+    private void CymbalNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(3, value);
+    private void CymbalNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(4, value);
+    private void CymbalNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(5, value);
+    private void CymbalNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(6, value);
+    private void CymbalNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(7, value);
+    private void CymbalNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(8, value);
+    private void CymbalNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(9, value);
+    private void CymbalNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(10, value);
+    private void CymbalNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(11, value);
+    private void CymbalNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(12, value);
+    private void CymbalNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(13, value);
+    private void CymbalNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(14, value);
+    private void CymbalNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(15, value);
+    private void CymbalNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(16, value);
 
-    public void GetNodeFromServer()
+
+    public void UpdateNodes()
     {
 
         nodeManagers[0].SetNodeFromServer(0, model.kickNode1);
@@ -112,7 +478,8 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
     }
     
      public void SetNodeOnServer(DrumType drumType, int index, bool activate)
-    {
+     {
+         print("Setting node on server");
         GetComponent<RealtimeView>().RequestOwnership();
         switch (drumType)
         {
@@ -213,16 +580,4 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
         }
         
     }
-
-     private IEnumerator CheckForUpdates()
-     {
-         
-         while (true)
-         {
-             yield return new WaitForSeconds(updateDelta);
-             print("Called"); 
-             if(startedJammin)GetNodeFromServer();
-         }
-     }
-     
 }

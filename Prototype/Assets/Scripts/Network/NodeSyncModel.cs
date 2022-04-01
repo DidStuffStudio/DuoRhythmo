@@ -8,90 +8,90 @@ using Normal.Realtime.Serialization;
 
     [RealtimeModel]
     public partial class NodeSyncModel {
-        [RealtimeProperty(1, true)] private Boolean _kickNode1;
-        [RealtimeProperty(2, true)] private Boolean _kickNode2;
-        [RealtimeProperty(3, true)] private Boolean _kickNode3;
-        [RealtimeProperty(4, true)] private Boolean _kickNode4;
-        [RealtimeProperty(5, true)] private Boolean _kickNode5;
-        [RealtimeProperty(6, true)] private Boolean _kickNode6;
-        [RealtimeProperty(7, true)] private Boolean _kickNode7;
-        [RealtimeProperty(8, true)] private Boolean _kickNode8;
-        [RealtimeProperty(9, true)] private Boolean _kickNode9;
-        [RealtimeProperty(10, true)] private Boolean _kickNode10;
-        [RealtimeProperty(11, true)] private Boolean _kickNode11;
-        [RealtimeProperty(12, true)] private Boolean _kickNode12;
-        [RealtimeProperty(13, true)] private Boolean _kickNode13;
-        [RealtimeProperty(14, true)] private Boolean _kickNode14;
-        [RealtimeProperty(15, true)] private Boolean _kickNode15;
-        [RealtimeProperty(16, true)] private Boolean _kickNode16;
+        [RealtimeProperty(1, true, true)] private Boolean _kickNode1;
+        [RealtimeProperty(2, true, true)] private Boolean _kickNode2;
+        [RealtimeProperty(3, true, true)] private Boolean _kickNode3;
+        [RealtimeProperty(4, true, true)] private Boolean _kickNode4;
+        [RealtimeProperty(5, true, true)] private Boolean _kickNode5;
+        [RealtimeProperty(6, true, true)] private Boolean _kickNode6;
+        [RealtimeProperty(7, true, true)] private Boolean _kickNode7;
+        [RealtimeProperty(8, true, true)] private Boolean _kickNode8;
+        [RealtimeProperty(9, true, true)] private Boolean _kickNode9;
+        [RealtimeProperty(10, true, true)] private Boolean _kickNode10;
+        [RealtimeProperty(11, true, true)] private Boolean _kickNode11;
+        [RealtimeProperty(12, true, true)] private Boolean _kickNode12;
+        [RealtimeProperty(13, true, true)] private Boolean _kickNode13;
+        [RealtimeProperty(14, true, true)] private Boolean _kickNode14;
+        [RealtimeProperty(15, true, true)] private Boolean _kickNode15;
+        [RealtimeProperty(16, true, true)] private Boolean _kickNode16;
         
-        [RealtimeProperty(17, true)] private Boolean _hiHatNode1;
-        [RealtimeProperty(18, true)] private Boolean _hiHatNode2;
-        [RealtimeProperty(19, true)] private Boolean _hiHatNode3;
-        [RealtimeProperty(20, true)] private Boolean _hiHatNode4;
-        [RealtimeProperty(21, true)] private Boolean _hiHatNode5;
-        [RealtimeProperty(22, true)] private Boolean _hiHatNode6;
-        [RealtimeProperty(23, true)] private Boolean _hiHatNode7;
-        [RealtimeProperty(24, true)] private Boolean _hiHatNode8;
-        [RealtimeProperty(25, true)] private Boolean _hiHatNode9;
-        [RealtimeProperty(26, true)] private Boolean _hiHatNode10;
-        [RealtimeProperty(27, true)] private Boolean _hiHatNode11;
-        [RealtimeProperty(28, true)] private Boolean _hiHatNode12;
-        [RealtimeProperty(29, true)] private Boolean _hiHatNode13;
-        [RealtimeProperty(30, true)] private Boolean _hiHatNode14;
-        [RealtimeProperty(31, true)] private Boolean _hiHatNode15;
-        [RealtimeProperty(32, true)] private Boolean _hiHatNode16;
+        [RealtimeProperty(17, true, true)] private Boolean _hiHatNode1;
+        [RealtimeProperty(18, true, true)] private Boolean _hiHatNode2;
+        [RealtimeProperty(19, true, true)] private Boolean _hiHatNode3;
+        [RealtimeProperty(20, true, true)] private Boolean _hiHatNode4;
+        [RealtimeProperty(21, true, true)] private Boolean _hiHatNode5;
+        [RealtimeProperty(22, true, true)] private Boolean _hiHatNode6;
+        [RealtimeProperty(23, true, true)] private Boolean _hiHatNode7;
+        [RealtimeProperty(24, true, true)] private Boolean _hiHatNode8;
+        [RealtimeProperty(25, true, true)] private Boolean _hiHatNode9;
+        [RealtimeProperty(26, true, true)] private Boolean _hiHatNode10;
+        [RealtimeProperty(27, true, true)] private Boolean _hiHatNode11;
+        [RealtimeProperty(28, true, true)] private Boolean _hiHatNode12;
+        [RealtimeProperty(29, true, true)] private Boolean _hiHatNode13;
+        [RealtimeProperty(30, true, true)] private Boolean _hiHatNode14;
+        [RealtimeProperty(31, true, true)] private Boolean _hiHatNode15;
+        [RealtimeProperty(32, true, true)] private Boolean _hiHatNode16;
         
-        [RealtimeProperty(33, true)] private Boolean _snareNode1;
-        [RealtimeProperty(34, true)] private Boolean _snareNode2;
-        [RealtimeProperty(35, true)] private Boolean _snareNode3;
-        [RealtimeProperty(36, true)] private Boolean _snareNode4;
-        [RealtimeProperty(37, true)] private Boolean _snareNode5;
-        [RealtimeProperty(38, true)] private Boolean _snareNode6;
-        [RealtimeProperty(39, true)] private Boolean _snareNode7;
-        [RealtimeProperty(40, true)] private Boolean _snareNode8;
-        [RealtimeProperty(41, true)] private Boolean _snareNode9;
-        [RealtimeProperty(42, true)] private Boolean _snareNode10;
-        [RealtimeProperty(43, true)] private Boolean _snareNode11;
-        [RealtimeProperty(44, true)] private Boolean _snareNode12;
-        [RealtimeProperty(45, true)] private Boolean _snareNode13;
-        [RealtimeProperty(46, true)] private Boolean _snareNode14;
-        [RealtimeProperty(47, true)] private Boolean _snareNode15;
-        [RealtimeProperty(48, true)] private Boolean _snareNode16;
+        [RealtimeProperty(33, true, true)] private Boolean _snareNode1;
+        [RealtimeProperty(34, true, true)] private Boolean _snareNode2;
+        [RealtimeProperty(35, true, true)] private Boolean _snareNode3;
+        [RealtimeProperty(36, true, true)] private Boolean _snareNode4;
+        [RealtimeProperty(37, true, true)] private Boolean _snareNode5;
+        [RealtimeProperty(38, true, true)] private Boolean _snareNode6;
+        [RealtimeProperty(39, true, true)] private Boolean _snareNode7;
+        [RealtimeProperty(40, true, true)] private Boolean _snareNode8;
+        [RealtimeProperty(41, true, true)] private Boolean _snareNode9;
+        [RealtimeProperty(42, true, true)] private Boolean _snareNode10;
+        [RealtimeProperty(43, true, true)] private Boolean _snareNode11;
+        [RealtimeProperty(44, true, true)] private Boolean _snareNode12;
+        [RealtimeProperty(45, true, true)] private Boolean _snareNode13;
+        [RealtimeProperty(46, true, true)] private Boolean _snareNode14;
+        [RealtimeProperty(47, true, true)] private Boolean _snareNode15;
+        [RealtimeProperty(48, true, true)] private Boolean _snareNode16;
         
-        [RealtimeProperty(49, true)] private Boolean _tomNode1;
-        [RealtimeProperty(50, true)] private Boolean _tomNode2;
-        [RealtimeProperty(51, true)] private Boolean _tomNode3;
-        [RealtimeProperty(52, true)] private Boolean _tomNode4;
-        [RealtimeProperty(53, true)] private Boolean _tomNode5;
-        [RealtimeProperty(54, true)] private Boolean _tomNode6;
-        [RealtimeProperty(55, true)] private Boolean _tomNode7;
-        [RealtimeProperty(56, true)] private Boolean _tomNode8;
-        [RealtimeProperty(57, true)] private Boolean _tomNode9;
-        [RealtimeProperty(58, true)] private Boolean _tomNode10;
-        [RealtimeProperty(59, true)] private Boolean _tomNode11;
-        [RealtimeProperty(60, true)] private Boolean _tomNode12;
-        [RealtimeProperty(61, true)] private Boolean _tomNode13;
-        [RealtimeProperty(62, true)] private Boolean _tomNode14;
-        [RealtimeProperty(63, true)] private Boolean _tomNode15;
-        [RealtimeProperty(64, true)] private Boolean _tomNode16;
+        [RealtimeProperty(49, true, true)] private Boolean _tomNode1;
+        [RealtimeProperty(50, true, true)] private Boolean _tomNode2;
+        [RealtimeProperty(51, true, true)] private Boolean _tomNode3;
+        [RealtimeProperty(52, true, true)] private Boolean _tomNode4;
+        [RealtimeProperty(53, true, true)] private Boolean _tomNode5;
+        [RealtimeProperty(54, true, true)] private Boolean _tomNode6;
+        [RealtimeProperty(55, true, true)] private Boolean _tomNode7;
+        [RealtimeProperty(56, true, true)] private Boolean _tomNode8;
+        [RealtimeProperty(57, true, true)] private Boolean _tomNode9;
+        [RealtimeProperty(58, true, true)] private Boolean _tomNode10;
+        [RealtimeProperty(59, true, true)] private Boolean _tomNode11;
+        [RealtimeProperty(60, true, true)] private Boolean _tomNode12;
+        [RealtimeProperty(61, true, true)] private Boolean _tomNode13;
+        [RealtimeProperty(62, true, true)] private Boolean _tomNode14;
+        [RealtimeProperty(63, true, true)] private Boolean _tomNode15;
+        [RealtimeProperty(64, true, true)] private Boolean _tomNode16;
         
-        [RealtimeProperty(65, true)] private Boolean _cymbalNode1;
-        [RealtimeProperty(66, true)] private Boolean _cymbalNode2;
-        [RealtimeProperty(67, true)] private Boolean _cymbalNode3;
-        [RealtimeProperty(68, true)] private Boolean _cymbalNode4;
-        [RealtimeProperty(69, true)] private Boolean _cymbalNode5;
-        [RealtimeProperty(70, true)] private Boolean _cymbalNode6;
-        [RealtimeProperty(71, true)] private Boolean _cymbalNode7;
-        [RealtimeProperty(72, true)] private Boolean _cymbalNode8;
-        [RealtimeProperty(73, true)] private Boolean _cymbalNode9;
-        [RealtimeProperty(74, true)] private Boolean _cymbalNode10;
-        [RealtimeProperty(75, true)] private Boolean _cymbalNode11;
-        [RealtimeProperty(76, true)] private Boolean _cymbalNode12;
-        [RealtimeProperty(77, true)] private Boolean _cymbalNode13;
-        [RealtimeProperty(78, true)] private Boolean _cymbalNode14;
-        [RealtimeProperty(79, true)] private Boolean _cymbalNode15;
-        [RealtimeProperty(80, true)] private Boolean _cymbalNode16;
+        [RealtimeProperty(65, true, true)] private Boolean _cymbalNode1;
+        [RealtimeProperty(66, true, true)] private Boolean _cymbalNode2;
+        [RealtimeProperty(67, true, true)] private Boolean _cymbalNode3;
+        [RealtimeProperty(68, true, true)] private Boolean _cymbalNode4;
+        [RealtimeProperty(69, true, true)] private Boolean _cymbalNode5;
+        [RealtimeProperty(70, true, true)] private Boolean _cymbalNode6;
+        [RealtimeProperty(71, true, true)] private Boolean _cymbalNode7;
+        [RealtimeProperty(72, true, true)] private Boolean _cymbalNode8;
+        [RealtimeProperty(73, true, true)] private Boolean _cymbalNode9;
+        [RealtimeProperty(74, true, true)] private Boolean _cymbalNode10;
+        [RealtimeProperty(75, true, true)] private Boolean _cymbalNode11;
+        [RealtimeProperty(76, true, true)] private Boolean _cymbalNode12;
+        [RealtimeProperty(77, true, true)] private Boolean _cymbalNode13;
+        [RealtimeProperty(78, true, true)] private Boolean _cymbalNode14;
+        [RealtimeProperty(79, true, true)] private Boolean _cymbalNode15;
+        [RealtimeProperty(80, true, true)] private Boolean _cymbalNode16;
     }
 
 /* ----- Begin Normal Autogenerated Code ----- */
@@ -104,6 +104,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode1 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode1Set = true; entry.kickNode1 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode1DidChange(value);
         }
     }
     
@@ -115,6 +116,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode2 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode2Set = true; entry.kickNode2 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode2DidChange(value);
         }
     }
     
@@ -126,6 +128,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode3 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode3Set = true; entry.kickNode3 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode3DidChange(value);
         }
     }
     
@@ -137,6 +140,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode4 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode4Set = true; entry.kickNode4 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode4DidChange(value);
         }
     }
     
@@ -148,6 +152,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode5 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode5Set = true; entry.kickNode5 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode5DidChange(value);
         }
     }
     
@@ -159,6 +164,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode6 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode6Set = true; entry.kickNode6 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode6DidChange(value);
         }
     }
     
@@ -170,6 +176,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode7 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode7Set = true; entry.kickNode7 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode7DidChange(value);
         }
     }
     
@@ -181,6 +188,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode8 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode8Set = true; entry.kickNode8 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode8DidChange(value);
         }
     }
     
@@ -192,6 +200,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode9 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode9Set = true; entry.kickNode9 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode9DidChange(value);
         }
     }
     
@@ -203,6 +212,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode10 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode10Set = true; entry.kickNode10 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode10DidChange(value);
         }
     }
     
@@ -214,6 +224,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode11 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode11Set = true; entry.kickNode11 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode11DidChange(value);
         }
     }
     
@@ -225,6 +236,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode12 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode12Set = true; entry.kickNode12 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode12DidChange(value);
         }
     }
     
@@ -236,6 +248,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode13 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode13Set = true; entry.kickNode13 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode13DidChange(value);
         }
     }
     
@@ -247,6 +260,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode14 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode14Set = true; entry.kickNode14 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode14DidChange(value);
         }
     }
     
@@ -258,6 +272,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode15 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode15Set = true; entry.kickNode15 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode15DidChange(value);
         }
     }
     
@@ -269,6 +284,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.kickNode16 == value) return;
             _cache.UpdateLocalCache(entry => { entry.kickNode16Set = true; entry.kickNode16 = value; return entry; });
             InvalidateReliableLength();
+            FireKickNode16DidChange(value);
         }
     }
     
@@ -280,6 +296,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode1 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode1Set = true; entry.hiHatNode1 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode1DidChange(value);
         }
     }
     
@@ -291,6 +308,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode2 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode2Set = true; entry.hiHatNode2 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode2DidChange(value);
         }
     }
     
@@ -302,6 +320,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode3 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode3Set = true; entry.hiHatNode3 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode3DidChange(value);
         }
     }
     
@@ -313,6 +332,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode4 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode4Set = true; entry.hiHatNode4 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode4DidChange(value);
         }
     }
     
@@ -324,6 +344,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode5 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode5Set = true; entry.hiHatNode5 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode5DidChange(value);
         }
     }
     
@@ -335,6 +356,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode6 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode6Set = true; entry.hiHatNode6 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode6DidChange(value);
         }
     }
     
@@ -346,6 +368,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode7 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode7Set = true; entry.hiHatNode7 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode7DidChange(value);
         }
     }
     
@@ -357,6 +380,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode8 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode8Set = true; entry.hiHatNode8 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode8DidChange(value);
         }
     }
     
@@ -368,6 +392,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode9 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode9Set = true; entry.hiHatNode9 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode9DidChange(value);
         }
     }
     
@@ -379,6 +404,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode10 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode10Set = true; entry.hiHatNode10 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode10DidChange(value);
         }
     }
     
@@ -390,6 +416,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode11 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode11Set = true; entry.hiHatNode11 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode11DidChange(value);
         }
     }
     
@@ -401,6 +428,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode12 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode12Set = true; entry.hiHatNode12 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode12DidChange(value);
         }
     }
     
@@ -412,6 +440,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode13 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode13Set = true; entry.hiHatNode13 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode13DidChange(value);
         }
     }
     
@@ -423,6 +452,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode14 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode14Set = true; entry.hiHatNode14 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode14DidChange(value);
         }
     }
     
@@ -434,6 +464,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode15 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode15Set = true; entry.hiHatNode15 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode15DidChange(value);
         }
     }
     
@@ -445,6 +476,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.hiHatNode16 == value) return;
             _cache.UpdateLocalCache(entry => { entry.hiHatNode16Set = true; entry.hiHatNode16 = value; return entry; });
             InvalidateReliableLength();
+            FireHiHatNode16DidChange(value);
         }
     }
     
@@ -456,6 +488,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode1 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode1Set = true; entry.snareNode1 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode1DidChange(value);
         }
     }
     
@@ -467,6 +500,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode2 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode2Set = true; entry.snareNode2 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode2DidChange(value);
         }
     }
     
@@ -478,6 +512,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode3 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode3Set = true; entry.snareNode3 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode3DidChange(value);
         }
     }
     
@@ -489,6 +524,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode4 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode4Set = true; entry.snareNode4 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode4DidChange(value);
         }
     }
     
@@ -500,6 +536,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode5 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode5Set = true; entry.snareNode5 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode5DidChange(value);
         }
     }
     
@@ -511,6 +548,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode6 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode6Set = true; entry.snareNode6 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode6DidChange(value);
         }
     }
     
@@ -522,6 +560,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode7 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode7Set = true; entry.snareNode7 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode7DidChange(value);
         }
     }
     
@@ -533,6 +572,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode8 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode8Set = true; entry.snareNode8 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode8DidChange(value);
         }
     }
     
@@ -544,6 +584,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode9 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode9Set = true; entry.snareNode9 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode9DidChange(value);
         }
     }
     
@@ -555,6 +596,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode10 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode10Set = true; entry.snareNode10 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode10DidChange(value);
         }
     }
     
@@ -566,6 +608,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode11 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode11Set = true; entry.snareNode11 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode11DidChange(value);
         }
     }
     
@@ -577,6 +620,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode12 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode12Set = true; entry.snareNode12 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode12DidChange(value);
         }
     }
     
@@ -588,6 +632,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode13 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode13Set = true; entry.snareNode13 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode13DidChange(value);
         }
     }
     
@@ -599,6 +644,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode14 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode14Set = true; entry.snareNode14 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode14DidChange(value);
         }
     }
     
@@ -610,6 +656,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode15 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode15Set = true; entry.snareNode15 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode15DidChange(value);
         }
     }
     
@@ -621,6 +668,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.snareNode16 == value) return;
             _cache.UpdateLocalCache(entry => { entry.snareNode16Set = true; entry.snareNode16 = value; return entry; });
             InvalidateReliableLength();
+            FireSnareNode16DidChange(value);
         }
     }
     
@@ -632,6 +680,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode1 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode1Set = true; entry.tomNode1 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode1DidChange(value);
         }
     }
     
@@ -643,6 +692,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode2 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode2Set = true; entry.tomNode2 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode2DidChange(value);
         }
     }
     
@@ -654,6 +704,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode3 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode3Set = true; entry.tomNode3 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode3DidChange(value);
         }
     }
     
@@ -665,6 +716,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode4 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode4Set = true; entry.tomNode4 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode4DidChange(value);
         }
     }
     
@@ -676,6 +728,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode5 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode5Set = true; entry.tomNode5 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode5DidChange(value);
         }
     }
     
@@ -687,6 +740,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode6 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode6Set = true; entry.tomNode6 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode6DidChange(value);
         }
     }
     
@@ -698,6 +752,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode7 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode7Set = true; entry.tomNode7 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode7DidChange(value);
         }
     }
     
@@ -709,6 +764,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode8 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode8Set = true; entry.tomNode8 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode8DidChange(value);
         }
     }
     
@@ -720,6 +776,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode9 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode9Set = true; entry.tomNode9 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode9DidChange(value);
         }
     }
     
@@ -731,6 +788,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode10 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode10Set = true; entry.tomNode10 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode10DidChange(value);
         }
     }
     
@@ -742,6 +800,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode11 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode11Set = true; entry.tomNode11 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode11DidChange(value);
         }
     }
     
@@ -753,6 +812,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode12 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode12Set = true; entry.tomNode12 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode12DidChange(value);
         }
     }
     
@@ -764,6 +824,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode13 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode13Set = true; entry.tomNode13 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode13DidChange(value);
         }
     }
     
@@ -775,6 +836,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode14 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode14Set = true; entry.tomNode14 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode14DidChange(value);
         }
     }
     
@@ -786,6 +848,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode15 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode15Set = true; entry.tomNode15 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode15DidChange(value);
         }
     }
     
@@ -797,6 +860,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.tomNode16 == value) return;
             _cache.UpdateLocalCache(entry => { entry.tomNode16Set = true; entry.tomNode16 = value; return entry; });
             InvalidateReliableLength();
+            FireTomNode16DidChange(value);
         }
     }
     
@@ -808,6 +872,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode1 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode1Set = true; entry.cymbalNode1 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode1DidChange(value);
         }
     }
     
@@ -819,6 +884,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode2 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode2Set = true; entry.cymbalNode2 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode2DidChange(value);
         }
     }
     
@@ -830,6 +896,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode3 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode3Set = true; entry.cymbalNode3 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode3DidChange(value);
         }
     }
     
@@ -841,6 +908,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode4 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode4Set = true; entry.cymbalNode4 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode4DidChange(value);
         }
     }
     
@@ -852,6 +920,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode5 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode5Set = true; entry.cymbalNode5 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode5DidChange(value);
         }
     }
     
@@ -863,6 +932,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode6 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode6Set = true; entry.cymbalNode6 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode6DidChange(value);
         }
     }
     
@@ -874,6 +944,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode7 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode7Set = true; entry.cymbalNode7 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode7DidChange(value);
         }
     }
     
@@ -885,6 +956,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode8 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode8Set = true; entry.cymbalNode8 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode8DidChange(value);
         }
     }
     
@@ -896,6 +968,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode9 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode9Set = true; entry.cymbalNode9 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode9DidChange(value);
         }
     }
     
@@ -907,6 +980,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode10 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode10Set = true; entry.cymbalNode10 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode10DidChange(value);
         }
     }
     
@@ -918,6 +992,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode11 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode11Set = true; entry.cymbalNode11 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode11DidChange(value);
         }
     }
     
@@ -929,6 +1004,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode12 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode12Set = true; entry.cymbalNode12 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode12DidChange(value);
         }
     }
     
@@ -940,6 +1016,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode13 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode13Set = true; entry.cymbalNode13 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode13DidChange(value);
         }
     }
     
@@ -951,6 +1028,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode14 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode14Set = true; entry.cymbalNode14 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode14DidChange(value);
         }
     }
     
@@ -962,6 +1040,7 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode15 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode15Set = true; entry.cymbalNode15 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode15DidChange(value);
         }
     }
     
@@ -973,8 +1052,91 @@ public partial class NodeSyncModel : RealtimeModel {
             if (this.cymbalNode16 == value) return;
             _cache.UpdateLocalCache(entry => { entry.cymbalNode16Set = true; entry.cymbalNode16 = value; return entry; });
             InvalidateReliableLength();
+            FireCymbalNode16DidChange(value);
         }
     }
+    
+    public delegate void PropertyChangedHandler<in T>(NodeSyncModel model, T value);
+    public event PropertyChangedHandler<bool> kickNode1DidChange;
+    public event PropertyChangedHandler<bool> kickNode2DidChange;
+    public event PropertyChangedHandler<bool> kickNode3DidChange;
+    public event PropertyChangedHandler<bool> kickNode4DidChange;
+    public event PropertyChangedHandler<bool> kickNode5DidChange;
+    public event PropertyChangedHandler<bool> kickNode6DidChange;
+    public event PropertyChangedHandler<bool> kickNode7DidChange;
+    public event PropertyChangedHandler<bool> kickNode8DidChange;
+    public event PropertyChangedHandler<bool> kickNode9DidChange;
+    public event PropertyChangedHandler<bool> kickNode10DidChange;
+    public event PropertyChangedHandler<bool> kickNode11DidChange;
+    public event PropertyChangedHandler<bool> kickNode12DidChange;
+    public event PropertyChangedHandler<bool> kickNode13DidChange;
+    public event PropertyChangedHandler<bool> kickNode14DidChange;
+    public event PropertyChangedHandler<bool> kickNode15DidChange;
+    public event PropertyChangedHandler<bool> kickNode16DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode1DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode2DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode3DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode4DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode5DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode6DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode7DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode8DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode9DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode10DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode11DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode12DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode13DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode14DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode15DidChange;
+    public event PropertyChangedHandler<bool> hiHatNode16DidChange;
+    public event PropertyChangedHandler<bool> snareNode1DidChange;
+    public event PropertyChangedHandler<bool> snareNode2DidChange;
+    public event PropertyChangedHandler<bool> snareNode3DidChange;
+    public event PropertyChangedHandler<bool> snareNode4DidChange;
+    public event PropertyChangedHandler<bool> snareNode5DidChange;
+    public event PropertyChangedHandler<bool> snareNode6DidChange;
+    public event PropertyChangedHandler<bool> snareNode7DidChange;
+    public event PropertyChangedHandler<bool> snareNode8DidChange;
+    public event PropertyChangedHandler<bool> snareNode9DidChange;
+    public event PropertyChangedHandler<bool> snareNode10DidChange;
+    public event PropertyChangedHandler<bool> snareNode11DidChange;
+    public event PropertyChangedHandler<bool> snareNode12DidChange;
+    public event PropertyChangedHandler<bool> snareNode13DidChange;
+    public event PropertyChangedHandler<bool> snareNode14DidChange;
+    public event PropertyChangedHandler<bool> snareNode15DidChange;
+    public event PropertyChangedHandler<bool> snareNode16DidChange;
+    public event PropertyChangedHandler<bool> tomNode1DidChange;
+    public event PropertyChangedHandler<bool> tomNode2DidChange;
+    public event PropertyChangedHandler<bool> tomNode3DidChange;
+    public event PropertyChangedHandler<bool> tomNode4DidChange;
+    public event PropertyChangedHandler<bool> tomNode5DidChange;
+    public event PropertyChangedHandler<bool> tomNode6DidChange;
+    public event PropertyChangedHandler<bool> tomNode7DidChange;
+    public event PropertyChangedHandler<bool> tomNode8DidChange;
+    public event PropertyChangedHandler<bool> tomNode9DidChange;
+    public event PropertyChangedHandler<bool> tomNode10DidChange;
+    public event PropertyChangedHandler<bool> tomNode11DidChange;
+    public event PropertyChangedHandler<bool> tomNode12DidChange;
+    public event PropertyChangedHandler<bool> tomNode13DidChange;
+    public event PropertyChangedHandler<bool> tomNode14DidChange;
+    public event PropertyChangedHandler<bool> tomNode15DidChange;
+    public event PropertyChangedHandler<bool> tomNode16DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode1DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode2DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode3DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode4DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode5DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode6DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode7DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode8DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode9DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode10DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode11DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode12DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode13DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode14DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode15DidChange;
+    public event PropertyChangedHandler<bool> cymbalNode16DidChange;
     
     private struct LocalCacheEntry {
         public bool kickNode1Set;
@@ -1232,6 +1394,646 @@ public partial class NodeSyncModel : RealtimeModel {
     
     protected override void OnParentReplaced(RealtimeModel previousParent, RealtimeModel currentParent) {
         UnsubscribeClearCacheCallback();
+    }
+    
+    private void FireKickNode1DidChange(bool value) {
+        try {
+            kickNode1DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode2DidChange(bool value) {
+        try {
+            kickNode2DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode3DidChange(bool value) {
+        try {
+            kickNode3DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode4DidChange(bool value) {
+        try {
+            kickNode4DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode5DidChange(bool value) {
+        try {
+            kickNode5DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode6DidChange(bool value) {
+        try {
+            kickNode6DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode7DidChange(bool value) {
+        try {
+            kickNode7DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode8DidChange(bool value) {
+        try {
+            kickNode8DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode9DidChange(bool value) {
+        try {
+            kickNode9DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode10DidChange(bool value) {
+        try {
+            kickNode10DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode11DidChange(bool value) {
+        try {
+            kickNode11DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode12DidChange(bool value) {
+        try {
+            kickNode12DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode13DidChange(bool value) {
+        try {
+            kickNode13DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode14DidChange(bool value) {
+        try {
+            kickNode14DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode15DidChange(bool value) {
+        try {
+            kickNode15DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireKickNode16DidChange(bool value) {
+        try {
+            kickNode16DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode1DidChange(bool value) {
+        try {
+            hiHatNode1DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode2DidChange(bool value) {
+        try {
+            hiHatNode2DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode3DidChange(bool value) {
+        try {
+            hiHatNode3DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode4DidChange(bool value) {
+        try {
+            hiHatNode4DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode5DidChange(bool value) {
+        try {
+            hiHatNode5DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode6DidChange(bool value) {
+        try {
+            hiHatNode6DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode7DidChange(bool value) {
+        try {
+            hiHatNode7DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode8DidChange(bool value) {
+        try {
+            hiHatNode8DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode9DidChange(bool value) {
+        try {
+            hiHatNode9DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode10DidChange(bool value) {
+        try {
+            hiHatNode10DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode11DidChange(bool value) {
+        try {
+            hiHatNode11DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode12DidChange(bool value) {
+        try {
+            hiHatNode12DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode13DidChange(bool value) {
+        try {
+            hiHatNode13DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode14DidChange(bool value) {
+        try {
+            hiHatNode14DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode15DidChange(bool value) {
+        try {
+            hiHatNode15DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireHiHatNode16DidChange(bool value) {
+        try {
+            hiHatNode16DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode1DidChange(bool value) {
+        try {
+            snareNode1DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode2DidChange(bool value) {
+        try {
+            snareNode2DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode3DidChange(bool value) {
+        try {
+            snareNode3DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode4DidChange(bool value) {
+        try {
+            snareNode4DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode5DidChange(bool value) {
+        try {
+            snareNode5DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode6DidChange(bool value) {
+        try {
+            snareNode6DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode7DidChange(bool value) {
+        try {
+            snareNode7DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode8DidChange(bool value) {
+        try {
+            snareNode8DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode9DidChange(bool value) {
+        try {
+            snareNode9DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode10DidChange(bool value) {
+        try {
+            snareNode10DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode11DidChange(bool value) {
+        try {
+            snareNode11DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode12DidChange(bool value) {
+        try {
+            snareNode12DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode13DidChange(bool value) {
+        try {
+            snareNode13DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode14DidChange(bool value) {
+        try {
+            snareNode14DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode15DidChange(bool value) {
+        try {
+            snareNode15DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireSnareNode16DidChange(bool value) {
+        try {
+            snareNode16DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode1DidChange(bool value) {
+        try {
+            tomNode1DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode2DidChange(bool value) {
+        try {
+            tomNode2DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode3DidChange(bool value) {
+        try {
+            tomNode3DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode4DidChange(bool value) {
+        try {
+            tomNode4DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode5DidChange(bool value) {
+        try {
+            tomNode5DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode6DidChange(bool value) {
+        try {
+            tomNode6DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode7DidChange(bool value) {
+        try {
+            tomNode7DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode8DidChange(bool value) {
+        try {
+            tomNode8DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode9DidChange(bool value) {
+        try {
+            tomNode9DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode10DidChange(bool value) {
+        try {
+            tomNode10DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode11DidChange(bool value) {
+        try {
+            tomNode11DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode12DidChange(bool value) {
+        try {
+            tomNode12DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode13DidChange(bool value) {
+        try {
+            tomNode13DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode14DidChange(bool value) {
+        try {
+            tomNode14DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode15DidChange(bool value) {
+        try {
+            tomNode15DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireTomNode16DidChange(bool value) {
+        try {
+            tomNode16DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode1DidChange(bool value) {
+        try {
+            cymbalNode1DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode2DidChange(bool value) {
+        try {
+            cymbalNode2DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode3DidChange(bool value) {
+        try {
+            cymbalNode3DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode4DidChange(bool value) {
+        try {
+            cymbalNode4DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode5DidChange(bool value) {
+        try {
+            cymbalNode5DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode6DidChange(bool value) {
+        try {
+            cymbalNode6DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode7DidChange(bool value) {
+        try {
+            cymbalNode7DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode8DidChange(bool value) {
+        try {
+            cymbalNode8DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode9DidChange(bool value) {
+        try {
+            cymbalNode9DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode10DidChange(bool value) {
+        try {
+            cymbalNode10DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode11DidChange(bool value) {
+        try {
+            cymbalNode11DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode12DidChange(bool value) {
+        try {
+            cymbalNode12DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode13DidChange(bool value) {
+        try {
+            cymbalNode13DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode14DidChange(bool value) {
+        try {
+            cymbalNode14DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode15DidChange(bool value) {
+        try {
+            cymbalNode15DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
+    private void FireCymbalNode16DidChange(bool value) {
+        try {
+            cymbalNode16DidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
     }
     
     protected override int WriteLength(StreamContext context) {
@@ -1983,323 +2785,723 @@ public partial class NodeSyncModel : RealtimeModel {
         while (stream.ReadNextPropertyID(out uint propertyID)) {
             switch (propertyID) {
                 case (uint)PropertyID.KickNode1: {
+                    bool previousValue = _kickNode1;
                     _kickNode1 = (stream.ReadVarint32() != 0);
+                    bool kickNode1ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode1Set);
+                    if (!kickNode1ExistsInChangeCache && _kickNode1 != previousValue) {
+                        FireKickNode1DidChange(_kickNode1);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode2: {
+                    bool previousValue = _kickNode2;
                     _kickNode2 = (stream.ReadVarint32() != 0);
+                    bool kickNode2ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode2Set);
+                    if (!kickNode2ExistsInChangeCache && _kickNode2 != previousValue) {
+                        FireKickNode2DidChange(_kickNode2);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode3: {
+                    bool previousValue = _kickNode3;
                     _kickNode3 = (stream.ReadVarint32() != 0);
+                    bool kickNode3ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode3Set);
+                    if (!kickNode3ExistsInChangeCache && _kickNode3 != previousValue) {
+                        FireKickNode3DidChange(_kickNode3);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode4: {
+                    bool previousValue = _kickNode4;
                     _kickNode4 = (stream.ReadVarint32() != 0);
+                    bool kickNode4ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode4Set);
+                    if (!kickNode4ExistsInChangeCache && _kickNode4 != previousValue) {
+                        FireKickNode4DidChange(_kickNode4);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode5: {
+                    bool previousValue = _kickNode5;
                     _kickNode5 = (stream.ReadVarint32() != 0);
+                    bool kickNode5ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode5Set);
+                    if (!kickNode5ExistsInChangeCache && _kickNode5 != previousValue) {
+                        FireKickNode5DidChange(_kickNode5);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode6: {
+                    bool previousValue = _kickNode6;
                     _kickNode6 = (stream.ReadVarint32() != 0);
+                    bool kickNode6ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode6Set);
+                    if (!kickNode6ExistsInChangeCache && _kickNode6 != previousValue) {
+                        FireKickNode6DidChange(_kickNode6);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode7: {
+                    bool previousValue = _kickNode7;
                     _kickNode7 = (stream.ReadVarint32() != 0);
+                    bool kickNode7ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode7Set);
+                    if (!kickNode7ExistsInChangeCache && _kickNode7 != previousValue) {
+                        FireKickNode7DidChange(_kickNode7);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode8: {
+                    bool previousValue = _kickNode8;
                     _kickNode8 = (stream.ReadVarint32() != 0);
+                    bool kickNode8ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode8Set);
+                    if (!kickNode8ExistsInChangeCache && _kickNode8 != previousValue) {
+                        FireKickNode8DidChange(_kickNode8);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode9: {
+                    bool previousValue = _kickNode9;
                     _kickNode9 = (stream.ReadVarint32() != 0);
+                    bool kickNode9ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode9Set);
+                    if (!kickNode9ExistsInChangeCache && _kickNode9 != previousValue) {
+                        FireKickNode9DidChange(_kickNode9);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode10: {
+                    bool previousValue = _kickNode10;
                     _kickNode10 = (stream.ReadVarint32() != 0);
+                    bool kickNode10ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode10Set);
+                    if (!kickNode10ExistsInChangeCache && _kickNode10 != previousValue) {
+                        FireKickNode10DidChange(_kickNode10);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode11: {
+                    bool previousValue = _kickNode11;
                     _kickNode11 = (stream.ReadVarint32() != 0);
+                    bool kickNode11ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode11Set);
+                    if (!kickNode11ExistsInChangeCache && _kickNode11 != previousValue) {
+                        FireKickNode11DidChange(_kickNode11);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode12: {
+                    bool previousValue = _kickNode12;
                     _kickNode12 = (stream.ReadVarint32() != 0);
+                    bool kickNode12ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode12Set);
+                    if (!kickNode12ExistsInChangeCache && _kickNode12 != previousValue) {
+                        FireKickNode12DidChange(_kickNode12);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode13: {
+                    bool previousValue = _kickNode13;
                     _kickNode13 = (stream.ReadVarint32() != 0);
+                    bool kickNode13ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode13Set);
+                    if (!kickNode13ExistsInChangeCache && _kickNode13 != previousValue) {
+                        FireKickNode13DidChange(_kickNode13);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode14: {
+                    bool previousValue = _kickNode14;
                     _kickNode14 = (stream.ReadVarint32() != 0);
+                    bool kickNode14ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode14Set);
+                    if (!kickNode14ExistsInChangeCache && _kickNode14 != previousValue) {
+                        FireKickNode14DidChange(_kickNode14);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode15: {
+                    bool previousValue = _kickNode15;
                     _kickNode15 = (stream.ReadVarint32() != 0);
+                    bool kickNode15ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode15Set);
+                    if (!kickNode15ExistsInChangeCache && _kickNode15 != previousValue) {
+                        FireKickNode15DidChange(_kickNode15);
+                    }
                     break;
                 }
                 case (uint)PropertyID.KickNode16: {
+                    bool previousValue = _kickNode16;
                     _kickNode16 = (stream.ReadVarint32() != 0);
+                    bool kickNode16ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.kickNode16Set);
+                    if (!kickNode16ExistsInChangeCache && _kickNode16 != previousValue) {
+                        FireKickNode16DidChange(_kickNode16);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode1: {
+                    bool previousValue = _hiHatNode1;
                     _hiHatNode1 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode1ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode1Set);
+                    if (!hiHatNode1ExistsInChangeCache && _hiHatNode1 != previousValue) {
+                        FireHiHatNode1DidChange(_hiHatNode1);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode2: {
+                    bool previousValue = _hiHatNode2;
                     _hiHatNode2 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode2ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode2Set);
+                    if (!hiHatNode2ExistsInChangeCache && _hiHatNode2 != previousValue) {
+                        FireHiHatNode2DidChange(_hiHatNode2);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode3: {
+                    bool previousValue = _hiHatNode3;
                     _hiHatNode3 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode3ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode3Set);
+                    if (!hiHatNode3ExistsInChangeCache && _hiHatNode3 != previousValue) {
+                        FireHiHatNode3DidChange(_hiHatNode3);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode4: {
+                    bool previousValue = _hiHatNode4;
                     _hiHatNode4 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode4ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode4Set);
+                    if (!hiHatNode4ExistsInChangeCache && _hiHatNode4 != previousValue) {
+                        FireHiHatNode4DidChange(_hiHatNode4);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode5: {
+                    bool previousValue = _hiHatNode5;
                     _hiHatNode5 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode5ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode5Set);
+                    if (!hiHatNode5ExistsInChangeCache && _hiHatNode5 != previousValue) {
+                        FireHiHatNode5DidChange(_hiHatNode5);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode6: {
+                    bool previousValue = _hiHatNode6;
                     _hiHatNode6 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode6ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode6Set);
+                    if (!hiHatNode6ExistsInChangeCache && _hiHatNode6 != previousValue) {
+                        FireHiHatNode6DidChange(_hiHatNode6);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode7: {
+                    bool previousValue = _hiHatNode7;
                     _hiHatNode7 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode7ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode7Set);
+                    if (!hiHatNode7ExistsInChangeCache && _hiHatNode7 != previousValue) {
+                        FireHiHatNode7DidChange(_hiHatNode7);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode8: {
+                    bool previousValue = _hiHatNode8;
                     _hiHatNode8 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode8ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode8Set);
+                    if (!hiHatNode8ExistsInChangeCache && _hiHatNode8 != previousValue) {
+                        FireHiHatNode8DidChange(_hiHatNode8);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode9: {
+                    bool previousValue = _hiHatNode9;
                     _hiHatNode9 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode9ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode9Set);
+                    if (!hiHatNode9ExistsInChangeCache && _hiHatNode9 != previousValue) {
+                        FireHiHatNode9DidChange(_hiHatNode9);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode10: {
+                    bool previousValue = _hiHatNode10;
                     _hiHatNode10 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode10ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode10Set);
+                    if (!hiHatNode10ExistsInChangeCache && _hiHatNode10 != previousValue) {
+                        FireHiHatNode10DidChange(_hiHatNode10);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode11: {
+                    bool previousValue = _hiHatNode11;
                     _hiHatNode11 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode11ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode11Set);
+                    if (!hiHatNode11ExistsInChangeCache && _hiHatNode11 != previousValue) {
+                        FireHiHatNode11DidChange(_hiHatNode11);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode12: {
+                    bool previousValue = _hiHatNode12;
                     _hiHatNode12 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode12ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode12Set);
+                    if (!hiHatNode12ExistsInChangeCache && _hiHatNode12 != previousValue) {
+                        FireHiHatNode12DidChange(_hiHatNode12);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode13: {
+                    bool previousValue = _hiHatNode13;
                     _hiHatNode13 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode13ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode13Set);
+                    if (!hiHatNode13ExistsInChangeCache && _hiHatNode13 != previousValue) {
+                        FireHiHatNode13DidChange(_hiHatNode13);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode14: {
+                    bool previousValue = _hiHatNode14;
                     _hiHatNode14 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode14ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode14Set);
+                    if (!hiHatNode14ExistsInChangeCache && _hiHatNode14 != previousValue) {
+                        FireHiHatNode14DidChange(_hiHatNode14);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode15: {
+                    bool previousValue = _hiHatNode15;
                     _hiHatNode15 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode15ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode15Set);
+                    if (!hiHatNode15ExistsInChangeCache && _hiHatNode15 != previousValue) {
+                        FireHiHatNode15DidChange(_hiHatNode15);
+                    }
                     break;
                 }
                 case (uint)PropertyID.HiHatNode16: {
+                    bool previousValue = _hiHatNode16;
                     _hiHatNode16 = (stream.ReadVarint32() != 0);
+                    bool hiHatNode16ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.hiHatNode16Set);
+                    if (!hiHatNode16ExistsInChangeCache && _hiHatNode16 != previousValue) {
+                        FireHiHatNode16DidChange(_hiHatNode16);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode1: {
+                    bool previousValue = _snareNode1;
                     _snareNode1 = (stream.ReadVarint32() != 0);
+                    bool snareNode1ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode1Set);
+                    if (!snareNode1ExistsInChangeCache && _snareNode1 != previousValue) {
+                        FireSnareNode1DidChange(_snareNode1);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode2: {
+                    bool previousValue = _snareNode2;
                     _snareNode2 = (stream.ReadVarint32() != 0);
+                    bool snareNode2ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode2Set);
+                    if (!snareNode2ExistsInChangeCache && _snareNode2 != previousValue) {
+                        FireSnareNode2DidChange(_snareNode2);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode3: {
+                    bool previousValue = _snareNode3;
                     _snareNode3 = (stream.ReadVarint32() != 0);
+                    bool snareNode3ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode3Set);
+                    if (!snareNode3ExistsInChangeCache && _snareNode3 != previousValue) {
+                        FireSnareNode3DidChange(_snareNode3);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode4: {
+                    bool previousValue = _snareNode4;
                     _snareNode4 = (stream.ReadVarint32() != 0);
+                    bool snareNode4ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode4Set);
+                    if (!snareNode4ExistsInChangeCache && _snareNode4 != previousValue) {
+                        FireSnareNode4DidChange(_snareNode4);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode5: {
+                    bool previousValue = _snareNode5;
                     _snareNode5 = (stream.ReadVarint32() != 0);
+                    bool snareNode5ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode5Set);
+                    if (!snareNode5ExistsInChangeCache && _snareNode5 != previousValue) {
+                        FireSnareNode5DidChange(_snareNode5);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode6: {
+                    bool previousValue = _snareNode6;
                     _snareNode6 = (stream.ReadVarint32() != 0);
+                    bool snareNode6ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode6Set);
+                    if (!snareNode6ExistsInChangeCache && _snareNode6 != previousValue) {
+                        FireSnareNode6DidChange(_snareNode6);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode7: {
+                    bool previousValue = _snareNode7;
                     _snareNode7 = (stream.ReadVarint32() != 0);
+                    bool snareNode7ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode7Set);
+                    if (!snareNode7ExistsInChangeCache && _snareNode7 != previousValue) {
+                        FireSnareNode7DidChange(_snareNode7);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode8: {
+                    bool previousValue = _snareNode8;
                     _snareNode8 = (stream.ReadVarint32() != 0);
+                    bool snareNode8ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode8Set);
+                    if (!snareNode8ExistsInChangeCache && _snareNode8 != previousValue) {
+                        FireSnareNode8DidChange(_snareNode8);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode9: {
+                    bool previousValue = _snareNode9;
                     _snareNode9 = (stream.ReadVarint32() != 0);
+                    bool snareNode9ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode9Set);
+                    if (!snareNode9ExistsInChangeCache && _snareNode9 != previousValue) {
+                        FireSnareNode9DidChange(_snareNode9);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode10: {
+                    bool previousValue = _snareNode10;
                     _snareNode10 = (stream.ReadVarint32() != 0);
+                    bool snareNode10ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode10Set);
+                    if (!snareNode10ExistsInChangeCache && _snareNode10 != previousValue) {
+                        FireSnareNode10DidChange(_snareNode10);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode11: {
+                    bool previousValue = _snareNode11;
                     _snareNode11 = (stream.ReadVarint32() != 0);
+                    bool snareNode11ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode11Set);
+                    if (!snareNode11ExistsInChangeCache && _snareNode11 != previousValue) {
+                        FireSnareNode11DidChange(_snareNode11);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode12: {
+                    bool previousValue = _snareNode12;
                     _snareNode12 = (stream.ReadVarint32() != 0);
+                    bool snareNode12ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode12Set);
+                    if (!snareNode12ExistsInChangeCache && _snareNode12 != previousValue) {
+                        FireSnareNode12DidChange(_snareNode12);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode13: {
+                    bool previousValue = _snareNode13;
                     _snareNode13 = (stream.ReadVarint32() != 0);
+                    bool snareNode13ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode13Set);
+                    if (!snareNode13ExistsInChangeCache && _snareNode13 != previousValue) {
+                        FireSnareNode13DidChange(_snareNode13);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode14: {
+                    bool previousValue = _snareNode14;
                     _snareNode14 = (stream.ReadVarint32() != 0);
+                    bool snareNode14ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode14Set);
+                    if (!snareNode14ExistsInChangeCache && _snareNode14 != previousValue) {
+                        FireSnareNode14DidChange(_snareNode14);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode15: {
+                    bool previousValue = _snareNode15;
                     _snareNode15 = (stream.ReadVarint32() != 0);
+                    bool snareNode15ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode15Set);
+                    if (!snareNode15ExistsInChangeCache && _snareNode15 != previousValue) {
+                        FireSnareNode15DidChange(_snareNode15);
+                    }
                     break;
                 }
                 case (uint)PropertyID.SnareNode16: {
+                    bool previousValue = _snareNode16;
                     _snareNode16 = (stream.ReadVarint32() != 0);
+                    bool snareNode16ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.snareNode16Set);
+                    if (!snareNode16ExistsInChangeCache && _snareNode16 != previousValue) {
+                        FireSnareNode16DidChange(_snareNode16);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode1: {
+                    bool previousValue = _tomNode1;
                     _tomNode1 = (stream.ReadVarint32() != 0);
+                    bool tomNode1ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode1Set);
+                    if (!tomNode1ExistsInChangeCache && _tomNode1 != previousValue) {
+                        FireTomNode1DidChange(_tomNode1);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode2: {
+                    bool previousValue = _tomNode2;
                     _tomNode2 = (stream.ReadVarint32() != 0);
+                    bool tomNode2ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode2Set);
+                    if (!tomNode2ExistsInChangeCache && _tomNode2 != previousValue) {
+                        FireTomNode2DidChange(_tomNode2);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode3: {
+                    bool previousValue = _tomNode3;
                     _tomNode3 = (stream.ReadVarint32() != 0);
+                    bool tomNode3ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode3Set);
+                    if (!tomNode3ExistsInChangeCache && _tomNode3 != previousValue) {
+                        FireTomNode3DidChange(_tomNode3);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode4: {
+                    bool previousValue = _tomNode4;
                     _tomNode4 = (stream.ReadVarint32() != 0);
+                    bool tomNode4ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode4Set);
+                    if (!tomNode4ExistsInChangeCache && _tomNode4 != previousValue) {
+                        FireTomNode4DidChange(_tomNode4);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode5: {
+                    bool previousValue = _tomNode5;
                     _tomNode5 = (stream.ReadVarint32() != 0);
+                    bool tomNode5ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode5Set);
+                    if (!tomNode5ExistsInChangeCache && _tomNode5 != previousValue) {
+                        FireTomNode5DidChange(_tomNode5);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode6: {
+                    bool previousValue = _tomNode6;
                     _tomNode6 = (stream.ReadVarint32() != 0);
+                    bool tomNode6ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode6Set);
+                    if (!tomNode6ExistsInChangeCache && _tomNode6 != previousValue) {
+                        FireTomNode6DidChange(_tomNode6);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode7: {
+                    bool previousValue = _tomNode7;
                     _tomNode7 = (stream.ReadVarint32() != 0);
+                    bool tomNode7ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode7Set);
+                    if (!tomNode7ExistsInChangeCache && _tomNode7 != previousValue) {
+                        FireTomNode7DidChange(_tomNode7);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode8: {
+                    bool previousValue = _tomNode8;
                     _tomNode8 = (stream.ReadVarint32() != 0);
+                    bool tomNode8ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode8Set);
+                    if (!tomNode8ExistsInChangeCache && _tomNode8 != previousValue) {
+                        FireTomNode8DidChange(_tomNode8);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode9: {
+                    bool previousValue = _tomNode9;
                     _tomNode9 = (stream.ReadVarint32() != 0);
+                    bool tomNode9ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode9Set);
+                    if (!tomNode9ExistsInChangeCache && _tomNode9 != previousValue) {
+                        FireTomNode9DidChange(_tomNode9);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode10: {
+                    bool previousValue = _tomNode10;
                     _tomNode10 = (stream.ReadVarint32() != 0);
+                    bool tomNode10ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode10Set);
+                    if (!tomNode10ExistsInChangeCache && _tomNode10 != previousValue) {
+                        FireTomNode10DidChange(_tomNode10);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode11: {
+                    bool previousValue = _tomNode11;
                     _tomNode11 = (stream.ReadVarint32() != 0);
+                    bool tomNode11ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode11Set);
+                    if (!tomNode11ExistsInChangeCache && _tomNode11 != previousValue) {
+                        FireTomNode11DidChange(_tomNode11);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode12: {
+                    bool previousValue = _tomNode12;
                     _tomNode12 = (stream.ReadVarint32() != 0);
+                    bool tomNode12ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode12Set);
+                    if (!tomNode12ExistsInChangeCache && _tomNode12 != previousValue) {
+                        FireTomNode12DidChange(_tomNode12);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode13: {
+                    bool previousValue = _tomNode13;
                     _tomNode13 = (stream.ReadVarint32() != 0);
+                    bool tomNode13ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode13Set);
+                    if (!tomNode13ExistsInChangeCache && _tomNode13 != previousValue) {
+                        FireTomNode13DidChange(_tomNode13);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode14: {
+                    bool previousValue = _tomNode14;
                     _tomNode14 = (stream.ReadVarint32() != 0);
+                    bool tomNode14ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode14Set);
+                    if (!tomNode14ExistsInChangeCache && _tomNode14 != previousValue) {
+                        FireTomNode14DidChange(_tomNode14);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode15: {
+                    bool previousValue = _tomNode15;
                     _tomNode15 = (stream.ReadVarint32() != 0);
+                    bool tomNode15ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode15Set);
+                    if (!tomNode15ExistsInChangeCache && _tomNode15 != previousValue) {
+                        FireTomNode15DidChange(_tomNode15);
+                    }
                     break;
                 }
                 case (uint)PropertyID.TomNode16: {
+                    bool previousValue = _tomNode16;
                     _tomNode16 = (stream.ReadVarint32() != 0);
+                    bool tomNode16ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.tomNode16Set);
+                    if (!tomNode16ExistsInChangeCache && _tomNode16 != previousValue) {
+                        FireTomNode16DidChange(_tomNode16);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode1: {
+                    bool previousValue = _cymbalNode1;
                     _cymbalNode1 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode1ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode1Set);
+                    if (!cymbalNode1ExistsInChangeCache && _cymbalNode1 != previousValue) {
+                        FireCymbalNode1DidChange(_cymbalNode1);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode2: {
+                    bool previousValue = _cymbalNode2;
                     _cymbalNode2 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode2ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode2Set);
+                    if (!cymbalNode2ExistsInChangeCache && _cymbalNode2 != previousValue) {
+                        FireCymbalNode2DidChange(_cymbalNode2);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode3: {
+                    bool previousValue = _cymbalNode3;
                     _cymbalNode3 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode3ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode3Set);
+                    if (!cymbalNode3ExistsInChangeCache && _cymbalNode3 != previousValue) {
+                        FireCymbalNode3DidChange(_cymbalNode3);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode4: {
+                    bool previousValue = _cymbalNode4;
                     _cymbalNode4 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode4ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode4Set);
+                    if (!cymbalNode4ExistsInChangeCache && _cymbalNode4 != previousValue) {
+                        FireCymbalNode4DidChange(_cymbalNode4);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode5: {
+                    bool previousValue = _cymbalNode5;
                     _cymbalNode5 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode5ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode5Set);
+                    if (!cymbalNode5ExistsInChangeCache && _cymbalNode5 != previousValue) {
+                        FireCymbalNode5DidChange(_cymbalNode5);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode6: {
+                    bool previousValue = _cymbalNode6;
                     _cymbalNode6 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode6ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode6Set);
+                    if (!cymbalNode6ExistsInChangeCache && _cymbalNode6 != previousValue) {
+                        FireCymbalNode6DidChange(_cymbalNode6);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode7: {
+                    bool previousValue = _cymbalNode7;
                     _cymbalNode7 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode7ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode7Set);
+                    if (!cymbalNode7ExistsInChangeCache && _cymbalNode7 != previousValue) {
+                        FireCymbalNode7DidChange(_cymbalNode7);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode8: {
+                    bool previousValue = _cymbalNode8;
                     _cymbalNode8 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode8ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode8Set);
+                    if (!cymbalNode8ExistsInChangeCache && _cymbalNode8 != previousValue) {
+                        FireCymbalNode8DidChange(_cymbalNode8);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode9: {
+                    bool previousValue = _cymbalNode9;
                     _cymbalNode9 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode9ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode9Set);
+                    if (!cymbalNode9ExistsInChangeCache && _cymbalNode9 != previousValue) {
+                        FireCymbalNode9DidChange(_cymbalNode9);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode10: {
+                    bool previousValue = _cymbalNode10;
                     _cymbalNode10 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode10ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode10Set);
+                    if (!cymbalNode10ExistsInChangeCache && _cymbalNode10 != previousValue) {
+                        FireCymbalNode10DidChange(_cymbalNode10);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode11: {
+                    bool previousValue = _cymbalNode11;
                     _cymbalNode11 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode11ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode11Set);
+                    if (!cymbalNode11ExistsInChangeCache && _cymbalNode11 != previousValue) {
+                        FireCymbalNode11DidChange(_cymbalNode11);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode12: {
+                    bool previousValue = _cymbalNode12;
                     _cymbalNode12 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode12ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode12Set);
+                    if (!cymbalNode12ExistsInChangeCache && _cymbalNode12 != previousValue) {
+                        FireCymbalNode12DidChange(_cymbalNode12);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode13: {
+                    bool previousValue = _cymbalNode13;
                     _cymbalNode13 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode13ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode13Set);
+                    if (!cymbalNode13ExistsInChangeCache && _cymbalNode13 != previousValue) {
+                        FireCymbalNode13DidChange(_cymbalNode13);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode14: {
+                    bool previousValue = _cymbalNode14;
                     _cymbalNode14 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode14ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode14Set);
+                    if (!cymbalNode14ExistsInChangeCache && _cymbalNode14 != previousValue) {
+                        FireCymbalNode14DidChange(_cymbalNode14);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode15: {
+                    bool previousValue = _cymbalNode15;
                     _cymbalNode15 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode15ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode15Set);
+                    if (!cymbalNode15ExistsInChangeCache && _cymbalNode15 != previousValue) {
+                        FireCymbalNode15DidChange(_cymbalNode15);
+                    }
                     break;
                 }
                 case (uint)PropertyID.CymbalNode16: {
+                    bool previousValue = _cymbalNode16;
                     _cymbalNode16 = (stream.ReadVarint32() != 0);
+                    bool cymbalNode16ExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.cymbalNode16Set);
+                    if (!cymbalNode16ExistsInChangeCache && _cymbalNode16 != previousValue) {
+                        FireCymbalNode16DidChange(_cymbalNode16);
+                    }
                     break;
                 }
                 default: {

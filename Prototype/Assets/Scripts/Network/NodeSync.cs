@@ -479,7 +479,7 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
      public void SetNodeOnServer(DrumType drumType, int index, bool activate)
      {
          print("Setting node on server");
-        //GetComponent<RealtimeView>().RequestOwnership();
+        GetComponent<RealtimeView>().RequestOwnership();
         switch (drumType)
         {
             case DrumType.Kick:

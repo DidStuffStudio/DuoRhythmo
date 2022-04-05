@@ -167,7 +167,7 @@ public class MasterManager : MonoBehaviour {
                 if (!RealTimeInstance.Instance.isSoloMode)
                 {
                     timerUI.SetActive(true);
-                    nodeSync.startedJammin = true;
+                    
                     if (isFirstPlayer) RealTimeInstance.Instance.stopwatch.StartStopwatch();
                     
                 }
@@ -516,7 +516,7 @@ public class MasterManager : MonoBehaviour {
         }
        nodeSync = GetComponent<NodeSync>();
        nodeSync.nodeManagers = _nodeManagers.ToArray();
-            
+       nodeSync.startedJammin = true;
         gameSetUpFinished = true;
     }
 

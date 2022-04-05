@@ -10407,8 +10407,6 @@ GameObject:
   - component: {fileID: 1590067203}
   - component: {fileID: 1590067202}
   - component: {fileID: 1590067204}
-  - component: {fileID: 1590067206}
-  - component: {fileID: 1590067205}
   m_Layer: 0
   m_Name: MasterManager
   m_TagString: Untagged
@@ -10610,7 +10608,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2012760617}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10628,48 +10627,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   averagedTime: 0
   conectedPlayers: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
---- !u!114 &1590067205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590067201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec68952f66cdeb47b1f4dd416e6dba1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  updateDelta: 0.5
-  nodeManagers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  startedJammin: 0
---- !u!114 &1590067206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590067201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _realtime: {fileID: 320708703}
-  _sceneViewUUID: 
-  _viewUUID: f5860b04-5c28-4040-a070-ca2da31dc5f3
-  _sceneViewPreventOwnershipTakeover: 0
-  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
-  _components:
-  - componentID: 1
-    component: {fileID: 1590067205}
-  _childViews: []
 --- !u!1 &1594327450
 GameObject:
   m_ObjectHideFlags: 0
@@ -12431,6 +12388,80 @@ MonoBehaviour:
   activateOnStart: 0
   isDwellTimeSetter: 0
   localDwellTimeSpeed: 100
+--- !u!1 &2012760616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2012760617}
+  - component: {fileID: 2012760619}
+  - component: {fileID: 2012760618}
+  m_Layer: 0
+  m_Name: NodeSync
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2012760617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012760616}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1590067203}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2012760618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012760616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec68952f66cdeb47b1f4dd416e6dba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateDelta: 0.5
+  nodeManagers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  startedJammin: 0
+--- !u!114 &2012760619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012760616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _realtime: {fileID: 320708703}
+  _sceneViewUUID: 
+  _viewUUID: 859ac7fd-e886-4989-876b-7650bfa81654
+  _sceneViewPreventOwnershipTakeover: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
+  _isRootPrefabView: 0
+  _components:
+  - componentID: 1
+    component: {fileID: 2012760618}
+  _childViews: []
 --- !u!1 &2032308997
 GameObject:
   m_ObjectHideFlags: 0

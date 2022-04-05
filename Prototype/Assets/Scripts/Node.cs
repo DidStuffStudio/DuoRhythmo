@@ -30,7 +30,7 @@ public class Node : CustomButton {
     protected override void Start()
     {
         _vfx = MasterManager.Instance.userInterfaceManager._vfx;
-        _nodeSync = MasterManager.Instance.transform.GetComponent<NodeSync>();
+        _nodeSync = MasterManager.Instance.transform.GetComponentInChildren<NodeSync>();
         base.Start();
     }
 

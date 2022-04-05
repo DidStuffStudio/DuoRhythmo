@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OneOptionButton : CustomButton {
-    [SerializeField] private OneOptionButton[] otherButtonsToDisable;
+    public OneOptionButton[] otherButtonsToDisable;
     [SerializeField] private bool activateOnStart = false;
     [SerializeField] private bool isDwellTimeSetter;
     public float localDwellTimeSpeed = 100.0f;
@@ -17,6 +17,8 @@ public class OneOptionButton : CustomButton {
             _canHover = false;
         }
     }
+
+    public void Activate() => SetActive(false);
 
     protected override void SetActive(bool sendToServer) {
         base.SetActive(false);

@@ -36,7 +36,7 @@ public class UserInterfaceManager : MonoBehaviour {
     public bool playingAnim;
     public bool justJoined;
     private void Start() {
-        roomFullToast = GameObject.FindWithTag("RoomFullToast");
+        //roomFullToast = GameObject.FindWithTag("RoomFullToast");
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _vfx.transform.gameObject.SetActive(false);
         _uiAnimator = GetComponent<Animator>();

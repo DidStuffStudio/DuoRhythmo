@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PositionRooms : MonoBehaviour
@@ -8,8 +9,21 @@ public class PositionRooms : MonoBehaviour
     [SerializeField] private float radius;
 
 
-    void Start()
+    void OnEnable()
     {
+
+        var oneOpButs = GetComponentsInChildren<OneOptionButton>();
+        for (int i = 0; i < numberOfRooms ; i++)
+        {
+            var newArray = oneOpButs;
+            var newArrayCopy = newArray.ToList();
+            newArrayCopy.Remove(oneOpButs[i]);
+            oneOpButs[i].otherButtonsToDisable = newArrayCopy.ToArray();
+            
+        }
+      
+        
+        
         for (var index = 0; index < numberOfRooms; index++)
         {
             var angleInDegrees = index*(-360/numberOfRooms);

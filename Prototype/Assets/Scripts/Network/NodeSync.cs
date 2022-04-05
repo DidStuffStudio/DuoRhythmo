@@ -17,9 +17,8 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
 
     protected override void OnRealtimeModelReplaced(NodeSyncModel previousModel, NodeSyncModel currentModel)
     {
-        
         if(!startedJammin) return;
-        
+        print("Recieved new model");
         if (previousModel != null) {
             // Unregister from events
             previousModel.kickNode1DidChange -= KickNode1DidChange;
@@ -111,7 +110,95 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
 
         if (currentModel != null) {
             // If this is a model that has no data set on it, populate it with the current mesh renderer color.
-            
+            if (currentModel.isFreshModel)
+            {
+                currentModel.kickNode1 = false;
+                currentModel.kickNode2 = false;
+                currentModel.kickNode3 = false;
+                currentModel.kickNode4 = false;
+                currentModel.kickNode5 = false;
+                currentModel.kickNode6 = false;
+                currentModel.kickNode7 = false;
+                currentModel.kickNode8 = false;
+                currentModel.kickNode9 = false;
+                currentModel.kickNode10 = false;
+                currentModel.kickNode11 = false;
+                currentModel.kickNode12 = false;
+                currentModel.kickNode13 = false;
+                currentModel.kickNode14 = false;
+                currentModel.kickNode15 = false;
+                currentModel.kickNode16 = false;
+                
+                currentModel.snareNode1 = false;
+                currentModel.snareNode2 = false;
+                currentModel.snareNode3 = false;
+                currentModel.snareNode4 = false;
+                currentModel.snareNode5 = false;
+                currentModel.snareNode6 = false;
+                currentModel.snareNode7 = false;
+                currentModel.snareNode8 = false;
+                currentModel.snareNode9 = false;
+                currentModel.snareNode10 = false;
+                currentModel.snareNode11 = false;
+                currentModel.snareNode12 = false;
+                currentModel.snareNode13 = false;
+                currentModel.snareNode14 = false;
+                currentModel.snareNode15 = false;
+                currentModel.snareNode16 = false;
+                
+                currentModel.hiHatNode1 = false;
+                currentModel.hiHatNode2 = false;
+                currentModel.hiHatNode3 = false;
+                currentModel.hiHatNode4 = false;
+                currentModel.hiHatNode5 = false;
+                currentModel.hiHatNode6 = false;
+                currentModel.hiHatNode7 = false;
+                currentModel.hiHatNode8 = false;
+                currentModel.hiHatNode9 = false;
+                currentModel.hiHatNode10 = false;
+                currentModel.hiHatNode11 = false;
+                currentModel.hiHatNode12 = false;
+                currentModel.hiHatNode13 = false;
+                currentModel.hiHatNode14 = false;
+                currentModel.hiHatNode15 = false;
+                currentModel.hiHatNode16 = false;
+                
+                currentModel.tomNode1 = false;
+                currentModel.tomNode2 = false;
+                currentModel.tomNode3 = false;
+                currentModel.tomNode4 = false;
+                currentModel.tomNode5 = false;
+                currentModel.tomNode6 = false;
+                currentModel.tomNode7 = false;
+                currentModel.tomNode8 = false;
+                currentModel.tomNode9 = false;
+                currentModel.tomNode10 = false;
+                currentModel.tomNode11 = false;
+                currentModel.tomNode12 = false;
+                currentModel.tomNode13 = false;
+                currentModel.tomNode14 = false;
+                currentModel.tomNode15 = false;
+                currentModel.tomNode16 = false;
+                
+                currentModel.cymbalNode1 = false;
+                currentModel.cymbalNode2 = false;
+                currentModel.cymbalNode3 = false;
+                currentModel.cymbalNode4 = false;
+                currentModel.cymbalNode5 = false;
+                currentModel.cymbalNode6 = false;
+                currentModel.cymbalNode7 = false;
+                currentModel.cymbalNode8 = false;
+                currentModel.cymbalNode9 = false;
+                currentModel.cymbalNode10 = false;
+                currentModel.cymbalNode11 = false;
+                currentModel.cymbalNode12 = false;
+                currentModel.cymbalNode13 = false;
+                currentModel.cymbalNode14 = false;
+                currentModel.cymbalNode15 = false;
+                currentModel.cymbalNode16 = false;
+                
+                
+            }
 
             // Update the mesh render to match the new model
             UpdateNodes();
@@ -133,6 +220,7 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
             currentModel.kickNode14DidChange += KickNode14DidChange;
             currentModel.kickNode15DidChange += KickNode15DidChange;
             currentModel.kickNode16DidChange += KickNode16DidChange;
+            
             
             currentModel.snareNode1DidChange += SnareNode1DidChange;
             currentModel.snareNode2DidChange += SnareNode2DidChange;
@@ -302,7 +390,7 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
 
     public void UpdateNodes()
     {
-        print("Called Update Nodes");
+
         nodeManagers[0].SetNodeFromServer(0, model.kickNode1);
         nodeManagers[0].SetNodeFromServer(1, model.kickNode2);
         nodeManagers[0].SetNodeFromServer(2, model.kickNode3);

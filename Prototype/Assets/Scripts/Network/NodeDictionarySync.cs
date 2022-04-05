@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Network;
 using Normal.Realtime;
 using Normal.Realtime.Serialization;
@@ -16,6 +17,12 @@ public class NodeDictionarySync : RealtimeComponent<NodeDictionarySyncModel> {
             previousModel.kickNodeDictionary.modelAdded -= KickNodeAddedOrRemoved;
             previousModel.kickNodeDictionary.modelRemoved -= KickNodeAddedOrRemoved;
             previousModel.kickNodeDictionary.modelReplaced -= KickNodeDidChange;
+
+            /*
+            for (int i = 0; i < previousModel.kickNodeDictionary.Count; i++) {
+                previousModel.kickNodeDictionary[(uint) i].activeDidChange += KickNodeBoolDidChange;
+            }
+            */
 
             previousModel.snareNodeDictionary.modelAdded -= SnareNodeAddedOrRemoved;
             previousModel.snareNodeDictionary.modelRemoved -= SnareNodeAddedOrRemoved;
@@ -112,12 +119,12 @@ public class NodeDictionarySync : RealtimeComponent<NodeDictionarySyncModel> {
 
     private void KickNodeDidChange(RealtimeDictionary<NodeModel> dictionary, uint key, NodeModel oldmodel,
         NodeModel newmodel, bool remote) {
+        print("Kick dictionary has changed: Node" + key + " is " + remote);
         nodeManagers[0].SetNodeFromServer((int) key, remote);
     }
 
     private void KickNodeAddedOrRemoved(RealtimeDictionary<NodeModel> dictionary, uint key, NodeModel nodeModel,
         bool remote) {
-        print("Cymbal dictionary has changed: Node" + key + " is " + remote);
         nodeManagers[0].SetNodeFromServer((int) key, remote);
     }
 
@@ -125,11 +132,16 @@ public class NodeDictionarySync : RealtimeComponent<NodeDictionarySyncModel> {
         for (int i = 0; i < nodeManagers.Length; i++) {
             for (int j = 0; j < 16; j++) {
                 nodeManagers[i].SetNodeFromServer(j, model.kickNodeDictionary[(uint) j].active);
+                nodeManagers[i].SetNodeFromServer(j, model.snareNodeDictionary[(uint) j].active);
+                nodeManagers[i].SetNodeFromServer(j, model.hihatNodeDictionary[(uint) j].active);
+                nodeManagers[i].SetNodeFromServer(j, model.tomNodeDictionary[(uint) j].active);
+                nodeManagers[i].SetNodeFromServer(j, model.cymbalNodeDictionary[(uint) j].active);
             }
         }
     }
 
     public void SetNodeOnServer(DrumType drumType, int index, bool activate) {
+        var newNodeModel = new NodeModel {active = activate};
         // if the model keys havent't been initialized, initialize them
         if(!model.kickNodeDictionary.ContainsKey(0)) {
             for (int i = 0; i < 16; i++) {
@@ -140,21 +152,22 @@ public class NodeDictionarySync : RealtimeComponent<NodeDictionarySyncModel> {
                 model.cymbalNodeDictionary.Add((uint) i, new NodeModel());
             }
         }
+        print(model.kickNodeDictionary[0].active);
         switch (drumType) {
             case DrumType.Kick:
-                model.kickNodeDictionary[(uint) index].active = activate;
+                model.kickNodeDictionary[(uint) index] = newNodeModel;
                 break;
             case DrumType.Snare:
-                model.snareNodeDictionary[(uint) index].active = activate;
+                model.snareNodeDictionary[(uint) index] = newNodeModel;
                 break;
             case DrumType.HiHat:
-                model.hihatNodeDictionary[(uint) index].active = activate;
+                model.hihatNodeDictionary[(uint) index] = newNodeModel;
                 break;
             case DrumType.Tom:
-                model.tomNodeDictionary[(uint) index].active = activate;
+                model.tomNodeDictionary[(uint) index] = newNodeModel;
                 break;
             case DrumType.Cymbal:
-                model.cymbalNodeDictionary[(uint) index].active = activate;
+                model.cymbalNodeDictionary[(uint) index] = newNodeModel;
                 break;
         }
     }

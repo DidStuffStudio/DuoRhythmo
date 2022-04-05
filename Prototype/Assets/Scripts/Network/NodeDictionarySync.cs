@@ -35,7 +35,16 @@ public class NodeDictionarySync : RealtimeComponent<NodeDictionarySyncModel> {
         }
 
         if (currentModel != null) {
-            if (currentModel.isFreshModel) { }
+            if (currentModel.isFreshModel) {
+                for (int i = 0; i < 16; i++) {
+                    currentModel.kickNodeDictionary.Add((uint) i, new NodeModel());
+                    // currentModel.kickNodeDictionary[(uint) i].active = false;
+                    currentModel.snareNodeDictionary.Add((uint) i, new NodeModel());
+                    currentModel.hihatNodeDictionary.Add((uint) i, new NodeModel());
+                    currentModel.tomNodeDictionary.Add((uint) i, new NodeModel());
+                    currentModel.cymbalNodeDictionary.Add((uint) i, new NodeModel());
+                }
+            }
 
             UpdateNodes();
 
@@ -121,6 +130,16 @@ public class NodeDictionarySync : RealtimeComponent<NodeDictionarySyncModel> {
     }
 
     public void SetNodeOnServer(DrumType drumType, int index, bool activate) {
+        // if the model keys havent't been initialized, initialize them
+        if(!model.kickNodeDictionary.ContainsKey(0)) {
+            for (int i = 0; i < 16; i++) {
+                model.kickNodeDictionary.Add((uint) i, new NodeModel());
+                model.snareNodeDictionary.Add((uint) i, new NodeModel());
+                model.hihatNodeDictionary.Add((uint) i, new NodeModel());
+                model.tomNodeDictionary.Add((uint) i, new NodeModel());
+                model.cymbalNodeDictionary.Add((uint) i, new NodeModel());
+            }
+        }
         switch (drumType) {
             case DrumType.Kick:
                 model.kickNodeDictionary[(uint) index].active = activate;

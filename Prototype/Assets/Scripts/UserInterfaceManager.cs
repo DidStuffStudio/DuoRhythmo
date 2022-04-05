@@ -74,17 +74,17 @@ public class UserInterfaceManager : MonoBehaviour {
         StartCoroutine(WaitToEnableRot());
     }
 
-    public void PlayAnimationSolo(bool forward)
+    public void PlayAnimationSolo()
     {
-        if(_currentPanel != _lastPanel) PauseAnimation();
-        else PlayAnimation(forward);
+        
     }
 
     public void PlayAnimation(bool forward)
     {
         
-        if(RealTimeInstance.Instance.isSoloMode)StartCoroutine(IgnoreEvents(0.1f));
-        
+        if(RealTimeInstance.Instance.isSoloMode && _currentPanel == _lastPanel)StartCoroutine(IgnoreEvents(0.5f));
+        else if(RealTimeInstance.Instance.isSoloMode)StartCoroutine(IgnoreEvents(0.1f));
+        _lastPanel = _currentPanel;
         if (forward)
         {
             if(_currentPanel < panels.Count - 1)_currentPanel++;

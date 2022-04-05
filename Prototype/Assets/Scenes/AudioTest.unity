@@ -652,7 +652,8 @@ MonoBehaviour:
   _viewUUID: 6b5ec567-b7eb-4f30-b8fb-6393ec58c211
   _sceneViewPreventOwnershipTakeover: 1
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeavesMigrated: 0
+  _sceneViewDestroyWhenLastClientLeaves: 1
   _components:
   - componentID: 1
     component: {fileID: 67809987}
@@ -1504,7 +1505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202fb86e5d3e84768909425a46074a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _realtime: {fileID: 0}
+  _realtime: {fileID: 320708703}
   clientIds: 
   networkManagerPrefab: {fileID: 5179577453407926284, guid: 8686f246862d448dfb7319ce3beb26d5, type: 3}
   networkManager: {fileID: 0}
@@ -2295,7 +2296,8 @@ MonoBehaviour:
   _viewUUID: eb76de55-da2c-43d9-8db4-765744bece4c
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeavesMigrated: 0
+  _sceneViewDestroyWhenLastClientLeaves: 1
   _components:
   - componentID: 1
     component: {fileID: 574498498}
@@ -9880,7 +9882,8 @@ MonoBehaviour:
   _viewUUID: d0911459-011b-477e-b8ee-b761b896e2d8
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeavesMigrated: 0
+  _sceneViewDestroyWhenLastClientLeaves: 1
   _components:
   - componentID: 1
     component: {fileID: 1437889678}
@@ -10856,7 +10859,8 @@ MonoBehaviour:
   _viewUUID: 6e0b5ccc-adaa-42a9-8a2a-e68efdff1d26
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeavesMigrated: 0
+  _sceneViewDestroyWhenLastClientLeaves: 1
   _components:
   - componentID: 1
     component: {fileID: 1694568392}
@@ -11717,7 +11721,8 @@ MonoBehaviour:
   _viewUUID: 2d7de78d-a345-4fe5-a13e-4df7892f0c9b
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeavesMigrated: 0
+  _sceneViewDestroyWhenLastClientLeaves: 1
   _components:
   - componentID: 1
     component: {fileID: 1775356923}
@@ -11999,7 +12004,8 @@ MonoBehaviour:
   _viewUUID: 83b1468a-cb1a-4d73-af78-856549e29518
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeavesMigrated: 0
+  _sceneViewDestroyWhenLastClientLeaves: 1
   _components:
   - componentID: 1
     component: {fileID: 1846019207}
@@ -12455,10 +12461,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _realtime: {fileID: 320708703}
   _sceneViewUUID: 
-  _viewUUID: 859ac7fd-e886-4989-876b-7650bfa81654
+  _viewUUID: eea74723-a738-4ef0-81db-5354eac8b333
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 0
-  _isRootPrefabView: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeavesMigrated: 0
+  _sceneViewDestroyWhenLastClientLeaves: 1
   _components:
   - componentID: 1
     component: {fileID: 2012760618}
@@ -12615,7 +12622,8 @@ MonoBehaviour:
   _viewUUID: f5cf65ac-204d-4240-a0cc-83fb31e7e904
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeavesMigrated: 0
+  _sceneViewDestroyWhenLastClientLeaves: 1
   _components:
   - componentID: 1
     component: {fileID: 2097733663}

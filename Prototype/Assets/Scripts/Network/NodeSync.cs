@@ -292,22 +292,22 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
         }
     }
 
-    private void KickNode1DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode2DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode3DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode4DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode5DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode6DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode7DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode8DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode9DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode10DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode11DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode12DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode13DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode14DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode15DidChange(NodeSyncModel model, bool value) => UpdateNodes();
-    private void KickNode16DidChange(NodeSyncModel model, bool value) => UpdateNodes();
+    private void KickNode1DidChange(NodeSyncModel  nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode2DidChange(NodeSyncModel  nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode3DidChange(NodeSyncModel  nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode4DidChange(NodeSyncModel  nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode5DidChange(NodeSyncModel  nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode6DidChange(NodeSyncModel  nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode7DidChange(NodeSyncModel  nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode8DidChange(NodeSyncModel  nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode9DidChange(NodeSyncModel  nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => UpdateNodes();
+    private void KickNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => UpdateNodes();
     
     
     

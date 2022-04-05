@@ -30,7 +30,7 @@ public class Node : CustomButton {
     protected override void Start()
     {
         _vfx = MasterManager.Instance.userInterfaceManager._vfx;
-        _nodeSync = MasterManager.Instance.transform.GetComponentInChildren<NodeSync>();
+        _nodeSync = MasterManager.Instance.nodeSync;
         base.Start();
     }
 
@@ -81,7 +81,7 @@ public class Node : CustomButton {
         {
          
             //Call node sync set node
-            _nodeSync.SetNodeOnServer(drumType, indexValue, true);
+            NodeSync.Instance.SetNodeOnServer(drumType, indexValue, true);
             
             
             //MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 1;
@@ -97,7 +97,7 @@ public class Node : CustomButton {
         if (!RealTimeInstance.Instance.isSoloMode && sendToServer)
         {
             //Call node sync set node
-            _nodeSync.SetNodeOnServer(drumType, indexValue, false);
+            NodeSync.Instance.SetNodeOnServer(drumType, indexValue, false);
             
             //MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 0;
             //MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);

@@ -132,7 +132,6 @@ public class MasterManager : MonoBehaviour {
         
         GameObject.FindWithTag("DwellSettings").transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
         dwellTimeSpeed = DontDestroyDwell.Instance.dwellTimeSpeed;
-        nodeSync = GetComponentInChildren<NodeSync>();
     }
 
     public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);
@@ -515,8 +514,8 @@ public class MasterManager : MonoBehaviour {
             userInterfaceManager.panels[i].transform.rotation = Quaternion.Euler(new Vector3(0,-36*i,0));
         }
        
-       nodeSync.nodeManagers = _nodeManagers.ToArray();
-       nodeSync.startedJammin = true;
+       NodeSync.Instance.nodeManagers = _nodeManagers.ToArray();
+       NodeSync.Instance.startedJammin = true;
         gameSetUpFinished = true;
     }
 

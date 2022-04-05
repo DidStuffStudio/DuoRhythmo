@@ -51,7 +51,6 @@ public class RealTimeInstance : MonoBehaviour {
                     }
                 }
             }
-            if(MasterManager.Instance.localPlayerNumber == smallestOwnerId) stringSync.SetMessage("Dummy");
             yield return new WaitForSeconds(0.2f);
         }
     }

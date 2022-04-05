@@ -31,7 +31,6 @@ public class RealTimeInstance : MonoBehaviour
     [SerializeField] private Transform playersHolder;
     public bool isNewPlayer = true;
     public Stopwatch stopwatch;
-    private GameObject nodeSyncPrefab;
 
     private void Awake()
     {

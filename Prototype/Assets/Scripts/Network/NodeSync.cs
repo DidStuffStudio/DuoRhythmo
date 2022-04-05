@@ -6,33 +6,18 @@ using UnityEngine;
 
 public class NodeSync : RealtimeComponent<NodeSyncModel>
 {
-
-    
-    private static NodeSync _instance;
-
-    public static NodeSync Instance {
-        get {
-            if (_instance != null) return _instance;
-            var nodeSyncObject = new GameObject();
-            _instance = nodeSyncObject.AddComponent<NodeSync>();
-            nodeSyncObject.name = typeof(NodeSync).ToString();
-            return _instance;
-        }
-    }
-
-    
     [SerializeField] private float updateDelta = 0.5f;
     public NodeManager[] nodeManagers = new NodeManager[5];
     public bool startedJammin = false;
 
-    private void Awake()
+    private void Start()
     {
-        if (_instance == null) _instance = this;
+        StartCoroutine(CheckModel());
     }
- 
+
     protected override void OnRealtimeModelReplaced(NodeSyncModel previousModel, NodeSyncModel currentModel)
     {
-        //if(!startedJammin) return;
+        if(!startedJammin) return;
         print("Recieved new model");
         if (previousModel != null) {
             // Unregister from events
@@ -606,8 +591,6 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
          while (true)
          {
              yield return new WaitForSeconds(updateDelta);
-             if (!startedJammin) continue;
-             if (model.kickNode1 != nodeManagers[0]._nodes[0].isActive) nodeManagers[0].SetNodeFromServer(0, model.kickNode1);
              print("kick node 1 local value is " + model.kickNode1);
          }
      }

@@ -43,7 +43,7 @@ public class Node : CustomButton {
     public void SetNodeFromServer(bool activate)
     {
         
-        if (activate == activated) return;
+        if (activate == isActive) return;
         print("Setting node from server");
         if (activate)
         {

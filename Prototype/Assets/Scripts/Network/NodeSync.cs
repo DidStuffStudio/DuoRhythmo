@@ -7,7 +7,6 @@ using UnityEngine;
 public class NodeSync : RealtimeComponent<NodeSyncModel>
 {
     [SerializeField] private float updateDelta = 0.5f;
-    private RealtimeModel drumModel;
     public NodeManager[] nodeManagers = new NodeManager[5];
     public bool startedJammin = false;
 
@@ -587,6 +586,7 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
         
     }
 
+     private O
      IEnumerator CheckModel()
      {
          while (true)

@@ -88,7 +88,7 @@ public class MasterManager : MonoBehaviour {
     [SerializeField] private Dictionary<float, bool> playerTransforms = new Dictionary<float, bool>();
     private int currentDrumKitIndex = 0;
     [SerializeField] private int maxNumberOfPlayers = 2;
-    private NodeSync nodeSync;
+    public NodeSync nodeSync;
 
     private void Awake()
     {

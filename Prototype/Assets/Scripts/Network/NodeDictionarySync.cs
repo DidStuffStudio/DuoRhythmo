@@ -7,9 +7,11 @@ using UnityEngine;
 
 public class NodeDictionarySync : RealtimeComponent<NodeDictionarySyncModel> {
     public NodeManager[] nodeManagers = new NodeManager[5];
+    public bool startedJammin;
 
     protected override void OnRealtimeModelReplaced(NodeDictionarySyncModel previousModel,
         NodeDictionarySyncModel currentModel) {
+        if(!startedJammin) return;
         if (previousModel != null) {
             previousModel.kickNodeDictionary.modelAdded -= KickNodeAddedOrRemoved;
             previousModel.kickNodeDictionary.modelRemoved -= KickNodeAddedOrRemoved;

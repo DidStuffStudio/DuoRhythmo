@@ -89,7 +89,8 @@ public class MasterManager : MonoBehaviour {
     private int currentDrumKitIndex = 0;
     [SerializeField] private int maxNumberOfPlayers = 2;
     public NodeSync nodeSync;
-
+    public NodeDictionarySync nodeDictionarySync;
+    
     private void Awake()
     {
         if (_instance == null) _instance = this;
@@ -133,6 +134,7 @@ public class MasterManager : MonoBehaviour {
         GameObject.FindWithTag("DwellSettings").transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
         dwellTimeSpeed = DontDestroyDwell.Instance.dwellTimeSpeed;
         nodeSync = GetComponentInChildren<NodeSync>();
+        nodeDictionarySync = GetComponentInChildren<NodeDictionarySync>();
     }
 
     public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);
@@ -516,7 +518,9 @@ public class MasterManager : MonoBehaviour {
         }
        
        nodeSync.nodeManagers = _nodeManagers.ToArray();
+       nodeDictionarySync.nodeManagers = _nodeManagers.ToArray();
        nodeSync.startedJammin = true;
+       nodeDictionarySync.startedJammin = true;
         gameSetUpFinished = true;
     }
 

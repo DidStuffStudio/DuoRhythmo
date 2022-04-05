@@ -32,6 +32,7 @@ public class Node : CustomButton {
     {
         _vfx = MasterManager.Instance.userInterfaceManager._vfx;
         _nodeSync = MasterManager.Instance.transform.GetComponentInChildren<NodeSync>();
+        _nodeDictionarySync = MasterManager.Instance.transform.GetComponentInChildren<NodeDictionarySync>();
         base.Start();
     }
 

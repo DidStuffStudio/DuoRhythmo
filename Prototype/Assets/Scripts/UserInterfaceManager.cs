@@ -228,10 +228,10 @@ public class UserInterfaceManager : MonoBehaviour {
 
     public void DisplayRoomFullToast()
     {
+        roomFullToast.SetActive(true);
         roomFullToast.GetComponentInChildren<Text>().text =
             RealTimeInstance.Instance.roomNames[RealTimeInstance.Instance.roomToJoinIndex] +
             " is full, please try another room.";
-        roomFullToast.SetActive(true);
         RealTimeInstance.Instance._realtime.Disconnect();
         SceneManager.LoadScene(0);
     }

@@ -12,6 +12,7 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
 
     private void Start()
     {
+        if (RealTimeInstance.Instance.isSoloMode) return;
         StartCoroutine(CheckModel());
     }
 

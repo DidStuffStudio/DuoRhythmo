@@ -12,6 +12,7 @@ public class Stopwatch : RealtimeComponent<StopwatchModel>
 
     private void Start()
     {
+        if (RealTimeInstance.Instance.isSoloMode) return;
         StartCoroutine(BlinkTimer());
     }
 

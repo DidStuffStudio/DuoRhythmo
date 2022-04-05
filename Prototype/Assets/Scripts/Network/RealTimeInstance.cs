@@ -69,8 +69,16 @@ public class RealTimeInstance : MonoBehaviour
 
     public void Play()
     {
-        if (!isSoloMode) _realtime.Connect(roomNames[roomToJoinIndex]);
-        StartCoroutine(MasterManager.Instance.WaitUntilConnected());
+        if (!isSoloMode)
+        {
+            _realtime.Connect(roomNames[roomToJoinIndex]);
+            StartCoroutine(MasterManager.Instance.WaitUntilConnected());
+        }
+        else
+        {
+            MasterManager.Instance.Initialize();
+        }
+        
     }
 
     public void SetParentOfPlayer(Transform p) => p.SetParent(playersHolder);

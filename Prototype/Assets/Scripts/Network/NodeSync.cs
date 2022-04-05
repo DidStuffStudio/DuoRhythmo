@@ -591,6 +591,11 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
          while (true)
          {
              yield return new WaitForSeconds(updateDelta);
+             if (startedJammin)
+             {
+                 UpdateNodes();
+             }
+
              print("kick node 1 local value is " + model.kickNode1);
          }
      }

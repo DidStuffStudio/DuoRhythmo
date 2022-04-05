@@ -10,7 +10,11 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
     private RealtimeModel drumModel;
     public NodeManager[] nodeManagers = new NodeManager[5];
     public bool startedJammin = false;
-    
+
+    private void Start()
+    {
+        StartCoroutine(CheckModel());
+    }
 
     protected override void OnRealtimeModelReplaced(NodeSyncModel previousModel, NodeSyncModel currentModel)
     {
@@ -585,7 +589,10 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
 
      IEnumerator CheckModel()
      {
-         yield return new WaitForSeconds(updateDelta);
-         print("kick node 1 local value is " + model.kickNode1);
+         while (true)
+         {
+             yield return new WaitForSeconds(updateDelta);
+             print("kick node 1 local value is " + model.kickNode1);
+         }
      }
 }

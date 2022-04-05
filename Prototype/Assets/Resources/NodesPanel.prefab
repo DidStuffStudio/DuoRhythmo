@@ -1,51 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &6339081440310475003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 245238882459343714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d9e86dbd0ebbf442bee84ea1e5d3d26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
-  isDefault: 1
-  isEyeHover: 0
-  isMouseHover: 0
-  isActive: 0
-  isConfirmationButton: 0
-  defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  activeColor: {r: 0.42986825, g: 0.8679245, b: 0.58032185, a: 1}
-  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
-  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
-  confirmScaler: {fileID: 4394275539080078757}
-  mouseOver: 0
-  OnActivation:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8248214353105484814}
-        m_TargetAssemblyTypeName: EuclideanRythm, Assembly-CSharp
-        m_MethodName: ChangePulse
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnDeactivation:
-    m_PersistentCalls:
-      m_Calls: []
-  activated: 0
-  mainButtonImage: {fileID: 0}
-  changeTextColor: 0
-  bpmSlider: {fileID: 0}
 --- !u!1 &340280786406333305
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,52 +684,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5283116718003278164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7157217656511206874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d9e86dbd0ebbf442bee84ea1e5d3d26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canInteractBeforeStart: 0
-  isDefault: 1
-  isEyeHover: 0
-  isMouseHover: 0
-  isActive: 0
-  isConfirmationButton: 0
-  defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  activeColor: {r: 0.42986825, g: 0.8679245, b: 0.58032185, a: 1}
-  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
-  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
-  confirmScaler: {fileID: 6687654875969694493}
-  mouseOver: 0
-  OnActivation:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8248214353105484814}
-        m_TargetAssemblyTypeName: EuclideanRythm, Assembly-CSharp
-        m_MethodName: ChangePulse
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  OnDeactivation:
-    m_PersistentCalls:
-      m_Calls: []
-  activated: 0
-  mainButtonImage: {fileID: 0}
-  changeTextColor: 0
-  bpmSlider: {fileID: 0}
 --- !u!1 &8248214351985109841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,7 +986,6 @@ GameObject:
   - component: {fileID: 8248214353105484809}
   - component: {fileID: 8248214353105484814}
   - component: {fileID: 8248214353105484815}
-  - component: {fileID: 8248214353105484813}
   - component: {fileID: 147387570589692383}
   m_Layer: 7
   m_Name: DrumPanel
@@ -1237,26 +1144,6 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
---- !u!114 &8248214353105484813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8248214353105484805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _realtime: {fileID: 0}
-  _sceneViewUUID: 
-  _viewUUID: 
-  _sceneViewPreventOwnershipTakeover: 0
-  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 1
-  _components: []
-  _childViews: []
 --- !u!114 &147387570589692383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2239,6 +2126,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5283116718003278164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7157217656511206874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d9e86dbd0ebbf442bee84ea1e5d3d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
+  isDefault: 1
+  isEyeHover: 0
+  isMouseHover: 0
+  isActive: 0
+  isConfirmationButton: 0
+  defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
+  activeColor: {r: 0.42986825, g: 0.8679245, b: 0.58032185, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
+  confirmScaler: {fileID: 6687654875969694493}
+  mouseOver: 0
+  OnActivation:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8248214353105484814}
+        m_TargetAssemblyTypeName: EuclideanRythm, Assembly-CSharp
+        m_MethodName: ChangePulse
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnDeactivation:
+    m_PersistentCalls:
+      m_Calls: []
+  activated: 0
+  mainButtonImage: {fileID: 0}
+  changeTextColor: 0
+  bpmSlider: {fileID: 0}
 --- !u!1001 &6490616900391595332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2352,11 +2285,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
---- !u!224 &7184602827920177196 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4154460268921754984, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
-  m_PrefabInstance: {fileID: 6490616900391595332}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7993737895512624686 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3817992476575605610, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
@@ -2371,6 +2299,11 @@ MonoBehaviour:
 --- !u!1 &6640574212495296234 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 449025973822303150, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
+  m_PrefabInstance: {fileID: 6490616900391595332}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7184602827920177196 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4154460268921754984, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
   m_PrefabInstance: {fileID: 6490616900391595332}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6827745252175445746
@@ -2827,11 +2760,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5959145657542925687, guid: 003ead14673720d46a74cd8862313afb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 003ead14673720d46a74cd8862313afb, type: 3}
---- !u!1 &245238882459343714 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
-  m_PrefabInstance: {fileID: 6827745252175445746}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &245238882459343715 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6748157332143515025, guid: 003ead14673720d46a74cd8862313afb, type: 3}
@@ -2853,6 +2781,57 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7078141786073897815, guid: 003ead14673720d46a74cd8862313afb, type: 3}
   m_PrefabInstance: {fileID: 6827745252175445746}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &245238882459343714 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6748157332143515024, guid: 003ead14673720d46a74cd8862313afb, type: 3}
+  m_PrefabInstance: {fileID: 6827745252175445746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6339081440310475003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245238882459343714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d9e86dbd0ebbf442bee84ea1e5d3d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteractBeforeStart: 0
+  isDefault: 1
+  isEyeHover: 0
+  isMouseHover: 0
+  isActive: 0
+  isConfirmationButton: 0
+  defaultColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
+  activeColor: {r: 0.42986825, g: 0.8679245, b: 0.58032185, a: 1}
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 1}
+  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
+  confirmScaler: {fileID: 4394275539080078757}
+  mouseOver: 0
+  OnActivation:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8248214353105484814}
+        m_TargetAssemblyTypeName: EuclideanRythm, Assembly-CSharp
+        m_MethodName: ChangePulse
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeactivation:
+    m_PersistentCalls:
+      m_Calls: []
+  activated: 0
+  mainButtonImage: {fileID: 0}
+  changeTextColor: 0
+  bpmSlider: {fileID: 0}
 --- !u!1001 &7587847240905775497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2986,11 +2965,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
---- !u!224 &5830729160860093665 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4154460268921754984, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
-  m_PrefabInstance: {fileID: 7587847240905775497}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6751257790225513187 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3817992476575605610, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
@@ -3005,6 +2979,11 @@ MonoBehaviour:
 --- !u!1 &8031660189579473447 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 449025973822303150, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
+  m_PrefabInstance: {fileID: 7587847240905775497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &5830729160860093665 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4154460268921754984, guid: b9a5f09259a97234e8d245cb5dbd0aeb, type: 3}
   m_PrefabInstance: {fileID: 7587847240905775497}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8391207752242084783

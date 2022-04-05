@@ -10,9 +10,7 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
     private RealtimeModel drumModel;
     public NodeManager[] nodeManagers = new NodeManager[5];
     public bool startedJammin = false;
-
-
-    private void Start() => drumModel = model;
+    
 
     protected override void OnRealtimeModelReplaced(NodeSyncModel previousModel, NodeSyncModel currentModel)
     {

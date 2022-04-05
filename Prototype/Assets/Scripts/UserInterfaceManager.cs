@@ -55,7 +55,6 @@ public class UserInterfaceManager : MonoBehaviour {
     {
         _uiAnimator.Play("Rotation", 0, time-(int)time);
         _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
-        print("SETTING ROTATION OF VALUE " + (time-(int)time));
         currentRotationOfUI = time - (int) time;
         justJoined = false;
     }
@@ -64,8 +63,7 @@ public class UserInterfaceManager : MonoBehaviour {
     {
         
         if (ignoreEvents) return;
-
-        print("CALLED PAUSE");
+        
         BlurBackground();
         _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
         //_playerAnimator.speed = 0.0f;
@@ -101,7 +99,6 @@ public class UserInterfaceManager : MonoBehaviour {
             Solo(false, 0);
             animateUIBackward = true;
             _uiAnimator.SetFloat("SpeedMultiplier", -1.0f);
-            print("Rotating back");
         }
     }
 
@@ -153,7 +150,6 @@ public class UserInterfaceManager : MonoBehaviour {
 
     private void BlurBackground()
     {
-        print("Last panel is " + _lastPanel + ", current panel is " + _currentPanel);
         foreach (var t in panels[_lastPanel].GetComponentsInChildren<Transform>())
         {
             t.gameObject.layer =

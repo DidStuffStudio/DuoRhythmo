@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Normal.Realtime;
 using Normal.Realtime.Serialization;
+using UnityEngine;
 
 
-    [RealtimeModel]
-    public partial class NodeSyncModel {
+
+    public partial class NodeSyncModel : RealtimeModel{
         [RealtimeProperty(1, true, true)] private bool _kickNode1;
         [RealtimeProperty(2, true, true)] private bool _kickNode2;
         [RealtimeProperty(3, true, true)] private bool _kickNode3;

@@ -94,18 +94,18 @@ public class RadialSlider : CustomButton {
 
         if (mouseOver && Input.GetMouseButton(0))
         {
-            SetActive();
+            SetActive(false);
             isDraggingWithMouse = true;
         }
         if (Input.GetMouseButtonUp(0))
         {
-            SetDefault();
+            SetDefault(false);
             isDraggingWithMouse = false;
         }
         
     }
 
-    protected override void SetActive()
+    protected override void SetActive(bool sendToServer)
     {
         if(changeTextColor) buttonText.color = activeTextColor;
         mainButtonImage.color = activeHoverColor;
@@ -155,7 +155,7 @@ public class RadialSlider : CustomButton {
             if (_confirmScalerRT.localScale.x < 1.0f)
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
             else {
-                SetActive();
+                SetActive(false);
                 _confirmScalerRT.localScale = Vector3.zero;
                 OnActivation?.Invoke();
             }
@@ -174,7 +174,7 @@ public class RadialSlider : CustomButton {
     {
         base.UnHover();
         mouseOver = false;
-        SetDefault();
+        SetDefault(false);
     }
 
     private void SliderChanged(int index) => UpdateSliderText();

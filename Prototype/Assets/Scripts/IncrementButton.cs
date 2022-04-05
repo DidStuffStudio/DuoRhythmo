@@ -20,7 +20,7 @@ public class IncrementButton : CustomButton
                 ToggleConfirmScaler(false);
                 StartCoroutine(InteractionBreakTime());
                 OnActivation?.Invoke();
-                SetDefault();
+                SetDefault(false);
             }
         }
 
@@ -36,7 +36,7 @@ public class IncrementButton : CustomButton
         
     }
 
-    protected override void SetActive()
+    protected override void SetActive(bool sendToServer)
     {
         if(changeTextColor) buttonText.color = activeTextColor;
         if (isActive) return;
@@ -44,7 +44,7 @@ public class IncrementButton : CustomButton
         isDefault = false;
     }
 
-    protected override void SetDefault()
+    protected override void SetDefault(bool sendToServer)
     {
         if(changeTextColor)buttonText.color = defaultTextColor;
         mainButtonImage.color = defaultColor;
@@ -56,12 +56,12 @@ public class IncrementButton : CustomButton
     protected override void MouseInteraction()
     {
         if(!mouseOver) return;
-        if (Input.GetMouseButton(0)) SetActive();
+        if (Input.GetMouseButton(0)) SetActive(false);
         if (Input.GetMouseButtonUp(0))
         {
             ToggleConfirmScaler(true);
             _confirmScalerRT.localScale = Vector3.one;
-            SetDefault();
+            SetDefault(false);
             OnActivation?.Invoke();
         }
         if (Input.touchCount > 0) {
@@ -70,12 +70,12 @@ public class IncrementButton : CustomButton
             if (Physics.Raycast(Camera.main.ScreenToWorldPoint(touch.position), Vector3.forward, out var hit, LayerMask.GetMask("RenderPanel"))) {
                 if (hit.transform == this.transform) {
                     if (touch.phase == TouchPhase.Began) {
-                        SetActive();
+                        SetActive(false);
                     }
                     if (touch.phase == TouchPhase.Ended) {
                         ToggleConfirmScaler(true);
                         _confirmScalerRT.localScale = Vector3.one;
-                        SetDefault();
+                        SetDefault(false);
                         OnActivation?.Invoke();
                     }
                 }
@@ -90,7 +90,7 @@ public class IncrementButton : CustomButton
     }
     public void ActivateDwellSettings(bool activate)
     {
-        SetDefault();
+        SetDefault(false);
         _canHover = true;
         
         MasterManager.Instance.DwellSettingsActive = activate;

@@ -35,13 +35,14 @@ public class Node : CustomButton {
     }
 
 
-    public void Activate(bool activate) {
-        if (activate) SetActive();
-        else SetDefault();
+    public void ActivateFromEuclideanOrRotate(bool activate) {
+        if (activate) SetActive(true);
+        else SetDefault(true);
     }
 
-    public void SetNodeFromServer(bool activate) {
-        
+    public void SetNodeFromServer(bool activate)
+    {
+        print("Setting node from server");
         if (activate)
         {
             
@@ -71,10 +72,12 @@ public class Node : CustomButton {
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
-    protected override void SetActive() {
-        if (!RealTimeInstance.Instance.isSoloMode)
+
+
+    protected override void SetActive(bool sendToServer) {
+        if (!RealTimeInstance.Instance.isSoloMode && sendToServer)
         {
-            
+         
             //Call node sync set node
             _nodeSync.SetNodeOnServer(drumType, indexValue, true);
             
@@ -84,12 +87,12 @@ public class Node : CustomButton {
             //MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
         }
         
-        base.SetActive();
+        base.SetActive(false);
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
-    protected override void SetDefault() {
-        if (!RealTimeInstance.Instance.isSoloMode)
+    protected override void SetDefault(bool sendToServer) {
+        if (!RealTimeInstance.Instance.isSoloMode && sendToServer)
         {
             //Call node sync set node
             _nodeSync.SetNodeOnServer(drumType, indexValue, false);
@@ -97,11 +100,11 @@ public class Node : CustomButton {
             //MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 0;
             //MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);
         }
-        base.SetDefault();
+        base.SetDefault(false);
         MasterManager.Instance.UpdateSubNodes(indexValue, isActive, nodeManager.subNodeIndex);
     }
 
-    public void Deactivate() => SetDefault();
+    public void Deactivate() => SetDefault(false);
 
     public void PlayDrum() {
         if (!isActive || !canPlay) return;

@@ -14,7 +14,7 @@ public class PanelSwitcherButton : CustomButton
             else {
                 _confirmScalerRT.localScale = Vector3.zero;
                 StartCoroutine(InteractionBreakTime());
-                SetDefault();
+                SetDefault(false);
                 OnActivation?.Invoke();
             }
         }
@@ -53,7 +53,7 @@ public class PanelSwitcherButton : CustomButton
 
     }
 
-    protected override void SetActive()
+    protected override void SetActive(bool sendToServer)
     {
         if(changeTextColor) buttonText.color = activeTextColor;
         if (isActive) return;
@@ -61,7 +61,7 @@ public class PanelSwitcherButton : CustomButton
         isDefault = false;
     }
 
-    protected override void SetDefault()
+    protected override void SetDefault(bool sendToServer)
     {
         mouseOver = false;
         if(changeTextColor)buttonText.color = defaultTextColor;
@@ -74,10 +74,10 @@ public class PanelSwitcherButton : CustomButton
     protected override void MouseInteraction()
     {
         if(!mouseOver) return;
-        if (Input.GetMouseButton(0)) SetActive();
+        if (Input.GetMouseButton(0)) SetActive(false);
         if (Input.GetMouseButtonUp(0))
         {
-            SetDefault();
+            SetDefault(false);
             OnActivation?.Invoke();
         }
         if (Input.touchCount > 0) {
@@ -86,10 +86,10 @@ public class PanelSwitcherButton : CustomButton
             if (Physics.Raycast(Camera.main.ScreenToWorldPoint(touch.position), Vector3.forward, out var hit, LayerMask.GetMask("RenderPanel"))) {
                 if (hit.transform == this.transform) {
                     if (touch.phase == TouchPhase.Began) {
-                        SetActive();
+                        SetActive(false);
                     }
                     if (touch.phase == TouchPhase.Ended) {
-                        SetDefault();
+                        SetDefault(false);
                         OnActivation?.Invoke();
                     }
                 }
@@ -101,7 +101,7 @@ public class PanelSwitcherButton : CustomButton
     
     public void ActivateDwellSettings(bool activate)
     {
-        SetDefault();
+        SetDefault(false);
         _canHover = true;
         MasterManager.Instance.DwellSettingsActive = activate;
         MasterManager.Instance.SetDwellSettingsActive(activate);

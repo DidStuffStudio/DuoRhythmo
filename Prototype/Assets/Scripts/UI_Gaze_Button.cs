@@ -24,7 +24,7 @@ public class UI_Gaze_Button : CustomButton {
    
     public void Deactivate() {
         
-            SetDefault();
+            SetDefault(false);
 
     }
 

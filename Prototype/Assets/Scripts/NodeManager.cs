@@ -98,8 +98,7 @@ public class NodeManager : MonoBehaviour {
 
     private void Update() {
         if (!_nodeIsSetup) return;
-
-        print(levels.Length);
+        
         for (int i = 0; i < levels.Length; i++)
         {
             AkSoundEngine.SetRTPCValue(effectNames[i], levels[i]);
@@ -300,11 +299,11 @@ public class NodeManager : MonoBehaviour {
             // if the euclidean value is 1, then it means it should be active, so activate
             if (value == 1 && !_nodes[i].isActive)
             {
-                _nodes[i].Activate(true);
+                _nodes[i].ActivateFromEuclideanOrRotate(true);
             }
             else if (value == 0 && _nodes[i].isActive)
             {
-                _nodes[i].Activate(false);
+                _nodes[i].ActivateFromEuclideanOrRotate(false);
             }
 
               
@@ -336,12 +335,12 @@ public class NodeManager : MonoBehaviour {
             // if the euclidean value is 1, then it means it should be active, so activate
             if (value == 1 && !_nodes[i].isActive)
             {
-                _nodes[i].Activate(true);
+                _nodes[i].ActivateFromEuclideanOrRotate(true);
                 
             }
             else if (value == 0 && _nodes[i].isActive)
             {
-                _nodes[i].Activate(false);
+                _nodes[i].ActivateFromEuclideanOrRotate(false);
                 
             }
                 
@@ -354,12 +353,12 @@ public class NodeManager : MonoBehaviour {
                 // if the euclidean value is 1, then it means it should be active, so activate
                 if (euclideanValue == 1 && !_nodes[i].isActive)
                 {
-                    _nodes[i].Activate(true);
+                    _nodes[i].ActivateFromEuclideanOrRotate(true);
                     
                 }
                 else if (euclideanValue == 0 && _nodes[i].isActive)
                 {
-                    _nodes[i].Activate(false);
+                    _nodes[i].ActivateFromEuclideanOrRotate(false);
                     
                 }
                 

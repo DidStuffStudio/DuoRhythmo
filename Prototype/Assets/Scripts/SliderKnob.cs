@@ -69,7 +69,7 @@ public class SliderKnob : CustomButton
                 
     }
     
-    protected override void SetActive()
+    protected override void SetActive(bool sendToServer)
     {
         if(changeTextColor) buttonText.color = activeTextColor;
         mainButtonImage.color = activeHoverColor;
@@ -104,12 +104,12 @@ public class SliderKnob : CustomButton
 
         if (mouseOver && Input.GetMouseButton(0))
         {
-            SetActive();
+            SetActive(false);
             isDraggingWithMouse = true;
         }
         if (Input.GetMouseButtonUp(0))
         {
-            SetDefault();
+            SetDefault(false);
             isDraggingWithMouse = false;
         }
         
@@ -120,10 +120,10 @@ public class SliderKnob : CustomButton
                 if (hit.transform == this.transform) {
                     switch (touch.phase) {
                         case TouchPhase.Began:
-                            SetActive();
+                            SetActive(false);
                             break;
                         case TouchPhase.Ended:
-                            SetDefault();
+                            SetDefault(false);
                             break;
                     }
                 }
@@ -222,7 +222,7 @@ public class SliderKnob : CustomButton
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
             else {
                 _confirmScalerRT.localScale = Vector3.zero;
-                SetActive();
+                SetActive(false);
                 OnActivation?.Invoke();
  
             }
@@ -238,7 +238,7 @@ public class SliderKnob : CustomButton
     protected override void UnHover()
     {
         base.UnHover();
-        SetDefault();
+        SetDefault(false);
     }
 
 
@@ -260,7 +260,7 @@ public class SliderKnob : CustomButton
         if(gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         mouseOver = false;
         _canHover = true;
-        SetDefault();
+        SetDefault(false);
     
     }
 

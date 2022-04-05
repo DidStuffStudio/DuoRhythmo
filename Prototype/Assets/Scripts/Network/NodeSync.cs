@@ -17,6 +17,7 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
     protected override void OnRealtimeModelReplaced(NodeSyncModel previousModel, NodeSyncModel currentModel)
     {
         if(!startedJammin) return;
+        print("Recieved new model");
         if (previousModel != null) {
             // Unregister from events
             previousModel.kickNode1DidChange -= KickNode1DidChange;
@@ -480,7 +481,7 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
      public void SetNodeOnServer(DrumType drumType, int index, bool activate)
      {
          print("Setting node on server");
-        GetComponent<RealtimeView>().RequestOwnership();
+        //GetComponent<RealtimeView>().RequestOwnership();
         switch (drumType)
         {
             case DrumType.Kick:
@@ -577,6 +578,9 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
                 else if (index == 14) model.cymbalNode15 = activate;
                 else if (index == 15) model.cymbalNode16 = activate;
                 break;
+
+            default:
+                throw new ArgumentOutOfRangeException(nameof(drumType), drumType, "Default was called when trying to set node on server from node sync");
         }
         
     }

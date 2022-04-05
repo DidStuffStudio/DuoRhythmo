@@ -78,14 +78,14 @@ public class CustomButton : MonoBehaviour {
              
                 if (!isActive) { 
                     StartCoroutine(InteractionBreakTime());
-                    SetActive();
+                    SetActive(true);
                     
                     OnActivation?.Invoke();
                   
                 }
                 else {
                     StartCoroutine(InteractionBreakTime());
-                    SetDefault();
+                    SetDefault(true);
                     confirmScaler.GetComponent<Image>().color = activeColor;
                     OnDeactivation?.Invoke();
                
@@ -122,13 +122,13 @@ public class CustomButton : MonoBehaviour {
             if (isDefault)
             {
                 OnActivation?.Invoke();
-                SetActive();
+                SetActive(true);
                 
             }
             else
             {
                 OnDeactivation?.Invoke();
-                SetDefault();
+                SetDefault(true);
                 
             }
         }
@@ -139,11 +139,11 @@ public class CustomButton : MonoBehaviour {
                 if (hit.transform == this.transform) {
                     if (isDefault) {
                         OnActivation?.Invoke();
-                        SetActive();
+                        SetActive(true);
                     }
                     else {
                         OnDeactivation?.Invoke();
-                        SetDefault();
+                        SetDefault(true);
                 
                     }
                 }
@@ -182,11 +182,11 @@ public class CustomButton : MonoBehaviour {
         if(gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
         mouseOver = false;
         _canHover = true;
-        if (isDefault) SetDefault();
-        else if (isActive) SetActive();
+        if (isDefault) SetDefault(false);
+        else if (isActive) SetActive(false);
     }
 
-    protected virtual void SetActive()
+    protected virtual void SetActive(bool sendToServer)
     {
         if(changeTextColor) buttonText.color = activeTextColor;
         mainButtonImage.color = activeColor;
@@ -223,11 +223,11 @@ public class CustomButton : MonoBehaviour {
         _canHover = true;
         if (!isEyeHover) return;
         isEyeHover = false;
-        if (isDefault) SetDefault();
-        else if (isActive) SetActive();
+        if (isDefault) SetDefault(false);
+        else if (isActive) SetActive(false);
     }
 
-    protected virtual void SetDefault() {
+    protected virtual void SetDefault(bool sendToServer) {
          mainButtonImage.color = defaultColor;
         if(changeTextColor)buttonText.color = defaultTextColor;
         confirmScaler.GetComponent<Image>().color = activeColor;
@@ -240,6 +240,7 @@ public class CustomButton : MonoBehaviour {
         _collider.enabled = enabled;
         mainButtonImage.enabled = enabled;
     }
+    
     
 
     protected virtual IEnumerator InteractionBreakTime() {

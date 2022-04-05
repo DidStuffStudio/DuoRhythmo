@@ -13,13 +13,13 @@ public class OneOptionButton : CustomButton {
         base.Start();
         if (activateOnStart)
         {
-            base.SetActive();
+            base.SetActive(false);
             _canHover = false;
         }
     }
 
-    protected override void SetActive() {
-        base.SetActive();
+    protected override void SetActive(bool sendToServer) {
+        base.SetActive(false);
         _canHover = false;
         foreach (var button in otherButtonsToDisable) {
             button.Deactivate();
@@ -35,7 +35,7 @@ public class OneOptionButton : CustomButton {
             if (Physics.Raycast(Camera.main.ScreenToWorldPoint(touch.position), Vector3.forward, out var hit, LayerMask.GetMask("RenderPanel"))) {
                 if (hit.transform == this.transform) {
                     OnActivation?.Invoke();
-                    SetActive();
+                    SetActive(false);
                     _canHover = false;
                 }
             }
@@ -43,12 +43,12 @@ public class OneOptionButton : CustomButton {
         if((!mouseOver || !Input.GetMouseButtonDown(0))) return;
         if (!isDefault) return;
         OnActivation?.Invoke();
-        SetActive();
+        SetActive(false);
         _canHover = false;
     }
 
     public void Deactivate() {
-        base.SetDefault();
+        base.SetDefault(false);
     }
 
     protected override void FixedUpdate() {
@@ -65,7 +65,7 @@ public class OneOptionButton : CustomButton {
             {
                 _confirmScalerRT.localScale = Vector3.zero;
                 ToggleConfirmScaler(false);
-                SetActive();
+                SetActive(false);
                 OnActivation?.Invoke();
             }
         }

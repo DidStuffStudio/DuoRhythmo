@@ -21,7 +21,7 @@ public class DwellSpeedButton : CustomButton
         //_text.text = _string;
         if (activateOnStart)
         {
-            SetActive();
+            SetActive(false);
             _canHover = false;
         }
     }
@@ -36,7 +36,7 @@ public class DwellSpeedButton : CustomButton
             else if(_canHover)
             {
                 _confirmScalerRT.localScale = Vector3.zero;
-                SetActive();
+                SetActive(false);
                 OnActivation?.Invoke();
 
             }
@@ -55,16 +55,16 @@ public class DwellSpeedButton : CustomButton
     public void Deactivate()
     {
 
-        SetDefault();
+        SetDefault(false);
        
     }
 
     
-    protected override void SetActive()
+    protected override void SetActive(bool sendToServer)
     {
 
         _dwellSpeedMaster.UpdateButtons();
-        base.SetActive();
+        base.SetActive(false);
         isDwellActive = true;
     }
 
@@ -79,7 +79,7 @@ public class DwellSpeedButton : CustomButton
     {
         if (isDwellActive)
         {
-            SetActive();
+            SetActive(false);
         }
     }
 }

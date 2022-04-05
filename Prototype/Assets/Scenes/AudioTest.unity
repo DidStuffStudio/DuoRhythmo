@@ -10416,7 +10416,7 @@ VisualEffect:
       - m_Value: 4.7
         m_Name: SphereSize
         m_Overridden: 1
-      - m_Value: 1000
+      - m_Value: 100000
         m_Name: Spawnrate
         m_Overridden: 1
       - m_Value: 0
@@ -11968,6 +11968,7 @@ MonoBehaviour:
   - Cymbal
   maxNumberOfPlayers: 2
   nodeSync: {fileID: 0}
+  nodeDictionarySync: {fileID: 0}
 --- !u!4 &1590067203
 Transform:
   m_ObjectHideFlags: 0

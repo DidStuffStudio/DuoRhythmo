@@ -40,7 +40,7 @@ public class UserInterfaceManager : MonoBehaviour {
         _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _vfx.transform.gameObject.SetActive(false);
         _uiAnimator = GetComponent<Animator>();
-       
+        _targetVFXColor = MasterManager.Instance.drumColors[0];
    
         if(justJoined) return;
         _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
@@ -74,10 +74,16 @@ public class UserInterfaceManager : MonoBehaviour {
         StartCoroutine(WaitToEnableRot());
     }
 
+    public void PlayAnimationSolo(bool forward)
+    {
+        if(_currentPanel != _lastPanel) PauseAnimation();
+        else PlayAnimation(forward);
+    }
+
     public void PlayAnimation(bool forward)
     {
-        _lastPanel = _currentPanel;
-        if(RealTimeInstance.Instance.isSoloMode)StartCoroutine(IgnoreEvents());
+        
+        if(RealTimeInstance.Instance.isSoloMode)StartCoroutine(IgnoreEvents(0.1f));
         
         if (forward)
         {
@@ -224,10 +230,10 @@ public class UserInterfaceManager : MonoBehaviour {
         foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(false);
     }
     
-    private IEnumerator IgnoreEvents()
+    private IEnumerator IgnoreEvents(float ignoreTime)
     {
         ignoreEvents = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(ignoreTime);
         ignoreEvents = false;
     }
     

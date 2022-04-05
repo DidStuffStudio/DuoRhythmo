@@ -521,6 +521,7 @@ public class MasterManager : MonoBehaviour {
        nodeDictionarySync.nodeManagers = _nodeManagers.ToArray();
        nodeSync.startedJammin = true;
        nodeDictionarySync.startedJammin = true;
+       userInterfaceManager.ToggleVFX(true);
         gameSetUpFinished = true;
     }
 

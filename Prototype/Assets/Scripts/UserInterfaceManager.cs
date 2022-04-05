@@ -113,9 +113,20 @@ public class UserInterfaceManager : MonoBehaviour {
             _vfx.SetVector4("Core color", _targetVFXColor);
             // start a new transition
             var index = 0;
-            if (_currentPanel % 2 == 1) index = _currentPanel - 1;
-            else index = _currentPanel;
-            _targetVFXColor = MasterManager.Instance.drumColors[index/2];
+            if (RealTimeInstance.Instance.isSoloMode)
+            {
+                if (_currentPanel % 2 == 1) index = _currentPanel - 1;
+                else index = _currentPanel;
+
+                index /= 2;
+            }
+            else
+            {
+                index = _currentPanel;
+                if (_currentPanel > 4) index = _currentPanel - 5;
+            }
+
+            _targetVFXColor = MasterManager.Instance.drumColors[index];
             _timeLeft = 5.0f;
         }
         else {

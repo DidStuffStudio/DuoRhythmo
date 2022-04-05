@@ -582,4 +582,10 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
         }
         
     }
+
+     IEnumerator CheckModel()
+     {
+         yield return new WaitForSeconds(updateDelta);
+         print("kick node 1 local value is " + model.kickNode1);
+     }
 }

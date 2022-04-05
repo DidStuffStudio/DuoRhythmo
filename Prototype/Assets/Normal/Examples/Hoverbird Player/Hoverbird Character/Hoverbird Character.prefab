@@ -4764,6 +4764,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4776,6 +4777,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4818,10 +4820,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7549673179561983650}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 3cd2515d5812b4649a621131319b6b8a,
+    - target: {fileID: -8261088929372764632, guid: 3cd2515d5812b4649a621131319b6b8a,
         type: 3}
-      propertyPath: m_Name
-      value: Bird Model
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ba6856629f9d4f94b2dd800f9dc6b48, type: 2}
+    - target: {fileID: -8261088929372764632, guid: 3cd2515d5812b4649a621131319b6b8a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79cb7c163cf6b483295ba3bccf9b84fb, type: 2}
+    - target: {fileID: -4216859302048453862, guid: 3cd2515d5812b4649a621131319b6b8a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3cd2515d5812b4649a621131319b6b8a,
         type: 3}
@@ -4837,6 +4849,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 3cd2515d5812b4649a621131319b6b8a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3cd2515d5812b4649a621131319b6b8a,
         type: 3}
@@ -4855,16 +4872,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3cd2515d5812b4649a621131319b6b8a,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 3cd2515d5812b4649a621131319b6b8a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 3cd2515d5812b4649a621131319b6b8a,
-        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -4878,21 +4885,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3cd2515d5812b4649a621131319b6b8a,
+        type: 3}
+      propertyPath: m_Name
+      value: Bird Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606630900751007202, guid: 3cd2515d5812b4649a621131319b6b8a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ec16966c5a512a940a415d721e101b98, type: 2}
     - target: {fileID: 2769065360411296364, guid: 3cd2515d5812b4649a621131319b6b8a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3e9443e01f8e3430484596e12d758f4a, type: 2}
-    - target: {fileID: -8261088929372764632, guid: 3cd2515d5812b4649a621131319b6b8a,
+    - target: {fileID: 3302688333315716396, guid: 3cd2515d5812b4649a621131319b6b8a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2ba6856629f9d4f94b2dd800f9dc6b48, type: 2}
-    - target: {fileID: -8261088929372764632, guid: 3cd2515d5812b4649a621131319b6b8a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 79cb7c163cf6b483295ba3bccf9b84fb, type: 2}
+      objectReference: {fileID: 2100000, guid: ec16966c5a512a940a415d721e101b98, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cd2515d5812b4649a621131319b6b8a, type: 3}
 --- !u!4 &8872359792438791901 stripped
@@ -4908,10 +4920,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7549673179561983650}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: cdbe92495d72849f0ab4ce107bfad6f6,
+    - target: {fileID: -4216859302048453862, guid: cdbe92495d72849f0ab4ce107bfad6f6,
         type: 3}
-      propertyPath: m_Name
-      value: Hoverboard Model
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cdbe92495d72849f0ab4ce107bfad6f6,
         type: 3}
@@ -4930,6 +4942,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cdbe92495d72849f0ab4ce107bfad6f6,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: cdbe92495d72849f0ab4ce107bfad6f6,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -4942,16 +4959,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: cdbe92495d72849f0ab4ce107bfad6f6,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: cdbe92495d72849f0ab4ce107bfad6f6,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cdbe92495d72849f0ab4ce107bfad6f6,
         type: 3}
@@ -4975,14 +4982,19 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 670a44bb724a34c31a6264a1a1ba0d03, type: 2}
     - target: {fileID: -1504981713932161579, guid: cdbe92495d72849f0ab4ce107bfad6f6,
         type: 3}
-      propertyPath: m_Materials.Array.data[2]
-      value: 
-      objectReference: {fileID: 2100000, guid: be3fee8f0cf324e09afa02d650cf91c3, type: 2}
-    - target: {fileID: -1504981713932161579, guid: cdbe92495d72849f0ab4ce107bfad6f6,
-        type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: c677004612bf641ff8ae4ac4fb9a1e8f, type: 2}
+    - target: {fileID: -1504981713932161579, guid: cdbe92495d72849f0ab4ce107bfad6f6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: be3fee8f0cf324e09afa02d650cf91c3, type: 2}
+    - target: {fileID: -927199367670048503, guid: cdbe92495d72849f0ab4ce107bfad6f6,
+        type: 3}
+      propertyPath: m_Name
+      value: Hoverboard Model
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdbe92495d72849f0ab4ce107bfad6f6, type: 3}
 --- !u!4 &638173013123842754 stripped

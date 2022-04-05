@@ -6,6 +6,7 @@ using UnityEngine.Animations;
 namespace Normal.Realtime.Examples {
     public class HoverbirdPlayerManager : MonoBehaviour {
         [SerializeField] private GameObject _camera = default;
+        [SerializeField] private GameObject _prefab;
 
         private Realtime _realtime;
 
@@ -19,10 +20,12 @@ namespace Normal.Realtime.Examples {
 
         private void DidConnectToRoom(Realtime realtime) {
             // Instantiate the Player for this client once we've successfully connected to the room
-            GameObject playerGameObject = Realtime.Instantiate(              prefabName: "Hoverbird Player", // Prefab name
-                                                                          ownedByClient: true,               // Make sure the RealtimeView on this prefab is owned by this client
-                                                               preventOwnershipTakeover: true,               // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
-                                                                            useInstance: realtime);          // Use the instance of Realtime that fired the didConnectToRoom event.
+            var options = new Realtime.InstantiateOptions {
+                ownedByClient            = true,    // Make sure the RealtimeView on this prefab is owned by this client.
+                preventOwnershipTakeover = true,    // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
+                useInstance              = realtime // Use the instance of Realtime that fired the didConnectToRoom event.
+            };
+            GameObject playerGameObject = Realtime.Instantiate(_prefab.name, options);
 
             // Get a reference to the player
             HoverbirdPlayer player = playerGameObject.GetComponent<HoverbirdPlayer>();

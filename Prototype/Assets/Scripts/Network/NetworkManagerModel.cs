@@ -13,11 +13,11 @@ public partial class NetworkManagerModel {
 public partial class NetworkManagerModel : RealtimeModel {
     public int numberPlayers {
         get {
-            return _cache.LookForValueInCache(_numberPlayers, entry => entry.numberPlayersSet, entry => entry.numberPlayers);
+            return _numberPlayersProperty.value;
         }
         set {
-            if (this.numberPlayers == value) return;
-            _cache.UpdateLocalCache(entry => { entry.numberPlayersSet = true; entry.numberPlayers = value; return entry; });
+            if (_numberPlayersProperty.value == value) return;
+            _numberPlayersProperty.value = value;
             InvalidateReliableLength();
             FireNumberPlayersDidChange(value);
         }
@@ -26,25 +26,22 @@ public partial class NetworkManagerModel : RealtimeModel {
     public delegate void PropertyChangedHandler<in T>(NetworkManagerModel model, T value);
     public event PropertyChangedHandler<int> numberPlayersDidChange;
     
-    private struct LocalCacheEntry {
-        public bool numberPlayersSet;
-        public int numberPlayers;
-    }
-    
-    private LocalChangeCache<LocalCacheEntry> _cache = new LocalChangeCache<LocalCacheEntry>();
-    
     public enum PropertyID : uint {
         NumberPlayers = 1,
     }
     
-    public NetworkManagerModel() : this(null) {
-    }
+    #region Properties
     
-    public NetworkManagerModel(RealtimeModel parent) : base(null, parent) {
+    private ReliableProperty<int> _numberPlayersProperty;
+    
+    #endregion
+    
+    public NetworkManagerModel() : base(null) {
+        _numberPlayersProperty = new ReliableProperty<int>(1, _numberPlayers);
     }
     
     protected override void OnParentReplaced(RealtimeModel previousParent, RealtimeModel currentParent) {
-        UnsubscribeClearCacheCallback();
+        _numberPlayersProperty.UnsubscribeCallback();
     }
     
     private void FireNumberPlayersDidChange(int value) {
@@ -56,49 +53,25 @@ public partial class NetworkManagerModel : RealtimeModel {
     }
     
     protected override int WriteLength(StreamContext context) {
-        int length = 0;
-        if (context.fullModel) {
-            FlattenCache();
-            length += WriteStream.WriteVarint32Length((uint)PropertyID.NumberPlayers, (uint)_numberPlayers);
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.numberPlayersSet) {
-                length += WriteStream.WriteVarint32Length((uint)PropertyID.NumberPlayers, (uint)entry.numberPlayers);
-            }
-        }
+        var length = 0;
+        length += _numberPlayersProperty.WriteLength(context);
         return length;
     }
     
     protected override void Write(WriteStream stream, StreamContext context) {
-        var didWriteProperties = false;
-        
-        if (context.fullModel) {
-            stream.WriteVarint32((uint)PropertyID.NumberPlayers, (uint)_numberPlayers);
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.numberPlayersSet) {
-                _cache.PushLocalCacheToInflight(context.updateID);
-                ClearCacheOnStreamCallback(context);
-            }
-            if (entry.numberPlayersSet) {
-                stream.WriteVarint32((uint)PropertyID.NumberPlayers, (uint)entry.numberPlayers);
-                didWriteProperties = true;
-            }
-            
-            if (didWriteProperties) InvalidateReliableLength();
-        }
+        var writes = false;
+        writes |= _numberPlayersProperty.Write(stream, context);
+        if (writes) InvalidateContextLength(context);
     }
     
     protected override void Read(ReadStream stream, StreamContext context) {
+        var anyPropertiesChanged = false;
         while (stream.ReadNextPropertyID(out uint propertyID)) {
+            var changed = false;
             switch (propertyID) {
-                case (uint)PropertyID.NumberPlayers: {
-                    int previousValue = _numberPlayers;
-                    _numberPlayers = (int)stream.ReadVarint32();
-                    bool numberPlayersExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.numberPlayersSet);
-                    if (!numberPlayersExistsInChangeCache && _numberPlayers != previousValue) {
-                        FireNumberPlayersDidChange(_numberPlayers);
-                    }
+                case (uint) PropertyID.NumberPlayers: {
+                    changed = _numberPlayersProperty.Read(stream, context);
+                    if (changed) FireNumberPlayersDidChange(numberPlayers);
                     break;
                 }
                 default: {
@@ -106,37 +79,16 @@ public partial class NetworkManagerModel : RealtimeModel {
                     break;
                 }
             }
+            anyPropertiesChanged |= changed;
+        }
+        if (anyPropertiesChanged) {
+            UpdateBackingFields();
         }
     }
     
-    #region Cache Operations
-    
-    private StreamEventDispatcher _streamEventDispatcher;
-    
-    private void FlattenCache() {
+    private void UpdateBackingFields() {
         _numberPlayers = numberPlayers;
-        _cache.Clear();
     }
     
-    private void ClearCache(uint updateID) {
-        _cache.RemoveUpdateFromInflight(updateID);
-    }
-    
-    private void ClearCacheOnStreamCallback(StreamContext context) {
-        if (_streamEventDispatcher != context.dispatcher) {
-            UnsubscribeClearCacheCallback(); // unsub from previous dispatcher
-        }
-        _streamEventDispatcher = context.dispatcher;
-        _streamEventDispatcher.AddStreamCallback(context.updateID, ClearCache);
-    }
-    
-    private void UnsubscribeClearCacheCallback() {
-        if (_streamEventDispatcher != null) {
-            _streamEventDispatcher.RemoveStreamCallback(ClearCache);
-            _streamEventDispatcher = null;
-        }
-    }
-    
-    #endregion
 }
 /* ----- End Normal Autogenerated Code ----- */

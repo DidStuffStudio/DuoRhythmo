@@ -12,47 +12,36 @@ public partial class StopwatchModel {
 public partial class StopwatchModel : RealtimeModel {
     public double startTime {
         get {
-            return _cache.LookForValueInCache(_startTime, entry => entry.startTimeSet, entry => entry.startTime);
+            return _startTimeProperty.value;
         }
         set {
-            if (this.startTime == value) return;
-            _cache.UpdateLocalCache(entry => { entry.startTimeSet = true; entry.startTime = value; return entry; });
+            if (_startTimeProperty.value == value) return;
+            _startTimeProperty.value = value;
             InvalidateReliableLength();
         }
     }
     
     public float animatorTime {
         get {
-            return _cache.LookForValueInCache(_animatorTime, entry => entry.animatorTimeSet, entry => entry.animatorTime);
+            return _animatorTimeProperty.value;
         }
         set {
-            if (this.animatorTime == value) return;
-            _cache.UpdateLocalCache(entry => { entry.animatorTimeSet = true; entry.animatorTime = value; return entry; });
+            if (_animatorTimeProperty.value == value) return;
+            _animatorTimeProperty.value = value;
             InvalidateReliableLength();
         }
     }
     
     public bool firstPlayer {
         get {
-            return _cache.LookForValueInCache(_firstPlayer, entry => entry.firstPlayerSet, entry => entry.firstPlayer);
+            return _firstPlayerProperty.value;
         }
         set {
-            if (this.firstPlayer == value) return;
-            _cache.UpdateLocalCache(entry => { entry.firstPlayerSet = true; entry.firstPlayer = value; return entry; });
+            if (_firstPlayerProperty.value == value) return;
+            _firstPlayerProperty.value = value;
             InvalidateReliableLength();
         }
     }
-    
-    private struct LocalCacheEntry {
-        public bool startTimeSet;
-        public double startTime;
-        public bool animatorTimeSet;
-        public float animatorTime;
-        public bool firstPlayerSet;
-        public bool firstPlayer;
-    }
-    
-    private LocalChangeCache<LocalCacheEntry> _cache = new LocalChangeCache<LocalCacheEntry>();
     
     public enum PropertyID : uint {
         StartTime = 1,
@@ -60,81 +49,59 @@ public partial class StopwatchModel : RealtimeModel {
         FirstPlayer = 2,
     }
     
-    public StopwatchModel() : this(null) {
-    }
+    #region Properties
     
-    public StopwatchModel(RealtimeModel parent) : base(null, parent) {
+    private ReliableProperty<double> _startTimeProperty;
+    
+    private ReliableProperty<float> _animatorTimeProperty;
+    
+    private ReliableProperty<bool> _firstPlayerProperty;
+    
+    #endregion
+    
+    public StopwatchModel() : base(null) {
+        _startTimeProperty = new ReliableProperty<double>(1, _startTime);
+        _animatorTimeProperty = new ReliableProperty<float>(3, _animatorTime);
+        _firstPlayerProperty = new ReliableProperty<bool>(2, _firstPlayer);
     }
     
     protected override void OnParentReplaced(RealtimeModel previousParent, RealtimeModel currentParent) {
-        UnsubscribeClearCacheCallback();
+        _startTimeProperty.UnsubscribeCallback();
+        _animatorTimeProperty.UnsubscribeCallback();
+        _firstPlayerProperty.UnsubscribeCallback();
     }
     
     protected override int WriteLength(StreamContext context) {
-        int length = 0;
-        if (context.fullModel) {
-            FlattenCache();
-            length += WriteStream.WriteDoubleLength((uint)PropertyID.StartTime);
-            length += WriteStream.WriteFloatLength((uint)PropertyID.AnimatorTime);
-            length += WriteStream.WriteVarint32Length((uint)PropertyID.FirstPlayer, _firstPlayer ? 1u : 0u);
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.startTimeSet) {
-                length += WriteStream.WriteDoubleLength((uint)PropertyID.StartTime);
-            }
-            if (entry.animatorTimeSet) {
-                length += WriteStream.WriteFloatLength((uint)PropertyID.AnimatorTime);
-            }
-            if (entry.firstPlayerSet) {
-                length += WriteStream.WriteVarint32Length((uint)PropertyID.FirstPlayer, entry.firstPlayer ? 1u : 0u);
-            }
-        }
+        var length = 0;
+        length += _startTimeProperty.WriteLength(context);
+        length += _animatorTimeProperty.WriteLength(context);
+        length += _firstPlayerProperty.WriteLength(context);
         return length;
     }
     
     protected override void Write(WriteStream stream, StreamContext context) {
-        var didWriteProperties = false;
-        
-        if (context.fullModel) {
-            stream.WriteDouble((uint)PropertyID.StartTime, _startTime);
-            stream.WriteFloat((uint)PropertyID.AnimatorTime, _animatorTime);
-            stream.WriteVarint32((uint)PropertyID.FirstPlayer, _firstPlayer ? 1u : 0u);
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.startTimeSet || entry.animatorTimeSet || entry.firstPlayerSet) {
-                _cache.PushLocalCacheToInflight(context.updateID);
-                ClearCacheOnStreamCallback(context);
-            }
-            if (entry.startTimeSet) {
-                stream.WriteDouble((uint)PropertyID.StartTime, entry.startTime);
-                didWriteProperties = true;
-            }
-            if (entry.animatorTimeSet) {
-                stream.WriteFloat((uint)PropertyID.AnimatorTime, entry.animatorTime);
-                didWriteProperties = true;
-            }
-            if (entry.firstPlayerSet) {
-                stream.WriteVarint32((uint)PropertyID.FirstPlayer, entry.firstPlayer ? 1u : 0u);
-                didWriteProperties = true;
-            }
-            
-            if (didWriteProperties) InvalidateReliableLength();
-        }
+        var writes = false;
+        writes |= _startTimeProperty.Write(stream, context);
+        writes |= _animatorTimeProperty.Write(stream, context);
+        writes |= _firstPlayerProperty.Write(stream, context);
+        if (writes) InvalidateContextLength(context);
     }
     
     protected override void Read(ReadStream stream, StreamContext context) {
+        var anyPropertiesChanged = false;
         while (stream.ReadNextPropertyID(out uint propertyID)) {
+            var changed = false;
             switch (propertyID) {
-                case (uint)PropertyID.StartTime: {
-                    _startTime = stream.ReadDouble();
+                case (uint) PropertyID.StartTime: {
+                    changed = _startTimeProperty.Read(stream, context);
                     break;
                 }
-                case (uint)PropertyID.AnimatorTime: {
-                    _animatorTime = stream.ReadFloat();
+                case (uint) PropertyID.AnimatorTime: {
+                    changed = _animatorTimeProperty.Read(stream, context);
                     break;
                 }
-                case (uint)PropertyID.FirstPlayer: {
-                    _firstPlayer = (stream.ReadVarint32() != 0);
+                case (uint) PropertyID.FirstPlayer: {
+                    changed = _firstPlayerProperty.Read(stream, context);
                     break;
                 }
                 default: {
@@ -142,39 +109,18 @@ public partial class StopwatchModel : RealtimeModel {
                     break;
                 }
             }
+            anyPropertiesChanged |= changed;
+        }
+        if (anyPropertiesChanged) {
+            UpdateBackingFields();
         }
     }
     
-    #region Cache Operations
-    
-    private StreamEventDispatcher _streamEventDispatcher;
-    
-    private void FlattenCache() {
+    private void UpdateBackingFields() {
         _startTime = startTime;
         _animatorTime = animatorTime;
         _firstPlayer = firstPlayer;
-        _cache.Clear();
     }
     
-    private void ClearCache(uint updateID) {
-        _cache.RemoveUpdateFromInflight(updateID);
-    }
-    
-    private void ClearCacheOnStreamCallback(StreamContext context) {
-        if (_streamEventDispatcher != context.dispatcher) {
-            UnsubscribeClearCacheCallback(); // unsub from previous dispatcher
-        }
-        _streamEventDispatcher = context.dispatcher;
-        _streamEventDispatcher.AddStreamCallback(context.updateID, ClearCache);
-    }
-    
-    private void UnsubscribeClearCacheCallback() {
-        if (_streamEventDispatcher != null) {
-            _streamEventDispatcher.RemoveStreamCallback(ClearCache);
-            _streamEventDispatcher = null;
-        }
-    }
-    
-    #endregion
 }
 /* ----- End Normal Autogenerated Code ----- */

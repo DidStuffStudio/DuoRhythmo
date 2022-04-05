@@ -14,11 +14,11 @@ public partial class ColorSyncModel {
 public partial class ColorSyncModel : RealtimeModel {
     public UnityEngine.Color color {
         get {
-            return _cache.LookForValueInCache(_color, entry => entry.colorSet, entry => entry.color);
+            return _colorProperty.value;
         }
         set {
-            if (this.color == value) return;
-            _cache.UpdateLocalCache(entry => { entry.colorSet = true; entry.color = value; return entry; });
+            if (_colorProperty.value == value) return;
+            _colorProperty.value = value;
             InvalidateReliableLength();
             FireColorDidChange(value);
         }
@@ -27,25 +27,22 @@ public partial class ColorSyncModel : RealtimeModel {
     public delegate void PropertyChangedHandler<in T>(ColorSyncModel model, T value);
     public event PropertyChangedHandler<UnityEngine.Color> colorDidChange;
     
-    private struct LocalCacheEntry {
-        public bool colorSet;
-        public UnityEngine.Color color;
-    }
-    
-    private LocalChangeCache<LocalCacheEntry> _cache = new LocalChangeCache<LocalCacheEntry>();
-    
     public enum PropertyID : uint {
         Color = 1,
     }
     
-    public ColorSyncModel() : this(null) {
-    }
+    #region Properties
     
-    public ColorSyncModel(RealtimeModel parent) : base(null, parent) {
+    private ReliableProperty<UnityEngine.Color> _colorProperty;
+    
+    #endregion
+    
+    public ColorSyncModel() : base(null) {
+        _colorProperty = new ReliableProperty<UnityEngine.Color>(1, _color);
     }
     
     protected override void OnParentReplaced(RealtimeModel previousParent, RealtimeModel currentParent) {
-        UnsubscribeClearCacheCallback();
+        _colorProperty.UnsubscribeCallback();
     }
     
     private void FireColorDidChange(UnityEngine.Color value) {
@@ -57,49 +54,25 @@ public partial class ColorSyncModel : RealtimeModel {
     }
     
     protected override int WriteLength(StreamContext context) {
-        int length = 0;
-        if (context.fullModel) {
-            FlattenCache();
-            length += WriteStream.WriteBytesLength((uint)PropertyID.Color, WriteStream.ColorToBytesLength());
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.colorSet) {
-                length += WriteStream.WriteBytesLength((uint)PropertyID.Color, WriteStream.ColorToBytesLength());
-            }
-        }
+        var length = 0;
+        length += _colorProperty.WriteLength(context);
         return length;
     }
     
     protected override void Write(WriteStream stream, StreamContext context) {
-        var didWriteProperties = false;
-        
-        if (context.fullModel) {
-            stream.WriteBytes((uint)PropertyID.Color, WriteStream.ColorToBytes(_color));
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.colorSet) {
-                _cache.PushLocalCacheToInflight(context.updateID);
-                ClearCacheOnStreamCallback(context);
-            }
-            if (entry.colorSet) {
-                stream.WriteBytes((uint)PropertyID.Color, WriteStream.ColorToBytes(entry.color));
-                didWriteProperties = true;
-            }
-            
-            if (didWriteProperties) InvalidateReliableLength();
-        }
+        var writes = false;
+        writes |= _colorProperty.Write(stream, context);
+        if (writes) InvalidateContextLength(context);
     }
     
     protected override void Read(ReadStream stream, StreamContext context) {
+        var anyPropertiesChanged = false;
         while (stream.ReadNextPropertyID(out uint propertyID)) {
+            var changed = false;
             switch (propertyID) {
-                case (uint)PropertyID.Color: {
-                    UnityEngine.Color previousValue = _color;
-                    _color = ReadStream.ColorFromBytes(stream.ReadBytes());
-                    bool colorExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.colorSet);
-                    if (!colorExistsInChangeCache && _color != previousValue) {
-                        FireColorDidChange(_color);
-                    }
+                case (uint) PropertyID.Color: {
+                    changed = _colorProperty.Read(stream, context);
+                    if (changed) FireColorDidChange(color);
                     break;
                 }
                 default: {
@@ -107,37 +80,16 @@ public partial class ColorSyncModel : RealtimeModel {
                     break;
                 }
             }
+            anyPropertiesChanged |= changed;
+        }
+        if (anyPropertiesChanged) {
+            UpdateBackingFields();
         }
     }
     
-    #region Cache Operations
-    
-    private StreamEventDispatcher _streamEventDispatcher;
-    
-    private void FlattenCache() {
+    private void UpdateBackingFields() {
         _color = color;
-        _cache.Clear();
     }
     
-    private void ClearCache(uint updateID) {
-        _cache.RemoveUpdateFromInflight(updateID);
-    }
-    
-    private void ClearCacheOnStreamCallback(StreamContext context) {
-        if (_streamEventDispatcher != context.dispatcher) {
-            UnsubscribeClearCacheCallback(); // unsub from previous dispatcher
-        }
-        _streamEventDispatcher = context.dispatcher;
-        _streamEventDispatcher.AddStreamCallback(context.updateID, ClearCache);
-    }
-    
-    private void UnsubscribeClearCacheCallback() {
-        if (_streamEventDispatcher != null) {
-            _streamEventDispatcher.RemoveStreamCallback(ClearCache);
-            _streamEventDispatcher = null;
-        }
-    }
-    
-    #endregion
 }
 /* ----- End Normal Autogenerated Code ----- */

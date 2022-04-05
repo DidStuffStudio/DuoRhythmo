@@ -50,7 +50,7 @@
 #define SIMPLE_JSON_TYPEINFO
 #endif
 
-using System;
+//using System; // NOTE: These have all been made explicit to avoid compilation issues if someone makes a type in the global namespace named Type, Attribute, Enum, etc.
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
@@ -158,9 +158,9 @@ namespace Normal.Internal.SimpleJson
         internal static object GetAtIndex(IDictionary<string, object> obj, int index)
         {
             if (obj == null)
-                throw new ArgumentNullException("obj");
+                throw new System.ArgumentNullException("obj");
             if (index >= obj.Count)
-                throw new ArgumentOutOfRangeException("index");
+                throw new System.ArgumentOutOfRangeException("index");
             int i = 0;
             foreach (KeyValuePair<string, object> o in obj)
                 if (i++ == index) return o.Value;
@@ -274,7 +274,7 @@ namespace Normal.Internal.SimpleJson
         /// <param name="arrayIndex">Index of the array.</param>
         public void CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
         {
-            if (array == null) throw new ArgumentNullException("array");
+            if (array == null) throw new System.ArgumentNullException("array");
             int num = Count;
             foreach (KeyValuePair<string, object> kvp in this)
             {
@@ -572,7 +572,7 @@ namespace Normal.Internal.SimpleJson
             return success;
         }
 
-        public static object DeserializeObject(string json, Type type, IJsonSerializerStrategy jsonSerializerStrategy)
+        public static object DeserializeObject(string json, System.Type type, IJsonSerializerStrategy jsonSerializerStrategy)
         {
             object jsonObject = DeserializeObject(json);
             return type == null || jsonObject != null && ReflectionUtils.IsAssignableFrom(jsonObject.GetType(), type)
@@ -580,7 +580,7 @@ namespace Normal.Internal.SimpleJson
                        : (jsonSerializerStrategy ?? CurrentJsonSerializerStrategy).DeserializeObject(jsonObject, type);
         }
 
-        public static object DeserializeObject(string json, Type type)
+        public static object DeserializeObject(string json, System.Type type)
         {
             return DeserializeObject(json, type, null);
         }
@@ -835,7 +835,7 @@ namespace Normal.Internal.SimpleJson
                         {
                             // parse the 32 bit hex into an integer codepoint
                             uint codePoint;
-                            if (!(success = UInt32.TryParse(new string(json, index, 4), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out codePoint)))
+                            if (!(success = System.UInt32.TryParse(new string(json, index, 4), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out codePoint)))
                                 return "";
 
                             // convert the integer codepoint to a unicode char and add to string
@@ -846,7 +846,7 @@ namespace Normal.Internal.SimpleJson
                                 if (remainingLength >= 6)
                                 {
                                     uint lowCodePoint;
-                                    if (new string(json, index, 2) == "\\u" && UInt32.TryParse(new string(json, index + 2, 4), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out lowCodePoint))
+                                    if (new string(json, index, 2) == "\\u" && System.UInt32.TryParse(new string(json, index + 2, 4), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out lowCodePoint))
                                     {
                                         if (0xDC00 <= lowCodePoint && lowCodePoint <= 0xDFFF)    // if low surrogate
                                         {
@@ -883,9 +883,9 @@ namespace Normal.Internal.SimpleJson
         {
             // http://www.java2s.com/Open-Source/CSharp/2.6.4-mono-.net-core/System/System/Char.cs.htm
             if (utf32 < 0 || utf32 > 0x10FFFF)
-                throw new ArgumentOutOfRangeException("utf32", "The argument must be from 0 to 0x10FFFF.");
+                throw new System.ArgumentOutOfRangeException("utf32", "The argument must be from 0 to 0x10FFFF.");
             if (0xD800 <= utf32 && utf32 <= 0xDFFF)
-                throw new ArgumentOutOfRangeException("utf32", "The argument must not be in surrogate pair range.");
+                throw new System.ArgumentOutOfRangeException("utf32", "The argument must not be in surrogate pair range.");
             if (utf32 < 0x10000)
                 return new string((char)utf32, 1);
             utf32 -= 0x10000;
@@ -899,7 +899,7 @@ namespace Normal.Internal.SimpleJson
             int charLength = (lastIndex - index) + 1;
             object returnNumber;
             string str = new string(json, index, charLength);
-            if (str.IndexOf(".", StringComparison.OrdinalIgnoreCase) != -1 || str.IndexOf("e", StringComparison.OrdinalIgnoreCase) != -1)
+            if (str.IndexOf(".", System.StringComparison.OrdinalIgnoreCase) != -1 || str.IndexOf("e", System.StringComparison.OrdinalIgnoreCase) != -1)
             {
                 double number;
                 success = double.TryParse(new string(json, index, charLength), NumberStyles.Any, CultureInfo.InvariantCulture, out number);
@@ -1154,7 +1154,7 @@ namespace Normal.Internal.SimpleJson
             else if (number is float)
                 builder.Append(((float)number).ToString(CultureInfo.InvariantCulture));
             else
-                builder.Append(Convert.ToDouble(number, CultureInfo.InvariantCulture).ToString("r", CultureInfo.InvariantCulture));
+                builder.Append(System.Convert.ToDouble(number, CultureInfo.InvariantCulture).ToString("r", CultureInfo.InvariantCulture));
             return true;
         }
 
@@ -1233,7 +1233,7 @@ namespace Normal.Internal.SimpleJson
     {
         [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate", Justification="Need to support .NET 2")]
         bool TrySerializeNonPrimitiveObject(object input, out object output);
-        object DeserializeObject(object value, Type type);
+        object DeserializeObject(object value, System.Type type);
     }
 
     [GeneratedCode("simple-json", "1.0.0")]
@@ -1244,12 +1244,12 @@ namespace Normal.Internal.SimpleJson
 #endif
  class PocoJsonSerializerStrategy : IJsonSerializerStrategy
     {
-        internal IDictionary<Type, ReflectionUtils.ConstructorDelegate> ConstructorCache;
-        internal IDictionary<Type, IDictionary<string, ReflectionUtils.GetDelegate>> GetCache;
-        internal IDictionary<Type, IDictionary<string, KeyValuePair<Type, ReflectionUtils.SetDelegate>>> SetCache;
+        internal IDictionary<System.Type, ReflectionUtils.ConstructorDelegate>                                         ConstructorCache;
+        internal IDictionary<System.Type, IDictionary<string, ReflectionUtils.GetDelegate>>                            GetCache;
+        internal IDictionary<System.Type, IDictionary<string, KeyValuePair<System.Type, ReflectionUtils.SetDelegate>>> SetCache;
 
-        internal static readonly Type[] EmptyTypes = new Type[0];
-        internal static readonly Type[] ArrayConstructorParameterTypes = new Type[] { typeof(int) };
+        internal static readonly System.Type[] EmptyTypes                     = new System.Type[0];
+        internal static readonly System.Type[] ArrayConstructorParameterTypes = new System.Type[] { typeof(int) };
 
         private static readonly string[] Iso8601Format = new string[]
                                                              {
@@ -1260,9 +1260,9 @@ namespace Normal.Internal.SimpleJson
 
         public PocoJsonSerializerStrategy()
         {
-            ConstructorCache = new ReflectionUtils.ThreadSafeDictionary<Type, ReflectionUtils.ConstructorDelegate>(ContructorDelegateFactory);
-            GetCache = new ReflectionUtils.ThreadSafeDictionary<Type, IDictionary<string, ReflectionUtils.GetDelegate>>(GetterValueFactory);
-            SetCache = new ReflectionUtils.ThreadSafeDictionary<Type, IDictionary<string, KeyValuePair<Type, ReflectionUtils.SetDelegate>>>(SetterValueFactory);
+            ConstructorCache = new ReflectionUtils.ThreadSafeDictionary<System.Type, ReflectionUtils.ConstructorDelegate>(ContructorDelegateFactory);
+            GetCache = new ReflectionUtils.ThreadSafeDictionary<System.Type, IDictionary<string, ReflectionUtils.GetDelegate>>(GetterValueFactory);
+            SetCache = new ReflectionUtils.ThreadSafeDictionary<System.Type, IDictionary<string, KeyValuePair<System.Type, ReflectionUtils.SetDelegate>>>(SetterValueFactory);
         }
 
         protected virtual string MapClrMemberNameToJsonFieldName(string clrPropertyName)
@@ -1270,12 +1270,12 @@ namespace Normal.Internal.SimpleJson
             return clrPropertyName;
         }
 
-        internal virtual ReflectionUtils.ConstructorDelegate ContructorDelegateFactory(Type key)
+        internal virtual ReflectionUtils.ConstructorDelegate ContructorDelegateFactory(System.Type key)
         {
             return ReflectionUtils.GetContructor(key, key.IsArray ? ArrayConstructorParameterTypes : EmptyTypes);
         }
 
-        internal virtual IDictionary<string, ReflectionUtils.GetDelegate> GetterValueFactory(Type type)
+        internal virtual IDictionary<string, ReflectionUtils.GetDelegate> GetterValueFactory(System.Type type)
         {
             IDictionary<string, ReflectionUtils.GetDelegate> result = new Dictionary<string, ReflectionUtils.GetDelegate>();
             foreach (PropertyInfo propertyInfo in ReflectionUtils.GetProperties(type))
@@ -1297,9 +1297,9 @@ namespace Normal.Internal.SimpleJson
             return result;
         }
 
-        internal virtual IDictionary<string, KeyValuePair<Type, ReflectionUtils.SetDelegate>> SetterValueFactory(Type type)
+        internal virtual IDictionary<string, KeyValuePair<System.Type, ReflectionUtils.SetDelegate>> SetterValueFactory(System.Type type)
         {
-            IDictionary<string, KeyValuePair<Type, ReflectionUtils.SetDelegate>> result = new Dictionary<string, KeyValuePair<Type, ReflectionUtils.SetDelegate>>();
+            IDictionary<string, KeyValuePair<System.Type, ReflectionUtils.SetDelegate>> result = new Dictionary<string, KeyValuePair<System.Type, ReflectionUtils.SetDelegate>>();
             foreach (PropertyInfo propertyInfo in ReflectionUtils.GetProperties(type))
             {
                 if (propertyInfo.CanWrite)
@@ -1307,14 +1307,14 @@ namespace Normal.Internal.SimpleJson
                     MethodInfo setMethod = ReflectionUtils.GetSetterMethodInfo(propertyInfo);
                     if (setMethod.IsStatic || !setMethod.IsPublic)
                         continue;
-                    result[MapClrMemberNameToJsonFieldName(propertyInfo.Name)] = new KeyValuePair<Type, ReflectionUtils.SetDelegate>(propertyInfo.PropertyType, ReflectionUtils.GetSetMethod(propertyInfo));
+                    result[MapClrMemberNameToJsonFieldName(propertyInfo.Name)] = new KeyValuePair<System.Type, ReflectionUtils.SetDelegate>(propertyInfo.PropertyType, ReflectionUtils.GetSetMethod(propertyInfo));
                 }
             }
             foreach (FieldInfo fieldInfo in ReflectionUtils.GetFields(type))
             {
                 if (fieldInfo.IsInitOnly || fieldInfo.IsStatic || !fieldInfo.IsPublic)
                     continue;
-                result[MapClrMemberNameToJsonFieldName(fieldInfo.Name)] = new KeyValuePair<Type, ReflectionUtils.SetDelegate>(fieldInfo.FieldType, ReflectionUtils.GetSetMethod(fieldInfo));
+                result[MapClrMemberNameToJsonFieldName(fieldInfo.Name)] = new KeyValuePair<System.Type, ReflectionUtils.SetDelegate>(fieldInfo.FieldType, ReflectionUtils.GetSetMethod(fieldInfo));
             }
             return result;
         }
@@ -1325,13 +1325,13 @@ namespace Normal.Internal.SimpleJson
         }
 
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
-        public virtual object DeserializeObject(object value, Type type)
+        public virtual object DeserializeObject(object value, System.Type type)
         {
-            if (type == null) throw new ArgumentNullException("type");
+            if (type == null) throw new System.ArgumentNullException("type");
             string str = value as string;
 
-            if (type == typeof (Guid) && string.IsNullOrEmpty(str))
-                return default(Guid);
+            if (type == typeof (System.Guid) && string.IsNullOrEmpty(str))
+                return default(System.Guid);
 
             if (value == null)
                 return null;
@@ -1342,18 +1342,18 @@ namespace Normal.Internal.SimpleJson
             {
                 if (str.Length != 0) // We know it can't be null now.
                 {
-                    if (type == typeof(DateTime) || (ReflectionUtils.IsNullableType(type) && Nullable.GetUnderlyingType(type) == typeof(DateTime)))
-                        return DateTime.ParseExact(str, Iso8601Format, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
-                    if (type == typeof(DateTimeOffset) || (ReflectionUtils.IsNullableType(type) && Nullable.GetUnderlyingType(type) == typeof(DateTimeOffset)))
-                        return DateTimeOffset.ParseExact(str, Iso8601Format, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
-                    if (type == typeof(Guid) || (ReflectionUtils.IsNullableType(type) && Nullable.GetUnderlyingType(type) == typeof(Guid)))
-                        return new Guid(str);
-                    if (type == typeof(Uri))
+                    if (type == typeof(System.DateTime) || (ReflectionUtils.IsNullableType(type) && System.Nullable.GetUnderlyingType(type) == typeof(System.DateTime)))
+                        return System.DateTime.ParseExact(str, Iso8601Format, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+                    if (type == typeof(System.DateTimeOffset) || (ReflectionUtils.IsNullableType(type) && System.Nullable.GetUnderlyingType(type) == typeof(System.DateTimeOffset)))
+                        return System.DateTimeOffset.ParseExact(str, Iso8601Format, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+                    if (type == typeof(System.Guid) || (ReflectionUtils.IsNullableType(type) && System.Nullable.GetUnderlyingType(type) == typeof(System.Guid)))
+                        return new System.Guid(str);
+                    if (type == typeof(System.Uri))
                     {
-                        bool isValid =  Uri.IsWellFormedUriString(str, UriKind.RelativeOrAbsolute);
+                        bool isValid =  System.Uri.IsWellFormedUriString(str, System.UriKind.RelativeOrAbsolute);
 
-                        Uri result;
-                        if (isValid && Uri.TryCreate(str, UriKind.RelativeOrAbsolute, out result))
+                        System.Uri result;
+                        if (isValid && System.Uri.TryCreate(str, System.UriKind.RelativeOrAbsolute, out result))
                             return result;
 
 												return null;
@@ -1362,19 +1362,19 @@ namespace Normal.Internal.SimpleJson
 									if (type == typeof(string))  
 										return str;
 
-									return Convert.ChangeType(str, type, CultureInfo.InvariantCulture);
+									return System.Convert.ChangeType(str, type, CultureInfo.InvariantCulture);
                 }
                 else
                 {
-                    if (type == typeof(Guid))
-                        obj = default(Guid);
-                    else if (ReflectionUtils.IsNullableType(type) && Nullable.GetUnderlyingType(type) == typeof(Guid))
+                    if (type == typeof(System.Guid))
+                        obj = default(System.Guid);
+                    else if (ReflectionUtils.IsNullableType(type) && System.Nullable.GetUnderlyingType(type) == typeof(System.Guid))
                         obj = null;
                     else
                         obj = str;
                 }
                 // Empty string case
-                if (!ReflectionUtils.IsNullableType(type) && Nullable.GetUnderlyingType(type) == typeof(Guid))
+                if (!ReflectionUtils.IsNullableType(type) && System.Nullable.GetUnderlyingType(type) == typeof(System.Guid))
                     return str;
             }
             else if (value is bool)
@@ -1387,7 +1387,7 @@ namespace Normal.Internal.SimpleJson
             if ((valueIsDouble && type != typeof(double)) || (valueIsLong && type != typeof(long)))
             {
                 obj = type == typeof(int) || type == typeof(long) || type == typeof(double) || type == typeof(float) || type == typeof(bool) || type == typeof(decimal) || type == typeof(byte) || type == typeof(short)
-                            ? Convert.ChangeType(value, type, CultureInfo.InvariantCulture)
+                            ? System.Convert.ChangeType(value, type, CultureInfo.InvariantCulture)
                             : value;
             }
             else
@@ -1400,11 +1400,11 @@ namespace Normal.Internal.SimpleJson
                     if (ReflectionUtils.IsTypeDictionary(type))
                     {
                         // if dictionary then
-                        Type[] types = ReflectionUtils.GetGenericTypeArguments(type);
-                        Type keyType = types[0];
-                        Type valueType = types[1];
+                        System.Type[] types = ReflectionUtils.GetGenericTypeArguments(type);
+                        System.Type keyType = types[0];
+                        System.Type valueType = types[1];
 
-                        Type genericType = typeof(Dictionary<,>).MakeGenericType(keyType, valueType);
+                        System.Type genericType = typeof(Dictionary<,>).MakeGenericType(keyType, valueType);
 
                         IDictionary dict = (IDictionary)ConstructorCache[genericType]();
 
@@ -1420,7 +1420,7 @@ namespace Normal.Internal.SimpleJson
                         else
                         {
                             obj = ConstructorCache[type]();
-                            foreach (KeyValuePair<string, KeyValuePair<Type, ReflectionUtils.SetDelegate>> setter in SetCache[type])
+                            foreach (KeyValuePair<string, KeyValuePair<System.Type, ReflectionUtils.SetDelegate>> setter in SetCache[type])
                             {
                                 object jsonValue;
                                 if (jsonObject.TryGetValue(setter.Key, out jsonValue))
@@ -1449,7 +1449,7 @@ namespace Normal.Internal.SimpleJson
                         }
                         else if (ReflectionUtils.IsTypeGenericeCollectionInterface(type) || ReflectionUtils.IsAssignableFrom(typeof(IList), type))
                         {
-                            Type innerType = ReflectionUtils.GetGenericListElementType(type);
+                            System.Type innerType = ReflectionUtils.GetGenericListElementType(type);
                             list = (IList)(ConstructorCache[type] ?? ConstructorCache[typeof(List<>).MakeGenericType(innerType)])(jsonObject.Count);
                             foreach (object o in jsonObject)
                                 list.Add(DeserializeObject(o, innerType));
@@ -1464,26 +1464,26 @@ namespace Normal.Internal.SimpleJson
             return obj;
         }
 
-        protected virtual object SerializeEnum(Enum p)
+        protected virtual object SerializeEnum(System.Enum p)
         {
-            return Convert.ToDouble(p, CultureInfo.InvariantCulture);
+            return System.Convert.ToDouble(p, CultureInfo.InvariantCulture);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate", Justification="Need to support .NET 2")]
         protected virtual bool TrySerializeKnownTypes(object input, out object output)
         {
             bool returnValue = true;
-            if (input is DateTime)
-                output = ((DateTime)input).ToUniversalTime().ToString(Iso8601Format[0], CultureInfo.InvariantCulture);
-            else if (input is DateTimeOffset)
-                output = ((DateTimeOffset)input).ToUniversalTime().ToString(Iso8601Format[0], CultureInfo.InvariantCulture);
-            else if (input is Guid)
-                output = ((Guid)input).ToString("D");
-            else if (input is Uri)
+            if (input is System.DateTime)
+                output = ((System.DateTime)input).ToUniversalTime().ToString(Iso8601Format[0], CultureInfo.InvariantCulture);
+            else if (input is System.DateTimeOffset)
+                output = ((System.DateTimeOffset)input).ToUniversalTime().ToString(Iso8601Format[0], CultureInfo.InvariantCulture);
+            else if (input is System.Guid)
+                output = ((System.Guid)input).ToString("D");
+            else if (input is System.Uri)
                 output = input.ToString();
             else
             {
-                Enum inputEnum = input as Enum;
+                System.Enum inputEnum = input as System.Enum;
                 if (inputEnum != null)
                     output = SerializeEnum(inputEnum);
                 else
@@ -1497,9 +1497,9 @@ namespace Normal.Internal.SimpleJson
         [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate", Justification="Need to support .NET 2")]
         protected virtual bool TrySerializeUnknownTypes(object input, out object output)
         {
-            if (input == null) throw new ArgumentNullException("input");
+            if (input == null) throw new System.ArgumentNullException("input");
             output = null;
-            Type type = input.GetType();
+            System.Type type = input.GetType();
             if (type.FullName == null)
                 return false;
             IDictionary<string, object> obj = new JsonObject();
@@ -1619,34 +1619,34 @@ namespace Normal.Internal.SimpleJson
                 return type.GetTypeInfo();
             }
 #else
-            public static Type GetTypeInfo(Type type)
+            public static System.Type GetTypeInfo(System.Type type)
             {
                 return type;
             }
 #endif
 
-            public static Attribute GetAttribute(MemberInfo info, Type type)
+            public static System.Attribute GetAttribute(MemberInfo info, System.Type type)
             {
 #if SIMPLE_JSON_TYPEINFO
                 if (info == null || type == null || !info.IsDefined(type))
                     return null;
                 return info.GetCustomAttribute(type);
 #else
-                if (info == null || type == null || !Attribute.IsDefined(info, type))
+                if (info == null || type == null || !System.Attribute.IsDefined(info, type))
                     return null;
-                return Attribute.GetCustomAttribute(info, type);
+                return System.Attribute.GetCustomAttribute(info, type);
 #endif
             }
 
-            public static Type GetGenericListElementType(Type type)
+            public static System.Type GetGenericListElementType(System.Type type)
             {
-                IEnumerable<Type> interfaces;
+                IEnumerable<System.Type> interfaces;
 #if SIMPLE_JSON_TYPEINFO
                 interfaces = type.GetTypeInfo().ImplementedInterfaces;
 #else
                 interfaces = type.GetInterfaces();
 #endif
-                foreach (Type implementedInterface in interfaces)
+                foreach (System.Type implementedInterface in interfaces)
                 {
                     if (IsTypeGeneric(implementedInterface) &&
                         implementedInterface.GetGenericTypeDefinition() == typeof (IList<>))
@@ -1657,7 +1657,7 @@ namespace Normal.Internal.SimpleJson
                 return GetGenericTypeArguments(type)[0];
             }
 
-            public static Attribute GetAttribute(Type objectType, Type attributeType)
+            public static System.Attribute GetAttribute(System.Type objectType, System.Type attributeType)
             {
 
 #if SIMPLE_JSON_TYPEINFO
@@ -1665,13 +1665,13 @@ namespace Normal.Internal.SimpleJson
                     return null;
                 return objectType.GetTypeInfo().GetCustomAttribute(attributeType);
 #else
-                if (objectType == null || attributeType == null || !Attribute.IsDefined(objectType, attributeType))
+                if (objectType == null || attributeType == null || !System.Attribute.IsDefined(objectType, attributeType))
                     return null;
-                return Attribute.GetCustomAttribute(objectType, attributeType);
+                return System.Attribute.GetCustomAttribute(objectType, attributeType);
 #endif
             }
 
-            public static Type[] GetGenericTypeArguments(Type type)
+            public static System.Type[] GetGenericTypeArguments(System.Type type)
             {
 #if SIMPLE_JSON_TYPEINFO
                 return type.GetTypeInfo().GenericTypeArguments;
@@ -1680,17 +1680,17 @@ namespace Normal.Internal.SimpleJson
 #endif
             }
 
-            public static bool IsTypeGeneric(Type type)
+            public static bool IsTypeGeneric(System.Type type)
             {
                 return GetTypeInfo(type).IsGenericType;
             }
 
-            public static bool IsTypeGenericeCollectionInterface(Type type)
+            public static bool IsTypeGenericeCollectionInterface(System.Type type)
             {
                 if (!IsTypeGeneric(type))
                     return false;
 
-                Type genericDefinition = type.GetGenericTypeDefinition();
+                System.Type genericDefinition = type.GetGenericTypeDefinition();
 
                 return (genericDefinition == typeof(IList<>)
                     || genericDefinition == typeof(ICollection<>)
@@ -1702,12 +1702,12 @@ namespace Normal.Internal.SimpleJson
                     );
             }
 
-            public static bool IsAssignableFrom(Type type1, Type type2)
+            public static bool IsAssignableFrom(System.Type type1, System.Type type2)
             {
                 return GetTypeInfo(type1).IsAssignableFrom(GetTypeInfo(type2));
             }
 
-            public static bool IsTypeDictionary(Type type)
+            public static bool IsTypeDictionary(System.Type type)
             {
 #if SIMPLE_JSON_TYPEINFO
                 if (typeof(IDictionary<,>).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
@@ -1719,26 +1719,26 @@ namespace Normal.Internal.SimpleJson
                 if (!GetTypeInfo(type).IsGenericType)
                     return false;
 
-                Type genericDefinition = type.GetGenericTypeDefinition();
+                System.Type genericDefinition = type.GetGenericTypeDefinition();
                 return genericDefinition == typeof(IDictionary<,>);
             }
 
-            public static bool IsNullableType(Type type)
+            public static bool IsNullableType(System.Type type)
             {
-                return GetTypeInfo(type).IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
+                return GetTypeInfo(type).IsGenericType && type.GetGenericTypeDefinition() == typeof(System.Nullable<>);
             }
 
-            public static object ToNullableType(object obj, Type nullableType)
+            public static object ToNullableType(object obj, System.Type nullableType)
             {
-                return obj == null ? null : Convert.ChangeType(obj, Nullable.GetUnderlyingType(nullableType), CultureInfo.InvariantCulture);
+                return obj == null ? null : System.Convert.ChangeType(obj, System.Nullable.GetUnderlyingType(nullableType), CultureInfo.InvariantCulture);
             }
 
-            public static bool IsValueType(Type type)
+            public static bool IsValueType(System.Type type)
             {
                 return GetTypeInfo(type).IsValueType;
             }
 
-            public static IEnumerable<ConstructorInfo> GetConstructors(Type type)
+            public static IEnumerable<ConstructorInfo> GetConstructors(System.Type type)
             {
 #if SIMPLE_JSON_TYPEINFO
                 return type.GetTypeInfo().DeclaredConstructors;
@@ -1747,7 +1747,7 @@ namespace Normal.Internal.SimpleJson
 #endif
             }
 
-            public static ConstructorInfo GetConstructorInfo(Type type, params Type[] argsType)
+            public static ConstructorInfo GetConstructorInfo(System.Type type, params System.Type[] argsType)
             {
                 IEnumerable<ConstructorInfo> constructorInfos = GetConstructors(type);
                 int i;
@@ -1776,7 +1776,7 @@ namespace Normal.Internal.SimpleJson
                 return null;
             }
 
-            public static IEnumerable<PropertyInfo> GetProperties(Type type)
+            public static IEnumerable<PropertyInfo> GetProperties(System.Type type)
             {
 #if SIMPLE_JSON_TYPEINFO
                 return type.GetRuntimeProperties();
@@ -1785,7 +1785,7 @@ namespace Normal.Internal.SimpleJson
 #endif
             }
 
-            public static IEnumerable<FieldInfo> GetFields(Type type)
+            public static IEnumerable<FieldInfo> GetFields(System.Type type)
             {
 #if SIMPLE_JSON_TYPEINFO
                 return type.GetRuntimeFields();
@@ -1821,7 +1821,7 @@ namespace Normal.Internal.SimpleJson
 #endif
             }
 
-            public static ConstructorDelegate GetContructor(Type type, params Type[] argsType)
+            public static ConstructorDelegate GetContructor(System.Type type, params System.Type[] argsType)
             {
 #if SIMPLE_JSON_NO_LINQ_EXPRESSION
                 return GetConstructorByReflection(type, argsType);
@@ -1835,7 +1835,7 @@ namespace Normal.Internal.SimpleJson
                 return delegate(object[] args) { return constructorInfo.Invoke(args); };
             }
 
-            public static ConstructorDelegate GetConstructorByReflection(Type type, params Type[] argsType)
+            public static ConstructorDelegate GetConstructorByReflection(System.Type type, params System.Type[] argsType)
             {
                 ConstructorInfo constructorInfo = GetConstructorInfo(type, argsType);
                 return constructorInfo == null ? null : GetConstructorByReflection(constructorInfo);
@@ -2038,7 +2038,7 @@ namespace Normal.Internal.SimpleJson
 
                 public void Add(TKey key, TValue value)
                 {
-                    throw new NotImplementedException();
+                    throw new System.NotImplementedException();
                 }
 
                 public bool ContainsKey(TKey key)
@@ -2053,7 +2053,7 @@ namespace Normal.Internal.SimpleJson
 
                 public bool Remove(TKey key)
                 {
-                    throw new NotImplementedException();
+                    throw new System.NotImplementedException();
                 }
 
                 public bool TryGetValue(TKey key, out TValue value)
@@ -2070,27 +2070,27 @@ namespace Normal.Internal.SimpleJson
                 public TValue this[TKey key]
                 {
                     get { return Get(key); }
-                    set { throw new NotImplementedException(); }
+                    set { throw new System.NotImplementedException(); }
                 }
 
                 public void Add(KeyValuePair<TKey, TValue> item)
                 {
-                    throw new NotImplementedException();
+                    throw new System.NotImplementedException();
                 }
 
                 public void Clear()
                 {
-                    throw new NotImplementedException();
+                    throw new System.NotImplementedException();
                 }
 
                 public bool Contains(KeyValuePair<TKey, TValue> item)
                 {
-                    throw new NotImplementedException();
+                    throw new System.NotImplementedException();
                 }
 
                 public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
                 {
-                    throw new NotImplementedException();
+                    throw new System.NotImplementedException();
                 }
 
                 public int Count
@@ -2100,12 +2100,12 @@ namespace Normal.Internal.SimpleJson
 
                 public bool IsReadOnly
                 {
-                    get { throw new NotImplementedException(); }
+                    get { throw new System.NotImplementedException(); }
                 }
 
                 public bool Remove(KeyValuePair<TKey, TValue> item)
                 {
-                    throw new NotImplementedException();
+                    throw new System.NotImplementedException();
                 }
 
                 public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()

@@ -85,6 +85,7 @@ public class RealTimeInstance : MonoBehaviour
     {
         // Notify us when Realtime connects to or disconnects from the room
         _realtime.didConnectToRoom += DidConnectToRoom;
+        _realtime.didDisconnectFromRoom += DidDisconnectFromRoom;
     }
 
 
@@ -117,9 +118,14 @@ public class RealTimeInstance : MonoBehaviour
         isNewPlayer = false;
     }
 
-    private void OnDisable()
+    private void DidDisconnectFromRoom(Realtime realtime)
     {
         MasterManager.Instance.nodeSync.GetComponent<RealtimeView>().ClearOwnership();
+    }
+    private void OnDisable()
+    {
+        _realtime.didDisconnectFromRoom -= DidDisconnectFromRoom;
+        
         _realtime.didConnectToRoom -= DidConnectToRoom;
     }
 }

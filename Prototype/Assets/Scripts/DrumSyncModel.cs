@@ -13,11 +13,11 @@ public partial class DrumSyncModel {
 public partial class DrumSyncModel : RealtimeModel {
     public bool playAudio {
         get {
-            return _cache.LookForValueInCache(_playAudio, entry => entry.playAudioSet, entry => entry.playAudio);
+            return _playAudioProperty.value;
         }
         set {
-            if (this.playAudio == value) return;
-            _cache.UpdateLocalCache(entry => { entry.playAudioSet = true; entry.playAudio = value; return entry; });
+            if (_playAudioProperty.value == value) return;
+            _playAudioProperty.value = value;
             InvalidateReliableLength();
             FirePlayAudioDidChange(value);
         }
@@ -26,25 +26,22 @@ public partial class DrumSyncModel : RealtimeModel {
     public delegate void PropertyChangedHandler<in T>(DrumSyncModel model, T value);
     public event PropertyChangedHandler<bool> playAudioDidChange;
     
-    private struct LocalCacheEntry {
-        public bool playAudioSet;
-        public bool playAudio;
-    }
-    
-    private LocalChangeCache<LocalCacheEntry> _cache = new LocalChangeCache<LocalCacheEntry>();
-    
     public enum PropertyID : uint {
         PlayAudio = 1,
     }
     
-    public DrumSyncModel() : this(null) {
-    }
+    #region Properties
     
-    public DrumSyncModel(RealtimeModel parent) : base(null, parent) {
+    private ReliableProperty<bool> _playAudioProperty;
+    
+    #endregion
+    
+    public DrumSyncModel() : base(null) {
+        _playAudioProperty = new ReliableProperty<bool>(1, _playAudio);
     }
     
     protected override void OnParentReplaced(RealtimeModel previousParent, RealtimeModel currentParent) {
-        UnsubscribeClearCacheCallback();
+        _playAudioProperty.UnsubscribeCallback();
     }
     
     private void FirePlayAudioDidChange(bool value) {
@@ -56,49 +53,25 @@ public partial class DrumSyncModel : RealtimeModel {
     }
     
     protected override int WriteLength(StreamContext context) {
-        int length = 0;
-        if (context.fullModel) {
-            FlattenCache();
-            length += WriteStream.WriteVarint32Length((uint)PropertyID.PlayAudio, _playAudio ? 1u : 0u);
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.playAudioSet) {
-                length += WriteStream.WriteVarint32Length((uint)PropertyID.PlayAudio, entry.playAudio ? 1u : 0u);
-            }
-        }
+        var length = 0;
+        length += _playAudioProperty.WriteLength(context);
         return length;
     }
     
     protected override void Write(WriteStream stream, StreamContext context) {
-        var didWriteProperties = false;
-        
-        if (context.fullModel) {
-            stream.WriteVarint32((uint)PropertyID.PlayAudio, _playAudio ? 1u : 0u);
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.playAudioSet) {
-                _cache.PushLocalCacheToInflight(context.updateID);
-                ClearCacheOnStreamCallback(context);
-            }
-            if (entry.playAudioSet) {
-                stream.WriteVarint32((uint)PropertyID.PlayAudio, entry.playAudio ? 1u : 0u);
-                didWriteProperties = true;
-            }
-            
-            if (didWriteProperties) InvalidateReliableLength();
-        }
+        var writes = false;
+        writes |= _playAudioProperty.Write(stream, context);
+        if (writes) InvalidateContextLength(context);
     }
     
     protected override void Read(ReadStream stream, StreamContext context) {
+        var anyPropertiesChanged = false;
         while (stream.ReadNextPropertyID(out uint propertyID)) {
+            var changed = false;
             switch (propertyID) {
-                case (uint)PropertyID.PlayAudio: {
-                    bool previousValue = _playAudio;
-                    _playAudio = (stream.ReadVarint32() != 0);
-                    bool playAudioExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.playAudioSet);
-                    if (!playAudioExistsInChangeCache && _playAudio != previousValue) {
-                        FirePlayAudioDidChange(_playAudio);
-                    }
+                case (uint) PropertyID.PlayAudio: {
+                    changed = _playAudioProperty.Read(stream, context);
+                    if (changed) FirePlayAudioDidChange(playAudio);
                     break;
                 }
                 default: {
@@ -106,37 +79,16 @@ public partial class DrumSyncModel : RealtimeModel {
                     break;
                 }
             }
+            anyPropertiesChanged |= changed;
+        }
+        if (anyPropertiesChanged) {
+            UpdateBackingFields();
         }
     }
     
-    #region Cache Operations
-    
-    private StreamEventDispatcher _streamEventDispatcher;
-    
-    private void FlattenCache() {
+    private void UpdateBackingFields() {
         _playAudio = playAudio;
-        _cache.Clear();
     }
     
-    private void ClearCache(uint updateID) {
-        _cache.RemoveUpdateFromInflight(updateID);
-    }
-    
-    private void ClearCacheOnStreamCallback(StreamContext context) {
-        if (_streamEventDispatcher != context.dispatcher) {
-            UnsubscribeClearCacheCallback(); // unsub from previous dispatcher
-        }
-        _streamEventDispatcher = context.dispatcher;
-        _streamEventDispatcher.AddStreamCallback(context.updateID, ClearCache);
-    }
-    
-    private void UnsubscribeClearCacheCallback() {
-        if (_streamEventDispatcher != null) {
-            _streamEventDispatcher.RemoveStreamCallback(ClearCache);
-            _streamEventDispatcher = null;
-        }
-    }
-    
-    #endregion
 }
 /* ----- End Normal Autogenerated Code ----- */

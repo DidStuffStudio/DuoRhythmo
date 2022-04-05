@@ -586,7 +586,6 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
         
     }
 
-     private O
      IEnumerator CheckModel()
      {
          while (true)

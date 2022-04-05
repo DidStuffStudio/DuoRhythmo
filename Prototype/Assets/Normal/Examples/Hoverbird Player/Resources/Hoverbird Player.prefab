@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6267176138133348522}
   - component: {fileID: 6267176138133348527}
-  - component: {fileID: 6267176138133348524}
   - component: {fileID: 6267176138133348525}
   m_Layer: 0
   m_Name: Sphere
@@ -41,43 +40,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6267176138133348523}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6267176138133348524
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6267176138133348523}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!135 &6267176138133348525
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -138,7 +100,8 @@ MonoBehaviour:
   _viewUUID: 
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeavesMigrated: 0
+  _sceneViewDestroyWhenLastClientLeaves: 1
   _components:
   - componentID: 1
     component: {fileID: 8559915021584220537}
@@ -215,7 +178,8 @@ MonoBehaviour:
   _viewUUID: 
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 1
+  _sceneViewDestroyWhenOwnerOrLastClientLeavesMigrated: 0
+  _sceneViewDestroyWhenLastClientLeaves: 1
   _components:
   - componentID: 1
     component: {fileID: 6267176139253920903}
@@ -277,10 +241,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6267176139253920901}
     m_Modifications:
-    - target: {fileID: 7549673179561983651, guid: 430be99b1fb0c499196cbf2e31a13f1a,
+    - target: {fileID: 7549673179561983650, guid: 430be99b1fb0c499196cbf2e31a13f1a,
         type: 3}
-      propertyPath: m_Name
-      value: Hoverbird Character
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7549673179561983650, guid: 430be99b1fb0c499196cbf2e31a13f1a,
         type: 3}
@@ -299,6 +263,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7549673179561983650, guid: 430be99b1fb0c499196cbf2e31a13f1a,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549673179561983650, guid: 430be99b1fb0c499196cbf2e31a13f1a,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -314,16 +283,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7549673179561983650, guid: 430be99b1fb0c499196cbf2e31a13f1a,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549673179561983650, guid: 430be99b1fb0c499196cbf2e31a13f1a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549673179561983650, guid: 430be99b1fb0c499196cbf2e31a13f1a,
-        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -336,6 +295,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549673179561983651, guid: 430be99b1fb0c499196cbf2e31a13f1a,
+        type: 3}
+      propertyPath: m_Name
+      value: Hoverbird Character
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 430be99b1fb0c499196cbf2e31a13f1a, type: 3}

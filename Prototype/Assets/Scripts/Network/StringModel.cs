@@ -18,11 +18,11 @@ public partial class StringModel {
 public partial class StringModel : RealtimeModel {
     public string message {
         get {
-            return _cache.LookForValueInCache(_message, entry => entry.messageSet, entry => entry.message);
+            return _messageProperty.value;
         }
         set {
-            if (this.message == value) return;
-            _cache.UpdateLocalCache(entry => { entry.messageSet = true; entry.message = value; return entry; });
+            if (_messageProperty.value == value) return;
+            _messageProperty.value = value;
             InvalidateReliableLength();
             FireMessageDidChange(value);
         }
@@ -30,35 +30,35 @@ public partial class StringModel : RealtimeModel {
     
     public string setPlayerNumber {
         get {
-            return _cache.LookForValueInCache(_setPlayerNumber, entry => entry.setPlayerNumberSet, entry => entry.setPlayerNumber);
+            return _setPlayerNumberProperty.value;
         }
         set {
-            if (this.setPlayerNumber == value) return;
-            _cache.UpdateLocalCache(entry => { entry.setPlayerNumberSet = true; entry.setPlayerNumber = value; return entry; });
+            if (_setPlayerNumberProperty.value == value) return;
+            _setPlayerNumberProperty.value = value;
             InvalidateReliableLength();
             FireSetPlayerNumberDidChange(value);
         }
     }
-
+    
     public string newPlayerConnected {
         get {
-            return _cache.LookForValueInCache(_newPlayerConnected, entry => entry.newPlayerConnectedSet, entry => entry.newPlayerConnected);
+            return _newPlayerConnectedProperty.value;
         }
         set {
-            if (this.newPlayerConnected == value) return;
-            _cache.UpdateLocalCache(entry => { entry.newPlayerConnectedSet = true; entry.newPlayerConnected = value; return entry; });
+            if (_newPlayerConnectedProperty.value == value) return;
+            _newPlayerConnectedProperty.value = value;
             InvalidateReliableLength();
             FireNewPlayerConnectedDidChange(value);
         }
     }
-
+    
     public string drumNodesSingle {
         get {
-            return _cache.LookForValueInCache(_drumNodesSingle, entry => entry.drumNodesSingleSet, entry => entry.drumNodesSingle);
+            return _drumNodesSingleProperty.value;
         }
         set {
-            if (this.drumNodesSingle == value) return;
-            _cache.UpdateLocalCache(entry => { entry.drumNodesSingleSet = true; entry.drumNodesSingle = value; return entry; });
+            if (_drumNodesSingleProperty.value == value) return;
+            _drumNodesSingleProperty.value = value;
             InvalidateReliableLength();
             FireDrumNodesSingleDidChange(value);
         }
@@ -66,23 +66,23 @@ public partial class StringModel : RealtimeModel {
     
     public string drumNodesALL {
         get {
-            return _cache.LookForValueInCache(_drumNodesALL, entry => entry.drumNodesALLSet, entry => entry.drumNodesALL);
+            return _drumNodesALLProperty.value;
         }
         set {
-            if (this.drumNodesALL == value) return;
-            _cache.UpdateLocalCache(entry => { entry.drumNodesALLSet = true; entry.drumNodesALL = value; return entry; });
+            if (_drumNodesALLProperty.value == value) return;
+            _drumNodesALLProperty.value = value;
             InvalidateReliableLength();
             FireDrumNodesALLDidChange(value);
         }
     }
-
+    
     public string effectsValues {
         get {
-            return _cache.LookForValueInCache(_effectsValues, entry => entry.effectsValuesSet, entry => entry.effectsValues);
+            return _effectsValuesProperty.value;
         }
         set {
-            if (this.effectsValues == value) return;
-            _cache.UpdateLocalCache(entry => { entry.effectsValuesSet = true; entry.effectsValues = value; return entry; });
+            if (_effectsValuesProperty.value == value) return;
+            _effectsValuesProperty.value = value;
             InvalidateReliableLength();
             FireEffectsValuesDidChange(value);
         }
@@ -96,49 +96,47 @@ public partial class StringModel : RealtimeModel {
     public event PropertyChangedHandler<string> drumNodesALLDidChange;
     public event PropertyChangedHandler<string> effectsValuesDidChange;
     
-    private struct LocalCacheEntry {
-        public bool messageSet;
-        public string message;
-        public bool setPlayerNumberSet;
-        public string setPlayerNumber;
-        public bool timerSet;
-        public string timer;
-        public bool newPlayerConnectedSet;
-        public string newPlayerConnected;
-        public bool newPlayerUpdateTimeSet;
-        public string newPlayerUpdateTime;
-        public bool drumNodesSingleSet;
-        public string drumNodesSingle;
-        public bool drumNodesALLSet;
-        public string drumNodesALL;
-        public bool animatorTimeSet;
-        public string animatorTime;
-        public bool effectsValuesSet;
-        public string effectsValues;
-    }
-    
-    private LocalChangeCache<LocalCacheEntry> _cache = new LocalChangeCache<LocalCacheEntry>();
-    
     public enum PropertyID : uint {
         Message = 1,
         SetPlayerNumber = 2,
-        Timer = 3,
-        NewPlayerConnected = 4,
-        NewPlayerUpdateTime = 5,
-        DrumNodesSingle = 6,
-        DrumNodesALL = 7,
-        AnimatorTime = 8,
-        EffectsValues = 9,
+        NewPlayerConnected = 3,
+        DrumNodesSingle = 4,
+        DrumNodesALL = 5,
+        EffectsValues = 6,
     }
     
-    public StringModel() : this(null) {
-    }
+    #region Properties
     
-    public StringModel(RealtimeModel parent) : base(null, parent) {
+    private ReliableProperty<string> _messageProperty;
+    
+    private ReliableProperty<string> _setPlayerNumberProperty;
+    
+    private ReliableProperty<string> _newPlayerConnectedProperty;
+    
+    private ReliableProperty<string> _drumNodesSingleProperty;
+    
+    private ReliableProperty<string> _drumNodesALLProperty;
+    
+    private ReliableProperty<string> _effectsValuesProperty;
+    
+    #endregion
+    
+    public StringModel() : base(null) {
+        _messageProperty = new ReliableProperty<string>(1, _message);
+        _setPlayerNumberProperty = new ReliableProperty<string>(2, _setPlayerNumber);
+        _newPlayerConnectedProperty = new ReliableProperty<string>(3, _newPlayerConnected);
+        _drumNodesSingleProperty = new ReliableProperty<string>(4, _drumNodesSingle);
+        _drumNodesALLProperty = new ReliableProperty<string>(5, _drumNodesALL);
+        _effectsValuesProperty = new ReliableProperty<string>(6, _effectsValues);
     }
     
     protected override void OnParentReplaced(RealtimeModel previousParent, RealtimeModel currentParent) {
-        UnsubscribeClearCacheCallback();
+        _messageProperty.UnsubscribeCallback();
+        _setPlayerNumberProperty.UnsubscribeCallback();
+        _newPlayerConnectedProperty.UnsubscribeCallback();
+        _drumNodesSingleProperty.UnsubscribeCallback();
+        _drumNodesALLProperty.UnsubscribeCallback();
+        _effectsValuesProperty.UnsubscribeCallback();
     }
     
     private void FireMessageDidChange(string value) {
@@ -156,7 +154,6 @@ public partial class StringModel : RealtimeModel {
             UnityEngine.Debug.LogException(exception);
         }
     }
-    
     
     private void FireNewPlayerConnectedDidChange(string value) {
         try {
@@ -182,7 +179,6 @@ public partial class StringModel : RealtimeModel {
         }
     }
     
-    
     private void FireEffectsValuesDidChange(string value) {
         try {
             effectsValuesDidChange?.Invoke(this, value);
@@ -192,161 +188,60 @@ public partial class StringModel : RealtimeModel {
     }
     
     protected override int WriteLength(StreamContext context) {
-        int length = 0;
-        if (context.fullModel) {
-            FlattenCache();
-            length += WriteStream.WriteStringLength((uint)PropertyID.Message, _message);
-            length += WriteStream.WriteStringLength((uint)PropertyID.SetPlayerNumber, _setPlayerNumber);
-            length += WriteStream.WriteStringLength((uint)PropertyID.NewPlayerConnected, _newPlayerConnected);
-            length += WriteStream.WriteStringLength((uint)PropertyID.DrumNodesSingle, _drumNodesSingle);
-            length += WriteStream.WriteStringLength((uint)PropertyID.DrumNodesALL, _drumNodesALL);
-            length += WriteStream.WriteStringLength((uint)PropertyID.EffectsValues, _effectsValues);
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.messageSet) {
-                length += WriteStream.WriteStringLength((uint)PropertyID.Message, entry.message);
-            }
-            if (entry.setPlayerNumberSet) {
-                length += WriteStream.WriteStringLength((uint)PropertyID.SetPlayerNumber, entry.setPlayerNumber);
-            }
-            if (entry.timerSet) {
-                length += WriteStream.WriteStringLength((uint)PropertyID.Timer, entry.timer);
-            }
-            if (entry.newPlayerConnectedSet) {
-                length += WriteStream.WriteStringLength((uint)PropertyID.NewPlayerConnected, entry.newPlayerConnected);
-            }
-            if (entry.newPlayerUpdateTimeSet) {
-                length += WriteStream.WriteStringLength((uint)PropertyID.NewPlayerUpdateTime, entry.newPlayerUpdateTime);
-            }
-            if (entry.drumNodesSingleSet) {
-                length += WriteStream.WriteStringLength((uint)PropertyID.DrumNodesSingle, entry.drumNodesSingle);
-            }
-            if (entry.drumNodesALLSet) {
-                length += WriteStream.WriteStringLength((uint)PropertyID.DrumNodesALL, entry.drumNodesALL);
-            }
-            if (entry.animatorTimeSet) {
-                length += WriteStream.WriteStringLength((uint)PropertyID.AnimatorTime, entry.animatorTime);
-            }
-            if (entry.effectsValuesSet) {
-                length += WriteStream.WriteStringLength((uint)PropertyID.EffectsValues, entry.effectsValues);
-            }
-        }
+        var length = 0;
+        length += _messageProperty.WriteLength(context);
+        length += _setPlayerNumberProperty.WriteLength(context);
+        length += _newPlayerConnectedProperty.WriteLength(context);
+        length += _drumNodesSingleProperty.WriteLength(context);
+        length += _drumNodesALLProperty.WriteLength(context);
+        length += _effectsValuesProperty.WriteLength(context);
         return length;
     }
     
     protected override void Write(WriteStream stream, StreamContext context) {
-        var didWriteProperties = false;
-        
-        if (context.fullModel) {
-            stream.WriteString((uint)PropertyID.Message, _message);
-            stream.WriteString((uint)PropertyID.SetPlayerNumber, _setPlayerNumber);
-            stream.WriteString((uint)PropertyID.NewPlayerConnected, _newPlayerConnected);
-            stream.WriteString((uint)PropertyID.DrumNodesSingle, _drumNodesSingle);
-            stream.WriteString((uint)PropertyID.DrumNodesALL, _drumNodesALL);
-            stream.WriteString((uint)PropertyID.EffectsValues, _effectsValues);
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.messageSet || entry.setPlayerNumberSet || entry.timerSet || entry.newPlayerConnectedSet || entry.newPlayerUpdateTimeSet || entry.drumNodesSingleSet || entry.drumNodesALLSet || entry.animatorTimeSet || entry.effectsValuesSet) {
-                _cache.PushLocalCacheToInflight(context.updateID);
-                ClearCacheOnStreamCallback(context);
-            }
-            if (entry.messageSet) {
-                stream.WriteString((uint)PropertyID.Message, entry.message);
-                didWriteProperties = true;
-            }
-            if (entry.setPlayerNumberSet) {
-                stream.WriteString((uint)PropertyID.SetPlayerNumber, entry.setPlayerNumber);
-                didWriteProperties = true;
-            }
-            if (entry.timerSet) {
-                stream.WriteString((uint)PropertyID.Timer, entry.timer);
-                didWriteProperties = true;
-            }
-            if (entry.newPlayerConnectedSet) {
-                stream.WriteString((uint)PropertyID.NewPlayerConnected, entry.newPlayerConnected);
-                didWriteProperties = true;
-            }
-            if (entry.newPlayerUpdateTimeSet) {
-                stream.WriteString((uint)PropertyID.NewPlayerUpdateTime, entry.newPlayerUpdateTime);
-                didWriteProperties = true;
-            }
-            if (entry.drumNodesSingleSet) {
-                stream.WriteString((uint)PropertyID.DrumNodesSingle, entry.drumNodesSingle);
-                didWriteProperties = true;
-            }
-            if (entry.drumNodesALLSet) {
-                stream.WriteString((uint)PropertyID.DrumNodesALL, entry.drumNodesALL);
-                didWriteProperties = true;
-            }
-            if (entry.animatorTimeSet) {
-                stream.WriteString((uint)PropertyID.AnimatorTime, entry.animatorTime);
-                didWriteProperties = true;
-            }
-            if (entry.effectsValuesSet) {
-                stream.WriteString((uint)PropertyID.EffectsValues, entry.effectsValues);
-                didWriteProperties = true;
-            }
-            
-            if (didWriteProperties) InvalidateReliableLength();
-        }
+        var writes = false;
+        writes |= _messageProperty.Write(stream, context);
+        writes |= _setPlayerNumberProperty.Write(stream, context);
+        writes |= _newPlayerConnectedProperty.Write(stream, context);
+        writes |= _drumNodesSingleProperty.Write(stream, context);
+        writes |= _drumNodesALLProperty.Write(stream, context);
+        writes |= _effectsValuesProperty.Write(stream, context);
+        if (writes) InvalidateContextLength(context);
     }
     
     protected override void Read(ReadStream stream, StreamContext context) {
+        var anyPropertiesChanged = false;
         while (stream.ReadNextPropertyID(out uint propertyID)) {
+            var changed = false;
             switch (propertyID) {
-                case (uint)PropertyID.Message: {
-                    string previousValue = _message;
-                    _message = stream.ReadString();
-                    bool messageExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.messageSet);
-                    if (!messageExistsInChangeCache && _message != previousValue) {
-                        FireMessageDidChange(_message);
-                    }
+                case (uint) PropertyID.Message: {
+                    changed = _messageProperty.Read(stream, context);
+                    if (changed) FireMessageDidChange(message);
                     break;
                 }
-                case (uint)PropertyID.SetPlayerNumber: {
-                    string previousValue = _setPlayerNumber;
-                    _setPlayerNumber = stream.ReadString();
-                    bool setPlayerNumberExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.setPlayerNumberSet);
-                    if (!setPlayerNumberExistsInChangeCache && _setPlayerNumber != previousValue) {
-                        FireSetPlayerNumberDidChange(_setPlayerNumber);
-                    }
+                case (uint) PropertyID.SetPlayerNumber: {
+                    changed = _setPlayerNumberProperty.Read(stream, context);
+                    if (changed) FireSetPlayerNumberDidChange(setPlayerNumber);
                     break;
                 }
-                case (uint)PropertyID.NewPlayerConnected: {
-                    string previousValue = _newPlayerConnected;
-                    _newPlayerConnected = stream.ReadString();
-                    bool newPlayerConnectedExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.newPlayerConnectedSet);
-                    if (!newPlayerConnectedExistsInChangeCache && _newPlayerConnected != previousValue) {
-                        FireNewPlayerConnectedDidChange(_newPlayerConnected);
-                    }
+                case (uint) PropertyID.NewPlayerConnected: {
+                    changed = _newPlayerConnectedProperty.Read(stream, context);
+                    if (changed) FireNewPlayerConnectedDidChange(newPlayerConnected);
                     break;
                 }
-                case (uint)PropertyID.DrumNodesSingle: {
-                    string previousValue = _drumNodesSingle;
-                    _drumNodesSingle = stream.ReadString();
-                    bool drumNodesSingleExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.drumNodesSingleSet);
-                    if (!drumNodesSingleExistsInChangeCache && _drumNodesSingle != previousValue) {
-                        FireDrumNodesSingleDidChange(_drumNodesSingle);
-                    }
+                case (uint) PropertyID.DrumNodesSingle: {
+                    changed = _drumNodesSingleProperty.Read(stream, context);
+                    if (changed) FireDrumNodesSingleDidChange(drumNodesSingle);
                     break;
                 }
-                case (uint)PropertyID.DrumNodesALL: {
-                    string previousValue = _drumNodesALL;
-                    _drumNodesALL = stream.ReadString();
-                    bool drumNodesALLExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.drumNodesALLSet);
-                    if (!drumNodesALLExistsInChangeCache && _drumNodesALL != previousValue) {
-                        FireDrumNodesALLDidChange(_drumNodesALL);
-                    }
+                case (uint) PropertyID.DrumNodesALL: {
+                    changed = _drumNodesALLProperty.Read(stream, context);
+                    if (changed) FireDrumNodesALLDidChange(drumNodesALL);
                     break;
                 }
-            
-                case (uint)PropertyID.EffectsValues: {
-                    string previousValue = _effectsValues;
-                    _effectsValues = stream.ReadString();
-                    bool effectsValuesExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.effectsValuesSet);
-                    if (!effectsValuesExistsInChangeCache && _effectsValues != previousValue) {
-                        FireEffectsValuesDidChange(_effectsValues);
-                    }
+                case (uint) PropertyID.EffectsValues: {
+                    changed = _effectsValuesProperty.Read(stream, context);
+                    if (changed) FireEffectsValuesDidChange(effectsValues);
                     break;
                 }
                 default: {
@@ -354,42 +249,21 @@ public partial class StringModel : RealtimeModel {
                     break;
                 }
             }
+            anyPropertiesChanged |= changed;
+        }
+        if (anyPropertiesChanged) {
+            UpdateBackingFields();
         }
     }
     
-    #region Cache Operations
-    
-    private StreamEventDispatcher _streamEventDispatcher;
-    
-    private void FlattenCache() {
+    private void UpdateBackingFields() {
         _message = message;
         _setPlayerNumber = setPlayerNumber;
         _newPlayerConnected = newPlayerConnected;
         _drumNodesSingle = drumNodesSingle;
         _drumNodesALL = drumNodesALL;
         _effectsValues = effectsValues;
-        _cache.Clear();
     }
     
-    private void ClearCache(uint updateID) {
-        _cache.RemoveUpdateFromInflight(updateID);
-    }
-    
-    private void ClearCacheOnStreamCallback(StreamContext context) {
-        if (_streamEventDispatcher != context.dispatcher) {
-            UnsubscribeClearCacheCallback(); // unsub from previous dispatcher
-        }
-        _streamEventDispatcher = context.dispatcher;
-        _streamEventDispatcher.AddStreamCallback(context.updateID, ClearCache);
-    }
-    
-    private void UnsubscribeClearCacheCallback() {
-        if (_streamEventDispatcher != null) {
-            _streamEventDispatcher.RemoveStreamCallback(ClearCache);
-            _streamEventDispatcher = null;
-        }
-    }
-    
-    #endregion
 }
 /* ----- End Normal Autogenerated Code ----- */

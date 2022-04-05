@@ -10598,6 +10598,7 @@ MonoBehaviour:
   - Tom
   - Cymbal
   maxNumberOfPlayers: 2
+  nodeSync: {fileID: 0}
 --- !u!4 &1590067203
 Transform:
   m_ObjectHideFlags: 0
@@ -12456,7 +12457,7 @@ MonoBehaviour:
   _sceneViewUUID: 
   _viewUUID: 859ac7fd-e886-4989-876b-7650bfa81654
   _sceneViewPreventOwnershipTakeover: 0
-  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
+  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 0
   _isRootPrefabView: 0
   _components:
   - componentID: 1

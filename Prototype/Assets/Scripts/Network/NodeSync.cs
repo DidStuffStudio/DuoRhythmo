@@ -202,7 +202,7 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
             }
 
             // Update the mesh render to match the new model
-            UpdateNodes();
+            
 
             // Register for events so we'll know if the color changes later
             currentModel.kickNode1DidChange += KickNode1DidChange;
@@ -293,103 +293,103 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
         }
     }
 
-    private void KickNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(1, value);
-    private void KickNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(2, value);
-    private void KickNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(3, value);
-    private void KickNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(4, value);
-    private void KickNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(5, value);
-    private void KickNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(6, value);
-    private void KickNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(7, value);
-    private void KickNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(8, value);
-    private void KickNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(9, value);
-    private void KickNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(10, value);
-    private void KickNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(11, value);
-    private void KickNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(12, value);
-    private void KickNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(13, value);
-    private void KickNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(14, value);
-    private void KickNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(15, value);
-    private void KickNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(16, value);
+    private void KickNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(0, value);
+    private void KickNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(1, value);
+    private void KickNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(2, value);
+    private void KickNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(3, value);
+    private void KickNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(4, value);
+    private void KickNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(5, value);
+    private void KickNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(6, value);
+    private void KickNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(7, value);
+    private void KickNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(8, value);
+    private void KickNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(9, value);
+    private void KickNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(10, value);
+    private void KickNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(11, value);
+    private void KickNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(12, value);
+    private void KickNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(13, value);
+    private void KickNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(14, value);
+    private void KickNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(15, value);
     
     
     
     
-    private void SnareNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(1, value);
-    private void SnareNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(2, value);
-    private void SnareNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(3, value);
-    private void SnareNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(4, value);
-    private void SnareNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(5, value);
-    private void SnareNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(6, value);
-    private void SnareNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(7, value);
-    private void SnareNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(8, value);
-    private void SnareNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(9, value);
-    private void SnareNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(10, value);
-    private void SnareNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(11, value);
-    private void SnareNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(12, value);
-    private void SnareNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(13, value);
-    private void SnareNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(14, value);
-    private void SnareNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(15, value);
-    private void SnareNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(16, value);
+    private void SnareNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(0, value);
+    private void SnareNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(1, value);
+    private void SnareNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(2, value);
+    private void SnareNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(3, value);
+    private void SnareNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(4, value);
+    private void SnareNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(5, value);
+    private void SnareNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(6, value);
+    private void SnareNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(7, value);
+    private void SnareNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(8, value);
+    private void SnareNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(9, value);
+    private void SnareNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(10, value);
+    private void SnareNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(11, value);
+    private void SnareNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(12, value);
+    private void SnareNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(13, value);
+    private void SnareNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(14, value);
+    private void SnareNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[1].SetNodeFromServer(15, value);
     
     
     
-    private void HiHatNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(1, value);
-    private void HiHatNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(2, value);
-    private void HiHatNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(3, value);
-    private void HiHatNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(4, value);
-    private void HiHatNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(5, value);
-    private void HiHatNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(6, value);
-    private void HiHatNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(7, value);
-    private void HiHatNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(8, value);
-    private void HiHatNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(9, value);
-    private void HiHatNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(10, value);
-    private void HiHatNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(11, value);
-    private void HiHatNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(12, value);
-    private void HiHatNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(13, value);
-    private void HiHatNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(14, value);
-    private void HiHatNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(15, value);
-    private void HiHatNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(16, value);
+    private void HiHatNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(0, value);
+    private void HiHatNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(1, value);
+    private void HiHatNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(2, value);
+    private void HiHatNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(3, value);
+    private void HiHatNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(4, value);
+    private void HiHatNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(5, value);
+    private void HiHatNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(6, value);
+    private void HiHatNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(7, value);
+    private void HiHatNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(8, value);
+    private void HiHatNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(9, value);
+    private void HiHatNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(10, value);
+    private void HiHatNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(11, value);
+    private void HiHatNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(12, value);
+    private void HiHatNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(13, value);
+    private void HiHatNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(14, value);
+    private void HiHatNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[2].SetNodeFromServer(15, value);
     
     
     
     
-    private void TomNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(1, value);
-    private void TomNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(2, value);
-    private void TomNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(3, value);
-    private void TomNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(4, value);
-    private void TomNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(5, value);
-    private void TomNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(6, value);
-    private void TomNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(7, value);
-    private void TomNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(8, value);
-    private void TomNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(9, value);
-    private void TomNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(10, value);
-    private void TomNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(11, value);
-    private void TomNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(12, value);
-    private void TomNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(13, value);
-    private void TomNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(14, value);
-    private void TomNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(15, value);
-    private void TomNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(16, value);
+    private void TomNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(0, value);
+    private void TomNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(1, value);
+    private void TomNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(2, value);
+    private void TomNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(3, value);
+    private void TomNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(4, value);
+    private void TomNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(5, value);
+    private void TomNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(6, value);
+    private void TomNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(7, value);
+    private void TomNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(8, value);
+    private void TomNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(9, value);
+    private void TomNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(10, value);
+    private void TomNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(11, value);
+    private void TomNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(12, value);
+    private void TomNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(13, value);
+    private void TomNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(14, value);
+    private void TomNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[3].SetNodeFromServer(15, value);
     
     
     
-    private void CymbalNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(1, value);
-    private void CymbalNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(2, value);
-    private void CymbalNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(3, value);
-    private void CymbalNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(4, value);
-    private void CymbalNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(5, value);
-    private void CymbalNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(6, value);
-    private void CymbalNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(7, value);
-    private void CymbalNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(8, value);
-    private void CymbalNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(9, value);
-    private void CymbalNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(10, value);
-    private void CymbalNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(11, value);
-    private void CymbalNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(12, value);
-    private void CymbalNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(13, value);
-    private void CymbalNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(14, value);
-    private void CymbalNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(15, value);
-    private void CymbalNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(16, value);
+    private void CymbalNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(0, value);
+    private void CymbalNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(1, value);
+    private void CymbalNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(2, value);
+    private void CymbalNode4DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(3, value);
+    private void CymbalNode5DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(4, value);
+    private void CymbalNode6DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(5, value);
+    private void CymbalNode7DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(6, value);
+    private void CymbalNode8DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(7, value);
+    private void CymbalNode9DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(8, value);
+    private void CymbalNode10DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(9, value);
+    private void CymbalNode11DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(10, value);
+    private void CymbalNode12DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(11, value);
+    private void CymbalNode13DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(12, value);
+    private void CymbalNode14DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(13, value);
+    private void CymbalNode15DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(14, value);
+    private void CymbalNode16DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[4].SetNodeFromServer(15, value);
 
 
-    public void UpdateNodes()
+    /*public void UpdateNodes()
     {
 
         nodeManagers[0].SetNodeFromServer(0, model.kickNode1);
@@ -478,7 +478,7 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
         nodeManagers[4].SetNodeFromServer(15, model.cymbalNode16);
       
         
-    }
+    }*/
     
      public void SetNodeOnServer(DrumType drumType, int index, bool activate)
      {

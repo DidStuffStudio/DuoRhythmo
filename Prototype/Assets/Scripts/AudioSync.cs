@@ -37,7 +37,6 @@ public class AudioSync : RealtimeComponent<AudioSyncModel> {
     
     private void UpdateAudioSource() {
         if(model.playAudio) _audioSource.Play();
-        print(_audioSource.isPlaying);
     }
     
     public void SetAudio(bool play) {

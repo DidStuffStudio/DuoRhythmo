@@ -27,7 +27,6 @@ public class CanvasFollowPlayer : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward * 1000, Color.green, 30.0f);
         if (Physics.Raycast(transform.position, transform.forward, out var hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Player")))
         {
-            print(hit.transform);
             return true;
         }
         else return false;

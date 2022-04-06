@@ -29,7 +29,6 @@ public class NetworkManagerSync : RealtimeComponent<NetworkManagerModel>
 
     private void NumberPlayersDidChange(NetworkManagerModel networkManagerModel, int value) {
         _numberPlayers = model.numberPlayers;
-        print("The number of players has changed to: " + _numberPlayers);
     }
 
     private void UpdateNetwork() => _numberPlayers = model.numberPlayers;
@@ -39,7 +38,6 @@ public class NetworkManagerSync : RealtimeComponent<NetworkManagerModel>
         if (RealTimeInstance.Instance.isSoloMode) return;
         _numberPlayers++;
         model.numberPlayers++;
-        print("A new player has connected to the server. There are now a total of: " + model.numberPlayers);
     }
 
     public void PlayerDisconnected() {

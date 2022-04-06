@@ -50,7 +50,6 @@ public class StringSync : RealtimeComponent<StringModel> {
     }
 
     private void MessageDidChange(StringModel model, string value) {
-        print("Received new message from the server: " + model.message);
         //NewPlayerConnectedDidChange(model, value);
         // _message = model.message;
         //MasterManager.Instance.timer.timer = int.Parse(value);
@@ -129,31 +128,25 @@ public class StringSync : RealtimeComponent<StringModel> {
     public void SetMessage(string value) {
         if (RealTimeInstance.Instance.isSoloMode) return;
         model.message = value;
-        print("Sent a new message to the server: " + value);
     }
     public void SetPlayerNumber(int value) {
         if (RealTimeInstance.Instance.isSoloMode) return;
         model.setPlayerNumber = value.ToString();
-        print("Sent a new player number to the server: " + value);
     }
     public void SetNewPlayerConnected(int value) {
         if (RealTimeInstance.Instance.isSoloMode) return;
         model.newPlayerConnected = value.ToString();
-        print("Sent new player connected to the server: " + value);
     }
     public void SetDrumNodesSingle(string value) {
         if (RealTimeInstance.Instance.isSoloMode) return;
         model.drumNodesSingle = value;
-        print("Sent drum nodes single to the server: " + value);
     }
     public void SetDrumNodesAllDrums(string value) {
         if (RealTimeInstance.Instance.isSoloMode) return;
         model.drumNodesALL = value;
-        print("Sent a drum nodes all drums to the server: " + value);
     }
     public void SetEffectValues(string value) {
         if (RealTimeInstance.Instance.isSoloMode) return;
         model.effectsValues = value;
-        print("Sent effect values to the server: " + value);
     }
 }

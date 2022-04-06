@@ -89,7 +89,7 @@ public class MasterManager : MonoBehaviour {
     private int currentDrumKitIndex = 0;
     [SerializeField] private int maxNumberOfPlayers = 2;
     public NodeSync nodeSync;
-    public NodeDictionarySync nodeDictionarySync;
+
     
     private void Awake()
     {
@@ -134,17 +134,12 @@ public class MasterManager : MonoBehaviour {
         GameObject.FindWithTag("DwellSettings").transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
         dwellTimeSpeed = DontDestroyDwell.Instance.dwellTimeSpeed;
         nodeSync = GetComponentInChildren<NodeSync>();
-        nodeDictionarySync = GetComponentInChildren<NodeDictionarySync>();
     }
 
     public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);
 
     private void OnPlayersChanged(object sender, NotifyCollectionChangedEventArgs e) {
-        print("Players changed");
-        foreach (var p in Players) {
-            print("We have this player: " + p);
-        }
-
+        
         RealTimeInstance.Instance.numberPlayers = Players.Count;
     }
 
@@ -202,17 +197,13 @@ public class MasterManager : MonoBehaviour {
             return;
         }
 
-        // position player at the top view
-        //playerCamera.transform.position = playerStartPosition.position;
-        
+       
     }
 
     private void InstantiatePanelsSoloMode() {
-        print("Got here 1");
         
         Vector3 rotationValue = Vector3.zero;
         var nodesPanelsGo = new GameObject("Nodes panels");
-        print("Got here 2");
         nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
         var effectsPanelsGo = new GameObject("Effects panels");
         effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
@@ -305,7 +296,6 @@ public class MasterManager : MonoBehaviour {
         
         gameSetUpFinished = true;
         userInterfaceManager.ToggleVFX(true);
-        //userInterfaceManager.SetUpRotationOfCarousel();
     }
 
     public void PlayDrum(DrumType drum)
@@ -340,7 +330,6 @@ public class MasterManager : MonoBehaviour {
     {
         while (true)
         {
-            // if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 1) break;
             if (RealTimeInstance.Instance.isSoloMode && RealTimeInstance.Instance.isConnected) break;
             if (RealTimeInstance.Instance.isConnected && RealTimeInstance.Instance.numberPlayers > 0) break;
             yield return new WaitForEndOfFrame();
@@ -348,14 +337,12 @@ public class MasterManager : MonoBehaviour {
 
         if (RealTimeInstance.Instance.numberPlayers > maxNumberOfPlayers)
         {
-            print("Kicked");
             userInterfaceManager.DisplayRoomFullToast();
         }
 
         else
         {
             Initialize();
-            print("local player number: " + localPlayerNumber);
             InstantiatePanelsMultiplayer();
             MasterManager.Instance.userInterfaceManager.justJoined = true;
             MasterManager.Instance.userInterfaceManager.SetUpRotationForNewPlayer(RealTimeInstance.Instance.stopwatch.GetAnimatorTime());
@@ -518,9 +505,7 @@ public class MasterManager : MonoBehaviour {
         }
        
        nodeSync.nodeManagers = _nodeManagers.ToArray();
-       nodeDictionarySync.nodeManagers = _nodeManagers.ToArray();
        nodeSync.startedJammin = true;
-       nodeDictionarySync.startedJammin = true;
        userInterfaceManager.ToggleVFX(true);
         gameSetUpFinished = true;
     }

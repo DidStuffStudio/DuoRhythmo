@@ -57,8 +57,7 @@ public class EuclideanRythm : MonoBehaviour {
         }
 
         if (_rotate > 0) RotateSeq(_rotate);
-
-        print(string.Join(",", _euclideanValues));
+        
     }
 
     /// <summary>

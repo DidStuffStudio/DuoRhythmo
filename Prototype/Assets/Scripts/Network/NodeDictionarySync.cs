@@ -119,7 +119,6 @@ public class NodeDictionarySync : RealtimeComponent<NodeDictionarySyncModel> {
 
     private void KickNodeDidChange(RealtimeDictionary<NodeModel> dictionary, uint key, NodeModel oldmodel,
         NodeModel newmodel, bool remote) {
-        print("Kick dictionary has changed: Node" + key + " is " + remote);
         nodeManagers[0].SetNodeFromServer((int) key, remote);
     }
 
@@ -152,7 +151,6 @@ public class NodeDictionarySync : RealtimeComponent<NodeDictionarySyncModel> {
                 model.cymbalNodeDictionary.Add((uint) i, new NodeModel());
             }
         }
-        print(model.kickNodeDictionary[0].active);
         switch (drumType) {
             case DrumType.Kick:
                 model.kickNodeDictionary[(uint) index] = newNodeModel;

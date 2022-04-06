@@ -24,7 +24,7 @@ public class Node : CustomButton {
 
     private VisualEffect _vfx;
     private NodeSync _nodeSync;
-    private NodeDictionarySync _nodeDictionarySync;
+    //private NodeDictionarySync _nodeDictionarySync;
 
     public bool activatedFromServer;
 
@@ -32,7 +32,7 @@ public class Node : CustomButton {
     {
         _vfx = MasterManager.Instance.userInterfaceManager._vfx;
         _nodeSync = MasterManager.Instance.transform.GetComponentInChildren<NodeSync>();
-        _nodeDictionarySync = MasterManager.Instance.transform.GetComponentInChildren<NodeDictionarySync>();
+        //_nodeDictionarySync = MasterManager.Instance.transform.GetComponentInChildren<NodeDictionarySync>();
         base.Start();
     }
 
@@ -46,7 +46,6 @@ public class Node : CustomButton {
     {
         
         if (activate == isActive) return;
-        print("Setting node from server");
         if (activate)
         {
             
@@ -83,8 +82,8 @@ public class Node : CustomButton {
         {
          
             //Call node sync set node
-            // _nodeSync.SetNodeOnServer(drumType, indexValue, true);
-            _nodeDictionarySync.SetNodeOnServer(drumType, indexValue, true);
+            _nodeSync.SetNodeOnServer(drumType, indexValue, true);
+            //_nodeDictionarySync.SetNodeOnServer(drumType, indexValue, true);
             
 
             //MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 1;
@@ -100,8 +99,8 @@ public class Node : CustomButton {
         if (!RealTimeInstance.Instance.isSoloMode && sendToServer)
         {
             //Call node sync set node
-            // _nodeSync.SetNodeOnServer(drumType, indexValue, false);
-            _nodeDictionarySync.SetNodeOnServer(drumType, indexValue, false);
+             _nodeSync.SetNodeOnServer(drumType, indexValue, false);
+            //_nodeDictionarySync.SetNodeOnServer(drumType, indexValue, false);
             
             //MasterManager.Instance.dataMaster.nodesActivated[(int)drumType, indexValue] = 0;
             //MasterManager.Instance.dataMaster.SendNodes((int)drumType, false);

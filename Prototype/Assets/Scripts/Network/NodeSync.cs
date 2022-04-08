@@ -10,11 +10,8 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
     public NodeManager[] nodeManagers = new NodeManager[5];
     public bool startedJammin = false;
 
-    private void Start()
-    {
-        if (RealTimeInstance.Instance.isSoloMode) return;
-        StartCoroutine(CheckModel());
-    }
+    public void StartUpdateNodes() => StartCoroutine(CheckModel());
+    
 
     protected override void OnRealtimeModelReplaced(NodeSyncModel previousModel, NodeSyncModel currentModel)
     {
@@ -582,15 +579,12 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
         }
      }
 
-     IEnumerator CheckModel()
+     private IEnumerator CheckModel()
      {
          while (true)
          {
              yield return new WaitForSeconds(updateDelta);
-             if (startedJammin)
-             {
-                 UpdateNodes();
-             }
+             if (startedJammin) UpdateNodes();
          }
      }
 }

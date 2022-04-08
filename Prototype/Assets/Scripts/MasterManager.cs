@@ -98,19 +98,19 @@ public class MasterManager : MonoBehaviour {
 
     private void Start()
     {
-
-
-
+        
     Players.CollectionChanged += OnPlayersChanged;
         
 
     // #if !UNITY_IOS && !UNITY_ANDROID
         // Debug.Log("We're not in IOS nor Android, so set the resolution");
-        var height =  Screen.currentResolution.height;
+   
+        /*var height =  Screen.currentResolution.height;
 
         var width = height * 2736/ 1824;
-        Screen.SetResolution(width,height,false);
-    // #endif
+        Screen.SetResolution(width,height,false);*/
+    
+        // #endif
         
         drumDictionary.Add(0, classicDrums);
         drumDictionary.Add(1, djembeDrums);
@@ -506,6 +506,7 @@ public class MasterManager : MonoBehaviour {
        
        nodeSync.nodeManagers = _nodeManagers.ToArray();
        nodeSync.startedJammin = true;
+       nodeSync.StartUpdateNodes();
        userInterfaceManager.ToggleVFX(true);
         gameSetUpFinished = true;
     }

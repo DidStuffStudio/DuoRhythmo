@@ -252,6 +252,7 @@ public class UserInterfaceManager : MonoBehaviour {
         RealTimeInstance.Instance._realtime.Disconnect();
         SceneManager.LoadScene(0);
     }
-    
-    
+
+    public void OpenFeedbackSite()=>Application.OpenURL("https://duorhythmo.frill.co/b/zv9dw6m1/feature-ideas");
+
 }

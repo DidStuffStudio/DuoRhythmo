@@ -21,6 +21,10 @@ public class MasterManager : MonoBehaviour {
             return _instance;
         }
     }
+    
+    public delegate void DwellTimeChanged();
+
+    public event DwellTimeChanged OnDwellTimeChanged;
 
     [Header("Drums")] public int numberInstruments = 5;
     public int numberOfNodes = 16;
@@ -506,7 +510,7 @@ public class MasterManager : MonoBehaviour {
        
        nodeSync.nodeManagers = _nodeManagers.ToArray();
        nodeSync.startedJammin = true;
-       nodeSync.StartUpdateNodes();
+       //nodeSync.StartUpdateNodes();
        userInterfaceManager.ToggleVFX(true);
         gameSetUpFinished = true;
     }
@@ -527,7 +531,7 @@ public class MasterManager : MonoBehaviour {
     }
     
     
-    public void DrumNodeChangedOnServer(int drumIndex, int nodeIndex, bool activate) => _nodeManagers[drumIndex]._nodes[nodeIndex].SetNodeFromServer(activate);
+    //public void DrumNodeChangedOnServer(int drumIndex, int nodeIndex, bool activate) => _nodeManagers[drumIndex]._nodes[nodeIndex].SetNodeFromServer(activate);
 
     public void EffectsDidChangeOnServer(int drumIndex, int[] drumEffects) {
         for (int i = 0; i < 4; i++) _nodeManagers[drumIndex].SetEffectsFromServer(i, drumEffects[i]);

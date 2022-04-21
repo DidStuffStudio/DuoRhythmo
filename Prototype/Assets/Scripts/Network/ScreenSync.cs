@@ -22,7 +22,7 @@ public class ScreenSync: RealtimeComponent<ScreenSyncModel> {
     public int Effect3 => _effect3;
     public int Effect4 => _effect4;
     
-    public List<Node> _nodes = new List<Node>();
+    public List<DidStuffNode> _nodes = new List<DidStuffNode>();
     
     // getters
     public int Bpm => _bpm;

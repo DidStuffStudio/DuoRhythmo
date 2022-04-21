@@ -10,10 +10,10 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
     public NodeManager[] nodeManagers = new NodeManager[5];
     public bool startedJammin = false;
 
-    public void StartUpdateNodes() => StartCoroutine(CheckModel());
+    /*public void StartUpdateNodes() => StartCoroutine(CheckModel());*/
     
 
-    protected override void OnRealtimeModelReplaced(NodeSyncModel previousModel, NodeSyncModel currentModel)
+    /*protected override void OnRealtimeModelReplaced(NodeSyncModel previousModel, NodeSyncModel currentModel)
     {
         if(!startedJammin) return;
         
@@ -104,9 +104,9 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
             previousModel.cymbalNode14DidChange -= CymbalNode14DidChange;
             previousModel.cymbalNode15DidChange -= CymbalNode15DidChange;
             previousModel.cymbalNode16DidChange -= CymbalNode16DidChange;
-        }
+        }*/
 
-        if (currentModel != null) {
+        /*if (currentModel != null) {
             // If this is a model that has no data set on it, populate it with the current mesh renderer color.
             if (currentModel.isFreshModel)
             {
@@ -196,9 +196,10 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
                 currentModel.cymbalNode16 = false;
                 
                 
-            }
+            }*/
 
             // Update the mesh render to match the new model
+            /*
             UpdateNodes();
             
             // Register for events so we'll know if the color changes later
@@ -289,8 +290,10 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
             currentModel.cymbalNode16DidChange += CymbalNode16DidChange;
         }
     }
+    */
 
  
+    /*
     private void KickNode1DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(0, value);
     private void KickNode2DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(1, value);
     private void KickNode3DidChange(NodeSyncModel nodeSyncModel, bool value) => nodeManagers[0].SetNodeFromServer(2, value);
@@ -473,6 +476,7 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
       
         
     }
+    */
     
      public void SetNodeOnServer(DrumType drumType, int index, bool activate)
      { 
@@ -579,12 +583,12 @@ public class NodeSync : RealtimeComponent<NodeSyncModel>
         }
      }
 
-     private IEnumerator CheckModel()
+     /*private IEnumerator CheckModel()
      {
          while (true)
          {
              yield return new WaitForSeconds(updateDelta);
              if (startedJammin) UpdateNodes();
          }
-     }
+     }*/
 }

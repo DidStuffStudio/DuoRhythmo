@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Triplanar_3d9f9bd65bc941338f4a4de4938d1e96_Texture_1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -31,6 +35,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - Vector1_146810124fa144fb9b96a0126e240cc7: 0.015
+    - Vector1_bed1f0bc4c67404282f889be19af2e26: 0.2
+    - Vector1_cfc7742be5b64c498fbfd4c64e9ea82d: 0.2
+    m_Colors:
+    - Color_963dca7f143b4b74bb9102ef97d4b079: {r: 0.21568623, g: 0.21176466, b: 0.19607836, a: 0}
   m_BuildTextureStacks: []

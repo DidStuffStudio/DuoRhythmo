@@ -172,8 +172,7 @@ public class CustomButton : MonoBehaviour {
         }
 
         if (!_canHover || gameObject.layer != LayerMask.NameToLayer("RenderPanel")) return;
-        if (isActive) mainButtonImage.color = activeHoverColor;
-        else mainButtonImage.color = inactiveHoverColor;
+        mainButtonImage.color = isActive ? activeHoverColor : inactiveHoverColor;
         
     }
 

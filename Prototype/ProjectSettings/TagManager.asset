@@ -16,6 +16,7 @@ TagManager:
   - DwellSettings
   - PanelTitle
   - RoomFullToast
+  - EffectTitle
   layers:
   - Default
   - TransparentFX
@@ -52,4 +53,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: DwellScale
+    uniqueID: 2638398685
+    locked: 0
+  - name: ButtonText
+    uniqueID: 1889065537
+    locked: 0
+  - name: Settings
+    uniqueID: 3352456105
+    locked: 0
+  - name: Settings Dwell
+    uniqueID: 1189431925
+    locked: 0
+  - name: Settings Text
+    uniqueID: 4156054983
+    locked: 0
+  - name: GazeSignifier
+    uniqueID: 659099053
     locked: 0

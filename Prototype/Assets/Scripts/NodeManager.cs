@@ -18,7 +18,7 @@ public class NodeManager : MonoBehaviour {
     public GameObject nodePrefab;
 
 
-    public List<Node> _nodes = new List<Node>();
+    public List<DidStuffNode> _nodes = new List<DidStuffNode>();
     public int subNodeIndex; // the subnodes on the other panels that this nodemanager corresponds to
     public Color drumColor { get; set; }
     public Color defaultColor { get; set; }
@@ -59,10 +59,14 @@ public class NodeManager : MonoBehaviour {
     public IncrementButton[] navigationButtons = new IncrementButton[2];
     private int[] _savedValues = new int[16];
     private bool canRotate = true;
+    public List<float> _nodeangles = new List<float>();
+    public float currentRotation = 0.0f;
+
     private void Start() {
         _euclideanRythm = GetComponent<EuclideanRythm>();
+        
     }
-
+    
     public void SetUpNode() {
         
         // _screenSync = GetComponentInParent<ScreenSync>();
@@ -162,11 +166,11 @@ public class NodeManager : MonoBehaviour {
         // position all the nodes (existing nodes and to-be-created ones)
         for (int i = 0; i < numberOfNodes; i++) {
             PositionNode(i);
+            
         }
-
-        /*drumText.text = drumType.ToString();
-        drumText.color = drumColor;
-        drumText.color = new Color(drumColor.r, drumColor.g, drumColor.b, 0);*/
+        
+        
+        
         
         rotation = 0.0f;
         _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
@@ -180,19 +184,18 @@ public class NodeManager : MonoBehaviour {
         var x = Mathf.Cos(radians);
         var spawnPos = new Vector2(x, y) * radius;
         nodeSpawningPositions.Add(spawnPos / radius);
-
-
+        
         // if the current node doesn't exist, then create one and add it to the nodes list
         if (i >= _nodes.Count) {
             // var node = Realtime.Instantiate(nodePrefab.name, transform.position, Quaternion.identity, false, false, true, _realTime);
             var node = Instantiate(nodePrefab, transform);
-            var n = node.GetComponent<Node>();
+            var n = node.GetComponent<DidStuffNode>();
             // node.transform.parent = transform;
             // node.transform.position = transform.position;
             node.name = "Node " + (i + 1);
             _nodes.Add(n);
-            n.indexValue = i;
-            n._screenSync = _screenSync;
+            n.nodeIndex = i;
+            n.screenSync = _screenSync;
             _screenSync._nodes.Add(n);
             // node.GetComponent<Node>()._nodesVisualizer = _nodesVisualizer;
             n.nodeManager = this;
@@ -206,20 +209,17 @@ public class NodeManager : MonoBehaviour {
                 _ => _nodes[i].drumType
             };
 
-            foreach (var customButton in _nodes[i].GetComponentsInChildren<CustomButton>()) //Set up button Colors
+            foreach (var btn in _nodes[i].GetComponentsInChildren<DidStuffNode>()) //Set up button Colors
             {
-                customButton.activeColor = drumColor;
-                customButton.defaultColor = defaultColor;
-                // customButton.hintColor = _panelMaster.hintColor;
+                btn.SetActiveColoursExplicit(drumColor);
             }
+            
+            n.SetText((i + 1).ToString());
         }
-
         var rt = _nodes[i].GetComponent<RectTransform>();
         rt.localRotation = Quaternion.Euler(0, 0, i * (360.0f / -numberOfNodes));
         rt.anchoredPosition = spawnPos;
-        rt.localScale = Vector3.one;
-        var text = _nodes[i].transform.GetComponentInChildren<Text>();
-        text.text = (i + 1).ToString();
+        //rt.localScale = Vector3.one;
     }
 
     private void FixedUpdate() {
@@ -230,6 +230,7 @@ public class NodeManager : MonoBehaviour {
         var degreesPerWaitingSeconds = (360.0f - 360.0f / numberOfNodes) * revolutionsPerWaitingSeconds;
         rotation -= degreesPerWaitingSeconds * 4.0f;
         _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
+        currentRotation = -rotation % 360;
     }
 
     void ChangeBpm(int index) {
@@ -259,27 +260,27 @@ public class NodeManager : MonoBehaviour {
     }
 
 
-    public void RotateRythm(bool right)
+    public void RotateRhythm(bool right)
     {
         var nodesActive = new int[_nodes.Count];
         if (right)
         {
-            if (_nodes[_nodes.Count-1].isActive) nodesActive[0] = 1;
+            if (_nodes[_nodes.Count-1].IsActive) nodesActive[0] = 1;
             else nodesActive[0] = 0;
             for (int i = 0; i < _nodes.Count -1; i++)
             {
-                if (_nodes[i].isActive) nodesActive[i + 1] = 1;
+                if (_nodes[i].IsActive) nodesActive[i + 1] = 1;
                 else nodesActive[i + 1] = 0;
             }
         }
 
         else
         {
-            if (_nodes[0].isActive) nodesActive[_nodes.Count-1] = 1;
+            if (_nodes[0].IsActive) nodesActive[_nodes.Count-1] = 1;
             else nodesActive[_nodes.Count-1] = 0;
             for (int i = _nodes.Count-1; i > 0; i--)
             {
-                if (_nodes[i].isActive) nodesActive[i - 1] = 1;
+                if (_nodes[i].IsActive) nodesActive[i - 1] = 1;
                 else nodesActive[i - 1] = 0;
             } 
         }
@@ -297,13 +298,9 @@ public class NodeManager : MonoBehaviour {
         {
             var value = values[i];
             // if the euclidean value is 1, then it means it should be active, so activate
-            if (value == 1 && !_nodes[i].isActive)
+            if (value == 1 && !_nodes[i].IsActive)
             {
-                _nodes[i].ActivateFromEuclideanOrRotate(true);
-            }
-            else if (value == 0 && _nodes[i].isActive)
-            {
-                _nodes[i].ActivateFromEuclideanOrRotate(false);
+                _nodes[i].ToggleState();
             }
 
               
@@ -317,7 +314,7 @@ public class NodeManager : MonoBehaviour {
     {
         for (int i = 0; i < _nodes.Count; i++)
         {
-            if (_nodes[i].isActive) _savedValues[i] = 1;
+            if (_nodes[i].IsActive) _savedValues[i] = 1;
             else _savedValues[i] = 0;
         }
     }
@@ -333,14 +330,9 @@ public class NodeManager : MonoBehaviour {
             for (int i = 0; i < _nodes.Count; i++) {
             var value = _savedValues[i];
             // if the euclidean value is 1, then it means it should be active, so activate
-            if (value == 1 && !_nodes[i].isActive)
+            if (value == 1 && !_nodes[i].IsActive)
             {
-                _nodes[i].ActivateFromEuclideanOrRotate(true);
-                
-            }
-            else if (value == 0 && _nodes[i].isActive)
-            {
-                _nodes[i].ActivateFromEuclideanOrRotate(false);
+                _nodes[i].ToggleState();
                 
             }
                 
@@ -351,14 +343,9 @@ public class NodeManager : MonoBehaviour {
             for (int i = 0; i < _nodes.Count; i++) {
                 var euclideanValue = _euclideanRythm._euclideanValues[i];
                 // if the euclidean value is 1, then it means it should be active, so activate
-                if (euclideanValue == 1 && !_nodes[i].isActive)
+                if (euclideanValue == 1 && !_nodes[i].IsActive)
                 {
-                    _nodes[i].ActivateFromEuclideanOrRotate(true);
-                    
-                }
-                else if (euclideanValue == 0 && _nodes[i].isActive)
-                {
-                    _nodes[i].ActivateFromEuclideanOrRotate(false);
+                    _nodes[i].ToggleState();
                     
                 }
                 
@@ -366,7 +353,7 @@ public class NodeManager : MonoBehaviour {
         }
     }
 
-    public void SetNodeFromServer(int index, bool activate) => _nodes[index].SetNodeFromServer(activate);
+    //public void SetNodeFromServer(int index, bool activate) => _nodes[index].SetNodeFromServer(activate);
     
     
     public void SetEffectsFromServer(int effectIndex, int effectValue) {

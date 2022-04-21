@@ -20,8 +20,8 @@ public class StringSync : RealtimeComponent<StringModel> {
             previousModel.messageDidChange -= MessageDidChange;
             previousModel.setPlayerNumberDidChange -= SetPlayerNumberDidChange;
             previousModel.newPlayerConnectedDidChange -= NewPlayerConnectedDidChange;
-            previousModel.drumNodesSingleDidChange -= DrumNodesSingleDidChange;
-            previousModel.drumNodesALLDidChange -= DrumNodesAllDidChange;
+            //previousModel.drumNodesSingleDidChange -= DrumNodesSingleDidChange;
+            //previousModel.drumNodesALLDidChange -= DrumNodesAllDidChange;
             previousModel.effectsValuesDidChange -= EffectsValuesDidChange;
         }
 
@@ -43,8 +43,8 @@ public class StringSync : RealtimeComponent<StringModel> {
             currentModel.messageDidChange += MessageDidChange;
             currentModel.setPlayerNumberDidChange += SetPlayerNumberDidChange;
             currentModel.newPlayerConnectedDidChange += NewPlayerConnectedDidChange;
-            currentModel.drumNodesSingleDidChange += DrumNodesSingleDidChange;
-            currentModel.drumNodesALLDidChange += DrumNodesAllDidChange;
+            //currentModel.drumNodesSingleDidChange += DrumNodesSingleDidChange;
+           // currentModel.drumNodesALLDidChange += DrumNodesAllDidChange;
             currentModel.effectsValuesDidChange += EffectsValuesDidChange;
         }
     }
@@ -55,7 +55,7 @@ public class StringSync : RealtimeComponent<StringModel> {
         //MasterManager.Instance.timer.timer = int.Parse(value);
     }
     
-    private void DrumNodesAllDidChange(StringModel stringModel, string value) {
+    /*private void DrumNodesAllDidChange(StringModel stringModel, string value) {
         var drumNodeChanged = value.Split(',');
         if (int.Parse(drumNodeChanged[0]) == MasterManager.Instance.localPlayerNumber ||
             !RealTimeInstance.Instance.isNewPlayer) return;
@@ -66,7 +66,7 @@ public class StringSync : RealtimeComponent<StringModel> {
                 MasterManager.Instance.DrumNodeChangedOnServer(j - 1, i, int.Parse(nodeCharArray[i].ToString()) == 1);
             }
         }
-    }
+    }*/
 
     private void EffectsValuesDidChange(StringModel stringModel, string value) {
         var drumValueDidChanged = value.Split(',');
@@ -88,6 +88,7 @@ public class StringSync : RealtimeComponent<StringModel> {
     }
     
 
+    /*
     private void DrumNodesSingleDidChange(StringModel stringModel, string value) {
         var drumNodeChanged = value.Split(',');
         if (Int32.Parse(drumNodeChanged[0]) == MasterManager.Instance.localPlayerNumber) return;
@@ -96,6 +97,7 @@ public class StringSync : RealtimeComponent<StringModel> {
             MasterManager.Instance.DrumNodeChangedOnServer(int.Parse(drumNodeChanged[1]), i,
                 Int32.Parse(nodeCharArray[i].ToString()) == 1);
     }
+    */
 
 
     private void NewPlayerConnectedDidChange(StringModel stringModel, string value) {

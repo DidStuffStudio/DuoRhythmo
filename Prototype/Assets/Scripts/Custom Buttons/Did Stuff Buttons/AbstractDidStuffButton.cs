@@ -91,7 +91,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 	}
 
 
-	public abstract class AbstractDidStuffButton : MonoBehaviour
+	public abstract class AbstractDidStuffButton : MonoBehaviour, IDidStuffButton
 	{
 		#region Fields
 
@@ -190,7 +190,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (!customHoverColours) SetAutomaticColours();
 			else SetColours();
 
-			_interactionMethod = InteractionMethod.Tobii;
+			_interactionMethod = InteractionMethod.MouseDwell;
 		}
 
 		protected virtual void Update()
@@ -274,6 +274,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				}
 			}
 			else
+				
 			{
 				switch (localInteractionMethod)
 				{
@@ -464,6 +465,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		private void OnMouseOver()
 		{
+			if(!_canHover) return;
 			_isHover = true;
 			OnHover?.Invoke();
 		}

@@ -12,6 +12,7 @@ public class GazeSignifier : MonoBehaviour {
     public float filterSmoothingFactor = 0.5f;
     private ParticleSystem _particleSystem;
     private bool particleSystemPlaying;
+    public Camera camera;
 
 
     private void Start()
@@ -21,7 +22,7 @@ public class GazeSignifier : MonoBehaviour {
 
     void Update()
     {
-        transform.LookAt(Camera.main.transform.forward*5000);
+        transform.LookAt(camera.transform.forward*5000);
 
         if (TobiiAPI.IsConnected)
         {
@@ -45,8 +46,8 @@ public class GazeSignifier : MonoBehaviour {
     
     private Vector3 ProjectToPlaneInWorld(GazePoint gazePoint) {
         Vector3 gazeOnScreen = gazePoint.Screen;
-        gazeOnScreen += (Camera.main.transform.forward + (Vector3.one*visualizationDistance));
-        return Camera.main.ScreenToWorldPoint(gazeOnScreen);
+        gazeOnScreen += (camera.transform.forward + (Vector3.one*visualizationDistance));
+        return camera.ScreenToWorldPoint(gazeOnScreen);
     }
 
     private Vector3 Smoothify(Vector3 point) {

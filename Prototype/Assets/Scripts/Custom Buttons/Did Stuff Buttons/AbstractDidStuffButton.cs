@@ -190,7 +190,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (!customHoverColours) SetAutomaticColours();
 			else SetColours();
 
-			_interactionMethod = InteractionMethod.MouseDwell;
+			_interactionMethod = InteractionMethod.Tobii;
 		}
 
 		protected virtual void Update()

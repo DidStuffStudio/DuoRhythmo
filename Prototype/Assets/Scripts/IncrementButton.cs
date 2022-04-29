@@ -88,16 +88,15 @@ public class IncrementButton : CustomButton
     {
         MasterManager.Instance.userInterfaceManager.PlayAnimation(forward);
     }
-    public void ActivateDwellSettings(bool activate)
+    /*public void ActivateDwellSettings(bool activate)
     {
         SetDefault(false);
         _canHover = true;
-        
         MasterManager.Instance.DwellSettingsActive = activate;
         MasterManager.Instance.SetDwellSettingsActive(activate);
         
         
-    }
+    }*/
 
     public void IncrementBpm(bool increase)
     {

@@ -99,12 +99,12 @@ public class PanelSwitcherButton : CustomButton
     }
 
     
-    public void ActivateDwellSettings(bool activate)
+    /*public void ActivateDwellSettings(bool activate)
     {
         SetDefault(false);
         _canHover = true;
         MasterManager.Instance.DwellSettingsActive = activate;
         MasterManager.Instance.SetDwellSettingsActive(activate);
-    }
+    }*/
     
 }

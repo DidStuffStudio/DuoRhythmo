@@ -22,9 +22,6 @@ public class MasterManager : MonoBehaviour {
         }
     }
     
-    public delegate void DwellTimeChanged();
-
-    public event DwellTimeChanged OnDwellTimeChanged;
 
     [Header("Drums")] public int numberInstruments = 5;
     public int numberOfNodes = 16;
@@ -79,7 +76,6 @@ public class MasterManager : MonoBehaviour {
     [SerializeField] private GameObject mainSignifier;
 
     [SerializeField] private GameObject timerUI;
-    public bool DwellSettingsActive;
     public GameObject exitButtonPanel;
     public DataSync dataMaster;
     public bool isFirstPlayer;
@@ -179,7 +175,7 @@ public class MasterManager : MonoBehaviour {
         nodesPanels = new GameObject[numberInstruments];
         effectsPanels = new GameObject[numberInstruments];
         
-        userInterfaceManager.soloButtons = new UI_Gaze_Button[numberInstruments*2];
+        userInterfaceManager.soloButtons = new SoloButton[numberInstruments*2];
         /*for (int i = 0; i < numberInstruments*2; i++)
         {
             userInterfaceManager.panels.Add(null);
@@ -278,18 +274,18 @@ public class MasterManager : MonoBehaviour {
                 }
             }
 
-            var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            foreach (var uigazeButton in nodesSoloButtons)
+            var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<SoloButton>();
+            foreach (var soloButton in nodesSoloButtons)
             {
-                userInterfaceManager.soloButtons[i] = uigazeButton;
-                uigazeButton.drumTypeIndex = i;
+                userInterfaceManager.soloButtons[i] = soloButton;
+                soloButton.drumTypeIndex = i;
             }
 
-            var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            foreach (var uigazeButton in effectsSoloButtons)
+            var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<SoloButton>();
+            foreach (var soloButton in effectsSoloButtons)
             {
-                userInterfaceManager.soloButtons[i + 5] = uigazeButton;
-                uigazeButton.drumTypeIndex = i;
+                userInterfaceManager.soloButtons[i + 5] = soloButton;
+                soloButton.drumTypeIndex = i;
             }
             nodeManager.SetUpNode();
             
@@ -374,7 +370,7 @@ public class MasterManager : MonoBehaviour {
         var effectsPanelsGo = new GameObject("Effects panels");
         effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
         
-        userInterfaceManager.soloButtons = new UI_Gaze_Button[numberInstruments*2];
+        userInterfaceManager.soloButtons = new SoloButton[numberInstruments*2];
         for (int i = 0; i < numberInstruments*2; i++)
         {
             userInterfaceManager.panels.Add(null);
@@ -386,11 +382,11 @@ public class MasterManager : MonoBehaviour {
             effectsPanels[i].name = "EffectsPanel_" + drumNames[currentDrumKitIndex][i];
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
             //userInterfaceManager.panels.Add(effectsPanels[i]);
-            var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            foreach (var uigazeButton in effectsSoloButtons)
+            var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<SoloButton>();
+            foreach (var soloButton in effectsSoloButtons)
             {
-                userInterfaceManager.soloButtons[i + 5] = uigazeButton;
-                uigazeButton.drumTypeIndex = i;
+                userInterfaceManager.soloButtons[i + 5] = soloButton;
+                soloButton.drumTypeIndex = i;
             }
             foreach(Transform child in effectsPanels[i].transform.GetComponentsInChildren<Transform>())
             {
@@ -479,11 +475,11 @@ public class MasterManager : MonoBehaviour {
 
             nodeManager.SetUpNode();
 
-            var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<UI_Gaze_Button>();
-            foreach (var uigazeButton in nodesSoloButtons)
+            var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<SoloButton>();
+            foreach (var soloButton in nodesSoloButtons)
             {
-                userInterfaceManager.soloButtons[i] = uigazeButton;
-                uigazeButton.drumTypeIndex = i;
+                userInterfaceManager.soloButtons[i] = soloButton;
+                soloButton.drumTypeIndex = i;
             }
         }
 

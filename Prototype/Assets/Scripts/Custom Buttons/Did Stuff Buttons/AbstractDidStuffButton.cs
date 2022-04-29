@@ -120,6 +120,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		[SerializeField] private bool interactionSetting;
 		[SerializeField]
 		private Color activeColour = Color.green, inactiveColour = Color.red, disabledColour = Color.grey;
+		
 
 		[HideInInspector] public string text;
 		[HideInInspector] public bool useInteractableLayer;
@@ -145,7 +146,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private Camera _mainCamera;
 		private static float _dwellTime = 1.0f;
 		private static readonly int DwellSpeed = Animator.StringToHash("DwellSpeed");
-		private static InteractionMethod _interactionMethod;
+		private static InteractionMethod _interactionMethod = InteractionMethod.Mouse;
 		[SerializeField] protected InteractionMethod localInteractionMethod; // Used for buttons which switch interaction methods
 		private List<SpriteRenderer> _spriteRenderers;
 
@@ -166,6 +167,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			OnUnHover += ButtonUnHovered;
 			OnActivate += ActivateButton;
 			OnDeactivate += DeactivateButton;
+			
+			DeactivateButton();
 		}
 
 		protected void SetNewDwellTime()
@@ -189,8 +192,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			else _text.transform.gameObject.SetActive(false);
 			if (!customHoverColours) SetAutomaticColours();
 			else SetColours();
-
-			_interactionMethod = InteractionMethod.Tobii;
 		}
 
 		protected virtual void Update()
@@ -484,6 +485,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_canHover = false;
 			yield return new WaitForSeconds(_interactionBreakTime);
 			_canHover = true;
+
 		}
 
 		private void OnDisable()

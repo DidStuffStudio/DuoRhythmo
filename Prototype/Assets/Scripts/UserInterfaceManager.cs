@@ -20,7 +20,7 @@ public class UserInterfaceManager : MonoBehaviour {
 
     [SerializeField] private String[] drumVolumeRtpcStrings = new string[5];
     public int bpm = 120;
-    public UI_Gaze_Button [] soloButtons;
+    public SoloButton [] soloButtons;
     public DwellSpeedButton[] dwellSpeedButtons;
     private static readonly int Tint = Shader.PropertyToID("_Tint");
     [SerializeField] private int numberOfDwellSpeeds;
@@ -161,7 +161,7 @@ public class UserInterfaceManager : MonoBehaviour {
         else {
             foreach (var t in drumVolumeRtpcStrings) AkSoundEngine.SetRTPCValue(t, 100.0f);
 
-            foreach (var t in soloButtons) t.Deactivate();
+            foreach (var t in soloButtons) t.ForceDeactivate();
         }
     }
 

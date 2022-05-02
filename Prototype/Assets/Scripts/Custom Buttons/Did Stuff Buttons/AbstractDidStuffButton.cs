@@ -1,16 +1,11 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using AK.Wwise;
 using TMPro;
 using Tobii.Gaming;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
 using static UnityEngine.Vector3;
 using Image = UnityEngine.UI.Image;
 
@@ -19,9 +14,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 #if UNITY_EDITOR
 
 	[CustomEditor(typeof(AbstractDidStuffButton), true)]
-	public class DidStuffButtonEditor : UnityEditor.Editor
+	public class DidStuffButtonEditor : Editor
 	{
-		private static Sprite SpriteField(string name, Sprite sprite)
+		private Sprite SpriteField(string name, Sprite sprite)
 		{
 			GUILayout.BeginVertical();
 			var style = new GUIStyle(GUI.skin.label)
@@ -49,6 +44,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			abstractDidStuffButton.useIcon =
 				GUILayout.Toggle(abstractDidStuffButton.useIcon, "Use an icon on the button");
 			abstractDidStuffButton.useText = GUILayout.Toggle(abstractDidStuffButton.useText, "Use text on the button");
+			abstractDidStuffButton.useSecondaryText = GUILayout.Toggle(abstractDidStuffButton.useSecondaryText, "Use secondary text on the button");
+			abstractDidStuffButton.interactionSetting = GUILayout.Toggle(abstractDidStuffButton.interactionSetting, "Does this button set the interaction method");
+			abstractDidStuffButton.dwellTimeSetting = GUILayout.Toggle(abstractDidStuffButton.dwellTimeSetting, "Does this button set dwell time");
 
 			if (abstractDidStuffButton.useInteractableLayer)
 			{
@@ -77,7 +75,21 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				abstractDidStuffButton.iconImg = SpriteField("Icon Image", abstractDidStuffButton.iconImg);
 			//else button.useIcon = EditorGUILayout.TextField("Button Text", button.text);
 			if (abstractDidStuffButton.useText)
-				abstractDidStuffButton.text = EditorGUILayout.TextField("Button Text", abstractDidStuffButton.text);
+				abstractDidStuffButton.primaryText = EditorGUILayout.TextField("Button Text", abstractDidStuffButton.primaryText);
+			if (abstractDidStuffButton.useSecondaryText)
+				abstractDidStuffButton.secondaryText = EditorGUILayout.TextField("Button secondary Text", abstractDidStuffButton.secondaryText,  GUILayout.Height(100));
+			if (abstractDidStuffButton.interactionSetting)
+				abstractDidStuffButton.localInteractionMethod = (InteractionMethod)EditorGUILayout.EnumPopup("Local interaction method",
+					abstractDidStuffButton.localInteractionMethod);
+			if(abstractDidStuffButton.dwellTimeSetting)
+				abstractDidStuffButton.localDwellTime = EditorGUILayout.FloatField("Local dwell time to set",
+				abstractDidStuffButton.localDwellTime);
+
+
+
+
+
+
 		}
 	}
 
@@ -90,8 +102,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		Tobii,
 		Touch
 	}
-
-
+	
 	public abstract class AbstractDidStuffButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{
 		#region Fields
@@ -118,15 +129,16 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 
 		[SerializeField] private UnityEvent onClicked;
-		public bool interactionSetting;
+		
 		[SerializeField]
 		private Color activeColour = Color.green, inactiveColour = Color.red, disabledColour = Color.grey;
 		private RectTransform _dwellGfx;
 		
-		[HideInInspector] public string text;
+		[HideInInspector] public string primaryText, secondaryText;
 		[HideInInspector] public bool useInteractableLayer;
 		[HideInInspector] public LayerMask interactableLayer;
 		[HideInInspector] public bool customHoverColours = false;
+		
 
 		[HideInInspector, Header("Custom Hover Colours")]
 		public Color inactiveHoverColour, activeHoverColour;
@@ -134,35 +146,51 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		[HideInInspector] public bool changeTextOrIconColour = false;
 		[HideInInspector] public Color activeTextOrIconColour = Color.white, inactiveTextOrIconColour = Color.black;
 		[HideInInspector] public bool useIcon, useText;
+		[HideInInspector] public bool useSecondaryText = false;
 		[HideInInspector] public Sprite iconImg;
+		[HideInInspector] public bool interactionSetting;
+		[HideInInspector] public bool dwellTimeSetting;
+		[HideInInspector] public InteractionMethod localInteractionMethod;
+		[HideInInspector] public float localDwellTime = 1.0f;
 
 		private bool _mouseHover = false, _canHover = true;
 		protected bool _isActive, _isInactive = true, _isHover, _isDisabled;
 		private Image _mainImage;
 		private Image _iconImage;
 		private Image _dwellGfxImg;
-		private bool _provideDwellFeedback = false;
-		private TextMeshProUGUI _text;
+		private bool _provideDwellFeedbackLocal = false;
+		private static bool _provideDwellFeedbackGlobal;
+		private TextMeshProUGUI _primaryText, _secondaryText;
 		private Animator _dwellAnimator;
 		private float _interactionBreakTime = 1.0f;
 		private GazeAware _gazeAware;
 		private Camera _mainCamera;
-		private static float _dwellTime = 100.0f;
-		private static readonly int DwellSpeed = Animator.StringToHash("DwellSpeed");
+		private static float _dwellTime = 1.0f;
 		private static InteractionMethod _interactionMethod = InteractionMethod.Mouse;
-		[SerializeField] protected InteractionMethod localInteractionMethod; // Used for buttons which switch interaction methods
-		//private List<SpriteRenderer> _spriteRenderers;
+		private float _currentDwellTime = _dwellTime;
+		private bool _initialised;
 		
+
 		
 		#endregion
-		
-		public float DwellTime
+
+		protected float DwellTime
 		{
 			get => _dwellTime;
 			set => _dwellTime = value;
 		}
 
-		protected void SetInteractionMethod(InteractionMethod method) => _interactionMethod = method;
+		protected void SetInteractionMethod(InteractionMethod method)
+		{
+			_interactionMethod = method;
+			if (_interactionMethod ==InteractionMethod.Tobii ||
+			     _interactionMethod == InteractionMethod.MouseDwell)
+			{
+				_provideDwellFeedbackGlobal = true;
+			}
+			else _provideDwellFeedbackGlobal = false;
+
+		}
 		
 		protected virtual void OnEnable()
 		{
@@ -174,9 +202,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			
 			DeactivateButton();
 		}
-		public static float dwellTime = 1.0f;
-		private float _currentDwellTime = dwellTime;
-
+		
 		protected void SetNewDwellTime()
 		{
 			PlayerPrefs.SetFloat("DwellTime", _dwellTime);
@@ -184,30 +210,52 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 		private void Awake()
 		{
-			//_spriteRenderers = GetComponentsInChildren<SpriteRenderer>().ToList();
 			_mainImage = GetComponent<Image>();
-			//_dwellFeedback = _spriteRenderers[0];
-			_text = GetComponentInChildren<TextMeshProUGUI>();
 			_dwellAnimator = GetComponentInChildren<Animator>();
 			_gazeAware = GetComponent<GazeAware>();
 			_mainCamera = Camera.main;
 			if (!useInteractableLayer) interactableLayer = ~0;
-			//if (useIcon) _spriteRenderers[1].sprite = iconImg;
-			_iconImage = GetComponentsInChildren<Image>().Where(r => r.CompareTag("ButtonIcon")).ToArray()[0];
-			if (useIcon) _iconImage.sprite = iconImg;
-			else _iconImage.gameObject.SetActive(false);
-			if (useText) _text.text = text;
-			else _text.transform.gameObject.SetActive(false);
-			_dwellGfx = GetComponentsInChildren<RectTransform>().Where(r => r.CompareTag("DwellGfx")).ToArray()[0];
-			_dwellGfxImg = _dwellGfx.GetComponent<Image>();
+			GetTheChildren();
 			if (!customHoverColours) SetAutomaticColours();
 			else SetColours();
-			ToggleDwellGfx(false);
-			if (localInteractionMethod == InteractionMethod.Tobii ||
-			    localInteractionMethod == InteractionMethod.MouseDwell) _provideDwellFeedback = true;
-			
+
 			if (_interactionMethod == InteractionMethod.Tobii ||
-			    _interactionMethod == InteractionMethod.MouseDwell) _provideDwellFeedback = true;
+			    _interactionMethod == InteractionMethod.MouseDwell) _provideDwellFeedbackGlobal = true;
+			else _provideDwellFeedbackGlobal = false;
+
+			if (interactionSetting && (localInteractionMethod == InteractionMethod.Tobii ||
+			                           localInteractionMethod == InteractionMethod.MouseDwell))
+				_provideDwellFeedbackLocal = true;
+			else _provideDwellFeedbackLocal = false;
+
+				ToggleDwellGfx(false);
+			DeactivateButton();
+		}
+
+		private void GetTheChildren()
+		{
+			
+			if(GetComponentsInChildren<Image>().Where(r => r.CompareTag("ButtonIcon")).ToArray()[0] != null)
+				_iconImage = GetComponentsInChildren<Image>().Where(r => r.CompareTag("ButtonIcon")).ToArray()[0];
+			if(GetComponentsInChildren<RectTransform>().Where(r => r.CompareTag("DwellGfx")).ToArray()[0] != null)
+				_dwellGfx = GetComponentsInChildren<RectTransform>().Where(r => r.CompareTag("DwellGfx")).ToArray()[0];
+			if (GetComponentsInChildren<TextMeshProUGUI>().Where(r => r.CompareTag("ButtonPrimaryText")).ToArray()[0] !=
+			    null)
+				_primaryText = GetComponentsInChildren<TextMeshProUGUI>().Where(r => r.CompareTag("ButtonPrimaryText"))
+					.ToArray()[0];
+			if (GetComponentsInChildren<TextMeshProUGUI>().Where(r => r.CompareTag("ButtonSecondaryText")).ToArray()[0] !=
+			    null)
+				_secondaryText = GetComponentsInChildren<TextMeshProUGUI>().Where(r => r.CompareTag("ButtonSecondaryText"))
+					.ToArray()[0];
+			
+			_dwellGfxImg = _dwellGfx.GetComponent<Image>();
+			
+			if (useIcon) _iconImage.sprite = iconImg;
+			else _iconImage.gameObject.SetActive(false);
+			if (useText) _primaryText.text = primaryText;
+			else _primaryText.transform.gameObject.SetActive(false);
+			if (useSecondaryText) _secondaryText.text = secondaryText;
+			else _secondaryText.transform.gameObject.SetActive(false);
 		}
 		
 		protected virtual void Update()
@@ -217,12 +265,15 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				switch (_interactionMethod)
 				{
 					case InteractionMethod.MouseDwell:
+						DwellScale();
 						break;
 					case InteractionMethod.Mouse:
 						MouseInput();
 						break;
 					case InteractionMethod.Tobii:
+						if (!TobiiAPI.IsConnected) return;
 						TobiiInput();
+						DwellScale();
 						break;
 					case InteractionMethod.Touch:
 						TouchInput();
@@ -234,12 +285,15 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				switch (localInteractionMethod)
 				{
 					case InteractionMethod.MouseDwell:
+						DwellScale();
 						break;
 					case InteractionMethod.Mouse:
 						MouseInput();
 						break;
 					case InteractionMethod.Tobii:
+						if (!TobiiAPI.IsConnected) return;
 						TobiiInput();
+						DwellScale();
 						break;
 					case InteractionMethod.Touch:
 						TouchInput();
@@ -247,7 +301,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				}
 			}
 			
-			if(_canHover && _provideDwellFeedback)DwellScale();
+			
 		}
 
 		protected virtual void ButtonClicked()
@@ -257,32 +311,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			StartInteractionCoolDown();
 		}
 
-
-		private void DwellScale()
-		{
-			if(!_dwellGfx.gameObject.activeInHierarchy) ToggleDwellGfx(true);
-			if (_isHover && _currentDwellTime > 0) _currentDwellTime -= Time.deltaTime;
-			else if(_isHover &&_currentDwellTime <= 0) DwellActivated();
-			else if (!_isHover && _currentDwellTime < dwellTime) _currentDwellTime += Time.deltaTime;
-			if(_isHover||(_currentDwellTime < 1 && _currentDwellTime > 0))
-				_dwellGfx.localScale = one - new Vector3(_currentDwellTime, _currentDwellTime, _currentDwellTime);
-		}
-
-		private void DwellActivated()
-		{
-		
-			StartCoroutine(CoolDownTime());
-			_currentDwellTime = dwellTime;
-			_dwellGfx.localScale = zero;
-			if (!_isActive) _dwellGfxImg.color = inactiveColour;
-			else _dwellGfxImg.color = activeColour;
-			ToggleDwellGfx(false);
-			OnClick?.Invoke();
-		}
+	
 
 		private void ToggleDwellGfx(bool activate) => _dwellGfx.transform.gameObject.SetActive(activate);
-		
-		
 		
 		protected void InvokeOnClickUnityEvent() => onClicked?.Invoke();
 
@@ -292,31 +323,24 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				StartCoroutine(CoolDownTime());
 		}
 
-		protected void PlayDwellBackwards()
-		{
-			_dwellAnimator.playbackTime = 1.0f;
-			_dwellAnimator.SetFloat(DwellSpeed, -1.0f/_dwellTime);
-			_dwellAnimator.Play("NodeDwell");
-		}
-
 		private void ButtonHovered()
 		{
 			if (!_canHover) return;
+			if (!_initialised) _initialised = true;
 			if (!interactionSetting)
 			{
 				switch (_interactionMethod)
 				{
 					case InteractionMethod.MouseDwell:
-						//FillDwellFeedback(1 / _dwellTime);
-						_currentDwellTime = dwellTime;
+						_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
 						ToggleDwellGfx(true);
 						break;
 					case InteractionMethod.Mouse:
 						MouseHover();
 						break;
 					case InteractionMethod.Tobii:
-						//FillDwellFeedback(1 / _dwellTime);
-						_currentDwellTime = dwellTime;
+						if (!TobiiAPI.IsConnected) return;
+						_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
 						ToggleDwellGfx(true);
 						break;
 					case InteractionMethod.Touch:
@@ -329,17 +353,16 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				switch (localInteractionMethod)
 				{
 					case InteractionMethod.MouseDwell:
-						//FillDwellFeedback(1 / _dwellTime);
-						_currentDwellTime = dwellTime;
+						_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
 						ToggleDwellGfx(true);
 						break;
 					case InteractionMethod.Mouse:
 						MouseHover();
 						break;
 					case InteractionMethod.Tobii:
-						_currentDwellTime = dwellTime;
+						if (!TobiiAPI.IsConnected) return;
+						_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
 						ToggleDwellGfx(true);
-						//FillDwellFeedback(1 / _dwellTime);
 						break;
 					case InteractionMethod.Touch:
 						break;
@@ -353,13 +376,13 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if(!interactionSetting){switch (_interactionMethod)
 			{
 				case InteractionMethod.MouseDwell:
-					//FillDwellFeedback(-1/_dwellTime);
+					
 					break;
 				case InteractionMethod.Mouse:
 					MouseUnHover();
 					break;
 				case InteractionMethod.Tobii:
-					//FillDwellFeedback(-1/_dwellTime);
+					
 					break;
 				case InteractionMethod.Touch:
 					break;
@@ -369,15 +392,13 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				switch (localInteractionMethod)
 				{
 					case InteractionMethod.MouseDwell:
-						DwellScale();
-						//FillDwellFeedback(-1/_dwellTime);
+						
 						break;
 					case InteractionMethod.Mouse:
 						MouseUnHover();
 						break;
 					case InteractionMethod.Tobii:
-						DwellScale();
-						//FillDwellFeedback(-1/_dwellTime);
+						
 						break;
 					case InteractionMethod.Touch:
 						break;
@@ -386,7 +407,11 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		}
 
 		protected void SetCanHover(bool canHover) => _canHover = canHover;
+		
+		//Call this if you want to change the state of the button with no events being called. Like if you want to activate a DuoRhythmo drum node from the server.
 		protected void ActivateButton() => ToggleButton(true);
+
+		protected void ActivateAndCallEvents() => OnClick?.Invoke();
 
 		protected void DeactivateButton() => ToggleButton(false);
 
@@ -399,7 +424,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				_mainImage.color = activeColour;
 				_dwellGfxImg.color = inactiveColour;
 				if (useIcon && changeTextOrIconColour) _iconImage.color = activeTextOrIconColour;
-				if (useText && changeTextOrIconColour) _text.color = activeTextOrIconColour;
+				if (useText && changeTextOrIconColour) _primaryText.color = activeTextOrIconColour;
+				if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = activeTextOrIconColour;
 			}
 
 			else
@@ -409,7 +435,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				_mainImage.color = inactiveColour;
 				_dwellGfxImg.color = activeColour;
 				if (useIcon && changeTextOrIconColour) _iconImage.color = inactiveTextOrIconColour;
-				if (useText && changeTextOrIconColour) _text.color = inactiveTextOrIconColour;
+				if (useText && changeTextOrIconColour) _primaryText.color = inactiveTextOrIconColour;
+				if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = inactiveTextOrIconColour;
 			}
 		}
 
@@ -417,7 +444,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		{
 			_mainImage.color = inactiveColour;
 			_dwellGfxImg.color = activeColour;
-			if (useText) _text.color = inactiveColour;
+			if (useText) _primaryText.color = _secondaryText.color = inactiveColour;
 			if (useIcon) _iconImage.color = inactiveColour;
 		}
 
@@ -429,7 +456,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		public void SetText(string t)
 		{
-			_text.text = t;
+			_primaryText.text = t;
 		}
 
 		private void SetAutomaticColours()
@@ -450,7 +477,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected void ToggleHoverable(bool canHover) => _canHover = canHover;
 
-
 		#region MouseInteraction
 
 		private void MouseInput()
@@ -469,24 +495,42 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		}
 
 		#endregion
-
-		#region MouseDwellInteraction
-
-		protected virtual void FillDwellFeedback(float speed)
+		
+		#region Dwell
+		
+		private void DwellScale()
 		{
-			_dwellAnimator.SetFloat(DwellSpeed, speed);
-			_dwellAnimator.Play("NodeDwell");
+			if ((!_provideDwellFeedbackGlobal && !interactionSetting) || !_canHover) return;
+			var d = _dwellTime;
+			if (dwellTimeSetting) d = localDwellTime;
+			if(!_dwellGfx.gameObject.activeInHierarchy) ToggleDwellGfx(true);
+			if (_isHover && _currentDwellTime > 0) _currentDwellTime -= Time.deltaTime;
+			else if(_isHover &&_currentDwellTime <= 0) DwellActivated();
+			else if (!_isHover && _currentDwellTime < d) _currentDwellTime += Time.deltaTime;
+			if(_isHover||(_currentDwellTime < 1 && _currentDwellTime > 0))
+				_dwellGfx.localScale = one - new Vector3(_currentDwellTime, _currentDwellTime, _currentDwellTime);
+			if(_currentDwellTime > d) ToggleDwellGfx(false);
 		}
 
-		public void DwellFilled() => OnClick?.Invoke();
-
+		private void DwellActivated()
+		{
+		
+			StartCoroutine(CoolDownTime());
+			_currentDwellTime = _dwellTime;
+			_dwellGfx.localScale = zero;
+			if (!_isActive) _dwellGfxImg.color = inactiveColour;
+			else _dwellGfxImg.color = activeColour;
+			ToggleDwellGfx(false);
+			OnClick?.Invoke();
+		}
+			
 		#endregion
-
+		
 		#region TobiiInteraction
 
 		private void TobiiInput()
 		{
-			//if (!TobiiAPI.IsConnected) return;
+			if (!TobiiAPI.IsConnected) return;
 			if (_gazeAware.HasGazeFocus)
 			{
 				_isHover = true;
@@ -534,7 +578,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		public void OnPointerEnter(PointerEventData eventData)
 		{
-			if(!_canHover) return;
+			if(!_canHover || localInteractionMethod == InteractionMethod.Tobii) return;
 			_isHover = true;
 			OnHover?.Invoke();
 		}
@@ -545,8 +589,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			OnUnHover?.Invoke();
 		}
 		#endregion
-
-
+		
 		private IEnumerator CoolDownTime()
 		{
 			_canHover = false;
@@ -554,7 +597,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_canHover = true;
 
 		}
-
 		private void OnDisable()
 		{
 			OnClick -= ButtonClicked;

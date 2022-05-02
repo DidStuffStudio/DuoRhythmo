@@ -25,6 +25,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         {
             base.ButtonClicked();
             base.ToggleHoverable(false);
+            
             foreach (var btn in _otherButtonsToDisable)
             {
                 btn.DeactivateButton();

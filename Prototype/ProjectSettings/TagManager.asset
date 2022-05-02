@@ -19,6 +19,10 @@ TagManager:
   - EffectTitle
   - DwellGfx
   - ButtonIcon
+  - ButtonPrimaryText
+  - ButtonSecondaryText
+  - MainMenuPanel
+  - BlurPlaceholder
   layers:
   - Default
   - TransparentFX
@@ -31,7 +35,7 @@ TagManager:
   - Player
   - Settings
   - Balls
-  - 
+  - Line
   - 
   - 
   - 

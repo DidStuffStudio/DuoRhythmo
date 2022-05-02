@@ -4,13 +4,20 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
 {
     public class DwellSetter : OneOption
     {
-        [SerializeField] private float localDwellTime;
 
-
+        private bool _preferredDwellSpeed;
         protected override void OnEnable()
         {
             base.OnEnable();
-            if (Mathf.Approximately(localDwellTime, PlayerPrefs.GetFloat("DwellTime"))) return;
+            if (Mathf.Approximately(localDwellTime, PlayerPrefs.GetFloat("DwellTime"))) _preferredDwellSpeed = true;
+            else _preferredDwellSpeed = false;
+  
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            if (!_preferredDwellSpeed) return;
             ActivateButton();
             SetDwellTime();
         }
@@ -20,12 +27,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
             DwellTime = localDwellTime;
             SetNewDwellTime();
         }
-
-        protected override void FillDwellFeedback(float speed)
-        {
-            var localSpeed = 1/localDwellTime;
-            if (speed < 0) localSpeed *= -1;
-            base.FillDwellFeedback(localSpeed);
-        }
+        
     }
 }

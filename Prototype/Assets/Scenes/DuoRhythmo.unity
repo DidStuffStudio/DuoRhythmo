@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.049957328, g: 0.048642673, b: 0.04364813, a: 1}
+  m_IndirectSpecularColor: {r: 0.049048353, g: 0.047733862, b: 0.042738292, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -639,43 +639,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 37602977}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 3
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.6
 --- !u!1 &44184065
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,7 +763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1333812293971173609, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1333812293971173609, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1303,7 +1266,7 @@ RectTransform:
   - {fileID: 119918309}
   - {fileID: 1720523534}
   m_Father: {fileID: 1477232408}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1501,6 +1464,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6204182840226331048, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8778418191891405597, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
       propertyPath: m_FrontSortingLayer
       value: 4
@@ -1511,6 +1478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1333812293971173398, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
+    - {fileID: 1947874599437654979, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
 --- !u!224 &119918309 stripped
 RectTransform:
@@ -1534,38 +1502,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e290611b9651d1c41b1692f5589a0605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &119918312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119918310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b83ec8e718e90e47843a495aae0ae88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 128287178}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 689322139}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   interactionSetting: 1
   activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: Dwell with Mouse
+  text: 
   useInteractableLayer: 0
   interactableLayer:
     serializedVersion: 2
@@ -1573,13 +1529,13 @@ MonoBehaviour:
   customHoverColours: 0
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
+  changeTextOrIconColour: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
-  useText: 1
+  useText: 0
   iconImg: {fileID: 0}
-  localInteractionMethod: 1
+  localInteractionMethod: 0
   defaultOption: 0
 --- !u!1 &128287178
 GameObject:
@@ -1613,7 +1569,7 @@ RectTransform:
   - {fileID: 468921705}
   - {fileID: 1361239176}
   m_Father: {fileID: 1477232408}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2579,7 +2535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4526613026129235860, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4526613026129235860, guid: 01e3b4c90fb9948878661c2a5f7dd4da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2754,7 +2710,7 @@ RectTransform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1477232408}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -3393,7 +3349,7 @@ RectTransform:
   - {fileID: 2008948087}
   - {fileID: 22178213}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3834,43 +3790,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 347686631}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 5
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.2
 --- !u!1 &406184132
 GameObject:
   m_ObjectHideFlags: 0
@@ -3983,7 +3902,7 @@ RectTransform:
   m_Children:
   - {fileID: 943850606}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4912,7 +4831,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 530605013}
-  - component: {fileID: 530605014}
   - component: {fileID: 530605021}
   - component: {fileID: 530605020}
   - component: {fileID: 530605018}
@@ -4936,6 +4854,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 806633095}
   - {fileID: 7906260494070750665}
   - {fileID: 419201700}
   - {fileID: 317351201}
@@ -4945,32 +4864,13 @@ RectTransform:
   - {fileID: 2074058792}
   - {fileID: 1862628126}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!95 &530605014
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530605012}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e61bd032427c3b74c948124cb3c79ca6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &530605015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5005,7 +4905,7 @@ BoxCollider:
   m_GameObject: {fileID: 530605012}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 5000, y: 4000, z: 1}
   m_Center: {x: 0, y: 0, z: 62.49}
@@ -5041,15 +4941,15 @@ Canvas:
   m_GameObject: {fileID: 530605012}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1369912069}
-  m_PlaneDistance: 15
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -5250,43 +5150,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
+--- !u!1 &556137504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 556137505}
+  - component: {fileID: 556137507}
+  - component: {fileID: 556137506}
+  m_Layer: 9
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &556137505
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556137504}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1477232408}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 689, y: 3620}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &556137506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556137504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 546177853}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 2
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.8
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 8a8d33a37be8e2d4aa55d19fb3ef6c50, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &556137507
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556137504}
+  m_CullTransparentMesh: 1
 --- !u!1 &565050213
 GameObject:
   m_ObjectHideFlags: 0
@@ -5673,7 +5611,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &582733718
 GameObject:
@@ -5951,43 +5889,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 593332360}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 2
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.8
 --- !u!1 &615418819
 GameObject:
   m_ObjectHideFlags: 0
@@ -6408,43 +6309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 632333880}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 3
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.6
 --- !u!1 &646535056
 GameObject:
   m_ObjectHideFlags: 0
@@ -11544,7 +11408,7 @@ RectTransform:
   m_LocalScale: {x: 0.24701305, y: 0.24701305, z: 0.24701305}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12185,7 +12049,7 @@ Transform:
   - {fileID: 463355745}
   - {fileID: 1195046304}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &749676150
 PrefabInstance:
@@ -12384,43 +12248,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 749676153}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 4
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.4
+--- !u!1 &754882239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 754882241}
+  - component: {fileID: 754882240}
+  m_Layer: 0
+  m_Name: BackgroundBalls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &754882240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754882239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d9849655adf9fc45a5c135808377015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spread: 1000
+  minSize: 100
+  maxSize: 300
+  minSpeed: 1
+  maxSpeed: 5
+  numberBalls: 6
+  colours:
+  - {r: 0.99215686, g: 0.99215686, b: 0.5882353, a: 0}
+  - {r: 0.50980395, g: 0.78039217, b: 0.4509804, a: 0}
+  - {r: 0.29411766, g: 0.68235296, b: 0.68235296, a: 0}
+  - {r: 1, g: 0.72156864, b: 0.32156864, a: 0}
+  - {r: 1, g: 0.4627451, b: 0.4627451, a: 0}
+  ball: {fileID: 1276595318910651709, guid: 40f2eb7e0200c95479a8b2dc89aa2387, type: 3}
+--- !u!4 &754882241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754882239}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: 35, z: 602}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &759241543
 GameObject:
   m_ObjectHideFlags: 0
@@ -12594,7 +12477,7 @@ RectTransform:
   - {fileID: 2145342780}
   - {fileID: 1721459070}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12798,43 +12681,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 775479287}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 3
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.6
 --- !u!1 &786602503
 GameObject:
   m_ObjectHideFlags: 0
@@ -12890,7 +12736,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &786602506
 MonoBehaviour:
@@ -12916,6 +12762,81 @@ MonoBehaviour:
   unloadTriggerList: 958ca0ea
   bankNameInternal: 
   valueGuidInternal: 
+--- !u!1 &806633094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 806633095}
+  - component: {fileID: 806633097}
+  - component: {fileID: 806633096}
+  m_Layer: 9
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &806633095
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806633094}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 530605013}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &806633096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806633094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: f975dff38b5c95c41b7125aea92654ff, type: 2}
+  m_Color: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 0.1764706}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1000
+--- !u!222 &806633097
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806633094}
+  m_CullTransparentMesh: 0
 --- !u!1 &812139479
 GameObject:
   m_ObjectHideFlags: 0
@@ -13219,53 +13140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e290611b9651d1c41b1692f5589a0605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 478649747}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 689322139}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 1
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: Traditional Mouse
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 1
 --- !u!1 &863078218
 GameObject:
   m_ObjectHideFlags: 0
@@ -13616,6 +13490,99 @@ MonoBehaviour:
   iconImg: {fileID: 0}
   localInteractionMethod: 0
   _value: 7
+--- !u!1 &894525377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 894525379}
+  - component: {fileID: 894525378}
+  m_Layer: 0
+  m_Name: Directional Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &894525378
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894525377}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 1
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &894525379
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894525377}
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: -150.13055, y: 8.80385, z: 118.8267}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &904187438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14311,43 +14278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 931703254}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 3
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.6
 --- !u!1 &943850605
 GameObject:
   m_ObjectHideFlags: 0
@@ -14700,43 +14630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 955862712}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 1
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 1
 --- !u!1 &965859670
 GameObject:
   m_ObjectHideFlags: 0
@@ -15013,43 +14906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 976068122}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 4
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.4
 --- !u!1 &983258551
 GameObject:
   m_ObjectHideFlags: 0
@@ -15145,7 +15001,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1013039487
 GameObject:
@@ -15693,43 +15549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1035870290}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 5
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.2
 --- !u!1001 &1041482572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15967,7 +15786,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1071310318 stripped
 GameObject:
@@ -16070,7 +15889,7 @@ RectTransform:
   - {fileID: 1499188379}
   - {fileID: 2061431364}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -16627,43 +16446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1130012957}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 4
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.4
 --- !u!1 &1130863799
 GameObject:
   m_ObjectHideFlags: 0
@@ -17455,7 +17237,7 @@ Transform:
   m_LocalScale: {x: 15.998825, y: 15.998825, z: 15.998825}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1204340711
 GameObject:
@@ -17549,7 +17331,7 @@ RectTransform:
   m_LocalScale: {x: 0.01935252, y: 0.01935252, z: 0.01935252}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -18089,43 +17871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1255182294}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 1
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 1
 --- !u!1001 &1278745842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18323,43 +18068,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1278745845}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 5
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.2
 --- !u!1 &1278928910
 GameObject:
   m_ObjectHideFlags: 0
@@ -19020,16 +18728,16 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &1369912070
@@ -19044,18 +18752,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 0
+  m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: 1
+  m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -19390,6 +19098,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6204182840226331048, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8778418191891405597, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
       propertyPath: m_FrontSortingLayer
       value: 4
@@ -19400,6 +19112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1333812293971173398, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
+    - {fileID: 1947874599437654979, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
 --- !u!224 &1381957288 stripped
 RectTransform:
@@ -19411,7 +19124,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1333812293971173608, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
   m_PrefabInstance: {fileID: 1381957287}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1381957290
+--- !u!114 &1381957291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19420,41 +19133,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1381957289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e290611b9651d1c41b1692f5589a0605, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b83ec8e718e90e47843a495aae0ae88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 128287178}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 689322139}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   interactionSetting: 1
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
+  activeColour: {r: 0, g: 1, b: 0, a: 1}
+  inactiveColour: {r: 1, g: 0, b: 0, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: Tobii EyeTracker
+  text: Eye tracking
   useInteractableLayer: 0
   interactableLayer:
     serializedVersion: 2
@@ -19468,8 +19157,99 @@ MonoBehaviour:
   useIcon: 0
   useText: 1
   iconImg: {fileID: 0}
-  localInteractionMethod: 2
+  localInteractionMethod: 0
   defaultOption: 0
+--- !u!54 &1381957297
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381957289}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!1 &1383716734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1383716735}
+  - component: {fileID: 1383716737}
+  - component: {fileID: 1383716736}
+  m_Layer: 9
+  m_Name: Panel (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1383716735
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383716734}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1477232408}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 689, y: 3620}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1383716736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383716734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 68e7c621343471240bc9b44f47e09c85, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 8a8d33a37be8e2d4aa55d19fb3ef6c50, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1383716737
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383716734}
+  m_CullTransparentMesh: 1
 --- !u!1 &1384926797
 GameObject:
   m_ObjectHideFlags: 0
@@ -19780,53 +19560,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e290611b9651d1c41b1692f5589a0605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 478649747}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 689322139}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 1
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: Dwell with Mouse
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 1
-  defaultOption: 0
 --- !u!1001 &1424472641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20369,12 +20102,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 556137505}
+  - {fileID: 1383716735}
   - {fileID: 220916216}
   - {fileID: 128287179}
   - {fileID: 111211520}
   - {fileID: 58491900}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -20876,7 +20611,7 @@ RectTransform:
   - {fileID: 1252159603}
   - {fileID: 240368723}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -20933,6 +20668,7 @@ GameObject:
   - component: {fileID: 1590067202}
   - component: {fileID: 1590067204}
   - component: {fileID: 1590067205}
+  - component: {fileID: 1590067206}
   m_Layer: 0
   m_Name: MasterManager
   m_TagString: Untagged
@@ -21165,6 +20901,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9db6f4df3f23f439b166fb44b8a1dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1590067206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590067201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62def693b9880ba449d202762c41736e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
 --- !u!1 &1594327450
 GameObject:
   m_ObjectHideFlags: 0
@@ -21644,43 +21393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1641876422}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 2
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.8
 --- !u!1001 &1658122258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22205,43 +21917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1659153406}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 4
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.4
 --- !u!1 &1664850038
 GameObject:
   m_ObjectHideFlags: 0
@@ -22270,7 +21945,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1688550963
 GameObject:
@@ -23195,6 +22870,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6204182840226331048, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8778418191891405597, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
       propertyPath: m_FrontSortingLayer
       value: 4
@@ -23205,6 +22884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1333812293971173398, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
+    - {fileID: 1947874599437654979, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 39c4f8d406e3d914c9df22623399d6b7, type: 3}
 --- !u!224 &1720523534 stripped
 RectTransform:
@@ -23228,38 +22908,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e290611b9651d1c41b1692f5589a0605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1720523537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720523535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b83ec8e718e90e47843a495aae0ae88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 128287178}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 689322139}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   interactionSetting: 1
   activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: Traditional Mouse
+  text: Mouse
   useInteractableLayer: 0
   interactableLayer:
     serializedVersion: 2
@@ -23267,14 +22935,14 @@ MonoBehaviour:
   customHoverColours: 0
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
+  changeTextOrIconColour: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
   useText: 1
   iconImg: {fileID: 0}
   localInteractionMethod: 0
-  defaultOption: 1
+  defaultOption: 0
 --- !u!1001 &1721459067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23756,43 +23424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1742322043}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 5
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.2
 --- !u!1 &1743377063
 GameObject:
   m_ObjectHideFlags: 0
@@ -24942,43 +24573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1801159698}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 1
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 1
 --- !u!1001 &1817244645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25176,43 +24770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1817244648}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 1
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 1
 --- !u!1 &1822915133
 GameObject:
   m_ObjectHideFlags: 0
@@ -26063,7 +25620,7 @@ RectTransform:
   - {fileID: 76477360}
   - {fileID: 1478984540}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -26259,7 +25816,7 @@ Transform:
   - {fileID: 258635028}
   - {fileID: 525941752}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1957047847
 GameObject:
@@ -26773,43 +26330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c2c046d4241d42881393512a4800c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2057786030}
-        m_TargetAssemblyTypeName: Custom_Buttons.Did_Stuff_Buttons.Buttons.DwellTimeButton,
-          Assembly-CSharp
-        m_MethodName: SetDwellTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionSetting: 0
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: 2
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 0
-  defaultOption: 0
-  localDwellTime: 0.8
 --- !u!1001 &2061431363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27169,7 +26689,7 @@ RectTransform:
   - {fileID: 1132884574}
   - {fileID: 1658122259}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -27483,53 +27003,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e290611b9651d1c41b1692f5589a0605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 478649747}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 689322139}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  interactionSetting: 1
-  activeColour: {r: 0.2, g: 0.4745098, b: 0.8509804, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
-  disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  text: Tobii EyeTracker
-  useInteractableLayer: 0
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  customHoverColours: 0
-  inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
-  changeTextOrIconColour: 1
-  activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
-  useIcon: 0
-  useText: 1
-  iconImg: {fileID: 0}
-  localInteractionMethod: 2
-  defaultOption: 0
 --- !u!1 &2145342779
 GameObject:
   m_ObjectHideFlags: 0
@@ -27886,7 +27359,7 @@ RectTransform:
   - {fileID: 98956163}
   - {fileID: 266771459}
   m_Father: {fileID: 530605013}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

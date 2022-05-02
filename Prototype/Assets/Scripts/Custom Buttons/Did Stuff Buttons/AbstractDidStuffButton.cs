@@ -8,6 +8,7 @@ using Tobii.Gaming;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using static UnityEngine.Vector3;
@@ -91,7 +92,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 	}
 
 
-	public abstract class AbstractDidStuffButton : MonoBehaviour, IDidStuffButton
+	public abstract class AbstractDidStuffButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{
 		#region Fields
 
@@ -139,7 +140,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected bool _isActive, _isInactive = true, _isHover, _isDisabled;
 		private Image _mainImage;
 		private SpriteRenderer _dwellFeedback;
-		private TextMeshPro _text;
+		private TextMeshProUGUI _text;
 		private Animator _dwellAnimator;
 		private float _interactionBreakTime = 1.0f;
 		private GazeAware _gazeAware;
@@ -158,9 +159,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			set => _dwellTime = value;
 		}
 		
+		
+	
+		
 		protected void SetInteractionMethod(InteractionMethod method) => _interactionMethod = method;
-
-		private void OnEnable()
+		
+		protected virtual void OnEnable()
 		{
 			OnClick += ButtonClicked;
 			OnHover += ButtonHovered;
@@ -181,7 +185,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_spriteRenderers = GetComponentsInChildren<SpriteRenderer>().ToList();
 			_mainImage = GetComponent<Image>();
 			_dwellFeedback = _spriteRenderers[0];
-			_text = GetComponentInChildren<TextMeshPro>();
+			_text = GetComponentInChildren<TextMeshProUGUI>();
 			_dwellAnimator = GetComponentInChildren<Animator>();
 			_gazeAware = GetComponent<GazeAware>();
 			_mainCamera = Camera.main;
@@ -477,6 +481,18 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			OnUnHover?.Invoke();
 		}
 
+		public void OnPointerEnter(PointerEventData eventData)
+		{
+			if(!_canHover) return;
+			_isHover = true;
+			OnHover?.Invoke();
+		}
+  
+		public void OnPointerExit(PointerEventData eventData)
+		{
+			_isHover = false;
+			OnUnHover?.Invoke();
+		}
 		#endregion
 
 

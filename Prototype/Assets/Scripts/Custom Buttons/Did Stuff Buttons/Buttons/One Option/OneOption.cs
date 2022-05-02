@@ -19,6 +19,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
             _otherButtonsToDisable = otherButtons;
             if(defaultOption) ActivateButton();
         }
+        
 
         protected override void ButtonClicked()
         {
@@ -29,7 +30,13 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
                 btn.DeactivateButton();
                 btn.ToggleHoverable(true);
             }
-            print("CALLED");
+            
+            Extras();
+        }
+
+        protected virtual void Extras()
+        {
+            
         }
 
         protected override void StartInteractionCoolDown() { }

@@ -118,11 +118,11 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 
 		[SerializeField] private UnityEvent onClicked;
-		[SerializeField] private bool interactionSetting;
+		public bool interactionSetting;
 		[SerializeField]
 		private Color activeColour = Color.green, inactiveColour = Color.red, disabledColour = Color.grey;
+		private RectTransform _dwellGfx;
 		
-
 		[HideInInspector] public string text;
 		[HideInInspector] public bool useInteractableLayer;
 		[HideInInspector] public LayerMask interactableLayer;
@@ -139,18 +139,21 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private bool _mouseHover = false, _canHover = true;
 		protected bool _isActive, _isInactive = true, _isHover, _isDisabled;
 		private Image _mainImage;
-		private SpriteRenderer _dwellFeedback;
+		private Image _iconImage;
+		private Image _dwellGfxImg;
+		private bool _provideDwellFeedback = false;
 		private TextMeshProUGUI _text;
 		private Animator _dwellAnimator;
 		private float _interactionBreakTime = 1.0f;
 		private GazeAware _gazeAware;
 		private Camera _mainCamera;
-		private static float _dwellTime = 1.0f;
+		private static float _dwellTime = 100.0f;
 		private static readonly int DwellSpeed = Animator.StringToHash("DwellSpeed");
 		private static InteractionMethod _interactionMethod = InteractionMethod.Mouse;
 		[SerializeField] protected InteractionMethod localInteractionMethod; // Used for buttons which switch interaction methods
-		private List<SpriteRenderer> _spriteRenderers;
-
+		//private List<SpriteRenderer> _spriteRenderers;
+		
+		
 		#endregion
 		
 		public float DwellTime
@@ -158,10 +161,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			get => _dwellTime;
 			set => _dwellTime = value;
 		}
-		
-		
-	
-		
+
 		protected void SetInteractionMethod(InteractionMethod method) => _interactionMethod = method;
 		
 		protected virtual void OnEnable()
@@ -174,6 +174,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			
 			DeactivateButton();
 		}
+		public static float dwellTime = 1.0f;
+		private float _currentDwellTime = dwellTime;
 
 		protected void SetNewDwellTime()
 		{
@@ -182,22 +184,32 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 		private void Awake()
 		{
-			_spriteRenderers = GetComponentsInChildren<SpriteRenderer>().ToList();
+			//_spriteRenderers = GetComponentsInChildren<SpriteRenderer>().ToList();
 			_mainImage = GetComponent<Image>();
-			_dwellFeedback = _spriteRenderers[0];
+			//_dwellFeedback = _spriteRenderers[0];
 			_text = GetComponentInChildren<TextMeshProUGUI>();
 			_dwellAnimator = GetComponentInChildren<Animator>();
 			_gazeAware = GetComponent<GazeAware>();
 			_mainCamera = Camera.main;
 			if (!useInteractableLayer) interactableLayer = ~0;
-			if (useIcon) _spriteRenderers[1].sprite = iconImg;
-			else  _spriteRenderers[1].transform.gameObject.SetActive(false);
+			//if (useIcon) _spriteRenderers[1].sprite = iconImg;
+			_iconImage = GetComponentsInChildren<Image>().Where(r => r.CompareTag("ButtonIcon")).ToArray()[0];
+			if (useIcon) _iconImage.sprite = iconImg;
+			else _iconImage.gameObject.SetActive(false);
 			if (useText) _text.text = text;
 			else _text.transform.gameObject.SetActive(false);
+			_dwellGfx = GetComponentsInChildren<RectTransform>().Where(r => r.CompareTag("DwellGfx")).ToArray()[0];
+			_dwellGfxImg = _dwellGfx.GetComponent<Image>();
 			if (!customHoverColours) SetAutomaticColours();
 			else SetColours();
+			ToggleDwellGfx(false);
+			if (localInteractionMethod == InteractionMethod.Tobii ||
+			    localInteractionMethod == InteractionMethod.MouseDwell) _provideDwellFeedback = true;
+			
+			if (_interactionMethod == InteractionMethod.Tobii ||
+			    _interactionMethod == InteractionMethod.MouseDwell) _provideDwellFeedback = true;
 		}
-
+		
 		protected virtual void Update()
 		{
 			if (!interactionSetting)
@@ -234,6 +246,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 						break;
 				}
 			}
+			
+			if(_canHover && _provideDwellFeedback)DwellScale();
 		}
 
 		protected virtual void ButtonClicked()
@@ -243,6 +257,33 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			StartInteractionCoolDown();
 		}
 
+
+		private void DwellScale()
+		{
+			if(!_dwellGfx.gameObject.activeInHierarchy) ToggleDwellGfx(true);
+			if (_isHover && _currentDwellTime > 0) _currentDwellTime -= Time.deltaTime;
+			else if(_isHover &&_currentDwellTime <= 0) DwellActivated();
+			else if (!_isHover && _currentDwellTime < dwellTime) _currentDwellTime += Time.deltaTime;
+			if(_isHover||(_currentDwellTime < 1 && _currentDwellTime > 0))
+				_dwellGfx.localScale = one - new Vector3(_currentDwellTime, _currentDwellTime, _currentDwellTime);
+		}
+
+		private void DwellActivated()
+		{
+		
+			StartCoroutine(CoolDownTime());
+			_currentDwellTime = dwellTime;
+			_dwellGfx.localScale = zero;
+			if (!_isActive) _dwellGfxImg.color = inactiveColour;
+			else _dwellGfxImg.color = activeColour;
+			ToggleDwellGfx(false);
+			OnClick?.Invoke();
+		}
+
+		private void ToggleDwellGfx(bool activate) => _dwellGfx.transform.gameObject.SetActive(activate);
+		
+		
+		
 		protected void InvokeOnClickUnityEvent() => onClicked?.Invoke();
 
 		protected virtual void StartInteractionCoolDown()
@@ -266,13 +307,17 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				switch (_interactionMethod)
 				{
 					case InteractionMethod.MouseDwell:
-						FillDwellFeedback(1 / _dwellTime);
+						//FillDwellFeedback(1 / _dwellTime);
+						_currentDwellTime = dwellTime;
+						ToggleDwellGfx(true);
 						break;
 					case InteractionMethod.Mouse:
 						MouseHover();
 						break;
 					case InteractionMethod.Tobii:
-						FillDwellFeedback(1 / _dwellTime);
+						//FillDwellFeedback(1 / _dwellTime);
+						_currentDwellTime = dwellTime;
+						ToggleDwellGfx(true);
 						break;
 					case InteractionMethod.Touch:
 						break;
@@ -284,13 +329,17 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				switch (localInteractionMethod)
 				{
 					case InteractionMethod.MouseDwell:
-						FillDwellFeedback(1 / _dwellTime);
+						//FillDwellFeedback(1 / _dwellTime);
+						_currentDwellTime = dwellTime;
+						ToggleDwellGfx(true);
 						break;
 					case InteractionMethod.Mouse:
 						MouseHover();
 						break;
 					case InteractionMethod.Tobii:
-						FillDwellFeedback(1 / _dwellTime);
+						_currentDwellTime = dwellTime;
+						ToggleDwellGfx(true);
+						//FillDwellFeedback(1 / _dwellTime);
 						break;
 					case InteractionMethod.Touch:
 						break;
@@ -304,13 +353,13 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if(!interactionSetting){switch (_interactionMethod)
 			{
 				case InteractionMethod.MouseDwell:
-					FillDwellFeedback(-1/_dwellTime);
+					//FillDwellFeedback(-1/_dwellTime);
 					break;
 				case InteractionMethod.Mouse:
 					MouseUnHover();
 					break;
 				case InteractionMethod.Tobii:
-					FillDwellFeedback(-1/_dwellTime);
+					//FillDwellFeedback(-1/_dwellTime);
 					break;
 				case InteractionMethod.Touch:
 					break;
@@ -320,13 +369,15 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				switch (localInteractionMethod)
 				{
 					case InteractionMethod.MouseDwell:
-						FillDwellFeedback(-1/_dwellTime);
+						DwellScale();
+						//FillDwellFeedback(-1/_dwellTime);
 						break;
 					case InteractionMethod.Mouse:
 						MouseUnHover();
 						break;
 					case InteractionMethod.Tobii:
-						FillDwellFeedback(-1/_dwellTime);
+						DwellScale();
+						//FillDwellFeedback(-1/_dwellTime);
 						break;
 					case InteractionMethod.Touch:
 						break;
@@ -346,8 +397,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				_isActive = true;
 				_isInactive = false;
 				_mainImage.color = activeColour;
-				_dwellFeedback.color = inactiveColour;
-				if (useIcon && changeTextOrIconColour) _spriteRenderers[1].color = activeTextOrIconColour;
+				_dwellGfxImg.color = inactiveColour;
+				if (useIcon && changeTextOrIconColour) _iconImage.color = activeTextOrIconColour;
 				if (useText && changeTextOrIconColour) _text.color = activeTextOrIconColour;
 			}
 
@@ -356,8 +407,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				_isActive = false;
 				_isInactive = true;
 				_mainImage.color = inactiveColour;
-				_dwellFeedback.color = activeColour;
-				if (useIcon && changeTextOrIconColour) _spriteRenderers[1].color = inactiveTextOrIconColour;
+				_dwellGfxImg.color = activeColour;
+				if (useIcon && changeTextOrIconColour) _iconImage.color = inactiveTextOrIconColour;
 				if (useText && changeTextOrIconColour) _text.color = inactiveTextOrIconColour;
 			}
 		}
@@ -365,9 +416,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private void SetColours()
 		{
 			_mainImage.color = inactiveColour;
-			_dwellFeedback.color = activeColour;
+			_dwellGfxImg.color = activeColour;
 			if (useText) _text.color = inactiveColour;
-			if (useIcon) _spriteRenderers[1].color = inactiveColour;
+			if (useIcon) _iconImage.color = inactiveColour;
 		}
 
 		public void SetActiveColoursExplicit(Color color)
@@ -394,7 +445,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			inactiveHoverColour.a = 1;
 			activeHoverColour.a = 1;
 			_mainImage.color = inactiveColour;
-			_dwellFeedback.color = activeColour;
+			_dwellGfxImg.color = activeColour;
 		}
 
 		protected void ToggleHoverable(bool canHover) => _canHover = canHover;

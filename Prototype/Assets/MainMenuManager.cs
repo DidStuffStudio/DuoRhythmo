@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class MainMenuManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class MainMenuManager : MonoBehaviour
    private Vector2 _targetSize;
    [SerializeField] private RectTransform _background;
    [SerializeField] private float speed = 2;
+   [SerializeField] private TMP_InputField usernameInput;
    private void Start()
    {
       _panels = GetComponentsInChildren<Transform>().Where(r => r.CompareTag("MainMenuPanel")).ToList();
@@ -45,6 +47,10 @@ public class MainMenuManager : MonoBehaviour
 
    private void LerpUIBox()
    {
+      
+   }
+
+   public void Login() {
       
    }
 }

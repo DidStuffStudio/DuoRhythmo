@@ -1,34 +1,49 @@
 using System;
 using System.Collections.Generic;
 using ctsalidis;
+using JetBrains.Annotations;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
-using UnityEngine.UI;
-using EntityKey = PlayFab.ProfilesModels.EntityKey;
+using TMPro;
 
 // ref --> https://github.com/DapperDino/PlayFab-Tutorials/blob/main/Assets/Mirror/Examples/Pong/Scripts/PlayFabLogin.cs
 public class PlayFabLogin : MonoBehaviour {
-    public static PlayFabLogin Instance { get; private set; }
+    private static PlayFabLogin _instance;
 
-    [SerializeField] private Text playerIdText;
-    [SerializeField] private GameObject signInDisplay = default;
-    [SerializeField] private InputField usernameInputField = default;
-    [SerializeField] private InputField emailInputField = default;
-    [SerializeField] private InputField passwordInputField = default;
-    [SerializeField] private GameObject matchCanvas;
+    public static PlayFabLogin Instance {
+        get {
+            if (_instance != null) return _instance;
+            var playfabLoginGameObject = new GameObject();
+            _instance = playfabLoginGameObject.AddComponent<PlayFabLogin>();
+            playfabLoginGameObject.name = typeof(PlayFabLogin).ToString();
+            return _instance;
+        }
+    }
 
-    [Header("Managers")] 
-    [SerializeField] private FriendsManager _friendsManager;
     
+    [SerializeField] private TMP_InputField usernameInputField = default;
+    [SerializeField] private TMP_InputField emailInputField = default;
+
+    private string _passwordPin;
+
+    [NotNull]
+    public string PasswordPin {
+        get => _passwordPin;
+        set {
+            _passwordPin = value;
+            SignIn();
+        }
+    }
+
     private const string _PlayFabRememberMeIdKey = "PlayFabIdPassDeviceUniqueIdentifier";
     public GetPlayerCombinedInfoRequestParams InfoRequestParams;
+
     /// <summary>
     /// Generated Remember Me ID
     /// Pass Null for a value to have one auto-generated.
     /// </summary>
-    private string RememberMeId
-    {
+    private string RememberMeId {
         get => PlayerPrefs.GetString(_PlayFabRememberMeIdKey, "");
         set {
             var guid = value ?? Guid.NewGuid().ToString();
@@ -36,16 +51,17 @@ public class PlayFabLogin : MonoBehaviour {
         }
     }
 
-    public static string SessionTicket;
-    public static string EntityId;
-    public static string EntityType;
-    public static string EntityToken;
-    public static PlayFab.MultiplayerModels.EntityKey EntityKey; 
-    public static List<PlayFab.MultiplayerModels.EntityKey> FriendsEntityKeys = new List<PlayFab.MultiplayerModels.EntityKey>();
-    public static List<PlayFab.MultiplayerModels.EntityKey> SelectedFriendsEntityKeys = new List<PlayFab.MultiplayerModels.EntityKey>();
-    // public static string Username;
+    public static PlayFab.MultiplayerModels.EntityKey EntityKey;
 
-    private void Awake() => Instance = this;
+    public static List<PlayFab.MultiplayerModels.EntityKey> FriendsEntityKeys =
+        new List<PlayFab.MultiplayerModels.EntityKey>();
+
+    public static List<PlayFab.MultiplayerModels.EntityKey> SelectedFriendsEntityKeys =
+        new List<PlayFab.MultiplayerModels.EntityKey>();
+
+    private void Awake() {
+        if (_instance == null) _instance = this;
+    }
 
 #if !UNITY_SERVER
     private void Start() {
@@ -55,7 +71,7 @@ public class PlayFabLogin : MonoBehaviour {
 #endif
 
     private void LoginWithRememberMeId() {
-        if(string.IsNullOrEmpty(RememberMeId)) return;
+        if (string.IsNullOrEmpty(RememberMeId)) return;
         LoginWithCustomIDRequest request = new LoginWithCustomIDRequest() {
             TitleId = PlayFabSettings.TitleId,
             CreateAccount = true,
@@ -65,12 +81,13 @@ public class PlayFabLogin : MonoBehaviour {
 
         PlayFabClientAPI.LoginWithCustomID(request, OnPlayfabLoginSuccess, OnLoginError);
     }
-    
+
     public void CreateAccount() {
         var request = new RegisterPlayFabUserRequest() {
             Username = usernameInputField.text,
             Email = emailInputField.text,
-            Password = passwordInputField.text
+            Password = PasswordPin,
+            RequireBothUsernameAndEmail = false
         };
         PlayFabClientAPI.RegisterPlayFabUser(request, OnPlayfabCreatedAccountSuccess, OnLoginError);
     }
@@ -83,7 +100,7 @@ public class PlayFabLogin : MonoBehaviour {
     public void SignIn() {
         var request = new LoginWithPlayFabRequest {
             Username = usernameInputField.text,
-            Password = passwordInputField.text
+            Password = PasswordPin
         };
         PlayFabClientAPI.LoginWithPlayFab(request, OnPlayfabLoginSuccess, OnLoginError);
     }
@@ -106,24 +123,21 @@ public class PlayFabLogin : MonoBehaviour {
 
     private void ProceedWithLogin(string resultSessionTicket, string entityId, string entityType) {
         // if (string.IsNullOrEmpty(Username)) Username = EntityKey.Id;
-        SessionTicket = resultSessionTicket;
         EntityKey = new PlayFab.MultiplayerModels.EntityKey {
             Id = entityId,
             Type = entityType
         };
-        EntityId = entityId;
-        EntityType = entityType;
-        signInDisplay.SetActive(false);
-        playerIdText.text = entityId;
-        _friendsManager.EnableFriendsManager();
-        if(matchCanvas) matchCanvas.gameObject.SetActive(true);
+        
+        // TODO --> Deactivate sign in panel --> Call panel switch from MainManager
+        // playerIdText.text = entityId;
+        FriendsManager.Instance.EnableFriendsManager();
+        // if (matchCanvas) matchCanvas.gameObject.SetActive(true);
 
         if (string.IsNullOrEmpty(RememberMeId)) {
             RememberMeId = Guid.NewGuid().ToString();
             // Fire and forget, but link the custom ID to this PlayFab Account.
             PlayFabClientAPI.LinkCustomID(
-                new LinkCustomIDRequest()
-                {
+                new LinkCustomIDRequest() {
                     CustomId = RememberMeId,
                     ForceLink = false
                 },
@@ -134,7 +148,6 @@ public class PlayFabLogin : MonoBehaviour {
     }
 
     private void OnLinkedError(PlayFabError error) {
-        
         print(error.GenerateErrorReport());
     }
 
@@ -146,7 +159,7 @@ public class PlayFabLogin : MonoBehaviour {
         Debug.LogError("Error logging in: " + error.GenerateErrorReport());
         RememberMeId = ""; // reset the remembermeId
     }
-    
+
     // TODO --> Add clearing saved user info functionality
     public void ClearRememberMe() {
         PlayerPrefs.DeleteKey(_PlayFabRememberMeIdKey);

@@ -19,7 +19,17 @@ enum FriendIdType {
 };
 
 public class FriendsManager : MonoBehaviour {
-    public static FriendsManager Instance { get; private set; }
+    private static FriendsManager _instance;
+
+    public static FriendsManager Instance {
+        get {
+            if (_instance != null) return _instance;
+            var friendsManagerGameObject = new GameObject();
+            _instance = friendsManagerGameObject.AddComponent<FriendsManager>();
+            friendsManagerGameObject.name = typeof(FriendsManager).ToString();
+            return _instance;
+        }
+    }
 
     // functionality variables
     private List<FriendInfo> _friends = null;
@@ -30,16 +40,20 @@ public class FriendsManager : MonoBehaviour {
     public List<EntityKey> friendsEntities = new List<EntityKey>();
 
     // ui variables
+    /*
     [SerializeField] private Button addFriendsButton;
     [SerializeField] private InputField friendId;
     [SerializeField] private Text friendsListText;
     [SerializeField] private GameObject friendsPanel;
+    */
 
-    private void Awake() => Instance = this;
+    private void Awake() {
+        if (_instance == null) _instance = this;
+    }
 
     public void EnableFriendsManager() {
         if (!PlayFabMultiplayerAPI.IsEntityLoggedIn()) return;
-        friendsPanel.SetActive(true);
+        // friendsPanel.SetActive(true);
         GetFriends(); // call this on start because it's deactivated by default, and then activated once user logs in
         // LobbyManager.Instance.FindFriendsLobbies();
     }
@@ -48,7 +62,7 @@ public class FriendsManager : MonoBehaviour {
         foreach (var friend in friendsCache) {
             print(friend.Username);
             print(friend.FriendPlayFabId);
-            friendsListText.text += "\n" + friend.Username + "\n";
+            // friendsListText.text += "\n" + friend.Username + "\n";
             friendPlayfabIds.Add(friend.FriendPlayFabId);
         }
     }
@@ -176,7 +190,7 @@ public class FriendsManager : MonoBehaviour {
     
     #region UI
 
-    public void AddFriendAction() => AddFriend(FriendIdType.Username, friendId.text);
+    //  public void AddFriendAction() => AddFriend(FriendIdType.Username, friendId.text);
 
     #endregion
 }

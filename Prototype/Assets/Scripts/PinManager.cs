@@ -10,7 +10,7 @@ public class PinManager : MonoBehaviour
     private List<int> pinIntegers = new List<int>();
     private LineRenderer _lineRenderer;
     private int _currentIndex = 0;
-    
+
     private void Start()
     {
         _lineRenderer = GetComponent<LineRenderer>();
@@ -27,6 +27,7 @@ public class PinManager : MonoBehaviour
     public void SetPin()
     {
         _pin = pinIntegers.Select(i => i.ToString()).Aggregate((i, j) => i + j);
+        PlayFabLogin.Instance.PasswordPin = _pin;
         print(_pin);
     }
 }

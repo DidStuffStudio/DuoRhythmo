@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AkWwiseProjectData
   m_EditorClassIdentifier: 
   AcousticTextureWwu:
-  - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
+  - PhysicalPath: Virtual Acoustics/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: Virtual Acoustics
       ObjectType: 5
@@ -21,13 +21,13 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: cc717317cdad8743bf9108ba7a4faf4f
-    ParentPath: Virtual Acoustics\Default Work Unit
+    ParentPath: Virtual Acoustics/Default Work Unit
     guid: cc717317cdad8743bf9108ba7a4faf4f
     GuidInternal: 
-    m_lastTime: -8585503927044105674
+    m_lastTime: -8585810397614775808
     List: []
   AuxBusWwu:
-  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+  - PhysicalPath: Master-Mixer Hierarchy/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: Master-Mixer Hierarchy
       ObjectType: 5
@@ -35,10 +35,10 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: 554f1bb12f386940af6e508cad75ebe4
-    ParentPath: Master-Mixer Hierarchy\Default Work Unit
+    ParentPath: Master-Mixer Hierarchy/Default Work Unit
     guid: 554f1bb12f386940af6e508cad75ebe4
     GuidInternal: 
-    m_lastTime: -8585503927048356636
+    m_lastTime: -8585810397614775808
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -53,9 +53,9 @@ MonoBehaviour:
       - ElementName: Master Audio Bus
         ObjectType: 2
         guid: d8a41415a61d2a41a17e75ca0c2149f3
-      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus
+      Path: Master-Mixer Hierarchy/Default Work Unit/Master Audio Bus
   BankWwu:
-  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+  - PhysicalPath: SoundBanks/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: SoundBanks
       ObjectType: 5
@@ -63,10 +63,10 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: a81dc75788825b409833e16fa7d911ed
-    ParentPath: SoundBanks\Default Work Unit
+    ParentPath: SoundBanks/Default Work Unit
     guid: a81dc75788825b409833e16fa7d911ed
     GuidInternal: 
-    m_lastTime: -8585503927044125677
+    m_lastTime: -8585810397614775808
     List:
     - name: DrumKit
       guid: 9b12486e84dacd4fbb559b2f24703957
@@ -81,9 +81,9 @@ MonoBehaviour:
       - ElementName: DrumKit
         ObjectType: 7
         guid: 9b12486e84dacd4fbb559b2f24703957
-      Path: SoundBanks\Default Work Unit\DrumKit
+      Path: SoundBanks/Default Work Unit/DrumKit
   EventWwu:
-  - PhysicalPath: Events\Default Work Unit.wwu
+  - PhysicalPath: Events/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: Events
       ObjectType: 5
@@ -91,10 +91,10 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: 4359b77ad457754e8a9cd706b9cd71ce
-    ParentPath: Events\Default Work Unit
+    ParentPath: Events/Default Work Unit
     guid: 4359b77ad457754e8a9cd706b9cd71ce
     GuidInternal: 
-    m_lastTime: -8585503927050077025
+    m_lastTime: -8585810397614775808
     List:
     - name: PlayCymbol_ambient
       guid: 82586b60adb66b45b888d3acf441cbfd
@@ -109,7 +109,7 @@ MonoBehaviour:
       - ElementName: PlayCymbol_ambient
         ObjectType: 3
         guid: 82586b60adb66b45b888d3acf441cbfd
-      Path: Events\Default Work Unit\PlayCymbol_ambient
+      Path: Events/Default Work Unit/PlayCymbol_ambient
       maxAttenuation: 0
       maxDuration: 0.117302
       minDuration: 0.117302
@@ -126,7 +126,7 @@ MonoBehaviour:
       - ElementName: PlayCymbol_djembe
         ObjectType: 3
         guid: 52b8eb94c7f83c4389ad88a24c0138b4
-      Path: Events\Default Work Unit\PlayCymbol_djembe
+      Path: Events/Default Work Unit/PlayCymbol_djembe
       maxAttenuation: 0
       maxDuration: 0.96
       minDuration: 0.96
@@ -143,7 +143,7 @@ MonoBehaviour:
       - ElementName: PlayCymbol_electro
         ObjectType: 3
         guid: 360c8f9c5778624c93ef36501d98c2f8
-      Path: Events\Default Work Unit\PlayCymbol_electro
+      Path: Events/Default Work Unit/PlayCymbol_electro
       maxAttenuation: 0
       maxDuration: 1.018345
       minDuration: 1.018345
@@ -160,7 +160,7 @@ MonoBehaviour:
       - ElementName: PlayCymbol_handpan
         ObjectType: 3
         guid: 4b47cd562cb0434dbf5c5c6b44ff5ca1
-      Path: Events\Default Work Unit\PlayCymbol_handpan
+      Path: Events/Default Work Unit/PlayCymbol_handpan
       maxAttenuation: 0
       maxDuration: 3.75
       minDuration: 3.75
@@ -177,7 +177,7 @@ MonoBehaviour:
       - ElementName: PlayCymbol_rock
         ObjectType: 3
         guid: a9fde0410cbada4289d1010afb2fa77c
-      Path: Events\Default Work Unit\PlayCymbol_rock
+      Path: Events/Default Work Unit/PlayCymbol_rock
       maxAttenuation: 0
       maxDuration: 5.856145
       minDuration: 5.856145
@@ -194,7 +194,7 @@ MonoBehaviour:
       - ElementName: PlayHiHat_ambient
         ObjectType: 3
         guid: 5f0081506de60945917e58380c6d4ec2
-      Path: Events\Default Work Unit\PlayHiHat_ambient
+      Path: Events/Default Work Unit/PlayHiHat_ambient
       maxAttenuation: 0
       maxDuration: 0.058526
       minDuration: 0.058526
@@ -211,7 +211,7 @@ MonoBehaviour:
       - ElementName: PlayHiHat_djembe
         ObjectType: 3
         guid: 45ee5723036717409b4f15242591e6f1
-      Path: Events\Default Work Unit\PlayHiHat_djembe
+      Path: Events/Default Work Unit/PlayHiHat_djembe
       maxAttenuation: 0
       maxDuration: 1.92
       minDuration: 1.92
@@ -228,7 +228,7 @@ MonoBehaviour:
       - ElementName: PlayHiHat_electro
         ObjectType: 3
         guid: d3cf2c713d3922479abe832f8102a15f
-      Path: Events\Default Work Unit\PlayHiHat_electro
+      Path: Events/Default Work Unit/PlayHiHat_electro
       maxAttenuation: 0
       maxDuration: 0.501927
       minDuration: 0.501927
@@ -245,7 +245,7 @@ MonoBehaviour:
       - ElementName: PlayHiHat_handpan
         ObjectType: 3
         guid: 269eb74153fb294dbc923fd1aec1dc04
-      Path: Events\Default Work Unit\PlayHiHat_handpan
+      Path: Events/Default Work Unit/PlayHiHat_handpan
       maxAttenuation: 0
       maxDuration: 3.75
       minDuration: 3.75
@@ -262,7 +262,7 @@ MonoBehaviour:
       - ElementName: PlayHiHat_rock
         ObjectType: 3
         guid: cb84046c6ce3884fafe8eb700375971d
-      Path: Events\Default Work Unit\PlayHiHat_rock
+      Path: Events/Default Work Unit/PlayHiHat_rock
       maxAttenuation: 0
       maxDuration: 0.333265
       minDuration: 0.333265
@@ -279,7 +279,7 @@ MonoBehaviour:
       - ElementName: PlayKick__djembe
         ObjectType: 3
         guid: 94ebee7bff220247a7744ea7ca5f0778
-      Path: Events\Default Work Unit\PlayKick__djembe
+      Path: Events/Default Work Unit/PlayKick__djembe
       maxAttenuation: 0
       maxDuration: 1.92
       minDuration: 1.92
@@ -296,7 +296,7 @@ MonoBehaviour:
       - ElementName: PlayKick_ambient
         ObjectType: 3
         guid: e52b39cabe8bd84d8a500ae3b6183829
-      Path: Events\Default Work Unit\PlayKick_ambient
+      Path: Events/Default Work Unit/PlayKick_ambient
       maxAttenuation: 0
       maxDuration: 0.099297
       minDuration: 0.099297
@@ -313,7 +313,7 @@ MonoBehaviour:
       - ElementName: PlayKick_electro
         ObjectType: 3
         guid: 4ac773f9d2962b44b58d6a0fd699fb26
-      Path: Events\Default Work Unit\PlayKick_electro
+      Path: Events/Default Work Unit/PlayKick_electro
       maxAttenuation: 0
       maxDuration: 0.328798
       minDuration: 0.328798
@@ -330,7 +330,7 @@ MonoBehaviour:
       - ElementName: PlayKick_handpan
         ObjectType: 3
         guid: 847aec6963fdcc48812005ee62508104
-      Path: Events\Default Work Unit\PlayKick_handpan
+      Path: Events/Default Work Unit/PlayKick_handpan
       maxAttenuation: 0
       maxDuration: 3.75
       minDuration: 3.75
@@ -347,7 +347,7 @@ MonoBehaviour:
       - ElementName: PlayKick_rock
         ObjectType: 3
         guid: a663cad299d8254d9d631e5301ab6f0b
-      Path: Events\Default Work Unit\PlayKick_rock
+      Path: Events/Default Work Unit/PlayKick_rock
       maxAttenuation: 0
       maxDuration: 0.6
       minDuration: 0.6
@@ -364,7 +364,7 @@ MonoBehaviour:
       - ElementName: PlaySnare_ambient
         ObjectType: 3
         guid: f18877b940540841a27a214ff9553057
-      Path: Events\Default Work Unit\PlaySnare_ambient
+      Path: Events/Default Work Unit/PlaySnare_ambient
       maxAttenuation: 0
       maxDuration: 0.175805
       minDuration: 0.175805
@@ -381,7 +381,7 @@ MonoBehaviour:
       - ElementName: PlaySnare_djembe
         ObjectType: 3
         guid: f4a9e523b311614d8bd152b58216feaa
-      Path: Events\Default Work Unit\PlaySnare_djembe
+      Path: Events/Default Work Unit/PlaySnare_djembe
       maxAttenuation: 0
       maxDuration: 1.44
       minDuration: 1.44
@@ -398,7 +398,7 @@ MonoBehaviour:
       - ElementName: PlaySnare_electro
         ObjectType: 3
         guid: 077a113013c013448ed95d43aad3728e
-      Path: Events\Default Work Unit\PlaySnare_electro
+      Path: Events/Default Work Unit/PlaySnare_electro
       maxAttenuation: 0
       maxDuration: 0.252177
       minDuration: 0.252177
@@ -415,7 +415,7 @@ MonoBehaviour:
       - ElementName: PlaySnare_handpan
         ObjectType: 3
         guid: 13a2e546cd376e479de2a3039a1cc2c8
-      Path: Events\Default Work Unit\PlaySnare_handpan
+      Path: Events/Default Work Unit/PlaySnare_handpan
       maxAttenuation: 0
       maxDuration: 3.75
       minDuration: 3.75
@@ -432,7 +432,7 @@ MonoBehaviour:
       - ElementName: PlaySnare_rock
         ObjectType: 3
         guid: b929cd8082e20e4ca32f07ef82809e8f
-      Path: Events\Default Work Unit\PlaySnare_rock
+      Path: Events/Default Work Unit/PlaySnare_rock
       maxAttenuation: 0
       maxDuration: 0.339524
       minDuration: 0.339524
@@ -449,7 +449,7 @@ MonoBehaviour:
       - ElementName: PlayTomTom_ambient
         ObjectType: 3
         guid: 7c9320427eba9e4cbcc05555366c3d33
-      Path: Events\Default Work Unit\PlayTomTom_ambient
+      Path: Events/Default Work Unit/PlayTomTom_ambient
       maxAttenuation: 0
       maxDuration: 0.068209
       minDuration: 0.068209
@@ -466,7 +466,7 @@ MonoBehaviour:
       - ElementName: PlayTomTom_djembe
         ObjectType: 3
         guid: 79a26c3c77191a42a99db610b1e6ca22
-      Path: Events\Default Work Unit\PlayTomTom_djembe
+      Path: Events/Default Work Unit/PlayTomTom_djembe
       maxAttenuation: 0
       maxDuration: 1.92
       minDuration: 1.92
@@ -483,7 +483,7 @@ MonoBehaviour:
       - ElementName: PlayTomTom_electro
         ObjectType: 3
         guid: 69f47d64d9bc6f4b85804827bcfd2fd1
-      Path: Events\Default Work Unit\PlayTomTom_electro
+      Path: Events/Default Work Unit/PlayTomTom_electro
       maxAttenuation: 0
       maxDuration: 0.100159
       minDuration: 0.100159
@@ -500,7 +500,7 @@ MonoBehaviour:
       - ElementName: PlayTomTom_handpan
         ObjectType: 3
         guid: cebd6b6a9de41a48b3ba1193e523dc98
-      Path: Events\Default Work Unit\PlayTomTom_handpan
+      Path: Events/Default Work Unit/PlayTomTom_handpan
       maxAttenuation: 0
       maxDuration: 5
       minDuration: 5
@@ -517,12 +517,12 @@ MonoBehaviour:
       - ElementName: PlayTomTom_rock
         ObjectType: 3
         guid: 8c10361c7133d3498889229dc510ca03
-      Path: Events\Default Work Unit\PlayTomTom_rock
+      Path: Events/Default Work Unit/PlayTomTom_rock
       maxAttenuation: 0
       maxDuration: 1.750794
       minDuration: 1.750794
   RtpcWwu:
-  - PhysicalPath: Game Parameters\Default Work Unit.wwu
+  - PhysicalPath: Game Parameters/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: Game Parameters
       ObjectType: 5
@@ -530,10 +530,10 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: 9f2cb0cc16470340a744c7e35cb02879
-    ParentPath: Game Parameters\Default Work Unit
+    ParentPath: Game Parameters/Default Work Unit
     guid: 9f2cb0cc16470340a744c7e35cb02879
     GuidInternal: 
-    m_lastTime: -8585503927050077025
+    m_lastTime: -8585810397614775808
     List:
     - name: Cymbal_Volume
       guid: 8ca0e63534d96040b913bed9fa1156d6
@@ -548,7 +548,7 @@ MonoBehaviour:
       - ElementName: Cymbal_Volume
         ObjectType: 13
         guid: 8ca0e63534d96040b913bed9fa1156d6
-      Path: Game Parameters\Default Work Unit\Cymbal_Volume
+      Path: Game Parameters/Default Work Unit/Cymbal_Volume
     - name: Cymbol_Effect_1
       guid: 7ef7aed22c63034eafe1242c840c3d64
       id: 2503299907
@@ -562,7 +562,7 @@ MonoBehaviour:
       - ElementName: Cymbol_Effect_1
         ObjectType: 13
         guid: 7ef7aed22c63034eafe1242c840c3d64
-      Path: Game Parameters\Default Work Unit\Cymbol_Effect_1
+      Path: Game Parameters/Default Work Unit/Cymbol_Effect_1
     - name: Cymbol_Effect_2
       guid: 2d84cd9a1e88554e8d0cb993667ab55a
       id: 2503299904
@@ -576,7 +576,7 @@ MonoBehaviour:
       - ElementName: Cymbol_Effect_2
         ObjectType: 13
         guid: 2d84cd9a1e88554e8d0cb993667ab55a
-      Path: Game Parameters\Default Work Unit\Cymbol_Effect_2
+      Path: Game Parameters/Default Work Unit/Cymbol_Effect_2
     - name: Cymbol_Effect_3
       guid: b66287d2c2e2f74d885dc48226701b86
       id: 2503299905
@@ -590,7 +590,7 @@ MonoBehaviour:
       - ElementName: Cymbol_Effect_3
         ObjectType: 13
         guid: b66287d2c2e2f74d885dc48226701b86
-      Path: Game Parameters\Default Work Unit\Cymbol_Effect_3
+      Path: Game Parameters/Default Work Unit/Cymbol_Effect_3
     - name: Cymbol_Effect_4
       guid: 0c9b0c01cb84904ebf7a4dfbdb7b1529
       id: 2503299910
@@ -604,7 +604,7 @@ MonoBehaviour:
       - ElementName: Cymbol_Effect_4
         ObjectType: 13
         guid: 0c9b0c01cb84904ebf7a4dfbdb7b1529
-      Path: Game Parameters\Default Work Unit\Cymbol_Effect_4
+      Path: Game Parameters/Default Work Unit/Cymbol_Effect_4
     - name: HiHat_Effect_1
       guid: cb33319d4fab3a4cb3e8053c64b99f60
       id: 2996634841
@@ -618,7 +618,7 @@ MonoBehaviour:
       - ElementName: HiHat_Effect_1
         ObjectType: 13
         guid: cb33319d4fab3a4cb3e8053c64b99f60
-      Path: Game Parameters\Default Work Unit\HiHat_Effect_1
+      Path: Game Parameters/Default Work Unit/HiHat_Effect_1
     - name: HiHat_Effect_2
       guid: 55b47697ca575a4eae78dafe06de97b6
       id: 2996634842
@@ -632,7 +632,7 @@ MonoBehaviour:
       - ElementName: HiHat_Effect_2
         ObjectType: 13
         guid: 55b47697ca575a4eae78dafe06de97b6
-      Path: Game Parameters\Default Work Unit\HiHat_Effect_2
+      Path: Game Parameters/Default Work Unit/HiHat_Effect_2
     - name: HiHat_Effect_3
       guid: bdcaa4c8e953fc42b6696256104f018f
       id: 2996634843
@@ -646,7 +646,7 @@ MonoBehaviour:
       - ElementName: HiHat_Effect_3
         ObjectType: 13
         guid: bdcaa4c8e953fc42b6696256104f018f
-      Path: Game Parameters\Default Work Unit\HiHat_Effect_3
+      Path: Game Parameters/Default Work Unit/HiHat_Effect_3
     - name: HiHat_Effect_4
       guid: 475741908af43746b5bd4f3709f715e9
       id: 2996634844
@@ -660,7 +660,7 @@ MonoBehaviour:
       - ElementName: HiHat_Effect_4
         ObjectType: 13
         guid: 475741908af43746b5bd4f3709f715e9
-      Path: Game Parameters\Default Work Unit\HiHat_Effect_4
+      Path: Game Parameters/Default Work Unit/HiHat_Effect_4
     - name: HiHat_Volume
       guid: bb68eb1adefc3e41823f978d8af76361
       id: 3090948260
@@ -674,7 +674,7 @@ MonoBehaviour:
       - ElementName: HiHat_Volume
         ObjectType: 13
         guid: bb68eb1adefc3e41823f978d8af76361
-      Path: Game Parameters\Default Work Unit\HiHat_Volume
+      Path: Game Parameters/Default Work Unit/HiHat_Volume
     - name: Kick_Effect_1
       guid: d46f027dba738c41b0294d637a7ccd5e
       id: 3473794589
@@ -688,7 +688,7 @@ MonoBehaviour:
       - ElementName: Kick_Effect_1
         ObjectType: 13
         guid: d46f027dba738c41b0294d637a7ccd5e
-      Path: Game Parameters\Default Work Unit\Kick_Effect_1
+      Path: Game Parameters/Default Work Unit/Kick_Effect_1
     - name: Kick_Effect_2
       guid: 6875c41d3b7b8e4ab39fc20943e54c6a
       id: 3473794590
@@ -702,7 +702,7 @@ MonoBehaviour:
       - ElementName: Kick_Effect_2
         ObjectType: 13
         guid: 6875c41d3b7b8e4ab39fc20943e54c6a
-      Path: Game Parameters\Default Work Unit\Kick_Effect_2
+      Path: Game Parameters/Default Work Unit/Kick_Effect_2
     - name: Kick_Effect_3
       guid: f2a7443e41818246a03b34537a3f92c9
       id: 3473794591
@@ -716,7 +716,7 @@ MonoBehaviour:
       - ElementName: Kick_Effect_3
         ObjectType: 13
         guid: f2a7443e41818246a03b34537a3f92c9
-      Path: Game Parameters\Default Work Unit\Kick_Effect_3
+      Path: Game Parameters/Default Work Unit/Kick_Effect_3
     - name: Kick_Effect_4
       guid: 3c41abb02c9f9b41bf0d60e5dde3d1a6
       id: 3473794584
@@ -730,7 +730,7 @@ MonoBehaviour:
       - ElementName: Kick_Effect_4
         ObjectType: 13
         guid: 3c41abb02c9f9b41bf0d60e5dde3d1a6
-      Path: Game Parameters\Default Work Unit\Kick_Effect_4
+      Path: Game Parameters/Default Work Unit/Kick_Effect_4
     - name: Kick_Volume
       guid: a98a692597b2eb49ba841557984bdf17
       id: 788319784
@@ -744,7 +744,7 @@ MonoBehaviour:
       - ElementName: Kick_Volume
         ObjectType: 13
         guid: a98a692597b2eb49ba841557984bdf17
-      Path: Game Parameters\Default Work Unit\Kick_Volume
+      Path: Game Parameters/Default Work Unit/Kick_Volume
     - name: Snare_Effect_1
       guid: 91862bd8e67c814da822e388e469450d
       id: 2618583616
@@ -758,7 +758,7 @@ MonoBehaviour:
       - ElementName: Snare_Effect_1
         ObjectType: 13
         guid: 91862bd8e67c814da822e388e469450d
-      Path: Game Parameters\Default Work Unit\Snare_Effect_1
+      Path: Game Parameters/Default Work Unit/Snare_Effect_1
     - name: Snare_Effect_2
       guid: 55523314161001498da0a112673c976a
       id: 2618583619
@@ -772,7 +772,7 @@ MonoBehaviour:
       - ElementName: Snare_Effect_2
         ObjectType: 13
         guid: 55523314161001498da0a112673c976a
-      Path: Game Parameters\Default Work Unit\Snare_Effect_2
+      Path: Game Parameters/Default Work Unit/Snare_Effect_2
     - name: Snare_Effect_3
       guid: d004532882dcfd439bc66e11dc5832af
       id: 2618583618
@@ -786,7 +786,7 @@ MonoBehaviour:
       - ElementName: Snare_Effect_3
         ObjectType: 13
         guid: d004532882dcfd439bc66e11dc5832af
-      Path: Game Parameters\Default Work Unit\Snare_Effect_3
+      Path: Game Parameters/Default Work Unit/Snare_Effect_3
     - name: Snare_Effect_4
       guid: ef2911cb96450f4cb8967d1eaca76762
       id: 2618583621
@@ -800,7 +800,7 @@ MonoBehaviour:
       - ElementName: Snare_Effect_4
         ObjectType: 13
         guid: ef2911cb96450f4cb8967d1eaca76762
-      Path: Game Parameters\Default Work Unit\Snare_Effect_4
+      Path: Game Parameters/Default Work Unit/Snare_Effect_4
     - name: Snare_Volume
       guid: a9bbb96a3412024ea9dc75487e592b58
       id: 3046177845
@@ -814,7 +814,7 @@ MonoBehaviour:
       - ElementName: Snare_Volume
         ObjectType: 13
         guid: a9bbb96a3412024ea9dc75487e592b58
-      Path: Game Parameters\Default Work Unit\Snare_Volume
+      Path: Game Parameters/Default Work Unit/Snare_Volume
     - name: TomTom_Effect_1
       guid: 0ddd5b0823cc584a925b9a6a9e2441df
       id: 1688164495
@@ -828,7 +828,7 @@ MonoBehaviour:
       - ElementName: TomTom_Effect_1
         ObjectType: 13
         guid: 0ddd5b0823cc584a925b9a6a9e2441df
-      Path: Game Parameters\Default Work Unit\TomTom_Effect_1
+      Path: Game Parameters/Default Work Unit/TomTom_Effect_1
     - name: TomTom_Effect_2
       guid: 887cc59b24c5944d9e153f1e7c58e3b9
       id: 1688164492
@@ -842,7 +842,7 @@ MonoBehaviour:
       - ElementName: TomTom_Effect_2
         ObjectType: 13
         guid: 887cc59b24c5944d9e153f1e7c58e3b9
-      Path: Game Parameters\Default Work Unit\TomTom_Effect_2
+      Path: Game Parameters/Default Work Unit/TomTom_Effect_2
     - name: TomTom_Effect_3
       guid: 0d734d16240e784b9bfce6016ecb0711
       id: 1688164493
@@ -856,7 +856,7 @@ MonoBehaviour:
       - ElementName: TomTom_Effect_3
         ObjectType: 13
         guid: 0d734d16240e784b9bfce6016ecb0711
-      Path: Game Parameters\Default Work Unit\TomTom_Effect_3
+      Path: Game Parameters/Default Work Unit/TomTom_Effect_3
     - name: TomTom_Effect_4
       guid: 8cce1c25c2d6c142bbcf2d6198d542a4
       id: 1688164490
@@ -870,7 +870,7 @@ MonoBehaviour:
       - ElementName: TomTom_Effect_4
         ObjectType: 13
         guid: 8cce1c25c2d6c142bbcf2d6198d542a4
-      Path: Game Parameters\Default Work Unit\TomTom_Effect_4
+      Path: Game Parameters/Default Work Unit/TomTom_Effect_4
     - name: TomTom_Volume
       guid: eb9a3b26da8d1c4eba30214ba61e1203
       id: 3216986426
@@ -884,9 +884,9 @@ MonoBehaviour:
       - ElementName: TomTom_Volume
         ObjectType: 13
         guid: eb9a3b26da8d1c4eba30214ba61e1203
-      Path: Game Parameters\Default Work Unit\TomTom_Volume
+      Path: Game Parameters/Default Work Unit/TomTom_Volume
   StateWwu:
-  - PhysicalPath: States\Default Work Unit.wwu
+  - PhysicalPath: States/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: States
       ObjectType: 5
@@ -894,13 +894,13 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: ba344542904ca04a98ce712d30215dd1
-    ParentPath: States\Default Work Unit
+    ParentPath: States/Default Work Unit
     guid: ba344542904ca04a98ce712d30215dd1
     GuidInternal: 
-    m_lastTime: -8585503927044115672
+    m_lastTime: -8585810397614775808
     List: []
   SwitchWwu:
-  - PhysicalPath: Switches\Default Work Unit.wwu
+  - PhysicalPath: Switches/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: Switches
       ObjectType: 5
@@ -908,13 +908,13 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: 541c3cedf1a47c48a34807edffd80ac5
-    ParentPath: Switches\Default Work Unit
+    ParentPath: Switches/Default Work Unit
     guid: 541c3cedf1a47c48a34807edffd80ac5
     GuidInternal: 
-    m_lastTime: -8585503927044115672
+    m_lastTime: -8585810397614775808
     List: []
   TriggerWwu:
-  - PhysicalPath: Triggers\Default Work Unit.wwu
+  - PhysicalPath: Triggers/Default Work Unit.wwu
     PathAndIcons:
     - ElementName: Triggers
       ObjectType: 5
@@ -922,10 +922,10 @@ MonoBehaviour:
     - ElementName: Default Work Unit
       ObjectType: 12
       guid: fee7b98ddcd7774dade11d762a153c5a
-    ParentPath: Triggers\Default Work Unit
+    ParentPath: Triggers/Default Work Unit
     guid: fee7b98ddcd7774dade11d762a153c5a
     GuidInternal: 
-    m_lastTime: -8585503927044105674
+    m_lastTime: -8585810397614775808
     List: []
   ExpandedFileSystemItemIds: 0200000003000000050000000600000007000000080000000a0000000b0000000c0000000d0000000f000000210000002200000023000000240000002600000028000000
   ExpandedWaapiItemIds: 0200000003000000050000000600000007000000080000000a0000000b0000000c0000000d0000000f000000210000002200000023000000240000002600000028000000

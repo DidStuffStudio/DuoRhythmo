@@ -129,7 +129,6 @@ public class SliderKnob : CustomButton
                 }
             }
         }
-        
     }
 
     private void FillSlider()
@@ -219,12 +218,15 @@ public class SliderKnob : CustomButton
         
         if (isEyeHover && !isActive) {
             if (_confirmScalerRT.localScale.x < 1.0f)
+            {
+                ToggleConfirmScaler(true);
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
+            }
             else {
                 _confirmScalerRT.localScale = Vector3.zero;
                 SetActive(false);
                 OnActivation?.Invoke();
- 
+                ToggleConfirmScaler(false);
             }
         }
 

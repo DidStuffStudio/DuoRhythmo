@@ -112,6 +112,7 @@ public class CustomButton : MonoBehaviour {
     {
         if (confirmScaler.activeInHierarchy == activate) return;
         _confirmScalerRT.transform.gameObject.SetActive(activate);
+        print("Called from " + name);
     }
     
     protected virtual void MouseInteraction()

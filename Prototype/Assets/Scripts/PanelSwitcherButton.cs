@@ -10,12 +10,16 @@ public class PanelSwitcherButton : CustomButton
         
         if (isEyeHover && !isActive) {
             if (_confirmScalerRT.localScale.x < 1.0f)
+            {
+                ToggleConfirmScaler(true);
                 _confirmScalerRT.localScale += Vector3.one / MasterManager.Instance.dwellTimeSpeed;
+            }
             else {
                 _confirmScalerRT.localScale = Vector3.zero;
                 StartCoroutine(InteractionBreakTime());
                 SetDefault(false);
                 OnActivation?.Invoke();
+                ToggleConfirmScaler(false);
             }
         }
 

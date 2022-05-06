@@ -7,21 +7,23 @@ using UnityEngine;
 public class SaveBeat : MonoBehaviour
 {
     [SerializeField] private MasterManagerData _masterManagerData = new MasterManagerData();
-    [SerializeField] private MasterManagerData _loadedManagerData = new MasterManagerData();
 
-    public List<string> fileList = new List<string>();
+
+
 
     public List<NodeManager> nodeManagers = new List<NodeManager>();
     
 
     public void SaveIntoJson()
     {
+        int currentDrumIndex = MasterManager.Instance.currentDrumKitIndex;
+        _masterManagerData.drumIndex = currentDrumIndex;
         _masterManagerData.BPM = MasterManager.Instance.bpm;
+        
         for (int i = 0; i < MasterManager.Instance._nodeManagers.Count; i++)
         {
             nodeManagers.Add(MasterManager.Instance._nodeManagers[i]);
         }
-        
 
         for (int i = 0; i < nodeManagers.Count; i++)
         {
@@ -45,41 +47,13 @@ public class SaveBeat : MonoBehaviour
         string masterManager = JsonUtility.ToJson(_masterManagerData, prettyPrint:true);
         string currentDate = System.DateTime.Now.ToString();
         currentDate = ReplaceInvalidChars(currentDate);
-        System.IO.File.WriteAllText(Application.persistentDataPath + Path.AltDirectorySeparatorChar + currentDate + " SavedBeat.json",masterManager);
+        string savedBeatName = MasterManager.Instance.drumKitNames[currentDrumIndex] + " " + currentDate + ".json";
+        System.IO.File.WriteAllText(Application.persistentDataPath + Path.AltDirectorySeparatorChar + savedBeatName,masterManager);
         
-        Debug.Log("Beat saved successfully, file name is: " + currentDate + " SavedBeat.json");
+        Debug.Log("Beat saved successfully! file name is: " + savedBeatName);
     }
 
-    public MasterManagerData GetData(string file)
-    {
-        string json = System.IO.File.ReadAllText(Application.persistentDataPath + Path.AltDirectorySeparatorChar + file);
-        MasterManagerData data = JsonUtility.FromJson<MasterManagerData>(json);
-        //Debug.Log(data.nodeManagersData[0].drumType);
-        return data;
-        
-    }
 
-    public void GetFileList()
-    {
-        //Clear the file list so we dont have any duplicates
-        fileList.Clear();
-        
-        // Get all files that have any number of characters infront of .json
-        string[] files = Directory.GetFiles(Application.persistentDataPath, "*.json");
-
-        //Add each file to the fileList
-        foreach (var file in files)
-        {
-            fileList.Add(file);
-            Debug.Log(file);
-        }
-    }
-
-    public void LoadData(string fileName)
-    {
-        _loadedManagerData = GetData(fileName);
-        Debug.Log(_loadedManagerData.BPM);
-    }
     
     public string ReplaceInvalidChars(string name)
     {
@@ -92,8 +66,9 @@ public class SaveBeat : MonoBehaviour
 [System.Serializable]
 public class MasterManagerData
 {
-    public List<NodeManagerData> nodeManagersData = new List<NodeManagerData>();
+    public int drumIndex;
     public int BPM;
+    public List<NodeManagerData> nodeManagersData = new List<NodeManagerData>();
 }
 
 [System.Serializable]

@@ -90,9 +90,10 @@ public class MasterManager : MonoBehaviour {
     [SerializeField] private string[] ambientDrumNames = {"Kick", "Snare", "Hi-hat", "Tom", "Cymbal"};
     private Dictionary<int, string[]> drumNames = new Dictionary<int, string[]>();
     [SerializeField] private Dictionary<float, bool> playerTransforms = new Dictionary<float, bool>();
-    private int currentDrumKitIndex = 0;
+    public int currentDrumKitIndex = 0;
     [SerializeField] private int maxNumberOfPlayers = 2;
     public NodeSync nodeSync;
+    public string[] drumKitNames = {"Rock Drums", "Djembe", "Electronic", "Handpan", "Ambient"};
 
     
     private void Awake()

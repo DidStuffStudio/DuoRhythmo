@@ -133,6 +133,8 @@ public class MasterManager : MonoBehaviour {
         
         dwellTimeSpeed = DontDestroyDwell.Instance.dwellTimeSpeed;
         nodeSync = GetComponentInChildren<NodeSync>();
+        SwitchDrumKits(JamSessionDetails.Instance.DrumTypeIndex);
+        Initialize();
     }
 
     public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);
@@ -175,7 +177,7 @@ public class MasterManager : MonoBehaviour {
         nodesPanels = new GameObject[numberInstruments];
         effectsPanels = new GameObject[numberInstruments];
         
-        userInterfaceManager.soloButtons = new SoloButton[numberInstruments*2];
+        //userInterfaceManager.soloButtons = new SoloButton[numberInstruments*2];
         /*for (int i = 0; i < numberInstruments*2; i++)
         {
             userInterfaceManager.panels.Add(null);
@@ -243,8 +245,8 @@ public class MasterManager : MonoBehaviour {
             nodeManager.subNodeIndex = i;
             nodeManager.defaultColor = defaultNodeColors[i];
             nodeManager.drumColor = drumColors[i];
-            foreach (var incButton in nodeManager.incrementButtons) incButton.activeColor = drumColors[i];
-            nodeManager.euclideanButton.activeColor = drumColors[i];
+            //foreach (var incButton in nodeManager.incrementButtons) incButton.activeColor = drumColors[i];
+            //nodeManager.euclideanButton.activeColor = drumColors[i];
             
             /*// initialize the knob sliders for this current node manager ////////UNCOMMENT FOR RADIAL SLIDERS
             nodeManager.bpmSlider = effectsPanels[i].GetComponentInChildren<SliderKnob>();
@@ -258,8 +260,8 @@ public class MasterManager : MonoBehaviour {
                 foreach (var quad in knobs[j].quadrants) quad.transform.GetComponent<Image>().color = drumColors[i];
             }*/
             
-            var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
-            nodeManager.sliders = new SliderKnob[knobs.Length-1];
+            var knobs = effectsPanels[i].GetComponentsInChildren<DidStuffSliderKnob>();
+            nodeManager.sliders = new DidStuffSliderKnob[knobs.Length-1];
             var indexCount = 0;
             for (int j = 0; j < knobs.Length; j++)
             {
@@ -267,26 +269,26 @@ public class MasterManager : MonoBehaviour {
                 else
                 {
                     nodeManager.sliders[indexCount] = knobs[j];
-                    knobs[j].knobBorder.color = drumColors[i];
+                    //knobs[j].knobBorder.color = drumColors[i];
                     knobs[j].fillRect.GetComponent<Image>().color = drumColors[i];
-                    knobs[j].activeColor = drumColors[i];
+                    //knobs[j].activeColor = drumColors[i];
                     indexCount++;
                 }
             }
 
-            var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<SoloButton>();
-            foreach (var soloButton in nodesSoloButtons)
+            var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<DidStuffSoloButton>();
+            /*foreach (var soloButton in nodesSoloButtons)
             {
                 userInterfaceManager.soloButtons[i] = soloButton;
-                soloButton.drumTypeIndex = i;
+                //soloButton.drumTypeIndex = i;
             }
 
-            var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<SoloButton>();
+            var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<DidStuffSoloButton>();
             foreach (var soloButton in effectsSoloButtons)
             {
                 userInterfaceManager.soloButtons[i + 5] = soloButton;
-                soloButton.drumTypeIndex = i;
-            }
+                //soloButton.drumTypeIndex = i;
+            }*/
             nodeManager.SetUpNode();
             
             
@@ -370,7 +372,7 @@ public class MasterManager : MonoBehaviour {
         var effectsPanelsGo = new GameObject("Effects panels");
         effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
         
-        userInterfaceManager.soloButtons = new SoloButton[numberInstruments*2];
+        userInterfaceManager.soloButtons = new DidStuffSoloButton[numberInstruments*2];
         for (int i = 0; i < numberInstruments*2; i++)
         {
             userInterfaceManager.panels.Add(null);
@@ -382,11 +384,11 @@ public class MasterManager : MonoBehaviour {
             effectsPanels[i].name = "EffectsPanel_" + drumNames[currentDrumKitIndex][i];
             rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
             //userInterfaceManager.panels.Add(effectsPanels[i]);
-            var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<SoloButton>();
+            var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<DidStuffSoloButton>();
             foreach (var soloButton in effectsSoloButtons)
             {
                 userInterfaceManager.soloButtons[i + 5] = soloButton;
-                soloButton.drumTypeIndex = i;
+                //soloButton.drumTypeIndex = i;
             }
             foreach(Transform child in effectsPanels[i].transform.GetComponentsInChildren<Transform>())
             {
@@ -432,11 +434,11 @@ public class MasterManager : MonoBehaviour {
             nodeManager.subNodeIndex = i;
             nodeManager.defaultColor = defaultNodeColors[i];
             nodeManager.drumColor = drumColors[i];
-            foreach (var incButton in nodeManager.incrementButtons) incButton.activeColor = drumColors[i];
+            //foreach (var incButton in nodeManager.incrementButtons) incButton.activeColor = drumColors[i];
             foreach (var navigationButton in nodeManager.navigationButtons)
                 navigationButton.gameObject.SetActive(false);
 
-            nodeManager.euclideanButton.activeColor = drumColors[i];
+            //nodeManager.euclideanButton.activeColor = drumColors[i];
 
 
 
@@ -452,8 +454,8 @@ public class MasterManager : MonoBehaviour {
                 foreach (var quad in knobs[j].quadrants) quad.transform.GetComponent<Image>().color = drumColors[i];
             }*/
             
-            var knobs = effectsPanels[i].GetComponentsInChildren<SliderKnob>();
-            nodeManager.sliders = new SliderKnob[knobs.Length-1];
+            var knobs = effectsPanels[i].GetComponentsInChildren<DidStuffSliderKnob>();
+            nodeManager.sliders = new DidStuffSliderKnob[knobs.Length-1];
             var indexCount = 0;
             for (int j = 0; j < knobs.Length; j++)
             {
@@ -462,9 +464,9 @@ public class MasterManager : MonoBehaviour {
                 {
                     
                     nodeManager.sliders[indexCount] = knobs[j];
-                    knobs[j].knobBorder.color = drumColors[i];
+                    //knobs[j].knobBorder.color = drumColors[i];
                     knobs[j].fillRect.GetComponent<Image>().color = drumColors[i];
-                    knobs[j].activeColor = drumColors[i];
+                    //knobs[j].activeColor = drumColors[i];
                     indexCount++;
                 }
             }
@@ -475,11 +477,11 @@ public class MasterManager : MonoBehaviour {
 
             nodeManager.SetUpNode();
 
-            var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<SoloButton>();
+            var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<DidStuffSoloButton>();
             foreach (var soloButton in nodesSoloButtons)
             {
                 userInterfaceManager.soloButtons[i] = soloButton;
-                soloButton.drumTypeIndex = i;
+                //soloButton.drumTypeIndex = i;
             }
         }
 

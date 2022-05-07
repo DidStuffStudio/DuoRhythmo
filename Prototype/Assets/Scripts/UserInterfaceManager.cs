@@ -20,7 +20,7 @@ public class UserInterfaceManager : MonoBehaviour {
 
     [SerializeField] private String[] drumVolumeRtpcStrings = new string[5];
     public int bpm = 120;
-    public SoloButton [] soloButtons;
+    public DidStuffSoloButton [] soloButtons;
     public DwellSpeedButton[] dwellSpeedButtons;
     private static readonly int Tint = Shader.PropertyToID("_Tint");
     [SerializeField] private int numberOfDwellSpeeds;
@@ -37,7 +37,7 @@ public class UserInterfaceManager : MonoBehaviour {
     public bool justJoined;
     private void Start() {
         //roomFullToast = GameObject.FindWithTag("RoomFullToast");
-        _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
+       // _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
         _vfx.transform.gameObject.SetActive(false);
         _uiAnimator = GetComponent<Animator>();
         _targetVFXColor = MasterManager.Instance.drumColors[0];
@@ -223,11 +223,11 @@ public class UserInterfaceManager : MonoBehaviour {
     }
 
     private void OnEnable() {
-        foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(true);
+       // foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(true);
     }
 
     private void OnDisable() {
-        foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(false);
+       // foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(false);
     }
     
     private IEnumerator IgnoreEvents(float ignoreTime)

@@ -956,7 +956,6 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   confirmScaler: {fileID: 7078141786073897815}
   mouseOver: 0
-  interactionBreakTime: 1
   OnActivation:
     m_PersistentCalls:
       m_Calls: []
@@ -978,6 +977,7 @@ MonoBehaviour:
   - {fileID: 8974504510909347821}
   - {fileID: 369019702576887865}
   - {fileID: 5314852712595482575}
+  activatedFromServer: 0
 --- !u!114 &8517848921195261517
 MonoBehaviour:
   m_ObjectHideFlags: 0

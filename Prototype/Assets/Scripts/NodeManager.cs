@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Custom_Buttons.Did_Stuff_Buttons;
+using Custom_Buttons.Did_Stuff_Buttons.Buttons;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,9 +39,9 @@ public class NodeManager : MonoBehaviour {
 
     private string[] effectNames = new string[4];
 
-    public SliderKnob[] sliders = new SliderKnob[4];
+    public DidStuffSliderKnob[] sliders = new DidStuffSliderKnob[4];
 
-    public SliderKnob bpmSlider;
+    public DidStuffSliderKnob bpmSlider;
     private int previousEffectValue;
 
     public int drumIndex;
@@ -54,9 +56,9 @@ public class NodeManager : MonoBehaviour {
 
     private EuclideanRythm _euclideanRythm;
     
-    public IncrementButton[] incrementButtons = new IncrementButton[4];
-    public UI_Gaze_Button euclideanButton;
-    public IncrementButton[] navigationButtons = new IncrementButton[2];
+    public OneShotButton[] incrementButtons = new OneShotButton[4];
+    public DidStuffButton euclideanButton;
+    public OneShotButton[] navigationButtons = new OneShotButton[2];
     private int[] _savedValues = new int[16];
     private bool canRotate = true;
     public List<float> _nodeangles = new List<float>();
@@ -76,9 +78,9 @@ public class NodeManager : MonoBehaviour {
 
         rotation = 0.0f;
 
-        for (int i = 0; i < sliders.Length; i++) sliders[i].OnSliderChange += ChangeEffectValue;
+        //for (int i = 0; i < sliders.Length; i++) sliders[i].OnSliderChange += ChangeEffectValue;
 
-        bpmSlider.OnSliderChange += ChangeBpm;
+        //bpmSlider.OnSliderChange += ChangeBpm;
 
         string[] effects = {"_Effect_1", "_Effect_2", "_Effect_3", "_Effect_4"};
         if (drumType == DrumType.Kick)
@@ -119,7 +121,7 @@ public class NodeManager : MonoBehaviour {
 
     private void LateUpdate() {
         // check for changes of the effects from the server side
-        CheckForChangesSliders();
+        //CheckForChangesSliders();
     }
 
     private void CheckForChangesSliders() {
@@ -130,19 +132,19 @@ public class NodeManager : MonoBehaviour {
             levels[3] = sliders[3].currentValue;
             bpm = MasterManager.Instance.bpm;
             bpmSlider.currentValue = bpm;
-            bpmSlider.UpdateSliderText();
+            //bpmSlider.UpdateSliderText();
         }
         else
         {
 
-            sliders[0].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 0] = (int) (levels[0] = _screenSync.Effect1));
-            sliders[1].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 1] = (int) (levels[1] = _screenSync.Effect2));
-            sliders[2].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 2] = (int) (levels[2] = _screenSync.Effect3));
-            sliders[3].SetCurrentValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 3] = (int) (levels[3] = _screenSync.Effect4)); 
+            sliders[0].SetSliderValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 0] = (int) (levels[0] = _screenSync.Effect1));
+            sliders[1].SetSliderValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 1] = (int) (levels[1] = _screenSync.Effect2));
+            sliders[2].SetSliderValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 2] = (int) (levels[2] = _screenSync.Effect3));
+            sliders[3].SetSliderValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 3] = (int) (levels[3] = _screenSync.Effect4)); 
             
             bpm = _screenSync.Bpm;
             bpmSlider.currentValue = bpm;
-            bpmSlider.UpdateSliderText();
+           // bpmSlider.UpdateSliderText();
         }
 
         // if(MasterManager.Instance.bpm != bpm) MasterManager.Instance.SetBpm(bpm);
@@ -214,7 +216,7 @@ public class NodeManager : MonoBehaviour {
                 btn.SetActiveColoursExplicit(drumColor);
             }
             
-            n.SetText((i + 1).ToString());
+            //n.SetText((i + 1).ToString());
         }
         var rt = _nodes[i].GetComponent<RectTransform>();
         rt.localRotation = Quaternion.Euler(0, 0, i * (360.0f / -numberOfNodes));
@@ -286,8 +288,6 @@ public class NodeManager : MonoBehaviour {
         }
 
         RotateNodesRoutine(nodesActive);
-
-
     }
 
     private void RotateNodesRoutine(int[] values)
@@ -357,7 +357,7 @@ public class NodeManager : MonoBehaviour {
     
     
     public void SetEffectsFromServer(int effectIndex, int effectValue) {
-        sliders[effectIndex].SetCurrentValue(effectValue);
+        sliders[effectIndex].SetSliderValue(effectValue);
         MasterManager.Instance.dataMaster.effectValues[(int)drumType, effectIndex] = effectValue;
     }
 }

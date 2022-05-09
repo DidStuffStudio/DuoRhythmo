@@ -169,6 +169,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private static InteractionMethod _interactionMethod = InteractionMethod.Mouse;
 		private float _currentDwellTime = _dwellTime;
 		private bool _initialised;
+		private bool _playActivatedScale;
 		
 
 		
@@ -231,7 +232,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				ToggleDwellGfx(false);
 			DeactivateButton();
 		}
-
+		
 		private void GetTheChildren()
 		{
 			
@@ -300,7 +301,15 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 						break;
 				}
 			}
-			
+
+			if (_playActivatedScale)
+			{
+				if (_dwellGfx.localScale.x > 0.0f)
+				{
+					_dwellGfx.localScale -= one * 0.05f;
+				}
+				else ToggleDwellGfx(false);
+			}
 			
 		}
 
@@ -311,7 +320,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			StartInteractionCoolDown();
 		}
 
-	
+		protected void ActivatedScaleFeedback()
+		{
+			ToggleDwellGfx(true);
+			_dwellGfx.localScale = one;
+			_playActivatedScale = true;
+		}
 
 		private void ToggleDwellGfx(bool activate) => _dwellGfx.transform.gameObject.SetActive(activate);
 		
@@ -409,35 +423,38 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected void SetCanHover(bool canHover) => _canHover = canHover;
 		
 		//Call this if you want to change the state of the button with no events being called. Like if you want to activate a DuoRhythmo drum node from the server.
-		protected void ActivateButton() => ToggleButton(true);
+		public void ActivateButton() => ToggleButton(true);
 
 		protected void ActivateAndCallEvents() => OnClick?.Invoke();
 
-		protected void DeactivateButton() => ToggleButton(false);
+		public void DeactivateButton() => ToggleButton(false);
 
-		private void ToggleButton(bool activate)
+		protected virtual void ToggleButton(bool activate)
 		{
-			if (activate)
-			{
-				_isActive = true;
-				_isInactive = false;
-				_mainImage.color = activeColour;
-				_dwellGfxImg.color = inactiveColour;
-				if (useIcon && changeTextOrIconColour) _iconImage.color = activeTextOrIconColour;
-				if (useText && changeTextOrIconColour) _primaryText.color = activeTextOrIconColour;
-				if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = activeTextOrIconColour;
-			}
+			if (activate) ChangeToActiveState();
+			else ChangeToInactiveState();
+		}
 
-			else
-			{
-				_isActive = false;
-				_isInactive = true;
-				_mainImage.color = inactiveColour;
-				_dwellGfxImg.color = activeColour;
-				if (useIcon && changeTextOrIconColour) _iconImage.color = inactiveTextOrIconColour;
-				if (useText && changeTextOrIconColour) _primaryText.color = inactiveTextOrIconColour;
-				if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = inactiveTextOrIconColour;
-			}
+		protected virtual void ChangeToActiveState()
+		{
+			_isActive = true;
+			_isInactive = false;
+			_mainImage.color = activeColour;
+			_dwellGfxImg.color = inactiveColour;
+			if (useIcon && changeTextOrIconColour) _iconImage.color = activeTextOrIconColour;
+			if (useText && changeTextOrIconColour) _primaryText.color = activeTextOrIconColour;
+			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = activeTextOrIconColour;
+		}
+
+		protected virtual void ChangeToInactiveState()
+		{
+			_isActive = false;
+			_isInactive = true;
+			_mainImage.color = inactiveColour;
+			_dwellGfxImg.color = activeColour;
+			if (useIcon && changeTextOrIconColour) _iconImage.color = inactiveTextOrIconColour;
+			if (useText && changeTextOrIconColour) _primaryText.color = inactiveTextOrIconColour;
+			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = inactiveTextOrIconColour;
 		}
 
 		private void SetColours()
@@ -448,9 +465,10 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (useIcon) _iconImage.color = inactiveColour;
 		}
 
-		public void SetActiveColoursExplicit(Color color)
+		public void SetActiveColoursExplicit(Color newActiveColor, Color newInactiveColor)
 		{
-			activeColour = color;
+			activeColour = newActiveColor;
+			inactiveColour = newInactiveColor;
 			SetAutomaticColours();
 		}
 
@@ -498,7 +516,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 		#region Dwell
 		
-		private void DwellScale()
+		protected virtual void DwellScale()
 		{
 			if ((!_provideDwellFeedbackGlobal && !interactionSetting) || !_canHover) return;
 			var d = _dwellTime;

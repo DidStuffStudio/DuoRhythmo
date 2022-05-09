@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Custom_Buttons.Did_Stuff_Buttons;
+using Managers;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -29,6 +30,11 @@ public class DidStuffNode : AbstractDidStuffButton
         angle = (float)(Theta(x, y) - 25.6f) % 360;
         nodeManager._nodeangles.Add(angle);
         _vfx = MasterManager.Instance.userInterfaceManager._vfx;
+        for (var i = 0; i < subNodes.Count; i++)
+        {
+            var sub = subNodes[i];
+            nodeManager.SetSubNode(nodeIndex, false, i);
+        }
     }
 
     public void ToggleState() => ButtonClicked();
@@ -54,7 +60,7 @@ public class DidStuffNode : AbstractDidStuffButton
         StartCoroutine(LerpBack());
         StartCoroutine(AudioVFX());
         StartCoroutine(RecentlyPlayedDrum());
-        MasterManager.Instance.PlayDrum(drumType);
+        nodeManager.PlayDrum((int)drumType);
     }
 
     protected override void Update()

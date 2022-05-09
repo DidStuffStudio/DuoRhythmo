@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.UI;
@@ -116,7 +117,7 @@ public class Node : CustomButton {
         // StartCoroutine(Wait());
         StartCoroutine(AudioVFX());
 
-        MasterManager.Instance.PlayDrum(drumType);
+        //MasterManager.Instance.PlayDrum(drumType);
 
         
     }

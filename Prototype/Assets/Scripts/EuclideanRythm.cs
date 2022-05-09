@@ -2,13 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Managers;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EuclideanRythm : MonoBehaviour {
     public int pulses = 3; // 
     private int totalSteps = 8; // euclidean cycle
-    [SerializeField] private Text feedbackText;
+    [SerializeField] private TextMeshProUGUI feedbackText;
     [SerializeField] private GameObject decrementButton, incrementButton;
     public List<int> _euclideanValues = new List<int>();
     private int _rotate;
@@ -95,13 +97,4 @@ public class EuclideanRythm : MonoBehaviour {
         _nodeManager.StartEuclideanRhythmRoutine(true);
     }
     
-
-    public void TurnOnEuclideanInterface(bool turnOn)
-    {
-        incrementButton.SetActive(turnOn);
-        decrementButton.SetActive(turnOn);
-        //feedbackText.gameObject.SetActive(turnOn);
-        //feedbackText.text = pulses.ToString();
-        incrementButton.layer = decrementButton.layer = LayerMask.NameToLayer("RenderPanel");
-    }
 }

@@ -16,7 +16,7 @@ public class DidStuffNode : AbstractDidStuffButton
     public DrumType drumType;
     public NodeManager nodeManager;
     public float angle = 0.0f;
-    private float angleWindow = 2.0f;
+    private float angleWindow = 5.0f;
     public ScreenSync screenSync;
     public List<Image> subNodes = new List<Image>();
     private RectTransform _rectT;
@@ -73,7 +73,7 @@ public class DidStuffNode : AbstractDidStuffButton
     private IEnumerator RecentlyPlayedDrum()
     {
         _recentlyPlayed = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         _recentlyPlayed = false;
     }
 

@@ -48,34 +48,16 @@ namespace Managers
 
         public DidStuffSliderKnob bpmSlider;
         private int previousEffectValue;
-
-        public int drumIndex;
-
         private List<Vector2> nodeSpawningPositions = new List<Vector2>();
-
         private PanelMaster _panelMaster;
-
         private Color _inactiveHover, _activeHover;
-
         private bool _nodeIsSetup;
-
         private EuclideanRythm _euclideanRythm;
-    
-        public OneShotButton[] incrementButtons = new OneShotButton[4];
-        public DidStuffButton euclideanButton;
         public OneShotButton[] navigationButtons = new OneShotButton[2];
         private int[] _savedValues = new int[16];
         private bool canRotate = true;
         public List<float> _nodeangles = new List<float>();
         public float currentRotation = 0.0f;
-
-        /// <summary> New Stuff
-        ///
-        ///
-        /// 
-        /// </summary>
-
-
         private AudioSource _audioSource;
         private List<AudioClip> _drumSamples = new List<AudioClip>();
     
@@ -86,17 +68,13 @@ namespace Managers
         }
     
         public void SetUpNode() {
-        
-            // _screenSync = GetComponentInParent<ScreenSync>();
+            
             _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = false;
 
             SpawnNodes();
 
             rotation = 0.0f;
-
-            //for (int i = 0; i < sliders.Length; i++) sliders[i].OnSliderChange += ChangeEffectValue;
-
-            //bpmSlider.OnSliderChange += ChangeBpm;
+            
 
             string[] effects = {"_Effect_1", "_Effect_2", "_Effect_3", "_Effect_4"};
             if (drumType == DrumType.Kick)
@@ -121,60 +99,23 @@ namespace Managers
 
         private void Update() {
             if (!_nodeIsSetup) return;
-        
-            for (int i = 0; i < levels.Length; i++)
-            {
-                //AkSoundEngine.SetRTPCValue(effectNames[i], levels[i]);
-            }
-
+            
             if (_screenSync.NumberOfNodes != numberOfNodes && RealTimeInstance.Instance.isConnected) {
                 numberOfNodes = _screenSync.NumberOfNodes;
                 if (numberOfNodes < 2) numberOfNodes = 2; // force the minimum amount of nodes to be 2
                 SpawnNodes();
             }
-
-            //bpm = _screenSync.Bpm;
+            
         }
 
-        public void SetDrumType(int i, AudioClip[] clips, AudioMixerGroup mixerGroup)
+        public void SetDrumType(int i, AudioClip[] clips, AudioMixerGroup mixer)
         {
             drumType = (DrumType) i;
             _drumSamples = clips.ToList();
-            _audioSource.outputAudioMixerGroup = mixerGroup;
+            _audioSource.outputAudioMixerGroup = mixer;
 
         }
-
-        private void LateUpdate() {
-            // check for changes of the effects from the server side
-            //CheckForChangesSliders();
-        }
-
-        private void CheckForChangesSliders() {
-            if (RealTimeInstance.Instance.isSoloMode) {
-                levels[0] = sliders[0].currentValue;
-                levels[1] = sliders[1].currentValue;
-                levels[2] = sliders[2].currentValue;
-                levels[3] = sliders[3].currentValue;
-                bpm = MasterManager.Instance.bpm;
-                bpmSlider.currentValue = bpm;
-                //bpmSlider.UpdateSliderText();
-            }
-            else
-            {
-
-                sliders[0].SetSliderValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 0] = (int) (levels[0] = _screenSync.Effect1));
-                sliders[1].SetSliderValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 1] = (int) (levels[1] = _screenSync.Effect2));
-                sliders[2].SetSliderValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 2] = (int) (levels[2] = _screenSync.Effect3));
-                sliders[3].SetSliderValue(MasterManager.Instance.dataMaster.effectValues[(int) drumType, 3] = (int) (levels[3] = _screenSync.Effect4)); 
-            
-                bpm = _screenSync.Bpm;
-                bpmSlider.currentValue = bpm;
-                // bpmSlider.UpdateSliderText();
-            }
-
-            // if(MasterManager.Instance.bpm != bpm) MasterManager.Instance.SetBpm(bpm);
-        }
-
+        
         private void SpawnNodes() {
             numberOfNodes = MasterManager.Instance.numberOfNodes;
             // if more nodes exist than is needed, delete them
@@ -242,8 +183,6 @@ namespace Managers
                 {
                     btn.SetActiveColoursExplicit(drumColor, defaultColor);
                 }
-            
-                //n.SetText((i + 1).ToString());
             }
             var rt = _nodes[i].GetComponent<RectTransform>();
             rt.localRotation = Quaternion.Euler(0, 0, i * (360.0f / -numberOfNodes));
@@ -266,14 +205,8 @@ namespace Managers
             var sliderValue = (int) bpmSlider.currentValue;
             bpm = sliderValue;
             MasterManager.Instance.SetBpm(bpm);
-            // _screenSync.SetBpm(sliderValue);
         }
-
-        private void ChangeEffectValue(int index) {
-            var sliderValue = (int) sliders[index].currentValue;
-            // levels[index] = sliderValue;
-            if (!RealTimeInstance.Instance.isSoloMode) _screenSync.SetEffectValue(index, sliderValue);
-        }
+        
 
         /// <summary>
         /// Update the subnodes when a node has been updated (activated / deactivated)
@@ -342,7 +275,6 @@ namespace Managers
     
         // euclidean rhythm
         public void StartEuclideanRhythmRoutine(bool activate) {
-            //StartCoroutine(ActivateEuclideanRhythm(activate));
             ActivateEuclideanRhythm(activate);
         }
 
@@ -382,7 +314,7 @@ namespace Managers
         }
 
         public void SetEffectsFromServer(int effectIndex, int effectValue) {
-            sliders[effectIndex].SetSliderValue(effectValue);
+            sliders[effectIndex].SetCurrentValue(effectValue);
             MasterManager.Instance.dataMaster.effectValues[(int)drumType, effectIndex] = effectValue;
         }
     }

@@ -7025,7 +7025,7 @@ MonoBehaviour:
   numberOfDwellSpeeds: 0
   currentRotationOfUI: 0
   panels: []
-  _forwardRenderer: {fileID: 11400000, guid: 4a8e21d5c33334b11b34a596161b9360, type: 2}
+  _forwardRenderer: {fileID: 0}
   ignoreEvents: 0
   roomFullToast: {fileID: 0}
   playingAnim: 0
@@ -7456,7 +7456,7 @@ MonoBehaviour:
   numberInstruments: 5
   numberOfNodes: 16
   nodesPanelPrefab: {fileID: 8248214352534705530, guid: 90e38b4484ad94c7dbaa206482b915b0, type: 3}
-  effectsPanelPrefab: {fileID: 5429251461579344684, guid: dd8b92b9533f7da4ca1dd93ecb5a31e4, type: 3}
+  effectsPanelPrefab: {fileID: 8248214352534705530, guid: fad8e3582ff2da243a632416e6cf09e8, type: 3}
   nodesPanels: []
   effectsPanels: []
   drumColors:
@@ -7529,6 +7529,7 @@ MonoBehaviour:
   - Cymbal
   maxNumberOfPlayers: 2
   nodeSync: {fileID: 0}
+  audioManager: {fileID: 0}
 --- !u!4 &1590067203
 Transform:
   m_ObjectHideFlags: 0
@@ -7576,13 +7577,25 @@ MonoBehaviour:
   - Assets/Audio/Electronic
   - Assets/Audio/Djembe
   - Assets/Audio/Ambient
-  audioMixer: {fileID: 24100000, guid: 15b4306aa3aef6644879aca079c45a86, type: 2}
-  mixerGroups:
-  - {fileID: 5351741187776240721, guid: 15b4306aa3aef6644879aca079c45a86, type: 2}
-  - {fileID: 5601882109198269591, guid: 15b4306aa3aef6644879aca079c45a86, type: 2}
-  - {fileID: -3478213918952352344, guid: 15b4306aa3aef6644879aca079c45a86, type: 2}
-  - {fileID: -4813159508534672602, guid: 15b4306aa3aef6644879aca079c45a86, type: 2}
-  - {fileID: -2671698202389986417, guid: 15b4306aa3aef6644879aca079c45a86, type: 2}
+  mixers:
+  - {fileID: 24300002, guid: 346eca909b2c94a4ebeb85c080b9da65, type: 2}
+  - {fileID: 24300002, guid: a649df86ce67c4449901d782f4882b63, type: 2}
+  - {fileID: 24300002, guid: 1ff201ef36b08bb4182d1cd5f0374cc9, type: 2}
+  - {fileID: 24300002, guid: 26b86854f2ee9ba40b074980315765a5, type: 2}
+  - {fileID: 24300002, guid: 0f01fb23533f6cb4e830eba9b57dd2aa, type: 2}
+  currentClips: []
+  minMaxVolume:
+  - -20
+  - 0
+  minMaxFlange:
+  - -80
+  - 0
+  minMaxReverb:
+  - -20
+  - 0
+  minMaxLowPass:
+  - -20
+  - 0
 --- !u!114 &1590067206
 MonoBehaviour:
   m_ObjectHideFlags: 0

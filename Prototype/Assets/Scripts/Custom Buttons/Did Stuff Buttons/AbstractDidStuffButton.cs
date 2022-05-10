@@ -164,7 +164,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private Animator _dwellAnimator;
 		private float _interactionBreakTime = 1.0f;
 		private GazeAware _gazeAware;
-		private Camera _mainCamera;
+		protected Camera _mainCamera;
 		private static float _dwellTime = 1.0f;
 		private static InteractionMethod _interactionMethod = InteractionMethod.Mouse;
 		private float _currentDwellTime = _dwellTime;
@@ -190,8 +190,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				_provideDwellFeedbackGlobal = true;
 			}
 			else _provideDwellFeedbackGlobal = false;
-
 		}
+
+		protected InteractionMethod GetInteractionMethod() => _interactionMethod;
 		
 		protected virtual void OnEnable()
 		{
@@ -615,7 +616,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_canHover = true;
 
 		}
-		private void OnDisable()
+		protected virtual void OnDisable()
 		{
 			OnClick -= ButtonClicked;
 			OnHover -= ButtonHovered;

@@ -9,6 +9,7 @@ public class DidStuffSolo : MonoBehaviour
 {
 
     private NodeManager _nodeManager;
+    public int drumTypeIndex = 0;
 
     private void Start()
     {
@@ -16,9 +17,9 @@ public class DidStuffSolo : MonoBehaviour
     }
 
 
-    public void Mute(int drumType)
+    public void Mute()
     {
-        MasterManager.Instance.audioManager.mixerGroups[_nodeManager.drumType];
+        MasterManager.Instance.audioManager.MuteOthers(drumTypeIndex);
     }
 
 }

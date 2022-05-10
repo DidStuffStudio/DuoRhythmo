@@ -198,47 +198,36 @@ namespace Managers
                 userInterfaceManager.panels.Add(nodesPanels[i]);
                 userInterfaceManager.panels.Add(effectsPanels[i]);
                 rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1, 0);
-
+                SetUpEffectsManager(i);
                 SetUpNodeManager(i);
-                SetUpColours(nodesPanels[i], i, "");
-                //SetUpColours(effectsPanels[i], i, " Effects");
+                SetUpNamesAndColours(nodesPanels[i], i, "");
+                SetUpNamesAndColours(effectsPanels[i], i, " Effects");
             }
         
             gameSetUpFinished = true;
             userInterfaceManager.ToggleVFX(true);
         }
+        
 
-        private void SetUpNamesAndColours(int drumTypeIndex)
-        {
-            foreach(Transform child in effectsPanels[drumTypeIndex].transform.GetComponentsInChildren<Transform>())
-            {
-
-                
-                if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<Text>().color = drumColors[drumTypeIndex];
-                
-            }
-            foreach(Text child in nodesPanels[drumTypeIndex].transform.GetComponentsInChildren<Text>())
-            {
-                if (child.transform.CompareTag("PanelTitle"))child.color = drumColors[drumTypeIndex];
-                if (child.transform.CompareTag("PanelTitle")) child.text = drumNames[currentDrumKitIndex][drumTypeIndex];
-            }
-        }
-
-
-        private void SetUpColours(GameObject parentToSearch, int index, string titleEnd)
+        private void SetUpNamesAndColours(GameObject parentToSearch, int index, string titleEnd)
         {
             foreach(Transform child in parentToSearch.transform.GetComponentsInChildren<Transform>())
             {
-                if (child.CompareTag("PanelTitle")) child.GetComponent<Text>().color = drumColors[index];
-                if (child.CompareTag("PanelTitle")) child.GetComponent<Text>().text = drumNames[currentDrumKitIndex][index] + titleEnd;
-                if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<AbstractDidStuffButton>().SetActiveColoursExplicit(drumColors[index], defaultNodeColors[index]);
-                
+                if (child.CompareTag("PanelTitle"))
+                {
+                    var t = child.GetComponent<Text>();
+                    t.color = drumColors[index];
+                    t.text = drumNames[currentDrumKitIndex][index] + titleEnd;
+                }
+                else if (child.CompareTag("UI_Drum_Colour")) child.GetComponent<AbstractDidStuffButton>().SetActiveColoursExplicit(drumColors[index], defaultNodeColors[index]);
             }
         }
 
         private void SetUpEffectsManager(int i)
         {
-        
+            var effectsManager = effectsPanels[i].GetComponentInChildren<EffectsManager>();
+            effectsManager.drumType = (DrumType) i;
+            effectsManager.SetColours(drumColors[i], defaultNodeColors[i]);
         }
         private void SetUpNodeManager(int i)
         {
@@ -248,44 +237,9 @@ namespace Managers
             nodeManager.subNodeIndex = i;
             nodeManager.defaultColor = defaultNodeColors[i];
             nodeManager.drumColor = drumColors[i];
-
-            //_audioManager.SampleDictionary.TryGetValue(currentDrumKitIndex, out var clips);
             var clips = audioManager.SampleDictionary[currentDrumKitIndex];
-            var mixGroup = audioManager.mixerGroups[i];
+            var mixGroup = audioManager.mixers[i];
             nodeManager.SetDrumType(i, clips, mixGroup);
-        
-            //foreach (var incButton in nodeManager.incrementButtons) incButton.activeColor = drumColors[i];
-            //nodeManager.euclideanButton.activeColor = drumColors[i];
-        
-            /*var knobs = effectsPanels[i].GetComponentsInChildren<DidStuffSliderKnob>();
-        nodeManager.sliders = new DidStuffSliderKnob[knobs.Length-1];
-        var indexCount = 0;
-        for (int j = 0; j < knobs.Length; j++)
-        {
-            if (knobs[j].transform.CompareTag("BPM_Slider")) nodeManager.bpmSlider = knobs[j];
-            else
-            {
-                nodeManager.sliders[indexCount] = knobs[j];
-                //knobs[j].knobBorder.color = drumColors[i];
-                knobs[j].fillRect.GetComponent<Image>().color = drumColors[i];
-                //knobs[j].activeColor = drumColors[i];
-                indexCount++;
-            }
-        }*/
-
-            //var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<DidStuffSoloButton>();
-            /*foreach (var soloButton in nodesSoloButtons)
-        {
-            userInterfaceManager.soloButtons[i] = soloButton;
-            //soloButton.drumTypeIndex = i;
-        }
-
-        var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<DidStuffSoloButton>();
-        foreach (var soloButton in effectsSoloButtons)
-        {
-            userInterfaceManager.soloButtons[i + 5] = soloButton;
-            //soloButton.drumTypeIndex = i;
-        }*/
             nodeManager.SetUpNode();
 
         }
@@ -344,7 +298,7 @@ namespace Managers
             var effectsPanelsGo = new GameObject("Effects panels");
             effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
         
-            userInterfaceManager.soloButtons = new DidStuffSoloButton[numberInstruments*2];
+            userInterfaceManager.soloButtons = new DidStuffSolo[numberInstruments*2];
             for (int i = 0; i < numberInstruments*2; i++)
             {
                 userInterfaceManager.panels.Add(null);
@@ -356,11 +310,11 @@ namespace Managers
                 // effectsPanels[i].name = "EffectsPanel_" + drumNames[currentDrumKitIndex][i];
                 rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
                 //userInterfaceManager.panels.Add(effectsPanels[i]);
-                var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<DidStuffSoloButton>();
+                var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<DidStuffSolo>();
                 foreach (var soloButton in effectsSoloButtons)
                 {
                     userInterfaceManager.soloButtons[i + 5] = soloButton;
-                    //soloButton.drumTypeIndex = i;
+                    soloButton.drumTypeIndex = i;
                 }
                 foreach(Transform child in effectsPanels[i].transform.GetComponentsInChildren<Transform>())
                 {
@@ -407,57 +361,17 @@ namespace Managers
                 nodeManager.drumColor = drumColors[i];
             
                 var clips = audioManager.SampleDictionary[currentDrumKitIndex];
-                var mixGroup = audioManager.mixerGroups[i];
+                var mixGroup = audioManager.mixers[i];
                 nodeManager.SetDrumType(i, clips, mixGroup);
-            
-                //foreach (var incButton in nodeManager.incrementButtons) incButton.activeColor = drumColors[i];
-                foreach (var navigationButton in nodeManager.navigationButtons)
-                    navigationButton.gameObject.SetActive(false);
-
-                //nodeManager.euclideanButton.activeColor = drumColors[i];
-
-
-
-                // initialize the knob sliders for this current node manager ///////////UNCOMMENT FOR RADIAL SLIDERS
-                /*nodeManager.bpmSlider = effectsPanels[i].GetComponentInChildren<SliderKnob>();
-            var knobs = effectsPanels[i].GetComponentsInChildren<RadialSlider>();
-            nodeManager.sliders = new RadialSlider[knobs.Length];
-            for (int j = 0; j < knobs.Length; j++)
-            {
-                nodeManager.sliders[j] = knobs[j];
-                knobs[j].activeColor = drumColors[i];
-                // knobs[j].GetComponentInParent<Image>().color = drumColors[i];
-                foreach (var quad in knobs[j].quadrants) quad.transform.GetComponent<Image>().color = drumColors[i];
-            }*/
-            
-                var knobs = effectsPanels[i].GetComponentsInChildren<DidStuffSliderKnob>();
-                nodeManager.sliders = new DidStuffSliderKnob[knobs.Length-1];
-                var indexCount = 0;
-                for (int j = 0; j < knobs.Length; j++)
-                {
-                    if (knobs[j].transform.CompareTag("BPM_Slider")) nodeManager.bpmSlider = knobs[j];
-                    else
-                    {
-                    
-                        nodeManager.sliders[indexCount] = knobs[j];
-                        //knobs[j].knobBorder.color = drumColors[i];
-                        knobs[j].fillRect.GetComponent<Image>().color = drumColors[i];
-                        //knobs[j].activeColor = drumColors[i];
-                        indexCount++;
-                    }
-                }
-
-                foreach (var incButton in effectsPanels[i].GetComponentsInChildren<IncrementButton>())
-                    if (incButton.transform.CompareTag("NavigationButtons"))
-                        incButton.gameObject.SetActive(false);
+                
 
                 nodeManager.SetUpNode();
 
-                var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<DidStuffSoloButton>();
+                var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<DidStuffSolo>();
                 foreach (var soloButton in nodesSoloButtons)
                 {
                     userInterfaceManager.soloButtons[i] = soloButton;
-                    //soloButton.drumTypeIndex = i;
+                    soloButton.drumTypeIndex = i;
                 }
             }
 

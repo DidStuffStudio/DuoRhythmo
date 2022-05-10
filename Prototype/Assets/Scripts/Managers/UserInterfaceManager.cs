@@ -21,7 +21,7 @@ namespace Managers
 
         [SerializeField] private String[] drumVolumeRtpcStrings = new string[5];
         public int bpm = 120;
-        public DidStuffSoloButton [] soloButtons;
+        public DidStuffSolo[] soloButtons;
         public DwellSpeedButton[] dwellSpeedButtons;
         private static readonly int Tint = Shader.PropertyToID("_Tint");
         [SerializeField] private int numberOfDwellSpeeds;

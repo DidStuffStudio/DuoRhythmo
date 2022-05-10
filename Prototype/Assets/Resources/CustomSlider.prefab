@@ -2363,19 +2363,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1333812293971173609, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1333812293971173609, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1333812293971173609, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1333812293971173609, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1333812293971173609, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2427,11 +2427,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1333812293971173609, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -3.9498901
+      value: 0.40011597
       objectReference: {fileID: 0}
     - target: {fileID: 1333812293971173609, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.7
+      value: 147.3
       objectReference: {fileID: 0}
     - target: {fileID: 1333812293971173609, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2496,12 +2496,15 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
-  _slider: {fileID: 5294159281746629980}
   maximumValue: 101
   minimumValue: 0
   sliderIndex: 0
   upperLimit: {fileID: 5294159281326039266}
   lowerLimit: {fileID: 5294159282150710938}
+  fillRect: {fileID: 8626893081680663164}
+  knobBorder: {fileID: 0}
   currentValue: 0
   previousValue: 0
-  fillRect: {fileID: 8626893081680663164}
+  _effectsManager: {fileID: 0}
+  defaultValue: 50
+  isBpmSlider: 0

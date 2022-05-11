@@ -21,6 +21,7 @@ public class DidStuffNode : AbstractDidStuffButton
     public List<Image> subNodes = new List<Image>();
     private RectTransform _rectT;
     private bool _recentlyPlayed = false;
+    private ctsalidis.NodeSync _nodeSync;
     private void Start()
     {
         _rectT = GetComponent<RectTransform>();
@@ -39,7 +40,9 @@ public class DidStuffNode : AbstractDidStuffButton
 
     public void ToggleState() => ButtonClicked();
     public bool IsActive => _isActive;
-
+    public void SetActiveFromServer() => ChangeToActiveState();
+    public void SetInactiveFromServer() => ChangeToInactiveState();
+    
     public double Theta(float x, float y)
     {
         double a = Mathf.Rad2Deg*(Mathf.Atan2(-y, x) + 90);
@@ -49,6 +52,7 @@ public class DidStuffNode : AbstractDidStuffButton
     protected override void ButtonClicked()
     {
         base.ButtonClicked();
+        _nodeSync.Toggle(_isActive);
         MasterManager.Instance.UpdateSubNodes(nodeIndex, _isActive, nodeManager.subNodeIndex);
     }
 

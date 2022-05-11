@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Custom_Buttons.Did_Stuff_Buttons;
 using Custom_Buttons.Did_Stuff_Buttons.Buttons;
+using Mirror;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -48,7 +49,6 @@ namespace Managers
 
         public DidStuffSliderKnob bpmSlider;
         private int previousEffectValue;
-        private List<Vector2> nodeSpawningPositions = new List<Vector2>();
         private PanelMaster _panelMaster;
         private Color _inactiveHover, _activeHover;
         private bool _nodeIsSetup;
@@ -118,22 +118,45 @@ namespace Managers
         
         private void SpawnNodes() {
             numberOfNodes = MasterManager.Instance.numberOfNodes;
-            // if more nodes exist than is needed, delete them
-            if (_nodes.Count > numberOfNodes) {
-                for (int i = numberOfNodes - 1; i < _nodes.Count; i++) {
-                    Destroy(_nodes[i].gameObject);
-                    _nodes.Remove(_nodes[i]);
-                }
-
-                // update the rotation value of the rhythm signifier so that it makes sense
-                var newRotation = 360.0f / numberOfNodes;
-                var difference = rotation - newRotation;
-                rotation -= difference;
-            }
 
             // position all the nodes (existing nodes and to-be-created ones)
             for (int i = 0; i < numberOfNodes; i++) {
-                PositionNode(i);
+                var radians =
+                    (i * 2 * Mathf.PI) / (-numberOfNodes) +
+                    (Mathf.PI / 2); // set them starting from 90 degrees = PI / 2 radians
+                var y = Mathf.Sin(radians);
+                var x = Mathf.Cos(radians);
+                var spawnPos = new Vector2(x, y) * radius;
+        
+                // if the current node doesn't exist, then create one and add it to the nodes list
+                if (i >= _nodes.Count) {
+                    var node = Instantiate(nodePrefab, transform);
+                    var n = node.GetComponentInChildren<DidStuffNode>();
+                    node.name = "Node " + (i + 1);
+                    _nodes.Add(n);
+                    n.nodeIndex = i;
+                    n.screenSync = _screenSync;
+                    _screenSync._nodes.Add(n);
+                    n.nodeManager = this;
+                        
+
+                    _nodes[i].drumType = drumType switch {
+                        DrumType.Kick => DrumType.Kick,
+                        DrumType.Snare => DrumType.Snare,
+                        DrumType.HiHat => DrumType.HiHat,
+                        DrumType.Tom => DrumType.Tom,
+                        DrumType.Cymbal => DrumType.Cymbal,
+                        _ => _nodes[i].drumType
+                    };
+                
+                    foreach (var btn in _nodes[i].GetComponentsInChildren<DidStuffNode>()) //Set up button Colors
+                    {
+                        btn.SetActiveColoursExplicit(drumColor, defaultColor);
+                    }
+                }
+                var rt = _nodes[i].GetComponent<RectTransform>();
+                rt.localRotation = Quaternion.Euler(0, 0, i * (360.0f / -numberOfNodes));
+                rt.anchoredPosition = spawnPos;
             
             }
         
@@ -149,47 +172,7 @@ namespace Managers
             _audioSource.PlayOneShot(_drumSamples[drumType]);
         }
 
-        private void PositionNode(int i) {
-            var radians =
-                (i * 2 * Mathf.PI) / (-numberOfNodes) +
-                (Mathf.PI / 2); // set them starting from 90 degrees = PI / 2 radians
-            var y = Mathf.Sin(radians);
-            var x = Mathf.Cos(radians);
-            var spawnPos = new Vector2(x, y) * radius;
-            nodeSpawningPositions.Add(spawnPos / radius);
-        
-            // if the current node doesn't exist, then create one and add it to the nodes list
-            if (i >= _nodes.Count) {
-                var node = Instantiate(nodePrefab, transform);
-                var n = node.GetComponentInChildren<DidStuffNode>();
-                node.name = "Node " + (i + 1);
-                _nodes.Add(n);
-                n.nodeIndex = i;
-                n.screenSync = _screenSync;
-                _screenSync._nodes.Add(n);
-                n.nodeManager = this;
-                        
 
-                _nodes[i].drumType = drumType switch {
-                    DrumType.Kick => DrumType.Kick,
-                    DrumType.Snare => DrumType.Snare,
-                    DrumType.HiHat => DrumType.HiHat,
-                    DrumType.Tom => DrumType.Tom,
-                    DrumType.Cymbal => DrumType.Cymbal,
-                    _ => _nodes[i].drumType
-                };
-                
-                foreach (var btn in _nodes[i].GetComponentsInChildren<DidStuffNode>()) //Set up button Colors
-                {
-                    btn.SetActiveColoursExplicit(drumColor, defaultColor);
-                }
-            }
-            var rt = _nodes[i].GetComponent<RectTransform>();
-            rt.localRotation = Quaternion.Euler(0, 0, i * (360.0f / -numberOfNodes));
-            rt.anchoredPosition = spawnPos;
-        }
-
-    
         private void FixedUpdate() {
             if (!MasterManager.Instance.gameSetUpFinished) return;
             var rpm = (float) bpm / (numberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
@@ -200,13 +183,6 @@ namespace Managers
             _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
             currentRotation = -rotation % 360;
         }
-
-        void ChangeBpm(int index) {
-            var sliderValue = (int) bpmSlider.currentValue;
-            bpm = sliderValue;
-            MasterManager.Instance.SetBpm(bpm);
-        }
-        
 
         /// <summary>
         /// Update the subnodes when a node has been updated (activated / deactivated)

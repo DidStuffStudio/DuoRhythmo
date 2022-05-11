@@ -91,6 +91,12 @@ public class SaveBeat : MonoBehaviour
 
         yield return null;
     }
+
+
+    public void SaveIntoWav()
+    {
+        
+    }
 }
 
 

@@ -9,4 +9,5 @@ public class ToggleSaveData : MonoBehaviour
     public int drumKitIndex;
     public Text label;
     public Image image;
+    public Text DateCreated;
 }

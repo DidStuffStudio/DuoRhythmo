@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -122,3 +124,5 @@ void filterSelected (FilterOptions ops)
   Selection.objects = newSelected;
  }
 }
+
+#endif

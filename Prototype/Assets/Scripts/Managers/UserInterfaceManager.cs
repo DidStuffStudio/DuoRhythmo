@@ -22,7 +22,6 @@ namespace Managers
         [SerializeField] private String[] drumVolumeRtpcStrings = new string[5];
         public int bpm = 120;
         public DidStuffSolo[] soloButtons;
-        public DwellSpeedButton[] dwellSpeedButtons;
         private static readonly int Tint = Shader.PropertyToID("_Tint");
         [SerializeField] private int numberOfDwellSpeeds;
         public float currentRotationOfUI = 0.0f;
@@ -36,6 +35,8 @@ namespace Managers
         [SerializeField] private GameObject roomFullToast;
         public bool playingAnim;
         public bool justJoined;
+        public bool isSoloMode;
+        
         private void Start() {
             //roomFullToast = GameObject.FindWithTag("RoomFullToast");
             // _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
@@ -67,43 +68,27 @@ namespace Managers
         
             BlurBackground();
             _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
-            //_playerAnimator.speed = 0.0f;
-            //timer = (int) MasterManager.Instance.timer.timer;
             SetAnimatorTime();
-            /*if(!RealTimeInstance.Instance.isSoloMode) StartCoroutine(MasterManager.Instance.timer.MainTime());*/
-            if(!RealTimeInstance.Instance.isSoloMode)RealTimeInstance.Instance.stopwatch.StartStopwatch();
             StartCoroutine(WaitToEnableRot());
-        }
-
-        public void PlayAnimationSolo()
-        {
-        
         }
 
         public void PlayAnimation(bool forward)
         {
         
-            if(RealTimeInstance.Instance.isSoloMode && _currentPanel == _lastPanel)StartCoroutine(IgnoreEvents(0.5f));
-            else if(RealTimeInstance.Instance.isSoloMode)StartCoroutine(IgnoreEvents(0.1f));
+            if(isSoloMode && _currentPanel == _lastPanel)StartCoroutine(IgnoreEvents(0.5f));
+            else if(isSoloMode)StartCoroutine(IgnoreEvents(0.1f));
             _lastPanel = _currentPanel;
+            // TODO --> turn off solo appropriately
             if (forward)
             {
                 if(_currentPanel < panels.Count - 1)_currentPanel++;
                 else _currentPanel = 0;
-                Solo(false, 0);
                 _uiAnimator.SetFloat("SpeedMultiplier", 1.0f);
-            
-                /*if (!MasterManager.Instance.isInPosition)
-            {
-                _playerAnimator.speed = 1.0f;
-                _playerAnimator.Play("PlayerCam");
-            }*/
             }
             else
             {
                 if(_currentPanel > 0)_currentPanel--;
                 else _currentPanel = panels.Count -1 ;
-                Solo(false, 0);
                 animateUIBackward = true;
                 _uiAnimator.SetFloat("SpeedMultiplier", -1.0f);
             }
@@ -120,7 +105,7 @@ namespace Managers
                 _vfx.SetVector4("Core color", _targetVFXColor);
                 // start a new transition
                 var index = 0;
-                if (RealTimeInstance.Instance.isSoloMode)
+                if (isSoloMode)
                 {
                     if (_currentPanel % 2 == 1) index = _currentPanel - 1;
                     else index = _currentPanel;
@@ -147,23 +132,6 @@ namespace Managers
                 // update the timer
                 _timeLeft -= Time.deltaTime;
             }
-        
-            timerDisplay.text = RealTimeInstance.Instance.stopwatch.time.ToString();
-        }
-
-        public void Solo(bool solo, int index) {
-            /*if (solo) {
-            for (int i = 0; i < drumVolumeRtpcStrings.Length; i++) {
-                AkSoundEngine.SetRTPCValue(drumVolumeRtpcStrings[i], 10.0f);
-            }
-
-            AkSoundEngine.SetRTPCValue(drumVolumeRtpcStrings[index], 100.0f);
-        }
-        else {
-            foreach (var t in drumVolumeRtpcStrings) AkSoundEngine.SetRTPCValue(t, 100.0f);
-
-            foreach (var t in soloButtons) t.ForceDeactivate();
-        }*/
         }
 
         private void BlurBackground()
@@ -218,19 +186,9 @@ namespace Managers
 
         public void SetAnimatorTime()
         {
-            if(justJoined) return;
-            currentRotationOfUI = _uiAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-            RealTimeInstance.Instance.stopwatch.SetAnimatorTime(currentRotationOfUI);
+            // set animation time when new player joins
         }
 
-        private void OnEnable() {
-            // foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(true);
-        }
-
-        private void OnDisable() {
-            // foreach (var feature in _forwardRenderer.rendererFeatures) feature.SetActive(false);
-        }
-    
         private IEnumerator IgnoreEvents(float ignoreTime)
         {
             ignoreEvents = true;
@@ -242,16 +200,6 @@ namespace Managers
         {
             yield return new WaitForSeconds(1.0f);
             playingAnim = false;
-        }
-
-        public void DisplayRoomFullToast()
-        {
-            roomFullToast.SetActive(true);
-            roomFullToast.GetComponentInChildren<Text>().text =
-                RealTimeInstance.Instance.roomNames[RealTimeInstance.Instance.roomToJoinIndex] +
-                " is full, please try another room.";
-            RealTimeInstance.Instance._realtime.Disconnect();
-            SceneManager.LoadScene(0);
         }
 
         public void OpenFeedbackSite()=>Application.OpenURL("https://duorhythmo.frill.co/b/zv9dw6m1/feature-ideas");

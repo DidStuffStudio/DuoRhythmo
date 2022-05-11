@@ -17,7 +17,6 @@ public class DidStuffNode : AbstractDidStuffButton
     public NodeManager nodeManager;
     public float angle = 0.0f;
     private float angleWindow = 5.0f;
-    public ScreenSync screenSync;
     public List<Image> subNodes = new List<Image>();
     private RectTransform _rectT;
     private bool _recentlyPlayed = false;

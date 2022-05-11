@@ -38,9 +38,7 @@ namespace Managers
         private Color noAlpha = Color.clear;
 
         public DrumType drumType;
-
-        public ScreenSync _screenSync;
-
+        
         [Range(0.0f, 100.0f)] [SerializeField] private float[] levels = new float[4];
 
         private string[] effectNames = new string[4];
@@ -49,7 +47,6 @@ namespace Managers
 
         public DidStuffSliderKnob bpmSlider;
         private int previousEffectValue;
-        private PanelMaster _panelMaster;
         private Color _inactiveHover, _activeHover;
         private bool _nodeIsSetup;
         private EuclideanRythm _euclideanRythm;
@@ -97,17 +94,6 @@ namespace Managers
             _nodeIsSetup = true;
         }
 
-        private void Update() {
-            if (!_nodeIsSetup) return;
-            
-            if (_screenSync.NumberOfNodes != numberOfNodes && RealTimeInstance.Instance.isConnected) {
-                numberOfNodes = _screenSync.NumberOfNodes;
-                if (numberOfNodes < 2) numberOfNodes = 2; // force the minimum amount of nodes to be 2
-                SpawnNodes();
-            }
-            
-        }
-
         public void SetDrumType(int i, AudioClip[] clips, AudioMixerGroup mixer)
         {
             drumType = (DrumType) i;
@@ -135,8 +121,6 @@ namespace Managers
                     node.name = "Node " + (i + 1);
                     _nodes.Add(n);
                     n.nodeIndex = i;
-                    n.screenSync = _screenSync;
-                    _screenSync._nodes.Add(n);
                     n.nodeManager = this;
                         
 
@@ -287,11 +271,6 @@ namespace Managers
                 
                 }
             }
-        }
-
-        public void SetEffectsFromServer(int effectIndex, int effectValue) {
-            sliders[effectIndex].SetCurrentValue(effectValue);
-            MasterManager.Instance.dataMaster.effectValues[(int)drumType, effectIndex] = effectValue;
         }
     }
 }

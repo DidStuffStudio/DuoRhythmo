@@ -21,8 +21,6 @@ namespace Managers
 
     public class NodeManager : MonoBehaviour {
         public int numberOfNodes = 4;
-        public float radius = 3.0f;
-        public GameObject nodePrefab;
 
 
         public List<DidStuffNode> _nodes = new List<DidStuffNode>();
@@ -42,15 +40,12 @@ namespace Managers
         [Range(0.0f, 100.0f)] [SerializeField] private float[] levels = new float[4];
 
         private string[] effectNames = new string[4];
-
-        public DidStuffSliderKnob[] sliders = new DidStuffSliderKnob[4];
-
-        public DidStuffSliderKnob bpmSlider;
+        
+        
         private int previousEffectValue;
         private Color _inactiveHover, _activeHover;
         private bool _nodeIsSetup;
         private EuclideanRythm _euclideanRythm;
-        public OneShotButton[] navigationButtons = new OneShotButton[2];
         private int[] _savedValues = new int[16];
         private bool canRotate = true;
         public List<float> _nodeangles = new List<float>();
@@ -88,7 +83,7 @@ namespace Managers
                     effectNames[i] = "TomTom" + effects[i];
             else if (drumType == DrumType.Cymbal)
                 for (int i = 0; i < effects.Length; i++)
-                    effectNames[i] = "Cymbol" + effects[i];
+                    effectNames[i] = "Cymbal" + effects[i];
 
             
             _nodeIsSetup = true;
@@ -106,47 +101,33 @@ namespace Managers
             numberOfNodes = MasterManager.Instance.numberOfNodes;
 
             // position all the nodes (existing nodes and to-be-created ones)
-            for (int i = 0; i < numberOfNodes; i++) {
-                var radians =
-                    (i * 2 * Mathf.PI) / (-numberOfNodes) +
-                    (Mathf.PI / 2); // set them starting from 90 degrees = PI / 2 radians
-                var y = Mathf.Sin(radians);
-                var x = Mathf.Cos(radians);
-                var spawnPos = new Vector2(x, y) * radius;
-        
+            for (int i = 0; i < _nodes.Count; i++)
+            {
                 // if the current node doesn't exist, then create one and add it to the nodes list
-                if (i >= _nodes.Count) {
-                    var node = Instantiate(nodePrefab, transform);
-                    var n = node.GetComponentInChildren<DidStuffNode>();
-                    node.name = "Node " + (i + 1);
-                    _nodes.Add(n);
-                    n.nodeIndex = i;
-                    n.nodeManager = this;
-                        
 
-                    _nodes[i].drumType = drumType switch {
-                        DrumType.Kick => DrumType.Kick,
-                        DrumType.Snare => DrumType.Snare,
-                        DrumType.HiHat => DrumType.HiHat,
-                        DrumType.Tom => DrumType.Tom,
-                        DrumType.Cymbal => DrumType.Cymbal,
-                        _ => _nodes[i].drumType
-                    };
-                
-                    foreach (var btn in _nodes[i].GetComponentsInChildren<DidStuffNode>()) //Set up button Colors
-                    {
-                        btn.SetActiveColoursExplicit(drumColor, defaultColor);
-                    }
+                var n = _nodes[i].GetComponentInChildren<DidStuffNode>();
+                _nodes[i].transform.parent.name = "Node " + (i + 1);
+                n.nodeIndex = i;
+
+
+                _nodeangles.Add(n.GetAngle());
+                _nodes[i].drumType = drumType switch
+                {
+                    DrumType.Kick => DrumType.Kick,
+                    DrumType.Snare => DrumType.Snare,
+                    DrumType.HiHat => DrumType.HiHat,
+                    DrumType.Tom => DrumType.Tom,
+                    DrumType.Cymbal => DrumType.Cymbal,
+                    _ => _nodes[i].drumType
+                };
+
+                foreach (var btn in _nodes[i].GetComponentsInChildren<DidStuffNode>()) //Set up button Colors
+                {
+                    btn.SetActiveColoursExplicit(drumColor, defaultColor);
                 }
-                var rt = _nodes[i].GetComponent<RectTransform>();
-                rt.localRotation = Quaternion.Euler(0, 0, i * (360.0f / -numberOfNodes));
-                rt.anchoredPosition = spawnPos;
-            
+                
+                n.InitialiseSubNodes();
             }
-        
-        
-        
-        
             rotation = 0.0f;
             _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
         }

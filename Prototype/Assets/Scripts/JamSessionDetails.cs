@@ -21,6 +21,7 @@ public class JamSessionDetails : MonoBehaviour
     }
 
     public int DrumTypeIndex { get; set; }
+    public bool isSoloMode { get; set; }
 
     private void Awake()
     {

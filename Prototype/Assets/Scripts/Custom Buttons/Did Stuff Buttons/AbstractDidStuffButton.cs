@@ -210,7 +210,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			PlayerPrefs.SetFloat("DwellTime", _dwellTime);
 		}
 		
-		private void Awake()
+		protected virtual void Awake()
 		{
 			_mainImage = GetComponent<Image>();
 			_dwellAnimator = GetComponentInChildren<Animator>();
@@ -230,7 +230,16 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				_provideDwellFeedbackLocal = true;
 			else _provideDwellFeedbackLocal = false;
 
-				ToggleDwellGfx(false);
+
+			var rt = GetComponent<RectTransform>().rect;
+			var x = rt.x;
+			var y = rt.y;
+			var w = rt.width;
+			var h = rt.height;
+			
+			_dwellGfx.rect.Set(x,y,w,h);
+			
+			ToggleDwellGfx(false);
 			DeactivateButton();
 		}
 		

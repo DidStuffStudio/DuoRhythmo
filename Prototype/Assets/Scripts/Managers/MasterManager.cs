@@ -22,28 +22,22 @@ namespace Managers {
             }
         }
 
+        public List<GameObject> nodePanels = new List<GameObject>();
+        public List<GameObject> effectPanels = new List<GameObject>();
+
 
         [Header("Drums")] public int numberInstruments = 5;
         public int numberOfNodes = 16;
-        [SerializeField] private GameObject nodesPanelPrefab;
-        [SerializeField] private GameObject effectsPanelPrefab;
-
-        public GameObject[] nodesPanels;
-        public GameObject[] effectsPanels;
 
         public Color[] drumColors;
         public Color[] defaultNodeColors;
 
-
         // nodes stuff
         public List<NodeManager> _nodeManagers = new List<NodeManager>();
-        public float dwellTimeSpeed = 100.0f;
 
-        public UserInterfaceManager userInterfaceManager;
+        public CarouselManager carouselManager;
 
-        [Space] [Header("Timer")] public int bpm = 120;
-        [SerializeField] private GameObject timerPrefab;
-        private GameObject timerGameObject;
+        public int bpm = 120;
 
         [Space] [Header("Player")] public Camera playerCamera;
 
@@ -52,16 +46,12 @@ namespace Managers {
         [SerializeField] private float positionSpeed = 10.0f;
         public Transform playerStartPosition, playerPositionDestination;
         public int localPlayerNumber = -1;
-        public bool gameSetUpFinished;
-        public float currentRotationOfUI = 0.0f;
-        public bool isInPosition = false;
+        public bool gameSetUpFinished; public bool isInPosition = false;
         public bool isWaitingInLobby = true;
 
         [SerializeField] private GameObject mainSignifier;
 
-        [SerializeField] private GameObject timerUI;
         public GameObject exitButtonPanel;
-        public bool isFirstPlayer;
         [SerializeField] private string[] classicDrumNames = {"Kick", "Snare", "Hi-hat", "Tom", "Crash"};
         [SerializeField] private string[] djembeDrumNames = {"Kick", "Snare", "Hi-hat", "Tom", "Crash"};
 
@@ -71,9 +61,8 @@ namespace Managers {
         [SerializeField] private string[] handpanDrumNames = {"B note", "E note", "Ab note", "C# note", "Gb note"};
         [SerializeField] private string[] ambientDrumNames = {"Kick", "Snare", "Hi-hat", "Tom", "Cymbal"};
         private Dictionary<int, string[]> drumNames = new Dictionary<int, string[]>();
-        [SerializeField] private Dictionary<float, bool> playerTransforms = new Dictionary<float, bool>();
+        private Dictionary<float, bool> playerTransforms = new Dictionary<float, bool>();
         private int currentDrumKitIndex = 0;
-        [SerializeField] private int maxNumberOfPlayers = 2;
         public AudioManager audioManager;
 
         private void Awake() {
@@ -81,13 +70,13 @@ namespace Managers {
         }
 
         private void Start() {
+            
+            
             for (int i = 0; i < numberInstruments * 2; i++) {
                 playerTransforms.Add(-36 * i, false);
             }
 
             audioManager = GetComponent<AudioManager>();
-            dwellTimeSpeed = DontDestroyDwell.Instance.dwellTimeSpeed;
-
             drumNames.Add(0, classicDrumNames);
             drumNames.Add(1, djembeDrumNames);
             drumNames.Add(2, electronicDrumNames);
@@ -97,7 +86,7 @@ namespace Managers {
 
             Initialize();
         }
-
+        
         public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);
 
         private void FixedUpdate() {
@@ -115,16 +104,14 @@ namespace Managers {
                 if (Vector3.Distance(playerCameraTransform.position, playerPositionDestination.position) < 0.1f) {
                     isInPosition = true;
                     mainSignifier.SetActive(true);
-                    //StartCoroutine(userInterfaceManager.SwitchPanelRenderLayers());
-                    userInterfaceManager.InitialiseBlur();
+                    //StartCoroutine(carouselManager.SwitchPanelRenderLayers());
+                    carouselManager.InitialiseBlur();
                     SetExitButtonActive(true);
                 }
             }
         }
 
         public void Initialize() {
-            nodesPanels = new GameObject[numberInstruments];
-            effectsPanels = new GameObject[numberInstruments];
 
             // create the rotations for the panels -->  (360.0f / (numberInstruments * 2) * -1)  degrees difference between each other in the Y axis
             Vector3[] panelRotations = new Vector3[10]; // number of instruments * 2
@@ -140,32 +127,24 @@ namespace Managers {
 
         private void InstantiatePanelsSoloMode() {
             Vector3 rotationValue = Vector3.zero;
-            var nodesPanelsGo = new GameObject("Nodes panels");
-            nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
-            var effectsPanelsGo = new GameObject("Effects panels");
-            effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
 
 
-            for (int i = 0; i < nodesPanels.Length; i++) {
-                nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
-                nodesPanels[i].transform.SetParent(nodesPanelsGo.transform);
-                nodesPanels[i].name = "NodesPanel_" + drumNames[currentDrumKitIndex][i];
+            for (int i = 0; i < nodePanels.Count; i++) {
+                nodePanels[i].name = "NodesPanel_" + drumNames[currentDrumKitIndex][i];
                 rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1, 0);
-                effectsPanels[i] = Instantiate(effectsPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
-                effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
-                effectsPanels[i].name = "EffectsPanel_" + drumNames[currentDrumKitIndex][i];
+                effectPanels[i].name = "EffectsPanel_" + drumNames[currentDrumKitIndex][i];
 
-                userInterfaceManager.panels.Add(nodesPanels[i]);
-                userInterfaceManager.panels.Add(effectsPanels[i]);
+                carouselManager.panels.Add(nodePanels[i]);
+                carouselManager.panels.Add(effectPanels[i]);
                 rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1, 0);
                 SetUpEffectsManager(i);
                 SetUpNodeManager(i);
-                SetUpNamesAndColours(nodesPanels[i], i, "");
-                SetUpNamesAndColours(effectsPanels[i], i, " Effects");
+                SetUpNamesAndColours(nodePanels[i], i, "");
+                SetUpNamesAndColours(effectPanels[i], i, " Effects");
             }
 
             gameSetUpFinished = true;
-            userInterfaceManager.ToggleVFX(true);
+            carouselManager.ToggleVFX(true);
         }
 
 
@@ -183,13 +162,14 @@ namespace Managers {
         }
 
         private void SetUpEffectsManager(int i) {
-            var effectsManager = effectsPanels[i].GetComponentInChildren<EffectsManager>();
+            var effectsManager = effectPanels[i].GetComponentInChildren<EffectsManager>();
             effectsManager.drumType = (DrumType) i;
             effectsManager.SetColours(drumColors[i], defaultNodeColors[i]);
+            effectsManager.InitialiseSliders();
         }
 
         private void SetUpNodeManager(int i) {
-            var nodeManager = nodesPanels[i].GetComponentInChildren<NodeManager>();
+            var nodeManager = nodePanels[i].GetComponentInChildren<NodeManager>();
             _nodeManagers.Add(nodeManager);
             nodeManager.subNodeIndex = i;
             nodeManager.defaultColor = defaultNodeColors[i];
@@ -220,14 +200,14 @@ namespace Managers {
 
 
         // call this method when the players have connected
-        private void InstantiatePanelsMultiplayer() {
+        /*private void InstantiatePanelsMultiplayer() {
             // instantiate and set up effects panels
             var effectsPanelsGo = new GameObject("Effects panels");
-            effectsPanelsGo.transform.SetParent(userInterfaceManager.transform);
+            effectsPanelsGo.transform.SetParent(carouselManager.transform);
 
-            userInterfaceManager.soloButtons = new DidStuffSolo[numberInstruments * 2];
+            carouselManager.soloButtons = new DidStuffSolo[numberInstruments * 2];
             for (int i = 0; i < numberInstruments * 2; i++) {
-                userInterfaceManager.panels.Add(null);
+                carouselManager.panels.Add(null);
             }
 
             Vector3 rotationValue = new Vector3(0, 180.0f, 0);
@@ -236,10 +216,10 @@ namespace Managers {
                 effectsPanels[i].transform.SetParent(effectsPanelsGo.transform);
                 // effectsPanels[i].name = "EffectsPanel_" + drumNames[currentDrumKitIndex][i];
                 rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1 * 2, 0);
-                //userInterfaceManager.panels.Add(effectsPanels[i]);
+                //carouselManager.panels.Add(effectsPanels[i]);
                 var effectsSoloButtons = effectsPanels[i].GetComponentsInChildren<DidStuffSolo>();
                 foreach (var soloButton in effectsSoloButtons) {
-                    userInterfaceManager.soloButtons[i + 5] = soloButton;
+                    carouselManager.soloButtons[i + 5] = soloButton;
                     soloButton.drumTypeIndex = i;
                 }
 
@@ -257,7 +237,7 @@ namespace Managers {
             rotationValue = Vector3.zero;
 
             var nodesPanelsGo = new GameObject("Nodes panels");
-            nodesPanelsGo.transform.SetParent(userInterfaceManager.transform);
+            nodesPanelsGo.transform.SetParent(carouselManager.transform);
             for (int i = 0; i < numberInstruments; i++) {
                 //nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.Euler(rotationValue));
                 nodesPanels[i] = Instantiate(nodesPanelPrefab, transform.position, Quaternion.identity);
@@ -293,29 +273,30 @@ namespace Managers {
 
                 var nodesSoloButtons = nodesPanels[i].GetComponentsInChildren<DidStuffSolo>();
                 foreach (var soloButton in nodesSoloButtons) {
-                    userInterfaceManager.soloButtons[i] = soloButton;
+                    carouselManager.soloButtons[i] = soloButton;
                     soloButton.drumTypeIndex = i;
                 }
             }
 
 
             for (int i = 0; i < nodesPanels.Length; i++) {
-                if (i % 2 == 1) userInterfaceManager.panels[i + 5] = nodesPanels[i];
-                else userInterfaceManager.panels[i] = nodesPanels[i];
+                if (i % 2 == 1) carouselManager.panels[i + 5] = nodesPanels[i];
+                else carouselManager.panels[i] = nodesPanels[i];
             }
 
             for (int i = 0; i < effectsPanels.Length; i++) {
-                if (i % 2 == 0) userInterfaceManager.panels[i + 5] = effectsPanels[i];
-                else userInterfaceManager.panels[i] = effectsPanels[i];
+                if (i % 2 == 0) carouselManager.panels[i + 5] = effectsPanels[i];
+                else carouselManager.panels[i] = effectsPanels[i];
             }
 
             for (int i = 0; i < numberInstruments * 2; i++) {
-                userInterfaceManager.panels[i].transform.rotation = Quaternion.Euler(new Vector3(0, -36 * i, 0));
+                carouselManager.panels[i].transform.rotation = Quaternion.Euler(new Vector3(0, -36 * i, 0));
             }
 
-            userInterfaceManager.ToggleVFX(true);
+            carouselManager.ToggleVFX(true);
             gameSetUpFinished = true;
         }
+        */
 
         // whenever a nodes is activated / deactivated on any panel, call this method to update the corresponding subNode in the other NodeManagers
         public void UpdateSubNodes(int node, bool activated, int nodeManagerSubNodeIndex) {

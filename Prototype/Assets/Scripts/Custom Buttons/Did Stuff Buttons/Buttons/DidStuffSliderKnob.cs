@@ -35,10 +35,13 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     public event SliderChangeAction OnSliderChange;
 
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+    
         _knobRectTransform = GetComponent<RectTransform>();
-        _slider = transform.parent.GetComponent<RectTransform>();
+        var parent = transform.parent;
+        _slider = parent.GetComponent<RectTransform>();
         var rect = _slider.rect;
         _minValue = 0;
         _maxValue = rect.height;
@@ -48,9 +51,9 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         _y = rect1.y;
         _w = rect1.width;
         _currentInputScreenPosition = _knobRectTransform.position;
-        parentCanvas = _effectsManager.GetComponentInParent<Canvas>().GetComponent<RectTransform>();
-        SetCurrentValue(defaultValue);
     }
+
+    public void InitialiseSlider() => SetCurrentValue(defaultValue);
 
     public void SetColors(Color activeColor, Color inactiveColor)
     {
@@ -75,7 +78,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
 
     protected override void Update()
     {
-        _screenY = _currentInputScreenPosition.y;
+        //_screenY = _currentInputScreenPosition.y;
         base.Update();
 
         if (!_isHover || !_isActive) return;
@@ -102,32 +105,29 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
                     TouchInteraction();
                     break;
             }
-
-            RectTransformUtility.ScreenPointToWorldPointInRectangle(parentCanvas as RectTransform, _currentInputScreenPosition,
-                _mainCamera, out desiredY);
+            
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(_slider, _currentInputScreenPosition,
+                _mainCamera, out var value);
  
-            //Vector2 normalizedPoint = Rect.PointToNormalized(_knobRectTransform.rect, localPoint);
-            
-            //_currentKnobScreenPosition = _mainCamera.WorldToScreenPoint(_knobRectTransform.position);
-            var point = new Vector3(0, desiredY.y + 125, _knobRectTransform.position.z);
-            _knobRectTransform.position = point;
-            /* _knobRectTransform.anchoredPosition = point;
-             //_knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(currentValue, minimumValue,maximumValue , _minValue, _maxValue));
-                 if (_knobRectTransform.position.y < lowerLimit.position.y)
-                     _knobRectTransform.position = lowerLimit.position;
-                 if (_knobRectTransform.position.y > upperLimit.position.y)
-                     _knobRectTransform.position = upperLimit.position;*/
 
+
+            _knobRectTransform.localPosition = new Vector3(0,value.y,0);
             
-                currentValue = Map(_knobRectTransform.anchoredPosition.y, _minValue, _maxValue, minimumValue,
+            if (_knobRectTransform.position.y < lowerLimit.position.y)
+                _knobRectTransform.position = lowerLimit.position;
+            if (_knobRectTransform.position.y > upperLimit.position.y)
+                _knobRectTransform.position = upperLimit.position;
+            
+            currentValue = Map(_knobRectTransform.anchoredPosition.y, _minValue, _maxValue, minimumValue,
                     maximumValue);
                 
-                if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
-
-                previousValue = currentValue;
+            if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
+            var dist = Vector3.Distance(value, _knobRectTransform.localPosition);
+            print(dist);
+            if(Vector3.Distance(value, _knobRectTransform.localPosition)>12) DeactivateButton();
                 
-                FillSlider();
-                _lastScreenY = _currentInputScreenPosition.y;
+            FillSlider();
+
         }
        
     }

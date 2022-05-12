@@ -1,5 +1,7 @@
 #if UNITY_EDITOR
 
+using System.Collections.Generic;
+using Managers;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,14 +13,17 @@ namespace Editor
         private static GameObject _effects, _nodes, _drumNode;
         private static bool _spawned = false;
         private static GameObject _carousel;
+        
         [MenuItem("Did Stuff/Carousel Designer")]
         static void Init()
         {
-            CarouselDesigner carouselDesigner = (CarouselDesigner)EditorWindow.GetWindow (typeof (CarouselDesigner));
+            CarouselDesigner carouselDesigner = (CarouselDesigner)GetWindow (typeof (CarouselDesigner));
+            
             carouselDesigner.Show();
         }
         private void OnGUI()
         {
+            
             _numberOfInstruments =
                 EditorGUI.IntSlider(new Rect(0, 0, position.width, 20), "Number of Instruments", _numberOfInstruments, 1, 10);
             _numberOfNodes = EditorGUI.IntSlider(new Rect(0, 30, position.width, 20), "Number of Nodes", _numberOfNodes, 2, 16);
@@ -43,21 +48,28 @@ namespace Editor
             _drumNode = Resources.Load("Node") as GameObject;
             var rotationValue = Vector3.zero;
             var carouselGo = new GameObject("Carousel");
+            var carouselManager = Resources.FindObjectsOfTypeAll<CarouselManager>()[0];
+            carouselGo.transform.SetParent(carouselManager.transform);
             var nodesPanelsGo = new GameObject("Nodes panels");
             var effectsPanelsGo = new GameObject("Effects panels");
             nodesPanelsGo.transform.SetParent(carouselGo.transform);
             effectsPanelsGo.transform.SetParent(carouselGo.transform);
-
+            var masterManager = Resources.FindObjectsOfTypeAll<MasterManager>()[0];
+            masterManager.numberInstruments = _numberOfInstruments;
+            masterManager.numberOfNodes = _numberOfNodes;
+            
             for (var i = 0; i < _numberOfInstruments; i++)
             {
                 var nodePanel = Instantiate(_nodes, Vector3.zero, Quaternion.Euler(rotationValue));
+                masterManager.nodePanels.Add(nodePanel);
+                Debug.Log(masterManager);
                 nodePanel.transform.SetParent(nodesPanelsGo.transform);
                 Debug.Log(nodePanel.transform.childCount);
-                SpawnNodes(nodePanel.transform.GetChild(0).transform.GetChild(0));
+                SpawnNodes(nodePanel.transform.GetChild(0).transform.GetChild(0), i);
                 rotationValue += new Vector3(0, 360.0f / (_numberOfInstruments * 2) * -1, 0);
                 var effectPanel = Instantiate(_effects, Vector3.zero, Quaternion.Euler(rotationValue));
+                masterManager.effectPanels.Add(effectPanel);
                 effectPanel.transform.SetParent(effectsPanelsGo.transform);
-
                 rotationValue += new Vector3(0, 360.0f / (_numberOfInstruments * 2) * -1, 0);
             }
 
@@ -65,10 +77,12 @@ namespace Editor
             _carousel = carouselGo;
         }
 
-        private void SpawnNodes(Transform transform)
+        private void SpawnNodes(Transform transform, int index)
         {
             // position all the nodes
 
+            var nodesParent = new GameObject("Nodes");
+            nodesParent.transform.SetParent(transform);
             for (var i = 0; i < _numberOfNodes; i++)
             {
                 var radians =
@@ -77,10 +91,12 @@ namespace Editor
                 var y = Mathf.Sin(radians);
                 var x = Mathf.Cos(radians);
                 var spawnPos = new Vector2(x, y) * _radiusOfNodeRing;
-                var node = Instantiate(_drumNode, transform.position,Quaternion.identity,transform);
+                var node = Instantiate(_drumNode, transform.position,Quaternion.identity, transform);
                 var rt = node.GetComponent<RectTransform>();
                 rt.localRotation = Quaternion.Euler(0, 0, i * (360.0f / -_numberOfNodes));
                 rt.anchoredPosition = spawnPos;
+                node.transform.SetParent(nodesParent.transform);
+                transform.GetComponent<NodeManager>()._nodes.Add(node.GetComponentInChildren<DidStuffNode>());    
             }
         }
     }

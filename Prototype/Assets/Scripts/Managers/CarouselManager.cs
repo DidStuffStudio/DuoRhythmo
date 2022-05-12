@@ -9,21 +9,14 @@ using UnityEngine.VFX;
 
 namespace Managers
 {
-    public class UserInterfaceManager : MonoBehaviour {
+    public class CarouselManager : MonoBehaviour {
         private Animator _uiAnimator;
-        [SerializeField] private Animator _playerAnimator;
-        public Text timerDisplay;
-        public Material skybox;
         private float _timeLeft = 10.0f;
         private Color _targetVFXColor, _targetSkyColor;
         public VisualEffect _vfx;
         private int _currentPanel = 0, _lastPanel = 0;
 
-        [SerializeField] private String[] drumVolumeRtpcStrings = new string[5];
-        public int bpm = 120;
-        public DidStuffSolo[] soloButtons;
         private static readonly int Tint = Shader.PropertyToID("_Tint");
-        [SerializeField] private int numberOfDwellSpeeds;
         public float currentRotationOfUI = 0.0f;
 
         public List<GameObject> panels = new List<GameObject>(); //Put panels into list so we can change their layer to blur or render them over blur
@@ -32,18 +25,14 @@ namespace Managers
         private bool isRenderingAPanel = false;
         private bool animateUIBackward = false;
         public bool ignoreEvents;
-        [SerializeField] private GameObject roomFullToast;
-        public bool playingAnim;
         public bool justJoined;
-        public bool isSoloMode;
+        public bool isSoloMode = true;
         
         private void Start() {
-            //roomFullToast = GameObject.FindWithTag("RoomFullToast");
-            // _vfx = GameObject.FindWithTag("AudioVFX").GetComponent<VisualEffect>();
+            
             _vfx.transform.gameObject.SetActive(false);
-            _uiAnimator = GetComponent<Animator>();
             _targetVFXColor = MasterManager.Instance.drumColors[0];
-   
+            _uiAnimator = GetComponent<Animator>();
             if(justJoined) return;
             _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
             _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
@@ -69,7 +58,6 @@ namespace Managers
             BlurBackground();
             _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
             SetAnimatorTime();
-            StartCoroutine(WaitToEnableRot());
         }
 
         public void PlayAnimation(bool forward)
@@ -195,12 +183,7 @@ namespace Managers
             yield return new WaitForSeconds(ignoreTime);
             ignoreEvents = false;
         }
-    
-        private IEnumerator WaitToEnableRot()
-        {
-            yield return new WaitForSeconds(1.0f);
-            playingAnim = false;
-        }
+        
 
         public void OpenFeedbackSite()=>Application.OpenURL("https://duorhythmo.frill.co/b/zv9dw6m1/feature-ideas");
 

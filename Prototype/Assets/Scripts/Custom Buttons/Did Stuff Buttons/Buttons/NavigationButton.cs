@@ -8,16 +8,16 @@ using UnityEngine.SceneManagement;
 
 public class NavigationButton : OneShotButton
 {
-    private UserInterfaceManager _userInterfaceManager;
+    private CarouselManager _carouselManager;
     [SerializeField] private bool forward;
     private void Start()
     {
-        _userInterfaceManager = MasterManager.Instance.userInterfaceManager; 
+        _carouselManager = MasterManager.Instance.carouselManager; 
     }
 
     protected override void ButtonClicked()
     {
         base.ButtonClicked();
-        _userInterfaceManager.PlayAnimation(forward);
+        _carouselManager.PlayAnimation(forward);
     }
 }

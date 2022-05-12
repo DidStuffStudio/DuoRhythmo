@@ -27,6 +27,10 @@ namespace Managers
             }
         }
 
+        public void InitialiseSliders()
+        {
+            foreach (var slider in sliders)slider.InitialiseSlider();
+        }
         public void SetColours(Color activeColour, Color inactiveColour)
         {
             foreach (var slider in sliders)

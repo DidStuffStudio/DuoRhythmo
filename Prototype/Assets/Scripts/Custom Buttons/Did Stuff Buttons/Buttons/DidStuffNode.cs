@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ctsalidis;
 using Custom_Buttons.Did_Stuff_Buttons;
 using Managers;
 using UnityEngine;
@@ -15,30 +16,45 @@ public class DidStuffNode : AbstractDidStuffButton
     private VisualEffect _vfx;
     public DrumType drumType;
     public NodeManager nodeManager;
-    public float angle = 0.0f;
     private float angleWindow = 5.0f;
     public List<Image> subNodes = new List<Image>();
     private RectTransform _rectT;
     private bool _recentlyPlayed = false;
-    private ctsalidis.NodeSync _nodeSync;
+    [SerializeField] private ctsalidis.NodeSync _nodeSync;
+    private float _angle = 0.0f;
     private void Start()
     {
-        _rectT = GetComponent<RectTransform>();
-        var rt = _rectT.anchoredPosition;
-        var x = rt.x;
-        var y = rt.y;
-        angle = (float)(Theta(x, y) - 25.6f) % 360;
-        nodeManager._nodeangles.Add(angle);
-        _vfx = MasterManager.Instance.userInterfaceManager._vfx;
+        nodeManager = GetComponentInParent<NodeManager>();
+        
+        
+        _vfx = MasterManager.Instance.carouselManager._vfx;
+
+    }
+
+    public void InitialiseSubNodes()
+    {
         for (var i = 0; i < subNodes.Count; i++)
         {
             var sub = subNodes[i];
-            nodeManager.SetSubNode(nodeIndex, false, i);
+            nodeManager.SetSubNode(nodeIndex, _isActive, i);
         }
+        
     }
-
     public void ToggleState() => ButtonClicked();
     public bool IsActive => _isActive;
+    
+
+    public float GetAngle()
+    {
+        _rectT = transform.parent.GetComponent<RectTransform>();
+        var rt = _rectT.anchoredPosition;
+        var x = rt.x;
+        var y = rt.y;
+        _angle = (float) (Theta(x, y) - 25.6f) % 360;
+        _rectT = GetComponent<RectTransform>();
+        return _angle;
+    }
+
     public void SetActiveFromServer() => ChangeToActiveState();
     public void SetInactiveFromServer() => ChangeToInactiveState();
     
@@ -69,7 +85,7 @@ public class DidStuffNode : AbstractDidStuffButton
     protected override void Update()
     {
         base.Update();
-        if(Mathf.Abs(nodeManager.currentRotation - angle) < angleWindow) PlayDrum();
+        if(Mathf.Abs(nodeManager.currentRotation - _angle) < angleWindow) PlayDrum();
     }
 
 

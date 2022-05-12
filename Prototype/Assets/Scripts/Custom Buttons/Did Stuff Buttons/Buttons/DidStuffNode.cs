@@ -16,7 +16,7 @@ public class DidStuffNode : AbstractDidStuffButton
     private VisualEffect _vfx;
     public DrumType drumType;
     public NodeManager nodeManager;
-    private float angleWindow = 5.0f;
+    private float angleWindow = 10.0f;
     public List<Image> subNodes = new List<Image>();
     private RectTransform _rectT;
     private bool _recentlyPlayed = false;
@@ -50,7 +50,7 @@ public class DidStuffNode : AbstractDidStuffButton
         var rt = _rectT.anchoredPosition;
         var x = rt.x;
         var y = rt.y;
-        _angle = (float) (Theta(x, y) - 25.6f) % 360;
+        _angle = (float)Angle();
         _rectT = GetComponent<RectTransform>();
         return _angle;
     }
@@ -58,10 +58,10 @@ public class DidStuffNode : AbstractDidStuffButton
     public void SetActiveFromServer() => ChangeToActiveState();
     public void SetInactiveFromServer() => ChangeToInactiveState();
     
-    public double Theta(float x, float y)
+    private double Angle()
     {
-        double a = Mathf.Rad2Deg*(Mathf.Atan2(-y, x) + 90);
-        return a <= 180? a: a - 360;
+        var spacing = 360 / nodeManager.numberOfNodes;
+        return spacing * nodeIndex;
     }
 
     protected override void ButtonClicked()

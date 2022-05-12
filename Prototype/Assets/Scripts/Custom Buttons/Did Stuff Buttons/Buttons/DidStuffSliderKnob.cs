@@ -47,13 +47,16 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         _maxValue = rect.height;
         _knobRectTransform.anchoredPosition = new Vector2(0, rect.height/2);
         var rect1 = fillRect.rect;
-        _x = rect1.x;
-        _y = rect1.y;
         _w = rect1.width;
         _currentInputScreenPosition = _knobRectTransform.position;
     }
 
-    public void InitialiseSlider() => SetCurrentValue(defaultValue);
+    public void InitialiseSlider()
+    {
+        if (isBpmSlider) return;
+        SetCurrentValue(defaultValue);
+        OnSliderChange?.Invoke(sliderIndex);
+    }
 
     public void SetColors(Color activeColor, Color inactiveColor)
     {
@@ -63,9 +66,8 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     }
     public void SetCurrentValue(float value)
     {
-        currentValue = value;
-        OnSliderChange?.Invoke(sliderIndex);
-        //_knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(currentValue, minimumValue, maximumValue, _minValue, _maxValue));
+        currentValue = value; 
+        _knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(currentValue, minimumValue, maximumValue, _minValue, _maxValue));
         FillSlider();
     }
 
@@ -73,7 +75,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
 
     private void FillSlider()
     {
-        fillRect.rect.Set(_x,_y,_w,  _knobRectTransform.anchoredPosition.y);
+        fillRect.sizeDelta = new Vector2( _w, _knobRectTransform.anchoredPosition.y); 
     }
 
     protected override void Update()
@@ -123,8 +125,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
                 
             if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
             var dist = Vector3.Distance(value, _knobRectTransform.localPosition);
-            print(dist);
-            if(Vector3.Distance(value, _knobRectTransform.localPosition)>12) DeactivateButton();
+            if(dist>20) DeactivateButton();
                 
             FillSlider();
 

@@ -10,6 +10,7 @@ namespace Managers
     {
         public DrumType drumType;
         private List<DidStuffSliderKnob> sliders = new List<DidStuffSliderKnob>();
+        
 
 
         private void Awake()
@@ -20,12 +21,15 @@ namespace Managers
         public void SendEffectToAudioManager(int sliderIndex,float value)
         {
             if(sliderIndex != 0)MasterManager.Instance.audioManager.SetEffect((int)drumType , sliderIndex, value);
-            else
-            {
-                var newBpm = (int)Map(value, 0, 101, 40, 200);
-                MasterManager.Instance.SetBpm(newBpm);
-            }
+            else MasterManager.Instance.SetBpm((int)value, this);
+            
         }
+
+        public void SetBpmSlider(int value)
+        {
+            sliders[0].SetCurrentValue(value);
+        }
+        
 
         public void InitialiseSliders()
         {

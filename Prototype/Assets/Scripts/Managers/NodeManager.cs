@@ -29,9 +29,9 @@ namespace Managers
         public Color defaultColor { get; set; }
 
         [SerializeField] private Text drumText;
-        [SerializeField] private RectTransform _ryhtmIndicator;
+        [SerializeField] private RectTransform rhythmIndicator;
         private float rotation = 0;
-        public int bpm = 120;
+        private int bpm = 120;
         private float secondsFor360 = 1;
         private Color noAlpha = Color.clear;
 
@@ -52,16 +52,19 @@ namespace Managers
         public float currentRotation = 0.0f;
         private AudioSource _audioSource;
         private List<AudioClip> _drumSamples = new List<AudioClip>();
-    
+        private Animator _rhythmAnimator;
+        private static readonly int Rps = Animator.StringToHash("RPS");
+
         private void Awake() {
             _euclideanRythm = GetComponent<EuclideanRythm>();
             _audioSource = GetComponent<AudioSource>();
-        
+            _rhythmAnimator = rhythmIndicator.GetComponent<Animator>();
+
         }
     
         public void SetUpNode() {
             
-            _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = false;
+            rhythmIndicator.gameObject.GetComponentInChildren<Image>().enabled = false;
 
             SpawnNodes();
 
@@ -129,7 +132,7 @@ namespace Managers
                 n.InitialiseSubNodes();
             }
             rotation = 0.0f;
-            _ryhtmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
+            rhythmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
         }
 
         public void PlayDrum(int drumType)
@@ -137,16 +140,30 @@ namespace Managers
             _audioSource.PlayOneShot(_drumSamples[drumType]);
         }
 
-
-        private void FixedUpdate() {
-            if (!MasterManager.Instance.gameSetUpFinished) return;
+        public void SetBpm(int bpm)
+        {
             var rpm = (float) bpm / (numberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
             var rps = rpm / 60.0f;
+            rps *= 4;
+            _rhythmAnimator.SetFloat(Rps, rps);
+        }
+
+        private void Update()
+        {
+            currentRotation = 360 - rhythmIndicator.localRotation.eulerAngles.z;
+        }
+
+        private void FixedUpdate() {
+            /*if (!MasterManager.Instance.gameSetUpFinished) return;
+            var rpm = (float) bpm / (numberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
+            var rps = rpm / 60.0f;
+            var actualRotation = (360.0f - 360.0f / numberOfNodes) * rps * 4;
+            print(actualRotation);
             var revolutionsPerWaitingSeconds = rps * Time.fixedDeltaTime; //Convert to revolutions per millisecond
             var degreesPerWaitingSeconds = (360.0f - 360.0f / numberOfNodes) * revolutionsPerWaitingSeconds;
             rotation -= degreesPerWaitingSeconds * 4.0f;
-            _ryhtmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
-            currentRotation = -rotation % 360;
+            rhythmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
+            currentRotation = -rotation % 360;*/
         }
 
         /// <summary>

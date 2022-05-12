@@ -34,6 +34,7 @@ namespace Managers {
 
         // nodes stuff
         public List<NodeManager> _nodeManagers = new List<NodeManager>();
+        public List<EffectsManager> _effectsManagers = new List<EffectsManager>();
 
         public CarouselManager carouselManager;
 
@@ -75,8 +76,7 @@ namespace Managers {
             for (int i = 0; i < numberInstruments * 2; i++) {
                 playerTransforms.Add(-36 * i, false);
             }
-
-            audioManager = GetComponent<AudioManager>();
+            
             drumNames.Add(0, classicDrumNames);
             drumNames.Add(1, djembeDrumNames);
             drumNames.Add(2, electronicDrumNames);
@@ -142,7 +142,7 @@ namespace Managers {
                 SetUpNamesAndColours(nodePanels[i], i, "");
                 SetUpNamesAndColours(effectPanels[i], i, " Effects");
             }
-
+            //SetBpm(bpm);
             gameSetUpFinished = true;
             carouselManager.ToggleVFX(true);
         }
@@ -163,6 +163,7 @@ namespace Managers {
 
         private void SetUpEffectsManager(int i) {
             var effectsManager = effectPanels[i].GetComponentInChildren<EffectsManager>();
+            _effectsManagers.Add(effectPanels[i].GetComponentInChildren<EffectsManager>());
             effectsManager.drumType = (DrumType) i;
             effectsManager.SetColours(drumColors[i], defaultNodeColors[i]);
             effectsManager.InitialiseSliders();
@@ -305,10 +306,13 @@ namespace Managers {
             }
         }
 
-        public void SetBpm(int value) {
+        public void SetBpm(int value, EffectsManager effectsManager)
+        {
             bpm = value;
-            foreach (var nodeManager in _nodeManagers) {
-                nodeManager.bpm = bpm;
+            for (var index = 0; index < _nodeManagers.Count; index++)
+            {
+                _nodeManagers[index].SetBpm(bpm);
+                if(_effectsManagers[index] != effectsManager) _effectsManagers[index].SetBpmSlider(bpm);
             }
         }
 

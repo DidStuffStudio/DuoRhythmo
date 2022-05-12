@@ -46,7 +46,6 @@ namespace Editor
             _nodes = Resources.Load("NodesPanel") as GameObject;
             _effects = Resources.Load("EffectsPanel") as GameObject;
             _drumNode = Resources.Load("Node") as GameObject;
-            var rotationValue = Vector3.zero;
             var carouselGo = new GameObject("Carousel");
             var carouselManager = Resources.FindObjectsOfTypeAll<CarouselManager>()[0];
             carouselGo.transform.SetParent(carouselManager.transform);
@@ -57,6 +56,8 @@ namespace Editor
             var masterManager = Resources.FindObjectsOfTypeAll<MasterManager>()[0];
             masterManager.numberInstruments = _numberOfInstruments;
             masterManager.numberOfNodes = _numberOfNodes;
+
+            var rotationValue = Vector3.zero;
             
             for (var i = 0; i < _numberOfInstruments; i++)
             {
@@ -83,17 +84,24 @@ namespace Editor
 
             var nodesParent = new GameObject("Nodes");
             nodesParent.transform.SetParent(transform);
+       
+            
             for (var i = 0; i < _numberOfNodes; i++)
             {
-                var radians =
-                    (i * 2 * Mathf.PI) / (-_numberOfNodes) +
-                    (Mathf.PI / 2); // set them starting from 90 degrees = PI / 2 radians
+                var angleDelta = 360 / -_numberOfNodes;
+                var degrees = i * angleDelta + angleDelta / 2;
+                degrees += 90;
+                var radians = degrees * Mathf.Deg2Rad;
                 var y = Mathf.Sin(radians);
                 var x = Mathf.Cos(radians);
                 var spawnPos = new Vector2(x, y) * _radiusOfNodeRing;
+                
+                
                 var node = Instantiate(_drumNode, transform.position,Quaternion.identity, transform);
                 var rt = node.GetComponent<RectTransform>();
-                rt.localRotation = Quaternion.Euler(0, 0, i * (360.0f / -_numberOfNodes));
+                var z = (i * angleDelta) + angleDelta / 2;
+                //z += 180;
+                rt.localRotation = Quaternion.Euler(0, 0, z);
                 rt.anchoredPosition = spawnPos;
                 node.transform.SetParent(nodesParent.transform);
                 transform.GetComponent<NodeManager>()._nodes.Add(node.GetComponentInChildren<DidStuffNode>());    

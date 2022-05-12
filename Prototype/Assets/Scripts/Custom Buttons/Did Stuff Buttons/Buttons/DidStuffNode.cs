@@ -16,7 +16,7 @@ public class DidStuffNode : AbstractDidStuffButton
     private VisualEffect _vfx;
     public DrumType drumType;
     public NodeManager nodeManager;
-    private float angleWindow = 10.0f;
+    private float angleWindow = 2.0f;
     public List<Image> subNodes = new List<Image>();
     private RectTransform _rectT;
     private bool _recentlyPlayed = false;

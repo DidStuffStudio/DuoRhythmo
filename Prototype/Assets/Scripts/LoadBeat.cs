@@ -61,13 +61,18 @@ public class LoadBeat : MonoBehaviour
         texture.LoadImage(bytes);
         Sprite sprite = Sprite.Create(texture, new Rect(0,0,480, 270), new Vector2(0.5f,0.0f), 1.0f);
         saveData.image.sprite = sprite;
+
+        DateTime dateTime = File.GetCreationTime(saveFileName);
+        string saveFileCreationDate = dateTime.ToString("ddd d MMM HH:mm");
         
         // Format the save file name so it looks nicer
         string formattedFileName = saveFileName.Substring(saveFileName.IndexOf("DuoRhythmo")+10);
         formattedFileName = formattedFileName.Replace(@"\","");
         formattedFileName = formattedFileName.Replace("_", ":");
         formattedFileName = formattedFileName.Substring(0,formattedFileName.IndexOf('.'));
-        
+        formattedFileName = formattedFileName.Substring(0, formattedFileName.IndexOf(':') - 2);
+
+        saveData.DateCreated.text = saveFileCreationDate;
         saveData.label.text = formattedFileName;
     }
     

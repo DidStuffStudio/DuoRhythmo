@@ -16,7 +16,7 @@ public class FindByTagOrLayer : EditorWindow {
  bool filterInactive;
  List<int> objectIndex = new List<int>();
  
-[MenuItem("Custom/Filter Hierarcy")]
+[MenuItem("Did Stuff/Filter Hierarcy")]
 static void Init()
 {
  FindByTagOrLayer filter = (FindByTagOrLayer)EditorWindow.GetWindow (typeof (FindByTagOrLayer));

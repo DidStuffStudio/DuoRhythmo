@@ -1,9 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using Custom_Buttons.Did_Stuff_Buttons;
-using UnityEngine;
+using Managers;
 
-public class DidStuffSoloButton : AbstractDidStuffButton
+namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
 {
-   public void ForceDeactivate() => DeactivateButton();
+   public class DidStuffSoloButton : AbstractDidStuffButton
+   {
+      public int drumTypeIndex = 0;
+      public void ForceDeactivate()
+      {
+         DeactivateButton();
+         Mute(false);
+      }
+
+      public void Mute(bool mute) => MasterManager.Instance.audioManager.MuteOthers(drumTypeIndex, mute);
+
+      protected override void ButtonClicked()
+      {
+         base.ButtonClicked();
+         if(_isActive)Mute(true);
+         else Mute(false);
+      }
+   }
 }

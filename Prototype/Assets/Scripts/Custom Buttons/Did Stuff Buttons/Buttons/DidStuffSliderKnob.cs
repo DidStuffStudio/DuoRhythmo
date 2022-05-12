@@ -58,6 +58,12 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         OnSliderChange?.Invoke(sliderIndex);
     }
 
+    public void InitialiseBpm(float value)
+    {
+        SetCurrentValue(value);
+        OnSliderChange?.Invoke(sliderIndex);
+    }
+    
     public void SetColors(Color activeColor, Color inactiveColor)
     {
         fillRect.GetComponent<Image>().color = activeColor;
@@ -69,6 +75,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         currentValue = value; 
         _knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(currentValue, minimumValue, maximumValue, _minValue, _maxValue));
         FillSlider();
+        UpdateSliderText();
     }
 
     

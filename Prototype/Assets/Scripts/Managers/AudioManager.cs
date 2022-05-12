@@ -21,6 +21,7 @@ namespace Managers
         [SerializeField] private float[] minMaxReverb = {-80.0f, 0.0f};
         [SerializeField] private float[] minMaxLowPass = {-22000.0f, -150.0f};
         private Dictionary<int, float[]> effectConstraints = new Dictionary<int, float[]>();
+        private float[] _volumes = new float[5];
         private void Awake()
         {
             LoadAudioSamples();
@@ -55,11 +56,12 @@ namespace Managers
             }
         }
 
-        public void MuteOthers(int drumIndex)
+        public void MuteOthers(int drumIndex, bool solo)
         {
             for (int i = 0; i < mixers.Count; i++)
             {
-                if (i != drumIndex) mixers[i].audioMixer.SetFloat( EffectStrings[0], -20.0f);
+                if (i != drumIndex && solo) mixers[i].audioMixer.SetFloat(EffectStrings[0], -40.0f); 
+                else if(!solo)mixers[i].audioMixer.SetFloat( EffectStrings[0], _volumes[i]);
             }
         }
 
@@ -69,6 +71,7 @@ namespace Managers
             var val = Map(value, 0, 101, minMax[0], minMax[1]);
             if (effectIndex == 4) val *= -1; // Need positive frequencies for the low pass
             mixers[drumType].audioMixer.SetFloat(EffectStrings[effectIndex-1], val);
+            if (effectIndex == 1) _volumes[drumType] = val;
         }
         
         

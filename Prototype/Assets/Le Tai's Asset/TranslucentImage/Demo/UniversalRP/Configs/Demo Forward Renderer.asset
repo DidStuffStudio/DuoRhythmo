@@ -20,7 +20,7 @@ MonoBehaviour:
       RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
-        m_Bits: 2048
+        m_Bits: 2176
       PassNames: []
     overrideMaterial: {fileID: 0}
     overrideMaterialPassIndex: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: 6360919674349005157}
   - {fileID: -4196572490562176116}
-  m_RendererFeatureMap: 8c7bdde18dc7c2c5
+  m_RendererFeatureMap: 8c7bdde18dc7c2c5526731d5f0c93fb8
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:

@@ -54,7 +54,7 @@ namespace Managers
         {
         
             if (ignoreEvents) return;
-        
+            MasterManager.Instance.ForceSoloOffGlobal();
             BlurBackground();
             _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
             SetAnimatorTime();

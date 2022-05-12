@@ -53,23 +53,23 @@ namespace Managers
         private AudioSource _audioSource;
         private List<AudioClip> _drumSamples = new List<AudioClip>();
         private Animator _rhythmAnimator;
+        private DidStuffSoloButton _soloButton;
         private static readonly int Rps = Animator.StringToHash("RPS");
 
         private void Awake() {
             _euclideanRythm = GetComponent<EuclideanRythm>();
             _audioSource = GetComponent<AudioSource>();
             _rhythmAnimator = rhythmIndicator.GetComponent<Animator>();
-
+            _soloButton = GetComponentInChildren<DidStuffSoloButton>();
         }
     
+        
+        
+        public void ForceSoloOff() => _soloButton.ForceDeactivate();
         public void SetUpNode() {
             
-            rhythmIndicator.gameObject.GetComponentInChildren<Image>().enabled = false;
-
-            SpawnNodes();
-
+            InitialiseNodes();
             rotation = 0.0f;
-            
 
             string[] effects = {"_Effect_1", "_Effect_2", "_Effect_3", "_Effect_4"};
             if (drumType == DrumType.Kick)
@@ -100,7 +100,7 @@ namespace Managers
 
         }
         
-        private void SpawnNodes() {
+        private void InitialiseNodes() {
             numberOfNodes = MasterManager.Instance.numberOfNodes;
 
             // position all the nodes (existing nodes and to-be-created ones)
@@ -111,9 +111,8 @@ namespace Managers
                 var n = _nodes[i].GetComponentInChildren<DidStuffNode>();
                 _nodes[i].transform.parent.name = "Node " + (i + 1);
                 n.nodeIndex = i;
-
-
-                _nodeangles.Add(n.GetAngle());
+                n.nodeManager = this;
+                
                 _nodes[i].drumType = drumType switch
                 {
                     DrumType.Kick => DrumType.Kick,
@@ -130,11 +129,14 @@ namespace Managers
                 }
                 
                 n.InitialiseSubNodes();
+                _nodeangles.Add(n.GetAngle());
             }
             rotation = 0.0f;
             rhythmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;
         }
 
+        public void InitialiseSoloButton() => _soloButton.drumTypeIndex = (int)drumType;
+        
         public void PlayDrum(int drumType)
         {
             _audioSource.PlayOneShot(_drumSamples[drumType]);

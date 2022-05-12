@@ -167,6 +167,8 @@ namespace Managers {
             effectsManager.drumType = (DrumType) i;
             effectsManager.SetColours(drumColors[i], defaultNodeColors[i]);
             effectsManager.InitialiseSliders();
+            effectsManager.InitialiseSoloButton();
+            if(i == numberInstruments-1) effectsManager.InitialiseBpm(bpm);
         }
 
         private void SetUpNodeManager(int i) {
@@ -179,6 +181,7 @@ namespace Managers {
             var mixGroup = audioManager.mixers[i];
             nodeManager.SetDrumType(i, clips, mixGroup);
             nodeManager.SetUpNode();
+            nodeManager.InitialiseSoloButton();
         }
 
 
@@ -186,6 +189,15 @@ namespace Managers {
             currentDrumKitIndex = drumKitIndex;
         }
 
+        public void ForceSoloOffGlobal()
+        {
+            for (int i = 0; i < nodePanels.Count; i++)
+            {
+                _nodeManagers[i].ForceSoloOff();
+                _effectsManagers[i].ForceSoloOff();
+            }
+        }
+        
         public void SetPlayerPosition() {
             journeyLength = Vector3.Distance(playerStartPosition.position, playerPositionDestination.position);
 

@@ -13,7 +13,7 @@ public class DidStuffNode : AbstractDidStuffButton
 {
 
     public int nodeIndex = 0;
-    private VisualEffect _vfx;
+    //private VisualEffect _vfx;
     public DrumType drumType;
     public NodeManager nodeManager;
     private float angleWindow = 2.0f;
@@ -22,14 +22,6 @@ public class DidStuffNode : AbstractDidStuffButton
     private bool _recentlyPlayed = false;
     [SerializeField] private ctsalidis.NodeSync _nodeSync;
     private float _angle = 0.0f;
-    private void Start()
-    {
-        nodeManager = GetComponentInParent<NodeManager>();
-        
-        
-        _vfx = MasterManager.Instance.carouselManager._vfx;
-
-    }
 
     public void InitialiseSubNodes()
     {
@@ -61,7 +53,9 @@ public class DidStuffNode : AbstractDidStuffButton
     private double Angle()
     {
         var spacing = 360 / nodeManager.numberOfNodes;
-        return spacing * nodeIndex;
+        var angle = spacing *nodeIndex;
+        angle += (spacing/2);
+        return angle;
     }
 
     protected override void ButtonClicked()
@@ -77,7 +71,7 @@ public class DidStuffNode : AbstractDidStuffButton
         localPosition = new Vector3(localPosition.x, localPosition.y, -11.0f);
         _rectT.localPosition = localPosition;
         StartCoroutine(LerpBack());
-        StartCoroutine(AudioVFX());
+       // StartCoroutine(AudioVFX());
         StartCoroutine(RecentlyPlayedDrum());
         nodeManager.PlayDrum((int)drumType);
     }
@@ -96,13 +90,13 @@ public class DidStuffNode : AbstractDidStuffButton
         _recentlyPlayed = false;
     }
 
-    private IEnumerator AudioVFX() {
+    /*private IEnumerator AudioVFX() {
         _vfx.SetFloat("SphereSize", _vfx.GetFloat("SphereSize") + 1.0f);
         while (_vfx.GetFloat("SphereSize") > 1.1f) {
             yield return new WaitForSeconds(Time.fixedDeltaTime);
             _vfx.SetFloat("SphereSize", _vfx.GetFloat("SphereSize") - 0.1f);
         }
-    }
+    }*/
     
     IEnumerator LerpBack()
     {

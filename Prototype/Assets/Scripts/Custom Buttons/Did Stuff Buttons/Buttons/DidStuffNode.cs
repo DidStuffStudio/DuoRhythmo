@@ -22,6 +22,7 @@ public class DidStuffNode : AbstractDidStuffButton
     private bool _recentlyPlayed = false;
     [SerializeField] private ctsalidis.NodeSync _nodeSync;
     private float _angle = 0.0f;
+    public bool nodeInitialised = false;
 
     public void InitialiseSubNodes()
     {
@@ -47,6 +48,7 @@ public class DidStuffNode : AbstractDidStuffButton
         return _angle;
     }
 
+    public void SetNodeSync(NodeSync nodeSync) => this._nodeSync = nodeSync; 
     public void SetActiveFromServer() => ChangeToActiveState();
     public void SetInactiveFromServer() => ChangeToInactiveState();
     
@@ -61,8 +63,18 @@ public class DidStuffNode : AbstractDidStuffButton
     protected override void ButtonClicked()
     {
         base.ButtonClicked();
-        _nodeSync.Toggle(_isActive);
+        if(_nodeSync) _nodeSync.Toggle(_isActive);
         MasterManager.Instance.UpdateSubNodes(nodeIndex, _isActive, nodeManager.subNodeIndex);
+    }
+
+    public override void ActivateButton() {
+        base.ActivateButton();
+        if(_nodeSync) _nodeSync.Toggle(_isActive);
+    }
+
+    public override void DeactivateButton() {
+        base.DeactivateButton();
+        if(_nodeSync) _nodeSync.Toggle(_isActive);
     }
 
     public void PlayDrum() {
@@ -79,7 +91,7 @@ public class DidStuffNode : AbstractDidStuffButton
     protected override void Update()
     {
         base.Update();
-        if(Mathf.Abs(nodeManager.currentRotation - _angle) < angleWindow) PlayDrum();
+        if(nodeInitialised) if(Mathf.Abs(nodeManager.currentRotation - _angle) < angleWindow) PlayDrum();
     }
 
 

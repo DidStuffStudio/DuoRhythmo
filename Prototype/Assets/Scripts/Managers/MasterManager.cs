@@ -103,10 +103,9 @@ namespace Managers {
 
                 if (Vector3.Distance(playerCameraTransform.position, playerPositionDestination.position) < 0.1f) {
                     isInPosition = true;
-                    mainSignifier.SetActive(true);
-                    //StartCoroutine(carouselManager.SwitchPanelRenderLayers());
-                    carouselManager.InitialiseBlur();
-                    SetExitButtonActive(true);
+                    //mainSignifier.SetActive(true);
+                    //carouselManager.InitialiseBlur();
+                    //SetExitButtonActive(true);
                 }
             }
         }
@@ -121,11 +120,11 @@ namespace Managers {
                 panelRotations[i] = new Vector3(0, i * rotationValue, 0);
             }
 
-            InstantiatePanelsSoloMode();
+            InitialisePanels();
             StartCoroutine(WaitToPositionCamera(0.5f));
         }
 
-        private void InstantiatePanelsSoloMode() {
+        private void InitialisePanels() {
             Vector3 rotationValue = Vector3.zero;
 
 
@@ -137,12 +136,11 @@ namespace Managers {
                 carouselManager.panels.Add(nodePanels[i]);
                 carouselManager.panels.Add(effectPanels[i]);
                 rotationValue += new Vector3(0, 360.0f / (numberInstruments * 2) * -1, 0);
-                SetUpEffectsManager(i);
-                SetUpNodeManager(i);
+                SetUpEffectsManagers(i);
+                SetUpNodeManagers(i);
                 SetUpNamesAndColours(nodePanels[i], i, "");
                 SetUpNamesAndColours(effectPanels[i], i, " Effects");
             }
-            //SetBpm(bpm);
             gameSetUpFinished = true;
             carouselManager.ToggleVFX(true);
         }
@@ -161,7 +159,7 @@ namespace Managers {
             }
         }
 
-        private void SetUpEffectsManager(int i) {
+        private void SetUpEffectsManagers(int i) {
             var effectsManager = effectPanels[i].GetComponentInChildren<EffectsManager>();
             _effectsManagers.Add(effectPanels[i].GetComponentInChildren<EffectsManager>());
             effectsManager.drumType = (DrumType) i;
@@ -171,7 +169,7 @@ namespace Managers {
             if(i == numberInstruments-1) effectsManager.InitialiseBpm(bpm);
         }
 
-        private void SetUpNodeManager(int i) {
+        private void SetUpNodeManagers(int i) {
             var nodeManager = nodePanels[i].GetComponentInChildren<NodeManager>();
             _nodeManagers.Add(nodeManager);
             nodeManager.subNodeIndex = i;
@@ -182,6 +180,7 @@ namespace Managers {
             nodeManager.SetDrumType(i, clips, mixGroup);
             nodeManager.SetUpNode();
             nodeManager.InitialiseSoloButton();
+            nodeManager.InitialiseEuclideanButton();
         }
 
 

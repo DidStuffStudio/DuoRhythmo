@@ -131,7 +131,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		[SerializeField] private UnityEvent onClicked;
 		
 		[SerializeField]
-		private Color activeColour = Color.green, inactiveColour = Color.red, disabledColour = Color.grey;
+		protected Color activeColour = Color.green, inactiveColour = Color.red, disabledColour = Color.grey;
 		private RectTransform _dwellGfx;
 		
 		[HideInInspector] public string primaryText, secondaryText;
@@ -154,7 +154,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		[HideInInspector] public float localDwellTime = 1.0f;
 
 		private bool _mouseHover = false, _canHover = true;
-		protected bool _isActive, _isInactive = true, _isHover, _isDisabled;
+		protected bool _isActive = true, _isHover, _isDisabled;
 		private Image _mainImage;
 		private Image _iconImage;
 		private Image _dwellGfxImg;
@@ -170,7 +170,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private float _currentDwellTime = _dwellTime;
 		private bool _initialised;
 		private bool _playActivatedScale;
-		
+		private Collider _collider;
 
 		
 		#endregion
@@ -230,14 +230,20 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				_provideDwellFeedbackLocal = true;
 			else _provideDwellFeedbackLocal = false;
 
+			if (PlayerPrefs.GetFloat("DwellTime") != 0.0f)
+				DwellTime = PlayerPrefs.GetFloat("DwellTime");
+			else DwellTime = 1.0f;
 
+			_collider = GetComponent<Collider>();
+			
 			var rt = GetComponent<RectTransform>().rect;
-			var x = rt.x;
-			var y = rt.y;
 			var w = rt.width;
 			var h = rt.height;
 			
-			_dwellGfx.rect.Set(x,y,w,h);
+			_dwellGfx.sizeDelta = new Vector2(w, h);
+			_interactionMethod = (InteractionMethod)PlayerPrefs.GetInt("InteractionMethod");
+			
+			if (_interactionMethod != InteractionMethod.Tobii) ActivateCollider(false);
 			
 			ToggleDwellGfx(false);
 			DeactivateButton();
@@ -296,7 +302,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				switch (localInteractionMethod)
 				{
 					case InteractionMethod.MouseDwell:
-						DwellScale();
+						if(_canHover)DwellScale();
 						break;
 					case InteractionMethod.Mouse:
 						MouseInput();
@@ -304,7 +310,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 					case InteractionMethod.Tobii:
 						if (!TobiiAPI.IsConnected) return;
 						TobiiInput();
-						DwellScale();
+						if(_canHover)DwellScale();
 						break;
 					case InteractionMethod.Touch:
 						TouchInput();
@@ -312,15 +318,10 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				}
 			}
 
-			if (_playActivatedScale)
-			{
-				if (_dwellGfx.localScale.x > 0.0f)
-				{
-					_dwellGfx.localScale -= one * 0.05f;
-				}
-				else ToggleDwellGfx(false);
-			}
-			
+			if (!_playActivatedScale) return;
+			if (_dwellGfx.localScale.x > 0.0f) _dwellGfx.localScale -= one * 0.01f;
+			else ToggleDwellGfx(false);
+
 		}
 
 		protected virtual void ButtonClicked()
@@ -338,6 +339,10 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		}
 
 		private void ToggleDwellGfx(bool activate) => _dwellGfx.transform.gameObject.SetActive(activate);
+
+		protected void ActivateCollider(bool activate) => _collider.enabled = activate;
+
+		protected void ActivateText(bool activate) => _primaryText.gameObject.SetActive(activate);
 		
 		protected void InvokeOnClickUnityEvent() => onClicked?.Invoke();
 
@@ -430,8 +435,10 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			}
 		}
 
-		protected void SetCanHover(bool canHover) => _canHover = canHover;
-		
+		protected void SetCanHover(bool canHover)
+		{
+			_canHover = canHover;
+		} 
 		//Call this if you want to change the state of the button with no events being called. Like if you want to activate a DuoRhythmo drum node from the server.
 		public void ActivateButton() => ToggleButton(true);
 
@@ -447,8 +454,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected virtual void ChangeToActiveState()
 		{
-			_isActive = true;
-			_isInactive = false;
+			_isActive = true; 
 			_mainImage.color = activeColour;
 			_dwellGfxImg.color = inactiveColour;
 			if (useIcon && changeTextOrIconColour) _iconImage.color = activeTextOrIconColour;
@@ -459,7 +465,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected virtual void ChangeToInactiveState()
 		{
 			_isActive = false;
-			_isInactive = true;
 			_mainImage.color = inactiveColour;
 			_dwellGfxImg.color = activeColour;
 			if (useIcon && changeTextOrIconColour) _iconImage.color = inactiveTextOrIconColour;
@@ -482,6 +487,11 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			SetAutomaticColours();
 		}
 
+		protected void SetTemporaryColor(Color col)
+		{
+			_mainImage.color = col;
+		}
+
 		public void SetText(string t)
 		{
 			_primaryText.text = t;
@@ -502,8 +512,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_mainImage.color = inactiveColour;
 			_dwellGfxImg.color = activeColour;
 		}
-
-		protected void ToggleHoverable(bool canHover) => _canHover = canHover;
+		
 
 		#region MouseInteraction
 
@@ -543,7 +552,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private void DwellActivated()
 		{
 		
-			StartCoroutine(CoolDownTime());
+			StartInteractionCoolDown();
 			_currentDwellTime = _dwellTime;
 			_dwellGfx.localScale = zero;
 			if (!_isActive) _dwellGfxImg.color = inactiveColour;

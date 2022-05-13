@@ -18,6 +18,7 @@ namespace Managers
         {
             sliders = GetComponentsInChildren<DidStuffSliderKnob>().ToList();
             _soloButton = GetComponentInChildren<DidStuffSoloButton>();
+            GetComponentInParent<Canvas>().worldCamera = Camera.main;
         }
 
         public void SendEffectToAudioManager(int sliderIndex,float value)

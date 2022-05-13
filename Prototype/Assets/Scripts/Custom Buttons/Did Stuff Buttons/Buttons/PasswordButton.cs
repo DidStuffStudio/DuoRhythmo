@@ -22,7 +22,7 @@ public class PasswordButton : AbstractDidStuffButton
   {
     base.ButtonClicked();
     _pinManager.SetPinCharacter(_value, _position);
-    base.ToggleHoverable(false);
+    SetCanHover(false);
   }
   
   protected override void StartInteractionCoolDown() { }

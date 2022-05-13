@@ -5227,7 +5227,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8248214352534705531}
-  - component: {fileID: 2624153787203381659}
   m_Layer: 7
   m_Name: EffectsPanel
   m_TagString: RenderTarget
@@ -5250,19 +5249,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2624153787203381659
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8248214352534705530}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 50, y: 50, z: 1}
-  m_Center: {x: 0, y: 0, z: -305}
 --- !u!1 &8248214353105484805
 GameObject:
   m_ObjectHideFlags: 0
@@ -6138,6 +6124,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  drumTypeIndex: 0
 --- !u!1001 &1345677936064710317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6678,14 +6665,14 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1333812293971173398, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
---- !u!224 &4724295870672433364 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1333812293971173609, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
-  m_PrefabInstance: {fileID: 5986046031865122877}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4724295870672433365 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1333812293971173608, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
+  m_PrefabInstance: {fileID: 5986046031865122877}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &4724295870672433364 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1333812293971173609, guid: 3971e81e05b73f542abf989cd01cbee2, type: 3}
   m_PrefabInstance: {fileID: 5986046031865122877}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1239410382813985544
@@ -6726,3 +6713,4 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  drumTypeIndex: 0

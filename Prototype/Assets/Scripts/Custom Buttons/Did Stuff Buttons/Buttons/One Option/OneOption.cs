@@ -24,12 +24,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         protected override void ButtonClicked()
         {
             base.ButtonClicked();
-            base.ToggleHoverable(false);
+            SetCanHover(false);
             
             foreach (var btn in _otherButtonsToDisable)
             {
                 btn.DeactivateButton();
-                btn.ToggleHoverable(true);
+                btn.SetCanHover(true);
             }
             
             Extras();

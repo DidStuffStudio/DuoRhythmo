@@ -45,7 +45,7 @@ namespace Managers
         private int previousEffectValue;
         private Color _inactiveHover, _activeHover;
         private bool _nodeIsSetup;
-        private EuclideanRythm _euclideanRythm;
+        private EuclideanRhythm _euclideanRhythm;
         private int[] _savedValues = new int[16];
         private bool canRotate = true;
         public List<float> _nodeangles = new List<float>();
@@ -54,13 +54,16 @@ namespace Managers
         private List<AudioClip> _drumSamples = new List<AudioClip>();
         private Animator _rhythmAnimator;
         private DidStuffSoloButton _soloButton;
+        private EuclideanButton _euclideanButton;
         private static readonly int Rps = Animator.StringToHash("RPS");
 
         private void Awake() {
-            _euclideanRythm = GetComponent<EuclideanRythm>();
+            _euclideanRhythm = GetComponent<EuclideanRhythm>();
             _audioSource = GetComponent<AudioSource>();
             _rhythmAnimator = rhythmIndicator.GetComponent<Animator>();
             _soloButton = GetComponentInChildren<DidStuffSoloButton>();
+            _euclideanButton = GetComponentInChildren<EuclideanButton>();
+            GetComponentInParent<Canvas>().worldCamera = Camera.main;
         }
     
         
@@ -136,6 +139,9 @@ namespace Managers
         }
 
         public void InitialiseSoloButton() => _soloButton.drumTypeIndex = (int)drumType;
+
+        public void InitialiseEuclideanButton() =>
+            _euclideanButton.SetIncrementColors(drumColor, defaultColor);
         
         public void PlayDrum(int drumType)
         {
@@ -155,18 +161,7 @@ namespace Managers
             currentRotation = 360 - rhythmIndicator.localRotation.eulerAngles.z;
         }
 
-        private void FixedUpdate() {
-            /*if (!MasterManager.Instance.gameSetUpFinished) return;
-            var rpm = (float) bpm / (numberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
-            var rps = rpm / 60.0f;
-            var actualRotation = (360.0f - 360.0f / numberOfNodes) * rps * 4;
-            print(actualRotation);
-            var revolutionsPerWaitingSeconds = rps * Time.fixedDeltaTime; //Convert to revolutions per millisecond
-            var degreesPerWaitingSeconds = (360.0f - 360.0f / numberOfNodes) * revolutionsPerWaitingSeconds;
-            rotation -= degreesPerWaitingSeconds * 4.0f;
-            rhythmIndicator.localRotation = Quaternion.Euler(0, 0, rotation);
-            currentRotation = -rotation % 360;*/
-        }
+    
 
         /// <summary>
         /// Update the subnodes when a node has been updated (activated / deactivated)
@@ -217,10 +212,18 @@ namespace Managers
             {
                 var value = values[i];
                 // if the euclidean value is 1, then it means it should be active, so activate
-                if (value == 1 && !_nodes[i].IsActive) _nodes[i].ActivateButton();
-                else _nodes[i].DeactivateButton();
+                if (value == 1 && !_nodes[i].IsActive)
+                {
+                    _nodes[i].ActivateButton();
+                    MasterManager.Instance.UpdateSubNodes(i, true, (int)drumType);
+                }
+                else if(value == 0 && _nodes[i].IsActive)
+                {
+                    _nodes[i].DeactivateButton();
+                    MasterManager.Instance.UpdateSubNodes(i, false, (int)drumType);
+                }
             }
-
+            
             canRotate = true;
         }
 
@@ -246,27 +249,31 @@ namespace Managers
                     if (value == 1 && !_nodes[i].IsActive)
                     {
                         _nodes[i].ActivateButton();
+                        MasterManager.Instance.UpdateSubNodes(i, true, (int)drumType);
                     }
-                    else
+                    else if(value == 0 && _nodes[i].IsActive)
                     {
                         _nodes[i].DeactivateButton();
+                        MasterManager.Instance.UpdateSubNodes(i, false, (int)drumType);
                     }
                 
                 }
             }
             else {
-                _euclideanRythm.GetEuclideanRythm();
+                _euclideanRhythm.GetEuclideanRhythm();
                 for (int i = 0; i < _nodes.Count; i++) {
-                    var euclideanValue = _euclideanRythm._euclideanValues[i];
+                    var euclideanValue = _euclideanRhythm.euclideanValues[i];
                     // if the euclidean value is 1, then it means it should be active, so activate
                     if (euclideanValue == 1 && !_nodes[i].IsActive)
                     {
                         _nodes[i].ActivateButton();
+                        MasterManager.Instance.UpdateSubNodes(i, true, (int)drumType);
                     
                     }
-                    else
+                    else if(euclideanValue == 0 && _nodes[i].IsActive)
                     {
                         _nodes[i].DeactivateButton();
+                        MasterManager.Instance.UpdateSubNodes(i, false, (int)drumType);
                     }
                 
                 }

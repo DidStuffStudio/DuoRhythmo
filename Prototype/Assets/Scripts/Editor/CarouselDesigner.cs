@@ -9,11 +9,9 @@ namespace Editor
 {
     public class CarouselDesigner : EditorWindow
     {
-        private int _numberOfInstruments = 5, _numberOfNodes = 16, _radiusOfNodeRing = 250;
+        private int _numberOfInstruments = 5, _numberOfNodes = 12, _radiusOfNodeRing = 150;
         private static GameObject _effects, _nodes, _drumNode;
-        private static bool _spawned = false;
-        private static GameObject _carousel;
-        
+
         [MenuItem("Did Stuff/Carousel Designer")]
         static void Init()
         {
@@ -35,25 +33,27 @@ namespace Editor
             if (!GUILayout.Button("Spawn Carousel")) return;
             SpawnCarousel();
         }
-    
+
         private void SpawnCarousel()
         {
-            if (_spawned)
-            {
-                _spawned = false;
-                Destroy(_carousel);
-            }
+            var carouselManager = Resources.FindObjectsOfTypeAll<CarouselManager>()[0];
+            
+            if(carouselManager.transform.childCount > 0) DestroyImmediate(carouselManager.transform.GetChild(0).gameObject);
+            
             _nodes = Resources.Load("NodesPanel") as GameObject;
             _effects = Resources.Load("EffectsPanel") as GameObject;
             _drumNode = Resources.Load("Node") as GameObject;
             var carouselGo = new GameObject("Carousel");
-            var carouselManager = Resources.FindObjectsOfTypeAll<CarouselManager>()[0];
             carouselGo.transform.SetParent(carouselManager.transform);
             var nodesPanelsGo = new GameObject("Nodes panels");
             var effectsPanelsGo = new GameObject("Effects panels");
             nodesPanelsGo.transform.SetParent(carouselGo.transform);
             effectsPanelsGo.transform.SetParent(carouselGo.transform);
             var masterManager = Resources.FindObjectsOfTypeAll<MasterManager>()[0];
+            
+            masterManager.nodePanels.Clear();
+            masterManager.effectPanels.Clear();
+            
             masterManager.numberInstruments = _numberOfInstruments;
             masterManager.numberOfNodes = _numberOfNodes;
 
@@ -73,9 +73,6 @@ namespace Editor
                 effectPanel.transform.SetParent(effectsPanelsGo.transform);
                 rotationValue += new Vector3(0, 360.0f / (_numberOfInstruments * 2) * -1, 0);
             }
-
-            _spawned = true;
-            _carousel = carouselGo;
         }
 
         private void SpawnNodes(Transform transform, int index)

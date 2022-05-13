@@ -89,17 +89,14 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     {
         //_screenY = _currentInputScreenPosition.y;
         base.Update();
-
+        
+        if(!_isHover && _isActive) DeactivateButton();
+        
         if (!_isHover || !_isActive) return;
         
-        
-        
         // Mouse Delta
-        if (_isActive)
-        {
-            
 
-            switch (GetInteractionMethod())
+        switch (GetInteractionMethod())
             {
                 case InteractionMethod.Mouse:
                     MouseInteraction();
@@ -135,29 +132,22 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
             if(dist>20) DeactivateButton();
                 
             FillSlider();
-
-        }
-       
+            
     }
 
     protected override void ChangeToActiveState()
     {
-        _isActive = true;
-        _isInactive = false;
-        
-        switch (GetInteractionMethod())
-        {
-            case InteractionMethod.Mouse:
-                break;
-            case InteractionMethod.MouseDwell:
-                break;
-            case InteractionMethod.Tobii:
-                break;
-            case InteractionMethod.Touch:
-                break;
-        }
+        base.ChangeToActiveState();
+        SetTemporaryColor(activeHoverColour);
+        SetCanHover(false);
     }
-    
+
+    protected override void ChangeToInactiveState()
+    {
+        base.ChangeToInactiveState();
+        SetCanHover(true);
+    }
+
 
     private void MouseInteraction()
     {
@@ -169,8 +159,14 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     private void MouseDwellInteraction()
     {
         if(_isHover)_currentInputScreenPosition = Input.mousePosition;
+        
     }
-    
+
+    protected override void StartInteractionCoolDown()
+    {
+        
+    }
+
     private void EyeInteraction()
     {
         GazePoint gazePoint = TobiiAPI.GetGazePoint();

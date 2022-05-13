@@ -164,10 +164,10 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private Animator _dwellAnimator;
 		private float _interactionBreakTime = 1.0f;
 		private GazeAware _gazeAware;
-		protected Camera _mainCamera;
+		protected Camera MainCamera;
 		private static float _dwellTime = 1.0f;
 		private static InteractionMethod _interactionMethod = InteractionMethod.Mouse;
-		private float _currentDwellTime = _dwellTime;
+		private float _currentDwellTime = 0.0f;
 		private bool _initialised;
 		private bool _playActivatedScale;
 		private Collider _collider;
@@ -215,7 +215,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_mainImage = GetComponent<Image>();
 			_dwellAnimator = GetComponentInChildren<Animator>();
 			_gazeAware = GetComponent<GazeAware>();
-			_mainCamera = Camera.main;
+			MainCamera = Camera.main;
 			if (!useInteractableLayer) interactableLayer = ~0;
 			GetTheChildren();
 			if (!customHoverColours) SetAutomaticColours();
@@ -538,20 +538,32 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected virtual void DwellScale()
 		{
 			if ((!_provideDwellFeedbackGlobal && !interactionSetting) || !_canHover) return;
-			var d = _dwellTime;
-			if (dwellTimeSetting) d = localDwellTime;
+			var d = dwellTimeSetting ? localDwellTime : _dwellTime;
 			if(!_dwellGfx.gameObject.activeInHierarchy) ToggleDwellGfx(true);
 			if (_isHover && _currentDwellTime > 0) _currentDwellTime -= Time.deltaTime;
 			else if(_isHover &&_currentDwellTime <= 0) DwellActivated();
 			else if (!_isHover && _currentDwellTime < d) _currentDwellTime += Time.deltaTime;
-			if(_isHover||(_currentDwellTime < 1 && _currentDwellTime > 0))
-				_dwellGfx.localScale = one - new Vector3(_currentDwellTime, _currentDwellTime, _currentDwellTime);
+			/*if(_isHover||(_currentDwellTime < 1 && _currentDwellTime > 0))
+				_dwellGfx.localScale = one - new Vector3(_currentDwellTime, _currentDwellTime, _currentDwellTime);*/
+			if (_isHover || (_currentDwellTime < 1 && _currentDwellTime > 0))
+			{
+				var size = 0.0f;
+				if(!dwellTimeSetting) size = Map(_currentDwellTime, _dwellTime, 0, 1f, 0f);
+				else size = Map(localDwellTime, _dwellTime, 0, 1f, 0f);
+				_dwellGfx.localScale = one - new Vector3(size,size,size);
+			}
+			
+
 			if(_currentDwellTime > d) ToggleDwellGfx(false);
 		}
 
+		private float Map(float value, float min1, float max1, float min2, float max2) {
+			return min2 + (max2 - min2) * ((value - min1) / (max1 - min1));
+		}
+
+		
 		private void DwellActivated()
 		{
-		
 			StartInteractionCoolDown();
 			_currentDwellTime = _dwellTime;
 			_dwellGfx.localScale = zero;
@@ -588,7 +600,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		{
 			if (Input.touchCount <= 0) return;
 			var touch = Input.GetTouch(0);
-			if (!Physics.Raycast(_mainCamera.ScreenToWorldPoint(touch.position), forward, out var hit,
+			if (!Physics.Raycast(MainCamera.ScreenToWorldPoint(touch.position), forward, out var hit,
 				interactableLayer)) return;
 			if (hit.transform == this.transform)
 			{

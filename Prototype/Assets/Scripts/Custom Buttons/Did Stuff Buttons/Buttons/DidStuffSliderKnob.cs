@@ -118,7 +118,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
             }
             
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_slider, _currentInputScreenPosition,
-                _mainCamera, out var value);
+                MainCamera, out var value);
  
 
 

@@ -1,7 +1,9 @@
 using System;
+using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,14 +18,41 @@ public class LoadBeat : MonoBehaviour
 
     public List<GameObject> retrievedBeats = new List<GameObject>();
 
+    public ScrollRect scrollRect;
+    public Transform layoutGroupTransform;
+    public GameObject panelTemplate;
+
+    public Button arrowRight;
+    public Button arrowLeft;
+
+    private float[] positions; 
+
 
     public List<string> fileList = new List<string>();
     [SerializeField] private MasterManagerData _loadedManagerData = new MasterManagerData();
 
+    private float numPanels = 1;
+    private int CurrentPanel = 0;
+    
+    private float yVelocity = 0.0f;
+    private float targetPos;
+    private float currentPos;
+    private bool moving;
+
+    private List<GameObject> listPanels = new List<GameObject>();
+
     private void Awake()
+    {
+        Initialize();
+    }
+
+    private void Initialize()
     {
         GetFileList();
         ChangeCurrentlySelectedFile();
+        positions = linspace(0, 1, (int)numPanels);
+        scrollRect.horizontalNormalizedPosition = 0;
+        arrowLeft.gameObject.SetActive(false);
     }
 
 
@@ -37,13 +66,18 @@ public class LoadBeat : MonoBehaviour
         string[] files = Directory.GetFiles(Application.persistentDataPath, "*.json");
 
         //Add each file to the fileList
-        foreach (var file in files)
+        for (int i = 0; i < files.Length; i++)
         {
-            fileList.Add(file);
-            Debug.Log(file);
-            CreateNewToggle(file);
+            if ((i % 6) == 0 && i >= 5)
+            {
+                numPanels++;
+                AddNewPanel();
+            }
+            fileList.Add(files[i]);
+            Debug.Log(files[i]);
+            CreateNewToggle(files[i]);
         }
-        
+        panelTemplate.SetActive(false);
         template.SetActive(false);
     }
 
@@ -132,6 +166,117 @@ public class LoadBeat : MonoBehaviour
     {
         currentlySelectedSaveFile =
             toggleGroup.GetFirstActiveToggle().gameObject.GetComponent<ToggleSaveData>().fileName;
+    }
+
+    public void AddNewPanel()
+    {
+        GameObject newPanel = Instantiate(panelTemplate, layoutGroupTransform);
+        listPanels.Add(newPanel);
+        listWindow = newPanel.transform;
+    }
+
+    public void GoToNextPanel()
+    {
+        currentPos = scrollRect.horizontalNormalizedPosition;
+
+        if (CurrentPanel <= positions.Length - 1)
+        {
+            targetPos = positions[CurrentPanel + 1];
+            CurrentPanel++;
+        }
+        moving = true;
+    }
+    
+    public void GoToPreviousPanel()
+    {
+        currentPos = scrollRect.horizontalNormalizedPosition;
+        if (CurrentPanel > 0)
+        {
+            targetPos = positions[CurrentPanel - 1];
+            CurrentPanel--;
+        }
+        
+        moving = true;
+    }
+
+    public void DeleteSaveFile()
+    {
+        File.Delete(currentlySelectedSaveFile);
+        File.Delete(currentlySelectedSaveFile.Substring(0, currentlySelectedSaveFile.IndexOf('.')) + ".png");
+        Destroy(toggleGroup.GetFirstActiveToggle().gameObject);
+        
+        ResetSaveFileBrowser();
+    }
+
+
+
+    private void Update()
+    {
+        if (moving)
+        {
+            currentPos = scrollRect.horizontalNormalizedPosition;
+            float newPos =
+                Mathf.SmoothDamp(currentPos, targetPos, ref yVelocity, 0.1f);
+            scrollRect.horizontalNormalizedPosition = newPos;
+        }
+        Debug.Log(scrollRect.horizontalNormalizedPosition);
+
+        if (scrollRect.horizontalNormalizedPosition >= 1.0001 || scrollRect.horizontalNormalizedPosition <= -0.0001)
+        {
+            moving = false;
+        }
+
+        if (targetPos == positions[positions.Length-1])
+        {
+            arrowRight.gameObject.SetActive(false);
+        }
+        else
+        {
+            arrowRight.gameObject.SetActive(true);
+        }
+
+        if (targetPos == positions[0])
+        {
+            arrowLeft.gameObject.SetActive(false);
+        }
+        else
+        {
+            arrowLeft.gameObject.SetActive(true);
+        }
+
+        if (currentPos == targetPos)
+        {
+            moving = false;
+        }
+
+    }
+
+    void ResetSaveFileBrowser()
+    {
+        foreach (var beat in retrievedBeats)
+        {
+            Destroy(beat);
+        }
+
+        foreach (var panel in listPanels)
+        {
+            Destroy(panel);   
+        }
+        retrievedBeats.Clear();
+        listPanels.Clear();
+        panelTemplate.SetActive(true);
+        
+        Initialize();
+        
+    }
+
+
+    
+    public static float[] linspace(float startval, float endval, int steps)
+    {
+        float interval = (endval / Mathf.Abs(endval)) * Mathf.Abs(endval - startval) / (steps - 1);
+        return (from val in Enumerable.Range(0,steps)
+            select startval + (val * interval)).ToArray(); 
     }
 }
 

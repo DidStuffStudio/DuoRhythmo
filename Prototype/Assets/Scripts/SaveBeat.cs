@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class SaveBeat : MonoBehaviour
 {
-    [SerializeField] private MasterManagerData _masterManagerData = new MasterManagerData();
+    [SerializeField] private MasterManagerData _masterManagerData;
 
 
     private string fileName;
@@ -16,6 +16,8 @@ public class SaveBeat : MonoBehaviour
 
     public void SaveIntoJson()
     {
+        _masterManagerData = new MasterManagerData();
+        nodeManagers.Clear();
         // Get general info on save data
         int currentDrumIndex = MasterManager.Instance.currentDrumKitIndex;
         _masterManagerData.drumIndex = currentDrumIndex;
@@ -91,12 +93,7 @@ public class SaveBeat : MonoBehaviour
 
         yield return null;
     }
-
-
-    public void SaveIntoWav()
-    {
-        
-    }
+    
 }
 
 

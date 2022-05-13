@@ -133,6 +133,7 @@ namespace Managers
                 
                 n.InitialiseSubNodes();
                 _nodeangles.Add(n.GetAngle());
+                _nodes[i].nodeInitialised = true;
             }
             rotation = 0.0f;
             rhythmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;

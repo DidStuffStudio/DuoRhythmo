@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ctsalidis;
 using Custom_Buttons.Did_Stuff_Buttons;
 using Managers;
 using TMPro;
@@ -33,6 +34,10 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     public delegate void SliderChangeAction(int index);
 
     public event SliderChangeAction OnSliderChange;
+    
+    [SerializeField] private ctsalidis.EffectSync _effectSync;
+    
+    
 
 
     protected override void Awake()
@@ -180,6 +185,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     
     private void SliderChanged(int index) {
         UpdateSliderText();
+        if(_effectSync) _effectSync.ChangeValue((byte) currentValue);
         _effectsManager.SendEffectToAudioManager(sliderIndex, currentValue);
     }
 
@@ -187,7 +193,10 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         var value = (int) currentValue;
         SetText(value.ToString());
     }
-    
+
+    public void SetEffectSync(EffectSync effectSync) => this._effectSync = effectSync;
+    public void SetValueFromServer(byte newValue) => SetCurrentValue(newValue);
+
 
     private float Map(float value, float min1, float max1, float min2, float max2) {
         return min2 + (max2 - min2) * ((value - min1) / (max1 - min1));

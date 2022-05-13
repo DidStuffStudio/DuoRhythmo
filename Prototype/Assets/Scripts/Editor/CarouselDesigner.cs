@@ -10,6 +10,7 @@ namespace Editor
     public class CarouselDesigner : EditorWindow
     {
         private int _numberOfInstruments = 5, _numberOfNodes = 12, _radiusOfNodeRing = 150;
+        private bool _isSoloMode = true;
         private static GameObject _effects, _nodes, _drumNode;
 
         [MenuItem("Did Stuff/Carousel Designer")]
@@ -27,6 +28,7 @@ namespace Editor
             _numberOfNodes = EditorGUI.IntSlider(new Rect(0, 30, position.width, 20), "Number of Nodes", _numberOfNodes, 2, 16);
             _radiusOfNodeRing =
                 EditorGUI.IntSlider(new Rect(0, 60, position.width, 20), "Radius of the node ring", _radiusOfNodeRing, 50, 250);
+            _isSoloMode =  EditorGUI.Toggle(new Rect(0, 90, position.width, 20),"Solo Mode Ordering" ,_isSoloMode);
 
             GUILayout.FlexibleSpace();
 
@@ -57,21 +59,21 @@ namespace Editor
             masterManager.numberInstruments = _numberOfInstruments;
             masterManager.numberOfNodes = _numberOfNodes;
 
-            var rotationValue = Vector3.zero;
-            
+            var rotationValueSolo = Vector3.zero;
+
             for (var i = 0; i < _numberOfInstruments; i++)
             {
-                var nodePanel = Instantiate(_nodes, Vector3.zero, Quaternion.Euler(rotationValue));
+                var nodePanel = Instantiate(_nodes, Vector3.zero, Quaternion.Euler(_isSoloMode ? rotationValueSolo:(rotationValueSolo*2)));
                 masterManager.nodePanels.Add(nodePanel);
                 Debug.Log(masterManager);
                 nodePanel.transform.SetParent(nodesPanelsGo.transform);
                 Debug.Log(nodePanel.transform.childCount);
                 SpawnNodes(nodePanel.transform.GetChild(0).transform.GetChild(0), i);
-                rotationValue += new Vector3(0, 360.0f / (_numberOfInstruments * 2) * -1, 0);
-                var effectPanel = Instantiate(_effects, Vector3.zero, Quaternion.Euler(rotationValue));
+                if(_isSoloMode)rotationValueSolo += new Vector3(0, 360.0f / (_numberOfInstruments * 2) * -1, 0);
+                var effectPanel = Instantiate(_effects, Vector3.zero, Quaternion.Euler(_isSoloMode ? rotationValueSolo:(rotationValueSolo*2+new Vector3(0,180,0))));
                 masterManager.effectPanels.Add(effectPanel);
                 effectPanel.transform.SetParent(effectsPanelsGo.transform);
-                rotationValue += new Vector3(0, 360.0f / (_numberOfInstruments * 2) * -1, 0);
+                rotationValueSolo += new Vector3(0, 360.0f / (_numberOfInstruments * 2) * -1, 0);
             }
         }
 

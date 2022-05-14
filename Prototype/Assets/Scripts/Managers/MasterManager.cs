@@ -80,26 +80,11 @@ namespace Managers {
         
         public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);
 
-        private void Update() {
-            if (!isInPosition) {
-                // Distance moved equals elapsed time times speed..
-                var distCovered = (Time.time - _startTime) * positionSpeed;
-                // Fraction of journey completed equals current distance divided by total distance.
-                var fractionOfJourney = distCovered / _journeyLength;
-                var playerCameraTransform = playerCamera.transform;
-                playerCamera.transform.position = Vector3.Lerp(playerCameraTransform.position,
-                    playerPositionDestination.position, fractionOfJourney* Time.deltaTime);
-                playerCamera.transform.rotation = Quaternion.Lerp(playerCameraTransform.rotation,
-                    playerPositionDestination.rotation, fractionOfJourney* Time.deltaTime);
-
-
-                if (Vector3.Distance(playerCameraTransform.position, playerPositionDestination.position) < 0.1f) {
-                    isInPosition = true;
-                    //mainSignifier.SetActive(true);
-                    //carouselManager.InitialiseBlur();
-                    //SetExitButtonActive(true);
-                }
-            }
+        public void PlayerReachedDestination() {
+            isInPosition = true;
+            //mainSignifier.SetActive(true);
+            //carouselManager.InitialiseBlur();
+            //SetExitButtonActive(true);
         }
 
         private void Initialize() {

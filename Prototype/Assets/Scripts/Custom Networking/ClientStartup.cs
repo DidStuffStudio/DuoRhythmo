@@ -27,6 +27,7 @@ public class ClientStartup : MonoBehaviour {
 #if !UNITY_SERVER
     private void Start() {
         // LoginRemoteUser(); // --> Done after matchmaking via the MatchMaker.cs file
+        ConnectUserToServer();
     }
 #endif
     

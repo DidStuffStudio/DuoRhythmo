@@ -27,7 +27,13 @@ namespace Managers
         public bool ignoreEvents;
         public bool justJoined;
         public bool isSoloMode = true;
-        
+
+
+        private void OnEnable()
+        {
+            _forwardRenderer.rendererFeatures[0].SetActive(true);
+        }
+
         private void Start() {
             
             _vfx.transform.gameObject.SetActive(false);
@@ -137,7 +143,7 @@ namespace Managers
         
         }
         public void InitialiseBlur() {
-            // Loop through panels 
+            /*// Loop through panels 
             for (int i = 0; i < panels.Count; i++) {
                 foreach (var transform in panels[i].GetComponentsInChildren<Transform>()
                 ) //Loop through children of the panel
@@ -169,7 +175,7 @@ namespace Managers
                         _currentPanel = panelLandedOn;
                     }
                 }
-            }
+            }*/
         }
 
         public void SetAnimatorTime()
@@ -187,5 +193,10 @@ namespace Managers
 
         public void OpenFeedbackSite()=>Application.OpenURL("https://duorhythmo.frill.co/b/zv9dw6m1/feature-ideas");
 
+        private void OnDisable()
+        {
+            _forwardRenderer.rendererFeatures[0].SetActive(false);
+        }
+        
     }
 }

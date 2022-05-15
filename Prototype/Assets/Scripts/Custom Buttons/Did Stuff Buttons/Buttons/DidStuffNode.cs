@@ -88,10 +88,10 @@ public class DidStuffNode : AbstractDidStuffButton
         nodeManager.PlayDrum((int)drumType);
     }
 
-    protected override void Update()
+    private void FixedUpdate()
     {
-        base.Update();
-        if(nodeInitialised) if(Mathf.Abs(Mathf.Abs(nodeManager.currentRotation) - Mathf.Abs(_angle)) < AngleWindow) PlayDrum();
+        if (!nodeInitialised) return;
+        if(Mathf.Abs(Mathf.Abs(nodeManager.currentRotation) - Mathf.Abs(_angle)) < AngleWindow) PlayDrum();
     }
 
 

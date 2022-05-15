@@ -9,7 +9,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         protected override void ToggleButton(bool activate)
         {
             ChangeToInactiveState();
-            ActivatedScaleFeedback();
+            if(Initialised)ActivatedScaleFeedback();
         }
     }
 }

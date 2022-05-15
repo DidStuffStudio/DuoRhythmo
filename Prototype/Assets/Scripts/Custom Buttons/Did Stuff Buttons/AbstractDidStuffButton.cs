@@ -184,6 +184,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			set => _dwellTime = value;
 		}
 
+		public bool Initialised => _initialised;
+
 		protected void SetInteractionMethod(InteractionMethod method)
 		{
 			_interactionMethod = method;
@@ -245,7 +247,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 						else RunInteraction -= DwellScale;
 						break;
 					case InteractionMethod.Mouse:
-						RunInteraction += MouseInput;
 						if (enable) RunInteraction += MouseInput;
 						else RunInteraction -= MouseInput;
 						break;
@@ -385,7 +386,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private void ButtonHovered()
 		{
 			if (!_canHover) return;
-			if (!_initialised) _initialised = true;
+			if (!Initialised) _initialised = true;
 			if (!interactionSetting)
 			{
 				switch (_interactionMethod)

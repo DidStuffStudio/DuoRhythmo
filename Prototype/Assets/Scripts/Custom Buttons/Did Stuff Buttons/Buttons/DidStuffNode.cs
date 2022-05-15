@@ -16,7 +16,7 @@ public class DidStuffNode : AbstractDidStuffButton
     //private VisualEffect _vfx;
     public DrumType drumType;
     public NodeManager nodeManager;
-    private float angleWindow = 2.0f;
+    private static readonly float AngleWindow = 10.0f;
     public List<Image> subNodes = new List<Image>();
     private RectTransform _rectT;
     private bool _recentlyPlayed = false;
@@ -91,7 +91,7 @@ public class DidStuffNode : AbstractDidStuffButton
     protected override void Update()
     {
         base.Update();
-        if(nodeInitialised) if(Mathf.Abs(nodeManager.currentRotation - _angle) < angleWindow) PlayDrum();
+        if(nodeInitialised) if(Mathf.Abs(Mathf.Abs(nodeManager.currentRotation) - Mathf.Abs(_angle)) < AngleWindow) PlayDrum();
     }
 
 

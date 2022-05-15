@@ -109,8 +109,6 @@ namespace Managers {
                 AddPanelsToCarouselManager(i);
                 SetUpEffectsManagers(i);
                 SetUpNodeManagers(i);
-                SetUpNamesAndColours(nodePanels[i], i, "");
-                SetUpNamesAndColours(effectPanels[i], i, " Effects");
             }
             gameSetUpFinished = true;
             carouselManager.ToggleVFX(true);
@@ -139,28 +137,11 @@ namespace Managers {
                 }
             }
         }
-
-        private void SetUpNamesAndColours(GameObject parentToSearch, int index, string titleEnd) {
-            foreach (Transform child in parentToSearch.transform.GetComponentsInChildren<Transform>()) {
-                if (child.CompareTag("PanelTitle")) {
-                    var t = child.GetComponent<TextMeshProUGUI>();
-                    t.color = drumColors[index];
-                    t.text = _drumNames[_currentDrumKitIndex][index] + titleEnd;
-                }
-                else if (child.CompareTag("UI_Drum_Colour"))
-                    child.GetComponent<AbstractDidStuffButton>()
-                        .SetActiveColoursExplicit(drumColors[index], defaultNodeColors[index]);
-            }
-        }
-
+        
         private void SetUpEffectsManagers(int i) {
             var effectsManager = effectPanels[i].GetComponentInChildren<EffectsManager>();
             effectsManagers.Add(effectPanels[i].GetComponentInChildren<EffectsManager>());
-            effectsManager.drumType = (DrumType) i;
-            effectsManager.SetColours(drumColors[i], defaultNodeColors[i]);
-            effectsManager.InitialiseSliders();
-            effectsManager.InitialiseSoloButton();
-            if(i == numberInstruments-1) effectsManager.InitialiseBpm(bpm);
+            effectsManager.InitialisePanel(i, defaultNodeColors[0], drumColors[i], bpm,numberInstruments);
         }
 
         private void SetUpNodeManagers(int i) {

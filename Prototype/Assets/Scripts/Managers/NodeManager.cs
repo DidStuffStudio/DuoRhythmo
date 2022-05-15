@@ -39,6 +39,7 @@ namespace Managers
         private EuclideanButton _euclideanButton;
         private static readonly int Rps = Animator.StringToHash("RPS");
         private List<int> _panelIndices = new List<int>{0, 1, 2, 3, 4};
+        [SerializeField] private List<AbstractDidStuffButton> ColorCodedButtons;
 
         private Color drumColor { get; set; }
         private Color[] defaultColor { get; set; }
@@ -84,10 +85,9 @@ namespace Managers
             defaultColor = defaultColors;
             drumColor = activeColor;
             SetDrumType(i, drumClips, mixer);
-            //drumText.text = _drumType.ToString();
+            SetUpNamesAndColours();
             InitialiseNodes();
             InitialiseSoloButton();
-            InitialiseEuclideanButton();
             _panelIndices.Remove((int) _drumType);
         }
         
@@ -98,9 +98,21 @@ namespace Managers
             _audioSource.outputAudioMixerGroup = mixer;
 
         }
+        
+        private void SetUpNamesAndColours()
+        {
+            drumText.color = drumColor;
+            drumText.text = _drumType.ToString();
+            foreach (AbstractDidStuffButton btn in ColorCodedButtons) {
+                btn.SetActiveColoursExplicit(drumColor, defaultColor[0]);
+            }
+        }
+        
+        
+        private void InitialiseNodes()
+        {
 
-        private void InitialiseNodes() {
-           
+            var toggleDefaultColor = false;
             // position all the nodes (existing nodes and to-be-created ones)
             for (int i = 0; i < nodes.Count; i++)
             {
@@ -121,9 +133,9 @@ namespace Managers
                     _ => nodes[i].drumType
                 };
 
-                var currentDefaultColor = i % MasterManager.Instance.numberOfNodes / 4 == 0
-                    ? defaultColor[0]
-                    : defaultColor[1];
+                if(i % (_numberOfNodes / 4) == 0) toggleDefaultColor = !toggleDefaultColor;
+
+                var currentDefaultColor = toggleDefaultColor ? defaultColor[0] : defaultColor[1];
                 
                 var btn = nodes[i].GetComponentInChildren<DidStuffNode>();
                 btn.SetActiveColoursExplicit(drumColor, currentDefaultColor);
@@ -136,9 +148,7 @@ namespace Managers
         }
 
         private void InitialiseSoloButton() => _soloButton.drumTypeIndex = (int)TypeOfDrum;
-
-        private void InitialiseEuclideanButton() =>
-            _euclideanButton.SetIncrementColors(drumColor, defaultColor[0]);
+        
         
         public void PlayDrum(int d)
         {

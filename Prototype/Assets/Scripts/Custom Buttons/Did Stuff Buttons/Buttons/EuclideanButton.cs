@@ -15,14 +15,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
             ToggleButtons();
             
         }
-
-        public void SetIncrementColors(Color active, Color inactive)
-        {
-            foreach (var btn in incrementButtons)
-            {
-                btn.SetActiveColoursExplicit(active, inactive);
-            }
-        }
+        
 
         protected override void ButtonClicked()
         {

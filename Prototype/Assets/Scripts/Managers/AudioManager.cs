@@ -45,14 +45,20 @@ namespace Managers
 
         private void LoadAudioSamples()
         {
-            for (var index = 0; index < samplesPath.Count; index++)
+            for (var i = 0; i < samplesPath.Count; i++)
             {
-                var kit = samplesPath[index];
+                var kit = "Assets/Resources/Audio/" + samplesPath[i];
                 var dir = new DirectoryInfo(kit);
                 var info = dir.GetFiles("*.wav");
                 var files = info.Select(f => f.Name).ToArray();
-                _sampleDictionary.Add(index,files.Select(sample => samplesPath[index] + "/" + sample).
-                    Select(path => (AudioClip) AssetDatabase.LoadAssetAtPath(path, typeof(AudioClip))).ToArray());
+                var samples = new AudioClip[files.Length];
+                for (var j = 0; j < files.Length; j++)
+                {
+                    var p = "Audio/" + samplesPath[i] + "/" + files[j];
+                    var p2 = p.Split('.')[0];
+                    samples[j] = Resources.Load<AudioClip>(p2);
+                }
+                _sampleDictionary.Add(i, samples);
             }
         }
 

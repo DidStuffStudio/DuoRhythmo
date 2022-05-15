@@ -366,7 +366,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private void ToggleDwellGfx(bool activate) {
 			var color = _dwellGfxImg.color;
 			if (!activate) _playActivatedScale = false;
-			_dwellGfxImg.color = new Color(color.r, color.b, color.g,  activate ? 255 : 0);
+			_dwellGfxImg.color = new Color(color.r, color.g, color.b,  activate ? 255 : 0);
 			// _dwellGfx.transform.gameObject.SetActive(activate);
 		}
 

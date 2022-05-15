@@ -127,6 +127,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		private event Activated OnActivate;
 		
+		private delegate void RunInteractionMethod();
+		private RunInteractionMethod RunInteraction;
+		
 
 		[SerializeField] private UnityEvent onClicked;
 		
@@ -202,9 +205,71 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			OnActivate += ActivateButton;
 			OnDeactivate += DeactivateButton;
 			
+			if (DelegateInteractionMethod(true)) return;
+			
 			DeactivateButton();
 		}
-		
+
+		private bool DelegateInteractionMethod(bool enable) {
+			if (!interactionSetting) {
+				switch (_interactionMethod) {
+					case InteractionMethod.MouseDwell:
+						if(enable) RunInteraction += DwellScale;
+						else RunInteraction -= DwellScale;
+						break;
+					case InteractionMethod.Mouse:
+						if(enable) RunInteraction += MouseInput;
+						else RunInteraction -= MouseInput;
+						break;
+					case InteractionMethod.Tobii:
+						if (!TobiiAPI.IsConnected) return true;
+						if(enable) {
+							RunInteraction += TobiiInput;
+							RunInteraction += DwellScale;
+						}
+						else {
+							RunInteraction -= TobiiInput;
+							RunInteraction -= DwellScale;
+						}
+						break;
+					case InteractionMethod.Touch:
+						if(enable) RunInteraction += TouchInput;
+						else RunInteraction -= TouchInput;
+						break;
+				}
+			}
+			else {
+				switch (localInteractionMethod) {
+					case InteractionMethod.MouseDwell:
+						if (enable) RunInteraction += DwellScale;
+						else RunInteraction -= DwellScale;
+						break;
+					case InteractionMethod.Mouse:
+						RunInteraction += MouseInput;
+						if (enable) RunInteraction += MouseInput;
+						else RunInteraction -= MouseInput;
+						break;
+					case InteractionMethod.Tobii:
+						if (!TobiiAPI.IsConnected) return true;
+						if(enable) {
+							RunInteraction += TobiiInput;
+							RunInteraction += DwellScale;
+						}
+						else {
+							RunInteraction -= TobiiInput;
+							RunInteraction -= DwellScale;
+						}
+						break;
+					case InteractionMethod.Touch:
+						if(enable) RunInteraction += TouchInput;
+						else RunInteraction -= TouchInput;
+						break;
+				}
+			}
+
+			return false;
+		}
+
 		protected void SetNewDwellTime()
 		{
 			PlayerPrefs.SetFloat("DwellTime", _dwellTime);
@@ -275,48 +340,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			else _secondaryText.transform.gameObject.SetActive(false);
 		}
 		
-		protected virtual void Update()
-		{
-			if (!interactionSetting)
-			{
-				switch (_interactionMethod)
-				{
-					case InteractionMethod.MouseDwell:
-						DwellScale();
-						break;
-					case InteractionMethod.Mouse:
-						MouseInput();
-						break;
-					case InteractionMethod.Tobii:
-						if (!TobiiAPI.IsConnected) return;
-						TobiiInput();
-						DwellScale();
-						break;
-					case InteractionMethod.Touch:
-						TouchInput();
-						break;
-				}
-			}
-			else
-			{
-				switch (localInteractionMethod)
-				{
-					case InteractionMethod.MouseDwell:
-						if(_canHover)DwellScale();
-						break;
-					case InteractionMethod.Mouse:
-						MouseInput();
-						break;
-					case InteractionMethod.Tobii:
-						if (!TobiiAPI.IsConnected) return;
-						TobiiInput();
-						if(_canHover)DwellScale();
-						break;
-					case InteractionMethod.Touch:
-						TouchInput();
-						break;
-				}
-			}
+		protected virtual void Update() {
+			RunInteraction?.Invoke();
 
 			if (!_playActivatedScale) return;
 			if (_dwellGfx.localScale.x > 0.0f) _dwellGfx.localScale -= one * 0.01f;
@@ -333,12 +358,17 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected void ActivatedScaleFeedback()
 		{
-			ToggleDwellGfx(true);
+			// ToggleDwellGfx(true);
 			_dwellGfx.localScale = one;
 			_playActivatedScale = true;
 		}
 
-		private void ToggleDwellGfx(bool activate) => _dwellGfx.transform.gameObject.SetActive(activate);
+		private void ToggleDwellGfx(bool activate) {
+			var color = _dwellGfxImg.color;
+			if (!activate) _playActivatedScale = false;
+			_dwellGfxImg.color = new Color(color.r, color.b, color.g,  activate ? 255 : 0);
+			// _dwellGfx.transform.gameObject.SetActive(activate);
+		}
 
 		protected void ActivateCollider(bool activate) => _collider.enabled = activate;
 
@@ -653,6 +683,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			OnUnHover -= ButtonUnHovered;
 			OnActivate -= ActivateButton;
 			OnDeactivate -= DeactivateButton;
+
+			DelegateInteractionMethod(false);
 		}
 	}
 }

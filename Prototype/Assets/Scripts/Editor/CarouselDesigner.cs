@@ -87,10 +87,9 @@ namespace Editor
             
             for (var i = 0; i < _numberOfNodes; i++)
             {
-                var angleDelta = 360 / -_numberOfNodes;
-                var degrees = i * angleDelta + angleDelta / 2;
-                degrees += 90;
-                var radians = degrees * Mathf.Deg2Rad;
+                var angleDelta = 2*Mathf.PI / -_numberOfNodes;
+                var radians = i * angleDelta + angleDelta / 2;
+                radians += (Mathf.PI/2);
                 var y = Mathf.Sin(radians);
                 var x = Mathf.Cos(radians);
                 var spawnPos = new Vector2(x, y) * _radiusOfNodeRing;
@@ -99,6 +98,7 @@ namespace Editor
                 var node = Instantiate(_drumNode, transform.position,Quaternion.identity, transform);
                 var rt = node.GetComponent<RectTransform>();
                 var z = (i * angleDelta) + angleDelta / 2;
+                z *= Mathf.Rad2Deg;
                 //z += 180;
                 rt.localRotation = Quaternion.Euler(0, 0, z);
                 rt.anchoredPosition = spawnPos;

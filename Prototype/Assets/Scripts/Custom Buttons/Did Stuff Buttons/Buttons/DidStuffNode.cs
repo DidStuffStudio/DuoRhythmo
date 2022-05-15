@@ -54,7 +54,7 @@ public class DidStuffNode : AbstractDidStuffButton
     
     private double Angle()
     {
-        var spacing = 360 / nodeManager.numberOfNodes;
+        var spacing = 360 / nodeManager.NumberOfNodes;
         var angle = spacing *nodeIndex;
         angle += (spacing/2);
         return angle;
@@ -64,7 +64,7 @@ public class DidStuffNode : AbstractDidStuffButton
     {
         base.ButtonClicked();
         if(_nodeSync) _nodeSync.Toggle(_isActive);
-        MasterManager.Instance.UpdateSubNodes(nodeIndex, _isActive, nodeManager.subNodeIndex);
+        MasterManager.Instance.UpdateSubNodes(nodeIndex, _isActive, (int)nodeManager.TypeOfDrum);
     }
 
     public override void ActivateButton() {

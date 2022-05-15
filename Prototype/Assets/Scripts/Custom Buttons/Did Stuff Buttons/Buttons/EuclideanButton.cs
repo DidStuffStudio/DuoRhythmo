@@ -27,7 +27,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         protected override void ButtonClicked()
         {
             base.ButtonClicked();
-            if(_isActive)nodeManager.StoreRythm();
+            if(_isActive)nodeManager.StoreRhythm();
             ToggleButtons();
             ActivateText(_isActive);
             nodeManager.StartEuclideanRhythmRoutine(_isActive);

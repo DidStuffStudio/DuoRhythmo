@@ -103,7 +103,7 @@ namespace Editor
                 rt.localRotation = Quaternion.Euler(0, 0, z);
                 rt.anchoredPosition = spawnPos;
                 node.transform.SetParent(nodesParent.transform);
-                transform.GetComponent<NodeManager>()._nodes.Add(node.GetComponentInChildren<DidStuffNode>());    
+                transform.GetComponent<NodeManager>().nodes.Add(node.GetComponentInChildren<DidStuffNode>());    
             }
         }
     }

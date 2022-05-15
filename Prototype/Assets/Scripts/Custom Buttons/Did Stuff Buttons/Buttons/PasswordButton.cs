@@ -9,13 +9,13 @@ public class PasswordButton : AbstractDidStuffButton
 {
   private PinManager _pinManager;
   [SerializeField] private int _value;
-  private Vector3 _position;
+  private Vector2 _position;
 
 
   private void Start()
   {
     _pinManager = GetComponentInParent<PinManager>();
-    _position = transform.position;
+    _position = GetComponent<RectTransform>().anchoredPosition;
   }
 
   protected override void ButtonClicked()

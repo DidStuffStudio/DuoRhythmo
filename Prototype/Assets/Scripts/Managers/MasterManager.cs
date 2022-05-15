@@ -143,7 +143,7 @@ namespace Managers {
         private void SetUpNamesAndColours(GameObject parentToSearch, int index, string titleEnd) {
             foreach (Transform child in parentToSearch.transform.GetComponentsInChildren<Transform>()) {
                 if (child.CompareTag("PanelTitle")) {
-                    var t = child.GetComponent<Text>();
+                    var t = child.GetComponent<TextMeshProUGUI>();
                     t.color = drumColors[index];
                     t.text = _drumNames[_currentDrumKitIndex][index] + titleEnd;
                 }
@@ -166,15 +166,9 @@ namespace Managers {
         private void SetUpNodeManagers(int i) {
             var nodeManager = nodePanels[i].GetComponentInChildren<NodeManager>();
             nodeManagers.Add(nodeManager);
-            nodeManager.subNodeIndex = i;
-            nodeManager.defaultColor = defaultNodeColors[i];
-            nodeManager.drumColor = drumColors[i];
             var clips = audioManager.SampleDictionary[_currentDrumKitIndex];
             var mixGroup = audioManager.mixers[i];
-            nodeManager.SetDrumType(i, clips, mixGroup);
-            nodeManager.SetUpNode();
-            nodeManager.InitialiseSoloButton();
-            nodeManager.InitialiseEuclideanButton();
+            nodeManager.InitialisePanel(i, clips, mixGroup, defaultNodeColors, drumColors[i], numberOfNodes);
         }
 
 

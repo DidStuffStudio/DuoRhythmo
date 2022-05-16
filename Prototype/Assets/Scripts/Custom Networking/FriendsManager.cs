@@ -49,6 +49,7 @@ public class FriendsManager : MonoBehaviour {
 
     private void Awake() {
         if (_instance == null) _instance = this;
+        DontDestroyOnLoad(this);
     }
 
     public void EnableFriendsManager() {

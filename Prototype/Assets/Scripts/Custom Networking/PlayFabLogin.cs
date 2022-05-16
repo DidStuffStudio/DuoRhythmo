@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ctsalidis;
-using JetBrains.Annotations;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
-using TMPro;
+using PlayFab.DataModels;
+using PlayFab.Json;
 
 // ref --> https://github.com/DapperDino/PlayFab-Tutorials/blob/main/Assets/Mirror/Examples/Pong/Scripts/PlayFabLogin.cs
 public class PlayFabLogin : MonoBehaviour {
@@ -20,10 +21,6 @@ public class PlayFabLogin : MonoBehaviour {
             return _instance;
         }
     }
-
-    
-    // [SerializeField] private TMP_InputField usernameInputField = default;
-    // [SerializeField] private TMP_InputField emailInputField = default;
 
     public string Username { get; set; }
     public string PasswordPin { get; set; }
@@ -53,9 +50,7 @@ public class PlayFabLogin : MonoBehaviour {
         new List<PlayFab.MultiplayerModels.EntityKey>();
 
     private void Awake() {
-        if (_instance == null) {
-            _instance = this;
-        }
+        if (_instance == null) _instance = this;
         DontDestroyOnLoad(this);
     }
 
@@ -89,6 +84,8 @@ public class PlayFabLogin : MonoBehaviour {
 
     private void OnPlayfabCreatedAccountSuccess(RegisterPlayFabUserResult result) {
         print("Created account successfully");
+        UserAvatar = "Avatar - 0"; // TODO --> NOTE --> Delete this after testing
+        SetUserAvatarObject(); // set the avatar object that the user has selected
         ProceedWithLogin(result.SessionTicket, result.EntityToken.Entity.Id, result.EntityToken.Entity.Type);
     }
 
@@ -123,10 +120,12 @@ public class PlayFabLogin : MonoBehaviour {
             Type = entityType
         };
         
-        // TODO --> Deactivate sign in panel --> Call panel switch from MainManager
-        // playerIdText.text = entityId;
+        UserAvatar = "Avatar - 0"; // TODO --> NOTE --> (Only supposed to be done when we create account) Delete this after testing
+        SetUserAvatarObject(); // set the avatar object that the user has selected
+
+        GetEntityAvatarName(new PlayFab.DataModels.EntityKey {Id = EntityKey.Id, Type = EntityKey.Type});
+
         FriendsManager.Instance.EnableFriendsManager();
-        // if (matchCanvas) matchCanvas.gameObject.SetActive(true);
 
         if (string.IsNullOrEmpty(RememberMeId)) {
             RememberMeId = Guid.NewGuid().ToString();
@@ -158,5 +157,44 @@ public class PlayFabLogin : MonoBehaviour {
     // TODO --> Add clearing saved user info functionality
     public void ClearRememberMe() {
         PlayerPrefs.DeleteKey(_PlayFabRememberMeIdKey);
+    }
+
+    private void SetUserAvatarObject() {
+        var data = new Dictionary<string, object>() {
+            {"Name", UserAvatar},
+        };
+        var dataList = new List<SetObject>() {
+            new SetObject() {
+                ObjectName = "AvatarName",
+                DataObject = data,
+            },
+        };
+        PlayFabDataAPI.SetObjects(new SetObjectsRequest() {
+                Entity = new PlayFab.DataModels.EntityKey {
+                    Id = PlayFabLogin.EntityKey.Id,
+                    Type = PlayFabLogin.EntityKey.Type,
+                },
+                Objects = dataList,
+            }, (setResult) => { Debug.Log("Successfully set AvatarName object --> " + setResult.ProfileVersion); },
+            (error) => { Debug.LogError("There was an error on request trying to set the avatar object"); });
+    }
+
+    public void GetEntityAvatarName(PlayFab.DataModels.EntityKey entityKey) {
+        print("Getting the user's avatar name");
+        var getRequest = new GetObjectsRequest {
+            Entity = new PlayFab.DataModels.EntityKey {
+                Id = entityKey.Id,
+                Type = entityKey.Type,
+            },
+        };
+        PlayFabDataAPI.GetObjects(getRequest, result => {
+            var objs = result.Objects;
+            foreach (var o in objs.Where(o => o.Key == "AvatarName")) {
+                if (o.Value.DataObject is JsonObject details) {
+                    var playerAvatarName = details["Name"]; // TODO --> Pass this to JammingSessionDetails manager
+                    print("This is the retrieved avatar's name --> " + playerAvatarName);
+                }
+            }
+        }, (error) => { Debug.LogError("There has been a problem getting the avatar object"); });
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,9 +45,9 @@ namespace Managers
         {
             _pin = pinIntegers.Select(i => i.ToString()).Aggregate((i, j) => i + j);
             mainMenuManager.SetPin(_pin);
-            
-            
         }
+        
+        public void StorePinForCheck() => mainMenuManager.ReferencePin = _pin;
     }
 }
 

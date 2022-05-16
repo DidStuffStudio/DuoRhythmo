@@ -175,8 +175,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private BoxCollider _boxCollider;
 		private SphereCollider _sphereCollider;
 		private bool _isSquare;
-		
-		
+		[SerializeField] private bool dwellScaleX = false;
+		private bool _dwelling;
+
 		#endregion
 
 		protected float DwellTime
@@ -191,6 +192,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected void SetInteractionMethod(InteractionMethod method)
 		{
+			DelegateInteractionMethod(false);
 			InteractionManager.Instance.Method = method;
 			_interactionMethod = method;
 			if (GetInteractionMethod ==InteractionMethod.Tobii ||
@@ -199,6 +201,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				_provideDwellFeedbackGlobal = true;
 			}
 			else _provideDwellFeedbackGlobal = false;
+
+			DelegateInteractionMethod(true);
 		}
 		
 		
@@ -318,6 +322,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (GetInteractionMethod != InteractionMethod.Tobii) ActivateCollider(false);
 			SetScaleOfChildren();
 			ToggleDwellGfx(false);
+			_dwellGfx.localScale = zero;
 			ChangeToInactiveState();
 		}
 
@@ -377,6 +382,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected virtual void ButtonClicked()
 		{
 			ToggleButton(!_isActive);
+			print("Clicked");
 			onClicked?.Invoke();
 			StartInteractionCoolDown();
 		}
@@ -391,7 +397,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected void ToggleDwellGfx(bool activate) {
 			var color = _dwellGfxImg.color;
 			if (!activate) _playActivatedScale = false;
-			_dwellGfxImg.color = new Color(color.r, color.g, color.b,  activate ? 255 : 0);
+			_dwellGfxImg.color = new Color(color.r, color.g, color.b,  activate ? 1 : 0);
 			// _dwellGfx.transform.gameObject.SetActive(activate);
 		}
 
@@ -420,7 +426,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				switch (GetInteractionMethod)
 				{
 					case InteractionMethod.MouseDwell:
-						_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
+						if(!_dwelling)_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
 						ToggleDwellGfx(true);
 						break;
 					case InteractionMethod.Mouse:
@@ -428,7 +434,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 						break;
 					case InteractionMethod.Tobii:
 						if (!TobiiAPI.IsConnected) return;
-						_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
+						if(!_dwelling)_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
 						ToggleDwellGfx(true);
 						break;
 					case InteractionMethod.Touch:
@@ -597,24 +603,24 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected virtual void DwellScale()
 		{
 			if ((!_provideDwellFeedbackGlobal && !interactionSetting) || !_canHover) return;
+			_dwelling = true;
 			var d = dwellTimeSetting ? localDwellTime : _dwellTime;
-			//d += 1;
 			if(!_dwellGfx.gameObject.activeInHierarchy) ToggleDwellGfx(true);
 			if (_isHover && _currentDwellTime > 0) _currentDwellTime -= Time.deltaTime;
 			else if(_isHover &&_currentDwellTime <= 0) DwellActivated();
 			else if (!_isHover && _currentDwellTime < d) _currentDwellTime += Time.deltaTime;
-			if(_isHover||(_currentDwellTime < 1 && _currentDwellTime > 0))
-				_dwellGfx.localScale = one - new Vector3(_currentDwellTime, _currentDwellTime, _currentDwellTime);
-			if (_isHover || (_currentDwellTime < 0 && _currentDwellTime > 0))
+			if ((_currentDwellTime < 1 && _currentDwellTime > 0))
 			{
-				var size = 0.0f;
-				if(!dwellTimeSetting) size = Map(_currentDwellTime, _dwellTime, 0, 1f, 0f);
-				else size = Map(_currentDwellTime, localDwellTime, 0, 1f, 0f);
-				_dwellGfx.localScale = one - new Vector3(size,size,size);
+				var size = Map(_currentDwellTime, 0, d, 0, 1f);
+				if(dwellScaleX) _dwellGfx.localScale = one - new Vector3(size,1,1);
+				else _dwellGfx.localScale = one - new Vector3(size,size,size);
 			}
-			
 
-			if(_currentDwellTime > d) ToggleDwellGfx(false);
+			if (_currentDwellTime > d)
+			{
+				_dwelling = false;
+				ToggleDwellGfx(false);
+			}
 		}
 
 		private float Map(float value, float min1, float max1, float min2, float max2) {

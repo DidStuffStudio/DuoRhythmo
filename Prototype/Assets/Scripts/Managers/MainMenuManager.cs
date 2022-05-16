@@ -13,6 +13,22 @@ namespace Managers
 {
    public class MainMenuManager : MonoBehaviour
    {
+      
+      private static MainMenuManager _instance;
+
+      public static MainMenuManager Instance
+      {
+         get
+         {
+            if (_instance != null) return _instance;
+            var MainMenuManagerGameObject = new GameObject();
+            _instance = MainMenuManagerGameObject.AddComponent<MainMenuManager>();
+            MainMenuManagerGameObject.name = typeof(InteractionManager).ToString();
+            return _instance;
+         }
+      }
+      
+      
       private Dictionary<int, UIPanel> _panelDictionary = new Dictionary<int, UIPanel>();
       private List<Vector2> _currentPanelSizes = new List<Vector2>();
       private List<Vector2> _currentPanelPositions = new List<Vector2>();
@@ -33,9 +49,22 @@ namespace Managers
       private Dictionary<int, Vector2[]> blurPosDictionary = new Dictionary<int, Vector2[]>();
       private Dictionary<int, Vector2[]> blursizeDictionary = new Dictionary<int, Vector2[]>();
       private string _currentUsernameInput = "";
-      private string _currentPinInput = "";
+      private string _currentPinInput = "", _referencePin ="";
       [SerializeField] private List<int> panelsThatDontshowSettings = new List<int>();
       [SerializeField] private List<int> panelsThatDontshowBack = new List<int>();
+
+      public string ReferencePin
+      {
+         set => _referencePin = value;
+      }
+
+      public int CurrentPanel => _currentPanel;
+
+      private void Awake()
+      {
+         if (_instance == null) _instance = this;
+      }
+
       private void Start()
       {
          backButton.SetActive(false);
@@ -98,8 +127,8 @@ namespace Managers
             }
          }
 
-         _currentPanelPositions = blurPosDictionary[_currentPanel].ToList();
-         _currentPanelSizes = blursizeDictionary[_currentPanel].ToList();
+         _currentPanelPositions = blurPosDictionary[CurrentPanel].ToList();
+         _currentPanelSizes = blursizeDictionary[CurrentPanel].ToList();
          var reachedTarget = new bool[_currentPanelPositions.Count];
          if (reachedTarget == null) throw new ArgumentNullException(nameof(reachedTarget));
          _panelReachedTarget.Clear();
@@ -136,16 +165,16 @@ namespace Managers
 
       public void Back()
       {
-         var p = _panelDictionary[_currentPanel].panelToReturnTo;
-         if (_currentPanel == 13) p = _activatedSettingsFrom;
-         DeactivatePanel(_currentPanel);
+         var p = _panelDictionary[CurrentPanel].panelToReturnTo;
+         if (CurrentPanel == 13) p = _activatedSettingsFrom;
+         DeactivatePanel(CurrentPanel);
          ActivatePanel(p);
       }
 
       public void Settings()
       {
-         _activatedSettingsFrom = _currentPanel;
-         DeactivatePanel(_currentPanel);
+         _activatedSettingsFrom = _panelDictionary[_currentPanel].panelId;
+         DeactivatePanel(CurrentPanel);
          ActivatePanel(13);
       }
 
@@ -161,9 +190,9 @@ namespace Managers
       public void ActivatePanel(int indexToActivate)
       {
          _currentPanel = indexToActivate;
-         backButton.SetActive(!panelsThatDontshowBack.Contains(_currentPanel));
-         settingsButton.SetActive(!panelsThatDontshowSettings.Contains(_currentPanel));
-         _numberDesiredBlurPanels = _numberBlurPanels[_currentPanel];
+         backButton.SetActive(!panelsThatDontshowBack.Contains(CurrentPanel));
+         settingsButton.SetActive(!panelsThatDontshowSettings.Contains(CurrentPanel));
+         _numberDesiredBlurPanels = _numberBlurPanels[CurrentPanel];
          ToggleUIPanel();
          StartCoroutine(ActivatePanelDelayed());
       }
@@ -171,7 +200,7 @@ namespace Managers
       IEnumerator ActivatePanelDelayed()
       {
          yield return new WaitForSeconds(0.5f);
-         _panelDictionary[_currentPanel].gameObject.SetActive(true);
+         _panelDictionary[CurrentPanel].gameObject.SetActive(true);
       }
 
       public void NextFromInteractionPage()
@@ -179,29 +208,30 @@ namespace Managers
          if (InteractionManager.Instance.Method == InteractionMethod.Tobii ||
              InteractionManager.Instance.Method == InteractionMethod.MouseDwell)
          {
-            DeactivatePanel(_currentPanel);
-            if (_currentPanel == 0) ActivatePanel(1);
+            DeactivatePanel(CurrentPanel);
+            if (CurrentPanel == 0) ActivatePanel(1);
             else ActivatePanel(22);
          }
          else
          {
-            if(_currentPanel==0) ActivatePanel(2);
+            DeactivatePanel(CurrentPanel);
+            if(CurrentPanel==0) ActivatePanel(2);
             else ActivatePanel(13);
          }
       }
 
       public void SendToInteractionPage()
       {
-         DeactivatePanel(_currentPanel);
+         DeactivatePanel(CurrentPanel);
          ActivatePanel(21);
-         InstantiateToast("No Tobii eye tracker found!");
+         StartCoroutine(InstantiateToast("No Tobii eye tracker found!",0.5f));
       }
       public void SubmitUsernameLogIn(int indexToActivate)
       {
          if (usernameInputLogin.text.Length < 3)
          {
             _okayToSwitch = false;
-            InstantiateToast("Please add a minimum of 3 characters");
+            StartCoroutine(InstantiateToast("Please add a minimum of 3 characters",0.5f));
          }
          else
          {
@@ -225,16 +255,67 @@ namespace Managers
          if (usernameInputSignup.text.Length < 3)
          {
             _okayToSwitch = false;
-            InstantiateToast("Please add a minimum of 3 characters");
+            StartCoroutine(InstantiateToast("Please add a minimum of 3 characters",0.5f));
          }
          else
          {
             ActivatePanel(indexToActivate);
-            _currentUsernameInput = usernameInputLogin.text;
+            _currentUsernameInput = usernameInputSignup.text;
+         }
+         
+      }
+      
+      public void SubmitPinFromLogin(int indexToActivate)
+      {
+         
+         if (_currentPinInput.Length < 6)
+         {
+            _okayToSwitch = false;
+            StartCoroutine(InstantiateToast("Please use a minimum of 6 digits",0.5f));
+         }
+         else
+         {
+            ActivatePanel(indexToActivate);
+            LogIn();
          }
          
       }
 
+      public void SubmitPinFromSignUp(int indexToActivate)
+      {
+         if (_currentPinInput.Length < 6)
+         {
+            _okayToSwitch = false;
+            StartCoroutine(InstantiateToast("Please use a minimum of 6 digits",0.5f));
+         }
+         else
+         {
+            ActivatePanel(indexToActivate);
+         }
+         
+      }
+
+      public void CheckPinFromSignUp(int indexToActivate)
+      {
+         if (_currentPinInput != _referencePin)
+         {
+            _okayToSwitch = false;
+            StartCoroutine(InstantiateToast("Pins do not match", 0.1f));
+         }
+         else
+         {
+            ActivatePanel(indexToActivate);
+         }
+      }
+
+      public void SendBackToLogin(string errorMsg)
+      {
+         DeactivatePanel(CurrentPanel);
+         ActivatePanel(2);
+         StartCoroutine(InstantiateToast(errorMsg, 0.5f));
+      }
+      
+   
       public void SignUp() {
          PlayFabLogin.Instance.Username = _currentUsernameInput;
          PlayFabLogin.Instance.PasswordPin = _currentPinInput;
@@ -246,16 +327,28 @@ namespace Managers
       /// Call this if the login rememberMeId is cached/saved to player prefs (if it's successful)
       /// </summary>
       public void SkipLogin() {
-         DeactivatePanel(_currentPanel);
+         DeactivatePanel(CurrentPanel);
          ActivatePanel(4);
       }
 
-      public void LoginAsGuest() => PlayFabLogin.Instance.LoginWithDeviceUniqueIdentifier();
+      public void LoginAsGuest()
+      {
+         PlayFabLogin.Instance.LoginWithDeviceUniqueIdentifier();
+         panelsThatDontshowBack.Add(19);
+         _panelDictionary[13].ExecuteSpecificChanges();
+      }
+
+      public void LogOut()
+      {
+         PlayFabLogin.Instance.ClearRememberMe();
+         //Todo logout
+      }
 
       public void SetPin(string pin) => _currentPinInput = pin;
 
-      private void InstantiateToast(string toastText)
+      IEnumerator InstantiateToast(string toastText, float delay)
       {
+         yield return new WaitForSeconds(delay);
          var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder");
          if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.transform.GetChild(0).gameObject);
          var t = Instantiate(toast, toastPlaceholder.transform);

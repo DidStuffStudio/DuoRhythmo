@@ -6,4 +6,9 @@ public class UIPanel : MonoBehaviour
 {
     public int panelId = 0;
     public int panelToReturnTo = 0;
+
+    public virtual void ExecuteSpecificChanges()
+    {
+        
+    }
 }

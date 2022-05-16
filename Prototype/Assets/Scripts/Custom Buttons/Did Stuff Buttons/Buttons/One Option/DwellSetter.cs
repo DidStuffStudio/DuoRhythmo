@@ -23,6 +23,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
             SetDwellTime();
         }
 
+        protected override void ButtonClicked()
+        {
+            base.ButtonClicked();
+            SetDwellTime();
+        }
+
         private void SetDwellTime()
         {
             DwellTime = localDwellTime;

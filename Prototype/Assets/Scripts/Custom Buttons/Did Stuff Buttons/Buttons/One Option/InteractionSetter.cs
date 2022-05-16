@@ -19,19 +19,20 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
             if (_preferredMethod)
             {
                 ActivateButton();
-                Extras();
                 SetPreferredInteraction();
             }
         }
+        
 
-        private void Extras()
+        protected override void ButtonClicked()
         {
-            SetInteractionMethod(localInteractionMethod);
+            base.ButtonClicked();
             SetPreferredInteraction();
         }
 
         private void SetPreferredInteraction()
         {
+            SetInteractionMethod(localInteractionMethod);
             PlayerPrefs.SetInt("InteractionMethod", (int)localInteractionMethod);
             ActivateCollider(localInteractionMethod == InteractionMethod.Tobii);
         }

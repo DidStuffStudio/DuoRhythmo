@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ctsalidis;
 using DidStuffLab;
+using Managers;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
@@ -60,6 +61,7 @@ public class PlayFabLogin : MonoBehaviour {
     private void Start() {
         // NOTE --> Make sure that RememberMeId is initialised as the SystemInfo.deviceUniqueIdentifier
         LoginWithRememberMeId();
+        
     }
 #endif
 
@@ -113,6 +115,7 @@ public class PlayFabLogin : MonoBehaviour {
         print("Logged in successfully");
         // Username = result.InfoResultPayload.AccountInfo.Username ?? result.PlayFabId;
         ProceedWithLogin(result.SessionTicket, result.EntityToken.Entity.Id, result.EntityToken.Entity.Type);
+        if(MainMenuManager.Instance.CurrentPanel != 4 || MainMenuManager.Instance.CurrentPanel != 19) MainMenuManager.Instance.SkipLogin();
     }
 
     private void ProceedWithLogin(string resultSessionTicket, string entityId, string entityType) {
@@ -154,7 +157,9 @@ public class PlayFabLogin : MonoBehaviour {
     private void OnLoginError(PlayFabError error) {
         Debug.LogError("Error logging in: " + error.GenerateErrorReport());
         RememberMeId = ""; // reset the remembermeId
+        MainMenuManager.Instance.SendBackToLogin(error.GenerateErrorReport());
     }
+    
 
     // TODO --> Add clearing saved user info functionality
     public void ClearRememberMe() {

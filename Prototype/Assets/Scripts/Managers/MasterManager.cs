@@ -61,6 +61,8 @@ namespace Managers {
         private Dictionary<int, string[]> _drumNames = new Dictionary<int, string[]>();
         private int _currentDrumKitIndex = 0;
         public AudioManager audioManager;
+        
+        public Transform startTransform, destinationTransform, oppositeDestinationTransform;
 
         private void Awake() {
             if (_instance == null) _instance = this;

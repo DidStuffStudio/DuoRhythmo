@@ -7163,6 +7163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 3467704141135179594}
+  player: {fileID: 0}
 --- !u!1 &1504611554144307554
 GameObject:
   m_ObjectHideFlags: 0
@@ -16151,6 +16152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 3467704141135179594}
+  player: {fileID: 0}
 --- !u!1 &3866569806115878848
 GameObject:
   m_ObjectHideFlags: 0
@@ -33290,7 +33292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &480214680645034439
 Transform:
   m_ObjectHideFlags: 0
@@ -34050,7 +34052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7381785701849794558
 Transform:
   m_ObjectHideFlags: 0

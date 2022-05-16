@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace ctsalidis {
     public class PlayerPositionSync : CustomSyncBehaviour<bool> {
-        public SyncVar<bool> Position1Occupied => Value.Value;
+        public bool Position1Occupied => Value.Value;
 
-        protected override void Initialize() => JamSessionDetails.Instance.PlayerPositionSync = this;
+        protected override void Initialize() { }
 
         [Command(requiresAuthority = false)]
         protected override void CmdUpdateValue(bool newValue) => Value.Value = newValue;

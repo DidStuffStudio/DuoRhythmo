@@ -30,22 +30,10 @@ public class JamSessionDetails : MonoBehaviour {
     public bool isSoloMode { get; set; }
 
     public List<Player> players = new List<Player>();
-    private PlayerPositionSync _playerPositionSync;
+    public Player otherPlayer;
 
-    public PlayerPositionSync PlayerPositionSync {
-        get => _playerPositionSync;
-        set {
-            _playerPositionSync = value;
-            // NotifyPlayersOfPositionSyncInitialized();
-        }
+    public void AddPlayer(Player player) {
+        players.Add(player);
+        if (!player.isLocalPlayer) otherPlayer = player;
     }
-
-    public void AddPlayer(Player player) => players.Add(player);
-
-    /*
-    private void NotifyPlayersOfPositionSyncInitialized() {
-        print("Notifying players that the position sync object has been initialized");
-        foreach (var player in players.Where(player => player.isLocalPlayer)) player.CheckForCorrespondingPositioning();
-    }
-    */
 }

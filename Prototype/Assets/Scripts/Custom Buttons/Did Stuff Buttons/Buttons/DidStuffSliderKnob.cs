@@ -101,7 +101,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         
         // Mouse Delta
 
-        switch (GetInteractionMethod())
+        switch (GetInteractionMethod)
             {
                 case InteractionMethod.Mouse:
                     MouseInteraction();

@@ -135,7 +135,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 		[SerializeField]
 		protected Color activeColour = Color.green, inactiveColour = Color.red, disabledColour = Color.grey;
-		private RectTransform _dwellGfx;
+		protected RectTransform _dwellGfx;
 		
 		[HideInInspector] public string primaryText, secondaryText;
 		[HideInInspector] public bool useInteractableLayer;
@@ -164,7 +164,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private bool _provideDwellFeedbackLocal = false;
 		private static bool _provideDwellFeedbackGlobal;
 		private TextMeshProUGUI _primaryText, _secondaryText;
-		private Animator _dwellAnimator;
 		private float _interactionBreakTime = 1.0f;
 		private GazeAware _gazeAware;
 		protected Camera MainCamera;
@@ -173,8 +172,10 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private float _currentDwellTime = 0.0f;
 		private bool _initialised;
 		private bool _playActivatedScale;
-		private Collider _collider;
-
+		private BoxCollider _boxCollider;
+		private SphereCollider _sphereCollider;
+		private bool _isSquare;
+		
 		
 		#endregion
 
@@ -186,18 +187,19 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		public bool Initialised => _initialised;
 
+		public static InteractionMethod GetInteractionMethod => _interactionMethod;
+
 		protected void SetInteractionMethod(InteractionMethod method)
 		{
 			_interactionMethod = method;
-			if (_interactionMethod ==InteractionMethod.Tobii ||
-			     _interactionMethod == InteractionMethod.MouseDwell)
+			if (GetInteractionMethod ==InteractionMethod.Tobii ||
+			    GetInteractionMethod == InteractionMethod.MouseDwell)
 			{
 				_provideDwellFeedbackGlobal = true;
 			}
 			else _provideDwellFeedbackGlobal = false;
 		}
-
-		protected InteractionMethod GetInteractionMethod() => _interactionMethod;
+		
 		
 		protected virtual void OnEnable()
 		{
@@ -209,12 +211,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			
 			if (DelegateInteractionMethod(true)) return;
 			
-			DeactivateButton();
+			//DeactivateButton();
 		}
 
 		private bool DelegateInteractionMethod(bool enable) {
 			if (!interactionSetting) {
-				switch (_interactionMethod) {
+				switch (GetInteractionMethod) {
 					case InteractionMethod.MouseDwell:
 						if(enable) RunInteraction += DwellScale;
 						else RunInteraction -= DwellScale;
@@ -279,7 +281,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected virtual void Awake()
 		{
 			_mainImage = GetComponent<Image>();
-			_dwellAnimator = GetComponentInChildren<Animator>();
 			_gazeAware = GetComponent<GazeAware>();
 			MainCamera = Camera.main;
 			if (!useInteractableLayer) interactableLayer = ~0;
@@ -287,8 +288,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (!customHoverColours) SetAutomaticColours();
 			else SetColours();
 
-			if (_interactionMethod == InteractionMethod.Tobii ||
-			    _interactionMethod == InteractionMethod.MouseDwell) _provideDwellFeedbackGlobal = true;
+			if (GetInteractionMethod == InteractionMethod.Tobii ||
+			    GetInteractionMethod == InteractionMethod.MouseDwell) _provideDwellFeedbackGlobal = true;
 			else _provideDwellFeedbackGlobal = false;
 
 			if (interactionSetting && (localInteractionMethod == InteractionMethod.Tobii ||
@@ -300,19 +301,39 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				DwellTime = PlayerPrefs.GetFloat("DwellTime");
 			else DwellTime = 1.0f;
 
-			_collider = GetComponent<Collider>();
+			var boxCollider = GetComponent<BoxCollider>();
+			if (boxCollider != null)
+			{
+				_isSquare = true;
+				_boxCollider = GetComponent<BoxCollider>();
+			}
+			else _sphereCollider = GetComponent<SphereCollider>();
+
+
+			_interactionMethod = (InteractionMethod)PlayerPrefs.GetInt("InteractionMethod");
 			
+			if (GetInteractionMethod != InteractionMethod.Tobii) ActivateCollider(false);
+			SetScaleOfChildren();
+			ToggleDwellGfx(false);
+			//DeactivateButton();
+		}
+
+		protected virtual void SetScaleOfChildren()
+		{
 			var rt = GetComponent<RectTransform>().rect;
 			var w = rt.width;
 			var h = rt.height;
-			
 			_dwellGfx.sizeDelta = new Vector2(w, h);
-			_interactionMethod = (InteractionMethod)PlayerPrefs.GetInt("InteractionMethod");
-			
-			if (_interactionMethod != InteractionMethod.Tobii) ActivateCollider(false);
-			
-			ToggleDwellGfx(false);
-			DeactivateButton();
+			if (_isSquare)
+			{
+				_boxCollider.center = zero;
+				_boxCollider.size = new Vector3(w, h, 0.1f);
+			}
+			else
+			{
+				_sphereCollider.center = zero;
+				_sphereCollider.radius = w;
+			}
 		}
 		
 		private void GetTheChildren()
@@ -364,14 +385,18 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_playActivatedScale = true;
 		}
 
-		private void ToggleDwellGfx(bool activate) {
+		protected void ToggleDwellGfx(bool activate) {
 			var color = _dwellGfxImg.color;
 			if (!activate) _playActivatedScale = false;
 			_dwellGfxImg.color = new Color(color.r, color.g, color.b,  activate ? 255 : 0);
 			// _dwellGfx.transform.gameObject.SetActive(activate);
 		}
 
-		protected void ActivateCollider(bool activate) => _collider.enabled = activate;
+		protected void ActivateCollider(bool activate)
+		{
+			if (_isSquare) _boxCollider.enabled = activate;
+			else _sphereCollider.enabled = activate;
+		}
 
 		protected void ActivateText(bool activate) => _primaryText.gameObject.SetActive(activate);
 		
@@ -379,7 +404,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected virtual void StartInteractionCoolDown()
 		{
-			if (_interactionMethod == InteractionMethod.Tobii || _interactionMethod == InteractionMethod.MouseDwell)
+			if (GetInteractionMethod == InteractionMethod.Tobii || GetInteractionMethod == InteractionMethod.MouseDwell)
 				StartCoroutine(CoolDownTime());
 		}
 
@@ -389,7 +414,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (!Initialised) _initialised = true;
 			if (!interactionSetting)
 			{
-				switch (_interactionMethod)
+				switch (GetInteractionMethod)
 				{
 					case InteractionMethod.MouseDwell:
 						_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
@@ -433,7 +458,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		private void ButtonUnHovered()
 		{
-			if(!interactionSetting){switch (_interactionMethod)
+			if(!interactionSetting){switch (GetInteractionMethod)
 			{
 				case InteractionMethod.MouseDwell:
 					

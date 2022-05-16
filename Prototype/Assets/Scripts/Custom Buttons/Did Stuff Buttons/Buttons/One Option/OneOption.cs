@@ -39,7 +39,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         {
             
         }
-
         protected override void StartInteractionCoolDown() { }
+
+        protected override void ChangeToActiveState()
+        {
+            base.ChangeToActiveState();
+            SetCanHover(false);
+        }
     }
 }

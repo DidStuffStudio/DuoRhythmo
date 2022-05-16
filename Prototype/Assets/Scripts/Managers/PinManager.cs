@@ -16,6 +16,7 @@ namespace Managers
         [SerializeField] private Color lineColor;
         [SerializeField] private Transform parent;
         [SerializeField] private GameObject linePrefab;
+        [SerializeField] private MainMenuManager mainMenuManager;
 
         private void CreateLine(Vector2 endPos)
         {
@@ -91,8 +92,9 @@ namespace Managers
         public void SetPin()
         {
             _pin = pinIntegers.Select(i => i.ToString()).Aggregate((i, j) => i + j);
-            PlayFabLogin.Instance.PasswordPin = _pin;
-            print(_pin);
+            mainMenuManager.SetPin(_pin);
+            
+            
         }
     }
 }

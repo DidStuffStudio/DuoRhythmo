@@ -29,5 +29,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
             PlayerPrefs.SetInt("InteractionMethod", (int)localInteractionMethod);
             ActivateCollider(localInteractionMethod == InteractionMethod.Tobii);
         }
+        
     }
 }

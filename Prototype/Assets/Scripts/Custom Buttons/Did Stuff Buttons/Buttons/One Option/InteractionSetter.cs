@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 
 namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
@@ -8,17 +9,22 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
         protected override void OnEnable()
         {
             base.OnEnable();
-            if (PlayerPrefs.GetInt("InteractionMethod") == (int) localInteractionMethod) _preferredMethod = true;
+            if (InteractionManager.Instance.Method == localInteractionMethod) _preferredMethod = true;
             else _preferredMethod = false;
         }
 
         protected override void Start()
         {
             base.Start();
-            if(_preferredMethod) ActivateAndCallEvents();
+            if (_preferredMethod)
+            {
+                ActivateButton();
+                Extras();
+                SetPreferredInteraction();
+            }
         }
 
-        protected override void Extras()
+        private void Extras()
         {
             SetInteractionMethod(localInteractionMethod);
             SetPreferredInteraction();

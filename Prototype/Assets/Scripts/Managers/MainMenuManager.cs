@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
+using Custom_Buttons.Did_Stuff_Buttons;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Managers
 {
    public class MainMenuManager : MonoBehaviour
    {
-      private List<Transform> _panels;
+      private Dictionary<int, UIPanel> _panelDictionary = new Dictionary<int, UIPanel>();
       private List<Vector2> _currentPanelSizes = new List<Vector2>();
       private List<Vector2> _currentPanelPositions = new List<Vector2>();
       [SerializeField] private GameObject _background;
@@ -25,22 +26,26 @@ namespace Managers
       private int _numberDesiredBlurPanels = 1;
       private List<bool> _panelReachedTarget = new List<bool>();
       private bool _shouldLerp = false;
-      [SerializeField] private GameObject usernameIncorrect, enterMoreCharacters, enterMoreDigits;
+      [SerializeField] private GameObject toast;
       private bool _okayToSwitch = true;
-      private int _lastPanel = 0, _currentPanel = 0;
+      private int _activatedSettingsFrom = 0, _currentPanel = 0;
       [SerializeField] private GameObject backButton, settingsButton;
       private Dictionary<int, Vector2[]> blurPosDictionary = new Dictionary<int, Vector2[]>();
       private Dictionary<int, Vector2[]> blursizeDictionary = new Dictionary<int, Vector2[]>();
       private string _currentUsernameInput = "";
       private string _currentPinInput = "";
+      [SerializeField] private List<int> panelsThatDontshowSettings = new List<int>();
+      [SerializeField] private List<int> panelsThatDontshowBack = new List<int>();
       private void Start()
       {
          backButton.SetActive(false);
-         _panels = GetComponentsInChildren<Transform>().Where(r => r.CompareTag("MainMenuPanel")).ToList();
-      
-         for (int i = 0; i < _panels.Count; i++)
+         var uiPanels = GetComponentsInChildren<UIPanel>();
+         foreach (var p in uiPanels) _panelDictionary.Add(p.panelId,p);
+         
+         
+         for (int i = 0; i < _panelDictionary.Count; i++)
          {
-            var blurPanels = _panels[i].GetComponentsInChildren<Transform>().Where(r => r.CompareTag("BlurPlaceholder")).ToList();
+            var blurPanels = _panelDictionary[i].transform.GetComponentsInChildren<Transform>().Where(r => r.CompareTag("BlurPlaceholder")).ToList();
             List<Vector2> panelSizes = new List<Vector2>();
             List<Vector2> panelPositions = new List<Vector2>();
             
@@ -57,10 +62,10 @@ namespace Managers
                panelSizes.Add(new Vector2(w,h));
                panelPositions.Add(new Vector2(x,y));
             }
-            _panels[i].gameObject.SetActive(false);
-            blurPosDictionary.Add(i, panelPositions.ToArray());
-            blursizeDictionary.Add(i, panelSizes.ToArray());
-            _numberBlurPanels.Add(i, blurPanels.Count);
+            _panelDictionary[i].gameObject.SetActive(false);
+            blurPosDictionary.Add(_panelDictionary[i].panelId, panelPositions.ToArray());
+            blursizeDictionary.Add(_panelDictionary[i].panelId, panelSizes.ToArray());
+            _numberBlurPanels.Add(_panelDictionary[i].panelId, blurPanels.Count);
          }
          var initialBlurPanel = Instantiate(_background, transform.position, Quaternion.identity, transform);
          _backgroundRTs.Add(initialBlurPanel.GetComponent<RectTransform>());
@@ -131,14 +136,15 @@ namespace Managers
 
       public void Back()
       {
-         var p = _lastPanel;
+         var p = _panelDictionary[_currentPanel].panelToReturnTo;
+         if (_currentPanel == 13) p = _activatedSettingsFrom;
          DeactivatePanel(_currentPanel);
          ActivatePanel(p);
       }
 
       public void Settings()
       {
-        
+         _activatedSettingsFrom = _currentPanel;
          DeactivatePanel(_currentPanel);
          ActivatePanel(13);
       }
@@ -148,16 +154,15 @@ namespace Managers
          if (!_okayToSwitch) _okayToSwitch = true;
          else
          {
-            _panels[indexToDeactivate].gameObject.SetActive(false);
-            _lastPanel = indexToDeactivate;
+            _panelDictionary[indexToDeactivate].gameObject.SetActive(false);
          }
       }
 
       public void ActivatePanel(int indexToActivate)
       {
          _currentPanel = indexToActivate;
-         backButton.SetActive(_currentPanel!=0);
-         settingsButton.SetActive(_currentPanel!=13);
+         backButton.SetActive(!panelsThatDontshowBack.Contains(_currentPanel));
+         settingsButton.SetActive(!panelsThatDontshowSettings.Contains(_currentPanel));
          _numberDesiredBlurPanels = _numberBlurPanels[_currentPanel];
          ToggleUIPanel();
          StartCoroutine(ActivatePanelDelayed());
@@ -166,16 +171,37 @@ namespace Managers
       IEnumerator ActivatePanelDelayed()
       {
          yield return new WaitForSeconds(0.5f);
-         _panels[_currentPanel].gameObject.SetActive(true);
+         _panelDictionary[_currentPanel].gameObject.SetActive(true);
       }
 
+      public void NextFromInteractionPage()
+      {
+         if (InteractionManager.Instance.Method == InteractionMethod.Tobii ||
+             InteractionManager.Instance.Method == InteractionMethod.MouseDwell)
+         {
+            DeactivatePanel(_currentPanel);
+            if (_currentPanel == 0) ActivatePanel(1);
+            else ActivatePanel(22);
+         }
+         else
+         {
+            if(_currentPanel==0) ActivatePanel(2);
+            else ActivatePanel(13);
+         }
+      }
 
+      public void SendToInteractionPage()
+      {
+         DeactivatePanel(_currentPanel);
+         ActivatePanel(21);
+         InstantiateToast("No Tobii eye tracker found!");
+      }
       public void SubmitUsernameLogIn(int indexToActivate)
       {
          if (usernameInputLogin.text.Length < 3)
          {
             _okayToSwitch = false;
-            InstantiateToast(enterMoreCharacters);
+            InstantiateToast("Please add a minimum of 3 characters");
          }
          else
          {
@@ -190,15 +216,16 @@ namespace Managers
          PlayFabLogin.Instance.Username = _currentUsernameInput;
          PlayFabLogin.Instance.PasswordPin = _currentPinInput;
          PlayFabLogin.Instance.SignIn();
+         //TODO Failed login in send to sign in
       }
 
       public void SubmitUsernameSignUp(int indexToActivate)
       {
          
-         if (usernameInputLogin.text.Length < 3)
+         if (usernameInputSignup.text.Length < 3)
          {
             _okayToSwitch = false;
-            InstantiateToast(enterMoreCharacters);
+            InstantiateToast("Please add a minimum of 3 characters");
          }
          else
          {
@@ -212,24 +239,27 @@ namespace Managers
          PlayFabLogin.Instance.Username = _currentUsernameInput;
          PlayFabLogin.Instance.PasswordPin = _currentPinInput;
          PlayFabLogin.Instance.CreateAccount();
+         //TODO Failed login in send to sign in username taken
       }
 
       /// <summary>
       /// Call this if the login rememberMeId is cached/saved to player prefs (if it's successful)
       /// </summary>
       public void SkipLogin() {
-         
+         DeactivatePanel(_currentPanel);
+         ActivatePanel(4);
       }
 
       public void LoginAsGuest() => PlayFabLogin.Instance.LoginWithDeviceUniqueIdentifier();
 
       public void SetPin(string pin) => _currentPinInput = pin;
 
-      private void InstantiateToast(GameObject toast)
+      private void InstantiateToast(string toastText)
       {
          var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder");
          if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.transform.GetChild(0).gameObject);
-         Instantiate(toast, toastPlaceholder.transform);
+         var t = Instantiate(toast, toastPlaceholder.transform);
+         t.GetComponent<Toast>().SetText(toastText);
       }
       public void SetDrumType(int i) => JamSessionDetails.Instance.DrumTypeIndex = i;
    

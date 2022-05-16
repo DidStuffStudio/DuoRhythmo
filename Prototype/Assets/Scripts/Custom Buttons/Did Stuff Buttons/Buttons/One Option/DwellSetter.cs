@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 
 namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
@@ -9,7 +10,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
         protected override void OnEnable()
         {
             base.OnEnable();
-            if (Mathf.Approximately(localDwellTime, PlayerPrefs.GetFloat("DwellTime"))) _preferredDwellSpeed = true;
+            if (Mathf.Approximately(localDwellTime, InteractionManager.Instance.DwellTime)) _preferredDwellSpeed = true;
             else _preferredDwellSpeed = false;
   
         }

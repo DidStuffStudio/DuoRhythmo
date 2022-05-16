@@ -191,6 +191,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected void SetInteractionMethod(InteractionMethod method)
 		{
+			InteractionManager.Instance.Method = method;
 			_interactionMethod = method;
 			if (GetInteractionMethod ==InteractionMethod.Tobii ||
 			    GetInteractionMethod == InteractionMethod.MouseDwell)
@@ -276,10 +277,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected void SetNewDwellTime()
 		{
 			PlayerPrefs.SetFloat("DwellTime", _dwellTime);
+			InteractionManager.Instance.DwellTime = _dwellTime;
 		}
 		
 		protected virtual void Awake()
 		{
+			_interactionMethod = InteractionManager.Instance.Method;
 			_mainImage = GetComponent<Image>();
 			_gazeAware = GetComponent<GazeAware>();
 			MainCamera = Camera.main;
@@ -310,12 +313,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			else _sphereCollider = GetComponent<SphereCollider>();
 
 
-			_interactionMethod = (InteractionMethod)PlayerPrefs.GetInt("InteractionMethod");
+			
 			
 			if (GetInteractionMethod != InteractionMethod.Tobii) ActivateCollider(false);
 			SetScaleOfChildren();
 			ToggleDwellGfx(false);
-			//DeactivateButton();
+			ChangeToInactiveState();
 		}
 
 		protected virtual void SetScaleOfChildren()
@@ -595,17 +598,18 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		{
 			if ((!_provideDwellFeedbackGlobal && !interactionSetting) || !_canHover) return;
 			var d = dwellTimeSetting ? localDwellTime : _dwellTime;
+			//d += 1;
 			if(!_dwellGfx.gameObject.activeInHierarchy) ToggleDwellGfx(true);
 			if (_isHover && _currentDwellTime > 0) _currentDwellTime -= Time.deltaTime;
 			else if(_isHover &&_currentDwellTime <= 0) DwellActivated();
 			else if (!_isHover && _currentDwellTime < d) _currentDwellTime += Time.deltaTime;
-			/*if(_isHover||(_currentDwellTime < 1 && _currentDwellTime > 0))
-				_dwellGfx.localScale = one - new Vector3(_currentDwellTime, _currentDwellTime, _currentDwellTime);*/
-			if (_isHover || (_currentDwellTime < 1 && _currentDwellTime > 0))
+			if(_isHover||(_currentDwellTime < 1 && _currentDwellTime > 0))
+				_dwellGfx.localScale = one - new Vector3(_currentDwellTime, _currentDwellTime, _currentDwellTime);
+			if (_isHover || (_currentDwellTime < 0 && _currentDwellTime > 0))
 			{
 				var size = 0.0f;
 				if(!dwellTimeSetting) size = Map(_currentDwellTime, _dwellTime, 0, 1f, 0f);
-				else size = Map(localDwellTime, _dwellTime, 0, 1f, 0f);
+				else size = Map(_currentDwellTime, localDwellTime, 0, 1f, 0f);
 				_dwellGfx.localScale = one - new Vector3(size,size,size);
 			}
 			
@@ -621,7 +625,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private void DwellActivated()
 		{
 			StartInteractionCoolDown();
-			_currentDwellTime = _dwellTime;
+			if (dwellTimeSetting) _currentDwellTime = localDwellTime;
+			else _currentDwellTime = _dwellTime;//+1;
 			_dwellGfx.localScale = zero;
 			if (!_isActive) _dwellGfxImg.color = inactiveColour;
 			else _dwellGfxImg.color = activeColour;

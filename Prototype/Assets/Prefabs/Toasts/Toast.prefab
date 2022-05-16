@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1393567265546580385}
   - component: {fileID: 7634247903472984050}
   - component: {fileID: 659063673266128727}
+  - component: {fileID: 5736772637563152084}
   m_Layer: 9
-  m_Name: UsernameOrPasswordIncorrect
+  m_Name: Toast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,6 +78,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 45
+--- !u!114 &5736772637563152084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3478492031247585142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aef73eaa6c934c4baaa37c654d5a92e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 7265521343709539778}
 --- !u!1 &4219231948035328310
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +231,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Username or pin incorrect
+  m_text: Please enter at least 3 characters
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 885a31db13a0c114187c51b289bff7db, type: 2}
   m_sharedMaterial: {fileID: -8642166747985674188, guid: 885a31db13a0c114187c51b289bff7db, type: 2}

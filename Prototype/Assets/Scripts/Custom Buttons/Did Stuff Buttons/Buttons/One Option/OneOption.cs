@@ -32,13 +32,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
                 btn.SetCanHover(true);
             }
             
-            Extras();
         }
-
-        protected virtual void Extras()
-        {
-            
-        }
+        
         protected override void StartInteractionCoolDown() { }
 
         protected override void ChangeToActiveState()

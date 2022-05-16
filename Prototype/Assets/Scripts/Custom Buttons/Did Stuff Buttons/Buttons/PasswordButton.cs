@@ -21,10 +21,22 @@ public class PasswordButton : AbstractDidStuffButton
   protected override void ButtonClicked()
   {
     base.ButtonClicked();
-    _pinManager.SetPinCharacter(_value, _position);
+    _pinManager.SetPinCharacter(_value);
     SetCanHover(false);
   }
-  
+
+  public void Clear()
+  {
+    DeactivateButton();
+    SetCanHover(true);
+  }
+
+  protected override void ChangeToActiveState()
+  {
+    base.ChangeToActiveState();
+    SetCanHover(false);
+  }
+
   protected override void StartInteractionCoolDown() { }
   
 }

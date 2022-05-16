@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ctsalidis;
+using DidStuffLab;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.DataModels;
 using PlayFab.Json;
+using EntityKey = PlayFab.MultiplayerModels.EntityKey;
 
 // ref --> https://github.com/DapperDino/PlayFab-Tutorials/blob/main/Assets/Mirror/Examples/Pong/Scripts/PlayFabLogin.cs
 public class PlayFabLogin : MonoBehaviour {
@@ -123,7 +125,7 @@ public class PlayFabLogin : MonoBehaviour {
         UserAvatar = "Avatar - 0"; // TODO --> NOTE --> (Only supposed to be done when we create account) Delete this after testing
         SetUserAvatarObject(); // set the avatar object that the user has selected
 
-        GetEntityAvatarName(new PlayFab.DataModels.EntityKey {Id = EntityKey.Id, Type = EntityKey.Type});
+        GetEntityAvatarName(new PlayFab.MultiplayerModels.EntityKey {Id = EntityKey.Id, Type = EntityKey.Type}, false);
 
         FriendsManager.Instance.EnableFriendsManager();
 
@@ -179,8 +181,8 @@ public class PlayFabLogin : MonoBehaviour {
             (error) => { Debug.LogError("There was an error on request trying to set the avatar object"); });
     }
 
-    public void GetEntityAvatarName(PlayFab.DataModels.EntityKey entityKey) {
-        print("Getting the user's avatar name");
+    public void GetEntityAvatarName(EntityKey entityKey, bool isFriend) {
+        print("Getting the user's avatar name of " + entityKey.Id);
         var getRequest = new GetObjectsRequest {
             Entity = new PlayFab.DataModels.EntityKey {
                 Id = entityKey.Id,
@@ -191,10 +193,14 @@ public class PlayFabLogin : MonoBehaviour {
             var objs = result.Objects;
             foreach (var o in objs.Where(o => o.Key == "AvatarName")) {
                 if (o.Value.DataObject is JsonObject details) {
-                    var playerAvatarName = details["Name"]; // TODO --> Pass this to JammingSessionDetails manager
-                    print("This is the retrieved avatar's name --> " + playerAvatarName);
+                    var playerAvatarName = details["Name"].ToString(); // TODO --> Pass this to JammingSessionDetails manager
+                    print("This is the retrieved avatar's name --> " + playerAvatarName + " from " + entityKey.Id);
+                    if (isFriend) {
+                        FriendsManager.Instance.friendAvatarNames.Add(entityKey.Id, playerAvatarName);
+                        FriendsManager.Instance.AddAvatarToFriendDetails();
+                    }
                 }
             }
-        }, (error) => { Debug.LogError("There has been a problem getting the avatar object"); });
+        }, (error) => { Debug.LogError("There has been a problem getting the avatar object --> " + error); });
     }
 }

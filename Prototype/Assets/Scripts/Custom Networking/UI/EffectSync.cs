@@ -1,10 +1,6 @@
-using System;
-using ctsalidis;
 using Mirror;
-using UnityEngine;
-using UnityEngine.UI;
 
-namespace ctsalidis {
+namespace DidStuffLab {
     public class EffectSync : CustomSyncBehaviour<byte> {
         private DidStuffSliderKnob _didStuffSliderKnob;
         
@@ -21,8 +17,8 @@ namespace ctsalidis {
         [Command(requiresAuthority = false)]
         protected override void CmdUpdateValue(byte newValue) => Value.Value = newValue;
 
-        protected override void UpdateValue(byte newValue) {
-            base.UpdateValue(newValue);
+        protected override void UpdateValueLocally(byte newValue) {
+            base.UpdateValueLocally(newValue);
             // print("Value has changed from the server: " + newValue);
             _didStuffSliderKnob.SetValueFromServer(newValue);
         }

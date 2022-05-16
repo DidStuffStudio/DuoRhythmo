@@ -1,13 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using ctsalidis;
+using DidStuffLab;
 using Managers;
 using Mirror;
-using PlayFab.Networking;
 using UnityEngine;
 
-namespace ctsalidis {
+namespace DidStuffLab {
     public class Player : CustomSyncBehaviour<Vector3> {
         private Transform _transform;
         private Camera _camera;

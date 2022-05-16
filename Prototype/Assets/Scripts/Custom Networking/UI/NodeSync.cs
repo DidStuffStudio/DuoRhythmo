@@ -1,7 +1,6 @@
 using Mirror;
-using UnityEngine;
 
-namespace ctsalidis {
+namespace DidStuffLab {
     public class NodeSync : CustomSyncBehaviour<bool> {
         private DidStuffNode _didStuffNode;
         public void Toggle(bool value) {
@@ -17,8 +16,8 @@ namespace ctsalidis {
         [Command(requiresAuthority = false)]
         protected override void CmdUpdateValue(bool newValue) => Value.Value = newValue;
 
-        protected override void UpdateValue(bool newValue) {
-            base.UpdateValue(newValue);
+        protected override void UpdateValueLocally(bool newValue) {
+            base.UpdateValueLocally(newValue);
             // print("Value has changed from the server: " + newValue);
             if(newValue) _didStuffNode.SetActiveFromServer();
             else _didStuffNode.SetInactiveFromServer();

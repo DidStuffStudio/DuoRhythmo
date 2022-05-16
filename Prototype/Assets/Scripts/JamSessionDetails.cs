@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using ctsalidis;
 using UnityEngine;
-
+using DidStuffLab;
 
 public class JamSessionDetails : MonoBehaviour {
     private static JamSessionDetails _instance;

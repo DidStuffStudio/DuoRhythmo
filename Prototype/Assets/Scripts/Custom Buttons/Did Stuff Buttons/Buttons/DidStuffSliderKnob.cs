@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using ctsalidis;
 using Custom_Buttons.Did_Stuff_Buttons;
+using DidStuffLab;
 using Managers;
-using TMPro;
 using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,7 +32,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
 
     public event SliderChangeAction OnSliderChange;
     
-    [SerializeField] private ctsalidis.EffectSync _effectSync;
+    [SerializeField] private EffectSync _effectSync;
     
     
 

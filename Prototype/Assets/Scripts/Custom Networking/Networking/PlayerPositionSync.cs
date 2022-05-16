@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using ctsalidis;
 using Mirror;
-using UnityEngine;
 
-namespace ctsalidis {
+namespace DidStuffLab {
     public class PlayerPositionSync : CustomSyncBehaviour<bool> {
         public bool Position1Occupied => Value.Value;
 
@@ -21,8 +16,8 @@ namespace ctsalidis {
             if(!Value.Value) SendToServer(true);
         }
 
-        protected override void UpdateValue(bool newValue) {
-            base.UpdateValue(newValue);
+        protected override void UpdateValueLocally(bool newValue) {
+            base.UpdateValueLocally(newValue);
             print("Position1Occupied has changed from the server to: " + newValue);
         }
     }

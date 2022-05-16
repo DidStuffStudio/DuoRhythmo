@@ -1,7 +1,6 @@
 using Mirror;
-using UnityEngine.PlayerLoop;
 
-namespace ctsalidis {
+namespace DidStuffLab {
     // CHRISTIAN NOTE --> I'm trying to generalize a class for syncing networking behaviour - common network functions for DuoRhythmo.
 
     /// <summary>
@@ -24,7 +23,7 @@ namespace ctsalidis {
             Value.Callback += ValueChanged;
 
             // wire up all events to node handlers
-            OnValueChanged = UpdateValue;
+            OnValueChanged = UpdateValueLocally;
 
             // invoke all event handlers with the initial data from spawn payload
             OnValueChanged.Invoke(Value);
@@ -55,7 +54,7 @@ namespace ctsalidis {
         /// Update the value locally - called whenever there is a change from on the value from the server.
         /// </summary>
         /// <param name="newValue"></param>
-        protected virtual void UpdateValue(T newValue) => Value.Value = newValue;
+        protected virtual void UpdateValueLocally(T newValue) => Value.Value = newValue;
 
         /// <summary>
         /// Initialize/setup gameobjects (Use instead of Start method)

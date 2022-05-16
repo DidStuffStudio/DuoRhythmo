@@ -1,13 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using ctsalidis;
 using Custom_Buttons.Did_Stuff_Buttons;
+using DidStuffLab;
 using Managers;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
-using UnityEngine.VFX;
 
 public class DidStuffNode : AbstractDidStuffButton
 {
@@ -20,7 +17,7 @@ public class DidStuffNode : AbstractDidStuffButton
     public List<Image> subNodes = new List<Image>();
     private RectTransform _rectT;
     private bool _recentlyPlayed = false;
-    [SerializeField] private ctsalidis.NodeSync _nodeSync;
+    [SerializeField] private NodeSync _nodeSync;
     private float _angle = 0.0f;
     public bool nodeInitialised = false;
 

@@ -19,7 +19,7 @@ namespace ctsalidis {
 
         protected override void UpdateValue(bool newValue) {
             base.UpdateValue(newValue);
-            print("Value has changed from the server: " + newValue);
+            // print("Value has changed from the server: " + newValue);
             if(newValue) _didStuffNode.SetActiveFromServer();
             else _didStuffNode.SetInactiveFromServer();
         }

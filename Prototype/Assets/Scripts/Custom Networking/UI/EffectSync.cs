@@ -11,6 +11,7 @@ namespace ctsalidis {
         protected override void Initialize() {
             _didStuffSliderKnob = GetComponentInParent<DidStuffSliderKnob>();
             _didStuffSliderKnob.SetEffectSync(this);
+            
         }
 
         public void ChangeValue(byte newValue) {
@@ -22,7 +23,7 @@ namespace ctsalidis {
 
         protected override void UpdateValue(byte newValue) {
             base.UpdateValue(newValue);
-            print("Value has changed from the server: " + newValue);
+            // print("Value has changed from the server: " + newValue);
             _didStuffSliderKnob.SetValueFromServer(newValue);
         }
     }

@@ -14,7 +14,7 @@ public class PasswordButton : AbstractDidStuffButton
 
   private void Start()
   {
-    _pinManager = GetComponentInParent<PinManager>();
+    _pinManager = transform.parent.GetComponentInParent<PinManager>();
     _position = GetComponent<RectTransform>().anchoredPosition;
   }
 

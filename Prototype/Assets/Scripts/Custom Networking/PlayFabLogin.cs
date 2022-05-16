@@ -88,9 +88,7 @@ public class PlayFabLogin : MonoBehaviour {
 
     private void OnPlayfabCreatedAccountSuccess(RegisterPlayFabUserResult result) {
         print("Created account successfully");
-        UserAvatar = "Avatar - 0"; // TODO --> NOTE --> Delete this after testing
-        SetUserAvatarObject(); // set the avatar object that the user has selected
-        ProceedWithLogin(result.SessionTicket, result.EntityToken.Entity.Id, result.EntityToken.Entity.Type);
+        ProceedWithLogin(result.SessionTicket, result.EntityToken.Entity.Id, result.EntityToken.Entity.Type, true);
     }
 
     public void SignIn() {
@@ -114,20 +112,18 @@ public class PlayFabLogin : MonoBehaviour {
     private void OnPlayfabLoginSuccess(LoginResult result) {
         print("Logged in successfully");
         // Username = result.InfoResultPayload.AccountInfo.Username ?? result.PlayFabId;
-        ProceedWithLogin(result.SessionTicket, result.EntityToken.Entity.Id, result.EntityToken.Entity.Type);
+        ProceedWithLogin(result.SessionTicket, result.EntityToken.Entity.Id, result.EntityToken.Entity.Type, false);
         if(MainMenuManager.Instance.CurrentPanel != 4 || MainMenuManager.Instance.CurrentPanel != 19) MainMenuManager.Instance.SkipLogin();
     }
 
-    private void ProceedWithLogin(string resultSessionTicket, string entityId, string entityType) {
+    private void ProceedWithLogin(string resultSessionTicket, string entityId, string entityType, bool createdNewAccount) {
         // if (string.IsNullOrEmpty(Username)) Username = EntityKey.Id;
         EntityKey = new PlayFab.MultiplayerModels.EntityKey {
             Id = entityId,
             Type = entityType
         };
-        
-        UserAvatar = "Avatar - 0"; // TODO --> NOTE --> (Only supposed to be done when we create account) Delete this after testing
-        SetUserAvatarObject(); // set the avatar object that the user has selected
 
+        if(createdNewAccount) SetUserAvatarObject(); // set the avatar object that the user has selected
         GetEntityAvatarName(new PlayFab.MultiplayerModels.EntityKey {Id = EntityKey.Id, Type = EntityKey.Type}, false);
 
         FriendsManager.Instance.EnableFriendsManager();
@@ -167,6 +163,7 @@ public class PlayFabLogin : MonoBehaviour {
     }
 
     private void SetUserAvatarObject() {
+        print("Setting avatar name to --> " + UserAvatar);
         var data = new Dictionary<string, object>() {
             {"Name", UserAvatar},
         };
@@ -183,7 +180,7 @@ public class PlayFabLogin : MonoBehaviour {
                 },
                 Objects = dataList,
             }, (setResult) => { Debug.Log("Successfully set AvatarName object --> " + setResult.ProfileVersion); },
-            (error) => { Debug.LogError("There was an error on request trying to set the avatar object"); });
+            (error) => { Debug.LogError("There was an error on request trying to set the avatar object " + error.GenerateErrorReport()); });
     }
 
     public void GetEntityAvatarName(EntityKey entityKey, bool isFriend) {

@@ -345,6 +345,7 @@ namespace Managers
       }
 
       public void SetPin(string pin) => _currentPinInput = pin;
+      public void SetAvatarName(string avatarName) => PlayFabLogin.Instance.UserAvatar = avatarName;
 
       IEnumerator InstantiateToast(string toastText, float delay)
       {

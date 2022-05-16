@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.022717815, g: 0.022717815, b: 0.022717815, a: 1}
+  m_IndirectSpecularColor: {r: 0.023362834, g: 0.023362834, b: 0.023362834, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13024,7 +13024,7 @@ MonoBehaviour:
   lineColor: {r: 0, g: 0, b: 0, a: 0}
   parent: {fileID: 0}
   linePrefab: {fileID: 0}
-  mainMenuManager: {fileID: 0}
+  mainMenuManager: {fileID: 530605014}
 --- !u!222 &659282483
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -28229,7 +28229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
       propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
       propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -28244,6 +28244,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 659282482}
     - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 530605014}
+    - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
       propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -28256,11 +28260,23 @@ PrefabInstance:
       value: SetPin
       objectReference: {fileID: 0}
     - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: LogIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
       propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Managers.PinManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Managers.MainMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
       propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4359765712975197874, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
@@ -29353,7 +29369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
       propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CheckLengthAndSwitchPanel
+      value: SubmitUsernameLogIn
       objectReference: {fileID: 0}
     - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
       propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -40059,6 +40075,34 @@ PrefabInstance:
     - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
       propertyPath: panelToDeactivate
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 530605014}
+    - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SignUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Managers.MainMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315310028262676038, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4359765712975197874, guid: 3ef729019e072854781a13e5ad32ee88, type: 3}
       propertyPath: m_Pivot.x
@@ -51138,8 +51182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8494d54e3b4844e7d9e719ee3a090ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usernameInputField: {fileID: 847676858}
-  emailInputField: {fileID: 0}
   InfoRequestParams:
     GetCharacterInventories: 0
     GetCharacterList: 0

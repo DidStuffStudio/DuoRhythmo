@@ -186,9 +186,10 @@ namespace Managers
          usernameInputSignup.text = usernameInputLogin.text;
       }
 
-      public void LogIn()
-      {
-         
+      public void LogIn() {
+         PlayFabLogin.Instance.Username = _currentUsernameInput;
+         PlayFabLogin.Instance.PasswordPin = _currentPinInput;
+         PlayFabLogin.Instance.SignIn();
       }
 
       public void SubmitUsernameSignUp(int indexToActivate)
@@ -207,10 +208,20 @@ namespace Managers
          
       }
 
-      public void SignUp()
-      {
+      public void SignUp() {
+         PlayFabLogin.Instance.Username = _currentUsernameInput;
+         PlayFabLogin.Instance.PasswordPin = _currentPinInput;
+         PlayFabLogin.Instance.CreateAccount();
+      }
+
+      /// <summary>
+      /// Call this if the login rememberMeId is cached/saved to player prefs (if it's successful)
+      /// </summary>
+      public void SkipLogin() {
          
       }
+
+      public void LoginAsGuest() => PlayFabLogin.Instance.LoginWithDeviceUniqueIdentifier();
 
       public void SetPin(string pin) => _currentPinInput = pin;
 

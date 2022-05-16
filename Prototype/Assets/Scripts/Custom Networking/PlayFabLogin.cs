@@ -22,19 +22,12 @@ public class PlayFabLogin : MonoBehaviour {
     }
 
     
-    [SerializeField] private TMP_InputField usernameInputField = default;
-    [SerializeField] private TMP_InputField emailInputField = default;
+    // [SerializeField] private TMP_InputField usernameInputField = default;
+    // [SerializeField] private TMP_InputField emailInputField = default;
 
-    private string _passwordPin;
-
-    [NotNull]
-    public string PasswordPin {
-        get => _passwordPin;
-        set {
-            _passwordPin = value;
-            SignIn();
-        }
-    }
+    public string Username { get; set; }
+    public string PasswordPin { get; set; }
+    public string UserAvatar { get; set; }
 
     private const string _PlayFabRememberMeIdKey = "PlayFabIdPassDeviceUniqueIdentifier";
     public GetPlayerCombinedInfoRequestParams InfoRequestParams;
@@ -60,7 +53,10 @@ public class PlayFabLogin : MonoBehaviour {
         new List<PlayFab.MultiplayerModels.EntityKey>();
 
     private void Awake() {
-        if (_instance == null) _instance = this;
+        if (_instance == null) {
+            _instance = this;
+        }
+        DontDestroyOnLoad(this);
     }
 
 #if !UNITY_SERVER
@@ -84,8 +80,7 @@ public class PlayFabLogin : MonoBehaviour {
 
     public void CreateAccount() {
         var request = new RegisterPlayFabUserRequest() {
-            Username = usernameInputField.text,
-            Email = emailInputField.text,
+            Username = Username,
             Password = PasswordPin,
             RequireBothUsernameAndEmail = false
         };
@@ -99,7 +94,7 @@ public class PlayFabLogin : MonoBehaviour {
 
     public void SignIn() {
         var request = new LoginWithPlayFabRequest {
-            Username = usernameInputField.text,
+            Username = Username,
             Password = PasswordPin
         };
         PlayFabClientAPI.LoginWithPlayFab(request, OnPlayfabLoginSuccess, OnLoginError);

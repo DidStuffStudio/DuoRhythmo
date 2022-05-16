@@ -83,10 +83,10 @@ namespace Managers
         
         public void SetPinCharacter(int value, Vector2 position)
         {
-            if (_currentIndex > 0) CreateLine(position);
+            // if (_currentIndex > 0) CreateLine(position);
             _currentIndex++;
             pinIntegers.Add(value);
-            _lastPos = position;
+            // _lastPos = position;
         }
 
         public void SetPin()

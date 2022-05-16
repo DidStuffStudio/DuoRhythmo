@@ -22,7 +22,17 @@ using JsonObject = PlayFab.Json.JsonObject;
 
 namespace ctsalidis {
     public class Matchmaker : MonoBehaviour {
-        public static Matchmaker Instance;
+        private static Matchmaker _instance;
+
+        public static Matchmaker Instance {
+            get {
+                if (_instance != null) return _instance;
+                var matchmakerGameObject = new GameObject();
+                _instance = matchmakerGameObject.AddComponent<Matchmaker>();
+                matchmakerGameObject.name = typeof(Matchmaker).ToString();
+                return _instance;
+            }
+        }
         [SerializeField] private GameObject playButton;
         [SerializeField] private GameObject leaveQueueButton;
         [SerializeField] private GameObject joinButton;
@@ -42,7 +52,9 @@ namespace ctsalidis {
 
         private static string QueueName = "DefaultQueue";
 
-        private void Awake() => Instance = this;
+        private void Awake() {
+            if(_instance == null) _instance = this;
+        }
 
         public void Initialize() {
             print("Initialized");

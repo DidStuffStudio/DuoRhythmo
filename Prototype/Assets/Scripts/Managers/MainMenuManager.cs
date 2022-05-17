@@ -339,6 +339,7 @@ namespace Managers
       {
          PlayFabLogin.Instance.ClearRememberMe();
          _loggedIn = false;
+         DeactivatePanel(_currentPanel);
          ActivatePanel(2);
          //Todo logout
       }

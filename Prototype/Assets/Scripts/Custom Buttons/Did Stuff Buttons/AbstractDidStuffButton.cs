@@ -193,6 +193,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected void SetInteractionMethod(InteractionMethod method)
 		{
 			DelegateInteractionMethod(false);
+			
 			InteractionManager.Instance.Method = method;
 			_interactionMethod = method;
 			if (GetInteractionMethod ==InteractionMethod.Tobii ||
@@ -219,61 +220,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		}
 
 		private bool DelegateInteractionMethod(bool enable) {
-			if (!interactionSetting) {
-				switch (GetInteractionMethod) {
-					case InteractionMethod.MouseDwell:
-						if(enable) RunInteraction += DwellScale;
-						else RunInteraction -= DwellScale;
-						break;
-					case InteractionMethod.Mouse:
-						if(enable) RunInteraction += MouseInput;
-						else RunInteraction -= MouseInput;
-						break;
-					case InteractionMethod.Tobii:
-						if (!TobiiAPI.IsConnected) return true;
-						if(enable) {
-							RunInteraction += TobiiInput;
-							RunInteraction += DwellScale;
-						}
-						else {
-							RunInteraction -= TobiiInput;
-							RunInteraction -= DwellScale;
-						}
-						break;
-					case InteractionMethod.Touch:
-						if(enable) RunInteraction += TouchInput;
-						else RunInteraction -= TouchInput;
-						break;
-				}
-			}
-			else {
-				switch (localInteractionMethod) {
-					case InteractionMethod.MouseDwell:
-						if (enable) RunInteraction += DwellScale;
-						else RunInteraction -= DwellScale;
-						break;
-					case InteractionMethod.Mouse:
-						if (enable) RunInteraction += MouseInput;
-						else RunInteraction -= MouseInput;
-						break;
-					case InteractionMethod.Tobii:
-						if (!TobiiAPI.IsConnected) return true;
-						if(enable) {
-							RunInteraction += TobiiInput;
-							RunInteraction += DwellScale;
-						}
-						else {
-							RunInteraction -= TobiiInput;
-							RunInteraction -= DwellScale;
-						}
-						break;
-					case InteractionMethod.Touch:
-						if(enable) RunInteraction += TouchInput;
-						else RunInteraction -= TouchInput;
-						break;
-				}
-			}
-
+			
 			return false;
 		}
 
@@ -370,8 +317,45 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		}
 		
 		protected virtual void Update() {
-			RunInteraction?.Invoke();
-
+			if(!interactionSetting)
+			{
+				
+				switch (_interactionMethod)
+						{
+							case InteractionMethod.MouseDwell:
+								DwellScale();
+								break;
+							case InteractionMethod.Mouse:
+								MouseInput();
+								break;
+							case InteractionMethod.Tobii:
+								TobiiInput();
+								DwellScale();
+								break;
+							case InteractionMethod.Touch:
+								TouchInput();
+								break;
+					}
+			}
+			else
+			{
+				switch (localInteractionMethod)
+				{
+					case InteractionMethod.MouseDwell:
+						DwellScale();
+						break;
+					case InteractionMethod.Mouse:
+						MouseInput();
+						break;
+					case InteractionMethod.Tobii:
+						TobiiInput();
+						DwellScale();
+						break;
+					case InteractionMethod.Touch:
+						TouchInput();
+						break;
+				}
+			}
 			/*if (!_playActivatedScale) return;
 			if (_dwellGfx.localScale.x > 0.0f) _dwellGfx.localScale -= one * 0.01f;
 			else ToggleDwellGfx(false);*/
@@ -380,7 +364,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected virtual void ButtonClicked()
 		{
-			ExecuteEvents.Execute(gameObject, new AxisEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
+			//ExecuteEvents.Execute(gameObject, new AxisEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
 			ToggleButton(!_isActive);
 			StartInteractionCoolDown();
 			onClicked?.Invoke();

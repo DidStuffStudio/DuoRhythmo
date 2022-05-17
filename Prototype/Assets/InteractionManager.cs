@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Custom_Buttons.Did_Stuff_Buttons;
@@ -23,6 +24,7 @@ public class InteractionManager : MonoBehaviour
     
     
     [SerializeField] private MainMenuManager _mainMenuManager;
+    [SerializeField]  private float _interactionBreakTime = 1.0f;
     public InteractionMethod Method
     {
         get => _interactionMethod;
@@ -50,6 +52,17 @@ public class InteractionManager : MonoBehaviour
         }
         DontDestroyOnLoad(this);
         }
+
+        public void JustInteracted(AbstractDidStuffButton btn) => StartCoroutine(CoolDownTime(btn));
+
+        private IEnumerator CoolDownTime(AbstractDidStuffButton btn)
+        {
+            btn.SetCanHover(false);
+            yield return new WaitForSeconds(_interactionBreakTime);
+            btn.SetCanHover(true);
+        }
+        
+        
 }
 
 

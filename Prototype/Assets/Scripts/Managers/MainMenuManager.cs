@@ -43,6 +43,7 @@ namespace Managers
       private List<bool> _panelReachedTarget = new List<bool>();
       private bool _shouldLerp = false;
       [SerializeField] private GameObject errorToast, successToast;
+      [SerializeField] private GameObject inviteToPlay;
       private bool _okayToSwitch = true;
       private int _activatedSettingsFrom = 0, _currentPanel = 0;
       [SerializeField] private GameObject backButton, settingsButton;
@@ -54,6 +55,8 @@ namespace Managers
       [SerializeField] private List<int> panelsThatDontshowBack = new List<int>();
       private bool _loggedIn = false;
       private bool _isGuest = false;
+      private DidStuffInvite _currentInvitePopUp;
+
 
       public string ReferencePin
       {
@@ -107,6 +110,9 @@ namespace Managers
          initialBlurPanel.transform.SetSiblingIndex(0);
          
          ActivatePanel(0);
+         ReceiveInviteToPlay("Dickhead");
+         
+         
       }
 
       private void ToggleUIPanel()
@@ -351,6 +357,26 @@ namespace Managers
          ActivatePanel(2);
       }
 
+      public void ReceiveInviteToPlay(string username)
+      {
+         if(_currentInvitePopUp != null)_currentInvitePopUp.GetComponent<DidStuffInvite>().DestroyForNew();
+         var popUp = Instantiate(inviteToPlay, transform);
+         popUp.transform.SetSiblingIndex(transform.childCount-1);
+         _currentInvitePopUp = popUp.GetComponent<DidStuffInvite>();
+      }
+
+      public void AcceptInvite()
+      {
+         print("Accepted");
+         //Todo Set matchmaking ticket
+         DeactivatePanel(_currentPanel);
+         ActivatePanel(18);
+      }
+      public void DeclineInvite()
+      {
+         print("Declined");
+      }
+      
       public void SetPin(string pin) => _currentPinInput = pin;
       public void SetAvatarName(string avatarName) => PlayFabLogin.Instance.UserAvatar = avatarName;
 

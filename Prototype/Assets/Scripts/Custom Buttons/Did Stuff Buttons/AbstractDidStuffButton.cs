@@ -107,9 +107,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 	{
 		#region Fields
 
-		private delegate void Clicked();
+		public delegate void Clicked();
 
-		private event Clicked OnClick;
+		public event Clicked OnClick;
 
 		private delegate void Hovered();
 

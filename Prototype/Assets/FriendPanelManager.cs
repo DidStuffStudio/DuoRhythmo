@@ -57,6 +57,7 @@ public class FriendPanelManager : MonoBehaviour
         if (MainMenuManager.Instance.IsGuest) DisableAllInteraction();
         if (MainMenuManager.Instance.LoggedIn)
         {
+            FriendsManager.Instance.GetFriends();
             GetFriendDetails();
             DoTheDots();
             if (_fullFriendsListUsernames.Count > 1)
@@ -64,7 +65,11 @@ public class FriendPanelManager : MonoBehaviour
                 ChangeGraphics(2);
                 ChangeDots();
             }
-            else if(_fullFriendsListUsernames.Count == 1) ActivateSecondFriend(false);
+            else if (_fullFriendsListUsernames.Count == 1)
+            {
+                ChangeGraphics(1);
+                ActivateSecondFriend(false);
+            }
             else
             {
                 friend1Card.SetActive(false);
@@ -262,4 +267,6 @@ private void DoTheDots()
         _friendStatusMap.Clear();
         _dots.Clear();
     }
+
+    
 }

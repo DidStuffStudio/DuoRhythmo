@@ -20,7 +20,8 @@ public class InteractionManager : MonoBehaviour
             return _instance;
         }
     }
-
+    
+    
     [SerializeField] private MainMenuManager _mainMenuManager;
     public InteractionMethod Method
     {

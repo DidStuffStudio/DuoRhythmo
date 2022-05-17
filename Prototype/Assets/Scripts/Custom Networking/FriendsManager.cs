@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using ctsalidis;
 using DidStuffLab;
+using Managers;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
@@ -15,7 +16,7 @@ using ExecuteCloudScriptResult = PlayFab.ClientModels.ExecuteCloudScriptResult;
 // ref --> https://docs.microsoft.com/en-us/gaming/playfab/features/social/friends/quickstart
 
 namespace DidStuffLab {
-    enum FriendIdType {
+    public enum FriendIdType {
         PlayFabId,
         Username,
         Email,
@@ -35,6 +36,7 @@ namespace DidStuffLab {
             }
         }
 
+        [SerializeField] private FriendPanelManager friendsPanel;
         // functionality variables
         private List<FriendInfo> _friends = null;
         public List<FriendInfo> Friends => _friends;
@@ -74,6 +76,8 @@ namespace DidStuffLab {
                 print(friend.FriendPlayFabId);
                 // friendsListText.text += "\n" + friend.Username + "\n";
                 friendPlayfabIds.Add(friend.FriendPlayFabId);
+                
+                
             }
         }
 
@@ -95,7 +99,7 @@ namespace DidStuffLab {
             }, DisplayPlayFabError);
         }
 
-        private void AddFriend(FriendIdType idType, string friendId) {
+        public void AddFriend(FriendIdType idType, string friendId) {
             // TODO --> Look into making it a two way way process --> https://community.playfab.com/questions/46961/add-friend-using-friend-request-with-acceptdecline.html
             var request = new AddFriendRequest();
             switch (idType) {
@@ -120,7 +124,7 @@ namespace DidStuffLab {
 
         // unlike AddFriend, RemoveFriend only takes a PlayFab ID
         // you can get this from the FriendInfo object under FriendPlayFabId
-        private void RemoveFriend(FriendInfo friendInfo) {
+        public void RemoveFriend(FriendInfo friendInfo) {
             PlayFabClientAPI.RemoveFriend(new RemoveFriendRequest {
                 FriendPlayFabId = friendInfo.FriendPlayFabId
             }, result => { _friends.Remove(friendInfo); }, DisplayPlayFabError);
@@ -184,20 +188,22 @@ namespace DidStuffLab {
             }
         }
 
-        public void SendFriendRequest() {
+        public void SendFriendRequest(string username) {
             PlayFabCloudScriptAPI.ExecuteEntityCloudScript(new ExecuteEntityCloudScriptRequest() {
                 FunctionName = "SendFriendRequest",
-                FunctionParameter = new {FriendUsername = AddFriendInput},
+                FunctionParameter = new {FriendUsername = username},
                 GeneratePlayStreamEvent = true,
             }, OnSendFriendRequestSuccess, OnSendFriendRequestError);
         }
 
         private void OnSendFriendRequestError(PlayFabError error) {
             print("Error sending friend request --> " + error.GenerateErrorReport());
+            MainMenuManager.Instance.SpawnErrorToast(error.GenerateErrorReport(), 0.1f);
         }
 
         private void OnSendFriendRequestSuccess(PlayFab.CloudScriptModels.ExecuteCloudScriptResult response) {
             print("Sent friend request successfully " + response);
+            MainMenuManager.Instance.SpawnSuccessToast("Friend request sent!", 0.1f);
             GetFriends(); // update  the friends
         }
 
@@ -274,6 +280,7 @@ namespace DidStuffLab {
                 if(friendAvatarNames.ContainsKey(friend.EntityKey.Id)) friend.AvatarName = friendAvatarNames[friend.EntityKey.Id];
                 // friend.AvatarName = PlayFabLogin.Instance.GetEntityAvatarName(friend.EntityKey);
                 FriendsDetails.Add(friend);
+                print(friend.Username);
             }
         }
 

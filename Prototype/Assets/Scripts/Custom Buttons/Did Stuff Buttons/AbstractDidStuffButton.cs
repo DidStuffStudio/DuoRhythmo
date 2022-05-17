@@ -286,7 +286,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 		protected virtual void Awake()
 		{
-			_interactionMethod = InteractionManager.Instance.Method;
+			SetInteractionMethod(InteractionManager.Instance.Method);
 			_mainImage = GetComponent<Image>();
 			_gazeAware = GetComponent<GazeAware>();
 			MainCamera = Camera.main;

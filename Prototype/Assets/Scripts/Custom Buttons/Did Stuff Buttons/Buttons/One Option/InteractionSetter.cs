@@ -33,6 +33,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
         private void SetPreferredInteraction()
         {
             SetInteractionMethod(localInteractionMethod);
+            InteractionManager.Instance.Method = localInteractionMethod;
             PlayerPrefs.SetInt("InteractionMethod", (int)localInteractionMethod);
             ActivateCollider(localInteractionMethod == InteractionMethod.Tobii);
         }

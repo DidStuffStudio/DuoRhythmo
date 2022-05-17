@@ -113,7 +113,7 @@ public class PlayFabLogin : MonoBehaviour {
         print("Logged in successfully");
         // Username = result.InfoResultPayload.AccountInfo.Username ?? result.PlayFabId;
         ProceedWithLogin(result.SessionTicket, result.EntityToken.Entity.Id, result.EntityToken.Entity.Type, false);
-        if(MainMenuManager.Instance.CurrentPanel != 4 || MainMenuManager.Instance.CurrentPanel != 19) MainMenuManager.Instance.SkipLogin();
+        
     }
 
     private void ProceedWithLogin(string resultSessionTicket, string entityId, string entityType, bool createdNewAccount) {
@@ -140,6 +140,7 @@ public class PlayFabLogin : MonoBehaviour {
                 OnLinkedError
             );
         }
+        if(MainMenuManager.Instance.CurrentPanel != 4 || MainMenuManager.Instance.CurrentPanel != 19) MainMenuManager.Instance.SkipLogin();
     }
 
     private void OnLinkedError(PlayFabError error) {

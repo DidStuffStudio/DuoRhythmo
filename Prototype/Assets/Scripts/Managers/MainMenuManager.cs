@@ -42,7 +42,7 @@ namespace Managers
       private int _numberDesiredBlurPanels = 1;
       private List<bool> _panelReachedTarget = new List<bool>();
       private bool _shouldLerp = false;
-      [SerializeField] private GameObject toast;
+      [SerializeField] private GameObject errorToast, successToast;
       private bool _okayToSwitch = true;
       private int _activatedSettingsFrom = 0, _currentPanel = 0;
       [SerializeField] private GameObject backButton, settingsButton;
@@ -52,6 +52,8 @@ namespace Managers
       private string _currentPinInput = "", _referencePin ="";
       [SerializeField] private List<int> panelsThatDontshowSettings = new List<int>();
       [SerializeField] private List<int> panelsThatDontshowBack = new List<int>();
+      private bool _loggedIn = false;
+      private bool _isGuest = false;
 
       public string ReferencePin
       {
@@ -59,6 +61,10 @@ namespace Managers
       }
 
       public int CurrentPanel => _currentPanel;
+
+      public bool LoggedIn => _loggedIn;
+
+      public bool IsGuest => _isGuest;
 
       private void Awake()
       {
@@ -224,14 +230,14 @@ namespace Managers
       {
          DeactivatePanel(CurrentPanel);
          ActivatePanel(21);
-         StartCoroutine(InstantiateToast("No Tobii eye tracker found!",0.5f));
+         SpawnErrorToast("No Tobii eye tracker found!",0.5f);
       }
       public void SubmitUsernameLogIn(int indexToActivate)
       {
          if (usernameInputLogin.text.Length < 3)
          {
             _okayToSwitch = false;
-            StartCoroutine(InstantiateToast("Please add a minimum of 3 characters",0.5f));
+            SpawnErrorToast("Please add a minimum of 3 characters",0.5f);
          }
          else
          {
@@ -246,7 +252,8 @@ namespace Managers
          PlayFabLogin.Instance.Username = _currentUsernameInput;
          PlayFabLogin.Instance.PasswordPin = _currentPinInput;
          PlayFabLogin.Instance.SignIn();
-         //TODO Failed login in send to sign in
+         _loggedIn = true;
+         _isGuest = false;
       }
 
       public void SubmitUsernameSignUp(int indexToActivate)
@@ -255,7 +262,7 @@ namespace Managers
          if (usernameInputSignup.text.Length < 3)
          {
             _okayToSwitch = false;
-            StartCoroutine(InstantiateToast("Please add a minimum of 3 characters",0.5f));
+            SpawnErrorToast("Please add a minimum of 3 characters",0.5f);
          }
          else
          {
@@ -265,28 +272,12 @@ namespace Managers
          
       }
       
-      public void SubmitPinFromLogin(int indexToActivate)
-      {
-         
-         if (_currentPinInput.Length < 6)
-         {
-            _okayToSwitch = false;
-            StartCoroutine(InstantiateToast("Please use a minimum of 6 digits",0.5f));
-         }
-         else
-         {
-            ActivatePanel(indexToActivate);
-            LogIn();
-         }
-         
-      }
-
-      public void SubmitPinFromSignUp(int indexToActivate)
+      public void SubmitPin(int indexToActivate)
       {
          if (_currentPinInput.Length < 6)
          {
             _okayToSwitch = false;
-            StartCoroutine(InstantiateToast("Please use a minimum of 6 digits",0.5f));
+            SpawnErrorToast("Please use a minimum of 6 digits",0.5f);
          }
          else
          {
@@ -300,7 +291,7 @@ namespace Managers
          if (_currentPinInput != _referencePin)
          {
             _okayToSwitch = false;
-            StartCoroutine(InstantiateToast("Pins do not match", 0.1f));
+            SpawnErrorToast("Pins do not match", 0.1f);
          }
          else
          {
@@ -312,15 +303,19 @@ namespace Managers
       {
          DeactivatePanel(CurrentPanel);
          ActivatePanel(2);
-         StartCoroutine(InstantiateToast(errorMsg, 0.5f));
+         SpawnErrorToast(errorMsg, 0.5f);
+         _loggedIn = false;
       }
       
+      public void SpawnSuccessToast(string msg, float delay) => StartCoroutine(InstantiateSuccessToast(msg,delay));
+      public void SpawnErrorToast(string msg, float delay) => StartCoroutine(InstantiateErrorToast(msg,delay));
    
       public void SignUp() {
          PlayFabLogin.Instance.Username = _currentUsernameInput;
          PlayFabLogin.Instance.PasswordPin = _currentPinInput;
          PlayFabLogin.Instance.CreateAccount();
-         //TODO Failed login in send to sign in username taken
+         _loggedIn = true;
+         _isGuest = false;
       }
 
       /// <summary>
@@ -329,6 +324,7 @@ namespace Managers
       public void SkipLogin() {
          DeactivatePanel(CurrentPanel);
          ActivatePanel(4);
+         _loggedIn = true;
       }
 
       public void LoginAsGuest()
@@ -336,23 +332,35 @@ namespace Managers
          PlayFabLogin.Instance.LoginWithDeviceUniqueIdentifier();
          panelsThatDontshowBack.Add(19);
          _panelDictionary[13].ExecuteSpecificChanges();
+         _isGuest = true;
       }
 
       public void LogOut()
       {
          PlayFabLogin.Instance.ClearRememberMe();
+         _loggedIn = false;
+         ActivatePanel(2);
          //Todo logout
       }
 
       public void SetPin(string pin) => _currentPinInput = pin;
       public void SetAvatarName(string avatarName) => PlayFabLogin.Instance.UserAvatar = avatarName;
 
-      IEnumerator InstantiateToast(string toastText, float delay)
+      IEnumerator InstantiateErrorToast(string toastText, float delay)
       {
          yield return new WaitForSeconds(delay);
          var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder");
          if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.transform.GetChild(0).gameObject);
-         var t = Instantiate(toast, toastPlaceholder.transform);
+         var t = Instantiate(errorToast, toastPlaceholder.transform);
+         t.GetComponent<Toast>().SetText(toastText);
+      }
+      
+      IEnumerator InstantiateSuccessToast(string toastText, float delay)
+      {
+         yield return new WaitForSeconds(delay);
+         var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder");
+         if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.transform.GetChild(0).gameObject);
+         var t = Instantiate(successToast, toastPlaceholder.transform);
          t.GetComponent<Toast>().SetText(toastText);
       }
       public void SetDrumType(int i) => JamSessionDetails.Instance.DrumTypeIndex = i;

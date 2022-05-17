@@ -43,7 +43,7 @@ public class FriendPanelManager : MonoBehaviour
     private List<string> _fullFriendsListAvatars = new List<string>();
     private Dictionary<string, FriendStatus> _friendStatusMap = new Dictionary<string, FriendStatus>();
     private int currentListIndex = 0;
-
+    private bool _even;
     private List<Friend> _friends = new List<Friend>();
 
     public List<Friend> Friends
@@ -62,6 +62,7 @@ public class FriendPanelManager : MonoBehaviour
             if (_fullFriendsListUsernames.Count > 1)
             {
                 ChangeGraphics(2);
+                ChangeDots();
             }
             else if(_fullFriendsListUsernames.Count == 1) ActivateSecondFriend(false);
             else
@@ -76,29 +77,16 @@ public class FriendPanelManager : MonoBehaviour
     {
         if (right) currentListIndex+=2;
         else currentListIndex-=2;
-        var index = 2;
-        if(!friend2Card.activeInHierarchy)ActivateSecondFriend(true);
-        
-        if (_fullFriendsListUsernames.Count % 2 == 0)
-        {
-            if (currentListIndex < 0) currentListIndex = _fullFriendsListUsernames.Count - 1;
-            if (currentListIndex > _fullFriendsListUsernames.Count -1) currentListIndex = 0;
-        }
-        else
-        {
-            if (currentListIndex < 0) currentListIndex = _fullFriendsListUsernames.Count;
-            if (currentListIndex > _fullFriendsListUsernames.Count)
-            {
-                currentListIndex = 0;
-                ActivateSecondFriend(false);
-                index = 1;
-            }
-        }
-        
 
+        leftArrow.SetActive(currentListIndex != 0);
+        
+        if(_even)rightArrow.SetActive(currentListIndex != _fullFriendsListUsernames.Count);
+        if(!_even)rightArrow.SetActive(currentListIndex != _fullFriendsListUsernames.Count-1);
+        if(!_even) friend2Card.SetActive(currentListIndex != _fullFriendsListUsernames.Count-1);
+        var index = 2;
+        if (!_even && currentListIndex == _fullFriendsListUsernames.Count-1) index = 1;
         ChangeGraphics(index);
         ChangeDots();
-
     }
 
     void ChangeDots()
@@ -109,10 +97,12 @@ public class FriendPanelManager : MonoBehaviour
         }
 
         var i = 0;
-        if (currentListIndex % 2 == 0) i = currentListIndex / 2;
-        else i = _dots.Count - 1;
+        if (_even) i = currentListIndex / 2;
+        else i = (int)(currentListIndex/2.0f);
         _dots[i].color = dotActive;
     }
+    
+    
 
     private void ChangeGraphics(int index)
     {
@@ -255,6 +245,7 @@ private void DoTheDots()
         }
         
         if(_fullFriendsListUsernames.Count <= 2) DisableArrowsAndDots();
+        _even = _fullFriendsListUsernames.Count % 2 == 0;
     }
 
     private void ClearLists()

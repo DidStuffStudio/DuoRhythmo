@@ -588,7 +588,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1948926150}
+        m_TargetAssemblyTypeName: FriendPanelManager, Assembly-CSharp
+        m_MethodName: AcceptFriendRequest
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -6160,7 +6172,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1948926150}
+        m_TargetAssemblyTypeName: FriendPanelManager, Assembly-CSharp
+        m_MethodName: DeclineFriendRequest
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -10052,7 +10076,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1948926150}
+        m_TargetAssemblyTypeName: FriendPanelManager, Assembly-CSharp
+        m_MethodName: RemoveFriend
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -10424,7 +10460,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1948926150}
+        m_TargetAssemblyTypeName: FriendPanelManager, Assembly-CSharp
+        m_MethodName: AcceptFriendRequest
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -27805,7 +27853,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1948926150}
+        m_TargetAssemblyTypeName: FriendPanelManager, Assembly-CSharp
+        m_MethodName: RemoveFriend
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -39633,8 +39693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5e13c06e5074d7ea29f29eb282df2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendsPanel: {fileID: 1948926150}
-  friendsEntities: []
 --- !u!1 &1770767489
 GameObject:
   m_ObjectHideFlags: 0
@@ -64995,7 +65053,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 530605014}
+        m_TargetAssemblyTypeName: Managers.MainMenuManager, Assembly-CSharp
+        m_MethodName: DeleteAccount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -67399,7 +67469,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 777611235}
+        m_TargetAssemblyTypeName: JamSessionDetails, Assembly-CSharp
+        m_MethodName: set_isSoloMode
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -88989,7 +89071,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1948926150}
+        m_TargetAssemblyTypeName: FriendPanelManager, Assembly-CSharp
+        m_MethodName: RemoveFriend
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -89768,7 +89862,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1948926150}
+        m_TargetAssemblyTypeName: FriendPanelManager, Assembly-CSharp
+        m_MethodName: RemoveFriend
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -91081,7 +91187,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1948926150}
+        m_TargetAssemblyTypeName: FriendPanelManager, Assembly-CSharp
+        m_MethodName: DeclineFriendRequest
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}

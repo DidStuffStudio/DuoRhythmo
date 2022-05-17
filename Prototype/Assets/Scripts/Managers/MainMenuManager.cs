@@ -337,11 +337,18 @@ namespace Managers
 
       public void LogOut()
       {
-         PlayFabLogin.Instance.ClearRememberMe();
+         PlayFabLogin.Instance.Logout();
          _loggedIn = false;
          DeactivatePanel(_currentPanel);
          ActivatePanel(2);
          //Todo logout
+      }
+
+      public void DeleteAccount()
+      {
+         PlayFabLogin.Instance.DeleteAccount();
+         DeactivatePanel(_currentPanel);
+         ActivatePanel(2);
       }
 
       public void SetPin(string pin) => _currentPinInput = pin;

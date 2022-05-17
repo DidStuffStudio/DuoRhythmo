@@ -160,8 +160,7 @@ public class FriendPanelManager : MonoBehaviour
 
     public void AcceptFriendRequest(int index) => FriendsManager.Instance.AcceptFriendRequest(_currentUsernames[index]);
     public void DeclineFriendRequest(int index) => FriendsManager.Instance.DenyFriendRequest(_currentUsernames[index]);
-
-    //public void RemoveFriend(int index) => FriendsManager.Instance.RemoveFriend();
+    public void RemoveFriend(int index) => FriendsManager.Instance.RemoveFriend(_currentUsernames[index]);
 
     public void AddFriend() {
         var stringToPass = inputField.text;

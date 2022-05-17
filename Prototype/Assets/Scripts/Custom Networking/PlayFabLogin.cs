@@ -191,6 +191,7 @@ public class PlayFabLogin : MonoBehaviour {
         }, (result) => {
             // TODO --> Check if this actually happened (return bool for success from cloudscript)
             print("Successfully sent request to delete player's account");
+            Logout();
         }, (error) => {
             Debug.LogError(error.GenerateErrorReport());
         });

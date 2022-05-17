@@ -185,7 +185,7 @@ public class PlayFabLogin : MonoBehaviour {
     public void DeleteAccount() {
         // DeletePlayerAccount
         PlayFabCloudScriptAPI.ExecuteEntityCloudScript(new ExecuteEntityCloudScriptRequest() {
-            FunctionName = "AcceptFriendRequest",
+            FunctionName = "DeletePlayerAccount",
             FunctionParameter = new {PlayFabId = EntityKey.Id},
             GeneratePlayStreamEvent = true,
         }, (result) => {

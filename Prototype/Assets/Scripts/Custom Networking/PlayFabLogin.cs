@@ -7,6 +7,7 @@ using Managers;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using PlayFab.CloudScriptModels;
 using PlayFab.DataModels;
 using PlayFab.Json;
 using EntityKey = PlayFab.MultiplayerModels.EntityKey;
@@ -44,13 +45,13 @@ public class PlayFabLogin : MonoBehaviour {
         }
     }
 
-    public static PlayFab.MultiplayerModels.EntityKey EntityKey;
+    public static EntityKey EntityKey;
 
-    public static List<PlayFab.MultiplayerModels.EntityKey> FriendsEntityKeys =
-        new List<PlayFab.MultiplayerModels.EntityKey>();
+    public static List<EntityKey> FriendsEntityKeys =
+        new List<EntityKey>();
 
-    public static List<PlayFab.MultiplayerModels.EntityKey> SelectedFriendsEntityKeys =
-        new List<PlayFab.MultiplayerModels.EntityKey>();
+    public static List<EntityKey> SelectedFriendsEntityKeys =
+        new List<EntityKey>();
 
     private void Awake() {
         if (_instance == null) _instance = this;
@@ -61,7 +62,6 @@ public class PlayFabLogin : MonoBehaviour {
     private void Start() {
         // NOTE --> Make sure that RememberMeId is initialised as the SystemInfo.deviceUniqueIdentifier
         LoginWithRememberMeId();
-        
     }
 #endif
 
@@ -113,17 +113,17 @@ public class PlayFabLogin : MonoBehaviour {
         print("Logged in successfully");
         // Username = result.InfoResultPayload.AccountInfo.Username ?? result.PlayFabId;
         ProceedWithLogin(result.SessionTicket, result.EntityToken.Entity.Id, result.EntityToken.Entity.Type, false);
-        
     }
 
-    private void ProceedWithLogin(string resultSessionTicket, string entityId, string entityType, bool createdNewAccount) {
+    private void ProceedWithLogin(string resultSessionTicket, string entityId, string entityType,
+        bool createdNewAccount) {
         // if (string.IsNullOrEmpty(Username)) Username = EntityKey.Id;
         EntityKey = new PlayFab.MultiplayerModels.EntityKey {
             Id = entityId,
             Type = entityType
         };
 
-        if(createdNewAccount) SetUserAvatarObject(); // set the avatar object that the user has selected
+        if (createdNewAccount) SetUserAvatarObject(); // set the avatar object that the user has selected
         GetEntityAvatarName(new PlayFab.MultiplayerModels.EntityKey {Id = EntityKey.Id, Type = EntityKey.Type}, false);
 
         FriendsManager.Instance.EnableFriendsManager();
@@ -140,7 +140,9 @@ public class PlayFabLogin : MonoBehaviour {
                 OnLinkedError
             );
         }
-        if(MainMenuManager.Instance.CurrentPanel != 4 || MainMenuManager.Instance.CurrentPanel != 19) MainMenuManager.Instance.SkipLogin();
+
+        if (MainMenuManager.Instance.CurrentPanel != 4 || MainMenuManager.Instance.CurrentPanel != 19)
+            MainMenuManager.Instance.SkipLogin();
     }
 
     private void OnLinkedError(PlayFabError error) {
@@ -156,11 +158,42 @@ public class PlayFabLogin : MonoBehaviour {
         RememberMeId = ""; // reset the remembermeId
         MainMenuManager.Instance.SendBackToLogin(error.GenerateErrorReport());
     }
-    
+
 
     // TODO --> Add clearing saved user info functionality
     public void ClearRememberMe() {
         PlayerPrefs.DeleteKey(_PlayFabRememberMeIdKey);
+        RememberMeId = "";
+    }
+
+    // Logout from this device - should unlink custom id from user's account, and reset the instance variables
+    public void Logout() {
+        // request to unlink this RememberMeId from the account
+        PlayFabClientAPI.UnlinkCustomID(new UnlinkCustomIDRequest {CustomId = RememberMeId},
+            (result) => { print("Successfully unlinked custom id from the user's account"); },
+            (error) => { Debug.LogError(error.GenerateErrorReport()); });
+
+        Username = string.Empty;
+        PasswordPin = string.Empty;
+        UserAvatar = string.Empty;
+        ClearRememberMe();
+        EntityKey = new EntityKey();
+        FriendsEntityKeys = new List<EntityKey>();
+        SelectedFriendsEntityKeys = new List<EntityKey>();
+    }
+
+    public void DeleteAccount() {
+        // DeletePlayerAccount
+        PlayFabCloudScriptAPI.ExecuteEntityCloudScript(new ExecuteEntityCloudScriptRequest() {
+            FunctionName = "AcceptFriendRequest",
+            FunctionParameter = new {PlayFabId = EntityKey.Id},
+            GeneratePlayStreamEvent = true,
+        }, (result) => {
+            // TODO --> Check if this actually happened (return bool for success from cloudscript)
+            print("Successfully sent request to delete player's account");
+        }, (error) => {
+            Debug.LogError(error.GenerateErrorReport());
+        });
     }
 
     private void SetUserAvatarObject() {
@@ -181,7 +214,10 @@ public class PlayFabLogin : MonoBehaviour {
                 },
                 Objects = dataList,
             }, (setResult) => { Debug.Log("Successfully set AvatarName object --> " + setResult.ProfileVersion); },
-            (error) => { Debug.LogError("There was an error on request trying to set the avatar object " + error.GenerateErrorReport()); });
+            (error) => {
+                Debug.LogError("There was an error on request trying to set the avatar object " +
+                               error.GenerateErrorReport());
+            });
     }
 
     public void GetEntityAvatarName(EntityKey entityKey, bool isFriend) {
@@ -196,11 +232,12 @@ public class PlayFabLogin : MonoBehaviour {
             var objs = result.Objects;
             foreach (var o in objs.Where(o => o.Key == "AvatarName")) {
                 if (o.Value.DataObject is JsonObject details) {
-                    var playerAvatarName = details["Name"].ToString(); // TODO --> Pass this to JammingSessionDetails manager
+                    var playerAvatarName =
+                        details["Name"].ToString(); // TODO --> Pass this to JammingSessionDetails manager
                     print("This is the retrieved avatar's name --> " + playerAvatarName + " from " + entityKey.Id);
                     if (isFriend) {
-                        FriendsManager.Instance.friendAvatarNames.Add(entityKey.Id, playerAvatarName);
-                        FriendsManager.Instance.AddAvatarToFriendDetails();
+                        // FriendsManager.Instance.friendAvatarNames.Add(entityKey.Id, playerAvatarName);
+                        FriendsManager.Instance.AddAvatarToFriendDetails(entityKey, playerAvatarName);
                     }
                 }
             }

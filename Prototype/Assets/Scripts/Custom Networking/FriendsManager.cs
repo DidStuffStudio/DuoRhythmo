@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ctsalidis;
 using DidStuffLab;
 using Managers;
@@ -36,27 +37,17 @@ namespace DidStuffLab {
             }
         }
 
-        [SerializeField] private FriendPanelManager friendsPanel;
-        // functionality variables
-        private List<FriendInfo> _friends = null;
-        public List<FriendInfo> Friends => _friends;
+        private Dictionary<string, Friend> _friendsDictionary = new Dictionary<string, Friend>();
+        public Friend[] FriendsDetails => _friendsDictionary.Values.ToArray();
 
-        private List<string> friendPlayfabIds = new List<string>();
+        private string IdFromUsername(string username) {
+            foreach (var f in _friendsDictionary.Where(f => f.Value.Username == username)) {
+                return f.Key;
+            }
 
-        public List<EntityKey> friendsEntities = new List<EntityKey>();
-
-        public List<Friend> FriendsDetails = new List<Friend>();
-        public Dictionary<string, string> friendAvatarNames = new Dictionary<string, string>();
-
-        public string AddFriendInput { get; set; }
-
-        // ui variables
-        /*
-        [SerializeField] private Button addFriendsButton;
-        [SerializeField] private InputField friendId;
-        [SerializeField] private Text friendsListText;
-        [SerializeField] private GameObject friendsPanel;
-        */
+            Debug.LogError("Error getting the specified username from the friends dictionary");
+            return string.Empty;
+        }
 
         private void Awake() {
             if (_instance == null) _instance = this;
@@ -65,41 +56,27 @@ namespace DidStuffLab {
 
         public void EnableFriendsManager() {
             if (!PlayFabMultiplayerAPI.IsEntityLoggedIn()) return;
-            // friendsPanel.SetActive(true);
             GetFriends(); // call this on start because it's deactivated by default, and then activated once user logs in
-            // LobbyManager.Instance.FindFriendsLobbies();
-        }
-
-        private void DisplayFriends(List<FriendInfo> friendsCache) {
-            foreach (var friend in friendsCache) {
-                print(friend.Username);
-                print(friend.FriendPlayFabId);
-                // friendsListText.text += "\n" + friend.Username + "\n";
-                friendPlayfabIds.Add(friend.FriendPlayFabId);
-                
-                
-            }
         }
 
         private void DisplayPlayFabError(PlayFabError error) {
             Debug.Log(error.GenerateErrorReport());
         }
 
-        private void GetFriends() {
+        public void GetFriends() {
+            _friendsDictionary.Clear(); // TODO --> NOTE --> MAYBE --> Check if it's just better use _friendsDictionary[] = .. instead of _friendsDictionary.Add() 
             PlayFabClientAPI.GetFriendsList(new GetFriendsListRequest {
                 IncludeSteamFriends = false,
                 IncludeFacebookFriends = false,
-                XboxToken = null
-            }, result => {
-                _friends = result.Friends;
-                // TODO: get entityIds for friends (maybe use cloudscript/Azure functions for it?)
-                DisplayFriends(_friends); // triggers your UI
-                GetEntityIdsFromPlayfabIds();
-                // GetFriendsDetails();
-            }, DisplayPlayFabError);
+                XboxToken = null,
+                ProfileConstraints = new PlayerProfileViewConstraints {
+                    ShowLastLogin = true,
+                }
+            }, result => { InitializeFriends(result.Friends); }, DisplayPlayFabError);
         }
 
-        public void AddFriend(FriendIdType idType, string friendId) {
+        /*
+        private void AddFriend(FriendIdType idType, string friendId) {
             // TODO --> Look into making it a two way way process --> https://community.playfab.com/questions/46961/add-friend-using-friend-request-with-acceptdecline.html
             var request = new AddFriendRequest();
             switch (idType) {
@@ -121,14 +98,19 @@ namespace DidStuffLab {
             PlayFabClientAPI.AddFriend(request, result => { Debug.Log("Friend added successfully!"); },
                 DisplayPlayFabError);
         }
-
+        
         // unlike AddFriend, RemoveFriend only takes a PlayFab ID
         // you can get this from the FriendInfo object under FriendPlayFabId
-        public void RemoveFriend(FriendInfo friendInfo) {
+        public void RemoveFriend(string username) {
+            var playfabId = IdFromUsername(username);
             PlayFabClientAPI.RemoveFriend(new RemoveFriendRequest {
-                FriendPlayFabId = friendInfo.FriendPlayFabId
-            }, result => { _friends.Remove(friendInfo); }, DisplayPlayFabError);
+                FriendPlayFabId = playfabId
+            }, result => {
+                
+            }, DisplayPlayFabError);
         }
+        */
+        
 
         // this REPLACES the list of tags on the server
         // for updates, make sure this includes the original tag list
@@ -143,16 +125,40 @@ namespace DidStuffLab {
             }, DisplayPlayFabError);
         }
 
-        // TODO: look into Cloudscript / Azure functions
-        private void GetEntityIdsFromPlayfabIds() {
-            // StartCloudHelloWorld();
+        private void InitializeFriends(List<FriendInfo> friends) {
+            print("Initializing friends");
+            foreach (var f in friends) {
+                _friendsDictionary.Add(
+                    f.FriendPlayFabId,
+                    new Friend {
+                        MasterPlayfabId = f.FriendPlayFabId,
+                        Username = f.Username,
+                        FriendInfo = f,
+                        LastLogin = f.Profile.LastLogin,
+                        FriendStatus = GetFriendTag(f)
+                    });
+            }
+            
+            var friendPlayfabIds = friends.Select(f => f.FriendPlayFabId).ToList();
             var request = new GetTitlePlayersFromMasterPlayerAccountIdsRequest {
                 MasterPlayerAccountIds = friendPlayfabIds,
             };
             PlayFabProfilesAPI.GetTitlePlayersFromMasterPlayerAccountIds(request, OnReceivedPlayerIdsSuccess,
                 OnReceivedPlayerIdsError);
-            // PlayFabGroupsAPI.AcceptGroupApplication();
-            // PlayFabGroupsAPI.ListGroupInvitations();
+        }
+
+        private FriendStatus GetFriendTag(FriendInfo f) {
+            if (f.Tags != null && f.Tags.Count > 0) {
+                var friendTag = f.Tags[0];
+                if (friendTag == FriendStatus.Confirmed.ToString() || friendTag == "confirmed")
+                    return FriendStatus.Confirmed;
+                if (friendTag == FriendStatus.Requester.ToString() || friendTag == "requester")
+                    return FriendStatus.Requester;
+                if (friendTag == FriendStatus.Requestee.ToString() || friendTag == "requestee")
+                    return FriendStatus.Requestee;
+            }
+
+            return FriendStatus.Default;
         }
 
         private void OnReceivedPlayerIdsError(PlayFabError error) {
@@ -161,30 +167,23 @@ namespace DidStuffLab {
 
         private void OnReceivedPlayerIdsSuccess(GetTitlePlayersFromMasterPlayerAccountIdsResponse response) {
             print("Successfully received player ids");
-            foreach (var player in response.TitlePlayerAccounts.Values) {
-                print("Player entity key: " + player + " - Id: " + player.Id);
-                friendsEntities.Add(new EntityKey() {
-                    Id = player.Id,
-                    Type = player.Type
-                });
+            foreach (var player in response.TitlePlayerAccounts) {
+                var entityKey = new EntityKey {
+                    Id = player.Value.Id,
+                    Type = player.Value.Type
+                };
+                _friendsDictionary[player.Key].TitleEntityKey = entityKey;
+                print("Player entity key: " + player.Key + " - Id: " + player.Value.Id);
+                PlayFabLogin.FriendsEntityKeys.Add(entityKey);
             }
 
-            PlayFabLogin.FriendsEntityKeys = friendsEntities;
-            if (_friends.Count == friendsEntities.Count) GetFriendAvatarNames();
-            // if (friendsEntities.Count > 0) PlayFabLogin.SelectedFriendsEntityKeys.Add(PlayFabLogin.FriendsEntityKeys[0]);
-            Matchmaker.Instance.Initialize();
+            GetFriendAvatarNames();
+            // Matchmaker.Instance.Initialize(); TODO --> Initialize
         }
 
         private void GetFriendAvatarNames() {
-            foreach (var f in friendsEntities) {
-                PlayFabLogin.Instance.GetEntityAvatarName(f, true);
-            }
-        }
-
-        public void SelectFriend(string friend) {
-            if (friendsEntities.Count > 0) {
-                PlayFabLogin.SelectedFriendsEntityKeys.Add(PlayFabLogin.FriendsEntityKeys[0]);
-                print("Selected to play with " + PlayFabLogin.SelectedFriendsEntityKeys[0].Id);
+            foreach (var f in _friendsDictionary.Values) {
+                PlayFabLogin.Instance.GetEntityAvatarName(f.TitleEntityKey, true);
             }
         }
 
@@ -196,6 +195,8 @@ namespace DidStuffLab {
             }, OnSendFriendRequestSuccess, OnSendFriendRequestError);
         }
 
+        public void RemoveFriend(string username) => DenyFriendRequest(username); // automatically delete friendship via Cloudscript
+
         private void OnSendFriendRequestError(PlayFabError error) {
             print("Error sending friend request --> " + error.GenerateErrorReport());
             MainMenuManager.Instance.SpawnErrorToast(error.GenerateErrorReport(), 0.1f);
@@ -204,10 +205,10 @@ namespace DidStuffLab {
         private void OnSendFriendRequestSuccess(PlayFab.CloudScriptModels.ExecuteCloudScriptResult response) {
             print("Sent friend request successfully " + response);
             MainMenuManager.Instance.SpawnSuccessToast("Friend request sent!", 0.1f);
-            GetFriends(); // update  the friends
         }
 
-        public void AcceptFriendRequest(string friendPlayfabId) {
+        public void AcceptFriendRequest(string username) {
+            var friendPlayfabId = IdFromUsername(username);
             PlayFabCloudScriptAPI.ExecuteEntityCloudScript(new ExecuteEntityCloudScriptRequest() {
                 FunctionName = "AcceptFriendRequest",
                 FunctionParameter = new {FriendPlayFabId = friendPlayfabId},
@@ -223,7 +224,8 @@ namespace DidStuffLab {
             print("Accepted friend request success --> " + result);
         }
 
-        public void DenyFriendRequest(string friendPlayfabId) {
+        public void DenyFriendRequest(string username) {
+            var friendPlayfabId = IdFromUsername(username);
             PlayFabCloudScriptAPI.ExecuteEntityCloudScript(new ExecuteEntityCloudScriptRequest() {
                 FunctionName = "DenyFriendRequest",
                 FunctionParameter = new {FriendPlayFabId = friendPlayfabId},
@@ -255,59 +257,22 @@ namespace DidStuffLab {
 
         // TODO: Look more into groups of friends
         // https://docs.microsoft.com/en-us/gaming/playfab/features/social/groups/quickstart
-
-
-        public void GetFriendsDetails() {
-            for (var i = 0; i < _friends.Count; i++) {
-                var f = _friends[i];
-                var friend = new Friend {
-                    Username = f.Username,
-                    FriendInfo = f,
-                    EntityKey = friendsEntities[i],
-                };
-                if (f.Tags != null && f.Tags.Count > 0) {
-                    var friendTag = f.Tags[0];
-                    if (friendTag == FriendStatus.Confirmed.ToString() || friendTag == "confirmed")
-                        friend.FriendStatus = FriendStatus.Confirmed;
-                    else if (friendTag == FriendStatus.Requester.ToString() || friendTag == "requester")
-                        friend.FriendStatus = FriendStatus.Requester;
-                    else if (friendTag == FriendStatus.Requestee.ToString() || friendTag == "requestee")
-                        friend.FriendStatus = FriendStatus.Requestee;
-                    else friend.FriendStatus = FriendStatus.Default;
-                }
-
-                // friend.AvatarName = friendAvatarNames[friend.EntityKey.Id];
-                if(friendAvatarNames.ContainsKey(friend.EntityKey.Id)) friend.AvatarName = friendAvatarNames[friend.EntityKey.Id];
-                // friend.AvatarName = PlayFabLogin.Instance.GetEntityAvatarName(friend.EntityKey);
-                FriendsDetails.Add(friend);
-                print(friend.Username);
+        
+        public void AddAvatarToFriendDetails(EntityKey entityKey, string playerAvatarName) {
+            foreach (var f in _friendsDictionary.Where(f => f.Value.TitleEntityKey.Id == entityKey.Id)) {
+                f.Value.AvatarName = playerAvatarName;
             }
-        }
-
-
-        #region UI
-
-        //  public void AddFriendAction() => AddFriend(FriendIdType.Username, friendId.text);
-
-        #endregion
-
-        public void AddAvatarToFriendDetails() {
-            if(friendAvatarNames.Count == friendsEntities.Count) GetFriendsDetails();
-            /*
-            for (var i = 0; i < FriendsDetails.Count; i++) {
-                var f = FriendsDetails[i];
-                if(friendAvatarNames.ContainsKey(f.EntityKey.Id)) f.AvatarName = friendAvatarNames[f.EntityKey.Id];
-            }
-            */
         }
     }
 
     public class Friend {
+        public string MasterPlayfabId { get; set; }
         public string Username { get; set; }
         public string AvatarName { get; set; }
         public FriendInfo FriendInfo { get; set; }
-        public EntityKey EntityKey { get; set; }
+        public EntityKey TitleEntityKey { get; set; }
         public FriendStatus FriendStatus { get; set; }
+        public DateTime? LastLogin { get; set; }
     }
 
     public enum FriendStatus {

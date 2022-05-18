@@ -106,7 +106,8 @@ public class UiFriendsManager : MonoBehaviour
         _numberOfPages = Mathf.CeilToInt((float)_numberFriends / (float)_numberOfCards);
         _numberOfCardsOnLastPage = listToLoopUsernames.Count % _numberOfCards;
         
-        if(_numberFriends <= 2) DisableArrowsAndDots();
+        ActivateArrowsAndDots(_numberFriends > _numberOfCards);
+        
         _even = _numberFriends % 2 == 0;
     }
     
@@ -203,12 +204,12 @@ public class UiFriendsManager : MonoBehaviour
         _dots[i].color = dotActive;
     }
 
-        private void DisableArrowsAndDots()
+        private void ActivateArrowsAndDots(bool activate)
     {
-        dotParent.SetActive(false);
+        dotParent.SetActive(activate);
         foreach (var arrow in navigationArrows)
         {
-            arrow.SetActive(false);
+            arrow.SetActive(activate);
         }
     }
 private void DoTheDots()

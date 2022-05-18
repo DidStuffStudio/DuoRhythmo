@@ -11,13 +11,11 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         
         private List<OneOption> _otherButtonsToDisable = new  List<OneOption>();
 
-        [SerializeField] private bool defaultOption;
+        [SerializeField] private AbstractDidStuffButton buttonToEnableOnChoice;
         protected virtual void Start()
         {
             var otherButtons = transform.parent.GetComponentsInChildren<OneOption>().Where(btn => btn != this).ToList();
-
             _otherButtonsToDisable = otherButtons;
-            if(defaultOption) ActivateButton();
         }
         
 
@@ -34,10 +32,13 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
             
         }
         
+        
         protected override void StartInteractionCoolDown() { }
 
         protected override void ChangeToActiveState()
         {
+            if(buttonToEnableOnChoice != null)
+                if(buttonToEnableOnChoice.IsDisabled) buttonToEnableOnChoice.EnableButton();
             base.ChangeToActiveState();
             SetCanHover(false);
         }

@@ -141,6 +141,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Mouse or Trackpad
   secondaryText: Select this option if you use a regular input on your device, like
     clicks or taps.
@@ -163,7 +164,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 292821739}
 --- !u!1 &11298758
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +676,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 1
   primaryText: Continue
   secondaryText: 
   useInteractableLayer: 0
@@ -773,6 +775,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Accept
   secondaryText: 
   useInteractableLayer: 0
@@ -1175,6 +1178,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Ambient
   secondaryText: 
   useInteractableLayer: 0
@@ -1196,7 +1200,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 513689453}
 --- !u!114 &30824642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1468,6 +1472,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 
   secondaryText: 
   useInteractableLayer: 0
@@ -1489,7 +1494,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 1
+  buttonToEnableOnChoice: {fileID: 3315310027343783678}
 --- !u!65 &31632871
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1615,6 +1620,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Dwelltime
   secondaryText: This option is for you if you want to control your mouse input with
     a non-native accessible input device, and use dwells instead of clicks.
@@ -1637,7 +1643,7 @@ MonoBehaviour:
   localInteractionMethod: 1
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 179717812}
 --- !u!65 &34273897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1908,11 +1914,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1586161117}
-  - {fileID: 1448591007}
   - {fileID: 2106378255}
   - {fileID: 4359765714541643274}
   - {fileID: 1119235134}
   - {fileID: 1405428421}
+  - {fileID: 1448591007}
   m_Father: {fileID: 530605013}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2140,6 +2146,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Add friend
   secondaryText: 
   useInteractableLayer: 0
@@ -2378,6 +2385,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Delete beat
   secondaryText: 
   useInteractableLayer: 0
@@ -2539,6 +2547,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Ambient
   secondaryText: 
   useInteractableLayer: 0
@@ -2560,7 +2569,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 3315310028138466443}
 --- !u!114 &54950073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3648,6 +3657,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 2
   secondaryText: 
   useInteractableLayer: 0
@@ -3825,6 +3835,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Handpan
   secondaryText: 
   useInteractableLayer: 0
@@ -3846,7 +3857,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 1
+  buttonToEnableOnChoice: {fileID: 513689453}
 --- !u!114 &121138745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4719,6 +4730,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: No, go back
   secondaryText: 
   useInteractableLayer: 0
@@ -4849,6 +4861,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 1
   primaryText: Continue
   secondaryText: 
   useInteractableLayer: 0
@@ -5736,6 +5749,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 1
   secondaryText: 
   useInteractableLayer: 0
@@ -5820,6 +5834,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.4117647, g: 0.40784314, b: 0.3882353, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 3
   secondaryText: 
   useInteractableLayer: 0
@@ -5841,7 +5856,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 1
+  buttonToEnableOnChoice: {fileID: 21180852}
 --- !u!114 &230261025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6067,6 +6082,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -6337,6 +6353,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 3
   secondaryText: 
   useInteractableLayer: 0
@@ -7090,6 +7107,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Eye tracker
   secondaryText: Select this option if you use a built-in, native eyetracker or other
     accessible input methods on your device.
@@ -7112,7 +7130,7 @@ MonoBehaviour:
   localInteractionMethod: 2
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 179717812}
 --- !u!65 &282478008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7415,6 +7433,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 1
   primaryText: Continue
   secondaryText: 
   useInteractableLayer: 0
@@ -7550,6 +7569,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Classic
   secondaryText: 
   useInteractableLayer: 0
@@ -7571,7 +7591,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 513689453}
 --- !u!114 &300271435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7772,6 +7792,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 2
   secondaryText: 
   useInteractableLayer: 0
@@ -8140,6 +8161,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Decline
   secondaryText: 
   useInteractableLayer: 0
@@ -8242,6 +8264,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 5
   secondaryText: 
   useInteractableLayer: 0
@@ -8485,6 +8508,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -9129,6 +9153,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Continue
   secondaryText: 
   useInteractableLayer: 0
@@ -9233,7 +9258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &349477089
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10763,6 +10788,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 8
   secondaryText: 
   useInteractableLayer: 0
@@ -11266,6 +11292,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 9
   secondaryText: 
   useInteractableLayer: 0
@@ -11724,6 +11751,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Electronic
   secondaryText: 
   useInteractableLayer: 0
@@ -11745,7 +11773,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 513689453}
 --- !u!114 &441399952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11863,6 +11891,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.4117647, g: 0.40784314, b: 0.3882353, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 3
   secondaryText: 
   useInteractableLayer: 0
@@ -11884,7 +11913,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 1
+  buttonToEnableOnChoice: {fileID: 1038075779}
 --- !u!1 &447468730
 GameObject:
   m_ObjectHideFlags: 0
@@ -12192,6 +12221,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 5
   secondaryText: 
   useInteractableLayer: 0
@@ -12527,6 +12557,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Load beats
   secondaryText: 
   useInteractableLayer: 0
@@ -14091,6 +14122,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 1
   primaryText: Let's go!
   secondaryText: 
   useInteractableLayer: 0
@@ -14196,6 +14228,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Remove friend
   secondaryText: 
   useInteractableLayer: 0
@@ -14856,6 +14889,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Remove friend
   secondaryText: 
   useInteractableLayer: 0
@@ -15136,6 +15170,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 8
   secondaryText: 
   useInteractableLayer: 0
@@ -15565,6 +15600,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Accept
   secondaryText: 
   useInteractableLayer: 0
@@ -15794,6 +15830,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 
   secondaryText: 
   useInteractableLayer: 0
@@ -15899,6 +15936,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: No, go back
   secondaryText: 
   useInteractableLayer: 0
@@ -16793,6 +16831,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Mouse or Trackpad
   secondaryText: Select this option if you use a regular input on your device, like
     clicks or taps.
@@ -16815,7 +16854,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 179717812}
 --- !u!65 &586592641
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17147,6 +17186,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Dwelltime
   secondaryText: This option is for you if you want to control your mouse input with
     a non-native accessible input device, and use dwells instead of clicks.
@@ -17169,7 +17209,7 @@ MonoBehaviour:
   localInteractionMethod: 1
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 292821739}
 --- !u!1 &596152178
 GameObject:
   m_ObjectHideFlags: 0
@@ -17491,6 +17531,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -18901,6 +18942,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Invite
   secondaryText: 
   useInteractableLayer: 0
@@ -19079,6 +19121,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Invite
   secondaryText: 
   useInteractableLayer: 0
@@ -25213,6 +25256,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.4117647, g: 0.40784314, b: 0.3882353, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 4
   secondaryText: 
   useInteractableLayer: 0
@@ -25234,7 +25278,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 0.75
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 21180852}
 --- !u!114 &693999341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25360,6 +25404,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.4117647, g: 0.40784314, b: 0.3882353, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 5
   secondaryText: 
   useInteractableLayer: 0
@@ -25381,7 +25426,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 0.5
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 21180852}
 --- !u!114 &698121169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25582,6 +25627,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -25764,6 +25810,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 0}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 
   secondaryText: 
   useInteractableLayer: 0
@@ -26047,6 +26094,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 0}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 
   secondaryText: 
   useInteractableLayer: 0
@@ -26514,6 +26562,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Electronic
   secondaryText: 
   useInteractableLayer: 0
@@ -26535,7 +26584,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 3315310028138466443}
 --- !u!114 &741556506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28233,6 +28282,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 4
   secondaryText: 
   useInteractableLayer: 0
@@ -28664,6 +28714,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 0
   secondaryText: 
   useInteractableLayer: 0
@@ -28890,6 +28941,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.4117647, g: 0.40784314, b: 0.3882353, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 2
   secondaryText: 
   useInteractableLayer: 0
@@ -28911,7 +28963,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1.5
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 21180852}
 --- !u!114 &813212666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29839,6 +29891,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 7
   secondaryText: 
   useInteractableLayer: 0
@@ -30875,6 +30928,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 3
   secondaryText: 
   useInteractableLayer: 0
@@ -31360,6 +31414,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 3
   secondaryText: 
   useInteractableLayer: 0
@@ -31444,6 +31499,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 5
   secondaryText: 
   useInteractableLayer: 0
@@ -31547,6 +31603,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: No, go back
   secondaryText: 
   useInteractableLayer: 0
@@ -32083,6 +32140,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Sign up
   secondaryText: 
   useInteractableLayer: 0
@@ -32779,6 +32837,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Continue as guest
   secondaryText: 
   useInteractableLayer: 0
@@ -32901,6 +32960,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 2
   secondaryText: 
   useInteractableLayer: 0
@@ -34583,6 +34643,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 1
   primaryText: Continue
   secondaryText: 
   useInteractableLayer: 0
@@ -34849,6 +34910,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Remove friend
   secondaryText: 
   useInteractableLayer: 0
@@ -35109,6 +35171,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 1
   primaryText: Load beat
   secondaryText: 
   useInteractableLayer: 0
@@ -35341,6 +35404,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 9
   secondaryText: 
   useInteractableLayer: 0
@@ -35646,6 +35710,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Handpan
   secondaryText: 
   useInteractableLayer: 0
@@ -35667,7 +35732,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 1
+  buttonToEnableOnChoice: {fileID: 3315310028138466443}
 --- !u!114 &1072743632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36161,6 +36226,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Revoke
   secondaryText: 
   useInteractableLayer: 0
@@ -36524,6 +36590,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.4117647, g: 0.40784314, b: 0.3882353, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 1
   secondaryText: 
   useInteractableLayer: 0
@@ -36545,7 +36612,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 2
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 1038075779}
 --- !u!1 &1097749787
 GameObject:
   m_ObjectHideFlags: 0
@@ -37122,6 +37189,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -37571,7 +37639,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 35347335}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -38132,6 +38200,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 8
   secondaryText: 
   useInteractableLayer: 0
@@ -38603,6 +38672,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 6
   secondaryText: 
   useInteractableLayer: 0
@@ -38833,6 +38903,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 
   secondaryText: 
   useInteractableLayer: 0
@@ -38854,7 +38925,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 1051816256}
 --- !u!65 &1177910929
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38936,6 +39007,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Remove friend
   secondaryText: 
   useInteractableLayer: 0
@@ -39469,6 +39541,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Continue
   secondaryText: 
   useInteractableLayer: 0
@@ -39815,6 +39888,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 6
   secondaryText: 
   useInteractableLayer: 0
@@ -40184,6 +40258,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 
   secondaryText: 
   useInteractableLayer: 0
@@ -40205,7 +40280,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 1051816256}
 --- !u!65 &1234774771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40493,6 +40568,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 
   secondaryText: 
   useInteractableLayer: 0
@@ -40514,7 +40590,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 1051816256}
 --- !u!65 &1249519994
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40955,6 +41031,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 6
   secondaryText: 
   useInteractableLayer: 0
@@ -41206,6 +41283,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Djembe
   secondaryText: 
   useInteractableLayer: 0
@@ -41227,7 +41305,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 513689453}
 --- !u!114 &1292758759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41652,6 +41730,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 7
   secondaryText: 
   useInteractableLayer: 0
@@ -42010,6 +42089,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -42439,6 +42519,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 
   secondaryText: 
   useInteractableLayer: 0
@@ -42460,7 +42541,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 3315310027343783678}
 --- !u!65 &1333931155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43991,7 +44072,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 35347335}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -44066,6 +44147,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Classic
   secondaryText: 
   useInteractableLayer: 0
@@ -44087,7 +44169,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 3315310028138466443}
 --- !u!1 &1407819167
 GameObject:
   m_ObjectHideFlags: 0
@@ -44524,6 +44606,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 4
   secondaryText: 
   useInteractableLayer: 0
@@ -45071,6 +45154,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Djembe
   secondaryText: 
   useInteractableLayer: 0
@@ -45092,7 +45176,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 3315310028138466443}
 --- !u!114 &1441140246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45437,7 +45521,7 @@ RectTransform:
   - {fileID: 31632869}
   - {fileID: 1333931153}
   m_Father: {fileID: 35347335}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -46371,6 +46455,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.4117647, g: 0.40784314, b: 0.3882353, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 4
   secondaryText: 
   useInteractableLayer: 0
@@ -46392,7 +46477,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 0.75
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 1038075779}
 --- !u!1 &1487443844
 GameObject:
   m_ObjectHideFlags: 0
@@ -46486,6 +46571,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.4117647, g: 0.40784314, b: 0.3882353, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 2
   secondaryText: 
   useInteractableLayer: 0
@@ -46507,7 +46593,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1.5
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 1038075779}
 --- !u!1 &1493366030
 GameObject:
   m_ObjectHideFlags: 0
@@ -48406,6 +48492,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Invite
   secondaryText: 
   useInteractableLayer: 0
@@ -48961,6 +49048,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 4
   secondaryText: 
   useInteractableLayer: 0
@@ -50102,6 +50190,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 1
   secondaryText: 
   useInteractableLayer: 0
@@ -50324,6 +50413,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.4117647, g: 0.40784314, b: 0.3882353, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 1
   secondaryText: 
   useInteractableLayer: 0
@@ -50345,7 +50435,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 2
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 21180852}
 --- !u!114 &1663906524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50457,6 +50547,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 1
   secondaryText: 
   useInteractableLayer: 0
@@ -51954,6 +52045,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Eye tracker
   secondaryText: Select this option if you use a built-in, native eyetracker or other
     accessible input methods on your device.
@@ -51976,7 +52068,7 @@ MonoBehaviour:
   localInteractionMethod: 2
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 292821739}
 --- !u!1 &1744154226
 GameObject:
   m_ObjectHideFlags: 0
@@ -53910,6 +54002,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 0}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 
   secondaryText: 
   useInteractableLayer: 0
@@ -54145,6 +54238,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 
   secondaryText: 
   useInteractableLayer: 0
@@ -54166,7 +54260,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 1051816256}
 --- !u!65 &1849907122
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54504,6 +54598,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
+  startDisabled: 0
   primaryText: Cancel
   secondaryText: 
   useInteractableLayer: 0
@@ -54724,6 +54819,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 7
   secondaryText: 
   useInteractableLayer: 0
@@ -55224,6 +55320,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 0
   secondaryText: 
   useInteractableLayer: 0
@@ -55724,6 +55821,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.4117647, g: 0.40784314, b: 0.3882353, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 5
   secondaryText: 
   useInteractableLayer: 0
@@ -55745,7 +55843,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 0.5
   dwellScaleX: 0
-  defaultOption: 0
+  buttonToEnableOnChoice: {fileID: 1038075779}
 --- !u!1 &1932352914
 GameObject:
   m_ObjectHideFlags: 0
@@ -56004,6 +56102,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Log out
   secondaryText: 
   useInteractableLayer: 0
@@ -56318,6 +56417,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 0
   secondaryText: 
   useInteractableLayer: 0
@@ -56507,6 +56607,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -57546,6 +57647,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 9
   secondaryText: 
   useInteractableLayer: 0
@@ -58693,7 +58795,7 @@ RectTransform:
   m_LocalScale: {x: 0.99999, y: 0.99999, z: 0.99999}
   m_Children: []
   m_Father: {fileID: 35347335}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -59576,6 +59678,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Continue
   secondaryText: 
   useInteractableLayer: 0
@@ -71755,6 +71858,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: 
   secondaryText: 
   useInteractableLayer: 0
@@ -74897,6 +75001,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Continue
   secondaryText: 
   useInteractableLayer: 0
@@ -74939,6 +75044,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Account Settings
   secondaryText: 
   useInteractableLayer: 0
@@ -75127,6 +75233,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Continue
   secondaryText: 
   useInteractableLayer: 0
@@ -75181,6 +75288,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Log out
   secondaryText: 
   useInteractableLayer: 0
@@ -75259,6 +75367,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Log in
   secondaryText: 
   useInteractableLayer: 0
@@ -75447,6 +75556,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 1
   primaryText: Confirm
   secondaryText: 
   useInteractableLayer: 0
@@ -75501,6 +75611,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Yes, delete account
   secondaryText: 
   useInteractableLayer: 0
@@ -76213,6 +76324,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Log out
   secondaryText: 
   useInteractableLayer: 0
@@ -76255,6 +76367,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Privacy Policy
   secondaryText: 
   useInteractableLayer: 0
@@ -76297,6 +76410,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Interaction Settings
   secondaryText: 
   useInteractableLayer: 0
@@ -76607,6 +76721,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Log out
   secondaryText: 
   useInteractableLayer: 0
@@ -77051,6 +77166,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Feedback
   secondaryText: 
   useInteractableLayer: 0
@@ -77469,6 +77585,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 1
   primaryText: Let's go!
   secondaryText: 
   useInteractableLayer: 0
@@ -77687,6 +77804,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Check friends
   secondaryText: 
   useInteractableLayer: 0
@@ -77729,6 +77847,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Continue
   secondaryText: 
   useInteractableLayer: 0
@@ -78433,6 +78552,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Let's go!
   secondaryText: 
   useInteractableLayer: 0
@@ -78475,6 +78595,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Let's go!
   secondaryText: 
   useInteractableLayer: 0
@@ -82652,7 +82773,7 @@ RectTransform:
   - {fileID: 7000487757047866476}
   - {fileID: 3315310027638980587}
   m_Father: {fileID: 35347335}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -91276,6 +91397,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Delete Account
   secondaryText: 
   useInteractableLayer: 0
@@ -96001,6 +96123,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -96052,6 +96175,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Remove friend
   secondaryText: 
   useInteractableLayer: 0
@@ -96091,6 +96215,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -96130,6 +96255,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -96843,6 +96969,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Revoke
   secondaryText: 
   useInteractableLayer: 0
@@ -97016,6 +97143,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -97055,6 +97183,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: http://duorhythmo.frill.co/
   secondaryText: 
   useInteractableLayer: 0
@@ -97756,6 +97885,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: https://t.maze.co/84786499
   secondaryText: 
   useInteractableLayer: 0
@@ -97941,6 +98071,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Decline
   secondaryText: 
   useInteractableLayer: 0
@@ -98654,6 +98785,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -99045,6 +99177,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -99084,6 +99217,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0
@@ -99403,6 +99537,7 @@ MonoBehaviour:
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  startDisabled: 0
   primaryText: Clear Pattern
   secondaryText: 
   useInteractableLayer: 0

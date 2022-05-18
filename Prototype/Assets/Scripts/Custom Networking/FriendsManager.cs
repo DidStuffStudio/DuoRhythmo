@@ -79,6 +79,7 @@ namespace DidStuffLab {
                         MasterPlayfabId = f.FriendPlayFabId,
                         Username = f.Username,
                         FriendInfo = f,
+                        AvatarName = "Avatar1",
                         LastLogin = f.Profile.LastLogin,
                         FriendStatus = GetFriendTag(f)
                     });

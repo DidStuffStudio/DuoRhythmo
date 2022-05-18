@@ -136,6 +136,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		[SerializeField]
 		protected Color activeColour = Color.green, inactiveColour = Color.red, disabledColour = Color.grey;
 		protected RectTransform _dwellGfx;
+		[SerializeField] private bool startDisabled;
 		
 		[HideInInspector] public string primaryText, secondaryText;
 		[HideInInspector] public bool useInteractableLayer;
@@ -195,6 +196,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			get => _isHover;
 			set => _isHover = value;
 		}
+
+		public bool IsDisabled => _isDisabled;
 
 		protected void SetInteractionMethod(InteractionMethod method)
 		{
@@ -276,6 +279,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			ToggleDwellGfx(false);
 			_dwellGfx.localScale = zero;
 			ChangeToInactiveState();
+			if(startDisabled) DisableButton();
 		}
 
 		protected virtual void SetScaleOfChildren()
@@ -530,6 +534,16 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (useText && changeTextOrIconColour) _primaryText.color = inactiveTextOrIconColour;
 			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = inactiveTextOrIconColour;
 		}
+		
+		protected virtual void ChangeToDisabledState()
+		{
+			_isActive = false;
+			_mainImage.color = disabledColour;
+			_dwellGfxImg.color = activeColour;
+			if (useIcon && changeTextOrIconColour) _iconImage.color = inactiveTextOrIconColour;
+			if (useText && changeTextOrIconColour) _primaryText.color = inactiveTextOrIconColour;
+			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = inactiveTextOrIconColour;
+		}
 
 		private void SetColours()
 		{
@@ -582,6 +596,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		private void MouseHover()
 		{
+			if (IsDisabled) return;
 			_mainImage.color = _isActive ? activeHoverColour : inactiveHoverColour;
 		}
 
@@ -590,12 +605,25 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_mainImage.color = _isActive ? activeColour : inactiveColour;
 		}
 
+		public void DisableButton()
+		{
+			_isDisabled = true;
+			ChangeToDisabledState();
+		}
+
+		public void EnableButton()
+		{
+			_isDisabled = false;
+			ChangeToInactiveState();
+		}
+
 		#endregion
 		
 		#region Dwell
 		
 		protected virtual void DwellScale()
 		{
+			if (IsDisabled) return;
 			if ((!_provideDwellFeedbackGlobal && !interactionSetting) || !_canHover) return;
 			_dwelling = true;
 			var d = dwellTimeSetting ? localDwellTime : _dwellTime;
@@ -639,6 +667,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private void TobiiInput()
 		{
 			if (!TobiiAPI.IsConnected) return;
+			if (IsDisabled) return;
 			if (_gazeAware.HasGazeFocus)
 			{
 				IsHover = true;
@@ -657,6 +686,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		private void TouchInput()
 		{
+			if (IsDisabled) return;
 			if (Input.touchCount <= 0) return;
 			var touch = Input.GetTouch(0);
 			if (!Physics.Raycast(MainCamera.ScreenToWorldPoint(touch.position), forward, out var hit,
@@ -673,6 +703,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		private void OnMouseOver()
 		{
+			if (IsDisabled) return;
 			if(!_canHover) return;
 			IsHover = true;
 			OnHover?.Invoke();
@@ -686,6 +717,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		public void OnPointerEnter(PointerEventData eventData)
 		{
+			if (IsDisabled) return;
 			if(!_canHover || localInteractionMethod == InteractionMethod.Tobii|| _interactionMethod == InteractionMethod.Tobii) return;
 			IsHover = true;
 			OnHover?.Invoke();

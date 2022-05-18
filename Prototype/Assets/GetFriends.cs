@@ -13,6 +13,7 @@ public class GetFriends : MonoBehaviour
     private List<string> _confirmedFriendUsernames = new List<string>();
     private List<string> _allFriendAvatars = new List<string>();
     private List<string> _confirmedFriendAvatars = new List<string>();
+    private List<string> _confirmedFriendsOnlineStatus = new List<string>();
     private Dictionary<string, FriendStatus> _friendStatusMap = new Dictionary<string, FriendStatus>();
     [SerializeField] private List<UiFriendsManager> managersToUpdate;
     private void OnEnable()
@@ -48,6 +49,7 @@ public class GetFriends : MonoBehaviour
         var requesterAvatars = new List<string>(); //Friend request
         var requesteeAvatars = new List<string>(); //Pending
         var confirmedAvatars = new List<string>(); //Friend
+        var confirmedOnlineStatus = new List<bool>(); //Friend
         
         foreach (var friend in _friends)
         {
@@ -60,12 +62,13 @@ public class GetFriends : MonoBehaviour
                 
                 case FriendStatus.Requester:
                     requesterUsernames.Add(friend.Username);
-                    requesterAvatars.Add(friend.AvatarName);                    
+                    requesterAvatars.Add(friend.AvatarName);
                     break;
                 
                 case FriendStatus.Confirmed:
                     confirmedUsernames.Add(friend.Username);
                     confirmedAvatars.Add(friend.AvatarName);
+                    confirmedOnlineStatus.Add(friend.IsOnline);
                     break;
                 
                 case FriendStatus.Default:
@@ -76,6 +79,7 @@ public class GetFriends : MonoBehaviour
         
         _confirmedFriendUsernames.AddRange(confirmedUsernames);
         _confirmedFriendAvatars.AddRange(confirmedAvatars);
+        _confirmedFriendsOnlineStatus.AddRange(_confirmedFriendsOnlineStatus);
 
         for (int i = 0; i < requesterUsernames.Count; i++)
         {

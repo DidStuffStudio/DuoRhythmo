@@ -375,7 +375,7 @@ namespace Managers
          t.GetComponent<Toast>().SetText(toastText);
       }
       public void SetDrumType(int i) => JamSessionDetails.Instance.DrumTypeIndex = i;
-   
+
       public void LoadJamSession() => SceneManager.LoadScene(1);
 
       private Vector2 Berp(Vector2 start, Vector2 end, float value)

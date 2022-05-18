@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DidStuffLab;
 using Managers;
 using UnityEngine;
 using PlayFab;
@@ -44,6 +45,9 @@ namespace ctsalidis {
         private Coroutine pollTicketCoroutine;
         private Coroutine pollFriendMatchInvites;
 
+        private string _playerToMatchWithId = "";
+        private string _selectedDrumToPlayWith = "";
+        
         private string matchmakerId = "";
         private string _friendToJoinId = null;
         private string _friendToJoinUsername = null;
@@ -68,22 +72,35 @@ namespace ctsalidis {
             }
         }
 
-        public void StartMatchmaking() {
-            if (PlayFabLogin.SelectedFriendsEntityKeys.Count > 0)
-                matchmakerId = PlayFabLogin.EntityKey.Id; // this person would 'create' the match
-            else if (_friendToJoinId != null)
-                matchmakerId =
-                    _friendToJoinId; // if the user hasn't selected anyone, and has an invitation from friend, join that
+        public void InviteFriendToMatchmaking(string username) {
+            _playerToMatchWithId = FriendsManager.Instance.IdFromUsername(username); 
+            // StartMatchmaking();
+        }
+
+        public void SelectDrumAndStartMatch(string drumName) {
+            _selectedDrumToPlayWith = drumName;
+            StartMatchmaking();
+        }
+
+        private void StartMatchmaking() {
+            matchmakerId = PlayFabLogin.AuthenticationContext.EntityId; // this person would 'create' the match
+            
             var Latencies = new object[] {
                 new {
                     region = "NorthEurope",
                     latency = 100
                 },
             };
+            /*
+            var SelectedDrums = new object[] { new {
+                drum = _selectedDrumToPlayWith
+            } };
+            */
             var dataObjectWithoutFriends = new {Latencies};
             var dataObjectWithFriends = new {
                 Latencies,
                 MatchmakerId = matchmakerId,
+                Drum = _selectedDrumToPlayWith,
             };
 
             StopCoroutine(pollFriendMatchInvites);
@@ -119,10 +136,6 @@ namespace ctsalidis {
                 OnMatchmakingError
             );
         }
-
-        // https://docs.microsoft.com/en-us/gaming/playfab/features/multiplayer/lobby/lobby-matchmaking-sdks/multiplayer-unity-plugin-quickstart#join-a-matchmaking-ticket
-        // https://docs.microsoft.com/en-us/gaming/playfab/features/multiplayer/matchmaking/quickstart#group-members-join-the-match-ticket
-        public void JoinMatchmaking() => StartMatchmaking();
 
         public void LeaveQueue() {
             PlayFabMultiplayerAPI.CancelMatchmakingTicket(
@@ -263,18 +276,13 @@ namespace ctsalidis {
         // Otherwise consider looking into makeEntityAPICall in CloudScript --> (Available in Title --> Automation, Revisions(Legacy))
         // look into DaperDino's getting and setting title player data --> https://github.com/DapperDino/PlayFab-Tutorials/blob/main/Assets/Mirror/Examples/Pong/Scripts/Player.cs 
         private void SetMatchmakingTicketIdObject(bool clear = false) {
-            var friends = new string[PlayFabLogin.SelectedFriendsEntityKeys.Count];
+            var friends = new[]{_playerToMatchWithId};
             var count = 0;
-
-            // TODO --> Change this for loop to actual selected friend
-            foreach (var friend in PlayFabLogin.SelectedFriendsEntityKeys) {
-                friends[count] = friend.Id;
-                count++;
-            }
 
             var data = new Dictionary<string, object>() {
                 {"MatchmakingTicketId", clear ? "" : ticketId},
-                {"Owner", clear ? "" : PlayFabLogin.AuthenticationContext.EntityId},
+                {"OwnerId", clear ? "" : PlayFabLogin.AuthenticationContext.EntityId},
+                {"OwnerUsername", clear ? "" : PlayFabLogin.Instance.Username},
                 {"Friends", clear ? new string[0] : friends}
             };
             var dataList = new List<SetObject>() {

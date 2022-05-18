@@ -31,6 +31,7 @@ public class GetFriends : MonoBehaviour
                 manager.ConfirmedFriendAvatars = _confirmedFriendAvatars;
                 manager.ConfirmedFriendUsernames = _confirmedFriendUsernames;
                 manager.FriendStatusMap = _friendStatusMap;
+                manager.AllFriendOnlineStatuses = _confirmedFriendsOnlineStatus;
             }
         }
         

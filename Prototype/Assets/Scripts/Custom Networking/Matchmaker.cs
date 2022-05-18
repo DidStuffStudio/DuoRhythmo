@@ -85,7 +85,10 @@ namespace ctsalidis {
 
         private void StartMatchmaking() {
             matchmakerId = PlayFabLogin.AuthenticationContext.EntityId; // this person would 'create' the match
-            if (_friendToJoinId != null) matchmakerId = _friendToJoinId;
+            if (_friendToJoinId != null) {
+                matchmakerId = _friendToJoinId;
+                print("Not matchmaking with a friend, so let's start random matchmaking" + matchmakerId);
+            }
 
             var Latencies = new object[] {
                 new {
@@ -102,7 +105,7 @@ namespace ctsalidis {
             var dataObjectWithFriends = new {
                 Latencies,
                 MatchmakerId = matchmakerId,
-                Drum = _selectedDrumToPlayWith,
+                DrumType = _selectedDrumToPlayWith,
             };
 
             StopCoroutine(pollFriendMatchInvites);
@@ -127,7 +130,7 @@ namespace ctsalidis {
                 // The ticket creator specifies their own player attributes.
                 Creator = creator,
                 // Cancel matchmaking if a match is not found after 120 seconds.
-                GiveUpAfterSeconds = 10,
+                GiveUpAfterSeconds = 120,
 
                 // The name of the queue to submit the ticket into.
                 QueueName = QueueName
@@ -203,7 +206,7 @@ namespace ctsalidis {
         private void SendBackToMainMenuWithErrorMessage(string error) {
             MainMenuManager.Instance.DeactivatePanel(18); // hardcoded to waiting for match panel index
             MainMenuManager.Instance.ActivatePanel(6); // hardcoded to main menu panel index
-            MainMenuManager.Instance.SpawnErrorToast("Match cancelled due to " + error, 0.1f); // give out error message
+            MainMenuManager.Instance.SpawnErrorToast("Match request cancelled", 0.1f); // give out error message
         }
 
         private IEnumerator PollTicket(string ticketId) {
@@ -239,7 +242,7 @@ namespace ctsalidis {
                     Debug.LogError(result.CancellationReasonString);
                     StopCoroutine(pollTicketCoroutine);
                     SetMatchmakingTicketIdObject(clear: true);
-                    SendBackToMainMenuWithErrorMessage(result.CancellationReasonString);
+                    if(result.CancellationReasonString.Contains("Timeout")) SendBackToMainMenuWithErrorMessage(result.CancellationReasonString);
                     pollFriendMatchInvites = StartCoroutine(PollFriendMatchInvites());
                     break;
             }

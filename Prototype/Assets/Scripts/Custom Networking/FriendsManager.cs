@@ -10,9 +10,7 @@ using PlayFab.ClientModels;
 using PlayFab.CloudScriptModels;
 using PlayFab.MultiplayerModels;
 using PlayFab.ProfilesModels;
-using UnityEngine.UI;
 using EntityKey = PlayFab.MultiplayerModels.EntityKey;
-using ExecuteCloudScriptResult = PlayFab.ClientModels.ExecuteCloudScriptResult;
 
 // ref --> https://docs.microsoft.com/en-us/gaming/playfab/features/social/friends/quickstart
 
@@ -23,7 +21,7 @@ namespace DidStuffLab {
         private Dictionary<string, Friend> _friendsDictionary = new Dictionary<string, Friend>();
         public IEnumerable<Friend> FriendsDetails => _friendsDictionary.Values.ToList();
         
-        private string IdFromUsername(string username) {
+        public string IdFromUsername(string username) {
             foreach (var f in _friendsDictionary.Where(f => f.Value.Username == username)) {
                 return f.Key;
             }

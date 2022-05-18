@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ctsalidis;
 using UnityEngine;
 using DidStuffLab;
 
@@ -28,6 +29,12 @@ public class JamSessionDetails : MonoBehaviour {
     public List<Player> players = new List<Player>();
     public Player otherPlayer;
 
+    public void StartMatchmaking() {
+        // TODO --> Probably check if the we're bín the main menu scene for this - otherwise return void
+        isSoloMode = false;
+        Matchmaker.Instance.SelectDrumAndStartMatch(DrumTypeIndex.ToString());
+    }
+    
     public void AddPlayer(Player player) {
         players.Add(player);
         if (!player.isLocalPlayer) otherPlayer = player;

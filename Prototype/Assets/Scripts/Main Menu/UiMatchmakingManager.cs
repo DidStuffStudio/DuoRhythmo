@@ -8,6 +8,7 @@ public class UiMatchmakingManager : MonoBehaviour {
     public static UiMatchmakingManager Instance => _instance;
 
     private void Start() {
+        print("Initializing uimatchmakingmanager");
         if (_instance == null) _instance = this;
     }
 

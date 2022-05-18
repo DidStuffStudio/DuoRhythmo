@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using ctsalidis;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InviteFriendsPanel : UiFriendsManager {
     [SerializeField] private List<Image> _onlineStatusImages = new List<Image>();
     [SerializeField] private Color _active = Color.green, _inactive = Color.red;
+    
     protected override void OnEnable()
     {
         _numberOfCards = friendCards.Count;
@@ -24,4 +26,6 @@ public class InviteFriendsPanel : UiFriendsManager {
             _onlineStatusImages[i].color = _currentOnlineStatuses[i] ? _active : _inactive;
         }
     }
+
+    public void InviteFriendToMatch(int index) => Matchmaker.Instance.InviteFriendToMatchmaking(_currentUsernames[index]);
 }

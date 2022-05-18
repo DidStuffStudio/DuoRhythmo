@@ -9233,7 +9233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &349477089
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38854,7 +38854,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 1
+  defaultOption: 0
 --- !u!65 &1177910929
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40205,7 +40205,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 1
+  defaultOption: 0
 --- !u!65 &1234774771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40514,7 +40514,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 1
+  defaultOption: 0
 --- !u!65 &1249519994
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54166,7 +54166,7 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
-  defaultOption: 1
+  defaultOption: 0
 --- !u!65 &1849907122
 BoxCollider:
   m_ObjectHideFlags: 0

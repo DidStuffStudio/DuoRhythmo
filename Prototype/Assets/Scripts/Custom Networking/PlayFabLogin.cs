@@ -118,12 +118,17 @@ public class PlayFabLogin : MonoBehaviour {
             CustomId = SystemInfo.deviceUniqueIdentifier
         };
 
-        PlayFabClientAPI.LoginWithCustomID(request, OnPlayfabLoginSuccess, OnLoginError);
+        PlayFabClientAPI.LoginWithCustomID(request, OnPlayfabLoginAsGuestSuccess, OnLoginError);
     }
 
     private void OnPlayfabLoginSuccess(LoginResult result) {
         print("Logged in successfully");
         ProceedWithLogin(result.AuthenticationContext, result.InfoResultPayload.AccountInfo.Username, false);
+    }
+
+    private void OnPlayfabLoginAsGuestSuccess(LoginResult result) {
+        print("Logged in as guest successfully, with id " + result.PlayFabId);
+        ProceedWithLogin(result.AuthenticationContext, result.PlayFabId, false);
     }
 
     private void ProceedWithLogin(PlayFabAuthenticationContext authenticationContext, string username,  bool createdNewAccount) {

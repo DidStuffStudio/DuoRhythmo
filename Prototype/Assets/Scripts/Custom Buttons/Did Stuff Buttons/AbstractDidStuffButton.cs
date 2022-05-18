@@ -47,7 +47,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			abstractDidStuffButton.useSecondaryText = GUILayout.Toggle(abstractDidStuffButton.useSecondaryText, "Use secondary text on the button");
 			abstractDidStuffButton.interactionSetting = GUILayout.Toggle(abstractDidStuffButton.interactionSetting, "Does this button set the interaction method");
 			abstractDidStuffButton.dwellTimeSetting = GUILayout.Toggle(abstractDidStuffButton.dwellTimeSetting, "Does this button set dwell time");
-
+			abstractDidStuffButton.changeTextToSameAsButton = GUILayout.Toggle(abstractDidStuffButton.changeTextToSameAsButton, "Do you want the buttons colours?");
 			if (abstractDidStuffButton.useInteractableLayer)
 			{
 				abstractDidStuffButton.interactableLayer = EditorGUILayout.LayerField("Interactable Layer",
@@ -64,11 +64,14 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 			if (abstractDidStuffButton.changeTextOrIconColour)
 			{
+				if (!abstractDidStuffButton.changeTextToSameAsButton)
+				{
 				abstractDidStuffButton.activeTextOrIconColour = EditorGUILayout.ColorField("Active Text or Icon Colour",
 					abstractDidStuffButton.activeTextOrIconColour);
 				abstractDidStuffButton.inactiveTextOrIconColour =
 					EditorGUILayout.ColorField("Inactive Text or Icon Colour",
 						abstractDidStuffButton.inactiveTextOrIconColour);
+				}
 			}
 
 			if (abstractDidStuffButton.useIcon)
@@ -148,6 +151,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		public Color inactiveHoverColour, activeHoverColour;
 
 		[HideInInspector] public bool changeTextOrIconColour = false;
+		[HideInInspector] public bool changeTextToSameAsButton = false;
 		[HideInInspector] public Color activeTextOrIconColour = Color.white, inactiveTextOrIconColour = Color.black;
 		[HideInInspector] public bool useIcon, useText;
 		[HideInInspector] public bool useSecondaryText = false;
@@ -225,7 +229,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			OnDeactivate += DeactivateButton;
 			
 			if (DelegateInteractionMethod(true)) return;
-			
+
+			_initialised = false;
+
 		}
 
 		private bool DelegateInteractionMethod(bool enable) {
@@ -382,6 +388,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected void ActivatedScaleFeedback()
 		{
+			print("called");
 			ToggleDwellGfx(true);
 			_dwellGfx.localScale = one;
 			_playActivatedScale = true;
@@ -520,9 +527,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_isActive = true; 
 			_mainImage.color = activeColour;
 			_dwellGfxImg.color = inactiveColour;
-			if (useIcon && changeTextOrIconColour) _iconImage.color = activeTextOrIconColour;
-			if (useText && changeTextOrIconColour) _primaryText.color = activeTextOrIconColour;
-			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = activeTextOrIconColour;
+			if (useIcon && changeTextOrIconColour) _iconImage.color = changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
+			if (useText && changeTextOrIconColour) _primaryText.color = changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
+			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color =changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
 		}
 
 		protected virtual void ChangeToInactiveState()
@@ -530,9 +537,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_isActive = false;
 			_mainImage.color = inactiveColour;
 			_dwellGfxImg.color = activeColour;
-			if (useIcon && changeTextOrIconColour) _iconImage.color = inactiveTextOrIconColour;
-			if (useText && changeTextOrIconColour) _primaryText.color = inactiveTextOrIconColour;
-			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = inactiveTextOrIconColour;
+			if (useIcon && changeTextOrIconColour) _iconImage.color = changeTextToSameAsButton ? inactiveColour : inactiveTextOrIconColour;
+			if (useText && changeTextOrIconColour) _primaryText.color = changeTextToSameAsButton ? inactiveColour : inactiveTextOrIconColour;
+			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = changeTextToSameAsButton ? inactiveColour : inactiveTextOrIconColour;
 		}
 		
 		protected virtual void ChangeToDisabledState()
@@ -540,9 +547,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_isActive = false;
 			_mainImage.color = disabledColour;
 			_dwellGfxImg.color = activeColour;
-			if (useIcon && changeTextOrIconColour) _iconImage.color = inactiveTextOrIconColour;
-			if (useText && changeTextOrIconColour) _primaryText.color = inactiveTextOrIconColour;
-			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = inactiveTextOrIconColour;
+			if (useIcon && changeTextOrIconColour) _iconImage.color = changeTextToSameAsButton ? inactiveColour : inactiveTextOrIconColour;
+			if (useText && changeTextOrIconColour) _primaryText.color = changeTextToSameAsButton ? inactiveColour : inactiveTextOrIconColour;
+			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = changeTextToSameAsButton ? inactiveColour : inactiveTextOrIconColour;
 		}
 
 		private void SetColours()

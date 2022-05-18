@@ -7,18 +7,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
 {
     public class OneShotButton : AbstractDidStuffButton
     {
-        private void Start()
-        {
-            _dwellGfx.sizeDelta = Vector2.zero;
-            //ToggleDwellGfx(false);
-        }
-
-        protected override void ButtonClicked()
-        {
-            base.ButtonClicked();
-            ToggleDwellGfx(true);
-            base.ActivatedScaleFeedback();
-        }
+      
 
         protected override void ToggleButton(bool activate)
         {

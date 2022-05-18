@@ -323,7 +323,7 @@ namespace ctsalidis {
                         foreach (var o in objs.Where(o => o.Key == "FriendMatchmakingTicket")) {
                             if (!(o.Value.DataObject is JsonObject details) ||
                                 !(details["Friends"] is JsonArray friends)) continue;
-                            if (!friends.Contains(PlayFabLogin.EntityKey.Id)) continue;
+                            if (!friends.Contains(PlayFabLogin.AuthenticationContext.PlayFabId)) continue;
                             print("Player " + getRequest.Entity.Id + " wants to play with you!");
                             print("Retrieved matchmaking Ticket id: " + details?["MatchmakingTicketId"] +
                                   " from player: " +

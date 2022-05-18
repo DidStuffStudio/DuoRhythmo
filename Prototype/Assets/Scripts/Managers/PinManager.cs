@@ -45,9 +45,12 @@ namespace Managers
         {
             _pin = pinIntegers.Select(i => i.ToString()).Aggregate((i, j) => i + j);
             mainMenuManager.SetPin(_pin);
+            ClearPin();
         }
         
         public void StorePinForCheck() => mainMenuManager.ReferencePin = _pin;
+
+        
     }
 }
 

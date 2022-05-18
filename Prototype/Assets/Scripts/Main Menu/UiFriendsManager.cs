@@ -26,6 +26,7 @@ public class UiFriendsManager : MonoBehaviour
     protected List<string> _allFriendUsernames = new List<string>();
     protected List<string> _confirmedFriendUsernames = new List<string>();
     protected List<string> _allFriendAvatars = new List<string>();
+    public List<bool> AllFriendOnlineStatuses { get; set; } = new List<bool>();
     protected List<string> _confirmedFriendAvatars = new List<string>();
     private Dictionary<string, FriendStatus> _friendStatusMap = new Dictionary<string, FriendStatus>();
     
@@ -35,7 +36,7 @@ public class UiFriendsManager : MonoBehaviour
     protected int _numberOfCards = 2;
     protected int _numberFriends = 0;
     protected int _displayedFriends = 2;
-    private int _currentListIndex = 0;
+    protected int _currentListIndex = 0;
     private int _page;
     private int _numberOfPages;
     private int _numberOfCardsOnLastPage;
@@ -46,6 +47,7 @@ public class UiFriendsManager : MonoBehaviour
     private bool _even; //Set from Child Class
     protected string[] _currentUsernames = new string[2];
     protected string[] _currentAvatars = new string[2];
+    protected bool[] _currentOnlineStatuses = new bool[3];
 
     public List<string> AllFriendUsernames
     {

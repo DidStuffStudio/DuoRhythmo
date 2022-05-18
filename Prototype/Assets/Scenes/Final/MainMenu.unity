@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.040096905, g: 0.039037738, b: 0.03603265, a: 1}
+  m_IndirectSpecularColor: {r: 0.038572975, g: 0.037517063, b: 0.034506816, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6335,6 +6335,12 @@ MonoBehaviour:
   dotSpacing: 40
   dotActive: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   dotInactive: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.59607846}
+  _onlineStatusImages:
+  - {fileID: 1847914073}
+  - {fileID: 785177146}
+  - {fileID: 2028888803}
+  _active: {r: 0.23921569, g: 0.49019608, b: 0.2509804, a: 1}
+  _inactive: {r: 0.77254903, g: 0, b: 0.23921569, a: 1}
 --- !u!114 &266979754
 MonoBehaviour:
   m_ObjectHideFlags: 0

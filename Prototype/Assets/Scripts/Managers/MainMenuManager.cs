@@ -83,34 +83,20 @@ namespace Managers
          
          for (int i = 0; i < _panelDictionary.Count; i++)
          {
-            var blurPanels = _panelDictionary[i].transform.GetComponentsInChildren<Transform>().Where(r => r.CompareTag("BlurPlaceholder")).ToList();
-            List<Vector2> panelSizes = new List<Vector2>();
-            List<Vector2> panelPositions = new List<Vector2>();
-            
-            for (int j = 0; j < blurPanels.Count; j++)
-            {
-               var blurParent = blurPanels[j].parent.GetComponent<RectTransform>();
-               var rect = blurPanels[j].GetComponent<RectTransform>();
-               var rect1 = rect.rect;
-               var w = rect1.width;
-               var h = rect1.height;
-               var anchoredPosition = blurParent.anchoredPosition;
-               var x = anchoredPosition.x;
-               var y = anchoredPosition.y;
-               panelSizes.Add(new Vector2(w,h));
-               panelPositions.Add(new Vector2(x,y));
-            }
+            var panelPositions = uiPanels[i].positions;
+            var panelSizes = uiPanels[i].sizes;
+            var numberOfPanels = uiPanels[i].numberOfPanels;
             _panelDictionary[i].gameObject.SetActive(false);
             blurPosDictionary.Add(_panelDictionary[i].panelId, panelPositions.ToArray());
             blursizeDictionary.Add(_panelDictionary[i].panelId, panelSizes.ToArray());
-            _numberBlurPanels.Add(_panelDictionary[i].panelId, blurPanels.Count);
+            _numberBlurPanels.Add(_panelDictionary[i].panelId, numberOfPanels);
          }
          var initialBlurPanel = Instantiate(_background, transform.position, Quaternion.identity, transform);
          _backgroundRTs.Add(initialBlurPanel.GetComponent<RectTransform>());
          initialBlurPanel.transform.SetSiblingIndex(0);
          
          ActivatePanel(0);
-         ReceiveInviteToPlay("Dickhead");
+         //ReceiveInviteToPlay("Dickhead");
          
          
       }
@@ -168,8 +154,7 @@ namespace Managers
             }  
             var lerpedScale = Berp(currentSize, _currentPanelSizes[i], Time.deltaTime * speed);
             var lerpedPos = Berp(currentTransform, _currentPanelPositions[i], Time.deltaTime * speed);
-            _backgroundRTs[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, lerpedScale.x); 
-            _backgroundRTs[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, lerpedScale.y);
+            _backgroundRTs[i].sizeDelta = lerpedScale;
             _backgroundRTs[i].anchoredPosition = lerpedPos;
 
          }

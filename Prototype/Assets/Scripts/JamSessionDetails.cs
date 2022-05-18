@@ -29,10 +29,10 @@ public class JamSessionDetails : MonoBehaviour {
     public List<Player> players = new List<Player>();
     public Player otherPlayer;
 
-    public void StartMatchmaking() {
+    public void StartMatchmaking(bool isRandom) {
         // TODO --> Probably check if the we're bín the main menu scene for this - otherwise return void
         isSoloMode = false;
-        Matchmaker.Instance.SelectDrumAndStartMatch(DrumTypeIndex.ToString());
+        Matchmaker.Instance.SelectDrumAndStartMatch(DrumTypeIndex.ToString(), isRandom ? "DefaultQueueRandom" : "DefaultQueue");
     }
     
     public void AddPlayer(Player player) {

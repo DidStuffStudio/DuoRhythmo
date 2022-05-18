@@ -78,7 +78,8 @@ namespace ctsalidis {
             // StartMatchmaking();
         }
 
-        public void SelectDrumAndStartMatch(string drumName) {
+        public void SelectDrumAndStartMatch(string drumName, string matchmakingQueueName) {
+            QueueName = matchmakingQueueName;
             _selectedDrumToPlayWith = drumName;
             StartMatchmaking();
         }
@@ -96,16 +97,17 @@ namespace ctsalidis {
                     latency = 100
                 },
             };
-            /*
-            var SelectedDrums = new object[] { new {
-                drum = _selectedDrumToPlayWith
+            
+            var SelectedDrums = new object[] { new  {
+                DrumType = _selectedDrumToPlayWith
             } };
-            */
+            
             var dataObjectWithoutFriends = new {Latencies};
             var dataObjectWithFriends = new {
                 Latencies,
                 MatchmakerId = matchmakerId,
-                DrumType = _selectedDrumToPlayWith,
+                SelectedDrums
+                // DrumType = SelectedDrums, // doing type intersection rule if playing with random users
             };
 
             StopCoroutine(pollFriendMatchInvites);

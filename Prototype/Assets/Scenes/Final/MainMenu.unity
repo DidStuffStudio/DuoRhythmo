@@ -14973,7 +14973,7 @@ MonoBehaviour:
       - m_Target: {fileID: 777611235}
         m_TargetAssemblyTypeName: JamSessionDetails, Assembly-CSharp
         m_MethodName: StartMatchmaking
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -33371,7 +33371,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: See all your friends, add new ones, or manage your exisitng ones.
+  m_text: See all your friends, add new ones, or manage your existing ones.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 979a55c64fe4130468fb7d1b7798aca5, type: 2}
   m_sharedMaterial: {fileID: -2355896304451855418, guid: 979a55c64fe4130468fb7d1b7798aca5, type: 2}
@@ -41503,14 +41503,14 @@ MonoBehaviour:
       - m_Target: {fileID: 777611235}
         m_TargetAssemblyTypeName: JamSessionDetails, Assembly-CSharp
         m_MethodName: StartMatchmaking
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}

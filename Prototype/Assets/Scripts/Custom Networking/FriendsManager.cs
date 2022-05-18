@@ -75,43 +75,6 @@ namespace DidStuffLab {
             }, result => { InitializeFriends(result.Friends); }, DisplayPlayFabError);
         }
 
-        /*
-        private void AddFriend(FriendIdType idType, string friendId) {
-            // TODO --> Look into making it a two way way process --> https://community.playfab.com/questions/46961/add-friend-using-friend-request-with-acceptdecline.html
-            var request = new AddFriendRequest();
-            switch (idType) {
-                case FriendIdType.PlayFabId:
-                    request.FriendPlayFabId = friendId;
-                    break;
-                case FriendIdType.Username:
-                    request.FriendUsername = friendId;
-                    break;
-                case FriendIdType.Email:
-                    request.FriendEmail = friendId;
-                    break;
-                case FriendIdType.DisplayName:
-                    request.FriendTitleDisplayName = friendId;
-                    break;
-            }
-
-            // Execute request and update friends when we are done
-            PlayFabClientAPI.AddFriend(request, result => { Debug.Log("Friend added successfully!"); },
-                DisplayPlayFabError);
-        }
-        
-        // unlike AddFriend, RemoveFriend only takes a PlayFab ID
-        // you can get this from the FriendInfo object under FriendPlayFabId
-        public void RemoveFriend(string username) {
-            var playfabId = IdFromUsername(username);
-            PlayFabClientAPI.RemoveFriend(new RemoveFriendRequest {
-                FriendPlayFabId = playfabId
-            }, result => {
-                
-            }, DisplayPlayFabError);
-        }
-        */
-        
-
         // this REPLACES the list of tags on the server
         // for updates, make sure this includes the original tag list
         private void SetFriendTags(FriendInfo friend, List<string> newTags) {
@@ -126,7 +89,7 @@ namespace DidStuffLab {
         }
 
         private void InitializeFriends(List<FriendInfo> friends) {
-            print("Initializing friends");
+            if (friends.Count <= 0) return;
             foreach (var f in friends) {
                 _friendsDictionary.Add(
                     f.FriendPlayFabId,
@@ -138,13 +101,15 @@ namespace DidStuffLab {
                         FriendStatus = GetFriendTag(f)
                     });
             }
-            
             var friendPlayfabIds = friends.Select(f => f.FriendPlayFabId).ToList();
             var request = new GetTitlePlayersFromMasterPlayerAccountIdsRequest {
                 MasterPlayerAccountIds = friendPlayfabIds,
             };
             PlayFabProfilesAPI.GetTitlePlayersFromMasterPlayerAccountIds(request, OnReceivedPlayerIdsSuccess,
                 OnReceivedPlayerIdsError);
+            SendFriendRequest("ctsali18");
+            SendFriendRequest("snaylo");
+            SendFriendRequest("ct");
         }
 
         private FriendStatus GetFriendTag(FriendInfo f) {
@@ -188,6 +153,24 @@ namespace DidStuffLab {
         }
 
         public void SendFriendRequest(string username) {
+            // first check if the user is already a friend - if so, tell the user - otherwise, send the friend request
+            var id = IdFromUsername(username);
+            if (!string.IsNullOrEmpty(id)) {
+                var message = "";
+                switch (_friendsDictionary[id].FriendStatus) {
+                    case FriendStatus.Default:
+                    case FriendStatus.Confirmed: message = username + " is already a friend";
+                        break;
+                    case FriendStatus.Requestee: message = username + " friend request already sent";
+                        break;
+                    case FriendStatus.Requester: AcceptFriendRequest(username); // if invitation was pending from this player automatically accept
+                        break;
+                }
+
+                print(message);
+                MainMenuManager.Instance.SpawnErrorToast(message, 0.1f);
+                return;
+            }
             PlayFabCloudScriptAPI.ExecuteEntityCloudScript(new ExecuteEntityCloudScriptRequest() {
                 FunctionName = "SendFriendRequest",
                 FunctionParameter = new {FriendUsername = username},
@@ -203,8 +186,16 @@ namespace DidStuffLab {
         }
 
         private void OnSendFriendRequestSuccess(PlayFab.CloudScriptModels.ExecuteCloudScriptResult response) {
-            print("Sent friend request successfully " + response);
-            MainMenuManager.Instance.SpawnSuccessToast("Friend request sent!", 0.1f);
+            print("Sent friend request successfully " + response.FunctionResult);
+            if(response.FunctionResult != null) print(response.FunctionResult);
+            if (response.Error != null) {
+                MainMenuManager.Instance.SpawnErrorToast("Couldn't add friend. Is username spelled correctly?", 0.1f);
+                Debug.LogError("There was an error sending friend request to player - " + response.Error.Error);
+            }
+            else {
+                Debug.Log("Seems like sending the friend request happened successfully");
+                MainMenuManager.Instance.SpawnSuccessToast("Friend request sent!", 0.1f);
+            }
         }
 
         public void AcceptFriendRequest(string username) {

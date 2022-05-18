@@ -12,6 +12,7 @@ public class LoadBeat : MonoBehaviour
 {
     public GameObject template;
     public Transform listWindow;
+    private Transform savedListWindow;
 
     public string currentlySelectedSaveFile;
     public ToggleGroup toggleGroup;
@@ -25,7 +26,7 @@ public class LoadBeat : MonoBehaviour
     public Button arrowRight;
     public Button arrowLeft;
 
-    private float[] positions; 
+    public float[] positions; 
 
 
     public List<string> fileList = new List<string>();
@@ -41,17 +42,29 @@ public class LoadBeat : MonoBehaviour
 
     private List<GameObject> listPanels = new List<GameObject>();
 
+    private List<GameObject> signifiers = new List<GameObject>();
+    public GameObject signifierTemplate;
+
     private void Awake()
     {
+        savedListWindow = listWindow;
         Initialize();
     }
 
     private void Initialize()
     {
+        
+        CurrentPanel = 0;
+        currentPos = 0;
+        targetPos = 0;
+        scrollRect.horizontalNormalizedPosition = 0;
         GetFileList();
+        GoToPreviousPanel();
         ChangeCurrentlySelectedFile();
         positions = linspace(0, 1, (int)numPanels);
-        scrollRect.horizontalNormalizedPosition = 0;
+
+        signifiers[0].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        
         arrowLeft.gameObject.SetActive(false);
     }
 
@@ -64,6 +77,9 @@ public class LoadBeat : MonoBehaviour
         
         // Get all files that have any number of characters infront of .json
         string[] files = Directory.GetFiles(Application.persistentDataPath, "*.json");
+        
+        GameObject firstSignifier = Instantiate(signifierTemplate, signifierTemplate.transform.parent.transform);
+        signifiers.Add(firstSignifier);
 
         //Add each file to the fileList
         for (int i = 0; i < files.Length; i++)
@@ -72,6 +88,8 @@ public class LoadBeat : MonoBehaviour
             {
                 numPanels++;
                 AddNewPanel();
+                GameObject newSignifier = Instantiate(signifierTemplate, signifierTemplate.transform.parent.transform);
+                signifiers.Add(newSignifier);
             }
             fileList.Add(files[i]);
             Debug.Log(files[i]);
@@ -79,6 +97,7 @@ public class LoadBeat : MonoBehaviour
         }
         panelTemplate.SetActive(false);
         template.SetActive(false);
+        signifierTemplate.SetActive(false);
     }
 
     // The process of creating toggles
@@ -108,6 +127,8 @@ public class LoadBeat : MonoBehaviour
 
         saveData.DateCreated.text = saveFileCreationDate;
         saveData.label.text = formattedFileName;
+        
+        retrievedBeats.Add(beat);
     }
     
     // Somewhat self-explanitory
@@ -183,6 +204,11 @@ public class LoadBeat : MonoBehaviour
         {
             targetPos = positions[CurrentPanel + 1];
             CurrentPanel++;
+            signifiers[CurrentPanel].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            if (signifiers.Count > 0)
+            {
+                signifiers[CurrentPanel-1].GetComponent<Image>().color = new Color(1,1,1,0.2f);
+            }
         }
         moving = true;
     }
@@ -194,6 +220,12 @@ public class LoadBeat : MonoBehaviour
         {
             targetPos = positions[CurrentPanel - 1];
             CurrentPanel--;
+            signifiers[CurrentPanel].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            if (signifiers.Count > 0)
+            {
+                signifiers[CurrentPanel+1].GetComponent<Image>().color = new Color(1,1,1,0.2f);
+            }
+            
         }
         
         moving = true;
@@ -248,12 +280,19 @@ public class LoadBeat : MonoBehaviour
         {
             moving = false;
         }
+        if (numPanels == 1)
+        {
+            arrowLeft.gameObject.SetActive(false);
+            arrowRight.gameObject.SetActive(false);
+        }
 
     }
 
     void ResetSaveFileBrowser()
     {
-        foreach (var beat in retrievedBeats)
+        
+        transform.parent.GetComponent<ReloadSaveFileBrowser>().ReinitializeBrowser();
+        /*foreach (var beat in retrievedBeats)
         {
             Destroy(beat);
         }
@@ -262,12 +301,24 @@ public class LoadBeat : MonoBehaviour
         {
             Destroy(panel);   
         }
+
+        foreach (var signifier in signifiers)
+        {
+            Destroy(signifier);
+        }
+        
         retrievedBeats.Clear();
         listPanels.Clear();
+        fileList.Clear();
+        signifiers.Clear();
+        signifierTemplate.SetActive(true);
         panelTemplate.SetActive(true);
-        
-        Initialize();
-        
+        template.SetActive(true);
+        listWindow = savedListWindow;
+        numPanels = 1;
+
+        Initialize();*/
+
     }
 
 

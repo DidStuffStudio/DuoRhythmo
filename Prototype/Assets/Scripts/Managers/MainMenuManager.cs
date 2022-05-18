@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
+using ctsalidis;
 using Custom_Buttons.Did_Stuff_Buttons;
 using TMPro;
 using Unity.Mathematics;
@@ -339,18 +340,21 @@ namespace Managers
          var popUp = Instantiate(inviteToPlay, transform);
          popUp.transform.SetSiblingIndex(transform.childCount-1);
          _currentInvitePopUp = popUp.GetComponent<DidStuffInvite>();
+         _currentInvitePopUp.SetInviter(username);
       }
 
       public void AcceptInvite()
       {
          print("Accepted");
-         //Todo Set matchmaking ticket
+         Matchmaker.Instance.JoinMatchmaking();
+         // Matchmaker.Instance.SelectDrumAndStartMatch("0"); // TODO --> Fix this (get drum type in getmatchmakingticketObject method )
          DeactivatePanel(_currentPanel);
          ActivatePanel(18);
       }
-      public void DeclineInvite()
+      public void DeclineInvite(string username)
       {
          print("Declined");
+         Matchmaker.Instance.DeclineInvite(username);
       }
       
       public void SetPin(string pin) => _currentPinInput = pin;

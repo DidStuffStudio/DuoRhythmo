@@ -9,7 +9,7 @@ using UnityEngine;
 public class DidStuffInvite : MonoBehaviour
 {
     [SerializeField] private string invitationMessage = " has invited you to a jam!";
-    public string username = "ctsalidis";
+    private string _username = "ctsalidis";
     [SerializeField] private TextMeshProUGUI textField;
     private Animator _uiAnimator;
     private float _animationTime = 1.0f; // Change for different animation length or come up with better way
@@ -30,10 +30,10 @@ public class DidStuffInvite : MonoBehaviour
 
     }
 
-    public void SetInviter()
-    {
+    public void SetInviter(string username) {
+        _username = username;
         //Playfab ID stuff
-        textField.text = username + invitationMessage;
+        textField.text = _username + invitationMessage;
 
     }
 
@@ -45,7 +45,7 @@ public class DidStuffInvite : MonoBehaviour
     
     public void PlayDeclineRequest()
     {
-        mainMenuManager.DeclineInvite();
+        mainMenuManager.DeclineInvite(_username);
         _uiAnimator.Play("InvitePopOut");
         StartCoroutine(Destroy());
     }

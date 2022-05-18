@@ -31,7 +31,14 @@ public class PlayFabLogin : MonoBehaviour {
     public string UserAvatar { get; set; }
 
     private const string _PlayFabRememberMeIdKey = "PlayFabIdPassDeviceUniqueIdentifier";
-    public GetPlayerCombinedInfoRequestParams InfoRequestParams;
+    private GetPlayerCombinedInfoRequestParams _infoRequestParameters = new GetPlayerCombinedInfoRequestParams {
+        // GetUserData = true,
+        GetUserAccountInfo = true,
+        // GetUserReadOnlyData = true,
+        // GetCharacterList = true,
+        // GetPlayerProfile = true,
+        // GetTitleData = true
+    };
 
     /// <summary>
     /// Generated Remember Me ID
@@ -44,7 +51,8 @@ public class PlayFabLogin : MonoBehaviour {
             PlayerPrefs.SetString(_PlayFabRememberMeIdKey, guid);
         }
     }
-
+    
+    public static string MasterPlayfabId;
     public static EntityKey EntityKey;
 
     public static List<EntityKey> FriendsEntityKeys =
@@ -52,6 +60,8 @@ public class PlayFabLogin : MonoBehaviour {
 
     public static List<EntityKey> SelectedFriendsEntityKeys =
         new List<EntityKey>();
+
+    private static PlayFabAuthenticationContext AuthenticationContext;
 
     private void Awake() {
         if (_instance == null) _instance = this;
@@ -62,6 +72,7 @@ public class PlayFabLogin : MonoBehaviour {
     private void Start() {
         // NOTE --> Make sure that RememberMeId is initialised as the SystemInfo.deviceUniqueIdentifier
         LoginWithRememberMeId();
+        SignIn();
     }
 #endif
 
@@ -71,7 +82,7 @@ public class PlayFabLogin : MonoBehaviour {
             TitleId = PlayFabSettings.TitleId,
             CreateAccount = true,
             CustomId = RememberMeId,
-            InfoRequestParameters = InfoRequestParams
+            InfoRequestParameters = _infoRequestParameters
         };
 
         PlayFabClientAPI.LoginWithCustomID(request, OnPlayfabLoginSuccess, OnLoginError);
@@ -81,20 +92,22 @@ public class PlayFabLogin : MonoBehaviour {
         var request = new RegisterPlayFabUserRequest() {
             Username = Username,
             Password = PasswordPin,
-            RequireBothUsernameAndEmail = false
+            RequireBothUsernameAndEmail = false,
+            InfoRequestParameters = _infoRequestParameters
         };
         PlayFabClientAPI.RegisterPlayFabUser(request, OnPlayfabCreatedAccountSuccess, OnLoginError);
     }
 
     private void OnPlayfabCreatedAccountSuccess(RegisterPlayFabUserResult result) {
         print("Created account successfully");
-        ProceedWithLogin(result.SessionTicket, result.EntityToken.Entity.Id, result.EntityToken.Entity.Type, true);
+        ProceedWithLogin(result.AuthenticationContext, result.Username, true);
     }
 
     public void SignIn() {
         var request = new LoginWithPlayFabRequest {
             Username = Username,
-            Password = PasswordPin
+            Password = PasswordPin,
+            InfoRequestParameters = _infoRequestParameters
         };
         PlayFabClientAPI.LoginWithPlayFab(request, OnPlayfabLoginSuccess, OnLoginError);
     }
@@ -111,20 +124,21 @@ public class PlayFabLogin : MonoBehaviour {
 
     private void OnPlayfabLoginSuccess(LoginResult result) {
         print("Logged in successfully");
-        // Username = result.InfoResultPayload.AccountInfo.Username ?? result.PlayFabId;
-        ProceedWithLogin(result.SessionTicket, result.EntityToken.Entity.Id, result.EntityToken.Entity.Type, false);
+        ProceedWithLogin(result.AuthenticationContext, result.InfoResultPayload.AccountInfo.Username, false);
     }
 
-    private void ProceedWithLogin(string resultSessionTicket, string entityId, string entityType,
-        bool createdNewAccount) {
-        // if (string.IsNullOrEmpty(Username)) Username = EntityKey.Id;
-        EntityKey = new PlayFab.MultiplayerModels.EntityKey {
-            Id = entityId,
-            Type = entityType
+    private void ProceedWithLogin(PlayFabAuthenticationContext authenticationContext, string username,  bool createdNewAccount) {
+        AuthenticationContext = authenticationContext;
+        MasterPlayfabId = AuthenticationContext.PlayFabId;
+        Username = username ?? authenticationContext.EntityId;
+        print("My username: " + username);
+        EntityKey = new EntityKey {
+            Id = AuthenticationContext.EntityId,
+            Type = AuthenticationContext.EntityType
         };
 
         if (createdNewAccount) SetUserAvatarObject(); // set the avatar object that the user has selected
-        GetEntityAvatarName(new PlayFab.MultiplayerModels.EntityKey {Id = EntityKey.Id, Type = EntityKey.Type}, false);
+        GetEntityAvatarName(new EntityKey {Id = EntityKey.Id, Type = EntityKey.Type}, false);
 
         FriendsManager.Instance.EnableFriendsManager();
 
@@ -173,6 +187,8 @@ public class PlayFabLogin : MonoBehaviour {
             (result) => { print("Successfully unlinked custom id from the user's account"); },
             (error) => { Debug.LogError(error.GenerateErrorReport()); });
 
+        AuthenticationContext.ForgetAllCredentials();
+        MasterPlayfabId = string.Empty;
         Username = string.Empty;
         PasswordPin = string.Empty;
         UserAvatar = string.Empty;
@@ -186,15 +202,13 @@ public class PlayFabLogin : MonoBehaviour {
         // DeletePlayerAccount
         PlayFabCloudScriptAPI.ExecuteEntityCloudScript(new ExecuteEntityCloudScriptRequest() {
             FunctionName = "DeletePlayerAccount",
-            FunctionParameter = new {PlayFabId = EntityKey.Id},
+            FunctionParameter = new {PlayFabId = MasterPlayfabId},
             GeneratePlayStreamEvent = true,
         }, (result) => {
             // TODO --> Check if this actually happened (return bool for success from cloudscript)
             print("Successfully sent request to delete player's account");
             Logout();
-        }, (error) => {
-            Debug.LogError(error.GenerateErrorReport());
-        });
+        }, (error) => { Debug.LogError(error.GenerateErrorReport()); });
     }
 
     private void SetUserAvatarObject() {

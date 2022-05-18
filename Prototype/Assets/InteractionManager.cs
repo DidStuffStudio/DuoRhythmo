@@ -42,6 +42,7 @@ public class InteractionManager : MonoBehaviour
     private float _dwellTime = 1.0f;
         private void Awake() {
         if (_instance == null) _instance = this;
+        
         var i = PlayerPrefs.GetInt("InteractionMethod");
         Method = (InteractionMethod)i;
         DwellTime = PlayerPrefs.GetFloat("DwellTime");

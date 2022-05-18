@@ -16,8 +16,10 @@ public class GetFriends : MonoBehaviour
     private List<string> _confirmedFriendsOnlineStatus = new List<string>();
     private Dictionary<string, FriendStatus> _friendStatusMap = new Dictionary<string, FriendStatus>();
     [SerializeField] private List<UiFriendsManager> managersToUpdate;
+    private bool _initialised;
     private void OnEnable()
     {
+        if (!_initialised) return;
         if (MainMenuManager.Instance.LoggedIn)
         {
             FriendsManager.Instance.GetFriends();
@@ -115,4 +117,6 @@ public class GetFriends : MonoBehaviour
             _confirmedFriendAvatars.Clear();
             _confirmedFriendUsernames.Clear();
        }
+
+       private void OnDisable() => _initialised = true;
 }

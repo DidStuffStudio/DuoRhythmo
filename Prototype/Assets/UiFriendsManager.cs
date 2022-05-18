@@ -40,6 +40,7 @@ public class UiFriendsManager : MonoBehaviour
     private int _numberOfPages;
     private int _numberOfCardsOnLastPage;
     private List<Image> _dots;
+    private bool _initialised;
     
 
     private bool _even; //Set from Child Class
@@ -78,6 +79,7 @@ public class UiFriendsManager : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        if (!_initialised) return;
         if (MainMenuManager.Instance.IsGuest) DisableAllInteraction();
         
         if (MainMenuManager.Instance.LoggedIn)
@@ -219,11 +221,7 @@ private void DoTheDots()
         _confirmedFriendAvatars.Clear();
         _confirmedFriendUsernames.Clear();
     }
-
-    private void DestroyAllToasts()
-    {
-        var toasts = GameObject.FindGameObjectsWithTag("Toast");
-        foreach (var toast in toasts) DestroyImmediate(toast);
-    }
     
+
+    private void OnDisable() => _initialised = true;
 }

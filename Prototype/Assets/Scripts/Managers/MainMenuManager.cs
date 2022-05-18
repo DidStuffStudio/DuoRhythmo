@@ -16,19 +16,8 @@ namespace Managers
       
       private static MainMenuManager _instance;
 
-      public static MainMenuManager Instance
-      {
-         get
-         {
-            if (_instance != null) return _instance;
-            var MainMenuManagerGameObject = new GameObject();
-            _instance = MainMenuManagerGameObject.AddComponent<MainMenuManager>();
-            MainMenuManagerGameObject.name = typeof(InteractionManager).ToString();
-            return _instance;
-         }
-      }
-      
-      
+      public static MainMenuManager Instance => _instance;
+
       private Dictionary<int, UIPanel> _panelDictionary = new Dictionary<int, UIPanel>();
       private List<Vector2> _currentPanelSizes = new List<Vector2>();
       private List<Vector2> _currentPanelPositions = new List<Vector2>();
@@ -73,10 +62,7 @@ namespace Managers
       private void Awake()
       {
          if (_instance == null) _instance = this;
-      }
-
-      private void Start()
-      {
+      
          backButton.SetActive(false);
          var uiPanels = GetComponentsInChildren<UIPanel>();
          foreach (var p in uiPanels) _panelDictionary.Add(p.panelId,p);
@@ -84,9 +70,10 @@ namespace Managers
          
          for (int i = 0; i < _panelDictionary.Count; i++)
          {
-            var panelPositions = uiPanels[i].positions;
-            var panelSizes = uiPanels[i].sizes;
-            var numberOfPanels = uiPanels[i].numberOfPanels;
+            var panelPositions = uiPanels[i].BlurPosition();
+            var panelSizes = uiPanels[i].BlurScales();
+            var numberOfPanels = uiPanels[i].NumberOfPanels();
+            uiPanels[i].DeactivatePlaceholder();
             _panelDictionary[i].gameObject.SetActive(false);
             blurPosDictionary.Add(_panelDictionary[i].panelId, panelPositions.ToArray());
             blursizeDictionary.Add(_panelDictionary[i].panelId, panelSizes.ToArray());

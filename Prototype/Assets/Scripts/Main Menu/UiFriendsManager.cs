@@ -102,13 +102,14 @@ public class UiFriendsManager : MonoBehaviour
     {
         _currentListIndex = 0;
         _page = 1;
-        navigationArrows[0].SetActive(false);
+       
         _numberFriends = listToLoopUsernames.Count;
         
         _numberOfPages = Mathf.CeilToInt((float)_numberFriends / (float)_numberOfCards);
         _numberOfCardsOnLastPage = listToLoopUsernames.Count % _numberOfCards;
         
         ActivateArrowsAndDots(_numberFriends > _numberOfCards);
+        navigationArrows[0].SetActive(false);
         
         _even = _numberFriends % 2 == 0;
     }

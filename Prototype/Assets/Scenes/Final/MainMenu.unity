@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.038572975, g: 0.037517063, b: 0.034506816, a: 1}
+  m_IndirectSpecularColor: {r: 0.040096905, g: 0.039037738, b: 0.03603265, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1901,7 +1901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &35347335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6038,19 +6038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1948926150}
-        m_TargetAssemblyTypeName: FriendPanelManager, Assembly-CSharp
-        m_MethodName: Navigate
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -6224,7 +6212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &263993140
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10536,7 +10524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &410658080
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10809,7 +10797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &423661159
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13161,7 +13149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &501546807
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15165,7 +15153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &540325981
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16804,7 +16792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &588390140
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17044,7 +17032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &596152179
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19121,7 +19109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &659282480
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25330,7 +25318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &703073697
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29497,7 +29485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &830990058
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36486,7 +36474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1098264206
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38388,7 +38376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1172219019
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38668,19 +38656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 530605014}
-        m_TargetAssemblyTypeName: Managers.MainMenuManager, Assembly-CSharp
-        m_MethodName: SetAvatarName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Avatar1
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -38698,8 +38674,8 @@ MonoBehaviour:
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
-  useText: 0
-  useSecondaryText: 0
+  useText: 1
+  useSecondaryText: 1
   iconImg: {fileID: 0}
   interactionSetting: 0
   dwellTimeSetting: 0
@@ -39392,7 +39368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1191580156}
   m_Layer: 9
-  m_Name: Dots (1)
+  m_Name: Dot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39983,19 +39959,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 530605014}
-        m_TargetAssemblyTypeName: Managers.MainMenuManager, Assembly-CSharp
-        m_MethodName: SetAvatarName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Avatar1
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -40013,8 +39977,8 @@ MonoBehaviour:
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
-  useText: 0
-  useSecondaryText: 0
+  useText: 1
+  useSecondaryText: 1
   iconImg: {fileID: 0}
   interactionSetting: 0
   dwellTimeSetting: 0
@@ -40293,19 +40257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 530605014}
-        m_TargetAssemblyTypeName: Managers.MainMenuManager, Assembly-CSharp
-        m_MethodName: SetAvatarName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Avatar1
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -40323,8 +40275,8 @@ MonoBehaviour:
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
-  useText: 0
-  useSecondaryText: 0
+  useText: 1
+  useSecondaryText: 1
   iconImg: {fileID: 0}
   interactionSetting: 0
   dwellTimeSetting: 0
@@ -41512,7 +41464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1306032940
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41814,19 +41766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1948926150}
-        m_TargetAssemblyTypeName: FriendPanelManager, Assembly-CSharp
-        m_MethodName: Navigate
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -43520,7 +43460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1395155163
 RectTransform:
   m_ObjectHideFlags: 0
@@ -43719,7 +43659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1400506400
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44387,7 +44327,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1431485811
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44450,7 +44390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1435545917
 RectTransform:
   m_ObjectHideFlags: 0
@@ -45644,7 +45584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1470464973
 RectTransform:
   m_ObjectHideFlags: 0
@@ -45862,7 +45802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1477232408
 RectTransform:
   m_ObjectHideFlags: 0
@@ -47673,7 +47613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1542909030
 RectTransform:
   m_ObjectHideFlags: 0
@@ -48293,7 +48233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1591645662
 RectTransform:
   m_ObjectHideFlags: 0
@@ -53825,24 +53765,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 530605014}
-        m_TargetAssemblyTypeName: Managers.MainMenuManager, Assembly-CSharp
-        m_MethodName: SetAvatarName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Avatar1
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   startDisabled: 0
-  primaryText: 
+  primaryText: Rock drums
   secondaryText: 
   useInteractableLayer: 0
   interactableLayer:
@@ -53855,8 +53783,8 @@ MonoBehaviour:
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
-  useText: 0
-  useSecondaryText: 0
+  useText: 1
+  useSecondaryText: 1
   iconImg: {fileID: 0}
   interactionSetting: 0
   dwellTimeSetting: 0
@@ -54791,7 +54719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1893134084
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55514,7 +55442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1948926148
 RectTransform:
   m_ObjectHideFlags: 0

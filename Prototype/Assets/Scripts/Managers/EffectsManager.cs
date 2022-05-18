@@ -11,7 +11,7 @@ namespace Managers
     public class EffectsManager : MonoBehaviour
     {
         public DrumType drumType;
-        private List<DidStuffSliderKnob> sliders = new List<DidStuffSliderKnob>();
+        public List<DidStuffSliderKnob> sliders = new List<DidStuffSliderKnob>();
         private DidStuffSoloButton _soloButton;
         [SerializeField] private TextMeshProUGUI panelTitle;
         [SerializeField] private List<AbstractDidStuffButton> colorCodedButtons = new List<AbstractDidStuffButton>();

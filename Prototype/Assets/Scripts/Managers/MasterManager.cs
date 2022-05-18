@@ -64,6 +64,8 @@ namespace Managers {
         
         public Transform startTransform, destinationTransform, oppositeDestinationTransform;
 
+        public string[] drumKitNames = {"Rock drums", "Djembe", "Electronic", "Handpan", "Ambient"};
+
         private void Awake() {
             if (_instance == null) _instance = this;
         }

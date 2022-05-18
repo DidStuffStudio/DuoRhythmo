@@ -87,13 +87,6 @@ namespace ctsalidis {
             };
 
             StopCoroutine(pollFriendMatchInvites);
-            /*
-            authenticateAndFriendsCanvas.SetActive(false);
-            playButton.SetActive(false);
-            joinButton.SetActive(false);
-            queueStatusText.text = "Submitting Ticket";
-            queueStatusText.gameObject.SetActive(true);
-            */
 
             UiMatchmakingManager.Instance.SetMatchmakingStatusText("Submitting ticket");
 

@@ -17,29 +17,12 @@ using ExecuteCloudScriptResult = PlayFab.ClientModels.ExecuteCloudScriptResult;
 // ref --> https://docs.microsoft.com/en-us/gaming/playfab/features/social/friends/quickstart
 
 namespace DidStuffLab {
-    public enum FriendIdType {
-        PlayFabId,
-        Username,
-        Email,
-        DisplayName
-    };
-
     public class FriendsManager : MonoBehaviour {
-        private static FriendsManager _instance;
-
-        public static FriendsManager Instance {
-            get {
-                if (_instance != null) return _instance;
-                var friendsManagerGameObject = new GameObject();
-                _instance = friendsManagerGameObject.AddComponent<FriendsManager>();
-                friendsManagerGameObject.name = typeof(FriendsManager).ToString();
-                return _instance;
-            }
-        }
+        public static FriendsManager Instance { get; private set; }
 
         private Dictionary<string, Friend> _friendsDictionary = new Dictionary<string, Friend>();
-        public Friend[] FriendsDetails => _friendsDictionary.Values.ToArray();
-
+        public IEnumerable<Friend> FriendsDetails => _friendsDictionary.Values.ToList();
+        
         private string IdFromUsername(string username) {
             foreach (var f in _friendsDictionary.Where(f => f.Value.Username == username)) {
                 return f.Key;
@@ -50,8 +33,7 @@ namespace DidStuffLab {
         }
 
         private void Awake() {
-            if (_instance == null) _instance = this;
-            DontDestroyOnLoad(this);
+            if (Instance == null) Instance = this;
         }
 
         public void EnableFriendsManager() {
@@ -64,7 +46,7 @@ namespace DidStuffLab {
         }
 
         public void GetFriends() {
-            _friendsDictionary.Clear(); // TODO --> NOTE --> MAYBE --> Check if it's just better use _friendsDictionary[] = .. instead of _friendsDictionary.Add() 
+            _friendsDictionary.Clear();
             PlayFabClientAPI.GetFriendsList(new GetFriendsListRequest {
                 IncludeSteamFriends = false,
                 IncludeFacebookFriends = false,
@@ -159,22 +141,24 @@ namespace DidStuffLab {
 
         public void SendFriendRequest(string username) {
             // first check if the user is already a friend - if so, tell the user - otherwise, send the friend request
-            var id = IdFromUsername(username);
-            if (!string.IsNullOrEmpty(id)) {
-                var message = "";
-                switch (_friendsDictionary[id].FriendStatus) {
-                    case FriendStatus.Default:
-                    case FriendStatus.Confirmed: message = username + " is already a friend";
-                        break;
-                    case FriendStatus.Requestee: message = username + " friend request already sent";
-                        break;
-                    case FriendStatus.Requester: AcceptFriendRequest(username); // if invitation was pending from this player automatically accept
-                        break;
-                }
+            if (_friendsDictionary.Count > 0) {
+                var id = IdFromUsername(username);
+                if (!string.IsNullOrEmpty(id)) {
+                    var message = "";
+                    switch (_friendsDictionary[id].FriendStatus) {
+                        case FriendStatus.Default:
+                        case FriendStatus.Confirmed: message = username + " is already a friend";
+                            break;
+                        case FriendStatus.Requestee: message = username + " friend request already sent";
+                            break;
+                        case FriendStatus.Requester: AcceptFriendRequest(username); // if invitation was pending from this player automatically accept
+                            break;
+                    }
 
-                print(message);
-                MainMenuManager.Instance.SpawnErrorToast(message, 0.1f);
-                return;
+                    print(message);
+                    MainMenuManager.Instance.SpawnErrorToast(message, 0.1f);
+                    return;
+                }
             }
             PlayFabCloudScriptAPI.ExecuteEntityCloudScript(new ExecuteEntityCloudScriptRequest() {
                 FunctionName = "SendFriendRequest",

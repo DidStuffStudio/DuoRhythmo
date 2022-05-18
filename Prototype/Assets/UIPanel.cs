@@ -17,6 +17,7 @@ public class UIPanel : MonoBehaviour
         foreach (var blurPanel in blurPanels)
         {
             var size = blurPanel.GetComponent<RectTransform>().sizeDelta;
+            size += new Vector2(242.1f, 210.71f);
             var position = blurPanel.GetComponent<RectTransform>().anchoredPosition;
             numberOfPanels = blurPanels.Count;
             sizes.Add(size);

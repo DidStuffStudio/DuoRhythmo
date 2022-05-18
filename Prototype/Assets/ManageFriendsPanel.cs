@@ -9,12 +9,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FriendPanelManager : UiFriendsManager
+public class ManageFriendsPanel : UiFriendsManager
 {
-    [Header("System Interface")]
-    [SerializeField] private GameObject rightArrow, leftArrow;
-    [SerializeField] private GameObject logInToAddViewFriends;
-    
+
     [Header("Add friend Card")] [SerializeField]
     private GameObject addFriendCard;
     [SerializeField] private TMP_InputField inputField;
@@ -29,8 +26,8 @@ public class FriendPanelManager : UiFriendsManager
     protected override void OnEnable()
     {
         _numberOfCards = friendCards.Count;
-        listToLoopUsernames = _allFriendUsernames;
-        listToLoopAvatars = _allFriendAvatars;
+        listToLoopUsernames = AllFriendUsernames;
+        listToLoopAvatars = AllFriendAvatars;
         base.OnEnable();
     }
     
@@ -39,11 +36,11 @@ public class FriendPanelManager : UiFriendsManager
         base.ChangeGraphics();
         for (int i = 0; i < _displayedFriends; i++)
         {
-            if (_friendStatusMap[_currentUsernames[i]] == FriendStatus.Confirmed)
+            if (FriendStatusMap[_currentUsernames[i]] == FriendStatus.Confirmed)
                 SwitchFriendStatusButtons(i, FriendStatus.Confirmed);
-            else if (_friendStatusMap[_currentUsernames[i]] == FriendStatus.Requestee)
+            else if (FriendStatusMap[_currentUsernames[i]] == FriendStatus.Requestee)
                 SwitchFriendStatusButtons(i, FriendStatus.Requestee);
-            if (_friendStatusMap[_currentUsernames[i]] == FriendStatus.Requester)
+            if (FriendStatusMap[_currentUsernames[i]] == FriendStatus.Requester)
                 SwitchFriendStatusButtons(i, FriendStatus.Requester);
         }
     }

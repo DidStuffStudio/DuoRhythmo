@@ -23,13 +23,12 @@ public class UiFriendsManager : MonoBehaviour
     [SerializeField] private float dotSpacing;
     [SerializeField] private Color dotActive, dotInactive;
 
-    private List<Friend> _friends;
-    protected List<string> _allFriendUsernames = new List<string>();
-    protected List<string> _confirmedFriendUsernames = new List<string>();
-    protected List<string> _allFriendAvatars = new List<string>();
-    protected List<string> _confirmedFriendAvatars = new List<string>();
-    protected Dictionary<string, FriendStatus> _friendStatusMap = new Dictionary<string, FriendStatus>();
-
+    private List<string> _allFriendUsernames = new List<string>();
+    private List<string> _confirmedFriendUsernames = new List<string>();
+    private List<string> _allFriendAvatars = new List<string>();
+    private List<string> _confirmedFriendAvatars = new List<string>();
+    private Dictionary<string, FriendStatus> _friendStatusMap = new Dictionary<string, FriendStatus>();
+    
     protected List<string> listToLoopUsernames = new List<string>();
     protected List<string> listToLoopAvatars = new List<string>();
 
@@ -47,6 +46,36 @@ public class UiFriendsManager : MonoBehaviour
     protected string[] _currentUsernames = new string[2];
     protected string[] _currentAvatars = new string[2];
 
+    public List<string> AllFriendUsernames
+    {
+        get => _allFriendUsernames;
+        set => _allFriendUsernames = value;
+    }
+
+    public List<string> ConfirmedFriendUsernames
+    {
+        get => _confirmedFriendUsernames;
+        set => _confirmedFriendUsernames = value;
+    }
+
+    public List<string> AllFriendAvatars
+    {
+        get => _allFriendAvatars;
+        set => _allFriendAvatars = value;
+    }
+
+    public List<string> ConfirmedFriendAvatars
+    {
+        get => _confirmedFriendAvatars;
+        set => _confirmedFriendAvatars = value;
+    }
+
+    public Dictionary<string, FriendStatus> FriendStatusMap
+    {
+        get => _friendStatusMap;
+        set => _friendStatusMap = value;
+    }
+
     protected virtual void OnEnable()
     {
         if (MainMenuManager.Instance.IsGuest) DisableAllInteraction();
@@ -54,10 +83,8 @@ public class UiFriendsManager : MonoBehaviour
         if (MainMenuManager.Instance.LoggedIn)
         {
             FriendsManager.Instance.GetFriends();
-            GetFriendDetails();
             Initialise();
             InitialiseGraphics();
-            
         }
     }
 
@@ -179,81 +206,18 @@ private void DoTheDots()
 
         _dots[0].color = dotActive;
 }
-    private void GetFriendDetails()
-    {
-        ClearLists(); 
-        _friends.AddRange(FriendsManager.Instance.FriendsDetails);
-        
-        var requesterUsernames = new List<string>(); //Friend request
-        var requesteeUsernames = new List<string>(); //Pending
-        var confirmedUsernames = new List<string>(); //Friend
-
-        var requesterAvatars = new List<string>(); //Friend request
-        var requesteeAvatars = new List<string>(); //Pending
-        var confirmedAvatars = new List<string>(); //Friend
-        
-        foreach (var friend in _friends)
-        {
-            switch (friend.FriendStatus)
-            {
-                case FriendStatus.Requestee:
-                    requesteeUsernames.Add(friend.Username);
-                    requesteeAvatars.Add(friend.AvatarName);
-                    break;
-                
-                case FriendStatus.Requester:
-                    requesterUsernames.Add(friend.Username);
-                    requesterAvatars.Add(friend.AvatarName);                    
-                    break;
-                
-                case FriendStatus.Confirmed:
-                    confirmedUsernames.Add(friend.Username);
-                    confirmedAvatars.Add(friend.AvatarName);
-                    break;
-                
-                case FriendStatus.Default:
-                    
-                    break;
-            }
-        }
-        
-        _confirmedFriendUsernames.AddRange(confirmedUsernames);
-        _confirmedFriendAvatars.AddRange(confirmedAvatars);
-
-        for (int i = 0; i < requesterUsernames.Count; i++)
-        {
-            _allFriendUsernames.Add(requesterUsernames[i]);
-            _allFriendUsernames.Add( requesterAvatars[i]);
-            _friendStatusMap.Add(requesterUsernames[i], FriendStatus.Requester);
-        }
-
-        for (int i = 0; i < confirmedUsernames.Count; i++)
-        {
-            var index = requesterUsernames.Count + i;
-            _allFriendUsernames.Add(confirmedUsernames[i]);
-            _allFriendUsernames.Add( confirmedAvatars[i]);
-            _friendStatusMap.Add(confirmedUsernames[i], FriendStatus.Confirmed);
-        }
-        
-        for (int i = 0; i < requesteeUsernames.Count; i++)
-        {
-            var index = requesterUsernames.Count + confirmedUsernames.Count + i;
-            _allFriendUsernames.Add( requesteeUsernames[i]);
-            _allFriendUsernames.Add( requesteeAvatars[i]);
-            _friendStatusMap.Add(requesteeUsernames[i], FriendStatus.Requestee);
-        }
-    }
+ 
 
     private void ClearLists()
     {
         foreach (var d in _dots) Destroy(d.gameObject);
-        _friends.Clear();
-        _allFriendAvatars.Clear();
-        _allFriendUsernames.Clear();
-        _confirmedFriendUsernames.Clear();
-        _confirmedFriendAvatars.Clear();
-        _friendStatusMap.Clear();
         _dots.Clear();
+        
+        _allFriendUsernames.Clear();
+        _allFriendAvatars.Clear();
+        _friendStatusMap.Clear();
+        _confirmedFriendAvatars.Clear();
+        _confirmedFriendUsernames.Clear();
     }
 
     private void DestroyAllToasts()
@@ -261,9 +225,5 @@ private void DoTheDots()
         var toasts = GameObject.FindGameObjectsWithTag("Toast");
         foreach (var toast in toasts) DestroyImmediate(toast);
     }
-
-    private void OnDisable()
-    {
-        DestroyAllToasts();
-    }
+    
 }

@@ -56,6 +56,7 @@ namespace Managers
       private bool _loggedIn = false;
       private bool _isGuest = false;
       private DidStuffInvite _currentInvitePopUp;
+      [SerializeField] private Transform defaultToastPlaceholder;
 
 
       public string ReferencePin
@@ -313,7 +314,7 @@ namespace Managers
       /// Call this if the login rememberMeId is cached/saved to player prefs (if it's successful)
       /// </summary>
       public void SkipLogin() {
-         DeactivatePanel(CurrentPanel);
+         DeactivatePanel(0);
          ActivatePanel(4);
          _loggedIn = true;
       }
@@ -368,18 +369,20 @@ namespace Managers
       IEnumerator InstantiateErrorToast(string toastText, float delay)
       {
          yield return new WaitForSeconds(delay);
-         var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder");
-         if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.transform.GetChild(0).gameObject);
-         var t = Instantiate(errorToast, toastPlaceholder.transform);
+         var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder").transform;
+         if (toastPlaceholder == null) toastPlaceholder = defaultToastPlaceholder;
+         if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.GetChild(0).gameObject);
+         var t = Instantiate(errorToast, toastPlaceholder);
          t.GetComponent<Toast>().SetText(toastText);
       }
       
       IEnumerator InstantiateSuccessToast(string toastText, float delay)
       {
          yield return new WaitForSeconds(delay);
-         var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder");
-         if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.transform.GetChild(0).gameObject);
-         var t = Instantiate(successToast, toastPlaceholder.transform);
+         var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder").transform;
+         if (toastPlaceholder == null) toastPlaceholder = defaultToastPlaceholder;
+         if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.GetChild(0).gameObject);
+         var t = Instantiate(successToast, toastPlaceholder);
          t.GetComponent<Toast>().SetText(toastText);
       }
       public void SetDrumType(int i) => JamSessionDetails.Instance.DrumTypeIndex = i;

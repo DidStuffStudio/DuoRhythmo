@@ -107,9 +107,6 @@ namespace DidStuffLab {
             };
             PlayFabProfilesAPI.GetTitlePlayersFromMasterPlayerAccountIds(request, OnReceivedPlayerIdsSuccess,
                 OnReceivedPlayerIdsError);
-            SendFriendRequest("ctsali18");
-            SendFriendRequest("snaylo");
-            SendFriendRequest("ct");
         }
 
         private FriendStatus GetFriendTag(FriendInfo f) {

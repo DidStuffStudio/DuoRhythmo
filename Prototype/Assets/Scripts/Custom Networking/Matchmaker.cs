@@ -37,8 +37,7 @@ namespace ctsalidis {
         }
 
         // TODO --> Switch this with JammingSessionDetails
-        [SerializeField]
-        private ClientStartup
+        [SerializeField] private ClientStartup
             _clientStartup; // to start the client (connect and join the server) once matchmaking is done
 
         private string ticketId;
@@ -47,7 +46,7 @@ namespace ctsalidis {
 
         private string _playerToMatchWithId = "";
         private string _selectedDrumToPlayWith = "";
-        
+
         private string matchmakerId = "";
         private string _friendToJoinId = null;
         private string _friendToJoinUsername = null;
@@ -73,7 +72,7 @@ namespace ctsalidis {
         }
 
         public void InviteFriendToMatchmaking(string username) {
-            _playerToMatchWithId = FriendsManager.Instance.IdFromUsername(username); 
+            _playerToMatchWithId = FriendsManager.Instance.IdFromUsername(username);
             // StartMatchmaking();
         }
 
@@ -84,7 +83,7 @@ namespace ctsalidis {
 
         private void StartMatchmaking() {
             matchmakerId = PlayFabLogin.AuthenticationContext.EntityId; // this person would 'create' the match
-            
+
             var Latencies = new object[] {
                 new {
                     region = "NorthEurope",
@@ -105,7 +104,7 @@ namespace ctsalidis {
 
             StopCoroutine(pollFriendMatchInvites);
 
-            UiMatchmakingManager.Instance.SetMatchmakingStatusText("Submitting ticket");
+            MainMenuManager.Instance.SetMatchmakingStatusText("Submitting ticket");
 
             var creator = new MatchmakingPlayer {
                 Entity = new EntityKey {
@@ -179,7 +178,7 @@ namespace ctsalidis {
 
             pollTicketCoroutine = StartCoroutine(PollTicket(ticketId));
 
-            UiMatchmakingManager.Instance.SetMatchmakingStatusText("Ticket created");
+            MainMenuManager.Instance.SetMatchmakingStatusText("Ticket created");
         }
 
         /*
@@ -190,6 +189,8 @@ namespace ctsalidis {
         */
 
         private void OnMatchmakingError(PlayFabError error) {
+            MainMenuManager.Instance.DeactivatePanel(18);
+            MainMenuManager.Instance.ActivatePanel(6);
             Debug.LogError(error.GenerateErrorReport());
         }
 
@@ -211,7 +212,7 @@ namespace ctsalidis {
         // https://docs.microsoft.com/en-us/rest/api/playfab/multiplayer/matchmaking/get-matchmaking-ticket?view=playfab-rest#getmatchmakingticketresult
         // Possible values are: WaitingForPlayers, WaitingForMatch, WaitingForServer, Canceled and Matched
         private void OnGetMatchMakingTicket(GetMatchmakingTicketResult result) {
-            UiMatchmakingManager.Instance.SetMatchmakingStatusText($"Status: {result.Status}");
+            MainMenuManager.Instance.SetMatchmakingStatusText($"Status: {result.Status}");
             print($"Status: {result.Status}");
             foreach (var member in result.Members) {
                 print("Member that has joined this matchmaking ticket: " + member.Entity.Id);
@@ -232,7 +233,7 @@ namespace ctsalidis {
         }
 
         private void StartMatch(string matchId) {
-            UiMatchmakingManager.Instance.SetMatchmakingStatusText("Starting match");
+            MainMenuManager.Instance.SetMatchmakingStatusText("Starting match");
 
             PlayFabMultiplayerAPI.GetMatch(
                 new GetMatchRequest {
@@ -253,7 +254,7 @@ namespace ctsalidis {
             // clear the matchmaking request for friends, cause its already completed
             SetMatchmakingTicketIdObject(clear: true);
             // result.Members[0].Attributes.EscapedDataObject; // TODO --> Use this to check for the drumtypes that have been set by the user (use the same for user attribute and matchmaking attribute)
-            UiMatchmakingManager.Instance.SetMatchmakingStatusText(
+            MainMenuManager.Instance.SetMatchmakingStatusText(
                 $"{result.Members[0].Entity.Id} vs {result.Members[1].Entity.Id}");
 
             // TODO --> initialize server instance details (send to JammingSessionDetails), then call _clientStartup.SetServerInstanceDetails(...)
@@ -276,7 +277,7 @@ namespace ctsalidis {
         // Otherwise consider looking into makeEntityAPICall in CloudScript --> (Available in Title --> Automation, Revisions(Legacy))
         // look into DaperDino's getting and setting title player data --> https://github.com/DapperDino/PlayFab-Tutorials/blob/main/Assets/Mirror/Examples/Pong/Scripts/Player.cs 
         private void SetMatchmakingTicketIdObject(bool clear = false) {
-            var friends = new[]{_playerToMatchWithId};
+            var friends = new[] {_playerToMatchWithId};
             var count = 0;
 
             var data = new Dictionary<string, object>() {
@@ -310,37 +311,39 @@ namespace ctsalidis {
 
             if (PlayFabMultiplayerAPI.IsEntityLoggedIn()) print("Logged in, so get match invitation from friends");
 
-            var getRequest = new GetObjectsRequest {
-                Entity = new PlayFab.DataModels.EntityKey
-                    // {Id = PlayFabLogin.EntityKey.Id, Type = PlayFabLogin.EntityKey.Type}
-                    {Id = PlayFabLogin.FriendsEntityKeys[0].Id, Type = PlayFabLogin.FriendsEntityKeys[0].Type}
-            };
-            PlayFabDataAPI.GetObjects(getRequest,
-                result => {
-                    var objs = result.Objects;
+            foreach (var friend in FriendsManager.Instance.FriendsDetails) {
+                var getRequest = new GetObjectsRequest {
+                    Entity = new PlayFab.DataModels.EntityKey
+                        {Id = friend.TitleEntityKey.Id, Type = friend.TitleEntityKey.Type}
+                };
+                PlayFabDataAPI.GetObjects(getRequest,
+                    result => {
+                        var objs = result.Objects;
 
-                    foreach (var o in objs.Where(o => o.Key == "FriendMatchmakingTicket")) {
-                        if (!(o.Value.DataObject is JsonObject details) ||
-                            !(details["Friends"] is JsonArray friends)) continue;
-                        if (!friends.Contains(PlayFabLogin.EntityKey.Id)) continue;
-                        print("Player " + getRequest.Entity.Id + " wants to play with you!");
-                        print("Retrieved matchmaking Ticket id: " + details?["MatchmakingTicketId"] + " from player: " +
-                              getRequest.Entity.Id);
-                        print(details?["OwnerId"]);
-                        _friendToJoinId = details?["OwnerId"].ToString();
-                        _friendToJoinUsername = details?["OwnerUsername"].ToString();
-                        StopCoroutine(pollFriendMatchInvites);
-                        MainMenuManager.Instance.ReceiveInviteToPlay(_friendToJoinUsername);
-                    }
-                },
-                OnPlayFabError
-            );
+                        foreach (var o in objs.Where(o => o.Key == "FriendMatchmakingTicket")) {
+                            if (!(o.Value.DataObject is JsonObject details) ||
+                                !(details["Friends"] is JsonArray friends)) continue;
+                            if (!friends.Contains(PlayFabLogin.EntityKey.Id)) continue;
+                            print("Player " + getRequest.Entity.Id + " wants to play with you!");
+                            print("Retrieved matchmaking Ticket id: " + details?["MatchmakingTicketId"] +
+                                  " from player: " +
+                                  getRequest.Entity.Id);
+                            print(details?["OwnerId"]);
+                            _friendToJoinId = details?["OwnerId"].ToString();
+                            _friendToJoinUsername = details?["OwnerUsername"].ToString();
+                            StopCoroutine(pollFriendMatchInvites);
+                            MainMenuManager.Instance.ReceiveInviteToPlay(_friendToJoinUsername);
+                        }
+                    },
+                    OnPlayFabError
+                );
+            }
         }
 
         private void OnPlayFabError(PlayFabError error) {
             Debug.LogError(error.GenerateErrorReport());
             SetMatchmakingTicketIdObject(clear: true);
-            UiMatchmakingManager.Instance.SetMatchmakingStatusText(error.GenerateErrorReport());
+            MainMenuManager.Instance.SetMatchmakingStatusText(error.GenerateErrorReport());
         }
 
         private void OnApplicationQuit() {

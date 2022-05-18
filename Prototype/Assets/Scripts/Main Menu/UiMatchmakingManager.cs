@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ctsalidis;
 using UnityEngine;
 
 public class UiMatchmakingManager : MonoBehaviour {
@@ -8,11 +9,7 @@ public class UiMatchmakingManager : MonoBehaviour {
     public static UiMatchmakingManager Instance => _instance;
 
     private void Start() {
-        print("Initializing uimatchmakingmanager");
-        if (_instance == null) _instance = this;
-    }
-
-    public void SetMatchmakingStatusText(string text) {
         
+        if (_instance == null) _instance = this;
     }
 }

@@ -177,8 +177,8 @@ namespace DidStuffLab {
             print("Sent friend request successfully " + response.FunctionResult);
             if(response.FunctionResult != null) print(response.FunctionResult);
             if (response.Error != null) {
-                MainMenuManager.Instance.SpawnErrorToast("Couldn't add friend. Is username spelled correctly?", 0.1f);
-                Debug.LogError("There was an error sending friend request to player - " + response.Error.Error);
+                MainMenuManager.Instance.SpawnErrorToast("username not found", 0.1f);
+                Debug.LogError("Error send friend request" + response.Error.Error);
             }
             else {
                 Debug.Log("Seems like sending the friend request happened successfully");

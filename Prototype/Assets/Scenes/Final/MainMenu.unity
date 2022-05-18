@@ -38,7 +38,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+<<<<<<< HEAD
   m_IndirectSpecularColor: {r: 0.99999905, g: 0, b: 0.99999905, a: 1}
+=======
+  m_IndirectSpecularColor: {r: 0.040096905, g: 0.039037738, b: 0.03603265, a: 1}
+>>>>>>> 078dcbc1ab9311f4151f9084af89ba403ef55f6c
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6050,6 +6054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
+<<<<<<< HEAD
       m_Calls:
       - m_Target: {fileID: 518344228}
         m_TargetAssemblyTypeName: LoadBeat, Assembly-CSharp
@@ -6063,6 +6068,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+=======
+      m_Calls: []
+>>>>>>> 078dcbc1ab9311f4151f9084af89ba403ef55f6c
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -9212,7 +9220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &349477089
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38921,25 +38929,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 530605014}
-        m_TargetAssemblyTypeName: Managers.MainMenuManager, Assembly-CSharp
-        m_MethodName: SetAvatarName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Avatar1
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   startDisabled: 0
-  primaryText: 
-  secondaryText: 
+  primaryText: Rock drums
+  secondaryText: May 10th 2022 18:22
   useInteractableLayer: 0
   interactableLayer:
     serializedVersion: 2
@@ -38951,8 +38947,8 @@ MonoBehaviour:
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
-  useText: 0
-  useSecondaryText: 0
+  useText: 1
+  useSecondaryText: 1
   iconImg: {fileID: 0}
   interactionSetting: 0
   dwellTimeSetting: 0
@@ -39645,7 +39641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1191580156}
   m_Layer: 9
-  m_Name: Dots (1)
+  m_Name: Dot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40236,25 +40232,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 530605014}
-        m_TargetAssemblyTypeName: Managers.MainMenuManager, Assembly-CSharp
-        m_MethodName: SetAvatarName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Avatar1
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   startDisabled: 0
-  primaryText: 
-  secondaryText: 
+  primaryText: Rock drums
+  secondaryText: May 10th 2022 18:22
   useInteractableLayer: 0
   interactableLayer:
     serializedVersion: 2
@@ -40266,8 +40250,8 @@ MonoBehaviour:
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
-  useText: 0
-  useSecondaryText: 0
+  useText: 1
+  useSecondaryText: 1
   iconImg: {fileID: 0}
   interactionSetting: 0
   dwellTimeSetting: 0
@@ -40546,25 +40530,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 530605014}
-        m_TargetAssemblyTypeName: Managers.MainMenuManager, Assembly-CSharp
-        m_MethodName: SetAvatarName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Avatar1
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   startDisabled: 0
-  primaryText: 
-  secondaryText: 
+  primaryText: Rock drums
+  secondaryText: May 10th 2022 18:22
   useInteractableLayer: 0
   interactableLayer:
     serializedVersion: 2
@@ -40576,8 +40548,8 @@ MonoBehaviour:
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
-  useText: 0
-  useSecondaryText: 0
+  useText: 1
+  useSecondaryText: 1
   iconImg: {fileID: 0}
   interactionSetting: 0
   dwellTimeSetting: 0
@@ -42067,6 +42039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
+<<<<<<< HEAD
       m_Calls:
       - m_Target: {fileID: 518344228}
         m_TargetAssemblyTypeName: LoadBeat, Assembly-CSharp
@@ -42080,6 +42053,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+=======
+      m_Calls: []
+>>>>>>> 078dcbc1ab9311f4151f9084af89ba403ef55f6c
   activeColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -54160,25 +54136,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 530605014}
-        m_TargetAssemblyTypeName: Managers.MainMenuManager, Assembly-CSharp
-        m_MethodName: SetAvatarName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Avatar1
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   startDisabled: 0
-  primaryText: 
-  secondaryText: 
+  primaryText: Rock drums
+  secondaryText: May 10th 2022 18:22
   useInteractableLayer: 0
   interactableLayer:
     serializedVersion: 2
@@ -54190,8 +54154,8 @@ MonoBehaviour:
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
-  useText: 0
-  useSecondaryText: 0
+  useText: 1
+  useSecondaryText: 1
   iconImg: {fileID: 0}
   interactionSetting: 0
   dwellTimeSetting: 0

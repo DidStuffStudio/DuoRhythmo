@@ -52,6 +52,8 @@ namespace ctsalidis {
         private string _friendToJoinUsername = null;
 
         private static string QueueName = "DefaultQueue";
+        
+        private List<string> _declinedFriendMatches = new List<string>();
 
         private void Awake() {
             if (_instance == null) _instance = this;
@@ -83,6 +85,7 @@ namespace ctsalidis {
 
         private void StartMatchmaking() {
             matchmakerId = PlayFabLogin.AuthenticationContext.EntityId; // this person would 'create' the match
+            if (_friendToJoinId != null) matchmakerId = _friendToJoinId;
 
             var Latencies = new object[] {
                 new {
@@ -124,7 +127,7 @@ namespace ctsalidis {
                 // The ticket creator specifies their own player attributes.
                 Creator = creator,
                 // Cancel matchmaking if a match is not found after 120 seconds.
-                GiveUpAfterSeconds = 120,
+                GiveUpAfterSeconds = 10,
 
                 // The name of the queue to submit the ticket into.
                 QueueName = QueueName
@@ -135,6 +138,10 @@ namespace ctsalidis {
                 OnMatchmakingError
             );
         }
+        
+        // https://docs.microsoft.com/en-us/gaming/playfab/features/multiplayer/lobby/lobby-matchmaking-sdks/multiplayer-unity-plugin-quickstart#join-a-matchmaking-ticket
+        // https://docs.microsoft.com/en-us/gaming/playfab/features/multiplayer/matchmaking/quickstart#group-members-join-the-match-ticket
+        public void JoinMatchmaking() => StartMatchmaking();
 
         public void LeaveQueue() {
             PlayFabMultiplayerAPI.CancelMatchmakingTicket(
@@ -189,9 +196,14 @@ namespace ctsalidis {
         */
 
         private void OnMatchmakingError(PlayFabError error) {
-            MainMenuManager.Instance.DeactivatePanel(18);
-            MainMenuManager.Instance.ActivatePanel(6);
             Debug.LogError(error.GenerateErrorReport());
+            SendBackToMainMenuWithErrorMessage(error.GenerateErrorReport());
+        }
+
+        private void SendBackToMainMenuWithErrorMessage(string error) {
+            MainMenuManager.Instance.DeactivatePanel(18); // hardcoded to waiting for match panel index
+            MainMenuManager.Instance.ActivatePanel(6); // hardcoded to main menu panel index
+            MainMenuManager.Instance.SpawnErrorToast("Match cancelled due to " + error, 0.1f); // give out error message
         }
 
         private IEnumerator PollTicket(string ticketId) {
@@ -227,6 +239,7 @@ namespace ctsalidis {
                     Debug.LogError(result.CancellationReasonString);
                     StopCoroutine(pollTicketCoroutine);
                     SetMatchmakingTicketIdObject(clear: true);
+                    SendBackToMainMenuWithErrorMessage(result.CancellationReasonString);
                     pollFriendMatchInvites = StartCoroutine(PollFriendMatchInvites());
                     break;
             }
@@ -312,6 +325,8 @@ namespace ctsalidis {
             if (PlayFabMultiplayerAPI.IsEntityLoggedIn()) print("Logged in, so get match invitation from friends");
 
             foreach (var friend in FriendsManager.Instance.FriendsDetails) {
+                if(friend.FriendStatus != FriendStatus.Confirmed) continue; // only check for invites from friends who have confirmed friendship status 
+                if(_declinedFriendMatches.Contains(friend.Username)) continue; // 
                 var getRequest = new GetObjectsRequest {
                     Entity = new PlayFab.DataModels.EntityKey
                         {Id = friend.TitleEntityKey.Id, Type = friend.TitleEntityKey.Type}
@@ -331,6 +346,7 @@ namespace ctsalidis {
                             print(details?["OwnerId"]);
                             _friendToJoinId = details?["OwnerId"].ToString();
                             _friendToJoinUsername = details?["OwnerUsername"].ToString();
+                            if (_declinedFriendMatches.Contains(_friendToJoinUsername)) continue;
                             StopCoroutine(pollFriendMatchInvites);
                             MainMenuManager.Instance.ReceiveInviteToPlay(_friendToJoinUsername);
                         }
@@ -350,6 +366,11 @@ namespace ctsalidis {
             if (!PlayFabMultiplayerAPI.IsEntityLoggedIn()) return;
             LeaveQueue();
             CancelAllTickets();
+        }
+
+        public void DeclineInvite(string username) {
+            _declinedFriendMatches.Add(username);
+            pollFriendMatchInvites = StartCoroutine(PollFriendMatchInvites()); // start checking for invites again
         }
     }
 }

@@ -100,6 +100,7 @@ namespace DidStuffLab {
                         LastLogin = f.Profile.LastLogin,
                         FriendStatus = GetFriendTag(f)
                     });
+                _friendsDictionary[f.FriendPlayFabId].IsOnline = GetFriendOnlineStatus(_friendsDictionary[f.FriendPlayFabId]);
             }
             var friendPlayfabIds = friends.Select(f => f.FriendPlayFabId).ToList();
             var request = new GetTitlePlayersFromMasterPlayerAccountIdsRequest {
@@ -121,6 +122,13 @@ namespace DidStuffLab {
             }
 
             return FriendStatus.Default;
+        }
+
+        private bool GetFriendOnlineStatus(Friend friend) {
+            // if (friend.FriendStatus != FriendStatus.Confirmed || friend.LastLogin == null) return false;
+            var breakDuration = TimeSpan.FromMinutes(10.0f); // threshold for how long ago they were online
+            var isOnline = (DateTime.UtcNow - friend.LastLogin) < breakDuration;
+            return isOnline;
         }
 
         private void OnReceivedPlayerIdsError(PlayFabError error) {
@@ -261,6 +269,7 @@ namespace DidStuffLab {
         public EntityKey TitleEntityKey { get; set; }
         public FriendStatus FriendStatus { get; set; }
         public DateTime? LastLogin { get; set; }
+        public bool IsOnline { get; set; }
     }
 
     public enum FriendStatus {

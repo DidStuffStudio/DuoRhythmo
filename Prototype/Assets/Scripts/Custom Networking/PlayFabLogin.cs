@@ -72,7 +72,6 @@ public class PlayFabLogin : MonoBehaviour {
     private void Start() {
         // NOTE --> Make sure that RememberMeId is initialised as the SystemInfo.deviceUniqueIdentifier
         LoginWithRememberMeId();
-        SignIn();
     }
 #endif
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.038572975, g: 0.037517063, b: 0.034506816, a: 1}
+  m_IndirectSpecularColor: {r: 0.040096905, g: 0.039037738, b: 0.03603265, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,6 +153,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.454902, g: 0.8352942, b: 0.8313726, a: 1}
   inactiveTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   useIcon: 1
@@ -687,6 +688,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -786,6 +788,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -1189,6 +1192,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -1483,6 +1487,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -1632,6 +1637,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.454902, g: 0.8352942, b: 0.8313726, a: 1}
   inactiveTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   useIcon: 1
@@ -2157,6 +2163,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -2408,6 +2415,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -2570,6 +2578,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -3644,6 +3653,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -3822,6 +3832,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -4717,6 +4728,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -4887,6 +4899,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -5953,6 +5966,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -6038,6 +6052,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -6286,6 +6301,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 1
@@ -6525,7 +6541,7 @@ MonoBehaviour:
   - {fileID: 721124558}
   dotParent: {fileID: 2007346865}
   dot: {fileID: 2965900216153779882, guid: b450ddbda2d787144ab79fdf07e07287, type: 3}
-  dotSpacing: 40
+  dotSpacing: 20
   dotActive: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   dotInactive: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.59607846}
   _onlineStatusImages:
@@ -6563,6 +6579,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -7282,6 +7299,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.454902, g: 0.8352942, b: 0.8313726, a: 1}
   inactiveTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   useIcon: 1
@@ -7607,6 +7625,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -7743,6 +7762,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -7966,6 +7986,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -8335,6 +8356,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -8438,6 +8460,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -8682,6 +8705,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 1
@@ -9402,6 +9426,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -9639,6 +9664,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -11295,6 +11321,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -11786,6 +11813,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -12320,6 +12348,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -12460,6 +12489,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -12929,6 +12959,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -13265,6 +13296,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -14964,6 +14996,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -15784,6 +15817,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -16065,6 +16099,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -16495,6 +16530,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -16725,6 +16761,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 1
@@ -16831,6 +16868,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -17727,6 +17765,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.454902, g: 0.8352942, b: 0.8313726, a: 1}
   inactiveTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   useIcon: 1
@@ -18082,6 +18121,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.454902, g: 0.8352942, b: 0.8313726, a: 1}
   inactiveTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   useIcon: 1
@@ -18483,6 +18523,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -19906,6 +19947,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -20097,6 +20139,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -26232,6 +26275,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -26380,6 +26424,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -26603,6 +26648,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -26786,6 +26832,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -27070,6 +27117,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -27538,6 +27586,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -28016,35 +28065,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4985610786298241956, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4985610786298241956, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4985610786298241956, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1425
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4985610786298241956, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -323.6526
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6799722759918478140, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6799722759918478140, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6799722759918478140, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 475
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6799722759918478140, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -323.6526
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8100450976117753738, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_Name
@@ -28052,27 +28101,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8473614549427565224, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473614549427565224, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473614549427565224, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 261
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473614549427565224, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 233
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473614549427565224, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 155.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473614549427565224, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -136.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
@@ -28391,6 +28440,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -29711,6 +29761,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -30143,6 +30194,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -30370,6 +30422,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -31320,6 +31373,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -32357,6 +32411,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -32843,6 +32898,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -32928,6 +32984,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -33032,6 +33089,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -33569,6 +33627,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -34264,6 +34323,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -34387,6 +34447,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -36279,6 +36340,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -36779,6 +36841,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -37146,6 +37209,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -37452,6 +37516,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -37968,6 +38033,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -38332,6 +38398,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -38931,6 +38998,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 1
@@ -39942,6 +40010,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -40618,6 +40687,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -40837,6 +40907,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -41455,6 +41526,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -41597,6 +41669,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -41944,6 +42017,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -42302,6 +42376,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -42600,6 +42675,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -43044,6 +43120,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -43223,6 +43300,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -43475,6 +43553,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -43922,6 +44001,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -44281,6 +44361,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 1
@@ -44711,6 +44792,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -46028,6 +46110,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -46499,6 +46582,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -46958,6 +47042,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -47506,6 +47591,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -48869,6 +48955,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -48985,6 +49072,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -51056,6 +51144,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -51687,6 +51776,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -52904,6 +52994,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -53127,6 +53218,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -53261,6 +53353,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -53783,6 +53876,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -54380,6 +54474,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -55230,6 +55325,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.454902, g: 0.8352942, b: 0.8313726, a: 1}
   inactiveTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   useIcon: 1
@@ -57492,6 +57588,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -57716,6 +57813,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -58088,6 +58186,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -58309,6 +58408,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -58810,6 +58910,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -59311,6 +59412,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   useIcon: 0
@@ -59441,7 +59543,7 @@ MonoBehaviour:
   - {fileID: 971867588}
   dotParent: {fileID: 504011146}
   dot: {fileID: 2965900216153779882, guid: b450ddbda2d787144ab79fdf07e07287, type: 3}
-  dotSpacing: 40
+  dotSpacing: 20
   dotActive: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   dotInactive: {r: 0.5, g: 0.5, b: 0.5, a: 0.59607846}
   addFriendCard: {fileID: 1639458964}
@@ -59592,6 +59694,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -59907,6 +60010,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -60097,6 +60201,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 1
@@ -61137,6 +61242,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -63511,6 +63617,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -74782,6 +74889,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 1
@@ -77427,6 +77535,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -77470,6 +77579,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -77659,6 +77769,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -77714,6 +77825,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -77793,6 +77905,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -77982,6 +78095,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -78037,6 +78151,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -78750,6 +78865,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -78793,6 +78909,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -78836,6 +78953,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -79147,6 +79265,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -79592,6 +79711,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -79835,6 +79955,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -79878,6 +79999,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -79921,6 +80043,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 0
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
   useIcon: 0
@@ -80450,6 +80573,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -80493,6 +80617,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -91815,6 +91940,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -95874,6 +96000,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -96236,6 +96363,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -96410,6 +96538,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -96936,6 +97065,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -97122,6 +97252,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -97660,6 +97791,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 0
@@ -98156,6 +98288,7 @@ MonoBehaviour:
   inactiveHoverColour: {r: 0, g: 0, b: 0, a: 0}
   activeHoverColour: {r: 0, g: 0, b: 0, a: 0}
   changeTextOrIconColour: 1
+  changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveTextOrIconColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   useIcon: 1

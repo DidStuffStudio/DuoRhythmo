@@ -40,7 +40,7 @@ namespace Managers
         private static readonly int Rps = Animator.StringToHash("RPS");
         private List<int> _panelIndices = new List<int>{0, 1, 2, 3, 4};
         [SerializeField] private List<AbstractDidStuffButton> ColorCodedButtons;
-
+        [SerializeField] private List<GameObject> voteSkipToasts = new List<GameObject>();
         private Color drumColor { get; set; }
         private Color[] defaultColor { get; set; }
         
@@ -98,6 +98,12 @@ namespace Managers
             _audioSource.outputAudioMixerGroup = mixer;
 
         }
+        
+        public void EnableToasts(int index, bool enable) => voteSkipToasts[index].SetActive(enable);
+        public void DisableAllToasts()
+        {
+            foreach (var toast in voteSkipToasts) toast.SetActive(false);
+        }        
         
         private void SetUpNamesAndColours()
         {

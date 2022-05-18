@@ -15,7 +15,7 @@ namespace Managers
         private DidStuffSoloButton _soloButton;
         [SerializeField] private TextMeshProUGUI panelTitle;
         [SerializeField] private List<AbstractDidStuffButton> colorCodedButtons = new List<AbstractDidStuffButton>();
-
+        [SerializeField] private List<GameObject> voteSkipToasts = new List<GameObject>();
         private Color drumColor { get; set; }
         private Color defaultColor { get; set; }
 
@@ -43,6 +43,12 @@ namespace Managers
             if (i == numberOfInstruments - 1) InitialiseBpm(bpm);
         }
 
+        public void EnableToasts(int index, bool enable) => voteSkipToasts[index].SetActive(enable);
+        public void DisableAllToasts()
+        {
+            foreach (var toast in voteSkipToasts) toast.SetActive(false);
+        }
+        
         private void SetUpNamesAndColours()
         {
             panelTitle.color = drumColor;

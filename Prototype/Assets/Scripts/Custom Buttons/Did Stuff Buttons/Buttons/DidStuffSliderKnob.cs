@@ -92,9 +92,9 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         //_screenY = _currentInputScreenPosition.y;
         base.Update();
         
-        if(!_isHover && _isActive) DeactivateButton();
+        if(!IsHover && _isActive) DeactivateButton();
         
-        if (!_isHover || !_isActive) return;
+        if (!IsHover || !_isActive) return;
         
         // Mouse Delta
 
@@ -154,13 +154,13 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     private void MouseInteraction()
     {
         if (Input.GetMouseButtonUp(0)) DeactivateButton();
-        if(_isHover)_currentInputScreenPosition = Input.mousePosition;
+        if(IsHover)_currentInputScreenPosition = Input.mousePosition;
     }
     
 
     private void MouseDwellInteraction()
     {
-        if(_isHover)_currentInputScreenPosition = Input.mousePosition;
+        if(IsHover)_currentInputScreenPosition = Input.mousePosition;
         
     }
 

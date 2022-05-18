@@ -82,7 +82,7 @@ namespace Managers
          var initialBlurPanel = Instantiate(_background, transform.position, Quaternion.identity, transform);
          _backgroundRTs.Add(initialBlurPanel.GetComponent<RectTransform>());
          initialBlurPanel.transform.SetSiblingIndex(0);
-         
+         uiPanels[6].ExecuteSpecificChanges();
          ActivatePanel(0);
          //ReceiveInviteToPlay("Dickhead");
          

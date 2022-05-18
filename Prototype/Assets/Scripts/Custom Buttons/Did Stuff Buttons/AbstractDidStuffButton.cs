@@ -190,6 +190,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		public static InteractionMethod GetInteractionMethod => _interactionMethod;
 
+		public bool IsHover
+		{
+			get => _isHover;
+			set => _isHover = value;
+		}
+
 		protected void SetInteractionMethod(InteractionMethod method)
 		{
 			DelegateInteractionMethod(false);
@@ -356,9 +362,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 						break;
 				}
 			}
-			/*if (!_playActivatedScale) return;
+			if (!_playActivatedScale) return;
 			if (_dwellGfx.localScale.x > 0.0f) _dwellGfx.localScale -= one * 0.01f;
-			else ToggleDwellGfx(false);*/
+			else ToggleDwellGfx(false);
 
 		}
 
@@ -399,7 +405,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 			if (GetInteractionMethod == InteractionMethod.Tobii || GetInteractionMethod == InteractionMethod.MouseDwell)
 			{
-				_isHover = false;
+				IsHover = false;
 				InteractionManager.Instance.JustInteracted(this);
 			}
 		}
@@ -571,7 +577,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		private void MouseInput()
 		{
-			if (_isHover && Input.GetMouseButtonDown(0)) OnClick?.Invoke();
+			if (IsHover && Input.GetMouseButtonDown(0)) OnClick?.Invoke();
 		}
 
 		private void MouseHover()
@@ -594,9 +600,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_dwelling = true;
 			var d = dwellTimeSetting ? localDwellTime : _dwellTime;
 			if(!_dwellGfx.gameObject.activeInHierarchy) ToggleDwellGfx(true);
-			if (_isHover && _currentDwellTime > 0) _currentDwellTime -= Time.deltaTime;
-			else if(_isHover &&_currentDwellTime <= 0) DwellActivated();
-			else if (!_isHover && _currentDwellTime < d) _currentDwellTime += Time.deltaTime;
+			if (IsHover && _currentDwellTime > 0) _currentDwellTime -= Time.deltaTime;
+			else if(IsHover &&_currentDwellTime <= 0) DwellActivated();
+			else if (!IsHover && _currentDwellTime < d) _currentDwellTime += Time.deltaTime;
 			if ((_currentDwellTime < 1 && _currentDwellTime > 0))
 			{
 				var size = Map(_currentDwellTime, 0, d, 0, 1f);
@@ -635,12 +641,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (!TobiiAPI.IsConnected) return;
 			if (_gazeAware.HasGazeFocus)
 			{
-				_isHover = true;
+				IsHover = true;
 				OnHover?.Invoke();
 			}
 			else
 			{
-				_isHover = false;
+				IsHover = false;
 				OnUnHover?.Invoke();
 			}
 		}
@@ -668,26 +674,26 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private void OnMouseOver()
 		{
 			if(!_canHover) return;
-			_isHover = true;
+			IsHover = true;
 			OnHover?.Invoke();
 		}
 
 		private void OnMouseExit()
 		{
-			_isHover = false;
+			IsHover = false;
 			OnUnHover?.Invoke();
 		}
 
 		public void OnPointerEnter(PointerEventData eventData)
 		{
 			if(!_canHover || localInteractionMethod == InteractionMethod.Tobii|| _interactionMethod == InteractionMethod.Tobii) return;
-			_isHover = true;
+			IsHover = true;
 			OnHover?.Invoke();
 		}
   
 		public void OnPointerExit(PointerEventData eventData)
 		{
-			_isHover = false;
+			IsHover = false;
 			OnUnHover?.Invoke();
 		}
 		#endregion
@@ -695,6 +701,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 		protected virtual void OnDisable()
 		{
+			_isHover = false;
 			OnClick -= ButtonClicked;
 			OnHover -= ButtonHovered;
 			OnUnHover -= ButtonUnHovered;

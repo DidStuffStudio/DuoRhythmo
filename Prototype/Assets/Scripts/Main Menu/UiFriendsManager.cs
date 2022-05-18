@@ -23,10 +23,10 @@ public class UiFriendsManager : MonoBehaviour
     [SerializeField] private float dotSpacing;
     [SerializeField] private Color dotActive, dotInactive;
 
-    private List<string> _allFriendUsernames = new List<string>();
-    private List<string> _confirmedFriendUsernames = new List<string>();
-    private List<string> _allFriendAvatars = new List<string>();
-    private List<string> _confirmedFriendAvatars = new List<string>();
+    protected List<string> _allFriendUsernames = new List<string>();
+    protected List<string> _confirmedFriendUsernames = new List<string>();
+    protected List<string> _allFriendAvatars = new List<string>();
+    protected List<string> _confirmedFriendAvatars = new List<string>();
     private Dictionary<string, FriendStatus> _friendStatusMap = new Dictionary<string, FriendStatus>();
     
     protected List<string> listToLoopUsernames = new List<string>();
@@ -39,7 +39,7 @@ public class UiFriendsManager : MonoBehaviour
     private int _page;
     private int _numberOfPages;
     private int _numberOfCardsOnLastPage;
-    private List<Image> _dots;
+    private List<Image> _dots = new List<Image>();
     private bool _initialised;
     
 
@@ -77,6 +77,12 @@ public class UiFriendsManager : MonoBehaviour
         set => _friendStatusMap = value;
     }
 
+    public bool Initialised
+    {
+        get => _initialised;
+        set => _initialised = value;
+    }
+
     protected virtual void OnEnable()
     {
         if (!_initialised) return;
@@ -92,10 +98,14 @@ public class UiFriendsManager : MonoBehaviour
 
     protected virtual void Initialise()
     {
+        _currentListIndex = 0;
+        _page = 1;
         navigationArrows[0].SetActive(false);
-        _numberOfPages = (int)(listToLoopUsernames.Count / _numberOfCards);
-        _numberOfCardsOnLastPage = listToLoopUsernames.Count % _numberOfCards;
         _numberFriends = listToLoopUsernames.Count;
+        
+        _numberOfPages = Mathf.CeilToInt((float)_numberFriends / (float)_numberOfCards);
+        _numberOfCardsOnLastPage = listToLoopUsernames.Count % _numberOfCards;
+        
         if(_numberFriends <= 2) DisableArrowsAndDots();
         _even = _numberFriends % 2 == 0;
     }
@@ -104,8 +114,16 @@ public class UiFriendsManager : MonoBehaviour
     {
         DoTheDots();
         if (_numberFriends == 0) return;
-        if (_numberFriends <= _numberOfCards) _displayedFriends = _numberFriends;
-        else _displayedFriends = _numberOfCards;
+        if (_numberFriends <= _numberOfCards)
+        {
+            _displayedFriends = _numberFriends;
+            for (int i = 0; i < _numberFriends; i++) friendCards[i].SetActive(true);
+        }
+        else
+        {
+            _displayedFriends = _numberOfCards;
+            for (int i = 0; i < friendCards.Count; i++) friendCards[i].SetActive(true);
+        }
         ChangeGraphics();
     }
 
@@ -115,18 +133,18 @@ public class UiFriendsManager : MonoBehaviour
         if (right)
         {
             _page++;
-            _currentListIndex+=_numberOfCards;
+            _currentListIndex +=_numberOfCards;
         }
         else
         {
             _page--;
-            _currentListIndex-=_numberOfCards;
+            _currentListIndex -= _numberOfCards;
         }
         
-        navigationArrows[0].SetActive(_page != 0);
+        navigationArrows[0].SetActive(_page != 1);
         navigationArrows[1].SetActive(_page != _numberOfPages);
         _displayedFriends = _numberOfCards;
-        if (_page == _numberOfPages)
+        if (_page == _numberOfPages && _numberOfCardsOnLastPage > 0)
         {
             ActivateLastCards(_numberOfCardsOnLastPage, false);
             _displayedFriends = _numberOfCardsOnLastPage;
@@ -149,10 +167,11 @@ public class UiFriendsManager : MonoBehaviour
         }
     }
     
-    private void ActivateLastCards(int indexToKeepActive, bool activate)
+    private void ActivateLastCards(int numberToRemove, bool activate)
     {
-        if (indexToKeepActive == 0) return;
-        for (var index = _numberOfCards-1; index < indexToKeepActive; index--)
+        if (numberToRemove == 0) return;
+        var j = _numberOfCards - numberToRemove - 1;
+        for (var index = _numberOfCards-1; index > j; index--)
         { 
             friendCards[index].SetActive(activate);
         }
@@ -194,14 +213,15 @@ public class UiFriendsManager : MonoBehaviour
     }
 private void DoTheDots()
 {
-    if (_numberFriends < _numberOfCards) return;
-        var numberOfDots = Mathf.Ceil(_numberFriends/_numberOfCards);
-        var xShift = (numberOfDots - 1) * dotSpacing;
+    if (_numberFriends <= _numberOfCards) return;
+        var numberOfDots = Mathf.Ceil((float)_numberFriends/(float)_numberOfCards);
+        print("Number of dots is " + numberOfDots);
+        var xShift = ((numberOfDots - 1) * dotSpacing)/2;
         for (int i = 0; i < numberOfDots; i++)
         {
             var dotClone = Instantiate(dot, dotParent.transform);
             dotClone.transform.Translate(-xShift+dotSpacing*i,0,0);
-            var dotImage = dotClone.GetComponent<Image>();
+            var dotImage = dotClone.transform.GetComponent<Image>();
             dotImage.color = dotInactive;
             _dots.Add(dotImage);
         }
@@ -221,7 +241,10 @@ private void DoTheDots()
         _confirmedFriendAvatars.Clear();
         _confirmedFriendUsernames.Clear();
     }
-    
 
-    private void OnDisable() => _initialised = true;
+
+    private void OnDisable()
+    {
+        ClearLists();
+    }
 }

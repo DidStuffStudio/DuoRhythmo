@@ -26,8 +26,8 @@ public class ManageFriendsPanel : UiFriendsManager
     protected override void OnEnable()
     {
         _numberOfCards = friendCards.Count;
-        listToLoopUsernames = AllFriendUsernames;
-        listToLoopAvatars = AllFriendAvatars;
+        listToLoopUsernames = _allFriendUsernames;
+        listToLoopAvatars = _allFriendAvatars;
         base.OnEnable();
     }
     

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DidStuffLab;
 using Managers;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class GetFriends : MonoBehaviour
     private List<string> _confirmedFriendUsernames = new List<string>();
     private List<string> _allFriendAvatars = new List<string>();
     private List<string> _confirmedFriendAvatars = new List<string>();
-    private List<string> _confirmedFriendsOnlineStatus = new List<string>();
+    private List<bool> _confirmedFriendsOnlineStatus = new List<bool>();
     private Dictionary<string, FriendStatus> _friendStatusMap = new Dictionary<string, FriendStatus>();
     [SerializeField] private List<UiFriendsManager> managersToUpdate;
     private bool _initialised;
@@ -22,7 +23,6 @@ public class GetFriends : MonoBehaviour
         if (!_initialised) return;
         if (MainMenuManager.Instance.LoggedIn)
         {
-            FriendsManager.Instance.GetFriends();
             GetFriendDetails();
             foreach (var manager in managersToUpdate)
             {
@@ -42,7 +42,7 @@ public class GetFriends : MonoBehaviour
     {
 
             ClearLists();    
-        _friends.AddRange(FriendsManager.Instance.FriendsDetails);
+        _friends = FriendsManager.Instance.FriendsDetails.ToList();
         
         var requesterUsernames = new List<string>(); //Friend request
         var requesteeUsernames = new List<string>(); //Pending
@@ -79,9 +79,9 @@ public class GetFriends : MonoBehaviour
             }
         }
         
-        _confirmedFriendUsernames.AddRange(confirmedUsernames);
-        _confirmedFriendAvatars.AddRange(confirmedAvatars);
-        _confirmedFriendsOnlineStatus.AddRange(_confirmedFriendsOnlineStatus);
+        _confirmedFriendUsernames = confirmedUsernames;
+        _confirmedFriendAvatars = confirmedAvatars;
+        _confirmedFriendsOnlineStatus = confirmedOnlineStatus;
 
         for (int i = 0; i < requesterUsernames.Count; i++)
         {
@@ -114,8 +114,6 @@ public class GetFriends : MonoBehaviour
             _allFriendUsernames.Clear();
             _allFriendAvatars.Clear();
             _friendStatusMap.Clear();
-            _confirmedFriendAvatars.Clear();
-            _confirmedFriendUsernames.Clear();
        }
 
        private void OnDisable() => _initialised = true;

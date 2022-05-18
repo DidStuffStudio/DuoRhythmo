@@ -15,7 +15,7 @@ public class DidStuffPanelSwitch : AbstractDidStuffButton
     protected override void ButtonClicked()
     {
         base.ButtonClicked();
-        _isHover = false;
+        IsHover = false;
         DeactivateButton();
         if(panelToActivate > -1) menuManager.ActivatePanel(panelToActivate);
         if(panelToDeactivate > -1) menuManager.DeactivatePanel(panelToDeactivate);

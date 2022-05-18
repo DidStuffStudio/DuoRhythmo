@@ -59,6 +59,7 @@ public class InteractionManager : MonoBehaviour
         private IEnumerator CoolDownTime(AbstractDidStuffButton btn)
         {
             btn.SetCanHover(false);
+            btn.IsHover = false;
             yield return new WaitForSeconds(_interactionBreakTime);
             btn.SetCanHover(true);
         }

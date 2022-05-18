@@ -28,7 +28,12 @@ public class ManageFriendsPanel : UiFriendsManager
         _numberOfCards = friendCards.Count;
         listToLoopUsernames = _allFriendUsernames;
         listToLoopAvatars = _allFriendAvatars;
+        foreach (var t in confirmInteractionTexts)
+        {
+            t.gameObject.SetActive(false);
+        }
         base.OnEnable();
+        if (!MainMenuManager.Instance.IsGuest) EnableAddFriend();
     }
     
     protected override void ChangeGraphics()
@@ -72,6 +77,11 @@ public class ManageFriendsPanel : UiFriendsManager
     {
         addFriendCard.SetActive(false);
         base.DisableAllInteraction();
+    }
+
+    private void EnableAddFriend()
+    {
+        addFriendCard.SetActive(true);
     }
 
 

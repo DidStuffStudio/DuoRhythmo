@@ -711,6 +711,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		private void OnMouseExit()
 		{
+			if (IsDisabled) return;
 			IsHover = false;
 			OnUnHover?.Invoke();
 		}
@@ -725,6 +726,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
   
 		public void OnPointerExit(PointerEventData eventData)
 		{
+			if (IsDisabled) return;
 			IsHover = false;
 			OnUnHover?.Invoke();
 		}

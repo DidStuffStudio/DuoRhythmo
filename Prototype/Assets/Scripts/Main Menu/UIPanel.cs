@@ -54,15 +54,5 @@ public class UIPanel : MonoBehaviour
     {
         
     }
-
-    private void DestroyAllToasts()
-    {
-        var toasts = GameObject.FindGameObjectsWithTag("Toast");
-        foreach (var toast in toasts) DestroyImmediate(toast);
-    }
-
-    private void OnDisable()
-    {
-        DestroyAllToasts();
-    }
+    
 }

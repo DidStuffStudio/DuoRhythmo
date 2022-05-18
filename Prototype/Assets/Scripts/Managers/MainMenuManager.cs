@@ -168,6 +168,8 @@ namespace Managers
          if (!_okayToSwitch) _okayToSwitch = true;
          else
          {
+            var toasts = GameObject.FindGameObjectsWithTag("Toast");
+            foreach (var toast in toasts) DestroyImmediate(toast);
             _panelDictionary[indexToDeactivate].gameObject.SetActive(false);
          }
       }

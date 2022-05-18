@@ -98,6 +98,8 @@ namespace ctsalidis {
                 },
             };
             
+            // TODO --> Fix selected drums array of strings:
+            // right now it would come as [{"DrumType" : "0"}, {"DrumType" : "1"}] but should be ["0", "1"] 
             var SelectedDrums = new object[] { new  {
                 DrumType = _selectedDrumToPlayWith
             } };
@@ -256,7 +258,9 @@ namespace ctsalidis {
             PlayFabMultiplayerAPI.GetMatch(
                 new GetMatchRequest {
                     MatchId = matchId,
-                    QueueName = QueueName
+                    QueueName = QueueName,
+                    ReturnMemberAttributes = true,
+                    EscapeObject = true
                 },
                 OnGetMatch,
                 OnMatchmakingError
@@ -274,6 +278,11 @@ namespace ctsalidis {
             // result.Members[0].Attributes.EscapedDataObject; // TODO --> Use this to check for the drumtypes that have been set by the user (use the same for user attribute and matchmaking attribute)
             MainMenuManager.Instance.SetMatchmakingStatusText(
                 $"{result.Members[0].Entity.Id} vs {result.Members[1].Entity.Id}");
+
+            // get drum type and set in jamming session details
+            // TODO --> parse both and get common drumtype, then send to JammingSessionDetails
+            var drumtypes1 = result.Members[0].Attributes.EscapedDataObject; 
+            var drumtypes2 = result.Members[1].Attributes.EscapedDataObject; 
 
             // TODO --> initialize server instance details (send to JammingSessionDetails), then call _clientStartup.SetServerInstanceDetails(...)
             // TODO --> Also pass user's username to jammingsessiondetails - then add to player sync gameobject prefab, and sync Mirror once in the server

@@ -61,7 +61,7 @@ public class PlayFabLogin : MonoBehaviour {
     public static List<EntityKey> SelectedFriendsEntityKeys =
         new List<EntityKey>();
 
-    private static PlayFabAuthenticationContext AuthenticationContext;
+    public static PlayFabAuthenticationContext AuthenticationContext;
 
     private void Awake() {
         if (_instance == null) _instance = this;

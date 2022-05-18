@@ -148,7 +148,7 @@ namespace DidStuffLab {
             }
 
             GetFriendAvatarNames();
-            // Matchmaker.Instance.Initialize(); TODO --> Initialize
+            Matchmaker.Instance.Initialize();
         }
 
         private void GetFriendAvatarNames() {

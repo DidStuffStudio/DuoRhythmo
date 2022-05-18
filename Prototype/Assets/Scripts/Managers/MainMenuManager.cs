@@ -363,10 +363,10 @@ namespace Managers
       IEnumerator InstantiateErrorToast(string toastText, float delay)
       {
          yield return new WaitForSeconds(delay);
-         var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder").transform;
-         if (toastPlaceholder == null) toastPlaceholder = defaultToastPlaceholder;
-         if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.GetChild(0).gameObject);
-         var t = Instantiate(errorToast, toastPlaceholder);
+         var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder");
+         if (toastPlaceholder == null) toastPlaceholder = defaultToastPlaceholder.gameObject;
+         if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.transform.GetChild(0).gameObject);
+         var t = Instantiate(errorToast, toastPlaceholder.transform);
          t.GetComponent<Toast>().SetText(toastText);
       }
       

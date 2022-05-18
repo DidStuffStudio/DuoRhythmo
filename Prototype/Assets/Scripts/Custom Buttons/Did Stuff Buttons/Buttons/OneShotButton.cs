@@ -16,7 +16,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         protected override void ButtonClicked()
         {
             base.ButtonClicked();
-            //ToggleDwellGfx(true);
+            ToggleDwellGfx(true);
+            base.ActivatedScaleFeedback();
         }
 
         protected override void ToggleButton(bool activate)

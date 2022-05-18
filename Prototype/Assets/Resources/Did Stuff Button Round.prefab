@@ -85,7 +85,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba0ed19f4ffb7d041b633bc2e98a6a1e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1156a372b84424349802c3f65fdc3404, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -113,6 +113,7 @@ MonoBehaviour:
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
+  startDisabled: 0
   primaryText: 
   secondaryText: 
   useInteractableLayer: 0
@@ -133,6 +134,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  dwellScaleX: 0
 --- !u!114 &1333812293971173399
 MonoBehaviour:
   m_ObjectHideFlags: 0

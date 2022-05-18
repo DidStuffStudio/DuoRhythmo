@@ -591,7 +591,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		private void MouseInput()
 		{
-			if (IsHover && Input.GetMouseButtonDown(0)) OnClick?.Invoke();
+			if (IsHover && Input.GetMouseButtonUp(0)) OnClick?.Invoke();
 		}
 
 		private void MouseHover()

@@ -10,6 +10,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         [SerializeField] private EuclideanRhythm euclideanRhythm;
         [SerializeField] private NodeManager nodeManager;
         [SerializeField] private OneShotButton[] incrementButtons = new OneShotButton[2];
+        [SerializeField] private Animator[] animators;
+        private static readonly int Speed = Animator.StringToHash("Speed");
+
         private void Start()
         {
             ToggleButtons();
@@ -28,9 +31,15 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
 
         private void ToggleButtons()
         {
-            foreach (var btn in buttonsToToggle)
+            for (var index = 0; index < buttonsToToggle.Count; index++)
             {
-                btn.SetActive(_isActive);
+                if (_isActive)
+                {
+                    animators[index].SetFloat(Speed, -1);
+                    animators[index].Play("PlayEuclidean");
+                }
+                   
+                else buttonsToToggle[index].SetActive(_isActive);
             }
         }
 

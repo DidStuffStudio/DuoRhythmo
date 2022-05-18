@@ -14,7 +14,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
             ChangeToInactiveState();
             if(Initialised)ActivatedScaleFeedback();
         }
-        
-        
+
+        public void SetInactive() => gameObject.SetActive(false);
+
     }
 }

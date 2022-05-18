@@ -24,8 +24,8 @@ public class LoadBeat : MonoBehaviour
     public Transform layoutGroupTransform;
     public GameObject panelTemplate;
 
-    public Button arrowRight;
-    public Button arrowLeft;
+    public GameObject arrowRight;
+    public GameObject arrowLeft;
 
     public float[] positions; 
 
@@ -46,10 +46,13 @@ public class LoadBeat : MonoBehaviour
     private List<GameObject> signifiers = new List<GameObject>();
     public GameObject signifierTemplate;
 
+    private bool hasRunOnce;
+
     private void Awake()
     {
         savedListWindow = listWindow;
         Initialize();
+        StartCoroutine(SetCorrectPanel());
     }
 
     private void Initialize()
@@ -212,6 +215,8 @@ public class LoadBeat : MonoBehaviour
                 signifiers[CurrentPanel-1].GetComponent<Image>().color = new Color(1,1,1,0.2f);
             }
         }
+        
+        
         moving = true;
     }
     
@@ -288,6 +293,12 @@ public class LoadBeat : MonoBehaviour
             arrowRight.gameObject.SetActive(false);
         }
 
+        /*if (!hasRunOnce)
+        {
+            scrollRect.horizontalNormalizedPosition = 0;
+        }*/
+        
+
     }
 
     void ResetSaveFileBrowser()
@@ -321,6 +332,12 @@ public class LoadBeat : MonoBehaviour
 
         Initialize();*/
 
+    }
+
+    public IEnumerator SetCorrectPanel()
+    {
+        yield return new WaitForEndOfFrame();
+        scrollRect.horizontalNormalizedPosition = 0;
     }
 
 

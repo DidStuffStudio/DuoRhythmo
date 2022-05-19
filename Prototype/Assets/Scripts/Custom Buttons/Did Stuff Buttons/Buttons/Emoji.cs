@@ -1,38 +1,21 @@
 using UnityEngine;
 
-namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
-{
-    public class Emoji : OneShotButton
-    {
-        private static GameObject _gameObject;
-        private RectTransform _rectTransform;
-        private TweenSharp tween;
-        public float d = 10f;
-        protected void Start()
-        {
-          
-            
-        }
-        
+namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
+    
+    public class Emoji : OneShotButton {
+        private TweenSharp _tween;
+        public float duration = 2.3f;
+        [SerializeField] private Vector3 targetPosition;
 
-        protected override void OnEnable()
-        {
-            _gameObject = gameObject;
-            _rectTransform = GetComponent<RectTransform>();
-            //_rectTransform.localScale = new Vector3(0, 0, 1);
-            tween = new TweenSharp(_gameObject, d, new
-            {
+        protected override void OnEnable() {
+            base.OnEnable();
+            _tween = new TweenSharp(gameObject, duration, new {
                 scale = 1.0f,
+                localX = targetPosition.x,
+                localY = targetPosition.y,
                 ease = Bounce.EaseOut
             });
-            
-            base.OnEnable();
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-            print(tween.Progress);
+            _tween.Restart();
         }
     }
 }

@@ -1,35 +1,22 @@
+using System;
 using System.Collections.Generic;
+using PlayFab.MultiplayerModels;
 using UnityEngine;
 
-namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
-{
-    public class EmojiToggle : AbstractDidStuffButton
-    {
-        [SerializeField] private List<GameObject> buttonsToToggle = new List<GameObject>();
-        [SerializeField] private OneShotButton[] incrementButtons = new OneShotButton[2];
-        [SerializeField] private Animator[] animators;
-        private static readonly int Speed = Animator.StringToHash("Speed");
+namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
+    public class EmojiToggle : AbstractDidStuffButton {
+        [SerializeField] private List<Emoji> emojis = new List<Emoji>();
 
-        
-        protected override void ChangeToActiveState()
-        {
-            for (var index = 0; index < buttonsToToggle.Count; index++)
-            {
-                animators[index].SetFloat(Speed, 1);
-                animators[index].Play($"PlayEmoji");
-            }
+        protected override void ChangeToActiveState() {
+            base.ChangeToActiveState();
+            print("Active state");
+            foreach (var emoji in emojis) emoji.Enabled = true;
         }
 
-        protected override void ChangeToInactiveState()
-        {
-            for (var index = 0; index < buttonsToToggle.Count; index++)
-            {
-                animators[index].SetFloat(Speed, -1);
-                animators[index].Play($"PlayEmoji");
-            }
+        protected override void ChangeToInactiveState() {
+            base.ChangeToInactiveState();
+            print("Inactive state");
+            foreach (var emoji in emojis) emoji.Enabled = false;
         }
-        
-        
-    
     }
 }

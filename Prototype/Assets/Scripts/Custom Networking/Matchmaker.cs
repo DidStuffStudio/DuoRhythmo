@@ -276,16 +276,6 @@ namespace DidStuffLab {
             MainMenuManager.Instance.SetMatchmakingStatusText(
                 $"{result.Members[0].Entity.Id} vs {result.Members[1].Entity.Id}");
 
-            // get drum type and set in jamming session details
-            // TODO --> parse both and get common drumtype, then send to JammingSessionDetails
-            // var drumtypes1 = result.Members[0].Attributes.EscapedDataObject; 
-            // var drumtypes2 = result.Members[1].Attributes.EscapedDataObject;
-
-            // foreach (var o in result.Members.Where(o => o.Attributes.EscapedDataObject.Contains("DrumType"))) {
-            //     if(o.Attributes.EscapedDataObject == null) continue;
-            //     
-            // }
-
             byte highestChosenDrum = 0;
             if (isRandom) {
                 var drumTypes =
@@ -294,10 +284,6 @@ namespace DidStuffLab {
                     if (member.Attributes != null) {
                         if (!(member.Attributes.DataObject is JsonObject data) ||
                             !(data["DrumTypes"] is JsonArray drums)) continue;
-                        // foreach (var d in drums) {
-                        //     var v = (byte) int.Parse(d.ToString());
-                        //     drumTypes[v]++;
-                        // }
                         foreach (var v in drums.Select(d => (byte) int.Parse(d.ToString()))) {
                             if (!drumTypes.ContainsKey(v)) drumTypes.Add(v, 1);
                             else drumTypes[v]++;
@@ -306,6 +292,7 @@ namespace DidStuffLab {
                     }
                     else {
                         // check escaped data object string in case attributes object is null
+                        Debug.LogError("The attributes data is null");
                     }
                 }
 
@@ -315,25 +302,21 @@ namespace DidStuffLab {
             }
             else highestChosenDrum = (byte) int.Parse(DrumToPlayWith);
 
-            
-            
-
-            JamSessionDetails.Instance.DrumTypeIndex = highestChosenDrum;
-
-            // JamSessionDetails.Instance.localPlayerUsername;
-            // JamSessionDetails.Instance.otherPlayerUsername;
-
             // TODO --> initialize server instance details (send to JammingSessionDetails), then call _clientStartup.SetServerInstanceDetails(...)
             // TODO --> Also pass user's avatar and username to jammingsessiondetails - then add to player sync gameobject prefab, and sync Mirror once in the server
+            
+            
+             // TODO --> UNCOMMENT ONCE WE HAVE SERVER ALLOCATION ENABLED ON THE MATCHMAKING QUEUE IN PLAYFAB (MAKE SURE THAT BUILD ID IS CORRECT)
             /*
-             var ipAddress = result.ServerDetails.IPV4Address;
+            var ipAddress = result.ServerDetails.IPV4Address;
             var ports = result.ServerDetails.Ports;
             print("Match ID: " + result.MatchId);
             print("IP Address: " + result.ServerDetails.IPV4Address);
             for (int i = 0; i < result.ServerDetails.Ports.Count; i++) {
                 print("Port " + i + " - " + result.ServerDetails.Ports[i]);
             }
-            _clientStartup.SetServerInstanceDetails(ipAddress, (ushort) ports[0].Num);
+            
+            JamSessionDetails.Instance.SetMultiplayerMatchDetails(PlayFabLogin.Instance.UserAvatar, highestChosenDrum, ipAddress, (ushort) ports[0].Num);
             */
         }
 
@@ -380,7 +363,7 @@ namespace DidStuffLab {
 
             foreach (var friend in FriendsManager.Instance.FriendsDetails) {
                 if(friend.FriendStatus != FriendStatus.Confirmed) continue; // only check for invites from friends who have confirmed friendship status 
-                if(_declinedFriendMatches.Contains(friend.Username)) continue; // 
+                if(_declinedFriendMatches.Contains(friend.Username)) continue; // if they've already been declined, then ignore their request to play
                 var getRequest = new GetObjectsRequest {
                     Entity = new PlayFab.DataModels.EntityKey
                         {Id = friend.TitleEntityKey.Id, Type = friend.TitleEntityKey.Type}

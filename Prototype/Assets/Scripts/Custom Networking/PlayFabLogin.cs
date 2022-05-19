@@ -30,6 +30,7 @@ public class PlayFabLogin : MonoBehaviour {
     public string UserAvatar { get; set; }
 
     private const string _PlayFabRememberMeIdKey = "PlayFabIdPassDeviceUniqueIdentifier";
+
     private GetPlayerCombinedInfoRequestParams _infoRequestParameters = new GetPlayerCombinedInfoRequestParams {
         // GetUserData = true,
         GetUserAccountInfo = true,
@@ -50,7 +51,7 @@ public class PlayFabLogin : MonoBehaviour {
             PlayerPrefs.SetString(_PlayFabRememberMeIdKey, guid);
         }
     }
-    
+
     public static string MasterPlayfabId;
     public static EntityKey EntityKey;
 
@@ -130,7 +131,8 @@ public class PlayFabLogin : MonoBehaviour {
         ProceedWithLogin(result.AuthenticationContext, result.PlayFabId, false);
     }
 
-    private void ProceedWithLogin(PlayFabAuthenticationContext authenticationContext, string username,  bool createdNewAccount) {
+    private void ProceedWithLogin(PlayFabAuthenticationContext authenticationContext, string username,
+        bool createdNewAccount) {
         AuthenticationContext = authenticationContext;
         MasterPlayfabId = AuthenticationContext.PlayFabId;
         Username = username ?? authenticationContext.EntityId;
@@ -257,6 +259,7 @@ public class PlayFabLogin : MonoBehaviour {
                         // FriendsManager.Instance.friendAvatarNames.Add(entityKey.Id, playerAvatarName);
                         FriendsManager.Instance.AddAvatarToFriendDetails(entityKey, playerAvatarName);
                     }
+                    else UserAvatar = playerAvatarName; // if it's the local player then set the user's avatar name
                 }
             }
         }, (error) => { Debug.LogError("There has been a problem getting the avatar object --> " + error); });

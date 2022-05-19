@@ -7,8 +7,11 @@ using PlayFab.MultiplayerModels;
 using PlayFab.Networking;
 using UnityEngine;
 using PlayFab.ClientModels;
+using UnityEditor.PackageManager;
 
 public class ClientStartup : MonoBehaviour {
+    private static ClientStartup _instance;
+    public static ClientStartup Instance => _instance;
     [SerializeField] private string buildId;
     public string BuildId => buildId;
     [SerializeField] private string ipAddress;
@@ -17,6 +20,7 @@ public class ClientStartup : MonoBehaviour {
 
     public string entityId;
 
+#if !UNITY_SERVER
     // if the server has been setup by the matchmaking process, I should call this function
     public void SetServerInstanceDetails(string ipAddress, ushort port) {
         this.ipAddress = ipAddress;
@@ -24,10 +28,9 @@ public class ClientStartup : MonoBehaviour {
         ConnectUserToServer();
     }
     
-#if !UNITY_SERVER
     private void Start() {
         // LoginRemoteUser(); // --> Done after matchmaking via the MatchMaker.cs file
-        ConnectUserToServer();
+        // ConnectUserToServer();
     }
 #endif
     

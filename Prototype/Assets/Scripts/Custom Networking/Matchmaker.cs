@@ -2,17 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using DidStuffLab;
 using Managers;
 using UnityEngine;
 using PlayFab;
-using PlayFab.ClientModels;
-using PlayFab.CloudScriptModels;
 using PlayFab.DataModels;
 using PlayFab.MultiplayerModels;
-using UnityEngine.UI;
+using SimpleJSON;
 using EntityKey = PlayFab.MultiplayerModels.EntityKey;
-using ExecuteCloudScriptResult = PlayFab.ClientModels.ExecuteCloudScriptResult;
 using JsonArray = PlayFab.Json.JsonArray;
 using JsonObject = PlayFab.Json.JsonObject;
 
@@ -22,7 +18,7 @@ using JsonObject = PlayFab.Json.JsonObject;
   - https://www.youtube.com/watch?v=Y3dKKJwQ8hU&list=PLS6sInD7ThM1aUDj8lZrF4b4lpvejB2uB&index=24
  */
 
-namespace ctsalidis {
+namespace DidStuffLab {
     public class Matchmaker : MonoBehaviour {
         private static Matchmaker _instance;
 
@@ -46,12 +42,14 @@ namespace ctsalidis {
 
         private string _playerToMatchWithId = "";
         private string _selectedDrumToPlayWith = "";
+        public string DrumToPlayWith => _selectedDrumToPlayWith;
 
         private string matchmakerId = "";
         private string _friendToJoinId = null;
         private string _friendToJoinUsername = null;
 
         private static string QueueName = "DefaultQueue";
+        public bool isRandom = true;
         
         private List<string> _declinedFriendMatches = new List<string>();
 
@@ -78,8 +76,9 @@ namespace ctsalidis {
             // StartMatchmaking();
         }
 
-        public void SelectDrumAndStartMatch(string drumName, string matchmakingQueueName) {
-            QueueName = matchmakingQueueName;
+        public void SelectDrumAndStartMatch(string drumName, bool random) {
+            isRandom = random;
+            QueueName = isRandom ? "DefaultQueueRandom" : "DefaultQueue";
             _selectedDrumToPlayWith = drumName;
             StartMatchmaking();
         }
@@ -100,16 +99,16 @@ namespace ctsalidis {
             
             // TODO --> Fix selected drums array of strings:
             // right now it would come as [{"DrumType" : "0"}, {"DrumType" : "1"}] but should be ["0", "1"] 
-            var SelectedDrums = new object[] { new  {
-                DrumType = _selectedDrumToPlayWith
-            } };
+            // var SelectedDrums = new object[] { _selectedDrumToPlayWith, _selectedDrumToPlayWith };
+            var DrumTypes = new object[] { _selectedDrumToPlayWith };
             
-            var dataObjectWithoutFriends = new {Latencies};
+            var dataObjectWithoutFriends = new {
+                Latencies, 
+                DrumTypes // doing type intersection rule if playing with random users
+            };
             var dataObjectWithFriends = new {
                 Latencies,
                 MatchmakerId = matchmakerId,
-                SelectedDrums
-                // DrumType = SelectedDrums, // doing type intersection rule if playing with random users
             };
 
             StopCoroutine(pollFriendMatchInvites);
@@ -124,9 +123,7 @@ namespace ctsalidis {
 
                 // Here we specify the creator's attributes.
                 Attributes = new MatchmakingPlayerAttributes {
-                    DataObject = !string.IsNullOrEmpty(matchmakerId)
-                        ? (object) dataObjectWithFriends
-                        : dataObjectWithoutFriends,
+                    DataObject = (!isRandom) ? (object) dataObjectWithFriends : dataObjectWithoutFriends,
                 },
             };
 
@@ -260,7 +257,7 @@ namespace ctsalidis {
                     MatchId = matchId,
                     QueueName = QueueName,
                     ReturnMemberAttributes = true,
-                    EscapeObject = true
+                    EscapeObject = false
                 },
                 OnGetMatch,
                 OnMatchmakingError
@@ -281,11 +278,53 @@ namespace ctsalidis {
 
             // get drum type and set in jamming session details
             // TODO --> parse both and get common drumtype, then send to JammingSessionDetails
-            var drumtypes1 = result.Members[0].Attributes.EscapedDataObject; 
-            var drumtypes2 = result.Members[1].Attributes.EscapedDataObject; 
+            // var drumtypes1 = result.Members[0].Attributes.EscapedDataObject; 
+            // var drumtypes2 = result.Members[1].Attributes.EscapedDataObject;
+
+            // foreach (var o in result.Members.Where(o => o.Attributes.EscapedDataObject.Contains("DrumType"))) {
+            //     if(o.Attributes.EscapedDataObject == null) continue;
+            //     
+            // }
+
+            byte highestChosenDrum = 0;
+            if (isRandom) {
+                var drumTypes =
+                    new Dictionary<byte, byte>(); // to get the intersection of player's chosen drum types - the one which is most common wins and the players will use that one
+                foreach (var member in result.Members) {
+                    if (member.Attributes != null) {
+                        if (!(member.Attributes.DataObject is JsonObject data) ||
+                            !(data["DrumTypes"] is JsonArray drums)) continue;
+                        // foreach (var d in drums) {
+                        //     var v = (byte) int.Parse(d.ToString());
+                        //     drumTypes[v]++;
+                        // }
+                        foreach (var v in drums.Select(d => (byte) int.Parse(d.ToString()))) {
+                            if (!drumTypes.ContainsKey(v)) drumTypes.Add(v, 1);
+                            else drumTypes[v]++;
+                            print("Found drum type " + v + " of which in total we have " + drumTypes[v]);
+                        }
+                    }
+                    else {
+                        // check escaped data object string in case attributes object is null
+                    }
+                }
+
+                foreach (var d in drumTypes.Where(d => d.Value > highestChosenDrum)) {
+                    highestChosenDrum = d.Value;
+                }
+            }
+            else highestChosenDrum = (byte) int.Parse(DrumToPlayWith);
+
+            
+            
+
+            JamSessionDetails.Instance.DrumTypeIndex = highestChosenDrum;
+
+            // JamSessionDetails.Instance.localPlayerUsername;
+            // JamSessionDetails.Instance.otherPlayerUsername;
 
             // TODO --> initialize server instance details (send to JammingSessionDetails), then call _clientStartup.SetServerInstanceDetails(...)
-            // TODO --> Also pass user's username to jammingsessiondetails - then add to player sync gameobject prefab, and sync Mirror once in the server
+            // TODO --> Also pass user's avatar and username to jammingsessiondetails - then add to player sync gameobject prefab, and sync Mirror once in the server
             /*
              var ipAddress = result.ServerDetails.IPV4Address;
             var ports = result.ServerDetails.Ports;
@@ -311,6 +350,7 @@ namespace ctsalidis {
                 {"MatchmakingTicketId", clear ? "" : ticketId},
                 {"OwnerId", clear ? "" : PlayFabLogin.AuthenticationContext.EntityId},
                 {"OwnerUsername", clear ? "" : PlayFabLogin.Instance.Username},
+                {"DrumType", clear ? "" : _selectedDrumToPlayWith},
                 {"Friends", clear ? new string[0] : friends}
             };
             var dataList = new List<SetObject>() {
@@ -360,9 +400,11 @@ namespace ctsalidis {
                             print(details?["OwnerId"]);
                             _friendToJoinId = details?["OwnerId"].ToString();
                             _friendToJoinUsername = details?["OwnerUsername"].ToString();
+                            _selectedDrumToPlayWith = details?["DrumType"].ToString();
                             if (_declinedFriendMatches.Contains(_friendToJoinUsername)) continue;
                             StopCoroutine(pollFriendMatchInvites);
                             MainMenuManager.Instance.ReceiveInviteToPlay(_friendToJoinUsername);
+                            break;
                         }
                     },
                     OnPlayFabError

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using ctsalidis;
 using UnityEngine;
 using DidStuffLab;
 
@@ -32,7 +31,7 @@ public class JamSessionDetails : MonoBehaviour {
     public void StartMatchmaking(bool isRandom) {
         // TODO --> Probably check if the we're bín the main menu scene for this - otherwise return void
         isSoloMode = false;
-        Matchmaker.Instance.SelectDrumAndStartMatch(DrumTypeIndex.ToString(), isRandom ? "DefaultQueueRandom" : "DefaultQueue");
+        Matchmaker.Instance.SelectDrumAndStartMatch(DrumTypeIndex.ToString(), isRandom);
     }
     
     public void AddPlayer(Player player) {

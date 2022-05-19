@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
-using ctsalidis;
 using Custom_Buttons.Did_Stuff_Buttons;
+using DidStuffLab;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -347,6 +347,7 @@ namespace Managers
       {
          print("Accepted");
          Matchmaker.Instance.JoinMatchmaking();
+         Matchmaker.Instance.isRandom = false;
          // Matchmaker.Instance.SelectDrumAndStartMatch("0"); // TODO --> Fix this (get drum type in getmatchmakingticketObject method )
          DeactivatePanel(_currentPanel);
          ActivatePanel(18);

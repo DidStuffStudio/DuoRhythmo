@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DidStuffLab;
+using Managers;
 
 public class JamSessionDetails : MonoBehaviour {
     private static JamSessionDetails _instance;
@@ -29,6 +31,9 @@ public class JamSessionDetails : MonoBehaviour {
     public List<Player> players = new List<Player>();
     public Player otherPlayer;
 
+    public MasterManagerData loadedBeatData;
+    public bool loadingBeat { get; set; }
+
     public void StartMatchmaking(bool isRandom) {
         // TODO --> Probably check if the we're in the main menu scene for this - otherwise return void
         isSoloMode = false;
@@ -52,5 +57,48 @@ public class JamSessionDetails : MonoBehaviour {
         LocalAvatarName = localAvatar;
         DrumTypeIndex = drumIndex;
         ClientStartup.Instance.SetServerInstanceDetails(ipAddress, port);
+    }
+
+    public void SetLoadedBeat()
+    {
+        StartCoroutine(SetValues());
+    }
+    public IEnumerator SetValues()
+    {
+        while (!MasterManager.Instance.gameSetUpFinished)
+        {
+            yield return new WaitForSeconds(1);
+        }
+        // Wait for duorythmo to fully load (strange things will occur if you don't wait)
+        yield return new WaitForSeconds(1);
+        MasterManager masterManager = MasterManager.Instance;
+
+        List<NodeManager> nodeManagers = new List<NodeManager>();
+        List<EffectsManager> effectsManagers = new List<EffectsManager>();
+        masterManager.bpm = loadedBeatData.BPM;
+        
+        // Same as in SaveIntoJson just in reverse
+        for (int i = 0; i < MasterManager.Instance.nodeManagers.Count; i++)
+        {
+            nodeManagers.Add(MasterManager.Instance.nodeManagers[i]);
+        }
+
+        for (int i = 0; i < nodeManagers.Count; i++)
+        {
+            for (int j = 0; j < nodeManagers[i].nodes.Count; j++)
+            {
+                if (loadedBeatData.nodeManagersData[i].nodesData[j].isActive)
+                {
+                    nodeManagers[i].nodes[j].ToggleState();
+                }
+            }
+
+            for (int j = 1; j < effectsManagers[i].sliders.Count; j++)
+            {
+                effectsManagers[i].sliders[j].SetCurrentValue(loadedBeatData.nodeManagersData[i].sliderValues[j]);
+            }
+        }
+
+        yield return null;
     }
 }

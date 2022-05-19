@@ -9,7 +9,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
     {
         
         
-        private List<OneOption> _otherButtonsToDisable = new  List<OneOption>();
+        protected List<OneOption> _otherButtonsToDisable = new  List<OneOption>();
 
         [SerializeField] private AbstractDidStuffButton buttonToEnableOnChoice;
         protected virtual void Start()

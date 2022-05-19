@@ -116,6 +116,7 @@ namespace Managers {
                 SetUpNodeManagers(i);
             }
             gameSetUpFinished = true;
+            JamSessionDetails.Instance.SetLoadedBeat();
             carouselManager.InitialiseBlur();
             carouselManager.ToggleVFX(true);
         }

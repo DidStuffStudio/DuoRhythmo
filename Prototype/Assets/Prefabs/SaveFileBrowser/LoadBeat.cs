@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Managers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LoadBeat : MonoBehaviour
@@ -48,7 +49,7 @@ public class LoadBeat : MonoBehaviour
 
     private bool hasRunOnce;
 
-    private void Awake()
+    private void Start()
     {
         savedListWindow = listWindow;
         Initialize();
@@ -132,7 +133,21 @@ public class LoadBeat : MonoBehaviour
         saveData.dateCreated.text = saveFileCreationDate;
         saveData.label.text = formattedFileName;
         
+        /*SaveFileButton SB = beat.AddComponent(typeof(SaveFileButton)) as SaveFileButton;
+        
+        
+        beat.GetComponent<SaveFileButton>().onClicked.AddListener(SetToggleOn);*/
+        
         retrievedBeats.Add(beat);
+    }
+
+    public void FixToggles()
+    {
+        foreach (var beat in retrievedBeats)
+        {
+            /*beat.SetActive(false);
+            beat.GetComponent<>()*/
+        }
     }
     
     // Somewhat self-explanitory
@@ -140,6 +155,7 @@ public class LoadBeat : MonoBehaviour
     {
         _loadedManagerData = GetData(currentlySelectedSaveFile);
         StartCoroutine(SetValues());
+        SceneManager.LoadScene(1);
     }
     
     //Method that returns a master manager data structure
@@ -148,13 +164,15 @@ public class LoadBeat : MonoBehaviour
         string json = System.IO.File.ReadAllText(file);
         MasterManagerData data = JsonUtility.FromJson<MasterManagerData>(json);
         //Debug.Log(data.nodeManagersData[0].drumType);
+        JamSessionDetails.Instance.loadedBeatData = data;
+        JamSessionDetails.Instance.DrumTypeIndex = data.drumIndex;
         return data;
     }
 
     // Set all the values loaded to the canvas 
     public IEnumerator SetValues()
     {
-        // Wait for duorythmo to fully load (strange things will occur if you don't wait)
+        /*// Wait for duorythmo to fully load (strange things will occur if you don't wait)
         yield return new WaitForSeconds(1);
         MasterManager masterManager = MasterManager.Instance;
 
@@ -183,7 +201,7 @@ public class LoadBeat : MonoBehaviour
                 effectsManagers[i].sliders[j].SetCurrentValue(_loadedManagerData.nodeManagersData[i].sliderValues[j]);
             }
         }
-
+*/
         yield return null;
     }
 

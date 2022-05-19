@@ -14,13 +14,12 @@ namespace Managers
         private float _timeLeft = 10.0f;
         private Color _targetVFXColor, _targetSkyColor;
         public VisualEffect _vfx;
-        private int _currentPanel = 0, _lastPanel = 0;
-
+        private int _currentPanel = 0, _lastPanel = 0, _currentPanelBuddy = 5, _lastPanelBuddy = 4;
+    
         private static readonly int Tint = Shader.PropertyToID("_Tint");
         public float currentRotationOfUI = 0.0f;
-
-        public List<GameObject> panels = new List<GameObject>(); //Put panels into list so we can change their layer to blur or render them over blur
-
+        
+        public Dictionary<int, GameObject> panelDictionary = new Dictionary<int, GameObject>(); //Put panels into dictionary so we can change their layer to blur or render them over blur
         [SerializeField] private ForwardRendererData _forwardRenderer;
         private bool isRenderingAPanel = false;
         private bool animateUIBackward = false;
@@ -72,17 +71,23 @@ namespace Managers
             if(isSoloMode && _currentPanel == _lastPanel)StartCoroutine(IgnoreEvents(0.5f));
             else if(isSoloMode)StartCoroutine(IgnoreEvents(0.1f));
             _lastPanel = _currentPanel;
+            _lastPanelBuddy = _currentPanelBuddy;
             // TODO --> turn off solo appropriately
             if (forward)
             {
-                if(_currentPanel < panels.Count - 1)_currentPanel++;
+                if(_currentPanel < panelDictionary.Count - 1)_currentPanel++;
                 else _currentPanel = 0;
+                _uiAnimator.SetFloat("SpeedMultiplier", 1.0f);
+                if(_currentPanelBuddy < panelDictionary.Count - 1)_currentPanelBuddy++;
+                else _currentPanelBuddy = 0;
                 _uiAnimator.SetFloat("SpeedMultiplier", 1.0f);
             }
             else
             {
                 if(_currentPanel > 0)_currentPanel--;
-                else _currentPanel = panels.Count -1 ;
+                else _currentPanel = panelDictionary.Count -1 ;
+                if(_currentPanelBuddy > 0)_currentPanelBuddy--;
+                else _currentPanelBuddy = panelDictionary.Count -1 ;
                 animateUIBackward = true;
                 _uiAnimator.SetFloat("SpeedMultiplier", -1.0f);
             }
@@ -130,54 +135,38 @@ namespace Managers
 
         private void BlurBackground()
         {
-            foreach (var t in panels[_lastPanel].GetComponentsInChildren<Transform>())
+            foreach (var t in panelDictionary[_lastPanel].GetComponentsInChildren<Transform>())
             {
                 t.gameObject.layer =
                     LayerMask.NameToLayer("Default"); //Change their layer to default so they are blurred
             }
-            foreach (var t in panels[_currentPanel].GetComponentsInChildren<Transform>())
+
+            if (!isSoloMode)
+            {
+                foreach (var t in panelDictionary[_lastPanelBuddy].GetComponentsInChildren<Transform>())
+                {
+                    t.gameObject.layer =
+                        LayerMask.NameToLayer("Default"); //Change their layer to default so they are blurred
+                }
+            }
+
+            foreach (var t in panelDictionary[_currentPanel].GetComponentsInChildren<Transform>())
             {
                 t.gameObject.layer =
                     LayerMask.NameToLayer("RenderPanel"); //Change their layer to default so they are blurred
             }
-        
-        }
-        public void InitialiseBlur() {
-            /*// Loop through panels 
-            for (int i = 0; i < panels.Count; i++) {
-                foreach (var transform in panels[i].GetComponentsInChildren<Transform>()
-                ) //Loop through children of the panel
+
+            if (!isSoloMode)
+            {
+                foreach (var t in panelDictionary[_currentPanelBuddy].GetComponentsInChildren<Transform>())
                 {
-                    transform.gameObject.layer =
-                        LayerMask.NameToLayer("Default"); //Change their layer to default so they are blurred
+                    t.gameObject.layer =
+                        LayerMask.NameToLayer("RenderPanel"); //Change their layer to default so they are blurred
                 }
             }
-        
-            isRenderingAPanel = false;
-            var panelLandedOn = 0;
-            while (!isRenderingAPanel)
-            {
-                // send a ray from the middle of the camera to see which panel he's currently looking at
-                var ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
-                if (Physics.Raycast(ray, out var hit))
-                {
-                    if (hit.collider.CompareTag("RenderTarget"))
-                    {
-                        panelLandedOn = panels.IndexOf(hit.transform.gameObject);
-                        foreach (var t in hit.transform.GetComponentsInChildren<Transform>()
-                        ) //Loop through children of the panel
-                        {
-                            t.gameObject.layer =
-                                LayerMask.NameToLayer("RenderPanel"); //Set current panel to render over blur
-                        }
 
-                        isRenderingAPanel = true;
-                        _currentPanel = panelLandedOn;
-                    }
-                }
-            }*/
         }
-
+      
         public void SetAnimatorTime()
         {
             // set animation time when new player joins

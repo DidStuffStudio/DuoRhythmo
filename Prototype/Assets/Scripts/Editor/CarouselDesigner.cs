@@ -9,9 +9,10 @@ namespace Editor
 {
     public class CarouselDesigner : EditorWindow
     {
-        private int _numberOfInstruments = 5, _numberOfNodes = 12, _radiusOfNodeRing = 150;
+        private int _numberOfInstruments = 5, _numberOfNodes = 12, _radiusOfNodeRing = 40;
         private bool _isSoloMode = true;
         private static GameObject _effects, _nodes, _drumNode;
+        private Dictionary<int, GameObject> _panelDictionary = new Dictionary<int, GameObject>();
 
         [MenuItem("Did Stuff/Carousel Designer")]
         static void Init()
@@ -27,7 +28,7 @@ namespace Editor
                 EditorGUI.IntSlider(new Rect(0, 0, position.width, 20), "Number of Instruments", _numberOfInstruments, 1, 10);
             _numberOfNodes = EditorGUI.IntSlider(new Rect(0, 30, position.width, 20), "Number of Nodes", _numberOfNodes, 2, 16);
             _radiusOfNodeRing =
-                EditorGUI.IntSlider(new Rect(0, 60, position.width, 20), "Radius of the node ring", _radiusOfNodeRing, 50, 250);
+                EditorGUI.IntSlider(new Rect(0, 60, position.width, 20), "Radius of the node ring", _radiusOfNodeRing, 10, 50);
             _isSoloMode =  EditorGUI.Toggle(new Rect(0, 90, position.width, 20),"Solo Mode Ordering" ,_isSoloMode);
 
             GUILayout.FlexibleSpace();
@@ -42,7 +43,7 @@ namespace Editor
             
             if(carouselManager.transform.childCount > 0) DestroyImmediate(carouselManager.transform.GetChild(0).gameObject);
             
-            _nodes = Resources.Load("NodesPanel") as GameObject;
+            _nodes = Resources.Load("NodesPanelParent") as GameObject;
             _effects = Resources.Load("EffectsPanel") as GameObject;
             _drumNode = Resources.Load("Node") as GameObject;
             var carouselGo = new GameObject("Carousel");
@@ -60,21 +61,27 @@ namespace Editor
             masterManager.numberOfNodes = _numberOfNodes;
 
             var rotationValueSolo = Vector3.zero;
-
+            var counter = 0;
             for (var i = 0; i < _numberOfInstruments; i++)
             {
                 var nodePanel = Instantiate(_nodes, Vector3.zero, Quaternion.Euler(_isSoloMode ? rotationValueSolo:(rotationValueSolo*2)));
                 masterManager.nodePanels.Add(nodePanel);
+                _panelDictionary.Add(counter, nodePanel);
+                counter++;
                 Debug.Log(masterManager);
                 nodePanel.transform.SetParent(nodesPanelsGo.transform);
                 Debug.Log(nodePanel.transform.childCount);
-                SpawnNodes(nodePanel.transform.GetChild(0).transform.GetChild(0), i);
+                SpawnNodes(nodePanel.transform.GetChild(0), i);
                 if(_isSoloMode)rotationValueSolo += new Vector3(0, 360.0f / (_numberOfInstruments * 2) * -1, 0);
                 var effectPanel = Instantiate(_effects, Vector3.zero, Quaternion.Euler(_isSoloMode ? rotationValueSolo:(rotationValueSolo*2+new Vector3(0,180,0))));
                 masterManager.effectPanels.Add(effectPanel);
+                _panelDictionary.Add(counter, nodePanel);
+                counter++;
                 effectPanel.transform.SetParent(effectsPanelsGo.transform);
                 rotationValueSolo += new Vector3(0, 360.0f / (_numberOfInstruments * 2) * -1, 0);
             }
+
+            carouselManager.panelDictionary = _panelDictionary;
         }
 
         private void SpawnNodes(Transform transform, int index)

@@ -6,41 +6,26 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
 {
     public class EuclideanButton : AbstractDidStuffButton
     {
-        [SerializeField] private List<GameObject> buttonsToToggle = new List<GameObject>();
         [SerializeField] private EuclideanRhythm euclideanRhythm;
         [SerializeField] private NodeManager nodeManager;
-        [SerializeField] private OneShotButton[] incrementButtons = new OneShotButton[2];
-        [SerializeField] private Animator[] animators;
-        private static readonly int Speed = Animator.StringToHash("Speed");
-
-        private void Start()
-        {
-            ToggleButtons();
-            
-        }
-        
+        [SerializeField] private List<Emoji> emojis = new List<Emoji>();
 
         protected override void ButtonClicked()
         {
             base.ButtonClicked();
             if(_isActive)nodeManager.StoreRhythm();
-            ToggleButtons();
             ActivateText(_isActive);
             nodeManager.StartEuclideanRhythmRoutine(_isActive);
         }
+        
+        protected override void ChangeToActiveState() {
+            base.ChangeToActiveState();
+            foreach (var emoji in emojis) emoji.Enabled = true;
+        }
 
-        private void ToggleButtons()
-        {
-            for (var index = 0; index < buttonsToToggle.Count; index++)
-            {
-                if (_isActive)
-                {
-                    animators[index].SetFloat(Speed, -1);
-                    animators[index].Play("PlayEuclidean");
-                }
-                   
-                else buttonsToToggle[index].SetActive(_isActive);
-            }
+        protected override void ChangeToInactiveState() {
+            base.ChangeToInactiveState();
+            foreach (var emoji in emojis) emoji.Enabled = false;
         }
 
         public void ChangePulse(bool increment) => euclideanRhythm.ChangePulse(increment);

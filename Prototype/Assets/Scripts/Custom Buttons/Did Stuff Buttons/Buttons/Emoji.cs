@@ -1,5 +1,7 @@
 using System;
+using TS;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
     
@@ -21,6 +23,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
         }
         
         protected override void OnEnable() {
+            base.OnEnable();
             _transform = transform;
             _transform.localPosition = Vector3.zero;
             _transform.localScale = Vector3.zero;
@@ -32,7 +35,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
                 scale = 1.0f,
                 localX = targetPosition.x,
                 localY = targetPosition.y,
-                ease = Bounce.EaseOut
+                alpha = 1.0f,
+                ease = Elastic.EaseOut
             });
             _tween.Restart();
         }
@@ -44,7 +48,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
                 scale = 0f,
                 localX = 0f,
                 localY = 0f,
-                ease = Bounce.EaseOut
+                alpha = 0.0f,
+                ease = Quad.EaseIn
             });
             _tween.Restart();
         }

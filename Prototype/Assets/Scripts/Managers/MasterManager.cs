@@ -110,16 +110,18 @@ namespace Managers {
             for (int i = 0; i < nodePanels.Count; i++) {
                 nodePanels[i].name = "NodesPanel_" + _drumNames[_currentDrumKitIndex][i];
                 effectPanels[i].name = "EffectsPanel_" + _drumNames[_currentDrumKitIndex][i];
-                //AddPanelsToCarouselManager(i);
+                AddPanelsToCarouselManager(i);
+                
                 SetUpEffectsManagers(i);
                 SetUpNodeManagers(i);
             }
             gameSetUpFinished = true;
+            carouselManager.InitialiseBlur();
             carouselManager.ToggleVFX(true);
         }
 
 
-        /*private void AddPanelsToCarouselManager(int index)
+        private void AddPanelsToCarouselManager(int index)
         {
             if (carouselManager.isSoloMode)
             {
@@ -140,7 +142,8 @@ namespace Managers {
                     else carouselManager.panels[i] = effectPanels[i];
                 }
             }
-        }*/
+            
+        }
         
         private void SetUpEffectsManagers(int i) {
             var effectsManager = effectPanels[i].GetComponentInChildren<EffectsManager>();

@@ -14,18 +14,18 @@ namespace Managers
         private float _timeLeft = 10.0f;
         private Color _targetVFXColor, _targetSkyColor;
         public VisualEffect _vfx;
-        private int _currentPanel = 0, _lastPanel = 0, _currentPanelBuddy = 5, _lastPanelBuddy = 4;
+        private int _currentPanel = 0, _lastPanel = 9, _currentPanelBuddy = 5, _lastPanelBuddy = 4;
     
         private static readonly int Tint = Shader.PropertyToID("_Tint");
         public float currentRotationOfUI = 0.0f;
-        
-        public Dictionary<int, GameObject> panelDictionary = new Dictionary<int, GameObject>(); //Put panels into dictionary so we can change their layer to blur or render them over blur
+
+        public List<GameObject> panels = new List<GameObject>(); //put panels in list so we can change their layer to blur or render them over blur
         [SerializeField] private ForwardRendererData _forwardRenderer;
         private bool isRenderingAPanel = false;
         private bool animateUIBackward = false;
         public bool ignoreEvents;
         public bool justJoined;
-        public bool isSoloMode = true;
+        public bool isSoloMode = false;
 
 
         private void OnEnable()
@@ -41,6 +41,25 @@ namespace Managers
             if(justJoined) return;
             _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
             _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
+           
+        }
+
+        public void InitialiseBlur()
+        {
+            foreach (var t in panels[0].GetComponentsInChildren<Transform>())
+            {
+                t.gameObject.layer =
+                    LayerMask.NameToLayer("RenderPanel"); //Change their layer to default so they are blurred
+            }
+
+            //if (isSoloMode) return;
+            
+            foreach (var t in panels[5].GetComponentsInChildren<Transform>())
+            {
+                t.gameObject.layer =
+                    LayerMask.NameToLayer("RenderPanel"); //Change their layer to default so they are blurred
+            }
+
         }
         public void ToggleVFX(bool activate)
         {
@@ -75,19 +94,19 @@ namespace Managers
             // TODO --> turn off solo appropriately
             if (forward)
             {
-                if(_currentPanel < panelDictionary.Count - 1)_currentPanel++;
+                if(_currentPanel < panels.Count - 1)_currentPanel++;
                 else _currentPanel = 0;
                 _uiAnimator.SetFloat("SpeedMultiplier", 1.0f);
-                if(_currentPanelBuddy < panelDictionary.Count - 1)_currentPanelBuddy++;
+                if(_currentPanelBuddy < panels.Count - 1)_currentPanelBuddy++;
                 else _currentPanelBuddy = 0;
                 _uiAnimator.SetFloat("SpeedMultiplier", 1.0f);
             }
             else
             {
                 if(_currentPanel > 0)_currentPanel--;
-                else _currentPanel = panelDictionary.Count -1 ;
+                else _currentPanel = panels.Count -1 ;
                 if(_currentPanelBuddy > 0)_currentPanelBuddy--;
-                else _currentPanelBuddy = panelDictionary.Count -1 ;
+                else _currentPanelBuddy = panels.Count -1 ;
                 animateUIBackward = true;
                 _uiAnimator.SetFloat("SpeedMultiplier", -1.0f);
             }
@@ -133,9 +152,9 @@ namespace Managers
             }
         }
 
-        private void BlurBackground()
+        public void BlurBackground()
         {
-            foreach (var t in panelDictionary[_lastPanel].GetComponentsInChildren<Transform>())
+            foreach (var t in panels[_lastPanel].GetComponentsInChildren<Transform>())
             {
                 t.gameObject.layer =
                     LayerMask.NameToLayer("Default"); //Change their layer to default so they are blurred
@@ -143,14 +162,14 @@ namespace Managers
 
             if (!isSoloMode)
             {
-                foreach (var t in panelDictionary[_lastPanelBuddy].GetComponentsInChildren<Transform>())
+                foreach (var t in panels[_lastPanelBuddy].GetComponentsInChildren<Transform>())
                 {
                     t.gameObject.layer =
                         LayerMask.NameToLayer("Default"); //Change their layer to default so they are blurred
                 }
             }
 
-            foreach (var t in panelDictionary[_currentPanel].GetComponentsInChildren<Transform>())
+            foreach (var t in panels[_currentPanel].GetComponentsInChildren<Transform>())
             {
                 t.gameObject.layer =
                     LayerMask.NameToLayer("RenderPanel"); //Change their layer to default so they are blurred
@@ -158,7 +177,7 @@ namespace Managers
 
             if (!isSoloMode)
             {
-                foreach (var t in panelDictionary[_currentPanelBuddy].GetComponentsInChildren<Transform>())
+                foreach (var t in panels[_currentPanelBuddy].GetComponentsInChildren<Transform>())
                 {
                     t.gameObject.layer =
                         LayerMask.NameToLayer("RenderPanel"); //Change their layer to default so they are blurred

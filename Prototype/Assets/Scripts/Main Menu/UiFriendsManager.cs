@@ -201,10 +201,7 @@ public class UiFriendsManager : MonoBehaviour
         {
             d.color = dotInactive;
         }
-        var i = 0;
-        if (_even) i = _currentListIndex / _numberOfCards;
-        else i = (int)(_currentListIndex/_numberOfCards);
-        _dots[i].color = dotActive;
+        _dots[_page-1].color = dotActive;
     }
 
         private void ActivateArrowsAndDots(bool activate)

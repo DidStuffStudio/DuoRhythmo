@@ -55,11 +55,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341d4b7b0db0e694793356f0bd8b3be1, type: 3}
   m_Name: BG
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     renderPassEvent: 500
     blurMaterial: {fileID: 2100000, guid: 7db0f59a83d2a5143b5d2f03d9a22fea, type: 2}
-    blurPasses: 2
+    blurPasses: 3
     downsample: 1
     copyToFramebuffer: 1
     targetName: _blurTexture

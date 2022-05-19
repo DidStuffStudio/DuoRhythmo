@@ -150,6 +150,7 @@ public class UiFriendsManager : MonoBehaviour
         _displayedFriends = _numberOfCards;
         if (_page == _numberOfPages && _numberOfCardsOnLastPage > 0)
         {
+            print(" Called from here!!!!!");
             ActivateLastCards(_numberOfCardsOnLastPage, false);
             _displayedFriends = _numberOfCardsOnLastPage;
         }
@@ -164,6 +165,7 @@ public class UiFriendsManager : MonoBehaviour
     {
         for (int i = 0; i < _displayedFriends; i++)
         {
+            print("Displayed friends is " + _displayedFriends);
             _currentUsernames[i] = listToLoopUsernames[_currentListIndex + i];
             _currentAvatars[i] = listToLoopAvatars[_currentListIndex + i];
             friendTexts[i].text = _currentUsernames[i];
@@ -174,8 +176,8 @@ public class UiFriendsManager : MonoBehaviour
     private void ActivateLastCards(int numberToRemove, bool activate)
     {
         if (numberToRemove == 0) return;
-        var j = _numberOfCards - numberToRemove - 1;
-        for (var index = _numberOfCards-1; index > j; index--)
+        
+        for (var index = numberToRemove; index < _numberOfCards; index++)
         { 
             friendCards[index].SetActive(activate);
         }

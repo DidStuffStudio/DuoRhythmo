@@ -3,7 +3,102 @@ guid: 7440731400a00f441ad1ac51b6e15b91
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Backdrop
+    second: {fileID: 2100000, guid: b5b732dd76357e941b197bcd1b7ab1ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_body_skin
+    second: {fileID: 2100000, guid: 6cb60ef5216525f4fba4b8088a814493, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_eyes_iris_color
+    second: {fileID: 2100000, guid: a1c1d2ded41528343abd2e6a4e1d207f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_eyes_lens
+    second: {fileID: 2100000, guid: bcb96df4d753d3d4389c22ef516adbef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_eyes_pupil_black
+    second: {fileID: 2100000, guid: 54f13f37891fcae40b4b6844831f7933, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_eyes_white
+    second: {fileID: 2100000, guid: 4b8253d560f08a2489205460ba768da5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_glasses_1_frame
+    second: {fileID: 2100000, guid: 2aaea52c3d71ead4db12138d6e162261, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_glasses_1_lens
+    second: {fileID: 2100000, guid: 90051171aa353a44f8a0b33842daa527, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_glasses_2_frame
+    second: {fileID: 2100000, guid: 8201969eea6282d44bc95e822084ed08, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_glasses_2_lens
+    second: {fileID: 2100000, guid: 854b0507f61afad4e9a68211ce811a2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_glasses_3_frame
+    second: {fileID: 2100000, guid: c21b5c3597c811844a969630937b77dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_gums
+    second: {fileID: 2100000, guid: 231168d32bd24b14f85223bdb0d02010, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_hair
+    second: {fileID: 2100000, guid: 86726035758efad4f9530fa85c24b492, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_hat
+    second: {fileID: 2100000, guid: 3501c7501a4e0754fb2659b31fe9ab50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_mask
+    second: {fileID: 2100000, guid: 41d1e74b0e9a7cf48862b06cdf810468, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_mouth_skin
+    second: {fileID: 2100000, guid: 3a6f2fbcc1d069b408fc3029bc9d2177, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_ring_frame
+    second: {fileID: 2100000, guid: bd349bd137a73bb47a2bfe80584c6481, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_ring_stone
+    second: {fileID: 2100000, guid: 68699b148a89f074da4f6ab3ad803f64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_teeth
+    second: {fileID: 2100000, guid: 69d5de45c2a16434a80d16a519eecb7f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

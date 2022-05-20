@@ -50,12 +50,10 @@ namespace DidStuffLab {
                 foreach (var nbt in navigationButtonsToasts) nbt.SetActive(true);
             }
             // TODO --> Fix when the value is higher than 2 - Move the carousel and deactivate navigation button toggles and their toast messages
-            /*
             else if(newValue > 1) {
                 foreach (var nbt in navigationButtonsToasts) nbt.SetActive(false);
                 OnVotingCompletedFromServerAction?.Invoke(forward);
             }
-            */
         }
     }
 }

@@ -71,6 +71,8 @@ public class LoadBeat : MonoBehaviour
         signifiers[0].GetComponent<Image>().color = new Color(1, 1, 1, 1);
         
         arrowLeft.gameObject.SetActive(false);
+        
+        FixToggles();
     }
 
 
@@ -145,8 +147,9 @@ public class LoadBeat : MonoBehaviour
     {
         foreach (var beat in retrievedBeats)
         {
-            /*beat.SetActive(false);
-            beat.GetComponent<>()*/
+            beat.SetActive(false);
+            beat.GetComponent<SaveFileButton>().enabled = true;
+            beat.SetActive(true);
         }
     }
     
@@ -154,6 +157,8 @@ public class LoadBeat : MonoBehaviour
     public void LoadData()
     {
         _loadedManagerData = GetData(currentlySelectedSaveFile);
+        JamSessionDetails.Instance.loadedBeatData = _loadedManagerData;
+        JamSessionDetails.Instance.DrumTypeIndex = _loadedManagerData.drumIndex;
         StartCoroutine(SetValues());
         SceneManager.LoadScene(1);
     }
@@ -164,8 +169,7 @@ public class LoadBeat : MonoBehaviour
         string json = System.IO.File.ReadAllText(file);
         MasterManagerData data = JsonUtility.FromJson<MasterManagerData>(json);
         //Debug.Log(data.nodeManagersData[0].drumType);
-        JamSessionDetails.Instance.loadedBeatData = data;
-        JamSessionDetails.Instance.DrumTypeIndex = data.drumIndex;
+
         return data;
     }
 
@@ -276,7 +280,6 @@ public class LoadBeat : MonoBehaviour
                 Mathf.SmoothDamp(currentPos, targetPos, ref yVelocity, 0.1f);
             scrollRect.horizontalNormalizedPosition = newPos;
         }
-        Debug.Log(scrollRect.horizontalNormalizedPosition);
 
         if (scrollRect.horizontalNormalizedPosition >= 1.0001 || scrollRect.horizontalNormalizedPosition <= -0.0001)
         {

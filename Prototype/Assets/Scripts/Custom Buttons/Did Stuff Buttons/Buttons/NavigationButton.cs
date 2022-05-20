@@ -3,45 +3,35 @@ using Managers;
 using PlayFab.Networking;
 using UnityEngine;
 
-namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
-{
-    public class NavigationButton : OneShotButton
-    {
+namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
+    public class NavigationButton : AbstractDidStuffButton {
         private CarouselManager _carouselManager;
         [SerializeField] private bool forward;
 
-        private NavigationVoteSync _navigationVoteSync;
-        private void Start()
-        {
-            _carouselManager = MasterManager.Instance.carouselManager; 
+        private void Start() {
+            _carouselManager = MasterManager.Instance.carouselManager;
         }
 
-        protected override void ButtonClicked()
-        {
+        protected override void ButtonClicked() {
             base.ButtonClicked();
-            if (UnityNetworkServer.Instance.isOffline) {
-                _carouselManager.PlayAnimation(forward);
-            }
-            else {
-                // if the user is playing multiplayer, then vote instead of playing the move carousel animation directly
-                // TODO --> This behaviour should actually be in a toggle navigation button instead
-                _navigationVoteSync.Toggle();
-            }
+            _carouselManager.UpdateVoteToMove(_isActive, forward);
+        }
+        
+        protected override void OnEnable() {
+            base.OnEnable();
+            CarouselManager.OnMovedCarousel += VotingCompleteFromServer;
         }
 
-        public void SetNavigationVoteSync(NavigationVoteSync navigationVoteSync) =>
-            this._navigationVoteSync = navigationVoteSync;
-
-        public void ShowVoteFromServer() {
-            print("A player has voted to move. They want to move forward: " + forward);
-            // show message saying that player wants to move
-        }
-
-        public void VotingCompleteFromServer() {
+        private void VotingCompleteFromServer() {
             print("Both players have voted to move. Move forward: " + forward);
-            _carouselManager.PlayAnimation(forward);
-            // reset the navigation sync value to 0
-            _navigationVoteSync.ResetVoting();
+            // change to inactive state
+            ChangeToInactiveState();
+            ActivatedScaleFeedback();
+        }
+        
+        protected override void OnDisable() {
+            base.OnDisable();
+            CarouselManager.OnMovedCarousel -= VotingCompleteFromServer;
         }
     }
 }

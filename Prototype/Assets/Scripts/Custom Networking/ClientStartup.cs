@@ -6,8 +6,6 @@ using PlayFab.ClientModels;
 using PlayFab.MultiplayerModels;
 using PlayFab.Networking;
 using UnityEngine;
-using PlayFab.ClientModels;
-using UnityEditor.PackageManager;
 
 public class ClientStartup : MonoBehaviour {
     private static ClientStartup _instance;

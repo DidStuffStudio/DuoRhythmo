@@ -8,7 +8,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
     {
         [SerializeField] private EuclideanRhythm euclideanRhythm;
         [SerializeField] private NodeManager nodeManager;
-        [SerializeField] private List<Emoji> emojis = new List<Emoji>();
+        [SerializeField] private List<Emoji> incrementButtons = new List<Emoji>();
 
         protected override void ButtonClicked()
         {
@@ -20,12 +20,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         
         protected override void ChangeToActiveState() {
             base.ChangeToActiveState();
-            foreach (var emoji in emojis) emoji.Enabled = true;
+            foreach (var btn in incrementButtons) btn.Enabled = true;
         }
 
         protected override void ChangeToInactiveState() {
             base.ChangeToInactiveState();
-            foreach (var emoji in emojis) emoji.Enabled = false;
+            foreach (var btn in incrementButtons) btn.Enabled = false;
         }
 
         public void ChangePulse(bool increment) => euclideanRhythm.ChangePulse(increment);

@@ -13,7 +13,8 @@ public class DidStuffNode : AbstractDidStuffButton
     //private VisualEffect _vfx;
     public DrumType drumType;
     public NodeManager nodeManager;
-    private static readonly float AngleWindow = 10.0f;
+    private float _angleWindowMax;
+    private float _angleWindow = 10;
     public List<Image> subNodes = new List<Image>();
     private RectTransform _rectT;
     private bool _recentlyPlayed = false;
@@ -41,6 +42,8 @@ public class DidStuffNode : AbstractDidStuffButton
         var x = rt.x;
         var y = rt.y;
         _angle = (float)Angle();
+        _angleWindowMax = _angle + _angleWindow;
+        if (_angleWindowMax > 360.0f) _angleWindowMax = _angle - 360.0f + _angleWindow;
         _rectT = GetComponent<RectTransform>();
         return _angle;
     }
@@ -51,9 +54,9 @@ public class DidStuffNode : AbstractDidStuffButton
     
     private double Angle()
     {
-        var spacing = 360 / nodeManager.NumberOfNodes;
+        var spacing = 360.0f / nodeManager.NumberOfNodes;
         var angle = spacing *nodeIndex;
-        angle += (spacing/2);
+        angle += (spacing/2.0f);
         return angle;
     }
 
@@ -88,14 +91,15 @@ public class DidStuffNode : AbstractDidStuffButton
     private void FixedUpdate()
     {
         if (!nodeInitialised) return;
-        if(Mathf.Abs(Mathf.Abs(nodeManager.currentRotation) - Mathf.Abs(_angle)) < AngleWindow) PlayDrum();
+        var currentRot = nodeManager.currentRotation;
+        if(currentRot > _angle && currentRot < _angleWindowMax) PlayDrum();
     }
 
 
     private IEnumerator RecentlyPlayedDrum()
     {
         _recentlyPlayed = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         _recentlyPlayed = false;
     }
 

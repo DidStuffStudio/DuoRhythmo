@@ -1,10 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using DidStuffLab;
 using Managers;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.UI;
 
 public class GetFriends : MonoBehaviour
 {
@@ -17,7 +21,11 @@ public class GetFriends : MonoBehaviour
     private List<bool> _confirmedFriendsOnlineStatus = new List<bool>();
     private Dictionary<string, FriendStatus> _friendStatusMap = new Dictionary<string, FriendStatus>();
     [SerializeField] private List<UiFriendsManager> managersToUpdate;
+
+    private TextMeshProUGUI _notificationText;
+    [SerializeField] private Image friendRequestNotification;
     private bool _initialised;
+    private float _friendRequestCount = 0;
     private void OnEnable()
     {
         if (!_initialised) return;
@@ -34,12 +42,12 @@ public class GetFriends : MonoBehaviour
                 manager.AllFriendOnlineStatuses = _confirmedFriendsOnlineStatus;
             }
         }
-        
-        
-        
+        _notificationText = friendRequestNotification.GetComponentInChildren<TextMeshProUGUI>();
+        friendRequestNotification.gameObject.SetActive(false);
+        UpdateFriendRequests();
     }
     
-       private void GetFriendDetails()
+    private void GetFriendDetails()
     {
 
             ClearLists();    
@@ -86,6 +94,7 @@ public class GetFriends : MonoBehaviour
 
         for (int i = 0; i < requesterUsernames.Count; i++)
         {
+            _friendRequestCount++;
             _allFriendUsernames.Add(requesterUsernames[i]);
             _allFriendAvatars.Add( requesterAvatars[i]);
             _friendStatusMap.Add(requesterUsernames[i], FriendStatus.Requester);
@@ -109,9 +118,22 @@ public class GetFriends : MonoBehaviour
 
        
     }
-       
+
+       private void UpdateFriendRequests()
+       {
+           if(_friendRequestCount < 1) friendRequestNotification.gameObject.SetActive(false);
+           else
+           {
+               var num = _friendRequestCount.ToString(CultureInfo.CurrentCulture);
+               if (_friendRequestCount > 9) num = "9+";
+               _notificationText.text = num;
+               friendRequestNotification.gameObject.SetActive(true);
+           }
+       }
+
        private void ClearLists()
        {
+           _friendRequestCount = 0;
             _allFriendUsernames.Clear();
             _allFriendAvatars.Clear();
             _friendStatusMap.Clear();

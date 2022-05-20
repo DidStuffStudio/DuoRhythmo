@@ -9,7 +9,7 @@ namespace Editor
 {
     public class CarouselDesigner : EditorWindow
     {
-        private int _numberOfInstruments = 5, _numberOfNodes = 12, _radiusOfNodeRing = 40;
+        private int _numberOfInstruments = 5, _numberOfNodes = 12, _radiusOfNodeRing = 35;
         private bool _isSoloMode = true;
         private static GameObject _effects, _nodes, _drumNode;
        
@@ -90,9 +90,9 @@ namespace Editor
             
             for (var i = 0; i < _numberOfNodes; i++)
             {
-                var angleDelta = 2*Mathf.PI / -_numberOfNodes;
-                var radians = i * angleDelta + angleDelta / 2;
-                radians += (Mathf.PI/2);
+                var angleDelta = 2.0f * Mathf.PI / -_numberOfNodes;
+                var radians = i * angleDelta + angleDelta / 2.0f;
+                radians += Mathf.PI/2.0f;
                 var y = Mathf.Sin(radians);
                 var x = Mathf.Cos(radians);
                 var spawnPos = new Vector2(x, y) * _radiusOfNodeRing;
@@ -100,9 +100,8 @@ namespace Editor
                 
                 var node = Instantiate(_drumNode, transform.position,Quaternion.identity, transform);
                 var rt = node.GetComponent<RectTransform>();
-                var z = (i * angleDelta) + angleDelta / 2;
+                var z = i * angleDelta + angleDelta / 2;
                 z *= Mathf.Rad2Deg;
-                //z += 180;
                 rt.localRotation = Quaternion.Euler(0, 0, z);
                 rt.anchoredPosition = spawnPos;
                 node.transform.SetParent(nodesParent.transform);

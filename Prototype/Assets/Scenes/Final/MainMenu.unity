@@ -29051,6 +29051,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   otherPlayer: {fileID: 0}
+  loadedBeatData:
+    drumIndex: 0
+    BPM: 0
+    nodeManagersData: []
 --- !u!4 &777611236
 Transform:
   m_ObjectHideFlags: 0
@@ -46439,6 +46443,7 @@ MonoBehaviour:
   managersToUpdate:
   - {fileID: 1948926150}
   - {fileID: 263993143}
+  friendRequestNotification: {fileID: 1231573227}
 --- !u!114 &1400506404
 MonoBehaviour:
   m_ObjectHideFlags: 0

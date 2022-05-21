@@ -202,6 +202,7 @@ namespace Managers {
         }
 
         private IEnumerator WaitToPositionCamera(float time) {
+            while(!audioManager.setUp) yield return new WaitForEndOfFrame();
             yield return new WaitForSeconds(time);
             _startTime = Time.time;
             _journeyLength = Vector3.Distance(playerCamera.transform.position, playerPositionDestination.position);

@@ -11,6 +11,7 @@ namespace DidStuffLab {
         protected override void Initialize() {
             _didStuffNode = GetComponentInParent<DidStuffNode>();
             _didStuffNode.SetNodeSync(this);
+            Toggle(_didStuffNode.IsActive);
         }
 
         [Command(requiresAuthority = false)]

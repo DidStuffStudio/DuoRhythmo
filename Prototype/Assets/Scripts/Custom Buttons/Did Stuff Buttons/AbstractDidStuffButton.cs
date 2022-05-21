@@ -182,6 +182,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private bool _isSquare;
 		[SerializeField] private bool dwellScaleX = false;
 		private bool _dwelling;
+		private float _originaldwellScaleY = 0;
 
 		#endregion
 
@@ -253,6 +254,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			MainCamera = Camera.main;
 			if (!useInteractableLayer) interactableLayer = ~0;
 			GetTheChildren();
+			_originaldwellScaleY = _dwellGfx.localScale.y;
 			if (!customHoverColours) SetAutomaticColours();
 			else SetColours();
 
@@ -283,7 +285,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (GetInteractionMethod != InteractionMethod.Tobii) ActivateCollider(false);
 			SetScaleOfChildren();
 			ToggleDwellGfx(false);
-			_dwellGfx.localScale = zero;
+			if (dwellScaleX) _dwellGfx.localScale = new Vector3(0.0f, _originaldwellScaleY, 1);
+			else _dwellGfx.localScale = zero;
 			ChangeToInactiveState();
 			if(startDisabled) DisableButton();
 		}
@@ -372,10 +375,14 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 						break;
 				}
 			}
-			if (!_playActivatedScale) return;
-			if (_dwellGfx.localScale.x > 0.0f) _dwellGfx.localScale -= one * 0.01f;
-			else ToggleDwellGfx(false);
 
+			if (_playActivatedScale)
+			{
+				if (_dwellGfx.localScale.x > 0.0f && dwellScaleX)
+					_dwellGfx.localScale -= new Vector3(0.01f, _originaldwellScaleY, 1);
+				else if (_dwellGfx.localScale.x > 0.0f) _dwellGfx.localScale -= one * 0.01f;
+				else ToggleDwellGfx(false);
+			}
 		}
 
 		protected virtual void ButtonClicked()
@@ -390,7 +397,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		{
 			// print("called");
 			ToggleDwellGfx(true);
-			_dwellGfx.localScale = one;
+			_dwellGfx.localScale = dwellScaleX ? new Vector3(1,_originaldwellScaleY,1) : one;
 			_playActivatedScale = true;
 		}
 
@@ -661,7 +668,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		{
 			StartInteractionCoolDown();
 			_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
-			_dwellGfx.localScale = zero;
+			_dwellGfx.localScale = dwellScaleX ? new Vector3(0, _originaldwellScaleY, 1) : zero;
 			_dwellGfxImg.color = !_isActive ? inactiveColour : activeColour;
 			ToggleDwellGfx(false);
 			OnClick?.Invoke();

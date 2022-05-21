@@ -189,14 +189,12 @@ namespace Managers {
 
         private void VotingCompletedFromServer(bool forward) {
             PlayAnimation(forward);
-            /*
             // if carousel has moved, invoke the moved carousel event
             OnMovedCarousel?.Invoke();
             
             // reset the voting
             var navSync = forward ? _navigationVoteSyncs[0] : _navigationVoteSyncs[1];
             navSync.ResetVoting();
-            */
         }
 
         public void SetAnimatorTime() {

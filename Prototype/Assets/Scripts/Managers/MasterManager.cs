@@ -113,7 +113,7 @@ namespace Managers {
                 AddPanelsToCarouselManager(i);
                 
                 SetUpEffectsManagers(i);
-                SetUpNodeManagers(i);
+                StartCoroutine(SetUpNodeManagers(i));
             }
             gameSetUpFinished = true;
             JamSessionDetails.Instance.SetLoadedBeat();
@@ -152,7 +152,8 @@ namespace Managers {
             effectsManager.InitialisePanel(i, defaultNodeColors[0], drumColors[i], bpm,numberInstruments);
         }
 
-        private void SetUpNodeManagers(int i) {
+        private IEnumerator SetUpNodeManagers(int i) {
+            while (!audioManager.setUp) yield return new WaitForEndOfFrame(); // TODO --> Make the player wait in place until this is set up
             var nodeManager = nodePanels[i].GetComponentInChildren<NodeManager>();
             nodeManagers.Add(nodeManager);
             var clips = audioManager.SampleDictionary[_currentDrumKitIndex];

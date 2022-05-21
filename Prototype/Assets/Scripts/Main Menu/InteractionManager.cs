@@ -27,14 +27,14 @@ public class InteractionManager : MonoBehaviour
     [SerializeField]  private float _interactionBreakTime = 1.0f;
     public InteractionMethod Method
     {
-        get => _interactionMethod;
+        get => (InteractionMethod)PlayerPrefs.GetInt("InteractionMethod");
         set => _interactionMethod = value;
     }
 
     
     public float DwellTime
     {
-        get => _dwellTime;
+        get => PlayerPrefs.GetFloat("DwellTime");
         set => _dwellTime = value;
     }
 

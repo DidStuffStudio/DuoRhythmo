@@ -12,7 +12,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
 {
     public class DidStuffTextField : AbstractDidStuffButton
     {
-        [SerializeField] private TMP_InputField inputField;
         [SerializeField] private Image caret;
         [SerializeField] private float caretBlinkRate;
         [SerializeField] private Color caretColor;
@@ -20,134 +19,78 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         private Color _caretCurrentColor = Color.clear;
         private bool _caretShowing;
         private string _currentText;
-        private int _caretPosition = 0;
-        [SerializeField] private TextMeshProUGUI text;
-        [SerializeField] 
-        protected override void OnEnable()
+        [SerializeField] private TextMeshProUGUI tMP;
+        private Vector3 _caretPos;
+
+        public string text
         {
-            base.OnEnable();
-            if (PlayerPrefs.GetInt("InteractionMethod") != 0) return;
-            transform.gameObject.SetActive(false);
-            
+            get => _currentText;
+            set => _currentText = value;
         }
+
 
         private void Start()
         {
             _dwellGfx.transform.SetParent(transform.parent);
             _dwellGfx.transform.SetSiblingIndex(0);
-            inputField.targetGraphic.raycastTarget = false;
-            
-        }
+            _caretPos = caret.transform.position;
 
-        protected override void SetScaleOfChildren() { }
-
-        protected override void ButtonClicked()
-        {
-            base.ButtonClicked();
-            inputField.ActivateInputField();
         }
-    
+        
+   
         protected override void ChangeToActiveState()
         {
+            base.ChangeToActiveState();
             SetCanHover(false);
-            caret.gameObject.SetActive(true);
+            StartCoroutine(DisplayCaret());
         }
 
-        public void InputCharacter(string character)
+        
+        private void MoveCaret()
         {
-            if (System.Text.RegularExpressions.Regex.IsMatch(character, @"[a-zA-Z]") && 
-                System.Text.RegularExpressions.Regex.IsMatch(character, @"[0-9]"))
-            {
-                _currentText += _currentText;
-                _caretPosition++;
-            }
-            else   
-            {
-                MainMenuManager.Instance.SpawnErrorToast("Please only use letters or numbers", 0.1f);
-            }
-            
-        }
-
-        private void MoveCaret(bool forward)
-        {
-            if (forward)
-            {
-
-                _caretPosition++;
-            }
-            else
-            {
-
-                _caretPosition--;
-            }
+            if (_currentText.Length > 0)
+                caret.transform.position = _caretPos + new Vector3(tMP.GetRenderedValues(true).x, 0, 0);
+            else caret.transform.position = _caretPos;
         }
         
         protected override void Update()
         {
-           TextUpdate();
+           if(_isActive)TextUpdate();
             base.Update();
         }
 
         private void TextUpdate()
         {
-            if (Input.GetKeyUp(KeyCode.Delete))
+           if (Input.inputString == null) return;
+            foreach (char c in Input.inputString)
             {
-                if (_caretPosition < _currentText.Length - 1)
+                if (c == '\b') // has backspace/delete been pressed?
                 {
-                    _currentText.Remove(_caretPosition);
+                    if (_currentText.Length == 0) continue;
+                    _currentText = _currentText.Substring(0, _currentText.Length - 1);
+                }
+                else if ((c == '\n') || (c == '\r')) // enter/return
+                {
+                    DeactivateInputField();
+                    print("User entered their name: " + _currentText);
+                }
+                else
+                {
+                    _currentText += c;
                 }
             }
-
-            if (Input.GetKeyDown(KeyCode.LeftArrow)) MoveCaret(false);
-            if (Input.GetKeyDown(KeyCode.RightArrow)) MoveCaret(true);
-
-            if (_isActive)
-            {
-                foreach (char c in Input.inputString)
-                {
-                    if (c == '\b') // has backspace/delete been pressed?
-                    {
-                        if (_currentText.Length != 0)
-                        {
-                            _currentText = _currentText.Substring(0, _currentText.Length - 1);
-                        }
-                    }
-                    else if ((c == '\n') || (c == '\r')) // enter/return
-                    {
-                        Enter();
-                        DeactivateInputField();
-                        print("User entered their name: " + _currentText);
-                    }
-                    else
-                    {
-                        _currentText += c;
-                    }
-                }
-                
-                UpdateText();
-            }
-        }
-
-        private void Backspace()
-        {
+            UpdateText();
             
         }
-
-        private void Enter()
-        {
-            
-        }
+        
 
         private void UpdateText()
         {
-            
-        }
-        private bool CheckForOtherInput()
-        {
-            if(KeyCode.)
+            tMP.text = _currentText;
+            MoveCaret();
         }
 
-        public void DeactivateInputField()
+        private void DeactivateInputField()
         {
             DeactivateButton();
             SetCanHover(true);
@@ -158,8 +101,14 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
 
         private IEnumerator DisplayCaret()
         {
-            _caretCurrentColor = _caretShowing ? caretColor : _caretColorNoAlpha;
-            yield return new WaitForSeconds(caretBlinkRate);
+            caret.gameObject.SetActive(true);
+            while (_isActive)
+            {
+                _caretCurrentColor = _caretShowing ? caretColor : _caretColorNoAlpha;
+                caret.color = _caretCurrentColor;
+                yield return new WaitForSeconds(caretBlinkRate);
+                _caretShowing = !_caretShowing;
+            }
         }
     }
     

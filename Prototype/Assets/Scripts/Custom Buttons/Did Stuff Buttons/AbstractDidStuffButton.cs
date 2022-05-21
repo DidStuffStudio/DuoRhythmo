@@ -162,7 +162,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		[HideInInspector] public float localDwellTime = 1.0f;
 
 		private bool _mouseHover = false, _canHover = true;
-		protected bool _isActive = true, _isHover, _isDisabled;
+		protected bool _isActive = false, _isHover, _isDisabled;
 		private Image _mainImage;
 		private Image _iconImage;
 		private Image _dwellGfxImg;
@@ -183,6 +183,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		[SerializeField] private bool dwellScaleX = false;
 		private bool _dwelling;
 		private float _originaldwellScaleY = 0;
+		private float _targetX;
 
 		#endregion
 
@@ -267,10 +268,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				_provideDwellFeedbackLocal = true;
 			else _provideDwellFeedbackLocal = false;
 
-			if (PlayerPrefs.GetFloat("DwellTime") != 0.0f)
-				DwellTime = PlayerPrefs.GetFloat("DwellTime");
-			else DwellTime = 1.0f;
-
+			DwellTime = InteractionManager.Instance.DwellTime != 0.0f ? InteractionManager.Instance.DwellTime : 1.0f;
+			_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
 			var boxCollider = GetComponent<BoxCollider>();
 			if (boxCollider != null)
 			{
@@ -379,7 +378,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (_playActivatedScale)
 			{
 				if (_dwellGfx.localScale.x > 0.0f && dwellScaleX)
-					_dwellGfx.localScale -= new Vector3(0.01f, _originaldwellScaleY, 1);
+					_dwellGfx.localScale -= new Vector3(0.01f, 0.0f, 0.0f);
 				else if (_dwellGfx.localScale.x > 0.0f) _dwellGfx.localScale -= one * 0.01f;
 				else ToggleDwellGfx(false);
 			}
@@ -645,10 +644,10 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (IsHover && _currentDwellTime > 0) _currentDwellTime -= Time.deltaTime;
 			else if(IsHover &&_currentDwellTime <= 0) DwellActivated();
 			else if (!IsHover && _currentDwellTime < d) _currentDwellTime += Time.deltaTime;
-			if ((_currentDwellTime < 1 && _currentDwellTime > 0))
+			if ((_currentDwellTime < d && _currentDwellTime > 0))
 			{
-				var size = Map(_currentDwellTime, 0, d, 0, 1f);
-				if(dwellScaleX) _dwellGfx.localScale = one - new Vector3(size,1,1);
+				var size = Map(_currentDwellTime, 0f, d, 0f, 1f);
+				if(dwellScaleX) _dwellGfx.localScale = one - new Vector3(size,0,0);
 				else _dwellGfx.localScale = one - new Vector3(size,size,size);
 			}
 //Todo figure out wtf is going on here in dwell setting

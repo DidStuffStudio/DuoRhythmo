@@ -7135,7 +7135,7 @@ MonoBehaviour:
   changeTextOrIconColour: 1
   changeTextToSameAsButton: 0
   activeTextOrIconColour: {r: 0.77254903, g: 0, b: 0.23137255, a: 1}
-  inactiveTextOrIconColour: {r: 0, g: 0, b: 0, a: 1}
+  inactiveTextOrIconColour: {r: 1, g: 1, b: 0.98039216, a: 1}
   useIcon: 1
   useText: 1
   useSecondaryText: 0
@@ -10395,7 +10395,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8367764610189740406
 MonoBehaviour:
   m_ObjectHideFlags: 0

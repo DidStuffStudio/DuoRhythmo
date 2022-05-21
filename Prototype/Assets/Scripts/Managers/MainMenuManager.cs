@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using Custom_Buttons.Did_Stuff_Buttons;
+using Custom_Buttons.Did_Stuff_Buttons.Buttons;
 using DidStuffLab;
 using TMPro;
 using Unity.Mathematics;
@@ -25,8 +26,8 @@ namespace Managers
       [SerializeField] private GameObject _background;
       private List<RectTransform> _backgroundRTs = new List<RectTransform>();
       [SerializeField] private float speed = 2;
-      [SerializeField] private TMP_InputField usernameInputLogin;
-      [SerializeField] private TMP_InputField usernameInputSignup;
+      [SerializeField] private DidStuffTextField usernameInputLogin;
+      [SerializeField] private DidStuffTextField usernameInputSignup;
       private Dictionary<int, int> _numberBlurPanels = new Dictionary<int, int>();
       private int _numberCurrentBlurPanels = 1;
       private int _numberDesiredBlurPanels = 1;

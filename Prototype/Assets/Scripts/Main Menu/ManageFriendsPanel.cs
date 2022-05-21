@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Custom_Buttons.Did_Stuff_Buttons.Buttons;
 using DidStuffLab;
 using Managers;
 using PlayFab.ClientModels;
@@ -14,7 +15,7 @@ public class ManageFriendsPanel : UiFriendsManager
 
     [Header("Add friend Card")] [SerializeField]
     private GameObject addFriendCard;
-    [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private DidStuffTextField inputField;
     
     [Header("Friend Interface")]
     [SerializeField] private List<GameObject> confirmedInteraction = new List<GameObject>();

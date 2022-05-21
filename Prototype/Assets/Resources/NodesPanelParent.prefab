@@ -6452,6 +6452,7 @@ GameObject:
   - component: {fileID: 8655836693742679360}
   - component: {fileID: 7901698134656101320}
   - component: {fileID: 3083820064142675978}
+  - component: {fileID: 4291937834593584355}
   m_Layer: 0
   m_Name: RecordBeat
   m_TagString: Untagged
@@ -6586,6 +6587,19 @@ MonoBehaviour:
   localInteractionMethod: 0
   localDwellTime: 1
   dwellScaleX: 0
+--- !u!114 &4291937834593584355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7901698134656101175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218fc5d402c947b4092d19bbcdc4daf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSlot: 0
 --- !u!1 &8186977353858040427
 GameObject:
   m_ObjectHideFlags: 0

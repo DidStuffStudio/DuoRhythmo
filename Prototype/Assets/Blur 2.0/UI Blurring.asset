@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: UI Blurring
   m_EditorClassIdentifier: 
   m_RendererFeatures:
-  - {fileID: 7093152415169674825}
-  m_RendererFeatureMap: 497ee45b8af06f62
+  - {fileID: 8825409490243677301}
+  m_RendererFeatureMap: 75ec551f2c277a7a
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -58,6 +58,26 @@ MonoBehaviour:
   m_Active: 0
   settings:
     renderPassEvent: 500
+    blurMaterial: {fileID: 2100000, guid: 7db0f59a83d2a5143b5d2f03d9a22fea, type: 2}
+    blurPasses: 8
+    downsample: 1
+    copyToFramebuffer: 1
+    targetName: _blurTexture
+--- !u!114 &8825409490243677301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341d4b7b0db0e694793356f0bd8b3be1, type: 3}
+  m_Name: NewKawaseBlur
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    renderPassEvent: 1000
     blurMaterial: {fileID: 2100000, guid: 7db0f59a83d2a5143b5d2f03d9a22fea, type: 2}
     blurPasses: 8
     downsample: 1

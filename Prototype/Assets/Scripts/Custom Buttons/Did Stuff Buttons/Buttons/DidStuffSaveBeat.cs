@@ -1,10 +1,12 @@
+using Managers;
+
 namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
 {
     public class DidStuffSaveBeat : OneShotButton
     {
         public void SaveBeat()
         {
-            //Save beat
+            MasterManager.Instance.saveBeat.SaveIntoJson();
         }
 
         protected override void ButtonClicked()

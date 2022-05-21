@@ -77,7 +77,7 @@ public class LoadBeat : MonoBehaviour
 
 
     // Get the list of files from persistent data path and create toggles for them
-    public void GetFileList()
+    private void GetFileList()
     {
         //Clear the file list so we dont have any duplicates
         fileList.Clear();
@@ -108,7 +108,7 @@ public class LoadBeat : MonoBehaviour
     }
 
     // The process of creating toggles
-    public void CreateNewToggle(string saveFileName)
+    private void CreateNewToggle(string saveFileName)
     {
         GameObject beat = Instantiate(template, listWindow);
         ToggleSaveData saveData = beat.GetComponent<ToggleSaveData>();
@@ -143,7 +143,7 @@ public class LoadBeat : MonoBehaviour
         retrievedBeats.Add(beat);
     }
 
-    public void FixToggles()
+    private void FixToggles()
     {
         foreach (var beat in retrievedBeats)
         {
@@ -157,6 +157,7 @@ public class LoadBeat : MonoBehaviour
     public void LoadData()
     {
         _loadedManagerData = GetData(currentlySelectedSaveFile);
+        JamSessionDetails.Instance.loadingBeat = true;
         JamSessionDetails.Instance.loadedBeatData = _loadedManagerData;
         JamSessionDetails.Instance.DrumTypeIndex = _loadedManagerData.drumIndex;
         StartCoroutine(SetValues());

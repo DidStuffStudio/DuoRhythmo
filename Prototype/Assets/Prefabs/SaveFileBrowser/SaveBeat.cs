@@ -61,8 +61,8 @@ public class SaveBeat : MonoBehaviour
         string masterManager = JsonUtility.ToJson(_masterManagerData, prettyPrint:true);
         string currentDate = System.DateTime.Now.ToString();
         currentDate = ReplaceInvalidChars(currentDate);
-        string savedBeatName = MasterManager.Instance.drumKitNames[currentDrumIndex] + " " + currentDate + ".json";
-        fileName = Application.persistentDataPath + Path.AltDirectorySeparatorChar + MasterManager.Instance.drumKitNames[currentDrumIndex] + " " + currentDate;
+        string savedBeatName = MasterManager.Instance.currentDrumKitName + " " + currentDate + ".json";
+        fileName = Application.persistentDataPath + Path.AltDirectorySeparatorChar + MasterManager.Instance.currentDrumKitName + " " + currentDate;
         System.IO.File.WriteAllText(Application.persistentDataPath + Path.AltDirectorySeparatorChar + savedBeatName,masterManager);
         StartCoroutine(TakeScreenshot());
         
@@ -70,8 +70,7 @@ public class SaveBeat : MonoBehaviour
     }
 
 
-    
-    public string ReplaceInvalidChars(string name)
+    private string ReplaceInvalidChars(string name)
     {
         return string.Join("_", name.Split(Path.GetInvalidFileNameChars()));    
     }
@@ -87,10 +86,10 @@ public class SaveBeat : MonoBehaviour
         RenderTexture rt = new RenderTexture(resWidth, resHeight, 24); 
         Camera.main.targetTexture = rt;
         Texture2D screenShot = new Texture2D(resWidth, resHeight, TextureFormat.RGB24, false);
-        Camera.main.Render();
+        MasterManager.Instance.overlayCamera.Render();
         RenderTexture.active = rt;
         screenShot.ReadPixels(new Rect(0, 0, resWidth, resHeight), 0, 0);
-        Camera.main.targetTexture = null;
+        MasterManager.Instance.overlayCamera.targetTexture = null;
         RenderTexture.active = null; // JC: added to avoid errors
         Destroy(rt);
         byte[] bytes = screenShot.EncodeToPNG();

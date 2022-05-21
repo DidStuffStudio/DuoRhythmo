@@ -22,6 +22,11 @@ namespace Managers {
             }
         }
 
+        public string currentDrumKitName
+        {
+            get => _currentDrumKitName;
+        }
+
         public List<GameObject> nodePanels = new List<GameObject>();
         public List<GameObject> effectPanels = new List<GameObject>();
 
@@ -58,14 +63,17 @@ namespace Managers {
 
         [SerializeField] private string[] handpanDrumNames = {"B note", "E note", "Ab note", "C# note", "Gb note"};
         [SerializeField] private string[] ambientDrumNames = {"Kick", "Snare", "Hi-hat", "Tom", "Cymbal"};
+
+        public SaveBeat saveBeat;
+        public SaveIntoWav saveToWav;
         private Dictionary<int, string[]> _drumNames = new Dictionary<int, string[]>();
         private int _currentDrumKitIndex = 0;
         public AudioManager audioManager;
-        
+        public Camera overlayCamera;
         public Transform startTransform, destinationTransform, oppositeDestinationTransform;
 
-        public string[] drumKitNames = {"Rock drums", "Djembe", "Electronic", "Handpan", "Ambient"};
-
+        private string[] _drumKitNames = {"Rock drums", "Djembe", "Electronic", "Handpan", "Ambient"};
+        private string _currentDrumKitName;
         private void Awake() {
             if (_instance == null) _instance = this;
         }
@@ -78,7 +86,6 @@ namespace Managers {
             _drumNames.Add(3, handpanDrumNames);
             _drumNames.Add(4, ambientDrumNames);
             SwitchDrumKits(JamSessionDetails.Instance.DrumTypeIndex);
-
             Initialize();
         }
         
@@ -116,7 +123,7 @@ namespace Managers {
                 StartCoroutine(SetUpNodeManagers(i));
             }
             gameSetUpFinished = true;
-            JamSessionDetails.Instance.SetLoadedBeat();
+            if(JamSessionDetails.Instance.loadingBeat)JamSessionDetails.Instance.SetLoadedBeat();
             carouselManager.InitialiseBlur();
             carouselManager.ToggleVFX(true);
         }
@@ -164,6 +171,7 @@ namespace Managers {
 
         private void SwitchDrumKits(int drumKitIndex) {
             _currentDrumKitIndex = drumKitIndex;
+            _currentDrumKitName = _drumKitNames[drumKitIndex];
         }
 
         public void ForceSoloOffGlobal()

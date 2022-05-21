@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DidStuffLab;
 using Managers;
+using UnityEngine.SceneManagement;
 
 public class JamSessionDetails : MonoBehaviour {
     private static JamSessionDetails _instance;
@@ -35,8 +36,8 @@ public class JamSessionDetails : MonoBehaviour {
     public bool loadingBeat { get; set; }
 
     public void StartMatchmaking(bool isRandom) {
-        // TODO --> Probably check if the we're in the main menu scene for this - otherwise return void
         isSoloMode = false;
+        if (SceneManager.GetActiveScene().buildIndex != 0) return;
         Matchmaker.Instance.SelectDrumAndStartMatch(DrumTypeIndex.ToString(), isRandom);
     }
     
@@ -48,12 +49,14 @@ public class JamSessionDetails : MonoBehaviour {
     public void ClearDetails() {
         DrumTypeIndex = 0;
         isSoloMode = true;
+        loadingBeat = false;
         LocalAvatarName = "Avatar1";
         players.Clear();
         otherPlayer = null;
     }
     
     public void SetMultiplayerMatchDetails(string localAvatar, byte drumIndex, string ipAddress, ushort port) {
+        if (SceneManager.GetActiveScene().buildIndex != 0) return;
         LocalAvatarName = localAvatar;
         DrumTypeIndex = drumIndex;
         ClientStartup.Instance.SetServerInstanceDetails(ipAddress, port);
@@ -63,14 +66,14 @@ public class JamSessionDetails : MonoBehaviour {
     {
         StartCoroutine(SetValues());
     }
-    public IEnumerator SetValues()
+    private IEnumerator SetValues()
     {
         while (!MasterManager.Instance.gameSetUpFinished)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForEndOfFrame();
         }
         // Wait for duorythmo to fully load (strange things will occur if you don't wait)
-        yield return new WaitForSeconds(1);
+        //yield return new WaitForSeconds(1);
         MasterManager masterManager = MasterManager.Instance;
 
         List<NodeManager> nodeManagers = new List<NodeManager>();

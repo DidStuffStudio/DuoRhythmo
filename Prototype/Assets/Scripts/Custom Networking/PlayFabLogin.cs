@@ -9,6 +9,7 @@ using PlayFab.ClientModels;
 using PlayFab.CloudScriptModels;
 using PlayFab.DataModels;
 using PlayFab.Json;
+using UnityEngine.SceneManagement;
 using EntityKey = PlayFab.MultiplayerModels.EntityKey;
 
 // ref --> https://github.com/DapperDino/PlayFab-Tutorials/blob/main/Assets/Mirror/Examples/Pong/Scripts/PlayFabLogin.cs
@@ -160,8 +161,9 @@ public class PlayFabLogin : MonoBehaviour {
             );
         }
 
-        if (MainMenuManager.Instance.CurrentPanel != 4 || MainMenuManager.Instance.CurrentPanel != 19)
-            MainMenuManager.Instance.SkipLogin();
+        if (SceneManager.GetActiveScene().buildIndex != 0) return;
+        if(MainMenuManager.Instance.CurrentPanel != 4 || MainMenuManager.Instance.CurrentPanel != 19) MainMenuManager.Instance.SkipLogin();
+
     }
 
     private void OnLinkedError(PlayFabError error) {

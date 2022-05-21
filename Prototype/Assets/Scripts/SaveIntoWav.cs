@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+
 using UnityEngine.Networking;
 
 public class SaveIntoWav : MonoBehaviour
@@ -28,6 +29,7 @@ public class SaveIntoWav : MonoBehaviour
     private AudioSource[] audioSources;
     public int currentSlot;
     float[] tempDataSource;
+    private string _folderPath;
 
     void Awake()
     {
@@ -38,10 +40,8 @@ public class SaveIntoWav : MonoBehaviour
     void Start()
     {
         AudioSettings.GetDSPBufferSize(out bufferSize, out numBuffers);
-        /*audioSources = new AudioSource[3]; 
-        audioSources[0] = GameObject.FindWithTag("RecSlot1").GetComponent<AudioSource>();
-        audioSources[1] = GameObject.FindWithTag("RecSlot2").GetComponent<AudioSource>();
-        audioSources[2] = GameObject.FindWithTag("RecSlot3").GetComponent<AudioSource>();*/
+        _folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
+        
     }
 
     public void StartRecording(string recordFileName)
@@ -57,6 +57,7 @@ public class SaveIntoWav : MonoBehaviour
         }
         else
         {
+            //Show Toast
             Debug.LogError("Recording is in progress already");
         }
     }
@@ -66,13 +67,15 @@ public class SaveIntoWav : MonoBehaviour
         recOutput = false;
         WriteHeader();
         //UpdateClip();
+        // Show toast
 
     }
 
+    
 
     private void StartWriting(String name)
     {
-        fileStream = new FileStream(Application.dataPath + "/" + name, FileMode.Create);
+        fileStream = new FileStream(_folderPath, FileMode.Create);
 
         var emptyByte = new byte();
         for (int i = 0; i < headerSize; i++) //preparing the header

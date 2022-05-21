@@ -33,6 +33,22 @@ namespace Managers {
         public static event MoveCarouselAction OnMovedCarousel;
         private bool alreadyLocallyMovedCarousel; // for multiplayer
 
+        private EmojiSync _emojiSync;
+
+        public EmojiSync EmojiSync {
+            get => _emojiSync;
+            set {
+                _emojiSync = value;
+                for (byte index = 0; index < emojiSpawners.Length; index++) {
+                    if(emojiParticles.ContainsKey(index)) break; // stop loop, cause it's already been iterated
+                    var es = emojiSpawners[index];
+                    emojiParticles.Add(index, es.GetComponentsInChildren<ParticleSystem>());
+                }
+            }
+        }
+        [SerializeField] private GameObject [] emojiSpawners;
+        public Dictionary<byte, ParticleSystem[]> emojiParticles { get; private set; } = new Dictionary<byte, ParticleSystem[]>();
+
         private void OnEnable() {
             _forwardRenderer.rendererFeatures[0].SetActive(true);
             NavigationVoteSync.OnVotingCompletedFromServerAction += VotingCompletedFromServer;

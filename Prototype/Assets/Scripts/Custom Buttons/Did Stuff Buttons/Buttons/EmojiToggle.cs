@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using PlayFab.MultiplayerModels;
 using TMPro.Examples;
 using UnityEngine;
@@ -44,6 +45,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
         {
             DeactivateButton();  
             emojiParticles[index].Play();
+            // MasterManager.Instance.carouselManager.EmojiSync.ChangeValueOnServer((byte)index);
         }
 
     }

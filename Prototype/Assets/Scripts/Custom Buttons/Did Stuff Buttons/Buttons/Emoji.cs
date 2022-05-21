@@ -1,4 +1,5 @@
 using System;
+using Managers;
 using TS;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
@@ -10,6 +11,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
         private TweenSharp _tween;
         public float duration = 2.3f;
         [SerializeField] private Vector3 targetPosition;
+        [SerializeField] private byte emojiIndex;
 
         private bool _enabled;
         
@@ -56,6 +58,10 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
             _tween.Restart();
         }
 
-        
+        protected override void ButtonClicked() {
+            base.ButtonClicked();
+            print("Send emoji");
+            MasterManager.Instance.carouselManager.EmojiSync.ChangeValueOnServer(emojiIndex);
+        }
     }
 }

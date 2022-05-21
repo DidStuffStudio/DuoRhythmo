@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using DidStuffLab;
+using Managers;
 using Mirror;
 using UnityEngine;
 
@@ -15,9 +13,7 @@ namespace DidStuffLab {
             SendToServer(newValue);
         }
 
-        protected override void Initialize() {
-            // if(isServer) StartCoroutine(WaitToChangeEmoji());
-        }
+        protected override void Initialize() => MasterManager.Instance.carouselManager.EmojiSync = this;
 
         [Command(requiresAuthority = false)]
         protected override void CmdUpdateValue(byte newValue) => Value.Value = newValue;
@@ -32,10 +28,12 @@ namespace DidStuffLab {
         private void PlaySendingAnimation(byte newValue) {
             print("Playing send animation number " + newValue);
             _sendingEmojiAnimation = false; // update it so we can send again afterwards
+            MasterManager.Instance.carouselManager.emojiParticles[0][newValue].Play();
         }
 
         private void PlayReceivingAnimation(byte newValue) {
             print("Playing receive animation number " + newValue);
+            MasterManager.Instance.carouselManager.emojiParticles[1][newValue].Play();
         }
     }
 }

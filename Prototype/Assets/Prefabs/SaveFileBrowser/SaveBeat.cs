@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using Managers;
 using UnityEngine;
@@ -59,7 +60,7 @@ public class SaveBeat : MonoBehaviour
         
         //Create a Json file with the received data
         string masterManager = JsonUtility.ToJson(_masterManagerData, prettyPrint:true);
-        string currentDate = System.DateTime.Now.ToString();
+        string currentDate = System.DateTime.Now.ToString(CultureInfo.CurrentCulture);
         currentDate = ReplaceInvalidChars(currentDate);
         string savedBeatName = MasterManager.Instance.currentDrumKitName + " " + currentDate + ".json";
         fileName = Application.persistentDataPath + Path.AltDirectorySeparatorChar + MasterManager.Instance.currentDrumKitName + " " + currentDate;

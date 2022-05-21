@@ -20,21 +20,31 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         private bool _caretShowing;
         private string _currentText;
         [SerializeField] private TextMeshProUGUI tMP;
-        private Vector3 _caretPos;
+        private Vector3 _caretPos = new Vector3(15,0,0);
+        [SerializeField] private float caretOffset = 1f;
+        [SerializeField] private int maxNumberCharacters = 20;
 
         public string text
         {
             get => _currentText;
-            set => _currentText = value;
+            set
+            {
+                _currentText = value;
+                UpdateText();
+            }
         }
 
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            DeactivateInputField();
+            text = "";
+        }
 
         private void Start()
         {
             _dwellGfx.transform.SetParent(transform.parent);
             _dwellGfx.transform.SetSiblingIndex(0);
-            _caretPos = caret.transform.position;
-
         }
         
    
@@ -49,7 +59,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         private void MoveCaret()
         {
             if (_currentText.Length > 0)
-                caret.transform.position = _caretPos + new Vector3(tMP.GetRenderedValues(true).x, 0, 0);
+                caret.transform.position = _caretPos + new Vector3(tMP.GetRenderedValues(true).x + caretOffset, 0, 0);
             else caret.transform.position = _caretPos;
         }
         
@@ -74,7 +84,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
                     DeactivateInputField();
                     print("User entered their name: " + _currentText);
                 }
-                else
+                else if(_currentText.Length <= maxNumberCharacters)
                 {
                     _currentText += c;
                 }

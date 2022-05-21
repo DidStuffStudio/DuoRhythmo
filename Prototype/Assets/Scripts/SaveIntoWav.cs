@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using UnityEngine;
 
@@ -44,9 +45,9 @@ public class SaveIntoWav : MonoBehaviour
         
     }
 
-    public void StartRecording(string recordFileName)
+    public void StartRecording()
     {
-        fileName = Path.GetFileNameWithoutExtension(recordFileName) + FILE_EXTENSION;
+        fileName = Path.GetFileNameWithoutExtension(System.DateTime.Now.ToString(CultureInfo.CurrentCulture)) + FILE_EXTENSION;
 
 
         if (!recOutput)
@@ -75,7 +76,8 @@ public class SaveIntoWav : MonoBehaviour
 
     private void StartWriting(String name)
     {
-        fileStream = new FileStream(_folderPath, FileMode.Create);
+        //fileStream = new FileStream(_folderPath, FileMode.Create);
+        fileStream = new FileStream(Application.dataPath + "/" + name, FileMode.Create);
 
         var emptyByte = new byte();
         for (int i = 0; i < headerSize; i++) //preparing the header

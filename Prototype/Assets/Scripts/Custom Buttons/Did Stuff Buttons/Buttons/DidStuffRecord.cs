@@ -17,7 +17,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
 
         private void StartRecording()
         {
-            MasterManager.Instance.saveToWav.StartRecording(MasterManager.Instance.currentDrumKitName + " " + DateTime.Now);
+            MasterManager.Instance.saveToWav.StartRecording();
         }
 
         private void StopRecording()

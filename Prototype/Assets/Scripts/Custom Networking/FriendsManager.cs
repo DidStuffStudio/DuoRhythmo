@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Managers;
@@ -17,9 +18,13 @@ namespace DidStuffLab {
         public static FriendsManager Instance { get; private set; }
 
         private Dictionary<string, Friend> _friendsDictionary = new Dictionary<string, Friend>();
-        public IEnumerable<Friend> FriendsDetails => _friendsDictionary.Values.ToList();
+        public IEnumerable<Friend> FriendsDetails => updatingFriends ? _auxTempFriendsDetails : _friendsDictionary.Values.ToList();
+        private List<Friend> _auxTempFriendsDetails = new List<Friend>(); // in case friends dictionary has been cleared, use this as the aux
         private int _friendAvatarsReceivedCounter = 0;
         public bool receivedAllFriendsDetails;
+        private bool _finishedWaitingToRequestFriends;
+        private bool updatingFriends;
+        private bool _changeInFriends = true;
 
         public delegate void ReceivedFriendsDetails();
         public static event ReceivedFriendsDetails OnReceivedFriendsDetails;
@@ -35,18 +40,42 @@ namespace DidStuffLab {
 
         private void Awake() {
             if (Instance == null) Instance = this;
+            GetFriends.SubscribeToEvents(true);
         }
 
         public void EnableFriendsManager() {
             if (!PlayFabMultiplayerAPI.IsEntityLoggedIn()) return;
-            GetFriends(); // call this on start because it's deactivated by default, and then activated once user logs in
+            // StartCoroutine(WaitToRequestFriends());
+            GetListOfFriends(); // call this on start because it's deactivated by default, and then activated once user logs in
+        }
+
+        /*
+        private IEnumerator WaitToRequestFriends() {
+            while (true) {
+                _finishedWaitingToRequestFriends = true;
+                yield return new WaitForSeconds(10);
+                _finishedWaitingToRequestFriends = false;
+            }
+        }
+        */
+        
+        private IEnumerator WaitForTimeoutFriendsRequest() {
+            // if after 10 seconds we still haven't received all the friends details,
+            // just populate it with the friends that we got and default values
+            yield return new WaitForSeconds(10);
+            if(!receivedAllFriendsDetails) OnReceivedFriendsDetails?.Invoke();
         }
 
         private void DisplayPlayFabError(PlayFabError error) {
             Debug.Log(error.GenerateErrorReport());
         }
 
-        public void GetFriends() {
+        public void GetListOfFriends() {
+            // if (!_finishedWaitingToRequestFriends) return;
+            if (!_changeInFriends) return;
+            _changeInFriends = false;
+            updatingFriends = true;
+            StartCoroutine(WaitForTimeoutFriendsRequest());
             receivedAllFriendsDetails = false;
             _friendsDictionary.Clear();
             PlayFabClientAPI.GetFriendsList(new GetFriendsListRequest {
@@ -187,6 +216,7 @@ namespace DidStuffLab {
             else {
                 Debug.Log("Seems like sending the friend request happened successfully");
                 MainMenuManager.Instance.SpawnSuccessToast("Friend request sent!", 0.1f);
+                _changeInFriends = true;
             }
         }
 
@@ -205,6 +235,7 @@ namespace DidStuffLab {
 
         private void OnAcceptFriendSuccess(PlayFab.CloudScriptModels.ExecuteCloudScriptResult result) {
             print("Accepted friend request success --> " + result);
+            _changeInFriends = true;
         }
 
         public void DenyFriendRequest(string username) {
@@ -222,6 +253,7 @@ namespace DidStuffLab {
 
         private void OnDenyFriendSuccess(PlayFab.CloudScriptModels.ExecuteCloudScriptResult result) {
             print("Successfully rejected friend request");
+            _changeInFriends = true;
         }
 
         public List<Member> GetFriendMembers() {
@@ -249,15 +281,22 @@ namespace DidStuffLab {
 
             if (_friendAvatarsReceivedCounter == _friendsDictionary.Count) {
                 print("Invoking the received all friends details event");
-                OnReceivedFriendsDetails?.Invoke();
+                _auxTempFriendsDetails = _friendsDictionary.Values.ToList();
                 _friendAvatarsReceivedCounter = 0;
                 receivedAllFriendsDetails = true;
+                updatingFriends = false;
+                OnReceivedFriendsDetails?.Invoke();
             }
         }
 
         public void ClearAllFriendsDetails() {
             _friendsDictionary.Clear();
             receivedAllFriendsDetails = false;
+            _auxTempFriendsDetails.Clear();
+        }
+
+        private void OnApplicationQuit() {
+            GetFriends.SubscribeToEvents(false);
         }
     }
 

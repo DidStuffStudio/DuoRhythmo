@@ -24,6 +24,15 @@ public class ManageFriendsPanel : UiFriendsManager
     [SerializeField] private List<TextMeshProUGUI> confirmInteractionTexts = new List<TextMeshProUGUI>();
     private readonly string[] _confirmInteractionTexts = {"Accepted", "Declined", "Removed", "Revoked"};
     
+    [Header("FriendsMenu/Spinner")]
+    [SerializeField] private GameObject friendsMenuList;
+    [SerializeField] private GameObject rotatingSpinner;
+
+    private void Start() {
+        // subscribe to the event when we've received all friends details including avatars
+        FriendsManager.OnReceivedFriendsDetails += FriendsManagerOnOnReceivedFriendsDetails;
+    }
+
     protected override void OnEnable()
     {
         _numberOfCards = friendCards.Count;
@@ -33,8 +42,20 @@ public class ManageFriendsPanel : UiFriendsManager
         {
             t.gameObject.SetActive(false);
         }
+
+        if (!FriendsManager.Instance.receivedAllFriendsDetails) {
+            friendsMenuList.SetActive(false);
+            rotatingSpinner.SetActive(true);
+        }
+
         base.OnEnable();
         if (!PlayFabLogin.Instance.IsLoggedInAsGuest) EnableAddFriend();
+    }
+
+    private void FriendsManagerOnOnReceivedFriendsDetails() {
+        print("Friends updated, so hide the rotating spinner");
+        friendsMenuList.SetActive(true);
+        rotatingSpinner.SetActive(false);
     }
     
     protected override void ChangeGraphics()
@@ -122,5 +143,13 @@ public class ManageFriendsPanel : UiFriendsManager
         confirmInteractionTexts[index].text = text;
         confirmInteractionTexts[index].gameObject.SetActive(true);
     }
-    
+
+    protected override void OnDisable() {
+        base.OnDisable();
+        FriendsManager.Instance.GetListOfFriends(); // update the list of friends once again
+    }
+
+    private void OnApplicationQuit() {
+        FriendsManager.OnReceivedFriendsDetails -= FriendsManagerOnOnReceivedFriendsDetails;
+    }
 }

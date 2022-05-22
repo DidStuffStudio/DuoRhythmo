@@ -30,8 +30,6 @@ public class PlayFabLogin : MonoBehaviour {
     public string PasswordPin { get; set; }
     public string UserAvatar { get; set; }
 
-    private const string _PlayFabRememberMeIdKey = "PlayFabIdPassDeviceUniqueIdentifier";
-
     private GetPlayerCombinedInfoRequestParams _infoRequestParameters = new GetPlayerCombinedInfoRequestParams {
         // GetUserData = true,
         GetUserAccountInfo = true,
@@ -41,6 +39,7 @@ public class PlayFabLogin : MonoBehaviour {
         // GetTitleData = true
     };
 
+    private const string _PlayFabRememberMeIdKey = "PlayFabIdPassDeviceUniqueIdentifier";
     /// <summary>
     /// Generated Remember Me ID
     /// Pass Null for a value to have one auto-generated.
@@ -52,6 +51,15 @@ public class PlayFabLogin : MonoBehaviour {
             PlayerPrefs.SetString(_PlayFabRememberMeIdKey, guid);
         }
     }
+
+    private const string _LoggedInAsGuestKey = "LoggedInAsGuest";
+
+    public bool IsLoggedInAsGuest {
+        get => PlayerPrefs.GetInt(_LoggedInAsGuestKey, 0) == 1;
+        private set => PlayerPrefs.SetInt(_LoggedInAsGuestKey, value ? 1 : 0);
+    }
+
+    public bool IsLoggedInToAccount => AuthenticationContext.IsEntityLoggedIn() && !IsLoggedInAsGuest;
 
     public static string MasterPlayfabId;
     public static EntityKey EntityKey;
@@ -84,8 +92,12 @@ public class PlayFabLogin : MonoBehaviour {
             CustomId = RememberMeId,
             InfoRequestParameters = _infoRequestParameters
         };
+        PlayFabClientAPI.LoginWithCustomID(request, OnLoginWithRememberMeIdSuccess, OnLoginError);
+    }
 
-        PlayFabClientAPI.LoginWithCustomID(request, OnPlayfabLoginSuccess, OnLoginError);
+    private void OnLoginWithRememberMeIdSuccess(LoginResult result) {
+        print("Logged in successfully with remembermeid");
+        ProceedWithLogin(result.AuthenticationContext, result.InfoResultPayload.AccountInfo.Username, false);
     }
 
     public void CreateAccount() {
@@ -100,6 +112,7 @@ public class PlayFabLogin : MonoBehaviour {
 
     private void OnPlayfabCreatedAccountSuccess(RegisterPlayFabUserResult result) {
         print("Created account successfully");
+        IsLoggedInAsGuest = false;
         ProceedWithLogin(result.AuthenticationContext, result.Username, true);
     }
 
@@ -118,17 +131,19 @@ public class PlayFabLogin : MonoBehaviour {
             CreateAccount = true,
             CustomId = SystemInfo.deviceUniqueIdentifier
         };
-
+        
         PlayFabClientAPI.LoginWithCustomID(request, OnPlayfabLoginAsGuestSuccess, OnLoginError);
     }
 
     private void OnPlayfabLoginSuccess(LoginResult result) {
         print("Logged in successfully");
+        IsLoggedInAsGuest = false;
         ProceedWithLogin(result.AuthenticationContext, result.InfoResultPayload.AccountInfo.Username, false);
     }
 
     private void OnPlayfabLoginAsGuestSuccess(LoginResult result) {
         print("Logged in as guest successfully, with id " + result.PlayFabId);
+        IsLoggedInAsGuest = true;
         ProceedWithLogin(result.AuthenticationContext, result.PlayFabId, false);
     }
 
@@ -185,6 +200,9 @@ public class PlayFabLogin : MonoBehaviour {
     public void ClearRememberMe() {
         PlayerPrefs.DeleteKey(_PlayFabRememberMeIdKey);
         RememberMeId = "";
+        PlayerPrefs.DeleteKey(_LoggedInAsGuestKey);
+        IsLoggedInAsGuest = false;
+        PlayerPrefs.DeleteAll();
     }
 
     // Logout from this device - should unlink custom id from user's account, and reset the instance variables
@@ -203,6 +221,7 @@ public class PlayFabLogin : MonoBehaviour {
         EntityKey = new EntityKey();
         FriendsEntityKeys = new List<EntityKey>();
         SelectedFriendsEntityKeys = new List<EntityKey>();
+        FriendsManager.Instance.ClearAllFriendsDetails();
     }
 
     public void DeleteAccount() {

@@ -24,12 +24,24 @@ public class GetFriends : MonoBehaviour
 
     private TextMeshProUGUI _notificationText;
     [SerializeField] private Image friendRequestNotification;
-    private bool _initialised;
     private float _friendRequestCount = 0;
-    private void OnEnable()
-    {
-        if (!_initialised) return;
-        if (MainMenuManager.Instance.LoggedIn)
+
+    [SerializeField] private GameObject friendsMenuList;
+    [SerializeField] private GameObject rotatingSpinner;
+
+    private void OnEnable() {
+        // subscribe to the event when we've received all friends details including avatars
+        FriendsManager.OnReceivedFriendsDetails += FriendsManagerOnOnReceivedFriendsDetails;
+        if(FriendsManager.Instance.receivedAllFriendsDetails) FriendsManagerOnOnReceivedFriendsDetails();
+        else {
+            friendsMenuList.SetActive(false);
+            rotatingSpinner.SetActive(true);
+        }
+    }
+
+    private void FriendsManagerOnOnReceivedFriendsDetails() {
+        print("Hide rotating spinner in friends menu");
+        if (PlayFabLogin.Instance.IsLoggedInToAccount)
         {
             GetFriendDetails();
             foreach (var manager in managersToUpdate)
@@ -45,8 +57,11 @@ public class GetFriends : MonoBehaviour
         _notificationText = friendRequestNotification.GetComponentInChildren<TextMeshProUGUI>();
         friendRequestNotification.gameObject.SetActive(false);
         UpdateFriendRequests();
+        
+        friendsMenuList.SetActive(true);
+        rotatingSpinner.SetActive(false);
     }
-    
+
     private void GetFriendDetails()
     {
 
@@ -139,5 +154,5 @@ public class GetFriends : MonoBehaviour
             _friendStatusMap.Clear();
        }
 
-       private void OnDisable() => _initialised = true;
+       private void OnDisable() => FriendsManager.OnReceivedFriendsDetails -= FriendsManagerOnOnReceivedFriendsDetails;
 }

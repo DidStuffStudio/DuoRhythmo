@@ -209,8 +209,11 @@ namespace Managers {
             OnMovedCarousel?.Invoke();
             
             // reset the voting
-            var navSync = forward ? _navigationVoteSyncs[0] : _navigationVoteSyncs[1];
-            navSync.ResetVoting();
+            // var navSync = forward ? _navigationVoteSyncs[0] : _navigationVoteSyncs[1];
+            // navSync.ResetVoting();
+            foreach (var navsync in _navigationVoteSyncs) {
+                navsync.ResetVoting();
+            }
         }
 
         public void SetAnimatorTime() {

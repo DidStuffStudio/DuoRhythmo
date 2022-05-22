@@ -88,11 +88,11 @@ public class UiFriendsManager : MonoBehaviour
     protected virtual void OnEnable()
     {
         if (!_initialised) return;
-        if (MainMenuManager.Instance.IsGuest) DisableAllInteraction();
+        if(PlayFabLogin.Instance.IsLoggedInAsGuest) DisableAllInteraction();
         
-        if (MainMenuManager.Instance.LoggedIn)
+        if (PlayFabLogin.Instance.IsLoggedInToAccount)
         {
-            FriendsManager.Instance.GetFriends();
+            // FriendsManager.Instance.GetFriends(); // --> Already being done after logging in successfully
             Initialise();
             InitialiseGraphics();
         }
@@ -246,7 +246,7 @@ private void DoTheDots()
     }
 
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         ClearLists();
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,15 +7,17 @@ public class UiSettingsPanel : UIPanel
 {
     public GameObject logInOrSignUp;
     public GameObject logOut;
-    public override void ExecuteSpecificChanges()
-    {
-        if (logInOrSignUp.activeInHierarchy)
-        {
+
+    private void OnEnable() {
+        if (PlayFabLogin.Instance.IsLoggedInToAccount) {
             logInOrSignUp.SetActive(false);
             logOut.SetActive(true);
         }
-        else
-        {
+        else if(PlayFabLogin.Instance.IsLoggedInAsGuest) {
+            logInOrSignUp.SetActive(true);
+            logOut.SetActive(false);
+        }
+        else {
             logInOrSignUp.SetActive(true);
             logOut.SetActive(false);
         }

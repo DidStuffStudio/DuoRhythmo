@@ -18,6 +18,11 @@ namespace DidStuffLab {
 
         private Dictionary<string, Friend> _friendsDictionary = new Dictionary<string, Friend>();
         public IEnumerable<Friend> FriendsDetails => _friendsDictionary.Values.ToList();
+        private int _friendAvatarsReceivedCounter = 0;
+        public bool receivedAllFriendsDetails;
+
+        public delegate void ReceivedFriendsDetails();
+        public static event ReceivedFriendsDetails OnReceivedFriendsDetails;
         
         public string IdFromUsername(string username) {
             foreach (var f in _friendsDictionary.Where(f => f.Value.Username == username)) {
@@ -34,6 +39,7 @@ namespace DidStuffLab {
 
         public void EnableFriendsManager() {
             if (!PlayFabMultiplayerAPI.IsEntityLoggedIn()) return;
+            receivedAllFriendsDetails = false;
             GetFriends(); // call this on start because it's deactivated by default, and then activated once user logs in
         }
 
@@ -238,7 +244,19 @@ namespace DidStuffLab {
         public void AddAvatarToFriendDetails(EntityKey entityKey, string playerAvatarName) {
             foreach (var f in _friendsDictionary.Where(f => f.Value.TitleEntityKey.Id == entityKey.Id)) {
                 f.Value.AvatarName = playerAvatarName;
+                _friendAvatarsReceivedCounter++;
             }
+
+            if (_friendAvatarsReceivedCounter == _friendsDictionary.Count) {
+                OnReceivedFriendsDetails?.Invoke();
+                _friendAvatarsReceivedCounter = 0;
+                receivedAllFriendsDetails = true;
+            }
+        }
+
+        public void ClearAllFriendsDetails() {
+            _friendsDictionary.Clear();
+            receivedAllFriendsDetails = false;
         }
     }
 

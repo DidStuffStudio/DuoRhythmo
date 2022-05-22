@@ -34,7 +34,7 @@ public class ManageFriendsPanel : UiFriendsManager
             t.gameObject.SetActive(false);
         }
         base.OnEnable();
-        if (!MainMenuManager.Instance.IsGuest) EnableAddFriend();
+        if (!PlayFabLogin.Instance.IsLoggedInAsGuest) EnableAddFriend();
     }
     
     protected override void ChangeGraphics()

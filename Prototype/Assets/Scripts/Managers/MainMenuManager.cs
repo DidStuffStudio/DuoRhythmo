@@ -44,8 +44,6 @@ namespace Managers
       private string _currentPinInput = "", _referencePin ="";
       [SerializeField] private List<int> panelsThatDontshowSettings = new List<int>();
       [SerializeField] private List<int> panelsThatDontshowBack = new List<int>();
-      private bool _loggedIn = false;
-      private bool _isGuest = false;
       private DidStuffInvite _currentInvitePopUp;
       [SerializeField] private Transform defaultToastPlaceholder;
       [SerializeField] private TextMeshProUGUI matchmakingStatusText;
@@ -58,9 +56,6 @@ namespace Managers
 
       public int CurrentPanel => _currentPanel;
 
-      public bool LoggedIn => _loggedIn;
-
-      public bool IsGuest => _isGuest;
 
       private void Awake()
       {
@@ -251,8 +246,6 @@ namespace Managers
          PlayFabLogin.Instance.Username = _currentUsernameInput;
          PlayFabLogin.Instance.PasswordPin = _currentPinInput;
          PlayFabLogin.Instance.SignIn();
-         _loggedIn = true;
-         _isGuest = false;
       }
 
       public void SubmitUsernameSignUp(int indexToActivate)
@@ -303,7 +296,6 @@ namespace Managers
          DeactivatePanel(CurrentPanel);
          ActivatePanel(2);
          SpawnErrorToast(errorMsg, 0.5f);
-         _loggedIn = false;
       }
       
       public void SpawnSuccessToast(string msg, float delay) => StartCoroutine(InstantiateSuccessToast(msg,delay));
@@ -313,8 +305,6 @@ namespace Managers
          PlayFabLogin.Instance.Username = _currentUsernameInput;
          PlayFabLogin.Instance.PasswordPin = _currentPinInput;
          PlayFabLogin.Instance.CreateAccount();
-         _loggedIn = true;
-         _isGuest = false;
       }
 
       /// <summary>
@@ -323,7 +313,6 @@ namespace Managers
       public void SkipLogin() {
          DeactivatePanel(0);
          ActivatePanel(4);
-         _loggedIn = true;
       }
 
       public void LoginAsGuest()
@@ -331,13 +320,11 @@ namespace Managers
          PlayFabLogin.Instance.LoginWithDeviceUniqueIdentifier();
          panelsThatDontshowBack.Add(19);
          _panelDictionary[13].ExecuteSpecificChanges();
-         _isGuest = true;
       }
 
       public void LogOut()
       {
          PlayFabLogin.Instance.Logout();
-         _loggedIn = false;
          DeactivatePanel(_currentPanel);
          ActivatePanel(2);
          //Todo logout

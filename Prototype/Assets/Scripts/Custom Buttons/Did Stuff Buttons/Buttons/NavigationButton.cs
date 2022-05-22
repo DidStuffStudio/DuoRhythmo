@@ -7,6 +7,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
     public class NavigationButton : AbstractDidStuffButton {
         private CarouselManager _carouselManager;
         [SerializeField] private bool forward;
+        private bool votedToMove = false;
 
         private void Start() {
             _carouselManager = MasterManager.Instance.carouselManager;
@@ -15,6 +16,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
         protected override void ButtonClicked() {
             base.ButtonClicked();
             _carouselManager.UpdateVoteToMove(_isActive, forward);
+            votedToMove = true;
         }
         
         protected override void OnEnable() {
@@ -23,10 +25,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
         }
 
         private void VotingCompleteFromServer() {
+            if(!votedToMove) return;
             print("Both players have voted to move. Move forward: " + forward);
             // change to inactive state
             ChangeToInactiveState();
             ActivatedScaleFeedback();
+            votedToMove = false;
         }
         
         protected override void OnDisable() {

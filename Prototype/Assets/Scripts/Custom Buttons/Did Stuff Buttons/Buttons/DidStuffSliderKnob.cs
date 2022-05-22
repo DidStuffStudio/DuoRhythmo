@@ -131,7 +131,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
                 
             if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
             var dist = Vector3.Distance(value, _knobRectTransform.localPosition);
-            if(dist>30) DeactivateButton();
+            if(dist>30 && InteractionManager.Instance.Method != InteractionMethod.Mouse || InteractionManager.Instance.Method != InteractionMethod.Touch) DeactivateButton();
                 
             FillSlider();
             

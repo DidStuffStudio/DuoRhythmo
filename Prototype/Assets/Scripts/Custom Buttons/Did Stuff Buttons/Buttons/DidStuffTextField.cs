@@ -62,14 +62,15 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
                 caret.transform.position = _caretPos + new Vector3(tMP.GetRenderedValues(true).x + caretOffset, 0, 0);
             else caret.transform.position = _caretPos;
         }
-        
+
         protected override void Update()
         {
-           if(_isActive)TextUpdate();
-            base.Update();
+            if(_isActive)TextUpdate();
+            
         }
+        
 
-        private void TextUpdate()
+        private void TextUpdate() //Credit Unity Docs
         {
            if (Input.inputString == null) return;
             foreach (char c in Input.inputString)

@@ -122,13 +122,13 @@ public class ManageFriendsPanel : UiFriendsManager
     public void RemoveFriend(int index)
     {
         FriendsManager.Instance.RemoveFriend(_currentUsernames[index]);
-        RemoveButtons(index, requestInteraction[index], _confirmInteractionTexts[2]);
+        RemoveButtons(index, confirmedInteraction[index], _confirmInteractionTexts[2]);
     }
 
     public void RevokeFriendRequest(int index)
     {
         FriendsManager.Instance.RemoveFriend(_currentUsernames[index]);
-        RemoveButtons(index, requestInteraction[index], _confirmInteractionTexts[3]);
+        RemoveButtons(index, pendingInteraction[index], _confirmInteractionTexts[3]);
     }
 
     public void AddFriend() {

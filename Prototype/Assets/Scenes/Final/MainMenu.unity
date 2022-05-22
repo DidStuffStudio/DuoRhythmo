@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.99999905, g: 0, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.044132642, g: 0.0430841, b: 0.040068284, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2184,8 +2184,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &50682988
@@ -2575,8 +2575,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &64390254
@@ -4512,8 +4512,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &192418414
@@ -5653,8 +5653,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &253305273
@@ -5693,7 +5693,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 531693641}
   - {fileID: 2130568961}
   - {fileID: 1931330232}
   m_Father: {fileID: 263993140}
@@ -8400,8 +8399,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &344215338
@@ -9507,8 +9506,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &372634564
@@ -11721,8 +11720,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &457354132
@@ -11977,8 +11976,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &473073336
@@ -13201,8 +13200,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &503036492
@@ -13316,8 +13315,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &505428744
@@ -13693,8 +13692,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &518141842
@@ -14138,86 +14137,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &531693640
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 531693641}
-  - component: {fileID: 531693643}
-  - component: {fileID: 531693642}
-  m_Layer: 9
-  m_Name: Blur PlaceHolder
-  m_TagString: BlurPlaceholder
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &531693641
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531693640}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 259970398}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -45}
-  m_SizeDelta: {x: 670, y: 700}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &531693642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531693640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196bb08d6c2d3c9499c04e1281fd4ad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 96c5704d0681e35408630c488fc0c234, type: 2}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.6509804}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 90a5968a68c175d40bdb9b4ea10e04cc, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 15.57
-  source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
-  flatten: 0
-  m_spriteBlending: 1
---- !u!222 &531693643
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531693640}
-  m_CullTransparentMesh: 1
 --- !u!1 &533949481
 GameObject:
   m_ObjectHideFlags: 0
@@ -15571,8 +15490,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &556137507
@@ -18455,8 +18374,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &661575250
@@ -26197,8 +26116,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &768042942
@@ -26208,86 +26127,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768042939}
-  m_CullTransparentMesh: 1
---- !u!1 &771103545
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 771103546}
-  - component: {fileID: 771103548}
-  - component: {fileID: 771103547}
-  m_Layer: 9
-  m_Name: Blur PlaceHolder
-  m_TagString: BlurPlaceholder
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &771103546
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771103545}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 813224425}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -45}
-  m_SizeDelta: {x: 670, y: 700}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &771103547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771103545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196bb08d6c2d3c9499c04e1281fd4ad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 96c5704d0681e35408630c488fc0c234, type: 2}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.6509804}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 90a5968a68c175d40bdb9b4ea10e04cc, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 15.57
-  source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
-  flatten: 0
-  m_spriteBlending: 1
---- !u!222 &771103548
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771103545}
   m_CullTransparentMesh: 1
 --- !u!1 &772725419
 GameObject:
@@ -26631,8 +26470,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &777917798
@@ -27938,16 +27777,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 771103546}
   - {fileID: 1626828461}
   - {fileID: 1514744993}
   m_Father: {fileID: 1948926148}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -18}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &813224426
 CanvasRenderer:
@@ -29924,8 +29762,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &891039134
@@ -31525,8 +31363,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &944200962
@@ -34550,8 +34388,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1948926150}
-        m_TargetAssemblyTypeName: FriendPanelManager, Assembly-CSharp
-        m_MethodName: RemoveFriend
+        m_TargetAssemblyTypeName: ManageFriendsPanel, Assembly-CSharp
+        m_MethodName: RevokeFriendRequest
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -36116,8 +35954,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &1129527480
@@ -36214,7 +36052,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainMenuManager: {fileID: 530605014}
-  _interactionBreakTime: 1
 --- !u!1 &1143218387
 GameObject:
   m_ObjectHideFlags: 0
@@ -38725,8 +38562,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &1288458997
@@ -43908,7 +43745,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 813224425}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -44169,8 +44006,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 0.464
 --- !u!222 &1521476036
@@ -44493,8 +44330,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &1532539129
@@ -45206,8 +45043,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &1586161119
@@ -45564,8 +45401,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &1603480104
@@ -45932,7 +45769,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 813224425}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -48923,8 +48760,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &1744154229
@@ -49465,8 +49302,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &1771733365
@@ -50326,8 +50163,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &1815136053
@@ -51304,8 +51141,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &1880908287
@@ -51581,8 +51418,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &1897261901
@@ -51858,7 +51695,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 259970398}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -52335,8 +52172,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &1992639130
@@ -53776,8 +53613,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &2074153112
@@ -54561,8 +54398,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &2102855098
@@ -55118,8 +54955,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &2114377937
@@ -55235,7 +55072,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 259970398}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -55715,8 +55552,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!222 &2139193518
@@ -69858,8 +69695,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 15.57
   source: {fileID: 1369912074}
-  vibrancy: 3
-  brightness: -1
+  vibrancy: 0
+  brightness: 0
   flatten: 0
   m_spriteBlending: 1
 --- !u!1 &2443787446709041913
@@ -71156,35 +70993,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4985610786298241956, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4985610786298241956, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4985610786298241956, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1425
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4985610786298241956, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -323.6526
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6799722759918478140, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6799722759918478140, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6799722759918478140, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 475
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6799722759918478140, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -323.6526
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8100450976117753738, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_Name
@@ -71192,27 +71029,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8473614549427565224, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473614549427565224, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473614549427565224, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 261
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473614549427565224, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 233
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473614549427565224, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 155.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473614549427565224, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -136.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6532f0c274053c340ba8bc54d93478f3, type: 3}
@@ -93418,8 +93255,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1948926150}
-        m_TargetAssemblyTypeName: FriendPanelManager, Assembly-CSharp
-        m_MethodName: RemoveFriend
+        m_TargetAssemblyTypeName: ManageFriendsPanel, Assembly-CSharp
+        m_MethodName: RevokeFriendRequest
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

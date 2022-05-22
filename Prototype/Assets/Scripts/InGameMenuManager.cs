@@ -31,7 +31,7 @@ public class InGameMenuManager : MonoBehaviour
     private Dictionary<int, Vector2[]> blursizeDictionary = new Dictionary<int, Vector2[]>();
     [SerializeField] private List<int> panelsThatDontshowBack = new List<int>();
     [SerializeField] private Transform defaultToastPlaceholder;
-    [SerializeField] private GameObject exitButton, backButton;
+    [SerializeField] private GameObject exitButton, backButton, settingsButton;
     private int _currentPanel = 0;
     
     [SerializeField] private TranslucentImageSource blurBackground;
@@ -186,6 +186,7 @@ public class InGameMenuManager : MonoBehaviour
     {
        MuteDrums(open);
        if(!open) DeactivatePanel(0);
+       settingsButton.SetActive(!open);
        for (int i = 0; i < _panelDictionary.Count; i++) DeactivatePanel(i); 
        exitButton.SetActive(!open);
        backButton.SetActive(open);
@@ -198,6 +199,7 @@ public class InGameMenuManager : MonoBehaviour
     public void OpenSaveBeats()
     {
        MuteDrums(true);
+       settingsButton.SetActive(false);
        if(false)DeactivatePanel(5);
        backButton.SetActive(false);
        exitButton.SetActive(false);
@@ -209,6 +211,7 @@ public class InGameMenuManager : MonoBehaviour
 
     private void DeactivateSettings()
     {
+       settingsButton.SetActive(true);
        exitButton.SetActive(true);
        backButton.SetActive(false);
        BlurBackground(false);

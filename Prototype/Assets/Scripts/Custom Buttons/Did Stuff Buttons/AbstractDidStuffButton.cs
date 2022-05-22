@@ -184,6 +184,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private bool _dwelling;
 		private float _originaldwellScaleY = 0;
 		private float _targetX;
+		private float _coolDownTime = 0.5f;
 
 		#endregion
 
@@ -209,6 +210,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		{
 			get => _dwellGfxImg;
 			set => _dwellGfxImg = value;
+		}
+
+		public float CoolDownTime
+		{
+			get => _coolDownTime;
+			set => _coolDownTime = value;
 		}
 
 		protected void SetInteractionMethod(InteractionMethod method)
@@ -427,12 +434,13 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected virtual void StartInteractionCoolDown()
 		{
-
 			if (GetInteractionMethod == InteractionMethod.Tobii || GetInteractionMethod == InteractionMethod.MouseDwell)
 			{
 				IsHover = false;
-				InteractionManager.Instance.JustInteracted(this);
+				InteractionManager.Instance.JustInteracted(this, CoolDownTime);
 			}
+			
+			//Todo --> (I put the arrows because I need you help motherfucker) FIND A WAY TO FORCE MOUSE EXIT IN POINTER HANDLER
 		}
 
 		private void ButtonHovered()
@@ -658,7 +666,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				if(dwellScaleX) _dwellGfx.localScale = one - new Vector3(size,0,0);
 				else _dwellGfx.localScale = one - new Vector3(size,size,size);
 			}
-//Todo figure out wtf is going on here in dwell setting
 			if (_currentDwellTime > d)
 			{
 				_dwelling = false;
@@ -680,6 +687,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			ToggleDwellGfx(false);
 			OnClick?.Invoke();
 		}
+		
 			
 		#endregion
 		

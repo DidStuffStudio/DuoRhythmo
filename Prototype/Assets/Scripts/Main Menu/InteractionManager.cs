@@ -24,7 +24,6 @@ public class InteractionManager : MonoBehaviour
     
     
     [SerializeField] private MainMenuManager _mainMenuManager;
-    [SerializeField]  private float _interactionBreakTime = 1.0f;
     public InteractionMethod Method
     {
         get => (InteractionMethod)PlayerPrefs.GetInt("InteractionMethod");
@@ -54,13 +53,13 @@ public class InteractionManager : MonoBehaviour
         DontDestroyOnLoad(this);
         }
 
-        public void JustInteracted(AbstractDidStuffButton btn) => StartCoroutine(CoolDownTime(btn));
+        public void JustInteracted(AbstractDidStuffButton btn, float coolDownTime) => StartCoroutine(CoolDownTime(btn, coolDownTime));
 
-        private IEnumerator CoolDownTime(AbstractDidStuffButton btn)
+        private IEnumerator CoolDownTime(AbstractDidStuffButton btn, float coolDownTime)
         {
             btn.SetCanHover(false);
             btn.IsHover = false;
-            yield return new WaitForSeconds(_interactionBreakTime);
+            yield return new WaitForSeconds(coolDownTime);
             btn.SetCanHover(true);
         }
         

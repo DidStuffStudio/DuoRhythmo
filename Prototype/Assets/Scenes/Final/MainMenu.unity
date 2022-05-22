@@ -41255,8 +41255,6 @@ MonoBehaviour:
   - {fileID: 1948926150}
   - {fileID: 263993143}
   friendRequestNotification: {fileID: 1231573227}
-  friendsMenuList: {fileID: 301802663}
-  rotatingSpinner: {fileID: 813224424}
 --- !u!114 &1400506404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52048,6 +52046,8 @@ MonoBehaviour:
   confirmInteractionTexts:
   - {fileID: 1482131068}
   - {fileID: 1189767459}
+  friendsMenuList: {fileID: 301802663}
+  rotatingSpinner: {fileID: 813224424}
 --- !u!114 &1948926151
 MonoBehaviour:
   m_ObjectHideFlags: 0

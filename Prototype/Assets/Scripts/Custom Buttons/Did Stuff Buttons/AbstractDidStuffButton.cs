@@ -205,6 +205,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		public bool IsDisabled => _isDisabled;
 
+		public Image DwellGfxImg
+		{
+			get => _dwellGfxImg;
+			set => _dwellGfxImg = value;
+		}
+
 		protected void SetInteractionMethod(InteractionMethod method)
 		{
 			DelegateInteractionMethod(false);
@@ -308,7 +314,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			}
 		}
 		
-		private void GetTheChildren()
+		protected virtual void GetTheChildren()
 		{
 			
 			if(GetComponentsInChildren<Image>().Where(r => r.CompareTag("ButtonIcon")).ToArray()[0] != null)
@@ -324,7 +330,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				_secondaryText = GetComponentsInChildren<TextMeshProUGUI>().Where(r => r.CompareTag("ButtonSecondaryText"))
 					.ToArray()[0];
 			
-			_dwellGfxImg = _dwellGfx.GetComponent<Image>();
+			DwellGfxImg = _dwellGfx.GetComponent<Image>();
 			
 			if (useIcon) _iconImage.sprite = iconImg;
 			else _iconImage.gameObject.SetActive(false);
@@ -334,10 +340,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			else _secondaryText.transform.gameObject.SetActive(false);
 		}
 
-		private void MakeTheChildren()
-		{
-			
-		}
+		
 		
 		protected virtual void Update() {
 			if(!interactionSetting)
@@ -406,9 +409,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		}
 
 		protected void ToggleDwellGfx(bool activate) {
-			var color = _dwellGfxImg.color;
+			var color = DwellGfxImg.color;
 			if (!activate) _playActivatedScale = false;
-			_dwellGfxImg.color = new Color(color.r, color.g, color.b,  activate ? 1 : 0);
+			DwellGfxImg.color = new Color(color.r, color.g, color.b,  activate ? 1 : 0);
 			// _dwellGfx.transform.gameObject.SetActive(activate);
 		}
 
@@ -537,7 +540,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		{
 			_isActive = true; 
 			_mainImage.color = activeColour;
-			_dwellGfxImg.color = inactiveColour;
+			DwellGfxImg.color = inactiveColour;
 			if (useIcon && changeTextOrIconColour) _iconImage.color = changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
 			if (useText && changeTextOrIconColour) _primaryText.color = changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
 			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color =changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
@@ -547,7 +550,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		{
 			_isActive = false;
 			_mainImage.color = inactiveColour;
-			_dwellGfxImg.color = activeColour;
+			DwellGfxImg.color = activeColour;
 			if (useIcon && changeTextOrIconColour) _iconImage.color = changeTextToSameAsButton ? inactiveColour : inactiveTextOrIconColour;
 			if (useText && changeTextOrIconColour) _primaryText.color = changeTextToSameAsButton ? inactiveColour : inactiveTextOrIconColour;
 			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = changeTextToSameAsButton ? inactiveColour : inactiveTextOrIconColour;
@@ -557,7 +560,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		{
 			_isActive = false;
 			_mainImage.color = disabledColour;
-			_dwellGfxImg.color = activeColour;
+			DwellGfxImg.color = activeColour;
 			if (useIcon && changeTextOrIconColour) _iconImage.color = changeTextToSameAsButton ? inactiveColour : inactiveTextOrIconColour;
 			if (useText && changeTextOrIconColour) _primaryText.color = changeTextToSameAsButton ? inactiveColour : inactiveTextOrIconColour;
 			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color = changeTextToSameAsButton ? inactiveColour : inactiveTextOrIconColour;
@@ -566,7 +569,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private void SetColours()
 		{
 			_mainImage.color = inactiveColour;
-			_dwellGfxImg.color = activeColour;
+			DwellGfxImg.color = activeColour;
 			if (useText) _primaryText.color = _secondaryText.color = inactiveColour;
 			if (useIcon) _iconImage.color = inactiveColour;
 		}
@@ -601,7 +604,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			inactiveHoverColour.a = 1;
 			activeHoverColour.a = 1;
 			_mainImage.color = inactiveColour;
-			_dwellGfxImg.color = activeColour;
+			DwellGfxImg.color = activeColour;
 		}
 		
 
@@ -673,7 +676,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			StartInteractionCoolDown();
 			_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
 			_dwellGfx.localScale = dwellScaleX ? new Vector3(0, _originaldwellScaleY, 1) : zero;
-			_dwellGfxImg.color = !_isActive ? inactiveColour : activeColour;
+			DwellGfxImg.color = !_isActive ? inactiveColour : activeColour;
 			ToggleDwellGfx(false);
 			OnClick?.Invoke();
 		}

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Custom_Buttons.Did_Stuff_Buttons.Buttons;
 using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -64,6 +65,20 @@ public class LoadBeat : MonoBehaviour
         targetPos = 0;
         scrollRect.horizontalNormalizedPosition = 0;
         GetFileList();
+        if (fileList.Count < 1)
+        {
+            panelTemplate.SetActive(false);
+            template.SetActive(false);
+            signifierTemplate.SetActive(false);
+            arrowLeft.gameObject.SetActive(false);
+            arrowRight.gameObject.SetActive(false);
+            return;
+        }
+        else if (listPanels.Count < 2)
+        {
+            arrowLeft.gameObject.SetActive(false);
+            arrowRight.gameObject.SetActive(false);
+        }
         GoToPreviousPanel();
         ChangeCurrentlySelectedFile();
         positions = linspace(0, 1, (int)numPanels);
@@ -84,7 +99,12 @@ public class LoadBeat : MonoBehaviour
         
         // Get all files that have any number of characters infront of .json
         string[] files = Directory.GetFiles(Application.persistentDataPath, "*.json");
-        
+
+        if (files.Length < 1)
+        {
+            MainMenuManager.Instance.SpawnErrorToast("Start a jam session and save your beats to see them here.", 0.5f);
+            return;
+        }
         GameObject firstSignifier = Instantiate(signifierTemplate, signifierTemplate.transform.parent.transform);
         signifiers.Add(firstSignifier);
 
@@ -266,7 +286,7 @@ public class LoadBeat : MonoBehaviour
         File.Delete(currentlySelectedSaveFile);
         File.Delete(currentlySelectedSaveFile.Substring(0, currentlySelectedSaveFile.IndexOf('.')) + ".png");
         Destroy(toggleGroup.GetFirstActiveToggle().gameObject);
-        
+        print("Deleting");
         ResetSaveFileBrowser();
     }
 
@@ -274,6 +294,7 @@ public class LoadBeat : MonoBehaviour
 
     private void Update()
     {
+        if (fileList.Count < 1) return;
         if (moving)
         {
             currentPos = scrollRect.horizontalNormalizedPosition;
@@ -326,7 +347,7 @@ public class LoadBeat : MonoBehaviour
     void ResetSaveFileBrowser()
     {
         
-        transform.parent.GetComponent<ReloadSaveFileBrowser>().ReinitializeBrowser();
+        transform.GetComponentInParent<ReloadSaveFileBrowser>().ReinitializeBrowser();
         /*foreach (var beat in retrievedBeats)
         {
             Destroy(beat);

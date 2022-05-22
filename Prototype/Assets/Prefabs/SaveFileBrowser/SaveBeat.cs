@@ -21,8 +21,7 @@ public class SaveBeat : MonoBehaviour
     public void SaveAndQuit()
     {
         SaveIntoJson();
-        StopAllCoroutines();
-        SceneManager.LoadScene(0);
+        StartCoroutine(WaitToQuit());
     }
 
     public void SaveAndShowToast()
@@ -114,6 +113,18 @@ public class SaveBeat : MonoBehaviour
         MasterManager.Instance.screenShotCam.gameObject.SetActive(false);
 
         yield return null;
+    }
+
+    IEnumerator WaitToQuit()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Quit();
+    }
+
+    private void Quit()
+    {
+        StopAllCoroutines();
+        SceneManager.LoadScene(0);
     }
     
 }

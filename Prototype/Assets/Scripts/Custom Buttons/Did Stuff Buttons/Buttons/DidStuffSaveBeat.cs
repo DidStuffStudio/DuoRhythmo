@@ -13,7 +13,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         {
             base.ButtonClicked();
             SaveBeat();
-            //spawn toast
         }
     }
 }

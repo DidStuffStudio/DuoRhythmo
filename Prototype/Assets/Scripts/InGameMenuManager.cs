@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Custom_Buttons.Did_Stuff_Buttons;
 using LeTai.Asset.TranslucentImage;
+using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -58,10 +59,11 @@ public class InGameMenuManager : MonoBehaviour
             _numberBlurPanels.Add(_panelDictionary[i].panelId, numberOfPanels);
         }
 
-        var initialBlurPanel = Instantiate(_background, transform.position, Quaternion.identity, transform);
+        var initialBlurPanel = Instantiate(_background, transform.position, Quaternion.identity, settingsMenu.transform);
         _backgroundRTs.Add(initialBlurPanel.GetComponent<RectTransform>());
         initialBlurPanel.transform.SetSiblingIndex(0);
-        OpenSettings(false);
+         DeactivateSettings();
+        
     }
 
       private void ToggleUIPanel()
@@ -134,7 +136,7 @@ public class InGameMenuManager : MonoBehaviour
       {
          var p = _panelDictionary[_currentPanel].panelToReturnTo;
          DeactivatePanel(_currentPanel);
-         if(_currentPanel == 1) OpenSettings(false);
+         if(_currentPanel == 0) OpenSettings(false);
          else ActivatePanel(p);
       }
 
@@ -166,12 +168,12 @@ public class InGameMenuManager : MonoBehaviour
              InteractionManager.Instance.Method == InteractionMethod.MouseDwell)
          {
             DeactivatePanel(_currentPanel);
-            ActivatePanel(3);
+            ActivatePanel(2);
          }
          else
          {
             DeactivatePanel(_currentPanel);
-            ActivatePanel(1);
+            ActivatePanel(0);
          }
       }
 
@@ -182,26 +184,39 @@ public class InGameMenuManager : MonoBehaviour
 
     public void OpenSettings(bool open)
     {
-       if(!open) DeactivatePanel(1);
+       MuteDrums(open);
+       if(!open) DeactivatePanel(0);
+       for (int i = 0; i < _panelDictionary.Count; i++) DeactivatePanel(i); 
        exitButton.SetActive(!open);
        backButton.SetActive(open);
        BlurBackground(open);
        settingsMenu.SetActive(open);
        BlockDrumInteraction(open);
-       ActivatePanel(1);
-       if(open) ActivatePanel(1);
+       if(open) ActivatePanel(0);
     }
     
-    public void OpenSaveBeats(bool open)
+    public void OpenSaveBeats()
     {
-       if(!open){DeactivatePanel(6);}
-       backButton.SetActive(!open);
-       exitButton.SetActive(!open);
-       BlurBackground(open);
-       settingsMenu.SetActive(open);
-       BlockDrumInteraction(open);
-       if(open) ActivatePanel(6);
+       MuteDrums(true);
+       if(false)DeactivatePanel(5);
+       backButton.SetActive(false);
+       exitButton.SetActive(false);
+       BlurBackground(true);
+       settingsMenu.SetActive(true);
+       BlockDrumInteraction(true);
+       ActivatePanel(5);
     }
+
+    private void DeactivateSettings()
+    {
+       exitButton.SetActive(true);
+       backButton.SetActive(false);
+       BlurBackground(false);
+       settingsMenu.SetActive(false);
+       BlockDrumInteraction(false);
+    }
+
+    private void MuteDrums(bool mute) => MasterManager.Instance.audioManager.MuteAll(mute);
     
     public void SpawnSuccessToast(string msg, float delay) => StartCoroutine(InstantiateSuccessToast(msg,delay));
     public void SpawnErrorToast(string msg, float delay) => StartCoroutine(InstantiateErrorToast(msg,delay));
@@ -233,6 +248,9 @@ public class InGameMenuManager : MonoBehaviour
        var t = Instantiate(infoToast, toastPlaceholder);
        t.GetComponent<InGameToast>().SetText(toastText);
     }
+
+    public void OpenSurvey() => Application.OpenURL("https://t.maze.co/84786499");
+    public void OpenFeedback() => Application.OpenURL("http://duorhythmo.frill.co/");
 
     public void Quit()
     {

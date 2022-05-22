@@ -97,19 +97,21 @@ public class SaveBeat : MonoBehaviour
         // Take a screenshot of the current panel
         yield return new WaitForEndOfFrame();
         
-        RenderTexture rt = new RenderTexture(resWidth, resHeight, 24); 
-        Camera.main.targetTexture = rt;
+        RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
+        MasterManager.Instance.screenShotCam.gameObject.SetActive(true);
+        MasterManager.Instance.screenShotCam.targetTexture = rt;
         Texture2D screenShot = new Texture2D(resWidth, resHeight, TextureFormat.RGB24, false);
-        MasterManager.Instance.overlayCamera.Render();
+        MasterManager.Instance.screenShotCam.Render();
         RenderTexture.active = rt;
         screenShot.ReadPixels(new Rect(0, 0, resWidth, resHeight), 0, 0);
-        MasterManager.Instance.overlayCamera.targetTexture = null;
+        MasterManager.Instance.screenShotCam.targetTexture = null;
         RenderTexture.active = null; // JC: added to avoid errors
         Destroy(rt);
         byte[] bytes = screenShot.EncodeToPNG();
         string filename = fileName + ".png";
         System.IO.File.WriteAllBytes(filename, bytes);
         Debug.Log(string.Format("Took screenshot to: {0}", filename));
+        MasterManager.Instance.screenShotCam.gameObject.SetActive(false);
 
         yield return null;
     }

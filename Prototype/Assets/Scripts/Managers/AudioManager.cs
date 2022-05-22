@@ -155,6 +155,14 @@ namespace Managers {
             }
         }
 
+        public void MuteAll(bool mute)
+        {
+            for (int i = 0; i < mixers.Count; i++) {
+                if (mute) mixers[i].audioMixer.SetFloat(EffectStrings[0], -40.0f);
+                else mixers[i].audioMixer.SetFloat(EffectStrings[0], _volumes[i]);
+            }
+        }
+
         public void SetEffect(int drumType, int effectIndex, float value) {
             var minMax = effectConstraints[effectIndex];
             var val = Map(value, 0, 101, minMax[0], minMax[1]);

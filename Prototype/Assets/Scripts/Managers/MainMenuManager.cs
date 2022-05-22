@@ -390,6 +390,9 @@ namespace Managers
          StopAllCoroutines();
          SceneManager.LoadScene(1);
       }
+      
+      public void OpenSurvey() => Application.OpenURL("https://t.maze.co/84786499");
+      public void OpenFeedback() => Application.OpenURL("http://duorhythmo.frill.co/");
 
       private Vector2 Berp(Vector2 start, Vector2 end, float value)
       {

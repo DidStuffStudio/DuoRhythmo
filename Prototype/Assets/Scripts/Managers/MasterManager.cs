@@ -69,7 +69,7 @@ namespace Managers {
         private Dictionary<int, string[]> _drumNames = new Dictionary<int, string[]>();
         private int _currentDrumKitIndex = 0;
         public AudioManager audioManager;
-        public Camera overlayCamera;
+        public Camera screenShotCam;
         public Transform startTransform, destinationTransform, oppositeDestinationTransform;
 
         private string[] _drumKitNames = {"Rock drums", "Djembe", "Electronic", "Handpan", "Ambient"};

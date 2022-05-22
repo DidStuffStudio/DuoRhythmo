@@ -66,7 +66,7 @@ public class SaveIntoWav : MonoBehaviour
     {
         recOutput = false;
         WriteHeader();
-        InGameMenuManager.Instance.SpawnInfoToast("Saved to " + Application.dataPath, 0.1f);
+        InGameMenuManager.Instance.SpawnInfoToast("Saved to: " + Application.dataPath, 0.1f);
     }
 
 

@@ -333,6 +333,11 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (useSecondaryText) _secondaryText.text = secondaryText;
 			else _secondaryText.transform.gameObject.SetActive(false);
 		}
+
+		private void MakeTheChildren()
+		{
+			
+		}
 		
 		protected virtual void Update() {
 			if(!interactionSetting)

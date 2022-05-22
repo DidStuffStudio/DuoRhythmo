@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.044132642, g: 0.0430841, b: 0.040068284, a: 1}
+  m_IndirectSpecularColor: {r: 0.99999905, g: 0, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -52035,7 +52035,7 @@ MonoBehaviour:
   dotActive: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   dotInactive: {r: 0.5, g: 0.5, b: 0.5, a: 0.59607846}
   addFriendCard: {fileID: 1639458964}
-  inputField: {fileID: 0}
+  inputField: {fileID: 714480700}
   confirmedInteraction:
   - {fileID: 443375165}
   - {fileID: 474229117}

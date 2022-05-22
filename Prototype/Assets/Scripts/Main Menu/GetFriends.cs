@@ -31,7 +31,8 @@ public class GetFriends : MonoBehaviour
 
     private void OnEnable() {
         // subscribe to the event when we've received all friends details including avatars
-        FriendsManager.OnReceivedFriendsDetails += FriendsManagerOnOnReceivedFriendsDetails;
+        FriendsManager.OnReceivedFriendsDetails += FriendsManagerOnOnReceivedFriendsDetails; 
+        FriendsManager.Instance.GetFriends();
         if(FriendsManager.Instance.receivedAllFriendsDetails) FriendsManagerOnOnReceivedFriendsDetails();
         else {
             friendsMenuList.SetActive(false);

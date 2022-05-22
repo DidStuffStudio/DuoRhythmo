@@ -39,7 +39,6 @@ namespace DidStuffLab {
 
         public void EnableFriendsManager() {
             if (!PlayFabMultiplayerAPI.IsEntityLoggedIn()) return;
-            receivedAllFriendsDetails = false;
             GetFriends(); // call this on start because it's deactivated by default, and then activated once user logs in
         }
 
@@ -48,6 +47,7 @@ namespace DidStuffLab {
         }
 
         public void GetFriends() {
+            receivedAllFriendsDetails = false;
             _friendsDictionary.Clear();
             PlayFabClientAPI.GetFriendsList(new GetFriendsListRequest {
                 IncludeSteamFriends = false,
@@ -248,6 +248,7 @@ namespace DidStuffLab {
             }
 
             if (_friendAvatarsReceivedCounter == _friendsDictionary.Count) {
+                print("Invoking the received all friends details event");
                 OnReceivedFriendsDetails?.Invoke();
                 _friendAvatarsReceivedCounter = 0;
                 receivedAllFriendsDetails = true;

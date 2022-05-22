@@ -41,6 +41,9 @@ namespace DidStuffLab {
             print("Swap to opposite side because there's already another player here");
             _localplayerIsInPosition = false;
             _finalDestination = MasterManager.Instance.oppositeDestinationTransform;
+            foreach (var spawner in MasterManager.Instance.carouselManager.emojiSpawners) {
+                spawner.transform.RotateAround(Vector3.zero, Vector3.up, 180);
+            }
         }
 
         private void Update() {

@@ -46,9 +46,9 @@ namespace Managers {
                 }
             }
         }
-        [SerializeField] private GameObject [] emojiSpawners;
+        public GameObject [] emojiSpawners;
         public Dictionary<byte, ParticleSystem[]> emojiParticles { get; private set; } = new Dictionary<byte, ParticleSystem[]>();
-
+        
         private void OnEnable() {
             _forwardRenderer.rendererFeatures[0].SetActive(true);
             NavigationVoteSync.OnVotingCompletedFromServerAction += VotingCompletedFromServer;

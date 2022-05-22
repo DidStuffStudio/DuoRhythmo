@@ -154,7 +154,22 @@ namespace Managers
       public void Back()
       {
          var p = _panelDictionary[CurrentPanel].panelToReturnTo;
-         if (CurrentPanel == 13) p = _activatedSettingsFrom;
+         
+         switch (CurrentPanel)
+         {
+            case 13:
+               p = _activatedSettingsFrom;
+               break;
+            
+            case 2 when InteractionManager.Instance.Method == InteractionMethod.Tobii ||
+                        InteractionManager.Instance.Method == InteractionMethod.MouseDwell:
+               p = 1;
+               break;
+            case 2:
+               p = 0;
+               break;
+         }
+
          DeactivatePanel(CurrentPanel);
          ActivatePanel(p);
       }
@@ -383,7 +398,11 @@ namespace Managers
       }
       public void SetDrumType(int i) => JamSessionDetails.Instance.DrumTypeIndex = i;
 
-      public void LoadJamSession() => SceneManager.LoadScene(1);
+      public void LoadJamSession()
+      {
+         StopAllCoroutines();
+         SceneManager.LoadScene(1);
+      }
 
       private Vector2 Berp(Vector2 start, Vector2 end, float value)
       {

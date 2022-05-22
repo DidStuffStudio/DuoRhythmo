@@ -6,7 +6,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
     {
         public void SaveBeat()
         {
-            MasterManager.Instance.saveBeat.SaveIntoJson();
+            MasterManager.Instance.saveBeat.SaveAndShowToast();
         }
 
         protected override void ButtonClicked()

@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
+using Managers;
 using UnityEngine;
-
 using UnityEngine.Networking;
 
 public class SaveIntoWav : MonoBehaviour
@@ -27,10 +26,9 @@ public class SaveIntoWav : MonoBehaviour
     private AudioClip newClip;
     private FileStream fileStream;
     private AudioClip[] audioClips;
-    private AudioSource[] audioSources;
+    //private AudioSource[] audioSources;
     public int currentSlot;
     float[] tempDataSource;
-    private string _folderPath;
 
     void Awake()
     {
@@ -41,24 +39,25 @@ public class SaveIntoWav : MonoBehaviour
     void Start()
     {
         AudioSettings.GetDSPBufferSize(out bufferSize, out numBuffers);
-        _folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
-        
+        /*audioSources = new AudioSource[3];
+        audioSources[0] = GameObject.FindWithTag("RecSlot1").GetComponent<AudioSource>();
+        audioSources[1] = GameObject.FindWithTag("RecSlot2").GetComponent<AudioSource>();
+        audioSources[2] = GameObject.FindWithTag("RecSlot3").GetComponent<AudioSource>();*/
     }
 
     public void StartRecording()
     {
-        fileName = Path.GetFileNameWithoutExtension(System.DateTime.Now.ToString(CultureInfo.CurrentCulture)) + FILE_EXTENSION;
+        var filename = MasterManager.Instance.currentDrumKitName + " " + DateTime.Now;
+        fileName = Path.GetFileNameWithoutExtension(filename) + FILE_EXTENSION;
 
 
         if (!recOutput)
         {
-            recOutput = true;
             StartWriting(fileName);
-            
+            recOutput = true;
         }
         else
         {
-            //Show Toast
             Debug.LogError("Recording is in progress already");
         }
     }
@@ -67,16 +66,12 @@ public class SaveIntoWav : MonoBehaviour
     {
         recOutput = false;
         WriteHeader();
-        //UpdateClip();
-        // Show toast
-
+        InGameMenuManager.Instance.SpawnInfoToast("Saved to " + Application.dataPath, 0.1f);
     }
 
-    
 
     private void StartWriting(String name)
     {
-        //fileStream = new FileStream(_folderPath, FileMode.Create);
         fileStream = new FileStream(Application.dataPath + "/" + name, FileMode.Create);
 
         var emptyByte = new byte();
@@ -88,11 +83,9 @@ public class SaveIntoWav : MonoBehaviour
 
     private void OnAudioFilterRead(float[] data, int channels)
     {
-        print("Audio fikterinnngggg");
         if (recOutput)
         {
             ConvertAndWrite(data); //audio data is interlaced
-            //Debug.Log(data[0]);
         }
     }
 
@@ -177,30 +170,9 @@ public class SaveIntoWav : MonoBehaviour
         fileStream.Close();
 
     }
+
+
+
+
 }
 
-/*void UpdateClip()
-{
-    StartCoroutine(GetAudioClip());
-
-}*/
-
-                /*IEnumerator GetAudioClip()
-                {
-                    using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + Application.dataPath + "myRecord1.wav", AudioType.WAV))
-                    {
-                        yield return www.Send();
-
-                        if (www.isNetworkError)
-                        {
-                            Debug.Log(www.error);
-                        }
-                        else
-                        {
-                            AudioClip newClip = DownloadHandlerAudioClip.GetContent(www);
-
-                            Debug.Log(newClip.name + "name    " + newClip.length);
-                            keyboardScript.audioClip = newClip;
-                        }
-                    }
-                }*/

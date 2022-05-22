@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using Managers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveBeat : MonoBehaviour
 {
@@ -15,9 +16,21 @@ public class SaveBeat : MonoBehaviour
 
     public List<NodeManager> nodeManagers = new List<NodeManager>();
     public List<EffectsManager> effectsManagers = new List<EffectsManager>();
-    
 
-    public void SaveIntoJson()
+
+    public void SaveAndQuit()
+    {
+        SaveIntoJson();
+        StopAllCoroutines();
+        SceneManager.LoadScene(0);
+    }
+
+    public void SaveAndShowToast()
+    {
+        SaveIntoJson();
+        InGameMenuManager.Instance.SpawnInfoToast("Your beat has been saved, let’s jam some more.", 0.1f);
+    }
+    private void SaveIntoJson()
     {
         _masterManagerData = new MasterManagerData();
         nodeManagers.Clear();

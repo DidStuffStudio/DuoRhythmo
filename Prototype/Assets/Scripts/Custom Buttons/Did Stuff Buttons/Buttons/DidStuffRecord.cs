@@ -23,7 +23,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         private void StopRecording()
         {
             MasterManager.Instance.saveToWav.StopRecording();
-            //Todo Show toast on stop recording
         }
     }
 }

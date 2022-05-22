@@ -248,6 +248,7 @@ namespace DidStuffLab {
             }
 
             if (_friendAvatarsReceivedCounter == _friendsDictionary.Count) {
+                print("Invoking the received all friends details event");
                 OnReceivedFriendsDetails?.Invoke();
                 _friendAvatarsReceivedCounter = 0;
                 receivedAllFriendsDetails = true;

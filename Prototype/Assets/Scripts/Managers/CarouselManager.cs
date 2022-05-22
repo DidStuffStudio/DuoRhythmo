@@ -17,9 +17,10 @@ namespace Managers {
         private int _currentPanel = 0, _lastPanel = 9, _currentPanelBuddy = 5, _lastPanelBuddy = 4;
         private static readonly int Tint = Shader.PropertyToID("_Tint");
         public float currentRotationOfUI = 0.0f;
+        [SerializeField] private int[] panelsToStartUnblurred = new int[2];
 
         public List<GameObject>
-            panels = new List<GameObject>(); //put panels in list so we can change their layer to blur or render them over blur
+            panels = new List<GameObject>(10); //put panels in list so we can change their layer to blur or render them over blur
 
         [SerializeField] private ForwardRendererData _forwardRenderer;
         private bool isRenderingAPanel = false;
@@ -64,16 +65,12 @@ namespace Managers {
         }
 
         public void InitialiseBlur() {
-            foreach (var t in panels[0].GetComponentsInChildren<Transform>()) {
-                t.gameObject.layer =
-                    LayerMask.NameToLayer("RenderPanel"); //Change their layer to default so they are blurred
-            }
-
-            //if (isSoloMode) return;
-
-            foreach (var t in panels[5].GetComponentsInChildren<Transform>()) {
-                t.gameObject.layer =
-                    LayerMask.NameToLayer("RenderPanel"); //Change their layer to default so they are blurred
+            for (int i = 0; i < panelsToStartUnblurred.Length; i++)
+            {
+                foreach (var t in panels[panelsToStartUnblurred[i]].GetComponentsInChildren<Transform>()) {
+                    t.gameObject.layer =
+                        LayerMask.NameToLayer("RenderPanel"); //Change their layer to default so they are blurred
+                }
             }
         }
 
@@ -106,7 +103,6 @@ namespace Managers {
             if (forward) {
                 if (_currentPanel < panels.Count - 1) _currentPanel++;
                 else _currentPanel = 0;
-                _uiAnimator.SetFloat("SpeedMultiplier", 1.0f);
                 if (_currentPanelBuddy < panels.Count - 1) _currentPanelBuddy++;
                 else _currentPanelBuddy = 0;
                 _uiAnimator.SetFloat("SpeedMultiplier", 1.0f);

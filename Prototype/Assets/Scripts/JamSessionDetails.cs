@@ -73,7 +73,7 @@ public class JamSessionDetails : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         // Wait for duorythmo to fully load (strange things will occur if you don't wait)
-        //yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1);
         MasterManager masterManager = MasterManager.Instance;
 
         List<NodeManager> nodeManagers = new List<NodeManager>();

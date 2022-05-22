@@ -113,31 +113,30 @@ namespace Managers {
         }
 
         private void InitialisePanels() {
-            
+            if(carouselManager.isSoloMode)carouselManager.panels = new List<GameObject>();
             for (int i = 0; i < nodePanels.Count; i++) {
                 nodePanels[i].name = "NodesPanel_" + _drumNames[_currentDrumKitIndex][i];
                 effectPanels[i].name = "EffectsPanel_" + _drumNames[_currentDrumKitIndex][i];
-                AddPanelsToCarouselManager(i);
-                
+                if(carouselManager.isSoloMode)AddPanelsToCarouselManagerSolo(i);
                 SetUpEffectsManagers(i);
                 StartCoroutine(SetUpNodeManagers(i));
             }
             gameSetUpFinished = true;
+            if(!carouselManager.isSoloMode) AddPanelsToCarouselManagerMulti();
             if(JamSessionDetails.Instance.loadingBeat)JamSessionDetails.Instance.SetLoadedBeat();
             carouselManager.InitialiseBlur();
             carouselManager.ToggleVFX(true);
         }
 
 
-        private void AddPanelsToCarouselManager(int index)
+        private void AddPanelsToCarouselManagerSolo(int index)
         {
-            if (carouselManager.isSoloMode)
-            {
-                carouselManager.panels.Add(nodePanels[index]);
-                carouselManager.panels.Add(effectPanels[index]);
-            }
-            else
-            {
+            carouselManager.panels.Add(nodePanels[index]);
+            carouselManager.panels.Add(effectPanels[index]);
+        }
+        private void AddPanelsToCarouselManagerMulti()
+        {
+            
                 for (int i = 0; i < nodePanels.Count; i++)
                 {
                     if (i % 2 == 1) carouselManager.panels[i + 5] = nodePanels[i];
@@ -149,7 +148,6 @@ namespace Managers {
                     if (i % 2 == 0) carouselManager.panels[i + 5] = effectPanels[i];
                     else carouselManager.panels[i] = effectPanels[i];
                 }
-            }
             
         }
         

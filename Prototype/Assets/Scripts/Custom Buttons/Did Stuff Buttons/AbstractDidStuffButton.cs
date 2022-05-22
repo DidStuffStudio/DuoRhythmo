@@ -610,7 +610,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		#region MouseInteraction
 
-		private void MouseInput()
+		protected virtual void MouseInput()
 		{
 			if (IsHover && Input.GetMouseButtonUp(0)) OnClick?.Invoke();
 		}

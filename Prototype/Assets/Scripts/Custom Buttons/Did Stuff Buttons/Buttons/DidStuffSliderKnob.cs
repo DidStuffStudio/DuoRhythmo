@@ -47,7 +47,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         var rect = _slider.rect;
         _minValue = 0;
         _maxValue = rect.height;
-        _knobRectTransform.anchoredPosition = new Vector2(0, rect.height/2);
+        _knobRectTransform.anchoredPosition = new Vector2(0, rect.height/2); //Default value is 50%
         var rect1 = fillRect.rect;
         _w = rect1.width;
         _currentInputScreenPosition = _knobRectTransform.position;
@@ -131,7 +131,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
                 
             if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
             var dist = Vector3.Distance(value, _knobRectTransform.localPosition);
-            if(dist>20) DeactivateButton();
+            if(dist>30) DeactivateButton();
                 
             FillSlider();
             
@@ -156,7 +156,12 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         if (Input.GetMouseButtonUp(0)) DeactivateButton();
         if(IsHover)_currentInputScreenPosition = Input.mousePosition;
     }
-    
+
+    protected override void MouseInput()
+    {
+        if (IsHover && Input.GetMouseButtonDown(0)) ChangeToActiveState();
+    }
+
 
     private void MouseDwellInteraction()
     {

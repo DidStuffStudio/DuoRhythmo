@@ -163,7 +163,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		private bool _mouseHover = false, _canHover = true;
 		protected bool _isActive = false, _isHover, _isDisabled;
-		private Image _mainImage;
+		internal Image _mainImage;
 		private Image _iconImage;
 		private Image _dwellGfxImg;
 		private bool _provideDwellFeedbackLocal = false;
@@ -629,7 +629,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_mainImage.color = _isActive ? activeHoverColour : inactiveHoverColour;
 		}
 
-		private void MouseUnHover()
+		protected virtual void MouseUnHover()
 		{
 			_mainImage.color = _isActive ? activeColour : inactiveColour;
 		}

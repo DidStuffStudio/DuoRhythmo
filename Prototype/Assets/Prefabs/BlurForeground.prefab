@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 96c5704d0681e35408630c488fc0c234, type: 2}
-  m_Color: {r: 0.084, g: 0.08213333, b: 0.07653333, a: 0.8509804}
+  m_Color: {r: 0.084, g: 0.08213333, b: 0.07653333, a: 0.9411765}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -77,9 +77,9 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
   source: {fileID: 0}
-  vibrancy: 3
-  brightness: -1
-  flatten: 0
+  vibrancy: 0.22
+  brightness: -0.036
+  flatten: 0.622
   m_spriteBlending: 1
 --- !u!1 &2886567259897073774
 GameObject:

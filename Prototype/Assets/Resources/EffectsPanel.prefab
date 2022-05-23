@@ -744,6 +744,7 @@ MonoBehaviour:
   _effectsManager: {fileID: 8182621464263461842}
   defaultValue: 50
   isBpmSlider: 0
+  distanceToDeactivate: 10
   _effectSync: {fileID: 5422840787206673932}
 --- !u!1 &943961836583274728
 GameObject:
@@ -1735,6 +1736,7 @@ MonoBehaviour:
   _effectsManager: {fileID: 8182621464263461842}
   defaultValue: 50
   isBpmSlider: 0
+  distanceToDeactivate: 10
   _effectSync: {fileID: 1803089689641568685}
 --- !u!1 &1971620933199068052
 GameObject:
@@ -2074,6 +2076,7 @@ MonoBehaviour:
   _effectsManager: {fileID: 8182621464263461842}
   defaultValue: 50
   isBpmSlider: 0
+  distanceToDeactivate: 10
   _effectSync: {fileID: 3711372770621644722}
 --- !u!1 &2229255013932514041
 GameObject:
@@ -6807,6 +6810,7 @@ MonoBehaviour:
   _effectsManager: {fileID: 8182621464263461842}
   defaultValue: 50
   isBpmSlider: 0
+  distanceToDeactivate: 10
   _effectSync: {fileID: 4476090155399345647}
 --- !u!1 &6473404206584315070
 GameObject:
@@ -6970,6 +6974,7 @@ MonoBehaviour:
   _effectsManager: {fileID: 8182621464263461842}
   defaultValue: 50
   isBpmSlider: 0
+  distanceToDeactivate: 10
   _effectSync: {fileID: 685212410293042048}
 --- !u!1 &6496259357784623500
 GameObject:
@@ -9745,7 +9750,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8367764610189740406
 MonoBehaviour:
   m_ObjectHideFlags: 0

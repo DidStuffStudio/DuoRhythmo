@@ -32,7 +32,6 @@ public class UIPanel : MonoBehaviour
         foreach (var blurPanel in _blurPanels)
         {
             var size = blurPanel.GetComponent<RectTransform>().sizeDelta;
-            size += new Vector2(242.1f, 210.71f);
             _sizes.Add(size);
             
         }

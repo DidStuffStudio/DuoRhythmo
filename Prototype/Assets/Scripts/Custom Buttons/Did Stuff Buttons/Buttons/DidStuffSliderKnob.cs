@@ -27,6 +27,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     private float _lastScreenY, _screenY; 
     private RectTransform parentCanvas;
 
+    [SerializeField] private float distanceToDeactivate = 10.0f;
     //Events
     public delegate void SliderChangeAction(int index);
 
@@ -92,9 +93,10 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         //_screenY = _currentInputScreenPosition.y;
         base.Update();
         
-        if(!IsHover && _isActive) DeactivateButton();
+        //if(!IsHover && _isActive) DeactivateButton();
         
-        if (!IsHover || !_isActive) return;
+        //if (!IsHover || !_isActive) return;
+        if (!_isActive) return;
         
         // Mouse Delta
 
@@ -130,9 +132,11 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
                     maximumValue);
                 
             if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
-            var dist = Vector3.Distance(value, _knobRectTransform.localPosition);
-            if(dist>30 && InteractionManager.Instance.Method != InteractionMethod.Mouse || InteractionManager.Instance.Method != InteractionMethod.Touch) DeactivateButton();
-                
+            //var dist = Vector3.Distance(value, _knobRectTransform.localPosition);
+            var dist = Mathf.Abs(Mathf.Abs(value.x) - Mathf.Abs(_knobRectTransform.localPosition.x));
+            //if(dist>30) DeactivateButton();
+            if(dist>distanceToDeactivate && (InteractionManager.Instance.Method != InteractionMethod.Mouse || InteractionManager.Instance.Method != InteractionMethod.Touch)) DeactivateButton();
+            print(InteractionManager.Instance.Method);    
             FillSlider();
             
     }
@@ -150,11 +154,15 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         SetCanHover(true);
     }
 
+    protected override void MouseUnHover()
+    {
+        if (!_isActive) _mainImage.color = inactiveColour;
+    }
 
     private void MouseInteraction()
     {
         if (Input.GetMouseButtonUp(0)) DeactivateButton();
-        if(IsHover)_currentInputScreenPosition = Input.mousePosition;
+        if(_isActive)_currentInputScreenPosition = Input.mousePosition;
     }
 
     protected override void MouseInput()
@@ -165,7 +173,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
 
     private void MouseDwellInteraction()
     {
-        if(IsHover)_currentInputScreenPosition = Input.mousePosition;
+        if(_isActive)_currentInputScreenPosition = Input.mousePosition;
         
     }
 

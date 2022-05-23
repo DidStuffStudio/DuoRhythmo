@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Rendering;
-#if ENABLE_VR && ENABLE_XR_MODULE
+#if ENABLE_VR
 using UnityEngine.XR;
 #endif
 
@@ -225,7 +225,7 @@ public partial class TranslucentImageSource : MonoBehaviour
         if (BlurredScreen)
             BlurredScreen.Release();
 
-#if ENABLE_VR && ENABLE_XR_MODULE
+#if ENABLE_VR
         if (XRSettings.enabled)
         {
             BlurredScreen = new RenderTexture(XRSettings.eyeTextureDesc);
@@ -233,8 +233,8 @@ public partial class TranslucentImageSource : MonoBehaviour
             BlurredScreen.height = Mathf.RoundToInt(BlurredScreen.height * BlurRegion.height) >> Downsample;
             BlurredScreen.depth = 0;
         }
-#endif
         else
+#endif
         {
             BlurredScreen = new RenderTexture(Mathf.RoundToInt(Cam.pixelWidth * BlurRegion.width) >> Downsample,
                                               Mathf.RoundToInt(Cam.pixelHeight * BlurRegion.height) >> Downsample, 0);
@@ -258,7 +258,7 @@ public partial class TranslucentImageSource : MonoBehaviour
          || !BlurredScreen.IsCreated()
          || Downsample != lastDownsample
          || !BlurRegion.Approximately(lastBlurRegion)
-#if ENABLE_VR && ENABLE_XR_MODULE
+#if ENABLE_VR
          || XRSettings.deviceEyeTextureDimension != lastEyeTexDim
 #endif
         )
@@ -266,7 +266,7 @@ public partial class TranslucentImageSource : MonoBehaviour
             CreateNewBlurredScreen();
             lastDownsample = Downsample;
             lastBlurRegion = BlurRegion;
-#if ENABLE_VR && ENABLE_XR_MODULE
+#if ENABLE_VR
             lastEyeTexDim = XRSettings.deviceEyeTextureDimension;
 #endif
         }

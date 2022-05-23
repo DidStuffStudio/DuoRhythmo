@@ -18,5 +18,13 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         }
 
         protected override void ToggleButton(bool activate) { }
+
+        protected override void ButtonClicked()
+        {
+            base.ButtonClicked();
+            SetCanHover(false);
+        }
+
+        protected override void StartInteractionCoolDown() { }
     }
 }

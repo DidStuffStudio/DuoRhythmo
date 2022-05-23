@@ -180,9 +180,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private BoxCollider _boxCollider;
 		private SphereCollider _sphereCollider;
 		private bool _isSquare;
-		[SerializeField] private bool dwellScaleX = false;
+		[SerializeField] internal bool dwellScaleX = false;
 		private bool _dwelling;
-		private float _originaldwellScaleY = 0;
+		internal float _originaldwellScaleY = 0;
 		private float _targetX;
 		private float _coolDownTime = 0.5f;
 
@@ -539,7 +539,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected virtual void ToggleButton(bool activate)
 		{
-			print("toggle");
 			if (activate) ChangeToActiveState();
 			else ChangeToInactiveState();
 		}
@@ -765,6 +764,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected virtual void OnDisable()
 		{
 			_isHover = false;
+			
 			OnClick -= ButtonClicked;
 			OnHover -= ButtonHovered;
 			OnUnHover -= ButtonUnHovered;

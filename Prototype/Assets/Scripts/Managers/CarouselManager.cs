@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DidStuffLab;
+using Mirror;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -33,6 +34,7 @@ namespace Managers {
         public delegate void MoveCarouselAction();
         public static event MoveCarouselAction OnMovedCarousel;
         public bool alreadyLocallyMovedCarousel; // for multiplayer
+        public CarouselAnimation carouselAnimation;
 
         private EmojiSync _emojiSync;
 
@@ -62,6 +64,7 @@ namespace Managers {
             if (justJoined) return;
             _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
             _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
+            carouselAnimation = GetComponent<CarouselAnimation>();
         }
 
         public void InitialiseBlur() {
@@ -115,12 +118,39 @@ namespace Managers {
                 animateUIBackward = true;
                 _uiAnimator.SetFloat("SpeedMultiplier", -1.0f);
             }
-            
-            if (!alreadyLocallyMovedCarousel) {
-                foreach (var navsync in _navigationVoteSyncs) {
-                    navsync.ResetVoting();
-                }
+        }
+
+        public void PlayAnimationFromServer(NetworkAnimator networkAnimator, bool forward) {
+            if (networkAnimator == null) {
+                Debug.LogError("Network animator is null");
+                return;
             }
+            if (isSoloMode && _currentPanel == _lastPanel) StartCoroutine(IgnoreEvents(0.5f));
+            else if (isSoloMode) StartCoroutine(IgnoreEvents(0.1f));
+            _lastPanel = _currentPanel;
+            _lastPanelBuddy = _currentPanelBuddy;
+            // TODO --> turn off solo appropriately
+            if (forward) {
+                if (_currentPanel < panels.Count - 1) _currentPanel++;
+                else _currentPanel = 0;
+                if (_currentPanelBuddy < panels.Count - 1) _currentPanelBuddy++;
+                else _currentPanelBuddy = 0;
+                networkAnimator.animator.SetFloat("SpeedMultiplier", 1.0f);
+            }
+            else {
+                if (_currentPanel > 0) _currentPanel--;
+                else _currentPanel = panels.Count - 1;
+                if (_currentPanelBuddy > 0) _currentPanelBuddy--;
+                else _currentPanelBuddy = panels.Count - 1;
+                animateUIBackward = true;
+                networkAnimator.animator.SetFloat("SpeedMultiplier", -1.0f);
+            }
+
+            foreach (var navsync in _navigationVoteSyncs) {
+                if(navsync.VotingValue > 0) navsync.ResetVoting();
+            }
+            
+            OnMovedCarousel?.Invoke();
         }
 
         public void Update() {
@@ -198,19 +228,23 @@ namespace Managers {
             print("Local player wants to move forward by " + offset + " - " + forward);
             var newValue = navSync.VotingValue + offset;
             if (newValue > 1) {
+                // tell the server to play move carousel animation
+                carouselAnimation.UpdateAnimator(forward);
+                /*
                 PlayAnimation(forward);
+                */
                 // if carousel has moved, invoke the moved carousel event
-                OnMovedCarousel?.Invoke();
-                alreadyLocallyMovedCarousel = true;
+                // OnMovedCarousel?.Invoke();
+                // alreadyLocallyMovedCarousel = true;
             }
-            navSync.ChangeValue((byte) (newValue));
+            else navSync.ChangeValue((byte) (newValue));
         }
 
         private void VotingCompletedFromServer(bool forward) {
-            PlayAnimation(forward);
-            print("Play animation to move carousel " + forward);
+            // PlayAnimation(forward);
+            // print("Play animation to move carousel " + forward);
             // if carousel has moved, invoke the moved carousel event
-            OnMovedCarousel?.Invoke();
+            // OnMovedCarousel?.Invoke();
             
             // reset the voting
             // var navSync = forward ? _navigationVoteSyncs[0] : _navigationVoteSyncs[1];

@@ -15,6 +15,7 @@ namespace DidStuffLab {
 
         private Transform _finalDestination;
 
+        private bool _swapSides = false;
         private bool _localplayerIsInPosition;
         private float _journeyLength, _startTime;
         [SerializeField] private float positionSpeed = 1.0f;
@@ -36,8 +37,10 @@ namespace DidStuffLab {
 
         private void SwapToOppositeSide() {
             print("Swap to opposite side because there's already another player here");
+            _swapSides = true;
             _localplayerIsInPosition = false;
-            _finalDestination = MasterManager.Instance.oppositeDestinationTransform;
+            MasterManager.Instance.destinationTransform.parent.Rotate(0, 180, 0);
+            // _finalDestination = MasterManager.Instance.oppositeDestinationTransform;
             foreach (var spawner in MasterManager.Instance.carouselManager.emojiSpawners) {
                 spawner.transform.RotateAround(Vector3.zero, Vector3.up, 180);
             }
@@ -47,7 +50,7 @@ namespace DidStuffLab {
             if (!isLocalPlayer || !_canStartMoving) return;
             if (!_localplayerIsInPosition) LerpPlayer();
             if (JamSessionDetails.Instance.otherPlayer && JamSessionDetails.Instance.otherPlayerEyeFollowTransform) {
-                JamSessionDetails.Instance.otherPlayer.transform.GetChild(1).transform.LookAt(JamSessionDetails.Instance.otherPlayerEyeFollowTransform);
+                JamSessionDetails.Instance.otherPlayer.transform.GetChild(1).GetChild(0).transform.LookAt(JamSessionDetails.Instance.otherPlayerEyeFollowTransform);
             }
         }
 

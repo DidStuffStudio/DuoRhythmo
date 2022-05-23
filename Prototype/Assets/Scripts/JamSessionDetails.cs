@@ -48,14 +48,8 @@ public class JamSessionDetails : MonoBehaviour {
             otherPlayer = player;
             var otherPlayerEyeFollow = otherPlayer.transform.GetComponentInChildren<PlayerEyeFollow>();
             otherPlayerEyeFollowTransform = otherPlayerEyeFollow.transform;
-            otherPlayerEyeFollow.isLocalPlayer = false;
         }
-        else {
-            localPlayer = player;
-            var localPlayerEyeFollow = localPlayer.transform.GetComponentInChildren<PlayerEyeFollow>();
-            otherPlayerEyeFollowTransform = localPlayerEyeFollow.transform;
-            localPlayerEyeFollow.isLocalPlayer = true;
-        }
+        else localPlayer = player;
     }
 
     public void ClearDetails() {

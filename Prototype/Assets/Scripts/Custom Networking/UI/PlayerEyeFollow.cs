@@ -7,13 +7,16 @@ namespace DidStuffLab {
     public class PlayerEyeFollow : MonoBehaviour {
         private Camera _camera;
         [SerializeField] private float multiplier;
-        public bool isLocalPlayer = true;
-        private void Start() => _camera = Camera.main;
+        private Player _player;
+        private void Start() {
+            _camera = Camera.main;
+            _player = GetComponentInParent<Player>();
+        }
 
         private void Update() {
-            if(!isLocalPlayer) return;
+            if(_player != null && !_player.isLocalPlayer) return;
             var mousePos = Input.mousePosition;
-            mousePos.z = _camera.nearClipPlane * multiplier;
+            mousePos.z = _camera.nearClipPlane * multiplier * -1;
             var mouseWorld = _camera.ScreenToWorldPoint(mousePos);
             transform.position = mouseWorld;
         }

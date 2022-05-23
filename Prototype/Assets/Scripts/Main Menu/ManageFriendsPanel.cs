@@ -13,6 +13,16 @@ using UnityEngine.UI;
 public class ManageFriendsPanel : UiFriendsManager
 {
 
+    public enum friendStatus
+    {
+        requester,
+        requestee,
+        confirmed,
+        revoked,
+        removed,
+        accepted,
+        declined
+    }
     [Header("Add friend Card")] [SerializeField]
     private GameObject addFriendCard;
     [SerializeField] private DidStuffTextField inputField;
@@ -21,9 +31,12 @@ public class ManageFriendsPanel : UiFriendsManager
     [SerializeField] private List<GameObject> confirmedInteraction = new List<GameObject>();
     [SerializeField] private List<GameObject> requestInteraction = new List<GameObject>();
     [SerializeField] private List<GameObject> pendingInteraction = new List<GameObject>();
-    [SerializeField] private List<TextMeshProUGUI> confirmInteractionTexts = new List<TextMeshProUGUI>();
-    private readonly string[] _confirmInteractionTexts = {"Accepted", "Declined", "Removed", "Revoked"};
-    
+    [SerializeField] private List<GameObject> revokedText = new List<GameObject>();
+    [SerializeField] private List<GameObject> removedText = new List<GameObject>();
+    [SerializeField] private List<GameObject> acceptedText = new List<GameObject>();
+    [SerializeField] private List<GameObject> declinedText = new List<GameObject>();
+    public Dictionary<string, friendStatus> _friendStatusDictionary = new Dictionary<string, friendStatus>();
+
     [Header("FriendsMenu/Spinner")]
     [SerializeField] private GameObject friendsMenuList;
     [SerializeField] private GameObject rotatingSpinner;
@@ -42,21 +55,11 @@ public class ManageFriendsPanel : UiFriendsManager
 
     private static void FriendsUpdated() => isUpdated = true;
 
-    /*
-    private void Start() {
-        // subscribe to the event when we've received all friends details including avatars
-        FriendsManager.OnReceivedFriendsDetails += FriendsManagerOnOnReceivedFriendsDetails;
-    }
-    */
+    
+   
 
     protected override void OnEnable() {
         _numberOfCards = friendCards.Count;
-        listToLoopUsernames = _allFriendUsernames;
-        listToLoopAvatars = _allFriendAvatars;
-        foreach (var t in confirmInteractionTexts)
-        {
-            t.gameObject.SetActive(false);
-        }
 
         if (!isUpdated) {
             print("It's NOT updated, so show the rotating spinner");
@@ -65,11 +68,32 @@ public class ManageFriendsPanel : UiFriendsManager
         }
         else {
             print("It's updated, so show the friends list");
+            listToLoopUsernames = _allFriendUsernames;
+            listToLoopAvatars = _allFriendAvatars;
             friendsMenuList.SetActive(true);
             rotatingSpinner.SetActive(false);
         }
         base.OnEnable();
-        if (!PlayFabLogin.Instance.IsLoggedInAsGuest) EnableAddFriend();
+        if (!PlayFabLogin.Instance.IsLoggedInAsGuest)
+        {
+            EnableAddFriend();
+            
+        }
+    }
+
+    protected override void Initialise()
+    {
+        base.Initialise();
+        _friendStatusDictionary = new Dictionary<string, friendStatus>();
+        for (int i = 0; i < FriendStatusMap.Count; i++)
+        {
+            if (FriendStatusMap[_allFriendUsernames[i]] == FriendStatus.Confirmed)
+                _friendStatusDictionary.Add(_allFriendUsernames[i], friendStatus.confirmed);
+            if (FriendStatusMap[_allFriendUsernames[i]] == FriendStatus.Requestee)
+                _friendStatusDictionary.Add(_allFriendUsernames[i], friendStatus.requestee);
+            if (FriendStatusMap[_allFriendUsernames[i]] == FriendStatus.Requester)
+                _friendStatusDictionary.Add(_allFriendUsernames[i], friendStatus.requester);
+        }
     }
 
     private void FriendsManagerOnOnReceivedFriendsDetails() {
@@ -83,33 +107,100 @@ public class ManageFriendsPanel : UiFriendsManager
         base.ChangeGraphics();
         for (int i = 0; i < _displayedFriends; i++)
         {
-            if (FriendStatusMap[_currentUsernames[i]] == FriendStatus.Confirmed)
-                SwitchFriendStatusButtons(i, FriendStatus.Confirmed);
-            else if (FriendStatusMap[_currentUsernames[i]] == FriendStatus.Requestee)
-                SwitchFriendStatusButtons(i, FriendStatus.Requestee);
-            if (FriendStatusMap[_currentUsernames[i]] == FriendStatus.Requester)
-                SwitchFriendStatusButtons(i, FriendStatus.Requester);
+            switch (_friendStatusDictionary[_currentUsernames[i]])
+            {
+                case friendStatus.confirmed:
+                    SwitchFriendStatusButtons(i, friendStatus.confirmed);
+                    break;
+                case friendStatus.requestee:
+                    SwitchFriendStatusButtons(i, friendStatus.requestee);
+                    break;
+                case friendStatus.requester:
+                    SwitchFriendStatusButtons(i, friendStatus.requester);
+                    break;
+                case friendStatus.removed:
+                    SwitchFriendStatusButtons(i, friendStatus.removed);
+                    break;
+                case friendStatus.revoked:
+                    SwitchFriendStatusButtons(i, friendStatus.revoked);
+                    break;
+                case friendStatus.accepted:
+                    SwitchFriendStatusButtons(i, friendStatus.accepted);
+                    break;
+                case friendStatus.declined:
+                    SwitchFriendStatusButtons(i, friendStatus.declined);
+                    break;
+            }
         }
     }
 
-    private void SwitchFriendStatusButtons(int i, FriendStatus status)
+    private void SwitchFriendStatusButtons(int i, friendStatus status)
     {
         switch (status)
         {
-            case FriendStatus.Confirmed:
+            case friendStatus.confirmed:
                 confirmedInteraction[i].SetActive(true);
                 requestInteraction[i].SetActive(false);
                 pendingInteraction[i].SetActive(false);
+                revokedText[i].SetActive(false);
+                removedText[i].SetActive(false);
+                acceptedText[i].SetActive(false);
+                declinedText[i].SetActive(false);
                 break;
-            case FriendStatus.Requester:
+            case friendStatus.requester:
                 confirmedInteraction[i].SetActive(false);
                 requestInteraction[i].SetActive(true);
                 pendingInteraction[i].SetActive(false);
+                revokedText[i].SetActive(false);
+                removedText[i].SetActive(false);
+                acceptedText[i].SetActive(false);
+                declinedText[i].SetActive(false);
                 break;
-            case FriendStatus.Requestee:
+            case friendStatus.requestee:
                 confirmedInteraction[i].SetActive(false);
                 requestInteraction[i].SetActive(false);
                 pendingInteraction[i].SetActive(true);
+                revokedText[i].SetActive(false);
+                removedText[i].SetActive(false);
+                acceptedText[i].SetActive(false);
+                declinedText[i].SetActive(false);
+                break;
+            
+            case friendStatus.revoked:
+                confirmedInteraction[i].SetActive(false);
+                requestInteraction[i].SetActive(false);
+                pendingInteraction[i].SetActive(false);
+                revokedText[i].SetActive(true);
+                removedText[i].SetActive(false);
+                acceptedText[i].SetActive(false);
+                declinedText[i].SetActive(false);
+                break;
+            case friendStatus.removed:
+                confirmedInteraction[i].SetActive(false);
+                requestInteraction[i].SetActive(false);
+                pendingInteraction[i].SetActive(false);
+                revokedText[i].SetActive(false);
+                removedText[i].SetActive(true);
+                acceptedText[i].SetActive(false);
+                declinedText[i].SetActive(false);
+                break;
+            case friendStatus.accepted:
+                confirmedInteraction[i].SetActive(false);
+                requestInteraction[i].SetActive(false);
+                pendingInteraction[i].SetActive(false);
+                revokedText[i].SetActive(false);
+                removedText[i].SetActive(false);
+                acceptedText[i].SetActive(true);
+                declinedText[i].SetActive(false);
+                break;
+            case friendStatus.declined:
+                confirmedInteraction[i].SetActive(false);
+                requestInteraction[i].SetActive(false);
+                pendingInteraction[i].SetActive(false);
+                revokedText[i].SetActive(false);
+                removedText[i].SetActive(false);
+                acceptedText[i].SetActive(false);
+                declinedText[i].SetActive(true);
                 break;
         }
     }
@@ -130,25 +221,29 @@ public class ManageFriendsPanel : UiFriendsManager
     public void AcceptFriendRequest(int index)
     {
         FriendsManager.Instance.AcceptFriendRequest(_currentUsernames[index]);
-        RemoveButtons(index, requestInteraction[index], _confirmInteractionTexts[0]);
+        _friendStatusDictionary[_currentUsernames[index]] = friendStatus.accepted; 
+        RemoveButtons(index, requestInteraction[index], acceptedText[index]);
     }
 
     public void DeclineFriendRequest(int index)
     {
         FriendsManager.Instance.DenyFriendRequest(_currentUsernames[index]);
-        RemoveButtons(index, requestInteraction[index], _confirmInteractionTexts[1]);
+        _friendStatusDictionary[_currentUsernames[index]] = friendStatus.declined; 
+        RemoveButtons(index, requestInteraction[index], declinedText[index]);
     }
 
     public void RemoveFriend(int index)
     {
         FriendsManager.Instance.RemoveFriend(_currentUsernames[index]);
-        RemoveButtons(index, confirmedInteraction[index], _confirmInteractionTexts[2]);
+        _friendStatusDictionary[_currentUsernames[index]] = friendStatus.removed; 
+        RemoveButtons(index, confirmedInteraction[index], removedText[index]);
     }
 
     public void RevokeFriendRequest(int index)
     {
         FriendsManager.Instance.RemoveFriend(_currentUsernames[index]);
-        RemoveButtons(index, pendingInteraction[index], _confirmInteractionTexts[3]);
+        _friendStatusDictionary[_currentUsernames[index]] = friendStatus.revoked; 
+        RemoveButtons(index, pendingInteraction[index], revokedText[index]);
     }
 
     public void AddFriend() {
@@ -156,12 +251,11 @@ public class ManageFriendsPanel : UiFriendsManager
         FriendsManager.Instance.SendFriendRequest(stringToPass);
         inputField.text = "";
     }
-    
-    public void RemoveButtons(int index, GameObject buttons,string text)
+
+    private void RemoveButtons(int index, GameObject deactivate, GameObject activate)
     {
-        buttons.SetActive(false);
-        confirmInteractionTexts[index].text = text;
-        confirmInteractionTexts[index].gameObject.SetActive(true);
+        deactivate.SetActive(false);
+        activate.SetActive(true);
     }
 
     protected override void OnDisable() {

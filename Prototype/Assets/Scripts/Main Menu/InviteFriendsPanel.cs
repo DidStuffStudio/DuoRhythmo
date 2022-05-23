@@ -45,15 +45,14 @@ public class InviteFriendsPanel : UiFriendsManager {
     private void EnablePanel() {
         print("Hide rotating spinner in invite friends menu");
         _numberOfCards = friendCards.Count;
-        listToLoopUsernames = _confirmedFriendUsernames;
-        listToLoopAvatars = _confirmedFriendAvatars;
-        _currentUsernames = new string[_numberOfCards];
-        _currentAvatars = new string[_numberOfCards];
+
 
         if (isUpdated) {
             print("It's updated, so hide the rotating spinner in invite friends panel");
             rotatingSpinner.SetActive(false);
             inviteFriendsMenu.SetActive(true);
+            listToLoopUsernames = _confirmedFriendUsernames;
+            listToLoopAvatars = _confirmedFriendAvatars;
         }
         else {
             print("It's NOT updated, so show the rotating spinner in invite friends panel");

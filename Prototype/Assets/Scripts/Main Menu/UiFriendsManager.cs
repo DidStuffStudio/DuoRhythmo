@@ -87,6 +87,7 @@ public class UiFriendsManager : MonoBehaviour {
     }
 
     protected virtual void Initialise() {
+        
         _currentListIndex = 0;
         _page = 1;
 
@@ -107,11 +108,17 @@ public class UiFriendsManager : MonoBehaviour {
         if (_numberFriends <= _numberOfCards) {
             _displayedFriends = _numberFriends;
             for (int i = 0; i < _numberFriends; i++) friendCards[i].SetActive(true);
+            for(int i = _numberFriends; i < _numberOfCards; i++) friendCards[i].SetActive(false);
+            _currentAvatars = new string[_numberFriends];
+            _currentUsernames = new string[_numberFriends];
         }
         else {
             _displayedFriends = _numberOfCards;
             for (int i = 0; i < friendCards.Count; i++) friendCards[i].SetActive(true);
+            _currentAvatars = new string[_numberOfCards];
+            _currentUsernames = new string[_numberOfCards];
         }
+
 
         ChangeGraphics();
     }
@@ -206,6 +213,7 @@ public class UiFriendsManager : MonoBehaviour {
     private void ClearLists() {
         foreach (var d in _dots) Destroy(d.gameObject);
         _dots.Clear();
+        _friendStatusMap.Clear();
     }
 
     protected virtual void OnDisable() => ClearLists();

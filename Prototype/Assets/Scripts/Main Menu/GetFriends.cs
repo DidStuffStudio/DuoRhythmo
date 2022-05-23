@@ -29,6 +29,8 @@ namespace DidStuffLab {
                     manager.FriendStatusMap = UiFriendsDetailsInstance.Instance.FriendStatusMap;
                     manager.AllFriendOnlineStatuses = UiFriendsDetailsInstance.Instance.AllFriendOnlineStatuses;
                 }
+
+               
             }
 
             _notificationText = friendRequestNotification.GetComponentInChildren<TextMeshProUGUI>();

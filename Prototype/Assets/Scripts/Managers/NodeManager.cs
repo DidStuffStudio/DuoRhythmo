@@ -72,7 +72,12 @@ namespace Managers
             _euclideanButton = GetComponentInChildren<EuclideanButton>();
             GetComponentInParent<Canvas>().worldCamera = Camera.main;
         }
-        
+
+        private void Start()
+        {
+            SetBpm(MasterManager.Instance.bpm);
+        }
+
         private void Update()
         {
             currentRotation = 360 - rhythmIndicator.localRotation.eulerAngles.z;
@@ -167,9 +172,8 @@ namespace Managers
         
         public void SetBpm(int newBpm)
         {
-            var rpm = (float) newBpm / (NumberOfNodes); //12bpm at 12 nodes = 1 revolution per minute
+            var rpm = (float) newBpm / 4;
             var rps = rpm / 60.0f;
-            rps *= 4;
             _rhythmAnimator.SetFloat(Rps, rps);
         }
         

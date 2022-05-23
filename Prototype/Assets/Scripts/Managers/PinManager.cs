@@ -36,7 +36,9 @@ namespace Managers
             }
             pinIntegers.Clear();
             lineRenderer.positionCount = 0;
-            
+            _transforms.Clear();
+            _currentIndex = 0;
+
         }
 
         public void SetPinCharacter(int value, Vector3 anchoredPos)

@@ -11,21 +11,21 @@ namespace DidStuffLab {
         // friends details variables
         public List<string> AllFriendUsernames { get; private set; } = new List<string>();
         public List<string> ConfirmedFriendUsernames { get; private set; } = new List<string>();
-        public List<string> AllFriendAvatars { get; private set;  } = new List<string>();
+        public List<string> AllFriendAvatars { get; private set; } = new List<string>();
         public List<string> ConfirmedFriendAvatars { get; private set; } = new List<string>();
-        public Dictionary<string, FriendStatus> FriendStatusMap { get; private set; } = new Dictionary<string, FriendStatus>();
+
+        public Dictionary<string, FriendStatus> FriendStatusMap { get; private set; } =
+            new Dictionary<string, FriendStatus>();
+
         public List<bool> AllFriendOnlineStatuses { get; private set; } = new List<bool>();
         public float FriendRequestCount { get; private set; } = 0;
 
         private List<Friend> _friends = new List<Friend>();
-        
-        public delegate void FriendsDetailsUpdated();
-        public static event FriendsDetailsUpdated OnUpdatedFriendsDetails;
 
         private void Awake() {
             if (Instance == null) Instance = this;
         }
-        
+
         private void OnEnable() => FriendsManager.OnReceivedFriendsDetails += SetFriendsDetails;
         private void OnDisable() => FriendsManager.OnReceivedFriendsDetails -= SetFriendsDetails;
 
@@ -87,15 +87,16 @@ namespace DidStuffLab {
                 AllFriendAvatars.Add(requesteeAvatars[i]);
                 FriendStatusMap.Add(requesteeUsernames[i], FriendStatus.Requestee);
             }
-            
-            OnUpdatedFriendsDetails?.Invoke();
         }
 
         private void ClearLists() {
             FriendRequestCount = 0;
             AllFriendUsernames.Clear();
             AllFriendAvatars.Clear();
+            ConfirmedFriendAvatars.Clear();
             FriendStatusMap.Clear();
+            AllFriendOnlineStatuses.Clear();
+            _friends.Clear();
         }
     }
 }

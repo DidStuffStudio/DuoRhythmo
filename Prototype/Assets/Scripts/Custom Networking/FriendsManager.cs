@@ -22,7 +22,6 @@ namespace DidStuffLab {
         private List<Friend> _auxTempFriendsDetails = new List<Friend>(); // in case friends dictionary has been cleared, use this as the aux
         private int _friendAvatarsReceivedCounter = 0;
         public bool receivedAllFriendsDetails;
-        private bool _finishedWaitingToRequestFriends;
         private bool updatingFriends;
         private bool _changeInFriends = true;
 
@@ -50,16 +49,6 @@ namespace DidStuffLab {
             GetListOfFriends(); // call this on start because it's deactivated by default, and then activated once user logs in
         }
 
-        /*
-        private IEnumerator WaitToRequestFriends() {
-            while (true) {
-                _finishedWaitingToRequestFriends = true;
-                yield return new WaitForSeconds(10);
-                _finishedWaitingToRequestFriends = false;
-            }
-        }
-        */
-        
         private IEnumerator WaitForTimeoutFriendsRequest() {
             // if after 10 seconds we still haven't received all the friends details,
             // just populate it with the friends that we got and default values
@@ -293,7 +282,10 @@ namespace DidStuffLab {
         public void ClearAllFriendsDetails() {
             _friendsDictionary.Clear();
             receivedAllFriendsDetails = false;
+            _changeInFriends = true;
+            updatingFriends = true;
             _auxTempFriendsDetails.Clear();
+            OnReceivedFriendsDetails?.Invoke(); // now that it's empty, invoke it again to clear friends everywhere
         }
 
         private void OnApplicationQuit() {

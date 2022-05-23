@@ -114,29 +114,18 @@ namespace Managers {
 
         private void InitialisePanels() {
             carouselManager.panels = new List<GameObject>();
-            if (carouselManager.isSoloMode)
+            if(carouselManager.isSoloMode)carouselManager.panels = new List<GameObject>();
+            for (int i = 0; i < nodePanels.Count; i++)
             {
-                for (int i = 0; i < nodePanels.Count; i++)
-                {
-                    nodePanels[i].name = "NodesPanel_" + _drumNames[_currentDrumKitIndex][i];
-                    effectPanels[i].name = "EffectsPanel_" + _drumNames[_currentDrumKitIndex][i]; 
-                    AddPanelsToCarouselManagerSolo(i);
-                    SetUpEffectsManagers(i);
-                    StartCoroutine(SetUpNodeManagers(i));
-                }
+                nodePanels[i].name = "NodesPanel_" + _drumNames[_currentDrumKitIndex][i];
+                effectPanels[i].name = "EffectsPanel_" + _drumNames[_currentDrumKitIndex][i];
+                if (carouselManager.isSoloMode) AddPanelsToCarouselManagerSolo(i);
+                SetUpEffectsManagers(i);
+                StartCoroutine(SetUpNodeManagers(i));
             }
-            else
-            {
-                for (int i = 0; i < nodePanels.Count; i++)
-                {
-                    nodePanels[i].name = "NodesPanel_" + _drumNames[_currentDrumKitIndex][i];
-                    effectPanels[i].name = "EffectsPanel_" + _drumNames[_currentDrumKitIndex][i];
-                    SetUpEffectsManagers(i);
-                    StartCoroutine(SetUpNodeManagers(i));
-                }
-                AddPanelsToCarouselManagerMulti();
-            }
+
             gameSetUpFinished = true;
+            if(!carouselManager.isSoloMode) AddPanelsToCarouselManagerMulti();
             if(JamSessionDetails.Instance.loadingBeat)JamSessionDetails.Instance.SetLoadedBeat();
             carouselManager.InitialiseBlur();
             carouselManager.ToggleVFX(true);

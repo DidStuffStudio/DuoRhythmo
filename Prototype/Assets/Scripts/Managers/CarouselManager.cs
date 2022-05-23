@@ -183,10 +183,12 @@ namespace Managers {
         public void UpdateVoteToMove(bool activate, bool forward) {
             var navSync = forward ? _navigationVoteSyncs[0] : _navigationVoteSyncs[1];
             var offset = (activate ? 1 : -1);
+            /*
             if (offset < 0 || alreadyLocallyMovedCarousel) {
                 alreadyLocallyMovedCarousel = false;
                 return;
             }
+            */
             print("Local player wants to move forward by " + offset + " - " + forward);
             var newValue = navSync.VotingValue + offset;
             if (newValue > 1) {
@@ -195,8 +197,7 @@ namespace Managers {
                 OnMovedCarousel?.Invoke();
                 alreadyLocallyMovedCarousel = true;
             }
-            if (forward) navSync.ChangeValue((byte) (navSync.VotingValue + offset));
-            else navSync.ChangeValue((byte) (navSync.VotingValue + offset));
+            navSync.ChangeValue((byte) (newValue));
         }
 
         private void VotingCompletedFromServer(bool forward) {

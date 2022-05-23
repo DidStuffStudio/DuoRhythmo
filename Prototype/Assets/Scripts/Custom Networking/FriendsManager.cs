@@ -40,7 +40,8 @@ namespace DidStuffLab {
 
         private void Awake() {
             if (Instance == null) Instance = this;
-            GetFriends.SubscribeToEvents(true);
+            ManageFriendsPanel.SubscribeToEvents(true);
+            InviteFriendsPanel.SubscribeToEvents(true);
         }
 
         public void EnableFriendsManager() {
@@ -296,7 +297,8 @@ namespace DidStuffLab {
         }
 
         private void OnApplicationQuit() {
-            GetFriends.SubscribeToEvents(false);
+            ManageFriendsPanel.SubscribeToEvents(false);
+            InviteFriendsPanel.SubscribeToEvents(false);
         }
     }
 

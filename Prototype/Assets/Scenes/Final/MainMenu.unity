@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.044132642, g: 0.0430841, b: 0.040068284, a: 1}
+  m_IndirectSpecularColor: {r: 0.99999905, g: 0, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18228,7 +18228,7 @@ MonoBehaviour:
   lineWidth: 0
   lineColor: {r: 0, g: 0, b: 0, a: 0}
   parent: {fileID: 0}
-  linePrefab: {fileID: 0}
+  lineRenderer: {fileID: 0}
   mainMenuManager: {fileID: 530605014}
 --- !u!222 &659282483
 CanvasRenderer:
@@ -28430,7 +28430,7 @@ MonoBehaviour:
   lineWidth: 0
   lineColor: {r: 0, g: 0, b: 0, a: 0}
   parent: {fileID: 0}
-  linePrefab: {fileID: 0}
+  lineRenderer: {fileID: 0}
   mainMenuManager: {fileID: 530605014}
 --- !u!114 &830990060
 MonoBehaviour:
@@ -44405,7 +44405,7 @@ MonoBehaviour:
   lineWidth: 0
   lineColor: {r: 0, g: 0, b: 0, a: 0}
   parent: {fileID: 0}
-  linePrefab: {fileID: 0}
+  lineRenderer: {fileID: 0}
   mainMenuManager: {fileID: 530605014}
 --- !u!114 &1542909032
 MonoBehaviour:
@@ -48995,6 +48995,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1764546361}
   - component: {fileID: 1764546362}
+  - component: {fileID: 1764546363}
   m_Layer: 0
   m_Name: FriendsManager
   m_TagString: Untagged
@@ -49029,6 +49030,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   receivedAllFriendsDetails: 0
+--- !u!114 &1764546363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764546360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2acde8031835147b0b4af0b18aad17bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1770767489
 GameObject:
   m_ObjectHideFlags: 0

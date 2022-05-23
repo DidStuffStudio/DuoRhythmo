@@ -27,14 +27,29 @@ public class ManageFriendsPanel : UiFriendsManager
     [Header("FriendsMenu/Spinner")]
     [SerializeField] private GameObject friendsMenuList;
     [SerializeField] private GameObject rotatingSpinner;
+    private static bool isUpdated = false;
 
+    public static void SubscribeToEvents(bool subscribe) {
+        if (subscribe) {
+            // subscribe to the event when we've received all friends details including avatars
+            FriendsManager.OnReceivedFriendsDetails += FriendsUpdated;
+        }
+        else {
+            // unsubscribe to the event when we've received all friends details including avatars
+            FriendsManager.OnReceivedFriendsDetails -= FriendsUpdated;
+        }
+    }
+
+    private static void FriendsUpdated() => isUpdated = true;
+
+    /*
     private void Start() {
         // subscribe to the event when we've received all friends details including avatars
         FriendsManager.OnReceivedFriendsDetails += FriendsManagerOnOnReceivedFriendsDetails;
     }
+    */
 
-    protected override void OnEnable()
-    {
+    protected override void OnEnable() {
         _numberOfCards = friendCards.Count;
         listToLoopUsernames = _allFriendUsernames;
         listToLoopAvatars = _allFriendAvatars;
@@ -43,11 +58,16 @@ public class ManageFriendsPanel : UiFriendsManager
             t.gameObject.SetActive(false);
         }
 
-        if (!FriendsManager.Instance.receivedAllFriendsDetails) {
+        if (!isUpdated) {
+            print("It's NOT updated, so show the rotating spinner");
             friendsMenuList.SetActive(false);
             rotatingSpinner.SetActive(true);
         }
-
+        else {
+            print("It's updated, so show the friends list");
+            friendsMenuList.SetActive(true);
+            rotatingSpinner.SetActive(false);
+        }
         base.OnEnable();
         if (!PlayFabLogin.Instance.IsLoggedInAsGuest) EnableAddFriend();
     }

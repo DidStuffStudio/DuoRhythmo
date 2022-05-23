@@ -222,6 +222,7 @@ public class PlayFabLogin : MonoBehaviour {
         FriendsEntityKeys = new List<EntityKey>();
         SelectedFriendsEntityKeys = new List<EntityKey>();
         FriendsManager.Instance.ClearAllFriendsDetails();
+        // TODO --> Invoke the OnReceivedFriends event so it clears everything
     }
 
     public void DeleteAccount() {

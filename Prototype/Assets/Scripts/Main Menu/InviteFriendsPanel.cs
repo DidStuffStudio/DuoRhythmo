@@ -9,7 +9,21 @@ public class InviteFriendsPanel : UiFriendsManager {
     [SerializeField] private Color _active = Color.green, _inactive = Color.red;
     [SerializeField] private GameObject inviteFriendsMenu;
     [SerializeField] private GameObject rotatingSpinner;
+    private static bool isUpdated = false;
+    public static void SubscribeToEvents(bool subscribe) {
+        if (subscribe) {
+            // subscribe to the event when we've received all friends details including avatars
+            FriendsManager.OnReceivedFriendsDetails += FriendsUpdated;
+        }
+        else {
+            // unsubscribe to the event when we've received all friends details including avatars
+            FriendsManager.OnReceivedFriendsDetails -= FriendsUpdated;
+        }
+    }
 
+    private static void FriendsUpdated() => isUpdated = true;
+    
+    /*
     protected override void OnEnable() {
         FriendsManager.OnReceivedFriendsDetails += FriendsManagerOnOnReceivedFriendsDetails;
         if (FriendsManager.Instance == null) return;
@@ -21,8 +35,14 @@ public class InviteFriendsPanel : UiFriendsManager {
 
         base.OnEnable();
     }
+    */
 
-    private void FriendsManagerOnOnReceivedFriendsDetails() {
+    protected override void OnEnable() {
+        EnablePanel();
+        base.OnEnable();
+    }
+
+    private void EnablePanel() {
         print("Hide rotating spinner in invite friends menu");
         _numberOfCards = friendCards.Count;
         listToLoopUsernames = _confirmedFriendUsernames;
@@ -30,8 +50,16 @@ public class InviteFriendsPanel : UiFriendsManager {
         _currentUsernames = new string[_numberOfCards];
         _currentAvatars = new string[_numberOfCards];
 
-        rotatingSpinner.SetActive(false);
-        inviteFriendsMenu.SetActive(true);
+        if (isUpdated) {
+            print("It's updated, so hide the rotating spinner in invite friends panel");
+            rotatingSpinner.SetActive(false);
+            inviteFriendsMenu.SetActive(true);
+        }
+        else {
+            print("It's NOT updated, so show the rotating spinner in invite friends panel");
+            rotatingSpinner.SetActive(true);
+            inviteFriendsMenu.SetActive(false);
+        }
     }
 
     protected override void ChangeGraphics() {
@@ -45,8 +73,10 @@ public class InviteFriendsPanel : UiFriendsManager {
     public void InviteFriendToMatch(int index) =>
         Matchmaker.Instance.InviteFriendToMatchmaking(_currentUsernames[index]);
 
+    /*
     protected override void OnDisable() {
         base.OnDisable();
         FriendsManager.OnReceivedFriendsDetails -= FriendsManagerOnOnReceivedFriendsDetails;
     }
+    */
 }

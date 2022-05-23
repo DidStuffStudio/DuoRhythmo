@@ -85,8 +85,8 @@ public class UiFriendsManager : MonoBehaviour
         set => _initialised = value;
     }
 
-    protected virtual void OnEnable()
-    {
+    protected virtual void OnEnable() {
+        UiFriendsDetailsInstance.OnUpdatedFriendsDetails += UpdateFriendsManager;
         if (!_initialised) return;
         if(PlayFabLogin.Instance.IsLoggedInAsGuest) DisableAllInteraction();
         
@@ -96,6 +96,18 @@ public class UiFriendsManager : MonoBehaviour
             Initialise();
             InitialiseGraphics();
         }
+    }
+
+    private void UpdateFriendsManager() {
+        /*
+        if (!PlayFabLogin.Instance.IsLoggedInToAccount) return;
+        AllFriendAvatars = UiFriendsDetailsInstance.Instance.AllFriendAvatars;
+        AllFriendUsernames = UiFriendsDetailsInstance.Instance.AllFriendUsernames;
+        ConfirmedFriendAvatars = UiFriendsDetailsInstance.Instance.ConfirmedFriendAvatars;
+        ConfirmedFriendUsernames = UiFriendsDetailsInstance.Instance.ConfirmedFriendUsernames;
+        FriendStatusMap = UiFriendsDetailsInstance.Instance.FriendStatusMap;
+        AllFriendOnlineStatuses = UiFriendsDetailsInstance.Instance.AllFriendOnlineStatuses;
+        */
     }
 
     protected virtual void Initialise()
@@ -237,17 +249,19 @@ private void DoTheDots()
     {
         foreach (var d in _dots) Destroy(d.gameObject);
         _dots.Clear();
-        
+        /*
         _allFriendUsernames.Clear();
         _allFriendAvatars.Clear();
         _friendStatusMap.Clear();
         _confirmedFriendAvatars.Clear();
         _confirmedFriendUsernames.Clear();
+        */
     }
 
 
     protected virtual void OnDisable()
     {
+        UiFriendsDetailsInstance.OnUpdatedFriendsDetails -= UpdateFriendsManager;
         ClearLists();
     }
 }

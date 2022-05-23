@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
@@ -5,23 +6,27 @@ using UnityEngine;
 
 namespace DidStuffLab {
     public class EyeFollow : MonoBehaviour {
-        [SerializeField] private Camera Camera;
-        [SerializeField] private Player player;
+        public Transform otherPlayerToFollow;
 
-        private Vector3 followPosition;
-
-        void Update() {
-            Vector3 mousePos = Input.mousePosition;
-            mousePos.z = Camera.nearClipPlane;
-            Vector3 mouseWorld = Camera.ScreenToWorldPoint(mousePos);
-            followPosition = mouseWorld;
-            transform.LookAt(mouseWorld);
+        private void Update() {
+            // TODO --> Only change value on server if value changed is higher than a threshold
+            // if(_playerFollowSync) _playerFollowSync.ChangeValueOnServer(localFollowPosition);
+            // if(otherPlayerToFollow) transform.LookAt(otherPlayerToFollow.position);
+            
+            /*
+             IDEA on how to sync positions:
+             Create an empty PlayerEyeFollow gameobject with a network transform as a child of player prefab
+             When instantiated on the scene, get the other player, and set its child pos as otherPlayerFollowPosition
+             transform.LookAt(otherPlayerFollowPosition); // <-- set otherPlayerAvatar to this
+             transform.position = localFollowPosition;
+             */
         }
 
-        public void SetFollowSync(Player player) =>
-            this.player = player;
+        // public void SetFollowSync(PlayerFollowSync playerFollowSync) => this._playerFollowSync = playerFollowSync;
+        /*
         public void SetFollowPositionFromServer(Vector3 newValue) {
-        
+            otherPlayerFollowPosition = newValue;
         }
+        */
     }
 }

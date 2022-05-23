@@ -23,6 +23,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         private Vector3 _caretPos = new Vector3(15,0,0);
         [SerializeField] private float caretOffset = 1f;
         [SerializeField] private int maxNumberCharacters = 20;
+        [SerializeField] private Color dwellUnderlineColor;
 
         public string text
         {
@@ -39,6 +40,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
             base.OnEnable();
             DeactivateInputField();
             text = "";
+            _caretPos = caret.rectTransform.anchoredPosition;
         }
 
         private void Start()
@@ -46,11 +48,18 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
             _dwellGfx.transform.SetParent(transform.parent);
             _dwellGfx.transform.SetSiblingIndex(0);
         }
-        
-   
+
+
+        protected override void DwellActivated()
+        {
+            _currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
+            ChangeToActiveState();
+        }
+
         protected override void ChangeToActiveState()
         {
             base.ChangeToActiveState();
+            DwellGfxImg.color = dwellUnderlineColor;
             SetCanHover(false);
             StartCoroutine(DisplayCaret());
         }
@@ -59,14 +68,14 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         private void MoveCaret()
         {
             if (_currentText.Length > 0)
-                caret.transform.position = _caretPos + new Vector3(tMP.GetRenderedValues(true).x + caretOffset, 0, 0);
-            else caret.transform.position = _caretPos;
+                caret.rectTransform.anchoredPosition = _caretPos + new Vector3(tMP.GetRenderedValues(true).x + caretOffset, 0, 0);
+            else caret.rectTransform.anchoredPosition = _caretPos;
         }
 
         protected override void Update()
         {
             if(_isActive)TextUpdate();
-            
+            base.Update();
         }
         
 
@@ -83,7 +92,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
                 else if ((c == '\n') || (c == '\r')) // enter/return
                 {
                     DeactivateInputField();
-                    print("User entered their name: " + _currentText);
                 }
                 else if(_currentText.Length <= maxNumberCharacters)
                 {
@@ -106,6 +114,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
             DeactivateButton();
             SetCanHover(true);
             caret.gameObject.SetActive(false);
+            ToggleDwellGfx(false);
         }
 
         protected override void StartInteractionCoolDown() { }

@@ -24885,6 +24885,7 @@ MonoBehaviour:
   tMP: {fileID: 494728742}
   caretOffset: 1
   maxNumberCharacters: 20
+  dwellUnderlineColor: {r: 0.21176471, g: 0.6117647, b: 0.6156863, a: 1}
 --- !u!65 &714480701
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65820,6 +65821,7 @@ MonoBehaviour:
   tMP: {fileID: 1358336420933837875}
   caretOffset: 1
   maxNumberCharacters: 20
+  dwellUnderlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1358336420558032426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66672,6 +66674,7 @@ MonoBehaviour:
   tMP: {fileID: 1358336422237867158}
   caretOffset: 1
   maxNumberCharacters: 20
+  dwellUnderlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!65 &1358336421401486989
 BoxCollider:
   m_ObjectHideFlags: 0

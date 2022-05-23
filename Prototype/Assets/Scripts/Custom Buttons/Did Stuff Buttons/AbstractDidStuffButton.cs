@@ -172,9 +172,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 		private GazeAware _gazeAware;
 		protected Camera MainCamera;
-		private static float _dwellTime = 1.0f;
+		internal static float _dwellTime = 1.0f;
 		private static InteractionMethod _interactionMethod = InteractionMethod.Mouse;
-		private float _currentDwellTime = 0.0f;
+		internal float _currentDwellTime = 0.0f;
 		private bool _initialised;
 		private bool _playActivatedScale;
 		private BoxCollider _boxCollider;
@@ -678,7 +678,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		}
 
 		
-		private void DwellActivated()
+		protected virtual void DwellActivated()
 		{
 			StartInteractionCoolDown();
 			_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;

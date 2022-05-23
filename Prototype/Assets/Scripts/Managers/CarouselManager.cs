@@ -32,7 +32,7 @@ namespace Managers {
         [SerializeField] private NavigationVoteSync[] _navigationVoteSyncs;
         public delegate void MoveCarouselAction();
         public static event MoveCarouselAction OnMovedCarousel;
-        private bool alreadyLocallyMovedCarousel; // for multiplayer
+        public bool alreadyLocallyMovedCarousel; // for multiplayer
 
         private EmojiSync _emojiSync;
 
@@ -115,6 +115,12 @@ namespace Managers {
                 animateUIBackward = true;
                 _uiAnimator.SetFloat("SpeedMultiplier", -1.0f);
             }
+            
+            if (!alreadyLocallyMovedCarousel) {
+                foreach (var navsync in _navigationVoteSyncs) {
+                    navsync.ResetVoting();
+                }
+            }
         }
 
         public void Update() {
@@ -191,14 +197,12 @@ namespace Managers {
             */
             print("Local player wants to move forward by " + offset + " - " + forward);
             var newValue = navSync.VotingValue + offset;
-            /*
             if (newValue > 1) {
                 PlayAnimation(forward);
                 // if carousel has moved, invoke the moved carousel event
                 OnMovedCarousel?.Invoke();
                 alreadyLocallyMovedCarousel = true;
             }
-            */
             navSync.ChangeValue((byte) (newValue));
         }
 
@@ -211,9 +215,13 @@ namespace Managers {
             // reset the voting
             // var navSync = forward ? _navigationVoteSyncs[0] : _navigationVoteSyncs[1];
             // navSync.ResetVoting();
-            foreach (var navsync in _navigationVoteSyncs) {
-                navsync.ResetVoting();
+            /*
+            if (!alreadyLocallyMovedCarousel) {
+                foreach (var navsync in _navigationVoteSyncs) {
+                    navsync.ResetVoting();
+                }
             }
+            */
         }
 
         public void SetAnimatorTime() {

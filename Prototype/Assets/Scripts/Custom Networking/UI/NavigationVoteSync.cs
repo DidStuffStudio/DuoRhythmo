@@ -9,6 +9,7 @@ namespace DidStuffLab {
         [SerializeField] private bool forward;
         [SerializeField] private GameObject [] navigationButtonsToasts; // either left or right
         public byte VotingValue => Value.Value;
+        private CarouselManager _carouselManager;
         
         /*
         // show the vote to move toast event
@@ -27,7 +28,9 @@ namespace DidStuffLab {
 
         public void ResetVoting() => ChangeValue(0);
 
-        protected override void Initialize() { }
+        protected override void Initialize() {
+            _carouselManager = MasterManager.Instance.carouselManager;
+        }
 
         [Command(requiresAuthority = false)]
         protected override void CmdUpdateValue(byte newValue) => Value.Value = newValue;
@@ -44,6 +47,7 @@ namespace DidStuffLab {
             if (newValue == 0) {
                 // hide vote toast messages
                 foreach (var nbt in navigationButtonsToasts) nbt.SetActive(false);
+                _carouselManager.alreadyLocallyMovedCarousel = false;
             }
             else if (newValue == 1) {
                 // show vote toast messages

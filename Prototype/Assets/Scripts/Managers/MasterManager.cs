@@ -113,16 +113,30 @@ namespace Managers {
         }
 
         private void InitialisePanels() {
-            if(carouselManager.isSoloMode)carouselManager.panels = new List<GameObject>();
-            for (int i = 0; i < nodePanels.Count; i++) {
-                nodePanels[i].name = "NodesPanel_" + _drumNames[_currentDrumKitIndex][i];
-                effectPanels[i].name = "EffectsPanel_" + _drumNames[_currentDrumKitIndex][i];
-                if(carouselManager.isSoloMode)AddPanelsToCarouselManagerSolo(i);
-                SetUpEffectsManagers(i);
-                StartCoroutine(SetUpNodeManagers(i));
+            carouselManager.panels = new List<GameObject>();
+            if (carouselManager.isSoloMode)
+            {
+                for (int i = 0; i < nodePanels.Count; i++)
+                {
+                    nodePanels[i].name = "NodesPanel_" + _drumNames[_currentDrumKitIndex][i];
+                    effectPanels[i].name = "EffectsPanel_" + _drumNames[_currentDrumKitIndex][i]; 
+                    AddPanelsToCarouselManagerSolo(i);
+                    SetUpEffectsManagers(i);
+                    StartCoroutine(SetUpNodeManagers(i));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < nodePanels.Count; i++)
+                {
+                    nodePanels[i].name = "NodesPanel_" + _drumNames[_currentDrumKitIndex][i];
+                    effectPanels[i].name = "EffectsPanel_" + _drumNames[_currentDrumKitIndex][i];
+                    SetUpEffectsManagers(i);
+                    StartCoroutine(SetUpNodeManagers(i));
+                }
+                AddPanelsToCarouselManagerMulti();
             }
             gameSetUpFinished = true;
-            if(!carouselManager.isSoloMode) AddPanelsToCarouselManagerMulti();
             if(JamSessionDetails.Instance.loadingBeat)JamSessionDetails.Instance.SetLoadedBeat();
             carouselManager.InitialiseBlur();
             carouselManager.ToggleVFX(true);
@@ -136,19 +150,17 @@ namespace Managers {
         }
         private void AddPanelsToCarouselManagerMulti()
         {
-            
-                for (int i = 0; i < nodePanels.Count; i++)
-                {
-                    if (i % 2 == 1) carouselManager.panels[i + 5] = nodePanels[i];
-                    else carouselManager.panels[i] = nodePanels[i];
-                }
+            for (int i = 0; i < nodePanels.Count; i++)
+            {
+                if (i % 2 == 1) carouselManager.panels[i + 5] = nodePanels[i];
+                else carouselManager.panels[i] = nodePanels[i];
+            }
 
-                for (int i = 0; i < effectPanels.Count; i++)
-                {
-                    if (i % 2 == 0) carouselManager.panels[i + 5] = effectPanels[i];
-                    else carouselManager.panels[i] = effectPanels[i];
-                }
-            
+            for (int i = 0; i < effectPanels.Count; i++)
+            {
+                if (i % 2 == 0) carouselManager.panels[i + 5] = effectPanels[i];
+                else carouselManager.panels[i] = effectPanels[i];
+            }
         }
         
         private void SetUpEffectsManagers(int i) {

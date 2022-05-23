@@ -8,6 +8,10 @@ using UnityEngine;
 
 public class InteractionManager : MonoBehaviour
 {
+    private delegate void TobiiEntered();
+    private event TobiiEntered OnTobiiGazeEnter;
+    private delegate void TobiiExited();
+    private event TobiiExited OnTobiiGazeExit;
     private static InteractionManager _instance;
 
     public static InteractionManager Instance
@@ -21,9 +25,16 @@ public class InteractionManager : MonoBehaviour
             return _instance;
         }
     }
-    
-    
+
+    private void OnEnable()
+    {
+        OnTobiiGazeEnter += TobiiHovered;
+        OnTobiiGazeExit += TobiiUnhovered;
+    }
+
+
     [SerializeField] private MainMenuManager _mainMenuManager;
+    private Vector2 _inputPosition = Vector2.zero;
     public InteractionMethod Method
     {
         get => (InteractionMethod)PlayerPrefs.GetInt("InteractionMethod");
@@ -36,6 +47,8 @@ public class InteractionManager : MonoBehaviour
         get => PlayerPrefs.GetFloat("DwellTime");
         set => _dwellTime = value;
     }
+
+    public Vector2 InputPosition => _inputPosition;
 
     private  InteractionMethod _interactionMethod;
     private float _dwellTime = 1.0f;
@@ -62,8 +75,31 @@ public class InteractionManager : MonoBehaviour
             yield return new WaitForSeconds(coolDownTime);
             btn.SetCanHover(true);
         }
+
+        private void Update()
+        {
+            switch (Method)
+            {
+                case InteractionMethod.Mouse:
+                    _inputPosition = Input.mousePosition;
+                    break;
+                case InteractionMethod.MouseDwell:
+                    _inputPosition = Input.mousePosition;
+                    break;
+                case InteractionMethod.Tobii:
+                    _inputPosition = TobiiAPI.GetGazePoint().Screen;
+                    break;
+            }
+        }
         
+        private void TobiiHovered(){}
+        private void TobiiUnhovered(){}
         
+        private void OnDisable()
+        {
+            OnTobiiGazeEnter -= TobiiHovered;
+            OnTobiiGazeExit -= TobiiUnhovered;
+        }
 }
 
 

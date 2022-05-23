@@ -152,7 +152,7 @@ namespace Managers
                 btn.SetActiveColoursExplicit(drumColor, currentDefaultColor);
 
                 n.InitialiseSubNodes();
-                n.SetText(i.ToString());
+                n.SetText((i + 1).ToString());
                 NodeAngles.Add(n.GetAngle());
                 nodes[i].nodeInitialised = true;
             }

@@ -162,7 +162,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     private void MouseInteraction()
     {
         if (Input.GetMouseButtonUp(0)) DeactivateButton();
-        if(_isActive)_currentInputScreenPosition = Input.mousePosition;
+        if (_isActive) _currentInputScreenPosition = InteractionManager.Instance.InputPosition;
     }
 
     protected override void MouseInput()
@@ -173,7 +173,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
 
     private void MouseDwellInteraction()
     {
-        if(_isActive)_currentInputScreenPosition = Input.mousePosition;
+        if(_isActive)_currentInputScreenPosition = InteractionManager.Instance.InputPosition;
         
     }
 

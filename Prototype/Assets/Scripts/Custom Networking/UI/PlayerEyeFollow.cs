@@ -14,9 +14,9 @@ namespace DidStuffLab {
         }
 
         private void Update() {
-            if(_player != null && !_player.isLocalPlayer) return;
+            // if(_player == null || !_player.isLocalPlayer) return;
             var mousePos = Input.mousePosition;
-            mousePos.z = _camera.nearClipPlane * multiplier * -1;
+            mousePos.z = _camera.nearClipPlane * multiplier;
             var mouseWorld = _camera.ScreenToWorldPoint(mousePos);
             transform.position = mouseWorld;
         }

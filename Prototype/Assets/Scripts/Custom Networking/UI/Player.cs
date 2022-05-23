@@ -15,9 +15,6 @@ namespace DidStuffLab {
 
         private Transform _finalDestination;
 
-        [SyncVar(hook = nameof(OnEmojiChanged))]
-        public byte emojiIndex;
-
         private bool _localplayerIsInPosition;
         private float _journeyLength, _startTime;
         [SerializeField] private float positionSpeed = 1.0f;
@@ -49,6 +46,9 @@ namespace DidStuffLab {
         private void Update() {
             if (!isLocalPlayer || !_canStartMoving) return;
             if (!_localplayerIsInPosition) LerpPlayer();
+            if (JamSessionDetails.Instance.otherPlayerEyeFollowTransform) {
+                JamSessionDetails.Instance.otherPlayer.transform.GetChild(1).transform.LookAt(JamSessionDetails.Instance.otherPlayerEyeFollowTransform);
+            }
         }
 
         private void LerpPlayer() {
@@ -79,12 +79,6 @@ namespace DidStuffLab {
             MasterManager.Instance.PlayerReachedDestination();
         }
 
-        private void OnEmojiChanged(byte oldValue, byte newValue) {
-            // if (isLocalPlayer) return;
-            print("New emoji value: " + newValue);
-            // TODO --> Instantiate emoji animation
-        }
-
         protected override void Initialize() {
             _transform = transform;
             _camera = MasterManager.Instance.playerCamera;
@@ -111,6 +105,7 @@ namespace DidStuffLab {
                 _playerPositionSync.SetCorrespondingPosition();
             }
             else {
+                // TODO --> Instantiate appropriate avatar (other user's avatar name)
                 // if its not the local player, then locally instantiate an avatar with the specified avatar name
                 // and make this follow the other players
                 _otherPlayerAvatar = Instantiate(avatarPrefabs[0], JamSessionDetails.Instance.otherPlayer._transform);

@@ -30,7 +30,8 @@ public class JamSessionDetails : MonoBehaviour {
     public string LocalAvatarName { get; set; }
 
     public List<Player> players = new List<Player>();
-    public Player otherPlayer;
+    public Player localPlayer, otherPlayer;
+    public Transform otherPlayerEyeFollowTransform;
 
     public MasterManagerData loadedBeatData;
     public bool loadingBeat { get; set; }
@@ -43,7 +44,18 @@ public class JamSessionDetails : MonoBehaviour {
     
     public void AddPlayer(Player player) {
         players.Add(player);
-        if (!player.isLocalPlayer) otherPlayer = player;
+        if (!player.isLocalPlayer) {
+            otherPlayer = player;
+            var otherPlayerEyeFollow = otherPlayer.transform.GetComponentInChildren<PlayerEyeFollow>();
+            otherPlayerEyeFollowTransform = otherPlayerEyeFollow.transform;
+            otherPlayerEyeFollow.isLocalPlayer = false;
+        }
+        else {
+            localPlayer = player;
+            var localPlayerEyeFollow = localPlayer.transform.GetComponentInChildren<PlayerEyeFollow>();
+            otherPlayerEyeFollowTransform = localPlayerEyeFollow.transform;
+            localPlayerEyeFollow.isLocalPlayer = true;
+        }
     }
 
     public void ClearDetails() {

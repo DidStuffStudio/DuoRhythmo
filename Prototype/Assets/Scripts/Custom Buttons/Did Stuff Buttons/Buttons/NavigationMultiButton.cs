@@ -16,7 +16,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
         protected override void ButtonClicked() {
             base.ButtonClicked();
             _carouselManager.UpdateVoteToMove(_isActive, forward);
-            votedToMove = true;
+            votedToMove = _isActive;
         }
         
         protected override void OnEnable() {
@@ -28,8 +28,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
             if(!votedToMove) return;
             print("Both players have voted to move. Move forward: " + forward);
             // change to inactive state
-            ChangeToInactiveState();
-            ActivatedScaleFeedback();
+            DeactivateButton();
             votedToMove = false;
         }
         

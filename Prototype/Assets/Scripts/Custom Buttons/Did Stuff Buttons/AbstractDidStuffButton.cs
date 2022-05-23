@@ -533,7 +533,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		//Call this if you want to change the state of the button with no events being called. Like if you want to activate a DuoRhythmo drum node from the server.
 		public virtual void ActivateButton() => ToggleButton(true);
 
-		protected void ActivateAndCallEvents() => OnClick?.Invoke();
+		public void ActivateAndCallEvents() => OnClick?.Invoke();
 
 		public virtual void DeactivateButton() => ToggleButton(false);
 

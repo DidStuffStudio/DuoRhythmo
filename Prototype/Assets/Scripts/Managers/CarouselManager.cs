@@ -191,17 +191,20 @@ namespace Managers {
             */
             print("Local player wants to move forward by " + offset + " - " + forward);
             var newValue = navSync.VotingValue + offset;
+            /*
             if (newValue > 1) {
                 PlayAnimation(forward);
                 // if carousel has moved, invoke the moved carousel event
                 OnMovedCarousel?.Invoke();
                 alreadyLocallyMovedCarousel = true;
             }
+            */
             navSync.ChangeValue((byte) (newValue));
         }
 
         private void VotingCompletedFromServer(bool forward) {
             PlayAnimation(forward);
+            print("Play animation to move carousel " + forward);
             // if carousel has moved, invoke the moved carousel event
             OnMovedCarousel?.Invoke();
             

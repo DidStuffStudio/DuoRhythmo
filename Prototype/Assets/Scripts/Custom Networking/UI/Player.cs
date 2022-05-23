@@ -46,7 +46,7 @@ namespace DidStuffLab {
         private void Update() {
             if (!isLocalPlayer || !_canStartMoving) return;
             if (!_localplayerIsInPosition) LerpPlayer();
-            if (JamSessionDetails.Instance.otherPlayerEyeFollowTransform) {
+            if (JamSessionDetails.Instance.otherPlayer && JamSessionDetails.Instance.otherPlayerEyeFollowTransform) {
                 JamSessionDetails.Instance.otherPlayer.transform.GetChild(1).transform.LookAt(JamSessionDetails.Instance.otherPlayerEyeFollowTransform);
             }
         }

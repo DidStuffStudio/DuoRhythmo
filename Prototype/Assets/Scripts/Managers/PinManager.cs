@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Custom_Buttons.Did_Stuff_Buttons.Buttons;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,7 @@ namespace Managers
         [SerializeField] private float lineWidth;
         [SerializeField] private Color lineColor;
         [SerializeField] private Transform parent;
-        [SerializeField] private GameObject linePrefab;
+        [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private MainMenuManager mainMenuManager;
         private List<PasswordButton> _pinButtons = new List<PasswordButton>();
 
@@ -34,10 +35,22 @@ namespace Managers
             pinIntegers.Clear();
         }
 
-        public void SetPinCharacter(int value)
+        public void SetPinCharacter(int value, Vector3 worldPos)
         {
             _currentIndex++;
             pinIntegers.Add(value);
+            if (_currentIndex > 1)
+            {
+                lineRenderer.gameObject.SetActive(true);
+                var positionIndex = _currentIndex + 1;
+                lineRenderer.positionCount = positionIndex;
+                lineRenderer.SetPosition(_currentIndex, worldPos);
+            }
+            else
+            {
+                lineRenderer.positionCount = 1;
+                lineRenderer.SetPosition(0, worldPos);
+            }
         
         }
 

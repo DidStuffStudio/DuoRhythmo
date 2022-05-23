@@ -15,7 +15,7 @@ namespace DidStuffLab {
 
         private void Update() {
             // if(_player == null || !_player.isLocalPlayer) return;
-            var mousePos = Input.mousePosition;
+            Vector3 mousePos = InteractionManager.Instance.InputPosition;
             mousePos.z = _camera.nearClipPlane * multiplier;
             var mouseWorld = _camera.ScreenToWorldPoint(mousePos);
             transform.position = mouseWorld;

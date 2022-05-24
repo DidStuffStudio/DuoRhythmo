@@ -17,11 +17,20 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     public Transform upperLimit, lowerLimit;
     [SerializeField] private RectTransform fillRect;
     [SerializeField] private Image knobBorder;
-    public float currentValue,previousValue;
+
+    private byte _currentValue;
+    public byte CurrentValue {
+        get => _currentValue;
+        private set {
+            _currentValue = value;
+            OnSliderChange?.Invoke(sliderIndex);
+        }
+    }
+
     private Vector3 _currentInputScreenPosition = Vector3.zero;
     private Vector3 desiredY;
     [SerializeField] private EffectsManager _effectsManager;
-    [SerializeField] private float defaultValue = 50;
+    [SerializeField] private byte defaultValue = 50;
     private float _x, _y, _w;
     public bool isBpmSlider;
     private float _lastScreenY, _screenY; 
@@ -61,7 +70,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         OnSliderChange?.Invoke(sliderIndex);
     }
 
-    public void InitialiseBpm(float value)
+    public void InitialiseBpm(byte value)
     {
         SetCurrentValue(value);
         OnSliderChange?.Invoke(sliderIndex);
@@ -73,10 +82,10 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         knobBorder.color = activeColor;
         SetActiveColoursExplicit(activeColor, inactiveColor);
     }
-    public void SetCurrentValue(float value)
+    public void SetCurrentValue(byte value)
     {
-        currentValue = value; 
-        _knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(currentValue, minimumValue, maximumValue, _minValue, _maxValue));
+        CurrentValue = value; 
+        _knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(CurrentValue, minimumValue, maximumValue, _minValue, _maxValue));
         FillSlider();
         UpdateSliderText();
     }
@@ -90,9 +99,10 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
 
     protected override void Update()
     {
+        // if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
         //_screenY = _currentInputScreenPosition.y;
         base.Update();
-        
+
         //if(!IsHover && _isActive) DeactivateButton();
         
         //if (!IsHover || !_isActive) return;
@@ -128,10 +138,10 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
             if (_knobRectTransform.position.y > upperLimit.position.y)
                 _knobRectTransform.position = upperLimit.position;
             
-            currentValue = Map(_knobRectTransform.anchoredPosition.y, _minValue, _maxValue, minimumValue,
+            CurrentValue =  (byte) Map(_knobRectTransform.anchoredPosition.y, _minValue, _maxValue, minimumValue,
                     maximumValue);
                 
-            if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
+        
             //var dist = Vector3.Distance(value, _knobRectTransform.localPosition);
             var dist = Mathf.Abs(Mathf.Abs(value.x) - Mathf.Abs(_knobRectTransform.localPosition.x));
             //if(dist>30) DeactivateButton();
@@ -195,17 +205,21 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     
     private void SliderChanged(int index) {
         UpdateSliderText();
-        if(_effectSync) _effectSync.ChangeValue((byte) currentValue);
-        _effectsManager.SendEffectToAudioManager(sliderIndex, currentValue);
+        if(_effectSync) _effectSync.ChangeValue(CurrentValue);
+        // TODO --> check if it's not the same _effectsync
+        _effectsManager.SendEffectToAudioManager(sliderIndex, CurrentValue);
     }
 
     private void UpdateSliderText() {
-        var value = (int) currentValue;
+        var value = CurrentValue;
         SetText(value.ToString());
     }
 
     public void SetEffectSync(EffectSync effectSync) => this._effectSync = effectSync;
-    public void SetValueFromServer(byte newValue) => SetCurrentValue(newValue);
+    public void SetValueFromServer(byte newValue) {
+        SetCurrentValue(newValue);
+        // TODO --> send to effect manager but dont send back to server
+    }
 
 
     private float Map(float value, float min1, float max1, float min2, float max2) {

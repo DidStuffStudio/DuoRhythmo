@@ -36,7 +36,7 @@ public class SaveBeat : MonoBehaviour
         // Get general info on save data
         int currentDrumIndex = JamSessionDetails.Instance.DrumTypeIndex;
         _masterManagerData.drumIndex = currentDrumIndex;
-        _masterManagerData.BPM = MasterManager.Instance.bpm;
+        _masterManagerData.BPM = MasterManager.Instance.Bpm;
         
         for (int i = 0; i < MasterManager.Instance.nodeManagers.Count; i++)
         {
@@ -66,7 +66,7 @@ public class SaveBeat : MonoBehaviour
             for (int j = 1; j < effectsManagers[i].sliders.Count; j++)
             {
                 _masterManagerData.nodeManagersData[i].sliderValues.Add(new float());
-                _masterManagerData.nodeManagersData[i].sliderValues[j-1] = effectsManagers[i].sliders[j].currentValue;
+                _masterManagerData.nodeManagersData[i].sliderValues[j-1] = effectsManagers[i].sliders[j].CurrentValue;
             }
         }
         

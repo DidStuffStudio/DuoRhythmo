@@ -18,6 +18,8 @@ namespace Managers
         [SerializeField] private List<GameObject> voteSkipToasts = new List<GameObject>();
         private Color drumColor { get; set; }
         private Color defaultColor { get; set; }
+        
+        public bool IsManagerThatChangedBpm { get; private set; } // if it's the one that sent the new effect to the server, then don't update it again
 
         private void Awake()
         {
@@ -26,10 +28,17 @@ namespace Managers
             GetComponentInParent<Canvas>().worldCamera = Camera.main;
         }
 
-        public void SendEffectToAudioManager(int sliderIndex, float value)
-        {
-            if (sliderIndex != 0) MasterManager.Instance.audioManager.SetEffect((int) drumType, sliderIndex, value);
-            else MasterManager.Instance.SetBpm((int) value, this);
+        private void OnEnable() {
+            MasterManager.OnBpmChanged += SetBpmSlider;
+        }
+
+        public void SendEffectToAudioManager(int sliderIndex, float value) {
+            IsManagerThatChangedBpm = true;
+            if (sliderIndex != 0) {
+                MasterManager.Instance.audioManager.SetEffect((int) drumType, sliderIndex, value);
+                IsManagerThatChangedBpm = false;
+            }
+            else MasterManager.Instance.SetBpm((byte) value, this);
         }
 
         public void InitialisePanel(int i, Color defaultCol, Color activeCol, float bpm, int numberOfInstruments)
@@ -64,8 +73,8 @@ namespace Managers
 
         public void ForceSoloOff() => _soloButton.ForceDeactivate();
 
-        public void SetBpmSlider(int value)
-        {
+        public void SetBpmSlider(byte value) {
+            if (IsManagerThatChangedBpm) return; // we don't want to update it again
             sliders[0].SetCurrentValue(value);
         }
 
@@ -73,7 +82,7 @@ namespace Managers
 
         private void InitialiseBpm(float value)
         {
-            sliders[0].InitialiseBpm(value);
+            sliders[0].InitialiseBpm((byte) value);
         }
 
         private void InitialiseSliders()
@@ -84,6 +93,10 @@ namespace Managers
         private float Map(float value, float min1, float max1, float min2, float max2)
         {
             return min2 + (max2 - min2) * ((value - min1) / (max1 - min1));
+        }
+
+        private void OnDisable() {
+            MasterManager.OnBpmChanged -= SetBpmSlider;
         }
     }
 }

@@ -44,7 +44,15 @@ namespace Managers {
 
         public CarouselManager carouselManager;
 
-        public int bpm = 120;
+        private byte _bpm = 120;
+
+        public byte Bpm {
+            get => _bpm;
+            set {
+                _bpm = value;
+                OnBpmChanged?.Invoke(_bpm);
+            }
+        }
 
         [Space] [Header("Player")] public Camera playerCamera;
         
@@ -75,6 +83,10 @@ namespace Managers {
 
         private string[] _drumKitNames = {"Rock drums", "Djembe", "Electronic", "Handpan", "Ambient"};
         private string _currentDrumKitName;
+
+        public delegate void BpmChangedAction(byte newBpm);
+        public static event BpmChangedAction OnBpmChanged;
+        
         private void Awake() {
             if (_instance == null) _instance = this;
         }
@@ -89,7 +101,7 @@ namespace Managers {
             SwitchDrumKits(JamSessionDetails.Instance.DrumTypeIndex);
             Initialise();
         }
-        
+
         public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);
 
         public void PlayerReachedDestination() {
@@ -146,7 +158,7 @@ namespace Managers {
         private void SetUpEffectsManagers(int i) {
             var effectsManager = effectPanels[i].GetComponentInChildren<EffectsManager>();
             effectsManagers.Add(effectsManager);
-            effectsManager.InitialisePanel(i, defaultNodeColors[0], drumColors[i], bpm,numberInstruments);
+            effectsManager.InitialisePanel(i, defaultNodeColors[0], drumColors[i], _bpm,numberInstruments);
         }
 
         private IEnumerator SetUpNodeManagers(int i) {
@@ -181,14 +193,22 @@ namespace Managers {
             }
         }
 
-        public void SetBpm(int value, EffectsManager effectsManager)
+        /// <summary>
+        /// Send the EffectsManager that the new bpm is coming from, so that we don't update it on that one
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="effectsManager"></param>
+        public void SetBpm(byte value, EffectsManager effectsManager)
         {
-            bpm = value;
+            _bpm = value;
+            // TODO --> check current panel, get the effects panel and if it's not equal to null, then don't update the bpm
+            /*
             for (var index = 0; index < nodeManagers.Count; index++)
             {
                 nodeManagers[index].SetBpm(bpm);
                 if(effectsManagers[index] != effectsManager) effectsManagers[index].SetBpmSlider(bpm);
             }
+            */
         }
 
         private IEnumerator WaitToPositionCamera(float time) {

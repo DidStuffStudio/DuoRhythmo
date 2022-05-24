@@ -7,7 +7,7 @@ namespace DidStuffLab {
         protected override void Initialize() {
             _didStuffSliderKnob = GetComponentInParent<DidStuffSliderKnob>();
             _didStuffSliderKnob.SetEffectSync(this);
-            ChangeValue((byte) _didStuffSliderKnob.currentValue);
+            ChangeValue(_didStuffSliderKnob.CurrentValue);
         }
 
         public void ChangeValue(byte newValue) {
@@ -19,7 +19,7 @@ namespace DidStuffLab {
 
         protected override void UpdateValueLocally(byte newValue) {
             base.UpdateValueLocally(newValue);
-            // print("Value has changed from the server: " + newValue);
+            print("Value has changed from the server: " + newValue);
             _didStuffSliderKnob.SetValueFromServer(newValue);
         }
     }

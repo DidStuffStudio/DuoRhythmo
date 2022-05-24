@@ -75,7 +75,11 @@ namespace Managers
 
         private void Start()
         {
-            SetBpm(MasterManager.Instance.bpm);
+            SetBpm(MasterManager.Instance.Bpm);
+        }
+
+        private void OnEnable() {
+            MasterManager.OnBpmChanged += SetBpm;
         }
 
         private void Update()
@@ -170,7 +174,7 @@ namespace Managers
         public void ForceSoloOff() => _soloButton.ForceDeactivate();
 
         
-        public void SetBpm(int newBpm)
+        public void SetBpm(byte newBpm)
         {
             var rpm = (float) newBpm / 4;
             var rps = rpm / 60.0f;
@@ -295,6 +299,10 @@ namespace Managers
                 
                 }
             }
+        }
+
+        private void OnDisable() {
+            MasterManager.OnBpmChanged -= SetBpm;
         }
     }
 }

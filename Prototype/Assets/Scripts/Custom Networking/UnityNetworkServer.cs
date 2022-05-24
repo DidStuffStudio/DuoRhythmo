@@ -15,7 +15,7 @@ namespace PlayFab.Networking {
 
         public int Port = 7777; // overwritten by the code in AgentListener.cs
 
-        public bool isOffline = false; // https://discord.com/channels/343440455738064897/343440455738064897/964186182789513278
+        // public bool isOffline = false; // https://discord.com/channels/343440455738064897/343440455738064897/964186182789513278
 
         public List<UnityNetworkConnection> Connections {
             get { return _connections; }
@@ -32,7 +32,7 @@ namespace PlayFab.Networking {
             Instance = this;
             NetworkServer.RegisterHandler<ReceiveAuthenticateMessage>(OnReceiveAuthenticate);
 
-            if (isOffline) {
+            if (JamSessionDetails.Instance.isSoloMode) {
                 NetworkServer.dontListen = true;
                 StartHost();
             }
@@ -42,6 +42,13 @@ namespace PlayFab.Networking {
             GetComponent<KcpTransport>().Port = (ushort) Port;
             NetworkServer.Listen(maxConnections);
         }
+
+        /*
+         // TODO --> Check if the players go back and there's zero left, should it shut down the server like this?
+        private void OnDisable() {
+            if(numPlayers == 0) OnApplicationQuit();
+        }
+        */
 
         public override void OnApplicationQuit() {
             base.OnApplicationQuit();

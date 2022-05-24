@@ -25,8 +25,14 @@ public class JamSessionDetails : MonoBehaviour {
         }
     }
 
+    // Server details
+    public string ServerIpAddress { get; private set; } = string.Empty;
+    public ushort ServerPort { get; private set; } = ushort.MinValue;
+    
+    
     public int DrumTypeIndex { get; set; }
     public bool isSoloMode { get; set; }
+    public string LocalUsername { get; set; }
     public string LocalAvatarName { get; set; }
 
     public List<Player> players = new List<Player>();
@@ -59,13 +65,20 @@ public class JamSessionDetails : MonoBehaviour {
         LocalAvatarName = "Avatar1";
         players.Clear();
         otherPlayer = null;
+        ServerIpAddress = string.Empty;
+        ServerPort = ushort.MinValue;
     }
     
-    public void SetMultiplayerMatchDetails(string localAvatar, byte drumIndex, string ipAddress, ushort port) {
-        if (SceneManager.GetActiveScene().buildIndex != 0) return;
+    public void SetMultiplayerMatchDetails(string username, string localAvatar, byte drumIndex, string ipAddress, ushort port) {
+        // if (SceneManager.GetActiveScene().buildIndex != 0) return;
+        isSoloMode = false;
+        LocalUsername = username;
         LocalAvatarName = localAvatar;
         DrumTypeIndex = drumIndex;
-        ClientStartup.Instance.SetServerInstanceDetails(ipAddress, port);
+        ServerIpAddress = ipAddress;
+        ServerPort = port;
+        // ClientStartup.Instance.SetServerInstanceDetails(ipAddress, port);
+        SceneManager.LoadScene(1);
     }
 
     public void SetLoadedBeat()

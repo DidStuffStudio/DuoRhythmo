@@ -307,7 +307,7 @@ namespace DidStuffLab {
             
             
              // TODO --> UNCOMMENT ONCE WE HAVE SERVER ALLOCATION ENABLED ON THE MATCHMAKING QUEUE IN PLAYFAB (MAKE SURE THAT BUILD ID IS CORRECT)
-            /*
+            
             var ipAddress = result.ServerDetails.IPV4Address;
             var ports = result.ServerDetails.Ports;
             print("Match ID: " + result.MatchId);
@@ -316,8 +316,8 @@ namespace DidStuffLab {
                 print("Port " + i + " - " + result.ServerDetails.Ports[i]);
             }
             
-            JamSessionDetails.Instance.SetMultiplayerMatchDetails(PlayFabLogin.Instance.UserAvatar, highestChosenDrum, ipAddress, (ushort) ports[0].Num);
-            */
+            JamSessionDetails.Instance.SetMultiplayerMatchDetails(PlayFabLogin.Instance.Username, PlayFabLogin.Instance.UserAvatar, highestChosenDrum, ipAddress, (ushort) ports[0].Num);
+            
         }
 
         // CHRISTIAN NOTE --> I´'m using this method as an attempt to save the ticket ID to the friend's title user data

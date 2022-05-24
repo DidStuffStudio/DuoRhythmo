@@ -8,8 +8,6 @@ using PlayFab.Networking;
 using UnityEngine;
 
 public class ClientStartup : MonoBehaviour {
-    private static ClientStartup _instance;
-    public static ClientStartup Instance => _instance;
     [SerializeField] private string buildId;
     public string BuildId => buildId;
     [SerializeField] private string ipAddress;
@@ -18,7 +16,7 @@ public class ClientStartup : MonoBehaviour {
 
     public string entityId;
 
-#if !UNITY_SERVER
+
     // if the server has been setup by the matchmaking process, I should call this function
     public void SetServerInstanceDetails(string ipAddress, ushort port) {
         this.ipAddress = ipAddress;
@@ -26,9 +24,12 @@ public class ClientStartup : MonoBehaviour {
         ConnectUserToServer();
     }
     
+#if !UNITY_SERVER    
     private void Start() {
         // LoginRemoteUser(); // --> Done after matchmaking via the MatchMaker.cs file
         // ConnectUserToServer();
+        if(!string.IsNullOrEmpty(JamSessionDetails.Instance.ServerIpAddress)) 
+            SetServerInstanceDetails(JamSessionDetails.Instance.ServerIpAddress, JamSessionDetails.Instance.ServerPort);
     }
 #endif
     
@@ -51,7 +52,7 @@ public class ClientStartup : MonoBehaviour {
 
     private void ConnectUserToServer() {
         // if we haven't manually added the IP address then we have to make a request for a multiplayer server - otherwise, we can just connect to the saved one
-        if (ipAddress == "") {
+        if (string.IsNullOrEmpty(ipAddress)) {
             // We need to grab an IP and Port from a server based on the buildId
             RequestMultiplayerServer();
         }
@@ -60,15 +61,17 @@ public class ClientStartup : MonoBehaviour {
         }
     }
 
+    // ref --> https://docs.microsoft.com/en-us/rest/api/playfab/multiplayer/multiplayer-server/request-multiplayer-server?view=playfab-rest
     private void RequestMultiplayerServer() {
         Debug.Log("[ClientStartup].RequestMultiplayerServer");
         RequestMultiplayerServerRequest requestData = new RequestMultiplayerServerRequest {
             BuildId = this.buildId,
             SessionId = System.Guid.NewGuid().ToString(),
-            PreferredRegions = new List<string>() {"NorthEurope"}
+            PreferredRegions = new List<string>() {"NorthEurope", "EastUs"}
         };
         PlayFabMultiplayerAPI.RequestMultiplayerServer(requestData, OnRequestMultiplayerServer,
             OnRequestMultiplayerServerError);
+
     }
     
     private void OnRequestMultiplayerServerError(PlayFabError error) {

@@ -15,7 +15,7 @@ namespace PlayFab.Networking {
 
         public int Port = 7777; // overwritten by the code in AgentListener.cs
 
-        // public bool isOffline = false; // https://discord.com/channels/343440455738064897/343440455738064897/964186182789513278
+        public bool isOffline = false; // https://discord.com/channels/343440455738064897/343440455738064897/964186182789513278
 
         public List<UnityNetworkConnection> Connections {
             get { return _connections; }
@@ -32,7 +32,8 @@ namespace PlayFab.Networking {
             Instance = this;
             NetworkServer.RegisterHandler<ReceiveAuthenticateMessage>(OnReceiveAuthenticate);
 
-            if (JamSessionDetails.Instance.isSoloMode) {
+            if (isOffline) {
+                print("It's in solo mode, so don't listen to the server, and start the server automatically");
                 NetworkServer.dontListen = true;
                 StartHost();
             }

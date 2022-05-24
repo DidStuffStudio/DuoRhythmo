@@ -11,8 +11,9 @@ namespace DidStuffLab {
 
         public override void OnStartClient() {
             base.OnStartClient();
-            _carouselManager = GetComponentInParent<CarouselManager>();
-            _networkAnimator = GetComponentInParent<NetworkAnimator>();
+            _carouselManager = MasterManager.Instance.carouselManager;
+            _networkAnimator = GetComponent<NetworkAnimator>();
+            // _networkAnimator.animator = _carouselManager.GetComponent<Animator>();
             _carouselManager.carouselAnimation = this;
         }
 

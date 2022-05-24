@@ -79,6 +79,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         _knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(currentValue, minimumValue, maximumValue, _minValue, _maxValue));
         FillSlider();
         UpdateSliderText();
+        OnSliderChange?.Invoke(sliderIndex);
     }
 
     

@@ -12,7 +12,7 @@ namespace Editor
         private int _numberOfInstruments = 5, _numberOfNodes = 12, _radiusOfNodeRing = 35;
         private bool _isSoloMode = true;
         private static GameObject _effects, _nodes, _drumNode;
-       
+        [SerializeField] private string[] classicDrumNames = {"Kick", "Snare", "Hi-hat", "Tom", "Crash"};
 
         [MenuItem("Did Stuff/Carousel Designer")]
         static void Init()
@@ -60,22 +60,30 @@ namespace Editor
             masterManager.numberOfNodes = _numberOfNodes;
 
             var rotationValueSolo = Vector3.zero;
-            var counter = 0;
+            var rotationValue = 0f;
+            var constantOffset = 360f / (_numberOfInstruments * 2); //36 degrees
+            bool flipNodes = false;
+            bool flipEffects = true;
+            
             for (var i = 0; i < _numberOfInstruments; i++)
             {
-                var nodePanel = Instantiate(_nodes, Vector3.zero, Quaternion.Euler(_isSoloMode ? rotationValueSolo:(rotationValueSolo*2)));
+                var yNodes = flipNodes ? 180 : 0;
+                var yEffects = flipEffects ? 180 : 0;
+                var rotNodes = Quaternion.Euler(new Vector3(0, rotationValue + (_isSoloMode?0:yNodes), 0));
+                if (_isSoloMode) rotationValue -= constantOffset;
+                var rotEffects = Quaternion.Euler(new Vector3(0, rotationValue + (_isSoloMode?0:yEffects), 0));
+                var nodePanel = Instantiate(_nodes, Vector3.zero, rotNodes);
                 masterManager.nodePanels.Add(nodePanel);
-
-                Debug.Log(masterManager);
                 nodePanel.transform.SetParent(nodesPanelsGo.transform);
-                Debug.Log(nodePanel.transform.childCount);
                 SpawnNodes(nodePanel.transform.GetChild(0), i);
-                if(_isSoloMode)rotationValueSolo += new Vector3(0, 360.0f / (_numberOfInstruments * 2) * -1, 0);
-                var effectPanel = Instantiate(_effects, Vector3.zero, Quaternion.Euler(_isSoloMode ? rotationValueSolo:(rotationValueSolo*2+new Vector3(0,180,0))));
+                var effectPanel = Instantiate(_effects, Vector3.zero, rotEffects);
                 masterManager.effectPanels.Add(effectPanel);
-
                 effectPanel.transform.SetParent(effectsPanelsGo.transform);
-                rotationValueSolo += new Vector3(0, 360.0f / (_numberOfInstruments * 2) * -1, 0);
+                rotationValue -= constantOffset;
+                Debug.Log(rotationValue);
+                if (_isSoloMode) continue;
+                flipNodes = !flipNodes;
+                flipEffects = !flipEffects;
             }
 
         }

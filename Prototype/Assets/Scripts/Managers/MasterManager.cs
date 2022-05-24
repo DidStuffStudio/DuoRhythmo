@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 using Custom_Buttons.Did_Stuff_Buttons;
 using TMPro;
 using UnityEngine;
@@ -86,7 +87,7 @@ namespace Managers {
             _drumNames.Add(3, handpanDrumNames);
             _drumNames.Add(4, ambientDrumNames);
             SwitchDrumKits(JamSessionDetails.Instance.DrumTypeIndex);
-            Initialize();
+            Initialise();
         }
         
         public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);
@@ -97,64 +98,54 @@ namespace Managers {
             //carouselManager.InitialiseBlur();
             //SetExitButtonActive(true);
         }
+        
 
-        private void Initialize() {
-
-            // create the rotations for the panels -->  (360.0f / (numberInstruments * 2) * -1)  degrees difference between each other in the Y axis
-            Vector3[] panelRotations = new Vector3[10]; // number of instruments * 2
-            var rotationValue =
-                360.0f / (numberInstruments * 2) * -1; // if 5 instruments --> 360.0f / (5 * 2) * -1 = -36.0f; 
-            for (int i = 0; i < panelRotations.Length; i++) {
-                panelRotations[i] = new Vector3(0, i * rotationValue, 0);
-            }
-
-            InitialisePanels();
+        private void Initialise() {
+            
             StartCoroutine(WaitToPositionCamera(0.5f));
-        }
-
-        private void InitialisePanels() {
-            carouselManager.panels = new List<GameObject>();
-            if(carouselManager.isSoloMode)carouselManager.panels = new List<GameObject>();
-            for (int i = 0; i < nodePanels.Count; i++)
-            {
-                nodePanels[i].name = "NodesPanel_" + _drumNames[_currentDrumKitIndex][i];
-                effectPanels[i].name = "EffectsPanel_" + _drumNames[_currentDrumKitIndex][i];
-                if (carouselManager.isSoloMode) AddPanelsToCarouselManagerSolo(i);
-                SetUpEffectsManagers(i);
-                StartCoroutine(SetUpNodeManagers(i));
-            }
-
+            if (carouselManager.isSoloMode) carouselManager.panels = new List<GameObject>();
+            InitialisePanels();
             gameSetUpFinished = true;
-            if(!carouselManager.isSoloMode) AddPanelsToCarouselManagerMulti();
             if(JamSessionDetails.Instance.loadingBeat)JamSessionDetails.Instance.SetLoadedBeat();
             carouselManager.InitialiseBlur();
+        }
+
+
+        private void InitialisePanels()
+        {
+            for (var i = 0; i < numberInstruments; i++)
+            {
+                if (carouselManager.isSoloMode)
+                {
+                    carouselManager.panels.Add(nodePanels[i]);
+                    carouselManager.panels.Add(effectPanels[i]);
+                }
+                else
+                {
+                    if (i % 2 == 1)
+                        {
+                            carouselManager.panels[i + 5] = nodePanels[i];
+                            carouselManager.panels[i] = effectPanels[i];
+                        }
+                    else
+                    {
+                            carouselManager.panels[i] = nodePanels[i];
+                            carouselManager.panels[i + 5] = effectPanels[i];
+                        }
+                    
+                }
+                
+                
+                StartCoroutine(SetUpNodeManagers(i));
+                SetUpEffectsManagers(i);
+            }
             carouselManager.ToggleVFX(true);
         }
-
-
-        private void AddPanelsToCarouselManagerSolo(int index)
-        {
-            carouselManager.panels.Add(nodePanels[index]);
-            carouselManager.panels.Add(effectPanels[index]);
-        }
-        private void AddPanelsToCarouselManagerMulti()
-        {
-            for (int i = 0; i < nodePanels.Count; i++)
-            {
-                if (i % 2 == 1) carouselManager.panels[i + 5] = nodePanels[i];
-                else carouselManager.panels[i] = nodePanels[i];
-            }
-
-            for (int i = 0; i < effectPanels.Count; i++)
-            {
-                if (i % 2 == 0) carouselManager.panels[i + 5] = effectPanels[i];
-                else carouselManager.panels[i] = effectPanels[i];
-            }
-        }
+       
         
         private void SetUpEffectsManagers(int i) {
             var effectsManager = effectPanels[i].GetComponentInChildren<EffectsManager>();
-            effectsManagers.Add(effectPanels[i].GetComponentInChildren<EffectsManager>());
+            effectsManagers.Add(effectsManager);
             effectsManager.InitialisePanel(i, defaultNodeColors[0], drumColors[i], bpm,numberInstruments);
         }
 

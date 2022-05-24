@@ -9,6 +9,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
         [SerializeField] private bool forward;
         private bool votedToMove = false;
 
+        [SerializeField] private AbstractDidStuffButton otherButtonToDisable;
+
         private void Start() {
             _carouselManager = MasterManager.Instance.carouselManager;
         }
@@ -17,6 +19,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
             base.ButtonClicked();
             _carouselManager.UpdateVoteToMove(_isActive, forward);
             votedToMove = _isActive;
+            if(otherButtonToDisable._isActive && _isActive) otherButtonToDisable.ClickAndCallEvents();
         }
         
         protected override void OnEnable() {

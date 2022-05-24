@@ -907,6 +907,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   maximumValue: 101
   minimumValue: 0
@@ -1484,6 +1485,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   forward: 1
 --- !u!1 &1666450196720745072
@@ -2032,6 +2034,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   maximumValue: 101
   minimumValue: 0
@@ -2372,6 +2375,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   maximumValue: 200
   minimumValue: 40
@@ -4814,8 +4818,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   forward: 1
+  otherButtonToDisable: {fileID: 7208864470569012720}
 --- !u!1 &4416302100157881116
 GameObject:
   m_ObjectHideFlags: 0
@@ -7422,6 +7428,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!1 &6124250707475325394
 GameObject:
@@ -7898,6 +7905,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   maximumValue: 101
   minimumValue: 0
@@ -8062,6 +8070,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   maximumValue: 101
   minimumValue: 0
@@ -8909,6 +8918,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!1 &7098662053561361655
 GameObject:
@@ -9602,6 +9612,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   forward: 0
 --- !u!1 &7506287803013999655
@@ -10105,8 +10116,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   forward: 0
+  otherButtonToDisable: {fileID: 3587419619260712387}
 --- !u!1 &7557483436481313716
 GameObject:
   m_ObjectHideFlags: 0
@@ -11348,7 +11361,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8367764610189740406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12271,6 +12284,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   drumTypeIndex: 0
 --- !u!1 &9184157667683706397

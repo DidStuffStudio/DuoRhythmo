@@ -10,7 +10,7 @@ namespace DidStuffLab {
 
         protected override void ButtonClicked() {
             base.ButtonClicked();
-            _buttonToTestNavigationVote.ActivateAndCallEvents();
+            _buttonToTestNavigationVote.ClickAndCallEvents();
         }
     }
 }

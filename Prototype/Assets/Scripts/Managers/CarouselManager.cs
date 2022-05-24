@@ -15,7 +15,7 @@ namespace Managers {
         private float _timeLeft = 10.0f;
         private Color _targetVFXColor, _targetSkyColor;
         public VisualEffect _vfx;
-        private int _currentPanel = 0, _lastPanel = 9, _currentPanelBuddy = 5, _lastPanelBuddy = 4;
+        private int _currentPanel = 0, _lastPanel = 0, _currentPanelBuddy = 5, _lastPanelBuddy = 5;
         private static readonly int Tint = Shader.PropertyToID("_Tint");
         public float currentRotationOfUI = 0.0f;
         [SerializeField] private int[] panelsToStartUnblurred = new int[2];
@@ -98,8 +98,9 @@ namespace Managers {
         }
 
         public void PlayAnimation(bool forward) {
-            if (isSoloMode && _currentPanel == _lastPanel) StartCoroutine(IgnoreEvents(0.5f));
-            else if (isSoloMode) StartCoroutine(IgnoreEvents(0.1f));
+            /*if (isSoloMode && _currentPanel == _lastPanel) StartCoroutine(IgnoreEvents(0.5f));
+            else if (isSoloMode) StartCoroutine(IgnoreEvents(0.1f));*/
+            StartCoroutine(IgnoreEvents(0.5f)); //TESTING
             _lastPanel = _currentPanel;
             _lastPanelBuddy = _currentPanelBuddy;
             // TODO --> turn off solo appropriately
@@ -129,7 +130,7 @@ namespace Managers {
             else if (isSoloMode) StartCoroutine(IgnoreEvents(0.1f));
             _lastPanel = _currentPanel;
             _lastPanelBuddy = _currentPanelBuddy;
-            // TODO --> turn off solo appropriately
+            
             if (forward) {
                 if (_currentPanel < panels.Count - 1) _currentPanel++;
                 else _currentPanel = 0;

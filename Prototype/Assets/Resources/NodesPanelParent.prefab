@@ -223,6 +223,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   forward: 1
 --- !u!1 &244046926364969754
@@ -447,6 +448,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!1 &521529314562344950
 GameObject:
@@ -1393,6 +1395,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!1 &1369373322724770723
 GameObject:
@@ -1541,6 +1544,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   drumTypeIndex: 0
 --- !u!1 &1381182349377920416
@@ -2520,6 +2524,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!1 &2699636264272084275
 GameObject:
@@ -2804,8 +2809,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   forward: 0
+  otherButtonToDisable: {fileID: 3474452479089033094}
 --- !u!1 &2856969745435277358
 GameObject:
   m_ObjectHideFlags: 0
@@ -2966,6 +2973,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   duration: 0.75
   targetPosition: {x: 0, y: -12, z: 0}
@@ -3118,6 +3126,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   forward: 0
 --- !u!1 &3138156431988879549
@@ -3552,6 +3561,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   duration: 0.75
   targetPosition: {x: 0, y: 12, z: 0}
@@ -5955,6 +5965,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   euclideanRhythm: {fileID: 8248214353105484814}
   nodeManager: {fileID: 8248214353105484809}
@@ -7209,6 +7220,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!114 &4291937834593584355
 MonoBehaviour:
@@ -8464,8 +8476,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   forward: 1
+  otherButtonToDisable: {fileID: 5179101029648332701}
 --- !u!1 &8407376276114044324
 GameObject:
   m_ObjectHideFlags: 0

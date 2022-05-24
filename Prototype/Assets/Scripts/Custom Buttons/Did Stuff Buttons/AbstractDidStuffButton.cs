@@ -162,7 +162,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		[HideInInspector] public float localDwellTime = 1.0f;
 
 		private bool _mouseHover = false, _canHover = true;
-		protected bool _isActive = false, _isHover, _isDisabled;
+		public bool _isActive = false;
+		protected bool _isHover, _isDisabled;
 		internal Image _mainImage;
 		private Image _iconImage;
 		private Image _dwellGfxImg;
@@ -185,6 +186,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		internal float _originaldwellScaleY = 0;
 		private float _targetX;
 		private float _coolDownTime = 0.5f;
+		private PointerEventData _pointerEventData;
 
 		#endregion
 
@@ -533,7 +535,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		//Call this if you want to change the state of the button with no events being called. Like if you want to activate a DuoRhythmo drum node from the server.
 		public virtual void ActivateButton() => ToggleButton(true);
 
-		public void ActivateAndCallEvents() => OnClick?.Invoke();
+		public void ClickAndCallEvents() => OnClick?.Invoke();
 
 		public virtual void DeactivateButton() => ToggleButton(false);
 
@@ -619,7 +621,13 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected virtual void MouseInput()
 		{
-			if (IsHover && Input.GetMouseButtonUp(0)) OnClick?.Invoke();
+			if (IsHover && Input.GetMouseButtonUp(0))
+			{
+				OnClick?.Invoke();
+				OnPointerExit(new PointerEventData(EventSystem.current));
+			}
+			//EventSystem'
+			
 		}
 
 		private void MouseHover()
@@ -754,6 +762,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
   
 		public void OnPointerExit(PointerEventData eventData)
 		{
+			_pointerEventData = eventData;
 			if (IsDisabled) return;
 			IsHover = false;
 			OnUnHover?.Invoke();

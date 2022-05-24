@@ -15,10 +15,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
 
         protected override void ButtonClicked() {
             base.ButtonClicked();
-            print("Clicked");
             _carouselManager.PlayAnimation(forward);
+            
         }
-        
     }
 }
 

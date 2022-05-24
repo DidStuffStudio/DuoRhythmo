@@ -25,16 +25,12 @@ namespace Managers {
 
         [SerializeField] private ForwardRendererData _forwardRenderer;
         private bool isRenderingAPanel = false;
-        private bool animateUIBackward = false;
-        public bool ignoreEvents;
         public bool justJoined;
         public bool isSoloMode = false;
 
         [SerializeField] private NavigationVoteSync[] _navigationVoteSyncs;
         public delegate void MoveCarouselAction();
         public static event MoveCarouselAction OnMovedCarousel;
-        public bool alreadyLocallyMovedCarousel; // for multiplayer
-        public CarouselAnimation carouselAnimation;
 
         private EmojiSync _emojiSync;
 
@@ -54,17 +50,12 @@ namespace Managers {
         
         private void OnEnable() {
             _forwardRenderer.rendererFeatures[0].SetActive(true);
-            NavigationVoteSync.OnVotingCompletedFromServerAction += VotingCompletedFromServer;
         }
 
         private void Start() {
             _vfx.transform.gameObject.SetActive(false);
             _targetVFXColor = MasterManager.Instance.drumColors[0];
-            _uiAnimator = GetComponent<Animator>();
             if (justJoined) return;
-            _uiAnimator.Play("Rotation", 0, currentRotationOfUI);
-            _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
-            carouselAnimation = GetComponent<CarouselAnimation>();
         }
 
         public void InitialiseBlur() {
@@ -82,52 +73,34 @@ namespace Managers {
             _vfx.transform.gameObject.SetActive(activate);
         }
 
-        public void SetUpRotationForNewPlayer(float time) {
-            _uiAnimator.Play("Rotation", 0, time - (int) time);
-            _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
-            currentRotationOfUI = time - (int) time;
-            justJoined = false;
-        }
-
         public void PauseAnimation() {
-            if (ignoreEvents) return;
+            print("Pause animation");
             MasterManager.Instance.ForceSoloOffGlobal();
             BlurBackground();
-            _uiAnimator.SetFloat("SpeedMultiplier", 0.0f);
-            SetAnimatorTime();
         }
 
-        public void PlayAnimation(bool forward) {
-            /*if (isSoloMode && _currentPanel == _lastPanel) StartCoroutine(IgnoreEvents(0.5f));
-            else if (isSoloMode) StartCoroutine(IgnoreEvents(0.1f));*/
-            StartCoroutine(IgnoreEvents(0.5f)); //TESTING
+        public void BlurSolo(bool forward) {
             _lastPanel = _currentPanel;
             _lastPanelBuddy = _currentPanelBuddy;
-            // TODO --> turn off solo appropriately
             if (forward) {
                 if (_currentPanel < panels.Count - 1) _currentPanel++;
                 else _currentPanel = 0;
-                if (_currentPanelBuddy < panels.Count - 1) _currentPanelBuddy++;
-                else _currentPanelBuddy = 0;
-                _uiAnimator.SetFloat("SpeedMultiplier", 1.0f);
             }
             else {
                 if (_currentPanel > 0) _currentPanel--;
                 else _currentPanel = panels.Count - 1;
-                if (_currentPanelBuddy > 0) _currentPanelBuddy--;
-                else _currentPanelBuddy = panels.Count - 1;
-                animateUIBackward = true;
-                _uiAnimator.SetFloat("SpeedMultiplier", -1.0f);
             }
         }
 
-        public void PlayAnimationFromServer(NetworkAnimator networkAnimator, bool forward) {
-            if (networkAnimator == null) {
-                Debug.LogError("Network animator is null");
-                return;
-            }
-            if (isSoloMode && _currentPanel == _lastPanel) StartCoroutine(IgnoreEvents(0.5f));
-            else if (isSoloMode) StartCoroutine(IgnoreEvents(0.1f));
+        public void SwapBlurForPlayer(int current, int last, int currentBuddy, int lastBuddy) {
+            _currentPanel = current;
+            _lastPanel = last;
+            _currentPanelBuddy = currentBuddy;
+            _lastPanelBuddy = lastBuddy;
+        }
+
+        public void BlurFromServer(bool forward) {
+            // TODO --> when player swaps position --> currentPosition = 5, lastPosition = 5, currentBuddyPos = 0, lastBuddyPos = 0
             _lastPanel = _currentPanel;
             _lastPanelBuddy = _currentPanelBuddy;
             
@@ -136,15 +109,12 @@ namespace Managers {
                 else _currentPanel = 0;
                 if (_currentPanelBuddy < panels.Count - 1) _currentPanelBuddy++;
                 else _currentPanelBuddy = 0;
-                networkAnimator.animator.SetFloat("SpeedMultiplier", 1.0f);
             }
             else {
                 if (_currentPanel > 0) _currentPanel--;
                 else _currentPanel = panels.Count - 1;
                 if (_currentPanelBuddy > 0) _currentPanelBuddy--;
                 else _currentPanelBuddy = panels.Count - 1;
-                animateUIBackward = true;
-                networkAnimator.animator.SetFloat("SpeedMultiplier", -1.0f);
             }
 
             foreach (var navsync in _navigationVoteSyncs) {
@@ -155,7 +125,8 @@ namespace Managers {
         }
 
         public void Update() {
-            if (!MasterManager.Instance.gameSetUpFinished) return;
+            if(CarouselLerpMove.Instance != null) transform.rotation = CarouselLerpMove.Instance.transform.rotation;
+            if (!MasterManager.Instance.gameSetUpFinished || !isSoloMode) return;
             if (_timeLeft <= Time.deltaTime) {
                 // transition complete
                 // assign the target color
@@ -217,64 +188,22 @@ namespace Managers {
             }
         }
 
-        public void UpdateVoteToMove(bool activate, bool forward) {
+        public void UpdateVoteToMoveToServer(bool activate, bool forward) {
             var navSync = forward ? _navigationVoteSyncs[0] : _navigationVoteSyncs[1];
             var offset = (activate ? 1 : -1);
-            /*
-            if (offset < 0 || alreadyLocallyMovedCarousel) {
-                alreadyLocallyMovedCarousel = false;
-                return;
-            }
-            */
             print("Local player wants to move forward by " + offset + " - " + forward);
             var newValue = navSync.VotingValue + offset;
             if (newValue > 1) {
-                // tell the server to play move carousel animation
-                carouselAnimation.UpdateAnimator(forward);
-                /*
-                PlayAnimation(forward);
-                */
-                // if carousel has moved, invoke the moved carousel event
-                // OnMovedCarousel?.Invoke();
-                // alreadyLocallyMovedCarousel = true;
+                // tell the server to lerp move the carousel
+                CarouselLerpMove.Instance.UpdateLerpMoveRotation(forward);
             }
             else navSync.ChangeValue((byte) (newValue));
         }
-
-        private void VotingCompletedFromServer(bool forward) {
-            // PlayAnimation(forward);
-            // print("Play animation to move carousel " + forward);
-            // if carousel has moved, invoke the moved carousel event
-            // OnMovedCarousel?.Invoke();
-            
-            // reset the voting
-            // var navSync = forward ? _navigationVoteSyncs[0] : _navigationVoteSyncs[1];
-            // navSync.ResetVoting();
-            /*
-            if (!alreadyLocallyMovedCarousel) {
-                foreach (var navsync in _navigationVoteSyncs) {
-                    navsync.ResetVoting();
-                }
-            }
-            */
-        }
-
-        public void SetAnimatorTime() {
-            // set animation time when new player joins
-        }
-
-        private IEnumerator IgnoreEvents(float ignoreTime) {
-            ignoreEvents = true;
-            yield return new WaitForSeconds(ignoreTime);
-            ignoreEvents = false;
-        }
-
 
         public void OpenFeedbackSite() => Application.OpenURL("https://duorhythmo.frill.co/b/zv9dw6m1/feature-ideas");
 
         private void OnDisable() {
             _forwardRenderer.rendererFeatures[0].SetActive(false);
-            NavigationVoteSync.OnVotingCompletedFromServerAction -= VotingCompletedFromServer;
         }
     }
 }

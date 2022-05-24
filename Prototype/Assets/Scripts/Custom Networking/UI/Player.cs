@@ -40,6 +40,7 @@ namespace DidStuffLab {
             _swapSides = true;
             _localplayerIsInPosition = false;
             MasterManager.Instance.destinationTransform.parent.Rotate(0, 180, 0);
+            MasterManager.Instance.carouselManager.SwapBlurForPlayer(5, 5, 0, 0);
             // _finalDestination = MasterManager.Instance.oppositeDestinationTransform;
             foreach (var spawner in MasterManager.Instance.carouselManager.emojiSpawners) {
                 spawner.transform.RotateAround(Vector3.zero, Vector3.up, 180);

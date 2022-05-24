@@ -147,7 +147,6 @@ namespace Managers {
                     
                 }
                 
-                
                 StartCoroutine(SetUpNodeManagers(i));
                 SetUpEffectsManagers(i);
             }
@@ -158,6 +157,7 @@ namespace Managers {
         private void SetUpEffectsManagers(int i) {
             var effectsManager = effectPanels[i].GetComponentInChildren<EffectsManager>();
             effectsManagers.Add(effectsManager);
+            effectPanels[i].name = "EffectsPanel_" + _drumNames[_currentDrumKitIndex][i].ToString();
             effectsManager.InitialisePanel(i, defaultNodeColors[0], drumColors[i], _bpm,numberInstruments);
         }
 
@@ -165,6 +165,7 @@ namespace Managers {
             while (!audioManager.setUp) yield return new WaitForEndOfFrame(); // TODO --> Make the player wait in place until this is set up
             var nodeManager = nodePanels[i].GetComponentInChildren<NodeManager>();
             nodeManagers.Add(nodeManager);
+            nodePanels[i].name = "NodesPanel_" + _drumNames[_currentDrumKitIndex][i].ToString();
             var clips = audioManager.SampleDictionary[_currentDrumKitIndex];
             var mixGroup = audioManager.mixers[i];
             nodeManager.InitialisePanel(i, clips, mixGroup, defaultNodeColors, drumColors[i], numberOfNodes);
@@ -191,24 +192,6 @@ namespace Managers {
             foreach (var nodeManager in nodeManagers) {
                 nodeManager.SetSubNode(node, activated, nodeManagerSubNodeIndex);
             }
-        }
-
-        /// <summary>
-        /// Send the EffectsManager that the new bpm is coming from, so that we don't update it on that one
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="effectsManager"></param>
-        public void SetBpm(byte value, EffectsManager effectsManager)
-        {
-            _bpm = value;
-            // TODO --> check current panel, get the effects panel and if it's not equal to null, then don't update the bpm
-            /*
-            for (var index = 0; index < nodeManagers.Count; index++)
-            {
-                nodeManagers[index].SetBpm(bpm);
-                if(effectsManagers[index] != effectsManager) effectsManagers[index].SetBpmSlider(bpm);
-            }
-            */
         }
 
         private IEnumerator WaitToPositionCamera(float time) {

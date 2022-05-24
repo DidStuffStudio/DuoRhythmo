@@ -11,7 +11,8 @@ namespace DidStuffLab {
         }
 
         public void ChangeValue(byte newValue) {
-            if (Value.Value != newValue) SendToServer(newValue);
+            if (Value.Value == newValue) return;
+            SendToServer(newValue);
         }
 
         [Command(requiresAuthority = false)]
@@ -19,7 +20,7 @@ namespace DidStuffLab {
 
         protected override void UpdateValueLocally(byte newValue) {
             base.UpdateValueLocally(newValue);
-            print("Value has changed from the server: " + newValue);
+            // print("Value has changed from the server: " + newValue);
             _didStuffSliderKnob.SetValueFromServer(newValue);
         }
     }

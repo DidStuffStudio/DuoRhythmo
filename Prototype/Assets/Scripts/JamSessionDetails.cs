@@ -104,7 +104,7 @@ public class JamSessionDetails : MonoBehaviour {
             effectsManagers.Add(MasterManager.Instance.effectsManagers[i]);
         }
 
-        masterManager.Bpm = (byte) loadedBeatData.BPM;
+        MasterManager.Instance.Bpm = (byte) loadedBeatData.BPM;
         
         // Same as in SaveIntoJson just in reverse
         for (int i = 0; i < MasterManager.Instance.nodeManagers.Count; i++)

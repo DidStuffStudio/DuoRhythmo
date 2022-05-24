@@ -35,7 +35,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     public bool isBpmSlider;
     private float _lastScreenY, _screenY; 
     private RectTransform parentCanvas;
-
+    
     [SerializeField] private float distanceToDeactivate = 10.0f;
     //Events
     public delegate void SliderChangeAction(int index);
@@ -82,15 +82,17 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
         knobBorder.color = activeColor;
         SetActiveColoursExplicit(activeColor, inactiveColor);
     }
-    public void SetCurrentValue(byte value)
-    {
-        CurrentValue = value; 
+    public void SetCurrentValue(byte value) {
+        CurrentValue = value;
+        if (sliderIndex == 0) MasterManager.Instance.Bpm = CurrentValue;
+        UpdateSliderUi();
+    }
+
+    public void UpdateSliderUi() {
         _knobRectTransform.anchoredPosition = new Vector2(0.0f, Map(CurrentValue, minimumValue, maximumValue, _minValue, _maxValue));
         FillSlider();
         UpdateSliderText();
     }
-
-    
 
     private void FillSlider()
     {
@@ -99,8 +101,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
 
     protected override void Update()
     {
-        // if (!Mathf.Approximately(currentValue, previousValue)) OnSliderChange?.Invoke(sliderIndex);
-        //_screenY = _currentInputScreenPosition.y;
+        if (sliderIndex == 0) CurrentValue = MasterManager.Instance.Bpm;
         base.Update();
 
         //if(!IsHover && _isActive) DeactivateButton();
@@ -148,7 +149,6 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
             if(dist>distanceToDeactivate && (InteractionManager.Instance.Method != InteractionMethod.Mouse || InteractionManager.Instance.Method != InteractionMethod.Touch)) DeactivateButton();
             print(InteractionManager.Instance.Method);    
             FillSlider();
-            
     }
 
     protected override void ChangeToActiveState()
@@ -206,7 +206,6 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     private void SliderChanged(int index) {
         UpdateSliderText();
         if(_effectSync) _effectSync.ChangeValue(CurrentValue);
-        // TODO --> check if it's not the same _effectsync
         _effectsManager.SendEffectToAudioManager(sliderIndex, CurrentValue);
     }
 
@@ -216,10 +215,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     }
 
     public void SetEffectSync(EffectSync effectSync) => this._effectSync = effectSync;
-    public void SetValueFromServer(byte newValue) {
-        SetCurrentValue(newValue);
-        // TODO --> send to effect manager but dont send back to server
-    }
+    public void SetValueFromServer(byte newValue) => SetCurrentValue(newValue);
 
 
     private float Map(float value, float min1, float max1, float min2, float max2) {

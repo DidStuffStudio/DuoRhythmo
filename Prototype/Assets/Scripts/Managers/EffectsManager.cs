@@ -19,8 +19,6 @@ namespace Managers
         private Color drumColor { get; set; }
         private Color defaultColor { get; set; }
         
-        public bool IsManagerThatChangedBpm { get; private set; } // if it's the one that sent the new effect to the server, then don't update it again
-
         private void Awake()
         {
             sliders = GetComponentsInChildren<DidStuffSliderKnob>().ToList();
@@ -28,17 +26,10 @@ namespace Managers
             GetComponentInParent<Canvas>().worldCamera = Camera.main;
         }
 
-        private void OnEnable() {
-            MasterManager.OnBpmChanged += SetBpmSlider;
-        }
+        // private void OnEnable() => MasterManager.OnBpmChanged += SetBpmSlider;
 
-        public void SendEffectToAudioManager(int sliderIndex, float value) {
-            IsManagerThatChangedBpm = true;
-            if (sliderIndex != 0) {
-                MasterManager.Instance.audioManager.SetEffect((int) drumType, sliderIndex, value);
-                IsManagerThatChangedBpm = false;
-            }
-            else MasterManager.Instance.SetBpm((byte) value, this);
+        public void SendEffectToAudioManager(int sliderIndex, byte value) {
+            if (sliderIndex != 0) MasterManager.Instance.audioManager.SetEffect((int) drumType, sliderIndex, value);
         }
 
         public void InitialisePanel(int i, Color defaultCol, Color activeCol, float bpm, int numberOfInstruments)
@@ -52,12 +43,6 @@ namespace Managers
             if (i == numberOfInstruments - 1) InitialiseBpm(bpm);
         }
 
-        public void EnableToasts(int index, bool enable) => voteSkipToasts[index].SetActive(enable);
-        public void DisableAllToasts()
-        {
-            foreach (var toast in voteSkipToasts) toast.SetActive(false);
-        }
-        
         private void SetUpNamesAndColours()
         {
             panelTitle.color = drumColor;
@@ -73,9 +58,10 @@ namespace Managers
 
         public void ForceSoloOff() => _soloButton.ForceDeactivate();
 
-        public void SetBpmSlider(byte value) {
-            if (IsManagerThatChangedBpm) return; // we don't want to update it again
-            sliders[0].SetCurrentValue(value);
+        private void SetBpmSlider(byte value) {
+            print("Change the bpm slider ui " + transform.parent.name);
+            // sliders[0].UpdateSliderUi(); // we only want to change the UI of the slider, because the BPM is global in MasterManager
+            // sliders[0].SetCurrentValue(value);
         }
 
         private void InitialiseSoloButton() => _soloButton.drumTypeIndex = (int) drumType;
@@ -95,8 +81,6 @@ namespace Managers
             return min2 + (max2 - min2) * ((value - min1) / (max1 - min1));
         }
 
-        private void OnDisable() {
-            MasterManager.OnBpmChanged -= SetBpmSlider;
-        }
+        // private void OnDisable() => MasterManager.OnBpmChanged -= SetBpmSlider;
     }
 }

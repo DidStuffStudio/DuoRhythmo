@@ -150,7 +150,7 @@ public class InteractionManager : MonoBehaviour
             {
                 ExecuteEvents.Execute (_lastHitButton.gameObject,  m_PointerEventData, ExecuteEvents.pointerExitHandler);
             }
-        }
+        } // Raycast to the main menu in the scene //settings and back button need a raycast too
 
         public void SetNewGraphicsRaycaster(GraphicRaycaster raycaster)
         {

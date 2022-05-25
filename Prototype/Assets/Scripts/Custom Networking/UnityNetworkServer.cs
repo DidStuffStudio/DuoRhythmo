@@ -32,7 +32,7 @@ namespace PlayFab.Networking {
             Instance = this;
             NetworkServer.RegisterHandler<ReceiveAuthenticateMessage>(OnReceiveAuthenticate);
 
-            if (isOffline) {
+            if (JamSessionDetails.Instance.isSoloMode) {
                 print("It's in solo mode, so don't listen to the server, and start the server automatically");
                 NetworkServer.dontListen = true;
                 StartHost();

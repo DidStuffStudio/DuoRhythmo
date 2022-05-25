@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using TMPro;
@@ -264,7 +265,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 		protected virtual void Awake()
 		{
-			SetInteractionMethod(InteractionManager.Instance.Method);
+			
 			_mainImage = GetComponent<Image>();
 			_gazeAware = GetComponent<GazeAware>();
 			MainCamera = Camera.main;
@@ -273,7 +274,24 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_originaldwellScaleY = _dwellGfx.localScale.y;
 			if (!customHoverColours) SetAutomaticColours();
 			else SetColours();
+			
+			var boxCollider = GetComponent<BoxCollider>();
+			if (boxCollider != null)
+			{
+				_isSquare = true;
+				_boxCollider = GetComponent<BoxCollider>();
+			}
+			else _sphereCollider = GetComponent<SphereCollider>();
+			
+			SetScaleOfChildren();
+			ToggleDwellGfx(false);
+			ChangeToInactiveState();
+			if(startDisabled) DisableButton();
+		}
 
+		protected virtual void Start()
+		{
+			SetInteractionMethod(InteractionManager.Instance.Method);
 			if (GetInteractionMethod == InteractionMethod.Tobii ||
 			    GetInteractionMethod == InteractionMethod.MouseDwell) _provideDwellFeedbackGlobal = true;
 			else _provideDwellFeedbackGlobal = false;
@@ -285,24 +303,10 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 			DwellTime = InteractionManager.Instance.DwellTime != 0.0f ? InteractionManager.Instance.DwellTime : 1.0f;
 			_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
-			var boxCollider = GetComponent<BoxCollider>();
-			if (boxCollider != null)
-			{
-				_isSquare = true;
-				_boxCollider = GetComponent<BoxCollider>();
-			}
-			else _sphereCollider = GetComponent<SphereCollider>();
-
-
-			
 			
 			if (GetInteractionMethod != InteractionMethod.Tobii) ActivateCollider(false);
-			SetScaleOfChildren();
-			ToggleDwellGfx(false);
 			if (dwellScaleX) _dwellGfx.localScale = new Vector3(0.0f, _originaldwellScaleY, 1);
 			else _dwellGfx.localScale = zero;
-			ChangeToInactiveState();
-			if(startDisabled) DisableButton();
 		}
 
 		protected virtual void SetScaleOfChildren()
@@ -441,8 +445,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				IsHover = false;
 				InteractionManager.Instance.JustInteracted(this, CoolDownTime);
 			}
-			
-			//Todo --> (I put the arrows because I need you help motherfucker) FIND A WAY TO FORCE MOUSE EXIT IN POINTER HANDLER
+			ExecuteEvents.Execute (gameObject, new PointerEventData (EventSystem.current), ExecuteEvents.pointerExitHandler);
 		}
 
 		private void ButtonHovered()
@@ -461,7 +464,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 						MouseHover();
 						break;
 					case InteractionMethod.Tobii:
-						if (!TobiiAPI.IsConnected) return;
 						if(!_dwelling)_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
 						ToggleDwellGfx(true);
 						break;
@@ -482,7 +484,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 						MouseHover();
 						break;
 					case InteractionMethod.Tobii:
-						if (!TobiiAPI.IsConnected) return;
 						_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
 						ToggleDwellGfx(true);
 						break;
@@ -498,13 +499,11 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if(!interactionSetting){switch (GetInteractionMethod)
 			{
 				case InteractionMethod.MouseDwell:
-					
 					break;
 				case InteractionMethod.Mouse:
 					MouseUnHover();
 					break;
 				case InteractionMethod.Tobii:
-					
 					break;
 				case InteractionMethod.Touch:
 					break;
@@ -514,13 +513,11 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				switch (localInteractionMethod)
 				{
 					case InteractionMethod.MouseDwell:
-						
 						break;
 					case InteractionMethod.Mouse:
 						MouseUnHover();
 						break;
 					case InteractionMethod.Tobii:
-						
 						break;
 					case InteractionMethod.Touch:
 						break;
@@ -621,13 +618,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected virtual void MouseInput()
 		{
-			if (IsHover && Input.GetMouseButtonUp(0))
-			{
-				OnClick?.Invoke();
-				OnPointerExit(new PointerEventData(EventSystem.current));
-			}
-			//EventSystem'
-			
+			if (IsHover && Input.GetMouseButtonUp(0)) OnClick?.Invoke();
 		}
 
 		private void MouseHover()
@@ -754,14 +745,31 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		public void OnPointerEnter(PointerEventData eventData)
 		{
+			if (eventData.pointerId == 1)
+			{
+				Debug.Log("Hovered with Tobii");
+				if (localInteractionMethod != InteractionMethod.Tobii && 
+				    _interactionMethod != InteractionMethod.Tobii)
+					return;
+			}
+			else if (eventData.pointerId < 0)
+			{
+				Debug.Log("Hovered with Mouse");
+				if (localInteractionMethod != InteractionMethod.MouseDwell &&
+				    _interactionMethod != InteractionMethod.MouseDwell)
+					return;
+			}
+			
 			if (IsDisabled) return;
-			if(!_canHover || localInteractionMethod == InteractionMethod.Tobii|| _interactionMethod == InteractionMethod.Tobii) return;
+			if(!_canHover) return;
 			IsHover = true;
 			OnHover?.Invoke();
 		}
   
 		public void OnPointerExit(PointerEventData eventData)
 		{
+			if(eventData.pointerId == 1) Debug.Log("UnHovered with Tobii");
+			else Debug.Log("UnHovered with Mouse");
 			_pointerEventData = eventData;
 			if (IsDisabled) return;
 			IsHover = false;

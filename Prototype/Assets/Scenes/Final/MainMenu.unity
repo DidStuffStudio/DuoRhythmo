@@ -164,8 +164,11 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 292821739}
+  initialised: 1
+  interactionManager: {fileID: 1143099682}
 --- !u!1 &11298758
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +568,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 13
@@ -665,6 +669,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!65 &24123066
 BoxCollider:
@@ -1069,8 +1074,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 513689453}
+  initialised: 0
 --- !u!114 &30824642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1364,8 +1371,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 3315310027343783678}
+  initialised: 0
 --- !u!65 &31632871
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1514,8 +1523,11 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 179717812}
+  initialised: 0
+  interactionManager: {fileID: 1143099682}
 --- !u!65 &34273897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2022,6 +2034,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!1 &50076441
 GameObject:
@@ -2274,8 +2287,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 3315310028138466443}
+  initialised: 0
 --- !u!114 &54950073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3274,6 +3289,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 2
 --- !u!1 &120514958
@@ -3456,8 +3472,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 513689453}
+  initialised: 0
 --- !u!114 &121138745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4175,6 +4193,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 13
@@ -4346,6 +4365,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: -1
@@ -5339,6 +5359,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 1
 --- !u!1 &230261022
@@ -5425,8 +5446,11 @@ MonoBehaviour:
   dwellTimeSetting: 1
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
+  initialised: 0
+  interactionManager: {fileID: 1143099682}
 --- !u!114 &230261025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5839,6 +5863,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 3
 --- !u!1 &270201445
@@ -6230,6 +6255,81 @@ MeshRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &278012264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 278012265}
+  - component: {fileID: 278012267}
+  - component: {fileID: 278012266}
+  m_Layer: 9
+  m_Name: GazeSignifier
+  m_TagString: GazeSignifier
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &278012265
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278012264}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 530605013}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &278012266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278012264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: cc974094faec4c84492f665fe99ac921, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &278012267
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278012264}
+  m_CullTransparentMesh: 1
 --- !u!1 &280825588
 GameObject:
   m_ObjectHideFlags: 0
@@ -6559,8 +6659,11 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 2
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 179717812}
+  initialised: 0
+  interactionManager: {fileID: 1143099682}
 --- !u!65 &282478008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6606,8 +6709,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a8d33a37be8e2d4aa55d19fb3ef6c50, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 54b424edfa2a1a14bb053658b31ddde4, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6810,6 +6913,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: -1
@@ -6947,8 +7051,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 513689453}
+  initialised: 0
 --- !u!114 &300271435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7214,6 +7320,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 2
 --- !u!114 &304510208
@@ -7584,6 +7691,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!65 &314851784
 BoxCollider:
@@ -7688,6 +7796,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 5
 --- !u!1 &323244154
@@ -7933,6 +8042,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!114 &330825138
 MonoBehaviour:
@@ -8582,6 +8692,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: -1
@@ -8820,8 +8931,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1189882775}
+  initialised: 0
 --- !u!114 &356307960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10191,6 +10304,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 8
 --- !u!1 &420538446
@@ -10817,6 +10931,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 9
 --- !u!114 &427816346
@@ -11277,8 +11392,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 513689453}
+  initialised: 0
 --- !u!114 &441399952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11418,8 +11535,11 @@ MonoBehaviour:
   dwellTimeSetting: 1
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
+  initialised: 0
+  interactionManager: {fileID: 1143099682}
 --- !u!1 &453481942
 GameObject:
   m_ObjectHideFlags: 0
@@ -11888,6 +12008,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 5
 --- !u!1 &473031063
@@ -12188,6 +12309,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 9
@@ -13655,6 +13777,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 18
@@ -14133,6 +14256,7 @@ RectTransform:
   - {fileID: 2772239876077041213}
   - {fileID: 546560560}
   - {fileID: 1805362548}
+  - {fileID: 278012265}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14465,6 +14589,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!65 &536958803
 BoxCollider:
@@ -14613,6 +14738,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 8
 --- !u!114 &538284879
@@ -15044,6 +15170,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!1 &544226156
 GameObject:
@@ -15275,6 +15402,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: -1
@@ -15382,6 +15510,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 4
@@ -16204,8 +16333,11 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 179717812}
+  initialised: 0
+  interactionManager: {fileID: 1143099682}
 --- !u!65 &586592641
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16508,8 +16640,11 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 292821739}
+  initialised: 1
+  interactionManager: {fileID: 1143099682}
 --- !u!1 &596152178
 GameObject:
   m_ObjectHideFlags: 0
@@ -16910,6 +17045,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!1 &604011488
 GameObject:
@@ -18125,6 +18261,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 19
@@ -18317,6 +18454,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 19
@@ -24320,8 +24458,11 @@ MonoBehaviour:
   dwellTimeSetting: 1
   localInteractionMethod: 0
   localDwellTime: 0.75
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
+  initialised: 0
+  interactionManager: {fileID: 1143099682}
 --- !u!114 &693999341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24469,8 +24610,11 @@ MonoBehaviour:
   dwellTimeSetting: 1
   localInteractionMethod: 0
   localDwellTime: 0.5
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
+  initialised: 0
+  interactionManager: {fileID: 1143099682}
 --- !u!114 &698121169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24693,6 +24837,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!65 &706086098
 BoxCollider:
@@ -24977,6 +25122,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 1
   caret: {fileID: 1385808173}
   caretBlinkRate: 0.5
@@ -25412,8 +25558,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 3315310028138466443}
+  initialised: 0
 --- !u!114 &741556506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25873,8 +26021,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1189882775}
+  initialised: 0
 --- !u!114 &754358977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26483,7 +26633,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
+  localPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
+  otherPlayerEyeFollowTransform: {fileID: 0}
   loadedBeatData:
     drumIndex: 0
     BPM: 0
@@ -27123,6 +27275,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 4
 --- !u!114 &798798613
@@ -27556,6 +27709,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 0
 --- !u!114 &808155278
@@ -27784,8 +27938,11 @@ MonoBehaviour:
   dwellTimeSetting: 1
   localInteractionMethod: 0
   localDwellTime: 1.5
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
+  initialised: 0
+  interactionManager: {fileID: 1143099682}
 --- !u!114 &813212666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28782,6 +28939,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 7
 --- !u!1 &846194848
@@ -29730,6 +29888,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 3
 --- !u!114 &877701278
@@ -30217,6 +30376,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 3
 --- !u!1 &906562415
@@ -30303,6 +30463,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 5
 --- !u!114 &906562418
@@ -30408,6 +30569,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 16
@@ -30871,6 +31033,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 10
@@ -31392,6 +31555,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: -1
@@ -31516,6 +31680,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 2
 --- !u!1 &956861617
@@ -33377,6 +33542,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 2
@@ -33835,6 +34001,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 9
 --- !u!1 &1070881326
@@ -34008,8 +34175,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 3315310028138466443}
+  initialised: 0
 --- !u!114 &1072743632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34525,6 +34694,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!65 &1084019110
 BoxCollider:
@@ -34838,8 +35008,11 @@ MonoBehaviour:
   dwellTimeSetting: 1
   localInteractionMethod: 0
   localDwellTime: 2
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
+  initialised: 0
+  interactionManager: {fileID: 1143099682}
 --- !u!1 &1097749787
 GameObject:
   m_ObjectHideFlags: 0
@@ -35304,6 +35477,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!114 &1104324982
 MonoBehaviour:
@@ -36241,6 +36415,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 8
 --- !u!1 &1143099680
@@ -36286,7 +36461,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3692a0bbda1832f4dba17cff08fc8a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Raycaster: {fileID: 530605015}
+  m_EventSystem: {fileID: 999876413}
+  gazeSignifier: {fileID: 278012265}
   _mainMenuManager: {fileID: 530605014}
+  signifierSpeed: 20
 --- !u!1 &1143218387
 GameObject:
   m_ObjectHideFlags: 0
@@ -36864,6 +37043,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 6
 --- !u!1 &1181328473
@@ -37286,6 +37466,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 18
@@ -37429,6 +37610,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: -1
@@ -37667,6 +37849,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 6
 --- !u!114 &1218809044
@@ -38606,8 +38789,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1189882775}
+  initialised: 0
 --- !u!114 &1261682836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38786,6 +38971,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 6
 --- !u!1 &1276627611
@@ -39173,8 +39359,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 513689453}
+  initialised: 0
 --- !u!114 &1292758759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39546,6 +39734,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 7
 --- !u!1 &1306032939
@@ -40084,8 +40273,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 3315310027343783678}
+  initialised: 0
 --- !u!65 &1333931155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41247,8 +41438,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1189882775}
+  initialised: 0
 --- !u!114 &1389128802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41720,8 +41913,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 3315310028138466443}
+  initialised: 0
 --- !u!1 &1415480026
 GameObject:
   m_ObjectHideFlags: 0
@@ -41896,6 +42091,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 4
 --- !u!1 &1431485810
@@ -42425,8 +42621,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 3315310028138466443}
+  initialised: 0
 --- !u!114 &1441140246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43448,8 +43646,11 @@ MonoBehaviour:
   dwellTimeSetting: 1
   localInteractionMethod: 0
   localDwellTime: 0.75
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
+  initialised: 0
+  interactionManager: {fileID: 1143099682}
 --- !u!1 &1487443844
 GameObject:
   m_ObjectHideFlags: 0
@@ -43565,8 +43766,11 @@ MonoBehaviour:
   dwellTimeSetting: 1
   localInteractionMethod: 0
   localDwellTime: 1.5
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
+  initialised: 0
+  interactionManager: {fileID: 1143099682}
 --- !u!1 &1493366030
 GameObject:
   m_ObjectHideFlags: 0
@@ -45516,6 +45720,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 19
@@ -46073,6 +46278,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 4
 --- !u!1 &1613249279
@@ -47136,6 +47342,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 1
 --- !u!114 &1651251906
@@ -47360,8 +47567,11 @@ MonoBehaviour:
   dwellTimeSetting: 1
   localInteractionMethod: 0
   localDwellTime: 2
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
+  initialised: 0
+  interactionManager: {fileID: 1143099682}
 --- !u!114 &1663906524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47495,6 +47705,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 1
 --- !u!1 &1685070638
@@ -48459,8 +48670,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1189882775}
+  initialised: 0
 --- !u!114 &1717577497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49310,8 +49523,11 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 2
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 292821739}
+  initialised: 1
+  interactionManager: {fileID: 1143099682}
 --- !u!1 &1744154226
 GameObject:
   m_ObjectHideFlags: 0
@@ -51513,6 +51729,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 6
@@ -51735,6 +51952,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 7
 --- !u!114 &1874169243
@@ -52237,6 +52455,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 0
 --- !u!1 &1909101193
@@ -52429,8 +52648,11 @@ MonoBehaviour:
   dwellTimeSetting: 1
   localInteractionMethod: 0
   localDwellTime: 0.5
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
+  initialised: 0
+  interactionManager: {fileID: 1143099682}
 --- !u!1 &1931330231
 GameObject:
   m_ObjectHideFlags: 0
@@ -52771,6 +52993,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 2
@@ -52878,6 +53101,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 0
 --- !u!1 &1992639127
@@ -53069,6 +53293,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!114 &1999204114
 MonoBehaviour:
@@ -54110,6 +54335,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   _value: 9
 --- !u!1 &2062543485
@@ -56079,6 +56305,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: -1
@@ -66589,6 +66816,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 1
   caret: {fileID: 1358336421766206264}
   caretBlinkRate: 0.5
@@ -67442,6 +67670,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 1
   caret: {fileID: 1358336420998265757}
   caretBlinkRate: 0.5
@@ -68946,8 +69175,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 2443787448048079606}
+  initialised: 0
 --- !u!65 &2443787446042942759
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69513,8 +69744,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 2443787448048079606}
+  initialised: 0
 --- !u!65 &2443787446184216901
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69794,8 +70027,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 2443787448048079606}
+  initialised: 0
 --- !u!222 &2443787446290953576
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -70392,8 +70627,10 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 2443787448048079606}
+  initialised: 0
 --- !u!1 &2443787446706828313
 GameObject:
   m_ObjectHideFlags: 0
@@ -72751,6 +72988,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: -1
@@ -75397,6 +75635,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 6
@@ -75441,6 +75680,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 16
@@ -75631,6 +75871,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: -1
@@ -75687,6 +75928,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: -1
@@ -75767,6 +76009,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: -1
@@ -75957,6 +76200,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 4
@@ -76013,6 +76257,7 @@ MonoBehaviour:
   dwellTimeSetting: 1
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 2
@@ -76727,6 +76972,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 23
@@ -76771,6 +77017,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 14
@@ -76815,6 +77062,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 21
@@ -77127,6 +77375,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 2
@@ -77573,6 +77822,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 15
@@ -77817,6 +78067,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: -1
@@ -77861,6 +78112,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 7
@@ -77905,6 +78157,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 5
@@ -78435,6 +78688,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 8
@@ -78479,6 +78733,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 1
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 25
@@ -87609,7 +87864,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a8d33a37be8e2d4aa55d19fb3ef6c50, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 54b424edfa2a1a14bb053658b31ddde4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -90114,6 +90369,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
   menuManager: {fileID: 530605014}
   panelToActivate: 17
@@ -94174,6 +94430,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!1 &8255726155503888608
 GameObject:
@@ -94537,6 +94794,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!114 &8255726155766871824
 MonoBehaviour:
@@ -94724,6 +94982,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!222 &8255726155946412052
 CanvasRenderer:
@@ -95263,6 +95522,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!1 &8255726156316614688
 GameObject:
@@ -95450,6 +95710,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!1 &8255726156373606165
 GameObject:
@@ -95989,6 +96250,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!23 &8255726156641655264
 MeshRenderer:
@@ -96486,6 +96748,7 @@ MonoBehaviour:
   dwellTimeSetting: 0
   localInteractionMethod: 0
   localDwellTime: 1
+  _isActive: 0
   dwellScaleX: 0
 --- !u!1 &8255726157023081269
 GameObject:

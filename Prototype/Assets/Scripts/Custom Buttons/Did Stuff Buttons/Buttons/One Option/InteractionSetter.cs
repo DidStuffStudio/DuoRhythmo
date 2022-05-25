@@ -6,22 +6,16 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
     public class InteractionSetter : OneOption
     {
         private bool _preferredMethod;
+        [SerializeField] private InteractionManager interactionManager;
         protected override void OnEnable()
         {
             base.OnEnable();
-            if (InteractionManager.Instance.Method == localInteractionMethod) _preferredMethod = true;
-            else _preferredMethod = false;
+            _preferredMethod = interactionManager.Method == localInteractionMethod;
+            if (!_preferredMethod) return;
+            ActivateButton();
+            SetPreferredInteraction();
         }
-
-        protected override void Start()
-        {
-            base.Start();
-            if (_preferredMethod)
-            {
-                ActivateButton();
-                SetPreferredInteraction();
-            }
-        }
+        
         
 
         protected override void ButtonClicked()
@@ -33,8 +27,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
         private void SetPreferredInteraction()
         {
             SetInteractionMethod(localInteractionMethod);
-            InteractionManager.Instance.Method = localInteractionMethod;
-            PlayerPrefs.SetInt("InteractionMethod", (int)localInteractionMethod);
+            interactionManager.Method = localInteractionMethod;
             ActivateCollider(localInteractionMethod == InteractionMethod.Tobii);
         }
         

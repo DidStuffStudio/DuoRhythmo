@@ -7,10 +7,11 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
     {
 
         private bool _preferredDwellSpeed;
+        [SerializeField] private InteractionManager interactionManager;
         protected override void OnEnable()
         {
             base.OnEnable();
-            if (Mathf.Approximately(localDwellTime, InteractionManager.Instance.DwellTime)) _preferredDwellSpeed = true;
+            if (Mathf.Approximately(localDwellTime, interactionManager.DwellTime)) _preferredDwellSpeed = true;
             else _preferredDwellSpeed = false;
   
         }
@@ -34,9 +35,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
             DwellTime = localDwellTime;
             SetNewDwellTime();
         }
-
-
-
         
     }
 }

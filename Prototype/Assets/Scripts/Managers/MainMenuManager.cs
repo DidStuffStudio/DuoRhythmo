@@ -326,15 +326,14 @@ namespace Managers
       {
          PlayFabLogin.Instance.Logout();
          DeactivatePanel(_currentPanel);
-         ActivatePanel(2);
-         //Todo logout
+         ActivatePanel(0);
       }
 
       public void DeleteAccount()
       {
          PlayFabLogin.Instance.DeleteAccount();
          DeactivatePanel(_currentPanel);
-         ActivatePanel(2);
+         ActivatePanel(0);
       }
 
       public void ReceiveInviteToPlay(string username)

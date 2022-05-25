@@ -5,13 +5,21 @@ using Custom_Buttons.Did_Stuff_Buttons;
 using Managers;
 using Tobii.Gaming;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InteractionManager : MonoBehaviour
 {
-    private delegate void TobiiEntered();
-    private event TobiiEntered OnTobiiGazeEnter;
-    private delegate void TobiiExited();
-    private event TobiiExited OnTobiiGazeExit;
+
+    private List<RaycastResult> result = new List<RaycastResult>();
+    [SerializeField]  GraphicRaycaster m_Raycaster;
+    private static PointerEventData m_PointerEventData;
+    [SerializeField] EventSystem m_EventSystem;
+    private static GraphicRaycaster tobiiRay;
+    private AbstractDidStuffButton _lastHitButton;
+    [SerializeField] private RectTransform gazeSignifier;
+    private bool _activateTobiiRay = true;
+    
     private static InteractionManager _instance;
 
     public static InteractionManager Instance
@@ -19,18 +27,10 @@ public class InteractionManager : MonoBehaviour
         get
         {
             if (_instance != null) return _instance;
-            var InteractionManagerGameObject = new GameObject();
-            _instance = InteractionManagerGameObject.AddComponent<InteractionManager>();
-            InteractionManagerGameObject.name = typeof(InteractionManager).ToString();
             return _instance;
         }
     }
-
-    private void OnEnable()
-    {
-        OnTobiiGazeEnter += TobiiHovered;
-        OnTobiiGazeExit += TobiiUnhovered;
-    }
+    
 
 
     [SerializeField] private MainMenuManager _mainMenuManager;
@@ -38,10 +38,16 @@ public class InteractionManager : MonoBehaviour
     public InteractionMethod Method
     {
         get => (InteractionMethod)PlayerPrefs.GetInt("InteractionMethod");
-        set => _interactionMethod = value;
+        set
+        {
+            _interactionMethod = value;
+            if(value == InteractionMethod.Tobii || value == InteractionMethod.MouseDwell) gazeSignifier.gameObject.SetActive(true);
+            else gazeSignifier.gameObject.SetActive(false);
+            PlayerPrefs.SetInt("InteractionMethod", (int)value);
+        }
     }
 
-    
+
     public float DwellTime
     {
         get => PlayerPrefs.GetFloat("DwellTime");
@@ -50,9 +56,17 @@ public class InteractionManager : MonoBehaviour
 
     public Vector2 InputPosition => _inputPosition;
 
+    public bool ActivateTobiiRay
+    {
+        get => _activateTobiiRay;
+        set => _activateTobiiRay = value;
+    }
+
     private  InteractionMethod _interactionMethod;
     private float _dwellTime = 1.0f;
-        private void Awake() {
+    [SerializeField] private float signifierSpeed = 1.0f;
+
+    private void Awake() {
         if (_instance == null) _instance = this;
         
         var i = PlayerPrefs.GetInt("InteractionMethod");
@@ -62,6 +76,7 @@ public class InteractionManager : MonoBehaviour
         if(_interactionMethod == InteractionMethod.Tobii && !TobiiAPI.IsConnected)
         {
             _mainMenuManager.SendToInteractionPage();
+            _interactionMethod = InteractionMethod.MouseDwell;
         }
         DontDestroyOnLoad(this);
         }
@@ -85,21 +100,54 @@ public class InteractionManager : MonoBehaviour
                     break;
                 case InteractionMethod.MouseDwell:
                     _inputPosition = Input.mousePosition;
+                    signifierFollowInputPosition();
                     break;
                 case InteractionMethod.Tobii:
-                    _inputPosition = TobiiAPI.GetGazePoint().Screen;
+                    if (TobiiAPI.IsConnected)
+                    {
+                        _inputPosition = TobiiAPI.GetGazePoint().Screen;
+                        TobiiGraphicRaycast(_inputPosition);
+                    } 
                     break;
             }
+            if(_activateTobiiRay) TobiiGraphicRaycast(_inputPosition);
         }
-        
-        private void TobiiHovered(){}
-        private void TobiiUnhovered(){}
-        
-        private void OnDisable()
+
+        private void TobiiGraphicRaycast(Vector3 pos)
         {
-            OnTobiiGazeEnter -= TobiiHovered;
-            OnTobiiGazeExit -= TobiiUnhovered;
+            //Set up the new Pointer Event
+            m_PointerEventData = new PointerEventData(m_EventSystem);
+            //Set the Pointer Event Position to mouse position (Change to tobii)
+            m_PointerEventData.position = pos;
+            m_PointerEventData.pointerId = 1;
+            //Create a list of Raycast Results
+            List<RaycastResult> results = new List<RaycastResult>();
+            //Raycast using the Graphics Raycaster and mouse click position
+            m_Raycaster.Raycast(m_PointerEventData, results);
+            if (results.Count > 0)
+            {
+                Debug.Log("Hit " + results[0].gameObject.name);
+                var btn = result[0].gameObject.GetComponent<AbstractDidStuffButton>();
+                if (btn != null)
+                {
+                    _lastHitButton = btn;
+                    ExecuteEvents.Execute (btn.gameObject,  m_PointerEventData, ExecuteEvents.pointerEnterHandler);
+                }
+            }
+            else if (_lastHitButton != null)
+            {
+                ExecuteEvents.Execute (_lastHitButton.gameObject,  m_PointerEventData, ExecuteEvents.pointerExitHandler);
+            }
         }
+
+        private void signifierFollowInputPosition()
+        {
+            var pos = Vector3.Lerp(gazeSignifier.position, _inputPosition, Time.deltaTime * signifierSpeed);
+
+            gazeSignifier.position = pos;
+        }
+       
+ 
 }
 
 

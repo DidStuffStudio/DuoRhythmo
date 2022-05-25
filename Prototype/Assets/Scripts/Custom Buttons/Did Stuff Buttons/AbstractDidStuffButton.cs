@@ -301,6 +301,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				_provideDwellFeedbackLocal = true;
 			else _provideDwellFeedbackLocal = false;
 
+			if (!interactionSetting) localInteractionMethod = _interactionMethod;
 			DwellTime = InteractionManager.Instance.DwellTime != 0.0f ? InteractionManager.Instance.DwellTime : 1.0f;
 			_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
 			
@@ -748,15 +749,13 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (eventData.pointerId == 1)
 			{
 				Debug.Log("Hovered with Tobii");
-				if (localInteractionMethod != InteractionMethod.Tobii && 
-				    _interactionMethod != InteractionMethod.Tobii)
+				if (localInteractionMethod != InteractionMethod.Tobii)
 					return;
 			}
 			else if (eventData.pointerId < 0)
 			{
 				Debug.Log("Hovered with Mouse");
-				if (localInteractionMethod != InteractionMethod.MouseDwell &&
-				    _interactionMethod != InteractionMethod.MouseDwell)
+				if (localInteractionMethod == InteractionMethod.Tobii)
 					return;
 			}
 			

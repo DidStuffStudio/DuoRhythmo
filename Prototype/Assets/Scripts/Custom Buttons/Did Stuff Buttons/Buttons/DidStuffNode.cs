@@ -49,8 +49,17 @@ public class DidStuffNode : AbstractDidStuffButton
     }
 
     public void SetNodeSync(NodeSync nodeSync) => this._nodeSync = nodeSync; 
-    public void SetActiveFromServer() => ChangeToActiveState();
-    public void SetInactiveFromServer() => ChangeToInactiveState();
+    public void SetActiveFromServer()
+    {
+        ChangeToActiveState();
+        MasterManager.Instance.UpdateSubNodes(nodeIndex, _isActive, (int)nodeManager.TypeOfDrum);
+    }
+
+    public void SetInactiveFromServer()
+    {
+        ChangeToInactiveState();
+        MasterManager.Instance.UpdateSubNodes(nodeIndex, _isActive, (int)nodeManager.TypeOfDrum);
+    } 
     
     private double Angle()
     {

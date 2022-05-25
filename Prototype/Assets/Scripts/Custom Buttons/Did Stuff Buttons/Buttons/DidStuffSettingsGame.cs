@@ -5,7 +5,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         protected override void ButtonClicked()
         {
             base.ButtonClicked();
-            InGameMenuManager.Instance.OpenSettings(true);
+            InGameMenuManager.Instance.OpenSettings();
         }
     }
 }

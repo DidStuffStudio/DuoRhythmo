@@ -19,6 +19,8 @@ public class InteractionManager : MonoBehaviour
     private AbstractDidStuffButton _lastHitButton;
     [SerializeField] private RectTransform gazeSignifier;
     private bool _activateTobiiRay = true;
+    private bool _interact;
+    [SerializeField] private GameObject inGamePersistantUi, mainMenuPersistantUi;
     
     private static InteractionManager _instance;
 
@@ -62,6 +64,12 @@ public class InteractionManager : MonoBehaviour
         set => _activateTobiiRay = value;
     }
 
+    public bool Interact
+    {
+        get => _interact;
+        set => _interact = value;
+    }
+
     private  InteractionMethod _interactionMethod;
     private float _dwellTime = 1.0f;
     [SerializeField] private float signifierSpeed = 1.0f;
@@ -93,6 +101,7 @@ public class InteractionManager : MonoBehaviour
 
         private void Update()
         {
+            if (!_interact) return;
             switch (Method)
             {
                 case InteractionMethod.Mouse:
@@ -115,6 +124,9 @@ public class InteractionManager : MonoBehaviour
 
         private void TobiiGraphicRaycast(Vector3 pos)
         {
+            //if (!TobiiAPI.IsConnected) return;
+            
+            
             //Set up the new Pointer Event
             m_PointerEventData = new PointerEventData(m_EventSystem);
             //Set the Pointer Event Position to mouse position (Change to tobii)
@@ -139,6 +151,31 @@ public class InteractionManager : MonoBehaviour
                 ExecuteEvents.Execute (_lastHitButton.gameObject,  m_PointerEventData, ExecuteEvents.pointerExitHandler);
             }
         }
+
+        public void SetNewGraphicsRaycaster(GraphicRaycaster raycaster)
+        {
+            m_Raycaster = raycaster;
+            _interact = true;
+        }
+
+        public void SwitchSceneInteraction(int sceneLoading)
+        {
+            if (sceneLoading == 0)
+            {
+                _interact = false;
+                ToggleInGamePersistantUI(false);
+                ToggleMainMenuPersistantUI(true);
+            }
+            else
+            {
+                _interact = false;
+                ToggleInGamePersistantUI(true);
+                ToggleMainMenuPersistantUI(false);
+            }
+        }
+        private void ToggleInGamePersistantUI(bool active) => inGamePersistantUi.SetActive(active);
+        private void ToggleMainMenuPersistantUI(bool active) => mainMenuPersistantUi.SetActive(active);
+
 
         private void signifierFollowInputPosition()
         {

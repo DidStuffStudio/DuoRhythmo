@@ -10,6 +10,7 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Managers
 {
@@ -47,6 +48,7 @@ namespace Managers
       private DidStuffInvite _currentInvitePopUp;
       [SerializeField] private Transform defaultToastPlaceholder;
       [SerializeField] private TextMeshProUGUI matchmakingStatusText;
+      [SerializeField] private GraphicRaycaster graphicRaycaster;
 
 
       public string ReferencePin
@@ -56,11 +58,29 @@ namespace Managers
 
       public int CurrentPanel => _currentPanel;
 
+      /*
+      private void OnEnable()
+      {
+         var settingsBtn = FindObjectOfType<SettingButton>();
+         var backBtn = FindObjectOfType<BackButton>();
+         settingsBtn.OnClick += Settings;
+         backBtn.OnClick += Back;
+         settingsButton = settingsBtn.gameObject;
+         backButton = backBtn.gameObject;
+      }
+      */
 
       private void Awake()
       {
          if (_instance == null) _instance = this;
       
+         var settingsBtn = FindObjectOfType<SettingButton>();
+         var backBtn = FindObjectOfType<BackButton>();
+         settingsBtn.OnClick += Settings;
+         backBtn.OnClick += Back;
+         settingsButton = settingsBtn.gameObject;
+         backButton = backBtn.gameObject;
+         
          backButton.SetActive(false);
          var uiPanels = GetComponentsInChildren<UIPanel>();
          foreach (var p in uiPanels) _panelDictionary.Add(p.panelId,p);
@@ -85,6 +105,11 @@ namespace Managers
          //ReceiveInviteToPlay("Dickhead");
          
          
+      }
+
+      private void Start()
+      {
+         InteractionManager.Instance.SetNewGraphicsRaycaster(graphicRaycaster);
       }
 
       private void ToggleUIPanel()
@@ -387,7 +412,8 @@ namespace Managers
       public void LoadJamSession()
       {
          StopAllCoroutines();
-         SceneManager.LoadScene(1);
+         InteractionManager.Instance.SwitchSceneInteraction(1);
+         SceneManager.LoadScene(1); // change to single player scene
       }
       
       public void OpenSurvey() => Application.OpenURL("https://t.maze.co/84786499");
@@ -401,5 +427,13 @@ namespace Managers
       }
       
       public void SetMatchmakingStatusText(string text) => matchmakingStatusText.text = text;
+
+
+      private void OnDisable()
+      {
+         FindObjectOfType<SettingButton>().OnClick -= Settings;
+         FindObjectOfType<BackButton>().OnClick -= Back;
+      }
    }
+   
 }

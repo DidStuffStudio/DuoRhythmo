@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Custom_Buttons.Did_Stuff_Buttons;
+using Custom_Buttons.Did_Stuff_Buttons.Buttons;
 using LeTai.Asset.TranslucentImage;
 using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InGameMenuManager : MonoBehaviour
 {
@@ -37,7 +39,7 @@ public class InGameMenuManager : MonoBehaviour
     [SerializeField] private TranslucentImageSource blurBackground;
     [SerializeField] private GameObject raycastBlock;
     [SerializeField] private GameObject settingsMenu;
-
+    [SerializeField] private GraphicRaycaster graphicRaycaster;
     
      private void Awake()
     {
@@ -46,7 +48,8 @@ public class InGameMenuManager : MonoBehaviour
         var uiPanels = GetComponentsInChildren<UIPanel>();
         foreach (var p in uiPanels) _panelDictionary.Add(p.panelId, p);
 
-
+        InteractionManager.Instance.SetNewGraphicsRaycaster(graphicRaycaster);
+       
         for (int i = 0; i < _panelDictionary.Count; i++)
         {
             var panelPositions = uiPanels[i].BlurPosition();
@@ -66,7 +69,20 @@ public class InGameMenuManager : MonoBehaviour
         
     }
 
-      private void ToggleUIPanel()
+     private void OnEnable()
+     {
+        var settingsBtn = FindObjectOfType<SettingButton>();
+        var backBtn = FindObjectOfType<BackButton>();
+        var quitBtn = FindObjectOfType<QuitButton>();
+        settingsBtn.OnClick += OpenSettings;
+        backBtn.OnClick += Back;
+        quitBtn.OnClick += OpenSaveBeats;
+        settingsButton = settingsBtn.gameObject;
+        backButton = backBtn.gameObject;
+        exitButton = quitBtn.gameObject;
+     }
+
+     private void ToggleUIPanel()
       {
          if (_numberCurrentBlurPanels < _numberDesiredBlurPanels)
          {
@@ -136,7 +152,7 @@ public class InGameMenuManager : MonoBehaviour
       {
          var p = _panelDictionary[_currentPanel].panelToReturnTo;
          DeactivatePanel(_currentPanel);
-         if(_currentPanel == 0) OpenSettings(false);
+         if(_currentPanel == 0) CloseSettings();
          else ActivatePanel(p);
       }
 
@@ -182,18 +198,29 @@ public class InGameMenuManager : MonoBehaviour
 
     private void BlockDrumInteraction(bool block) => raycastBlock.SetActive(block);
 
-    public void OpenSettings(bool open)
+    public void OpenSettings()
     {
-       MuteDrums(open);
-       if(!open) DeactivatePanel(0);
-       settingsButton.SetActive(!open);
+       MuteDrums(true);
+       settingsButton.SetActive(false);
        for (int i = 0; i < _panelDictionary.Count; i++) DeactivatePanel(i); 
-       exitButton.SetActive(!open);
-       backButton.SetActive(open);
-       BlurBackground(open);
-       settingsMenu.SetActive(open);
-       BlockDrumInteraction(open);
-       if(open) ActivatePanel(0);
+       exitButton.SetActive(false);
+       backButton.SetActive(true);
+       BlurBackground(true);
+       settingsMenu.SetActive(true);
+       BlockDrumInteraction(true);
+      ActivatePanel(0);
+    }
+
+    public void CloseSettings()
+    {
+       DeactivatePanel(0);
+       settingsButton.SetActive(true);
+       for (int i = 0; i < _panelDictionary.Count; i++) DeactivatePanel(i); 
+       exitButton.SetActive(true);
+       backButton.SetActive(false);
+       BlurBackground(false);
+       settingsMenu.SetActive(false);
+       BlockDrumInteraction(false);
     }
     
     public void OpenSaveBeats()
@@ -258,7 +285,14 @@ public class InGameMenuManager : MonoBehaviour
     public void Quit()
     {
        StopAllCoroutines();
+       InteractionManager.Instance.SwitchSceneInteraction(0);
        SceneManager.LoadScene(0);
     }
 
+    private void OnDisable()
+    {
+       FindObjectOfType<SettingButton>().OnClick -= OpenSettings;
+       FindObjectOfType<BackButton>().OnClick -= Back;
+       FindObjectOfType<QuitButton>().OnClick -= OpenSaveBeats;
+    }
 }

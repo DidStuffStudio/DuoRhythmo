@@ -16,10 +16,11 @@ public class SaveBeat : MonoBehaviour
 
     public List<NodeManager> nodeManagers = new List<NodeManager>();
     public List<EffectsManager> effectsManagers = new List<EffectsManager>();
-
+    private bool _canQuit;
 
     public void SaveAndQuit()
     {
+        _canQuit = false;
         SaveIntoJson();
         StartCoroutine(WaitToQuit());
     }
@@ -90,6 +91,7 @@ public class SaveBeat : MonoBehaviour
     
     private int resWidth = 480; 
     private int resHeight = 270;
+ 
 
     IEnumerator TakeScreenshot()
     {
@@ -111,18 +113,22 @@ public class SaveBeat : MonoBehaviour
         System.IO.File.WriteAllBytes(filename, bytes);
         Debug.Log(string.Format("Took screenshot to: {0}", filename));
         MasterManager.Instance.screenShotCam.gameObject.SetActive(false);
-
+        _canQuit = true;
         yield return null;
     }
 
     IEnumerator WaitToQuit()
     {
-        yield return new WaitForSeconds(0.1f);
+        while (!_canQuit)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         Quit();
     }
 
     private void Quit()
     {
+        InteractionManager.Instance.SwitchSceneInteraction(0);
         StopAllCoroutines();
         SceneManager.LoadScene(0);
     }

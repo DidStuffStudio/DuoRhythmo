@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.044132642, g: 0.0430841, b: 0.040068284, a: 1}
+  m_IndirectSpecularColor: {r: 0.04493249, g: 0.043885224, b: 0.040868968, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14958,8 +14958,8 @@ MonoBehaviour:
   errorToast: {fileID: 3478492031247585142, guid: 9417543038fb4144f91fcb6eb691e9b7, type: 3}
   successToast: {fileID: 3478492031247585142, guid: 3037a065e14c14d60aff162180d41966, type: 3}
   inviteToPlay: {fileID: 1633014623920244313, guid: f65f4811ff2c00b40a862ca619a3b780, type: 3}
-  backButton: {fileID: 2772239876077041212}
-  settingsButton: {fileID: 546560559}
+  backButton: {fileID: 0}
+  settingsButton: {fileID: 0}
   panelsThatDontshowSettings: 0d0000000e0000000f0000001000000011000000000000000100000002000000030000000a0000000b0000000c000000140000001500000016000000
   panelsThatDontshowBack: 0000000012000000
   defaultToastPlaceholder: {fileID: 1805362548}

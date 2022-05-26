@@ -44,12 +44,15 @@ namespace PlayFab.Networking {
             NetworkServer.Listen(maxConnections);
         }
 
-        /*
+        
          // TODO --> Check if the players go back and there's zero left, should it shut down the server like this?
         private void OnDisable() {
-            if(numPlayers == 0) OnApplicationQuit();
+            if (NetworkServer.active && NetworkClient.isConnected) {
+                if(JamSessionDetails.Instance.isSoloMode) StopHost();
+                else StopClient();
+            }
         }
-        */
+        
 
         public override void OnApplicationQuit() {
             base.OnApplicationQuit();

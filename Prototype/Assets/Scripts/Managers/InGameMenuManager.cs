@@ -227,7 +227,6 @@ public class InGameMenuManager : MonoBehaviour
     {
        MuteDrums(true);
        settingsButton.SetActive(false);
-       if(false)DeactivatePanel(5);
        backButton.SetActive(false);
        exitButton.SetActive(false);
        BlurBackground(true);
@@ -238,6 +237,7 @@ public class InGameMenuManager : MonoBehaviour
 
     private void DeactivateSettings()
     {
+       MuteDrums(false);
        settingsButton.SetActive(true);
        exitButton.SetActive(true);
        backButton.SetActive(false);

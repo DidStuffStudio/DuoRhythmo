@@ -107,12 +107,14 @@ public class InteractionManager : MonoBehaviour
                     SignifierFollowInputPosition();
                     break;
                 case InteractionMethod.Tobii:
-                    if (TobiiAPI.IsConnected)
+                    /*if (TobiiAPI.IsConnected)
                     {
                         _inputPosition = TobiiAPI.GetGazePoint().Screen;
                         TobiiGraphicRaycast(_inputPosition);
                         SignifierFollowInputPosition();
-                    } 
+                    } */
+                    _inputPosition = Input.mousePosition;
+                    TobiiGraphicRaycast(_inputPosition);
                     break;
             }
             if(_activateTobiiRay) TobiiGraphicRaycast(_inputPosition);

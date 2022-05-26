@@ -392,7 +392,7 @@ namespace Managers
       {
          yield return new WaitForSeconds(delay);
          var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder");
-         if (toastPlaceholder == null) toastPlaceholder = defaultToastPlaceholder.gameObject;
+         if (toastPlaceholder == null) toastPlaceholder = GameObject.FindWithTag("DefaultToastHolder");
          if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.transform.GetChild(0).gameObject);
          var t = Instantiate(errorToast, toastPlaceholder.transform);
          t.GetComponent<Toast>().SetText(toastText);
@@ -402,7 +402,7 @@ namespace Managers
       {
          yield return new WaitForSeconds(delay);
          var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder").transform;
-         if (toastPlaceholder == null) toastPlaceholder = defaultToastPlaceholder;
+         if (toastPlaceholder == null) toastPlaceholder = GameObject.FindWithTag("DefaultToastHolder").transform;
          if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.GetChild(0).gameObject);
          var t = Instantiate(successToast, toastPlaceholder);
          t.GetComponent<Toast>().SetText(toastText);

@@ -11,17 +11,8 @@ using UnityEngine.UI;
 
 namespace Managers {
     public class MasterManager : MonoBehaviour {
-        private static MasterManager _instance;
 
-        public static MasterManager Instance {
-            get {
-                if (_instance != null) return _instance;
-                var masterManagerGameObject = new GameObject();
-                _instance = masterManagerGameObject.AddComponent<MasterManager>();
-                masterManagerGameObject.name = typeof(MasterManager).ToString();
-                return _instance;
-            }
-        }
+        public static MasterManager Instance { get; private set; }
 
         public string currentDrumKitName
         {
@@ -86,7 +77,9 @@ namespace Managers {
         public static event BpmChangedAction OnBpmChanged;
         
         private void Awake() {
-            if (_instance == null) _instance = this;
+            // If there is an instance, and it's not me, kill myself.
+            if (Instance != null && Instance != this) Destroy(gameObject);
+            else Instance = this;
         }
 
         private void Start() {

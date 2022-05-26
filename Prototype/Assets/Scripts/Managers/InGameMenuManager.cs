@@ -40,6 +40,7 @@ public class InGameMenuManager : MonoBehaviour
     [SerializeField] private GameObject raycastBlock;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GraphicRaycaster graphicRaycaster;
+    [SerializeField] private MasterManager masterManager;
     
      private void Awake()
     {
@@ -200,7 +201,7 @@ public class InGameMenuManager : MonoBehaviour
 
     public void OpenSettings()
     {
-       MuteDrums(true);
+       if(masterManager.gameSetUpFinished)MuteDrums(true);
        settingsButton.SetActive(false);
        for (int i = 0; i < _panelDictionary.Count; i++) DeactivatePanel(i); 
        exitButton.SetActive(false);
@@ -237,7 +238,7 @@ public class InGameMenuManager : MonoBehaviour
 
     private void DeactivateSettings()
     {
-       MuteDrums(false);
+       if(masterManager.gameSetUpFinished)MuteDrums(false);
        settingsButton.SetActive(true);
        exitButton.SetActive(true);
        backButton.SetActive(false);

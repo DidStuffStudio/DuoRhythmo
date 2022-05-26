@@ -411,7 +411,6 @@ namespace Managers
 
       public void LoadJamSession()
       {
-         StopAllCoroutines();
          InteractionManager.Instance.SwitchSceneInteraction(1);
          SceneManager.LoadScene(1); // change to single player scene
       }

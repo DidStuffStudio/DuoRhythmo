@@ -158,6 +158,8 @@ public class InteractionManager : MonoBehaviour
 
         public void SwitchSceneInteraction(int sceneLoading)
         {
+            StopAllCoroutines();
+            
             if (sceneLoading == 0)
             {
                 _interact = false;

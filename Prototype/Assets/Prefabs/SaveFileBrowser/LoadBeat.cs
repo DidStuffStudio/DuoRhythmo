@@ -181,7 +181,9 @@ public class LoadBeat : MonoBehaviour
         JamSessionDetails.Instance.loadedBeatData = _loadedManagerData;
         JamSessionDetails.Instance.DrumTypeIndex = _loadedManagerData.drumIndex;
         StartCoroutine(SetValues());
-        SceneManager.LoadScene(1);
+        JamSessionDetails.Instance.isSoloMode = true;
+        InteractionManager.Instance.SwitchSceneInteraction(1);
+        SceneManager.LoadScene(1); 
     }
     
     //Method that returns a master manager data structure

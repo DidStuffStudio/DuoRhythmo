@@ -52,12 +52,14 @@ public class DidStuffNode : AbstractDidStuffButton
     public void SetActiveFromServer()
     {
         ChangeToActiveState();
+        if(MasterManager.Instance == null || nodeManager == null) return;
         MasterManager.Instance.UpdateSubNodes(nodeIndex, _isActive, (int)nodeManager.TypeOfDrum);
     }
 
     public void SetInactiveFromServer()
     {
         ChangeToInactiveState();
+        if(MasterManager.Instance == null || nodeManager == null) return;
         MasterManager.Instance.UpdateSubNodes(nodeIndex, _isActive, (int)nodeManager.TypeOfDrum);
     } 
     

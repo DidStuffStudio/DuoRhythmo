@@ -60,10 +60,8 @@ namespace Managers {
         [SerializeField] private float positionSpeed = 10.0f;
         public Transform playerPositionDestination;
         public bool gameSetUpFinished; public bool isInPosition = false;
-
-        [SerializeField] private GameObject mainSignifier;
-
-        public GameObject exitButtonPanel;
+        
+        
         [SerializeField] private string[] classicDrumNames = {"Kick", "Snare", "Hi-hat", "Tom", "Crash"};
         [SerializeField] private string[] djembeDrumNames = {"Kick", "Snare", "Hi-hat", "Tom", "Crash"};
 
@@ -79,7 +77,7 @@ namespace Managers {
         private int _currentDrumKitIndex = 0;
         public AudioManager audioManager;
         public Camera screenShotCam;
-        public Transform startTransform, destinationTransform, oppositeDestinationTransform;
+        public Transform startTransform, destinationTransform;
 
         private string[] _drumKitNames = {"Rock drums", "Djembe", "Electronic", "Handpan", "Ambient"};
         private string _currentDrumKitName;
@@ -101,8 +99,7 @@ namespace Managers {
             SwitchDrumKits(JamSessionDetails.Instance.DrumTypeIndex);
             Initialise();
         }
-
-        public void SetExitButtonActive(bool active) => exitButtonPanel.SetActive(active);
+        
 
         public void PlayerReachedDestination() {
             isInPosition = true;
@@ -199,7 +196,6 @@ namespace Managers {
             yield return new WaitForSeconds(time);
             _startTime = Time.time;
             _journeyLength = Vector3.Distance(playerCamera.transform.position, playerPositionDestination.position);
-            mainSignifier.SetActive(false);
         }
     }
 }

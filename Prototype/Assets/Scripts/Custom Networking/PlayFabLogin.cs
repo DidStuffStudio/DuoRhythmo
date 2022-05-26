@@ -16,15 +16,7 @@ using EntityKey = PlayFab.MultiplayerModels.EntityKey;
 public class PlayFabLogin : MonoBehaviour {
     private static PlayFabLogin _instance;
 
-    public static PlayFabLogin Instance {
-        get {
-            if (_instance != null) return _instance;
-            var playfabLoginGameObject = new GameObject();
-            _instance = playfabLoginGameObject.AddComponent<PlayFabLogin>();
-            playfabLoginGameObject.name = typeof(PlayFabLogin).ToString();
-            return _instance;
-        }
-    }
+    public static PlayFabLogin Instance { get; private set; }
 
     public string Username { get; set; }
     public string PasswordPin { get; set; }
@@ -73,7 +65,10 @@ public class PlayFabLogin : MonoBehaviour {
     public static PlayFabAuthenticationContext AuthenticationContext;
 
     private void Awake() {
-        if (_instance == null) _instance = this;
+        // If there is an instance, and it's not me, kill myself.
+        if (Instance != null && Instance != this) Destroy(gameObject);
+        else Instance = this;
+        
         DontDestroyOnLoad(this);
     }
 

@@ -7,10 +7,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
     {
         private bool _preferredMethod;
         [SerializeField] private InteractionManager interactionManager;
+        [SerializeField] private bool inGame;
         protected override void OnEnable()
         {
             base.OnEnable();
-            _preferredMethod = interactionManager.Method == localInteractionMethod;
+            if(inGame) _preferredMethod = InteractionManager.Instance.Method == localInteractionMethod;
+            else _preferredMethod = interactionManager.Method == localInteractionMethod;
             if (!_preferredMethod) return;
             ActivateButton();
             SetPreferredInteraction();
@@ -27,7 +29,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
         private void SetPreferredInteraction()
         {
             SetInteractionMethod(localInteractionMethod);
-            interactionManager.Method = localInteractionMethod;
             ActivateCollider(localInteractionMethod == InteractionMethod.Tobii);
         }
         

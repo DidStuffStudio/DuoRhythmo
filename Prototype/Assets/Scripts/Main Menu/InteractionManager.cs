@@ -16,26 +16,17 @@ public class InteractionManager : MonoBehaviour
     private static PointerEventData m_PointerEventData;
     [SerializeField] EventSystem m_EventSystem;
     private static GraphicRaycaster tobiiRay;
-    private AbstractDidStuffButton _lastHitButton;
+    private GameObject _lastHitButton;
     [SerializeField] private RectTransform gazeSignifier;
-    private bool _activateTobiiRay = true;
+    private bool _activateTobiiRay = false;
     private bool _interact;
     [SerializeField] private GameObject inGamePersistantUi, mainMenuPersistantUi;
-    
-    private static InteractionManager _instance;
-
-    public static InteractionManager Instance
-    {
-        get
-        {
-            if (_instance != null) return _instance;
-            return _instance;
-        }
-    }
+    public static InteractionManager Instance { get; private set; }
     
 
+    
 
-    [SerializeField] private MainMenuManager _mainMenuManager;
+    [SerializeField] private MainMenuManager mainMenuManager;
     private Vector2 _inputPosition = Vector2.zero;
     public InteractionMethod Method
     {
@@ -75,7 +66,11 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] private float signifierSpeed = 1.0f;
 
     private void Awake() {
-        if (_instance == null) _instance = this;
+        
+        // If there is an instance, and it's not me, kill myself.
+        if (Instance != null && Instance != this) Destroy(gameObject);
+        else Instance = this;
+        
         
         var i = PlayerPrefs.GetInt("InteractionMethod");
         Method = (InteractionMethod)i;
@@ -83,7 +78,7 @@ public class InteractionManager : MonoBehaviour
         if (DwellTime < 0) DwellTime = 1.0f;
         if(_interactionMethod == InteractionMethod.Tobii && !TobiiAPI.IsConnected)
         {
-            _mainMenuManager.SendToInteractionPage();
+            mainMenuManager.SendToInteractionPage();
             _interactionMethod = InteractionMethod.MouseDwell;
         }
         DontDestroyOnLoad(this);
@@ -109,13 +104,14 @@ public class InteractionManager : MonoBehaviour
                     break;
                 case InteractionMethod.MouseDwell:
                     _inputPosition = Input.mousePosition;
-                    signifierFollowInputPosition();
+                    SignifierFollowInputPosition();
                     break;
                 case InteractionMethod.Tobii:
                     if (TobiiAPI.IsConnected)
                     {
                         _inputPosition = TobiiAPI.GetGazePoint().Screen;
                         TobiiGraphicRaycast(_inputPosition);
+                        SignifierFollowInputPosition();
                     } 
                     break;
             }
@@ -139,7 +135,7 @@ public class InteractionManager : MonoBehaviour
             if (results.Count > 0)
             {
                 Debug.Log("Hit " + results[0].gameObject.name);
-                var btn = result[0].gameObject.GetComponent<AbstractDidStuffButton>();
+                var btn = result[0].gameObject;
                 if (btn != null)
                 {
                     _lastHitButton = btn;
@@ -150,7 +146,7 @@ public class InteractionManager : MonoBehaviour
             {
                 ExecuteEvents.Execute (_lastHitButton.gameObject,  m_PointerEventData, ExecuteEvents.pointerExitHandler);
             }
-        } // Raycast to the main menu in the scene //settings and back button need a raycast too
+        } // TODO --> Raycast to the main menu in the scene //settings and back button need a raycast too
 
         public void SetNewGraphicsRaycaster(GraphicRaycaster raycaster)
         {
@@ -177,7 +173,7 @@ public class InteractionManager : MonoBehaviour
         private void ToggleMainMenuPersistantUI(bool active) => mainMenuPersistantUi.SetActive(active);
 
 
-        private void signifierFollowInputPosition()
+        private void SignifierFollowInputPosition()
         {
             var pos = Vector3.Lerp(gazeSignifier.position, _inputPosition, Time.deltaTime * signifierSpeed);
 

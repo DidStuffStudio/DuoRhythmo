@@ -56,6 +56,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         {
             base.OnDisable();
             DeactivateButton();
+            SetCanHover(true);
             //buttonToEnableOnChoice.DisableButton();
             initialised = true;
         }

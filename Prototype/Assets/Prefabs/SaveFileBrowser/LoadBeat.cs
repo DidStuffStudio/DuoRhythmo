@@ -182,7 +182,6 @@ public class LoadBeat : MonoBehaviour
         JamSessionDetails.Instance.DrumTypeIndex = _loadedManagerData.drumIndex;
         StartCoroutine(SetValues());
         JamSessionDetails.Instance.isSoloMode = true;
-        InteractionManager.Instance.SwitchSceneInteraction(1);
         SceneManager.LoadScene(1); 
     }
     

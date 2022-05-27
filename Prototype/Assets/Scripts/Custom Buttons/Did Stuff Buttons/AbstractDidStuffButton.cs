@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Managers;
 using TMPro;
 using Tobii.Gaming;
 using UnityEditor;
@@ -225,7 +226,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		{
 			DelegateInteractionMethod(false);
 			
-			InteractionManager.Instance.Method = method;
+			InteractionData.Instance.Method = method;
 			_interactionMethod = method;
 			if (GetInteractionMethod ==InteractionMethod.Tobii ||
 			    GetInteractionMethod == InteractionMethod.MouseDwell)
@@ -260,7 +261,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected void SetNewDwellTime()
 		{
 			PlayerPrefs.SetFloat("DwellTime", _dwellTime);
-			InteractionManager.Instance.DwellTime = _dwellTime;
+			InteractionData.Instance.DwellTime = _dwellTime;
 		}
 		
 		protected virtual void Awake()
@@ -291,7 +292,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected virtual void Start()
 		{
-			SetInteractionMethod(InteractionManager.Instance.Method);
+			SetInteractionMethod(InteractionData.Instance.Method);
 			if (GetInteractionMethod == InteractionMethod.Tobii ||
 			    GetInteractionMethod == InteractionMethod.MouseDwell) _provideDwellFeedbackGlobal = true;
 			else _provideDwellFeedbackGlobal = false;
@@ -302,7 +303,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			else _provideDwellFeedbackLocal = false;
 
 			if (!interactionSetting) localInteractionMethod = _interactionMethod;
-			DwellTime = InteractionManager.Instance.DwellTime != 0.0f ? InteractionManager.Instance.DwellTime : 1.0f;
+			DwellTime = InteractionData.Instance.DwellTime != 0.0f ? InteractionData.Instance.DwellTime : 1.0f;
 			_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
 			
 			if (GetInteractionMethod != InteractionMethod.Tobii) ActivateCollider(false);
@@ -444,7 +445,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (GetInteractionMethod == InteractionMethod.Tobii || GetInteractionMethod == InteractionMethod.MouseDwell)
 			{
 				IsHover = false;
-				InteractionManager.Instance.JustInteracted(this, CoolDownTime);
+				InteractionData.Instance.JustInteracted(this, CoolDownTime);
 			}
 			ExecuteEvents.Execute (gameObject, new PointerEventData (EventSystem.current), ExecuteEvents.pointerExitHandler);
 		}

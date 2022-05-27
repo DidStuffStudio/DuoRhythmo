@@ -32,21 +32,21 @@ namespace Managers
             if (sliderIndex != 0) MasterManager.Instance.audioManager.SetEffect((int) drumType, sliderIndex, value);
         }
 
-        public void InitialisePanel(int i, Color defaultCol, Color activeCol, float bpm, int numberOfInstruments)
+        public void InitialisePanel(int i, Color defaultCol, Color activeCol, float bpm, int numberOfInstruments, string drumName)
         {
             drumType = (DrumType) i;
             drumColor = activeCol;
             defaultColor = defaultCol;
-            SetUpNamesAndColours();
+            SetUpNamesAndColours(drumName);
             InitialiseSliders();
             InitialiseSoloButton();
             if (i == numberOfInstruments - 1) InitialiseBpm(bpm);
         }
 
-        private void SetUpNamesAndColours()
+        private void SetUpNamesAndColours(string drumName)
         {
             panelTitle.color = drumColor;
-            panelTitle.text = drumType + " Effects";
+            panelTitle.text = drumName + " Effects";
             foreach (AbstractDidStuffButton btn in colorCodedButtons)
                 btn.SetActiveColoursExplicit(drumColor, defaultColor);
             foreach (var slider in sliders)

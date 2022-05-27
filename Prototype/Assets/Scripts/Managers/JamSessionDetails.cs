@@ -78,7 +78,6 @@ public class JamSessionDetails : MonoBehaviour {
         ServerIpAddress = ipAddress;
         ServerPort = port;
         // ClientStartup.Instance.SetServerInstanceDetails(ipAddress, port);
-        InteractionManager.Instance.SwitchSceneInteraction(2);
         SceneManager.LoadScene(2);
     }
 

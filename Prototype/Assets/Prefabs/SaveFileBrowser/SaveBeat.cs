@@ -128,7 +128,6 @@ public class SaveBeat : MonoBehaviour
 
     private void Quit()
     {
-        InteractionManager.Instance.SwitchSceneInteraction(0);
         StopAllCoroutines();
         SceneManager.LoadScene(0);
     }

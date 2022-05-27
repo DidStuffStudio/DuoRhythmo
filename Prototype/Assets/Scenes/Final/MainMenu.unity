@@ -168,8 +168,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 292821739}
   initialised: 1
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!1 &11298758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,8 +1676,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 179717812}
   initialised: 0
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!65 &34273897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2829,7 +2827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &68596675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2912,8 +2910,6 @@ RectTransform:
   m_Children:
   - {fileID: 1428571905}
   - {fileID: 853368062}
-  - {fileID: 278012265}
-  - {fileID: 1805362548}
   m_Father: {fileID: 1143099681}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3190,6 +3186,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79096015}
   m_CullTransparentMesh: 1
+--- !u!1 &79670157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 79670159}
+  - component: {fileID: 79670158}
+  m_Layer: 0
+  m_Name: InteractionData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &79670158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79670157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ff0e6ed817ff34fa3ee0dab62fa61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &79670159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79670157}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1197.5591, y: 562.82153, z: 435.48636}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &91385501
 GameObject:
   m_ObjectHideFlags: 0
@@ -5748,8 +5787,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
   initialised: 0
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!114 &230261025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6583,8 +6621,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 68596679}
-  m_RootOrder: 2
+  m_Father: {fileID: 530605013}
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7111,8 +7149,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 179717812}
   initialised: 0
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!65 &282478008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12122,8 +12159,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
   initialised: 0
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!1 &453481942
 GameObject:
   m_ObjectHideFlags: 0
@@ -14971,6 +15007,10 @@ RectTransform:
   - {fileID: 1435545917}
   - {fileID: 1395155163}
   - {fileID: 1447550172}
+  - {fileID: 2772239876077041213}
+  - {fileID: 546560560}
+  - {fileID: 1805362548}
+  - {fileID: 278012265}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14998,13 +15038,12 @@ MonoBehaviour:
   errorToast: {fileID: 3478492031247585142, guid: 9417543038fb4144f91fcb6eb691e9b7, type: 3}
   successToast: {fileID: 3478492031247585142, guid: 3037a065e14c14d60aff162180d41966, type: 3}
   inviteToPlay: {fileID: 1633014623920244313, guid: f65f4811ff2c00b40a862ca619a3b780, type: 3}
-  backButton: {fileID: 0}
-  settingsButton: {fileID: 0}
+  backButton: {fileID: 2772239876077041212}
+  settingsButton: {fileID: 546560559}
   panelsThatDontshowSettings: 0d0000000e0000000f0000001000000011000000000000000100000002000000030000000a0000000b0000000c000000140000001500000016000000
   panelsThatDontshowBack: 0000000012000000
   defaultToastPlaceholder: {fileID: 1805362548}
   matchmakingStatusText: {fileID: 502342193}
-  graphicRaycaster: {fileID: 530605015}
 --- !u!114 &530605015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16050,19 +16089,19 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546560559}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.000025107549}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1497843552}
   - {fileID: 2037746603}
   - {fileID: 956861618}
   - {fileID: 900348352}
-  m_Father: {fileID: 853368062}
-  m_RootOrder: 1
+  m_Father: {fileID: 530605013}
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 695, y: 393}
+  m_AnchoredPosition: {x: -215, y: -97}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &546560561
@@ -16079,7 +16118,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 530605014}
+        m_TargetAssemblyTypeName: Managers.MainMenuManager, Assembly-CSharp
+        m_MethodName: Settings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -17037,8 +17088,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 179717812}
   initialised: 0
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!65 &586592641
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17345,8 +17395,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 292821739}
   initialised: 1
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!1 &596152178
 GameObject:
   m_ObjectHideFlags: 0
@@ -20329,8 +20378,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
   initialised: 0
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!114 &693999341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20482,8 +20530,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
   initialised: 0
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!114 &698121169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23811,8 +23858,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
   initialised: 0
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!114 &813212666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25282,9 +25328,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2772239876077041213}
-  - {fileID: 546560560}
+  m_Children: []
   m_Father: {fileID: 68596679}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -31203,8 +31247,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
   initialised: 0
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!1 &1097749787
 GameObject:
   m_ObjectHideFlags: 0
@@ -32652,16 +32695,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1143099680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3692a0bbda1832f4dba17cff08fc8a18, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ff5229920fff084fa67aad1bb3ee6b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Raycaster: {fileID: 530605015}
-  m_EventSystem: {fileID: 999876413}
+  raycasterOverlay: {fileID: 530605015}
+  _eventSystem: {fileID: 999876413}
   gazeSignifier: {fileID: 278012265}
-  inGamePersistantUi: {fileID: 1428571904}
-  mainMenuPersistantUi: {fileID: 853368061}
-  mainMenuManager: {fileID: 0}
   signifierSpeed: 20
+  mainMenuManager: {fileID: 530605014}
 --- !u!1 &1143218387
 GameObject:
   m_ObjectHideFlags: 0
@@ -39571,7 +39612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelId: 0
   panelToReturnTo: 0
-  interactionManager: {fileID: 1143099682}
+  interactionManager: {fileID: 0}
   inGame: 0
 --- !u!1 &1482131066
 GameObject:
@@ -39885,8 +39926,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
   initialised: 0
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!1 &1487443844
 GameObject:
   m_ObjectHideFlags: 0
@@ -40006,8 +40046,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
   initialised: 0
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!1 &1493366030
 GameObject:
   m_ObjectHideFlags: 0
@@ -44052,8 +44091,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
   initialised: 0
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!114 &1663906524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46009,8 +46047,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 292821739}
   initialised: 1
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!1 &1744154226
 GameObject:
   m_ObjectHideFlags: 0
@@ -47167,8 +47204,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 68596679}
-  m_RootOrder: 3
+  m_Father: {fileID: 530605013}
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -49568,8 +49605,7 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
   initialised: 0
-  interactionManager: {fileID: 1143099682}
-  inGame: 0
+  interactionManager: {fileID: 0}
 --- !u!1 &1931330231
 GameObject:
   m_ObjectHideFlags: 0
@@ -70262,19 +70298,19 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2772239876077041212}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.000025107549}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4515905075596316678}
   - {fileID: 2071701683585112448}
   - {fileID: 8925778415502431323}
   - {fileID: 4452692248529094688}
-  m_Father: {fileID: 853368062}
-  m_RootOrder: 0
+  m_Father: {fileID: 530605013}
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -695, y: 393}
+  m_AnchoredPosition: {x: 215, y: -97}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2772239876077041214
@@ -70291,7 +70327,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 530605014}
+        m_TargetAssemblyTypeName: Managers.MainMenuManager, Assembly-CSharp
+        m_MethodName: Back
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
   inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}

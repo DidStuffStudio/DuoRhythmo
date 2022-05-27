@@ -87,14 +87,14 @@ namespace Managers
             currentRotation = 360 - rhythmIndicator.localRotation.eulerAngles.z;
         }
 
-        public void InitialisePanel(int i, AudioClip[] drumClips, AudioMixerGroup mixer ,Color[] defaultColors, Color activeColor, int numberNodes)
+        public void InitialisePanel(int i, AudioClip[] drumClips, AudioMixerGroup mixer ,Color[] defaultColors, Color activeColor, int numberNodes, string drumName)
         {
             _numberOfNodes = numberNodes;
             SubNodeIndex = i;
             defaultColor = defaultColors;
             drumColor = activeColor;
             SetDrumType(i, drumClips, mixer);
-            SetUpNamesAndColours();
+            SetUpNamesAndColours(drumName);
             InitialiseNodes();
             InitialiseSoloButton();
             _panelIndices.Remove((int) _drumType);
@@ -114,10 +114,10 @@ namespace Managers
             foreach (var toast in voteSkipToasts) toast.SetActive(false);
         }        
         
-        private void SetUpNamesAndColours()
+        private void SetUpNamesAndColours(string drumName)
         {
             drumText.color = drumColor;
-            drumText.text = _drumType.ToString();
+            drumText.text = drumName;
             foreach (AbstractDidStuffButton btn in ColorCodedButtons) {
                 btn.SetActiveColoursExplicit(drumColor, defaultColor[0]);
             }

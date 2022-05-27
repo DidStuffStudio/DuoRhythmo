@@ -141,24 +141,25 @@ namespace Managers {
                 SetUpEffectsManagers(i);
             }
             carouselManager.ToggleVFX(true);
+            gameSetUpFinished = true;
         }
        
         
         private void SetUpEffectsManagers(int i) {
             var effectsManager = effectPanels[i].GetComponentInChildren<EffectsManager>();
             effectsManagers.Add(effectsManager);
-            effectPanels[i].name = "EffectsPanel_" + _drumNames[_currentDrumKitIndex][i].ToString();
-            effectsManager.InitialisePanel(i, defaultNodeColors[0], drumColors[i], _bpm,numberInstruments);
+            effectPanels[i].name = "EffectsPanel_" + _drumNames[_currentDrumKitIndex][i];
+            effectsManager.InitialisePanel(i, defaultNodeColors[0], drumColors[i], _bpm,numberInstruments, _drumNames[_currentDrumKitIndex][i]);
         }
 
         private IEnumerator SetUpNodeManagers(int i) {
             while (!audioManager.setUp) yield return new WaitForEndOfFrame(); // TODO --> Make the player wait in place until this is set up
             var nodeManager = nodePanels[i].GetComponentInChildren<NodeManager>();
             nodeManagers.Add(nodeManager);
-            nodePanels[i].name = "NodesPanel_" + _drumNames[_currentDrumKitIndex][i].ToString();
+            nodePanels[i].name = "NodesPanel_" + _drumNames[_currentDrumKitIndex][i];
             var clips = audioManager.SampleDictionary[_currentDrumKitIndex];
             var mixGroup = audioManager.mixers[i];
-            nodeManager.InitialisePanel(i, clips, mixGroup, defaultNodeColors, drumColors[i], numberOfNodes);
+            nodeManager.InitialisePanel(i, clips, mixGroup, defaultNodeColors, drumColors[i], numberOfNodes,_drumNames[_currentDrumKitIndex][i]);
         }
 
 

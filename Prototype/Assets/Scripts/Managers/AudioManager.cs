@@ -22,7 +22,7 @@ namespace Managers {
         [SerializeField] private float[] minMaxReverb = {-80.0f, 0.0f};
         [SerializeField] private float[] minMaxLowPass = {-22000.0f, -150.0f};
         private Dictionary<int, float[]> effectConstraints = new Dictionary<int, float[]>();
-        private float[] _volumes = new float[5];
+        private float[] _volumes = new float[5]{-10,-10,-10,-10,-10};
         public bool setUp = false;
 
         private void Awake() {

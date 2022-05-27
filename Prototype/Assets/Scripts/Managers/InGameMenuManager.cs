@@ -40,16 +40,14 @@ public class InGameMenuManager : MonoBehaviour
     [SerializeField] private GameObject raycastBlock;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GraphicRaycaster graphicRaycaster;
-    [SerializeField] private MasterManager masterManager;
-    
-     private void Awake()
+   
+
+    private void Awake()
     {
        if (_instance == null) _instance = this;
        
         var uiPanels = GetComponentsInChildren<UIPanel>();
         foreach (var p in uiPanels) _panelDictionary.Add(p.panelId, p);
-
-        InteractionManager.Instance.SetNewGraphicsRaycaster(graphicRaycaster);
        
         for (int i = 0; i < _panelDictionary.Count; i++)
         {
@@ -66,23 +64,10 @@ public class InGameMenuManager : MonoBehaviour
         var initialBlurPanel = Instantiate(_background, transform.position, Quaternion.identity, settingsMenu.transform);
         _backgroundRTs.Add(initialBlurPanel.GetComponent<RectTransform>());
         initialBlurPanel.transform.SetSiblingIndex(0);
-         DeactivateSettings();
+        CloseSettings();
         
     }
-
-     private void OnEnable()
-     {
-        var settingsBtn = FindObjectOfType<SettingButton>();
-        var backBtn = FindObjectOfType<BackButton>();
-        var quitBtn = FindObjectOfType<QuitButton>();
-        settingsBtn.OnClick += OpenSettings;
-        backBtn.OnClick += Back;
-        quitBtn.OnClick += OpenSaveBeats;
-        settingsButton = settingsBtn.gameObject;
-        backButton = backBtn.gameObject;
-        exitButton = quitBtn.gameObject;
-     }
-
+    
      private void ToggleUIPanel()
       {
          if (_numberCurrentBlurPanels < _numberDesiredBlurPanels)
@@ -171,7 +156,11 @@ public class InGameMenuManager : MonoBehaviour
          StartCoroutine(ActivatePanelDelayed());
       }
 
-    
+      public void SendToInteractionPanel()
+      {
+         //TODO send to interaction page if tobii not detected.
+      }
+
 
       IEnumerator ActivatePanelDelayed()
       {
@@ -181,8 +170,8 @@ public class InGameMenuManager : MonoBehaviour
 
       public void NextFromInteractionPage()
       {
-         if (InteractionManager.Instance.Method == InteractionMethod.Tobii ||
-             InteractionManager.Instance.Method == InteractionMethod.MouseDwell)
+         if (InteractionData.Instance.Method == InteractionMethod.Tobii ||
+             InteractionData.Instance.Method  == InteractionMethod.MouseDwell)
          {
             DeactivatePanel(_currentPanel);
             ActivatePanel(2);
@@ -201,7 +190,7 @@ public class InGameMenuManager : MonoBehaviour
 
     public void OpenSettings()
     {
-       if(masterManager.gameSetUpFinished)MuteDrums(true);
+       MuteDrums(true);
        settingsButton.SetActive(false);
        for (int i = 0; i < _panelDictionary.Count; i++) DeactivatePanel(i); 
        exitButton.SetActive(false);
@@ -222,6 +211,7 @@ public class InGameMenuManager : MonoBehaviour
        BlurBackground(false);
        settingsMenu.SetActive(false);
        BlockDrumInteraction(false);
+       MuteDrums(false);
     }
     
     public void OpenSaveBeats()
@@ -236,19 +226,11 @@ public class InGameMenuManager : MonoBehaviour
        ActivatePanel(5);
     }
 
-    private void DeactivateSettings()
+    private void MuteDrums(bool mute)
     {
-       if(masterManager.gameSetUpFinished)MuteDrums(false);
-       settingsButton.SetActive(true);
-       exitButton.SetActive(true);
-       backButton.SetActive(false);
-       BlurBackground(false);
-       settingsMenu.SetActive(false);
-       BlockDrumInteraction(false);
+       if(MasterManager.Instance != null) MasterManager.Instance.audioManager.MuteAll(mute);
     }
 
-    private void MuteDrums(bool mute) => MasterManager.Instance.audioManager.MuteAll(mute);
-    
     public void SpawnSuccessToast(string msg, float delay) => StartCoroutine(InstantiateSuccessToast(msg,delay));
     public void SpawnErrorToast(string msg, float delay) => StartCoroutine(InstantiateErrorToast(msg,delay));
     public void SpawnInfoToast(string msg, float delay) => StartCoroutine(InstantiateInfoToast(msg,delay));
@@ -286,14 +268,7 @@ public class InGameMenuManager : MonoBehaviour
     public void Quit()
     {
        StopAllCoroutines();
-       InteractionManager.Instance.SwitchSceneInteraction(0);
        SceneManager.LoadScene(0);
     }
-
-    private void OnDisable()
-    {
-       FindObjectOfType<SettingButton>().OnClick -= OpenSettings;
-       FindObjectOfType<BackButton>().OnClick -= Back;
-       FindObjectOfType<QuitButton>().OnClick -= OpenSaveBeats;
-    }
+    
 }

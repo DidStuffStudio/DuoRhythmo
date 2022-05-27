@@ -146,8 +146,8 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
             //var dist = Vector3.Distance(value, _knobRectTransform.localPosition);
             var dist = Mathf.Abs(Mathf.Abs(value.x) - Mathf.Abs(_knobRectTransform.localPosition.x));
             //if(dist>30) DeactivateButton();
-            if(dist>distanceToDeactivate && (InteractionManager.Instance.Method != InteractionMethod.Mouse || InteractionManager.Instance.Method != InteractionMethod.Touch)) DeactivateButton();
-            print(InteractionManager.Instance.Method);    
+            if(dist>distanceToDeactivate && (InteractionData.Instance.Method != InteractionMethod.Mouse || InteractionData.Instance.Method != InteractionMethod.Touch)) DeactivateButton();
+            print(InteractionData.Instance.Method);    
             FillSlider();
     }
 
@@ -172,7 +172,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
     private void MouseInteraction()
     {
         if (Input.GetMouseButtonUp(0)) DeactivateButton();
-        if (_isActive) _currentInputScreenPosition = InteractionManager.Instance.InputPosition;
+        if (_isActive) _currentInputScreenPosition = InteractionData.Instance.InputPosition;
     }
 
     protected override void MouseInput()
@@ -183,7 +183,7 @@ public class DidStuffSliderKnob : AbstractDidStuffButton
 
     private void MouseDwellInteraction()
     {
-        if(_isActive)_currentInputScreenPosition = InteractionManager.Instance.InputPosition;
+        if(_isActive)_currentInputScreenPosition = InteractionData.Instance.InputPosition;
         
     }
 

@@ -7,23 +7,13 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
     {
 
         private bool _preferredDwellSpeed;
-        [SerializeField] private InteractionManager interactionManager;
-        [SerializeField] private bool inGame;
+        private bool _initialisedDwellButton;
         protected override void OnEnable()
         {
             base.OnEnable();
-            if (inGame)
-            {
-                if (Mathf.Approximately(localDwellTime, InteractionManager.Instance.DwellTime)) _preferredDwellSpeed = true;
-                else _preferredDwellSpeed = false;
-            }
-            else
-            {
-                if (Mathf.Approximately(localDwellTime, interactionManager.DwellTime)) _preferredDwellSpeed = true;
-                else _preferredDwellSpeed = false;
-            }
-           
-  
+            if (!_initialisedDwellButton) return;
+            if (Mathf.Approximately(localDwellTime, InteractionData.Instance.DwellTime)) _preferredDwellSpeed = true;
+            else _preferredDwellSpeed = false;
         }
 
         protected override void Start()
@@ -45,6 +35,11 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
             DwellTime = localDwellTime;
             SetNewDwellTime();
         }
-        
+
+        protected override void OnDisable()
+        {
+            _initialisedDwellButton = true;
+            base.OnDisable();
+        }
     }
 }

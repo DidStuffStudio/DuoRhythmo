@@ -48,7 +48,6 @@ namespace Managers
       private DidStuffInvite _currentInvitePopUp;
       [SerializeField] private Transform defaultToastPlaceholder;
       [SerializeField] private TextMeshProUGUI matchmakingStatusText;
-      [SerializeField] private GraphicRaycaster graphicRaycaster;
 
 
       public string ReferencePin
@@ -57,29 +56,11 @@ namespace Managers
       }
 
       public int CurrentPanel => _currentPanel;
-
-      /*
-      private void OnEnable()
-      {
-         var settingsBtn = FindObjectOfType<SettingButton>();
-         var backBtn = FindObjectOfType<BackButton>();
-         settingsBtn.OnClick += Settings;
-         backBtn.OnClick += Back;
-         settingsButton = settingsBtn.gameObject;
-         backButton = backBtn.gameObject;
-      }
-      */
-
+      
       private void Awake()
       {
          if (_instance == null) _instance = this;
       
-         var settingsBtn = FindObjectOfType<SettingButton>();
-         var backBtn = FindObjectOfType<BackButton>();
-         settingsBtn.OnClick += Settings;
-         backBtn.OnClick += Back;
-         settingsButton = settingsBtn.gameObject;
-         backButton = backBtn.gameObject;
          
          backButton.SetActive(false);
          var uiPanels = GetComponentsInChildren<UIPanel>();
@@ -102,14 +83,7 @@ namespace Managers
          initialBlurPanel.transform.SetSiblingIndex(0);
          uiPanels[6].ExecuteSpecificChanges();
          ActivatePanel(0);
-         //ReceiveInviteToPlay("Dickhead");
-         
-         
-      }
-
-      private void Start()
-      {
-         InteractionManager.Instance.SetNewGraphicsRaycaster(graphicRaycaster);
+         InteractionData.Instance.CheckInteractionMethod();
       }
 
       private void ToggleUIPanel()
@@ -181,8 +155,8 @@ namespace Managers
                p = _activatedSettingsFrom;
                break;
             
-            case 2 when InteractionManager.Instance.Method == InteractionMethod.Tobii ||
-                        InteractionManager.Instance.Method == InteractionMethod.MouseDwell:
+            case 2 when InteractionData.Instance.Method == InteractionMethod.Tobii ||
+                        InteractionData.Instance.Method == InteractionMethod.MouseDwell:
                p = 1;
                break;
             case 2:
@@ -196,7 +170,8 @@ namespace Managers
 
       public void Settings()
       {
-         _activatedSettingsFrom = _panelDictionary[_currentPanel].panelId;
+         _activatedSettingsFrom = _panelDictionary[CurrentPanel].panelId;
+         if (_activatedSettingsFrom == 13) _activatedSettingsFrom = 4;
          DeactivatePanel(CurrentPanel);
          ActivatePanel(13);
       }
@@ -230,8 +205,8 @@ namespace Managers
 
       public void NextFromInteractionPage()
       {
-         if (InteractionManager.Instance.Method == InteractionMethod.Tobii ||
-             InteractionManager.Instance.Method == InteractionMethod.MouseDwell)
+         if (InteractionData.Instance.Method == InteractionMethod.Tobii ||
+             InteractionData.Instance.Method == InteractionMethod.MouseDwell)
          {
             DeactivatePanel(CurrentPanel);
             if (CurrentPanel == 0) ActivatePanel(1);
@@ -392,7 +367,7 @@ namespace Managers
       {
          yield return new WaitForSeconds(delay);
          var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder");
-         if (toastPlaceholder == null) toastPlaceholder = GameObject.FindWithTag("DefaultToastHolder");
+         if (toastPlaceholder == null) toastPlaceholder = defaultToastPlaceholder.gameObject;
          if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.transform.GetChild(0).gameObject);
          var t = Instantiate(errorToast, toastPlaceholder.transform);
          t.GetComponent<Toast>().SetText(toastText);
@@ -402,7 +377,7 @@ namespace Managers
       {
          yield return new WaitForSeconds(delay);
          var toastPlaceholder = GameObject.FindWithTag("Toast Placeholder").transform;
-         if (toastPlaceholder == null) toastPlaceholder = GameObject.FindWithTag("DefaultToastHolder").transform;
+         if (toastPlaceholder == null) toastPlaceholder = defaultToastPlaceholder;
          if(toastPlaceholder.transform.childCount > 0) Destroy(toastPlaceholder.GetChild(0).gameObject);
          var t = Instantiate(successToast, toastPlaceholder);
          t.GetComponent<Toast>().SetText(toastText);
@@ -411,7 +386,6 @@ namespace Managers
 
       public void LoadJamSession()
       {
-         InteractionManager.Instance.SwitchSceneInteraction(1);
          SceneManager.LoadScene(1); // change to single player scene
       }
       
@@ -426,13 +400,7 @@ namespace Managers
       }
       
       public void SetMatchmakingStatusText(string text) => matchmakingStatusText.text = text;
-
-
-      private void OnDisable()
-      {
-         FindObjectOfType<SettingButton>().OnClick -= Settings;
-         FindObjectOfType<BackButton>().OnClick -= Back;
-      }
+      
    }
    
 }

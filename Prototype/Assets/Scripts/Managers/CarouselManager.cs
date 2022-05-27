@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DidStuffLab;
 using Mirror;
+using Misc;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -11,9 +12,8 @@ using UnityEngine.VFX;
 
 namespace Managers {
     public class CarouselManager : MonoBehaviour {
-        private Animator _uiAnimator;
         private float _timeLeft = 10.0f;
-        private Color _targetVFXColor, _targetSkyColor;
+        private Color _targetVFXColor;
         public VisualEffect _vfx;
         private int _currentPanel = 0, _lastPanel = 0, _currentPanelBuddy = 5, _lastPanelBuddy = 5;
         private static readonly int Tint = Shader.PropertyToID("_Tint");
@@ -27,7 +27,7 @@ namespace Managers {
         private bool isRenderingAPanel = false;
         public bool justJoined;
         public bool isSoloMode = false;
-
+        [SerializeField] private InGameInteractionManager interactionManager;
         [SerializeField] private NavigationVoteSync[] _navigationVoteSyncs;
         public delegate void MoveCarouselAction();
         public static event MoveCarouselAction OnMovedCarousel;
@@ -90,6 +90,7 @@ namespace Managers {
                 if (_currentPanel > 0) _currentPanel--;
                 else _currentPanel = panels.Count - 1;
             }
+            interactionManager.SwitchDrumPanel(panels[_currentPanel].GetComponent<GraphicRaycaster>());
         }
 
         public void SwapBlurForPlayer(int current, int last, int currentBuddy, int lastBuddy) {
@@ -97,6 +98,7 @@ namespace Managers {
             _lastPanel = last;
             _currentPanelBuddy = currentBuddy;
             _lastPanelBuddy = lastBuddy;
+            interactionManager.SwitchDrumPanel(panels[current].GetComponent<GraphicRaycaster>());
         }
 
         public void BlurFromServer(bool forward) {
@@ -120,7 +122,7 @@ namespace Managers {
             foreach (var navsync in _navigationVoteSyncs) {
                 if(navsync.VotingValue > 0) navsync.ResetVoting();
             }
-            
+            interactionManager.SwitchDrumPanel(panels[_currentPanel].GetComponent<GraphicRaycaster>());
             OnMovedCarousel?.Invoke();
         }
 

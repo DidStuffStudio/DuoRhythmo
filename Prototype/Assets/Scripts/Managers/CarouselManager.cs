@@ -73,8 +73,7 @@ namespace Managers {
             _vfx.transform.gameObject.SetActive(activate);
         }
 
-        public void PauseAnimation() {
-            print("Pause animation");
+        private void ChangedPanel() {
             MasterManager.Instance.ForceSoloOffGlobal();
             BlurBackground();
         }
@@ -91,6 +90,7 @@ namespace Managers {
                 else _currentPanel = panels.Count - 1;
             }
             interactionManager.SwitchDrumPanel(panels[_currentPanel].GetComponent<GraphicRaycaster>());
+            ChangedPanel();
         }
 
         public void SwapBlurForPlayer(int current, int last, int currentBuddy, int lastBuddy) {
@@ -102,7 +102,6 @@ namespace Managers {
         }
 
         public void BlurFromServer(bool forward) {
-            // TODO --> when player swaps position --> currentPosition = 5, lastPosition = 5, currentBuddyPos = 0, lastBuddyPos = 0
             _lastPanel = _currentPanel;
             _lastPanelBuddy = _currentPanelBuddy;
             
@@ -122,7 +121,9 @@ namespace Managers {
             foreach (var navsync in _navigationVoteSyncs) {
                 if(navsync.VotingValue > 0) navsync.ResetVoting();
             }
+
             interactionManager.SwitchDrumPanel(panels[_currentPanel].GetComponent<GraphicRaycaster>());
+            ChangedPanel();
             OnMovedCarousel?.Invoke();
         }
 

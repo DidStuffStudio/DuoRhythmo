@@ -8,7 +8,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
     {
         [SerializeField] private EuclideanRhythm euclideanRhythm;
         [SerializeField] private NodeManager nodeManager;
-        [SerializeField] private List<IncrementEuclidean> incrementButtons = new List<IncrementEuclidean>();
+        [SerializeField] private List<Emoji> incrementButtons = new List<Emoji>();
 
         protected override void ButtonClicked()
         {

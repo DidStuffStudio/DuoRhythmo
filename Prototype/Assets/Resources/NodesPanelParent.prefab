@@ -2826,7 +2826,7 @@ GameObject:
   - component: {fileID: 6467794669106149156}
   - component: {fileID: 3608003232144352857}
   - component: {fileID: 2856969745435277521}
-  - component: {fileID: 6665630344828372078}
+  - component: {fileID: 7861967836302210553}
   m_Layer: 0
   m_Name: '-'
   m_TagString: UI_Drum_Colour
@@ -2920,7 +2920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d87d489c55fc504987b709bbe1e4ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6665630344828372078
+--- !u!114 &7861967836302210553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2929,7 +2929,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2856969745435277358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 202f59a3515bd2f48bea8d14cef09079, type: 3}
+  m_Script: {fileID: 11500000, guid: 66005c263b900b24481ba48c0df36a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onClicked:
@@ -2948,8 +2948,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
+  activeColour: {r: 0, g: 1, b: 0, a: 1}
+  inactiveColour: {r: 1, g: 0, b: 0, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   startDisabled: 0
   primaryText: 
@@ -2975,8 +2975,9 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  duration: 1
-  targetY: -12
+  duration: 0.75
+  targetPosition: {x: 0, y: -12, z: 0}
+  emojiIndex: 0
 --- !u!1 &2957533974558365634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3413,7 +3414,7 @@ GameObject:
   - component: {fileID: 5934759089212518151}
   - component: {fileID: 4146817843538181754}
   - component: {fileID: 3187345471857352946}
-  - component: {fileID: 5801934119482034529}
+  - component: {fileID: 8223952337880158163}
   m_Layer: 0
   m_Name: +
   m_TagString: UI_Drum_Colour
@@ -3507,7 +3508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d87d489c55fc504987b709bbe1e4ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5801934119482034529
+--- !u!114 &8223952337880158163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3516,7 +3517,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3187345471857352717}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 202f59a3515bd2f48bea8d14cef09079, type: 3}
+  m_Script: {fileID: 11500000, guid: 66005c263b900b24481ba48c0df36a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onClicked:
@@ -3535,8 +3536,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  activeColour: {r: 0.45490196, g: 0.8352941, b: 0.83137256, a: 1}
-  inactiveColour: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
+  activeColour: {r: 0, g: 1, b: 0, a: 1}
+  inactiveColour: {r: 1, g: 0, b: 0, a: 1}
   disabledColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   startDisabled: 0
   primaryText: 
@@ -3562,8 +3563,9 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  duration: 1
-  targetY: 12
+  duration: 0.75
+  targetPosition: {x: 0, y: 12, z: 0}
+  emojiIndex: 0
 --- !u!1 &3251892272544444833
 GameObject:
   m_ObjectHideFlags: 0
@@ -5968,8 +5970,8 @@ MonoBehaviour:
   euclideanRhythm: {fileID: 8248214353105484814}
   nodeManager: {fileID: 8248214353105484809}
   incrementButtons:
-  - {fileID: 6665630344828372078}
-  - {fileID: 5801934119482034529}
+  - {fileID: 8223952337880158163}
+  - {fileID: 7861967836302210553}
 --- !u!1 &5667420174191010245
 GameObject:
   m_ObjectHideFlags: 0
@@ -8136,8 +8138,8 @@ MonoBehaviour:
   currentRotation: 0
   ColorCodedButtons:
   - {fileID: 2956170863533156876}
-  - {fileID: 6665630344828372078}
-  - {fileID: 5801934119482034529}
+  - {fileID: 7861967836302210553}
+  - {fileID: 8223952337880158163}
   - {fileID: 3253747104462198240}
   - {fileID: 6391497026212430709}
   - {fileID: 6127414006065953207}

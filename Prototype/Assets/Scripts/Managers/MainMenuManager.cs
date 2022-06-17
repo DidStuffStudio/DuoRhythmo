@@ -273,6 +273,7 @@ namespace Managers
          }
          else
          {
+            DeactivatePanel(_currentPanel);
             ActivatePanel(indexToActivate);
          }
          

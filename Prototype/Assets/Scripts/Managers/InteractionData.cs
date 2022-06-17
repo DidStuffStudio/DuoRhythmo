@@ -9,7 +9,7 @@ namespace Managers
     public class InteractionData : MonoBehaviour
     {
         private Vector2 _inputPosition = Vector2.zero;
-        private InteractionMethod _interactionMethod = 0;
+        public InteractionMethod _interactionMethod = 0;
         private float _dwellTime = 1f;
         private float DwellTimeFromPlayerPrefs
         {
@@ -78,6 +78,7 @@ namespace Managers
         {
             btn.SetCanHover(false);
             btn.IsHover = false;
+            
             yield return new WaitForSeconds(coolDownTime);
             ExecuteEvents.Execute (btn.gameObject, new PointerEventData (EventSystem.current), ExecuteEvents.pointerExitHandler);
             btn.SetCanHover(true);

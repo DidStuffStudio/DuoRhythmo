@@ -89,7 +89,7 @@ namespace Managers {
                 if (_currentPanel > 0) _currentPanel--;
                 else _currentPanel = panels.Count - 1;
             }
-            interactionManager.SwitchDrumPanel(panels[_currentPanel].GetComponent<GraphicRaycaster>());
+            interactionManager.SwitchDrumPanel(panels[_currentPanel].GetComponentInChildren<GraphicRaycaster>());
             ChangedPanel();
         }
 

@@ -6,6 +6,7 @@ using Custom_Buttons.Did_Stuff_Buttons;
 using Custom_Buttons.Did_Stuff_Buttons.Buttons;
 using LeTai.Asset.TranslucentImage;
 using Managers;
+using Misc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -40,6 +41,8 @@ public class InGameMenuManager : MonoBehaviour
     [SerializeField] private GameObject raycastBlock;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GraphicRaycaster graphicRaycaster;
+    [SerializeField] private InGameInteractionManager interactionManager;
+    private GraphicRaycaster drumGraphicRaycaster;
    
 
     private void Awake()
@@ -185,20 +188,20 @@ public class InGameMenuManager : MonoBehaviour
 
      
     private void BlurBackground(bool blur) => blurBackground.enabled = blur;
-
-    private void BlockDrumInteraction(bool block) => raycastBlock.SetActive(block);
+    
 
     public void OpenSettings()
     {
        MuteDrums(true);
+       drumGraphicRaycaster = interactionManager.RaycasterDrumPanel;
+       interactionManager.RaycasterDrumPanel = graphicRaycaster;
        settingsButton.SetActive(false);
        for (int i = 0; i < _panelDictionary.Count; i++) DeactivatePanel(i); 
        exitButton.SetActive(false);
        backButton.SetActive(true);
        BlurBackground(true);
        settingsMenu.SetActive(true);
-       BlockDrumInteraction(true);
-      ActivatePanel(0);
+       ActivatePanel(0);
     }
 
     public void CloseSettings()
@@ -210,19 +213,20 @@ public class InGameMenuManager : MonoBehaviour
        backButton.SetActive(false);
        BlurBackground(false);
        settingsMenu.SetActive(false);
-       BlockDrumInteraction(false);
        MuteDrums(false);
+       if(drumGraphicRaycaster != null) interactionManager.RaycasterDrumPanel = drumGraphicRaycaster;
     }
     
     public void OpenSaveBeats()
     {
        MuteDrums(true);
+       drumGraphicRaycaster = interactionManager.RaycasterDrumPanel;
+       interactionManager.RaycasterDrumPanel = graphicRaycaster;
        settingsButton.SetActive(false);
        backButton.SetActive(false);
        exitButton.SetActive(false);
        BlurBackground(true);
        settingsMenu.SetActive(true);
-       BlockDrumInteraction(true);
        ActivatePanel(5);
     }
 

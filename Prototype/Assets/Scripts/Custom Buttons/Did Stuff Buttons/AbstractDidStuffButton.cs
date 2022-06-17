@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Managers;
 using TMPro;
 using Tobii.Gaming;
@@ -173,16 +174,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private bool _provideDwellFeedbackLocal = false;
 		private static bool _provideDwellFeedbackGlobal;
 		private TextMeshProUGUI _primaryText, _secondaryText;
-		
-		private GazeAware _gazeAware;
 		protected Camera MainCamera;
 		internal static float _dwellTime = 1.0f;
 		private static InteractionMethod _interactionMethod = InteractionMethod.Mouse;
 		internal float _currentDwellTime = 0.0f;
 		private bool _initialised;
 		private bool _playActivatedScale;
-		private BoxCollider _boxCollider;
-		private SphereCollider _sphereCollider;
 		private bool _isSquare;
 		[SerializeField] internal bool dwellScaleX = false;
 		private bool _dwelling;
@@ -274,21 +271,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			interactionCooldownDictionary.Add(InteractionMethod.Tobii, 1.0f);
 			interactionCooldownDictionary.Add(InteractionMethod.Touch, 0.1f);
 			_mainImage = GetComponent<Image>();
-			_gazeAware = GetComponent<GazeAware>();
 			MainCamera = Camera.main;
 			if (!useInteractableLayer) interactableLayer = ~0;
 			GetTheChildren();
 			_originaldwellScaleY = _dwellGfx.localScale.y;
 			if (!customHoverColours) SetAutomaticColours();
 			else SetColours();
-			
-			var boxCollider = GetComponent<BoxCollider>();
-			if (boxCollider != null)
-			{
-				_isSquare = true;
-				_boxCollider = GetComponent<BoxCollider>();
-			}
-			else _sphereCollider = GetComponent<SphereCollider>();
 			
 			SetScaleOfChildren();
 			ToggleDwellGfx(false);
@@ -311,8 +299,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (!interactionSetting) localInteractionMethod = _interactionMethod;
 			DwellTime = InteractionData.Instance.DwellTime != 0.0f ? InteractionData.Instance.DwellTime : 1.0f;
 			_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
-			
-			if (GetInteractionMethod != InteractionMethod.Tobii) ActivateCollider(false);
 			if (dwellScaleX) _dwellGfx.localScale = new Vector3(0.0f, _originaldwellScaleY, 1);
 			else _dwellGfx.localScale = zero;
 		}
@@ -323,16 +309,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			var w = rt.width;
 			var h = rt.height;
 			_dwellGfx.sizeDelta = new Vector2(w, h);
-			if (_isSquare)
-			{
-				_boxCollider.center = zero;
-				_boxCollider.size = new Vector3(w, h, 0.1f);
-			}
-			else
-			{
-				_sphereCollider.center = zero;
-				_sphereCollider.radius = w;
-			}
 		}
 		
 		protected virtual void GetTheChildren()
@@ -376,7 +352,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 								MouseInput();
 								break;
 							case InteractionMethod.Tobii:
-								TobiiInput();
+								//TobiiInput();
 								DwellScale();
 								break;
 							case InteractionMethod.Touch:
@@ -395,7 +371,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 						MouseInput();
 						break;
 					case InteractionMethod.Tobii:
-						TobiiInput();
+						//TobiiInput();
 						DwellScale();
 						break;
 					case InteractionMethod.Touch:
@@ -435,12 +411,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			DwellGfxImg.color = new Color(color.r, color.g, color.b,  activate ? 1 : 0);
 			// _dwellGfx.transform.gameObject.SetActive(activate);
 		}
-
-		protected void ActivateCollider(bool activate)
-		{
-			if (_isSquare) _boxCollider.enabled = activate;
-			else _sphereCollider.enabled = activate;
-		}
+		
 
 		protected void ActivateText(bool activate) => _primaryText.gameObject.SetActive(activate);
 		
@@ -693,25 +664,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			
 		#endregion
 		
-		#region TobiiInteraction
-
-		private void TobiiInput()
-		{
-			if (!TobiiAPI.IsConnected) return;
-			if (IsDisabled) return;
-			if (_gazeAware.HasGazeFocus)
-			{
-				IsHover = true;
-				OnHover?.Invoke();
-			}
-			else
-			{
-				IsHover = false;
-				OnUnHover?.Invoke();
-			}
-		}
-
-		#endregion
 
 		#region TouchInteraction
 
@@ -749,30 +701,39 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		public void OnPointerEnter(PointerEventData eventData)
 		{
+			if(IsHover) return;
 			if (eventData.pointerId == 1)
 			{
-				Debug.Log("Hovered with Tobii");
 				if (localInteractionMethod != InteractionMethod.Tobii)
 					return;
 			}
 			else if (eventData.pointerId < 0)
 			{
-				Debug.Log("Hovered with Mouse");
 				if (localInteractionMethod == InteractionMethod.Tobii)
 					return;
 			}
 			
-			if (IsDisabled) return;
+			if (_isDisabled) return;
 			if(!_canHover) return;
-			IsHover = true;
+			_isHover = true;
 			OnHover?.Invoke();
 		}
   
 		public void OnPointerExit(PointerEventData eventData)
 		{
-			if(eventData.pointerId == 1) Debug.Log("UnHovered with Tobii");
-			else Debug.Log("UnHovered with Mouse");
 			_pointerEventData = eventData;
+			if (eventData.pointerId == 1)
+			{
+				if (localInteractionMethod != InteractionMethod.Tobii)
+				{
+					return;
+				}
+			}
+			else if (eventData.pointerId < 0)
+			{
+				if (localInteractionMethod == InteractionMethod.Tobii)
+					return;
+			}
 			if (IsDisabled) return;
 			IsHover = false;
 			OnUnHover?.Invoke();
@@ -783,7 +744,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected virtual void OnDisable()
 		{
 			_isHover = false;
-			
 			OnClick -= ButtonClicked;
 			OnHover -= ButtonHovered;
 			OnUnHover -= ButtonUnHovered;
@@ -791,6 +751,13 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			OnDeactivate -= DeactivateButton;
 
 			DelegateInteractionMethod(false);
+		}
+		
+		static void ShowMessage(string message,
+			[CallerLineNumber] int lineNumber = 0,
+			[CallerMemberName] string caller = null)
+		{
+			Debug.Log(message + " at line " + lineNumber + " (" + caller + ")");
 		}
 	}
 }

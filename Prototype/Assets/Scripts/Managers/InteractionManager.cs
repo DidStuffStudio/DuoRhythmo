@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Custom_Buttons.Did_Stuff_Buttons;
+using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -50,13 +51,13 @@ namespace Managers
                     SignifierFollowInputPosition();
                     break;
                 case InteractionMethod.Tobii:
-                    /*if (TobiiAPI.IsConnected)
+                    if (TobiiAPI.IsConnected)
                     {
                         InteractionData.Instance.InputPosition = TobiiAPI.GetGazePoint().Screen;
                         TobiiGraphicRaycast();
                         SignifierFollowInputPosition();
-                    } */
-                    InteractionData.Instance.InputPosition = Input.mousePosition;
+                    } 
+                    //InteractionData.Instance.InputPosition = Input.mousePosition;
                     TobiiGraphicRaycast();
                     break;
             }
@@ -65,13 +66,13 @@ namespace Managers
 
         protected virtual void TobiiGraphicRaycast()
         {
-            //if (!TobiiAPI.IsConnected) return;
+            if (!TobiiAPI.IsConnected) return;
             
             
             //Set up the new Pointer Event
             _pointerEventDataOverlay = new PointerEventData(_eventSystem);
             //Set the Pointer Event Position to mouse position (Change to tobii)
-            _pointerEventDataOverlay.position = InteractionData.Instance.InputPosition;
+            _pointerEventDataOverlay.position = TobiiAPI.GetGazePoint().Screen;
             _pointerEventDataOverlay.pointerId = 1;
             //Create a list of Raycast Results
             List<RaycastResult> resultsOverlay = new List<RaycastResult>();
@@ -81,8 +82,7 @@ namespace Managers
             
             if (resultsOverlay.Count > 0) //Raycast for overlay canvas
             {
-                Debug.Log("Hit " + resultsOverlay[0].gameObject.name);
-                var btn = result[0].gameObject;
+                var btn = resultsOverlay[0].gameObject;
                 if (btn != null)
                 {
                     _lastHitButton = btn;

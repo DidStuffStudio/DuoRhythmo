@@ -15,6 +15,12 @@ namespace Misc
         private static PointerEventData _pointerEventDataDrumPanel;
         private GameObject _lastHitDrumElement;
 
+        public GraphicRaycaster RaycasterDrumPanel
+        {
+            get => raycasterDrumPanel;
+            set => raycasterDrumPanel = value;
+        }
+
         private void Awake()
         {
             if(InteractionData.Instance.Method == InteractionMethod.Tobii && !TobiiAPI.IsConnected) SendToInteractionPage();

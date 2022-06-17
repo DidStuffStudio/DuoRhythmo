@@ -11,7 +11,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
 
         [SerializeField] private AbstractDidStuffButton otherButtonToDisable;
 
-        private void Start() {
+        protected override void Start() {
+            base.Start();
             _carouselManager = MasterManager.Instance.carouselManager;
         }
 

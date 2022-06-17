@@ -28,7 +28,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
         private void SetPreferredInteraction()
         {
             SetInteractionMethod(localInteractionMethod);
-            ActivateCollider(localInteractionMethod == InteractionMethod.Tobii);
         }
 
         protected override void OnDisable()

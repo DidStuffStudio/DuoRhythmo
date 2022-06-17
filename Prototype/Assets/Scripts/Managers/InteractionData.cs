@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using Custom_Buttons.Did_Stuff_Buttons;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Managers
 {
@@ -79,7 +78,6 @@ namespace Managers
             btn.SetCanHover(false);
             btn.IsHover = false;
             yield return new WaitForSeconds(coolDownTime);
-            ExecuteEvents.Execute (btn.gameObject, new PointerEventData (EventSystem.current), ExecuteEvents.pointerExitHandler);
             btn.SetCanHover(true);
         }
 

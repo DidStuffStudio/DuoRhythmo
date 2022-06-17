@@ -9,7 +9,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-using UnityEngine.VFX;
 
 namespace Managers
 {
@@ -88,7 +87,7 @@ namespace Managers
             currentRotation = 360 - rhythmIndicator.localRotation.eulerAngles.z;
         }
 
-        public void InitialisePanel(int i, AudioClip[] drumClips, AudioMixerGroup mixer ,Color[] defaultColors, Color activeColor, int numberNodes, string drumName, VisualEffect vfx)
+        public void InitialisePanel(int i, AudioClip[] drumClips, AudioMixerGroup mixer ,Color[] defaultColors, Color activeColor, int numberNodes, string drumName)
         {
             _numberOfNodes = numberNodes;
             SubNodeIndex = i;
@@ -96,7 +95,7 @@ namespace Managers
             drumColor = activeColor;
             SetDrumType(i, drumClips, mixer);
             SetUpNamesAndColours(drumName);
-            InitialiseNodes(vfx);
+            InitialiseNodes();
             InitialiseSoloButton();
             _panelIndices.Remove((int) _drumType);
         }
@@ -125,7 +124,7 @@ namespace Managers
         }
         
         
-        private void InitialiseNodes(VisualEffect vfx)
+        private void InitialiseNodes()
         {
 
             var toggleDefaultColor = false;
@@ -159,7 +158,6 @@ namespace Managers
                 n.InitialiseSubNodes();
                 n.SetText((i + 1).ToString());
                 NodeAngles.Add(n.GetAngle());
-                nodes[i].SetVfx(vfx);
                 nodes[i].nodeInitialised = true;
             }
             rhythmIndicator.gameObject.GetComponentInChildren<Image>().enabled = true;

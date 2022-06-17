@@ -159,7 +159,7 @@ namespace Managers {
             nodePanels[i].name = "NodesPanel_" + _drumNames[_currentDrumKitIndex][i];
             var clips = audioManager.SampleDictionary[_currentDrumKitIndex];
             var mixGroup = audioManager.mixers[i];
-            nodeManager.InitialisePanel(i, clips, mixGroup, defaultNodeColors, drumColors[i], numberOfNodes,_drumNames[_currentDrumKitIndex][i], carouselManager._vfx);
+            nodeManager.InitialisePanel(i, clips, mixGroup, defaultNodeColors, drumColors[i], numberOfNodes,_drumNames[_currentDrumKitIndex][i]);
         }
 
 

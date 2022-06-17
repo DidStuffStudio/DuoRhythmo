@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Managers;
 using TMPro;
@@ -190,6 +191,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		private float _coolDownTime = 0.5f;
 		private PointerEventData _pointerEventData;
 
+		private Dictionary<InteractionMethod, float> interactionCooldownDictionary =
+			new Dictionary<InteractionMethod, float>();
 		#endregion
 
 		protected float DwellTime
@@ -266,7 +269,10 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 		protected virtual void Awake()
 		{
-			
+			interactionCooldownDictionary.Add(InteractionMethod.Mouse, 0.1f);
+			interactionCooldownDictionary.Add(InteractionMethod.MouseDwell, 1.0f);
+			interactionCooldownDictionary.Add(InteractionMethod.Tobii, 1.0f);
+			interactionCooldownDictionary.Add(InteractionMethod.Touch, 0.1f);
 			_mainImage = GetComponent<Image>();
 			_gazeAware = GetComponent<GazeAware>();
 			MainCamera = Camera.main;
@@ -442,12 +448,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected virtual void StartInteractionCoolDown()
 		{
-			if (GetInteractionMethod == InteractionMethod.Tobii || GetInteractionMethod == InteractionMethod.MouseDwell)
-			{
-				IsHover = false;
-				InteractionData.Instance.JustInteracted(this, CoolDownTime);
-			}
-			ExecuteEvents.Execute (gameObject, new PointerEventData (EventSystem.current), ExecuteEvents.pointerExitHandler);
+			IsHover = false;
+			InteractionData.Instance.JustInteracted(this, interactionCooldownDictionary[_interactionMethod]);
 		}
 
 		private void ButtonHovered()

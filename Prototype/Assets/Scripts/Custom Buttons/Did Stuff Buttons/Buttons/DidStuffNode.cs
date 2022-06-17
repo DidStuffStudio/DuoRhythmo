@@ -5,6 +5,7 @@ using DidStuffLab;
 using Managers;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class DidStuffNode : AbstractDidStuffButton
 {
@@ -21,6 +22,7 @@ public class DidStuffNode : AbstractDidStuffButton
     [SerializeField] private NodeSync _nodeSync;
     private float _angle = 0.0f;
     public bool nodeInitialised = false;
+    private VisualEffect _vfx;
 
     public void InitialiseSubNodes()
     {
@@ -29,8 +31,9 @@ public class DidStuffNode : AbstractDidStuffButton
             var sub = subNodes[i];
             nodeManager.SetSubNode(nodeIndex, _isActive, i);
         }
-        
     }
+
+    public void SetVfx(VisualEffect vfx) => _vfx = vfx;
     public void ToggleState() => ButtonClicked();
     public bool IsActive => _isActive;
     
@@ -88,13 +91,13 @@ public class DidStuffNode : AbstractDidStuffButton
         if(_nodeSync) _nodeSync.Toggle(_isActive);
     }
 
-    public void PlayDrum() {
+    private void PlayDrum() {
         if (!_isActive || _recentlyPlayed) return;
         var localPosition = _rectT.localPosition;
         localPosition = new Vector3(localPosition.x, localPosition.y, -11.0f);
         _rectT.localPosition = localPosition;
         StartCoroutine(LerpBack());
-       // StartCoroutine(AudioVFX());
+        if(JamSessionDetails.Instance.isSoloMode)StartCoroutine(AudioVFX());
         StartCoroutine(RecentlyPlayedDrum());
         nodeManager.PlayDrum((int)drumType);
     }
@@ -114,13 +117,16 @@ public class DidStuffNode : AbstractDidStuffButton
         _recentlyPlayed = false;
     }
 
-    /*private IEnumerator AudioVFX() {
-        _vfx.SetFloat("SphereSize", _vfx.GetFloat("SphereSize") + 1.0f);
+    private IEnumerator AudioVFX() {
+        /*_vfx.SetFloat("SphereSize", _vfx.GetFloat("SphereSize") + 1.0f);
         while (_vfx.GetFloat("SphereSize") > 1.1f) {
             yield return new WaitForSeconds(Time.fixedDeltaTime);
-            _vfx.SetFloat("SphereSize", _vfx.GetFloat("SphereSize") - 0.1f);
-        }
-    }*/
+            _vfx.SetFloat("SphereSize", _vfx.GetFloat("SphereSize") - 0.1f);*/
+        _vfx.SetFloat("SphereSize", _vfx.GetFloat("SphereSize") + 1.0f);
+        yield return new WaitForSeconds(0.1f);
+        _vfx.SetFloat("SphereSize", 1.1f);
+    }
+    
     
     IEnumerator LerpBack()
     {

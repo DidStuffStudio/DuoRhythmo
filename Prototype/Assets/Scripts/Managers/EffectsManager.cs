@@ -16,6 +16,7 @@ namespace Managers
         [SerializeField] private TextMeshProUGUI panelTitle;
         [SerializeField] private List<AbstractDidStuffButton> colorCodedButtons = new List<AbstractDidStuffButton>();
         [SerializeField] private List<GameObject> voteSkipToasts = new List<GameObject>();
+        [SerializeField] private DidStuffRecord recordButton;
         private Color drumColor { get; set; }
         private Color defaultColor { get; set; }
         
@@ -76,6 +77,12 @@ namespace Managers
             foreach (var slider in sliders) slider.InitialiseSlider();
         }
 
+        public void RecordingAudio(bool recording)
+        {
+            if(recording) recordButton.ActivateButton();
+            else recordButton.DeactivateButton();
+        }
+        
         private float Map(float value, float min1, float max1, float min2, float max2)
         {
             return min2 + (max2 - min2) * ((value - min1) / (max1 - min1));

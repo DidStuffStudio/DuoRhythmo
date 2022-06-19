@@ -42,6 +42,7 @@ namespace Managers
         private List<int> _panelIndices = new List<int>{0, 1, 2, 3, 4};
         [SerializeField] private List<AbstractDidStuffButton> ColorCodedButtons;
         [SerializeField] private List<GameObject> voteSkipToasts = new List<GameObject>();
+        [SerializeField] private DidStuffRecord recordButton;
         private Color drumColor { get; set; }
         private Color[] defaultColor { get; set; }
         
@@ -175,8 +176,8 @@ namespace Managers
 
         public void ForceSoloOff() => _soloButton.ForceDeactivate();
 
-        
-        public void SetBpm(byte newBpm)
+
+        private void SetBpm(byte newBpm)
         {
             var rpm = (float) newBpm / 4;
             var rps = rpm / 60.0f;
@@ -198,7 +199,11 @@ namespace Managers
             subNode.color = activated ? MasterManager.Instance.drumColors[panelIndex] :  Color.clear;
         }
 
-
+        public void RecordingAudio(bool recording)
+        {
+            if(recording) recordButton.ActivateButton();
+            else recordButton.DeactivateButton();
+        }
         public void RotateRhythm(bool right)
         {
             var nodesActive = new int[nodes.Count];

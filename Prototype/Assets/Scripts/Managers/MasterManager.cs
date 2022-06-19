@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using Custom_Buttons.Did_Stuff_Buttons;
+using Custom_Buttons.Did_Stuff_Buttons.Buttons;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -92,15 +93,14 @@ namespace Managers {
             SwitchDrumKits(JamSessionDetails.Instance.DrumTypeIndex);
             Initialise();
         }
-        
 
-        public void PlayerReachedDestination() {
+
+        public void PlayerReachedDestination()
+        {
             isInPosition = true;
-            //mainSignifier.SetActive(true);
-            //carouselManager.InitialiseBlur();
-            //SetExitButtonActive(true);
+            carouselManager.InitialiseGraphicRaycast();
         }
-        
+
 
         private void Initialise() {
             
@@ -125,15 +125,15 @@ namespace Managers {
                 else
                 {
                     if (i % 2 == 1)
-                        {
-                            carouselManager.panels[i + 5] = nodePanels[i];
-                            carouselManager.panels[i] = effectPanels[i];
-                        }
+                    {
+                        carouselManager.panels[i + 5] = nodePanels[i];
+                        carouselManager.panels[i] = effectPanels[i];
+                    }
                     else
                     {
                             carouselManager.panels[i] = nodePanels[i];
                             carouselManager.panels[i + 5] = effectPanels[i];
-                        }
+                    }
                     
                 }
                 
@@ -183,6 +183,18 @@ namespace Managers {
             foreach (var nodeManager in nodeManagers) {
                 nodeManager.SetSubNode(node, activated, nodeManagerSubNodeIndex);
             }
+        }
+
+        public void Record(bool record)
+        {
+            for (var i = 0; i < numberInstruments; i++)
+            {
+                nodeManagers[i].RecordingAudio(record);
+                effectsManagers[i].RecordingAudio(record);
+            }
+            if(record)saveToWav.StartRecording();
+            else saveToWav.StopRecording();
+            
         }
 
         private IEnumerator WaitToPositionCamera(float time) {

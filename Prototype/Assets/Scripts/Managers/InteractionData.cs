@@ -8,16 +8,15 @@ namespace Managers
 {
     public class InteractionData : MonoBehaviour
     {
-        private Vector2 _inputPosition = Vector2.zero;
-        public InteractionMethod _interactionMethod = 0;
+        public InteractionMethod interactionMethod = 0;
         private float _dwellTime = 1f;
-        private float DwellTimeFromPlayerPrefs
+        private static float DwellTimeFromPlayerPrefs
         {
             get => PlayerPrefs.GetFloat("DwellTime");
             set => PlayerPrefs.SetFloat("DwellTime", value);
         }
 
-        private InteractionMethod MethodFromPlayerPrefs
+        private static InteractionMethod MethodFromPlayerPrefs
         {
             get => (InteractionMethod)PlayerPrefs.GetInt("InteractionMethod");
             set => PlayerPrefs.SetInt("InteractionMethod", (int)value);
@@ -35,10 +34,10 @@ namespace Managers
 
         public InteractionMethod Method
         {
-            get => _interactionMethod;
+            get => interactionMethod;
             set
             {
-                _interactionMethod = value;
+                interactionMethod = value;
                 MethodFromPlayerPrefs = value;
                 if (value == InteractionMethod.MouseDwell || value == InteractionMethod.Tobii)
                     FindObjectOfType<InteractionManager>().SetSignifierActive(true);
@@ -49,17 +48,14 @@ namespace Managers
 
         public void CheckInteractionMethod()
         {
-            if (_interactionMethod == InteractionMethod.MouseDwell || _interactionMethod == InteractionMethod.Tobii)
+            if (interactionMethod == InteractionMethod.MouseDwell || interactionMethod == InteractionMethod.Tobii)
                 FindObjectOfType<InteractionManager>().SetSignifierActive(true);
             else
                 FindObjectOfType<InteractionManager>().SetSignifierActive(false);
         }
 
-        public Vector2 InputPosition
-        {
-            get => _inputPosition;
-            set => _inputPosition = value;
-        }
+        public Vector2 InputPosition { get; set; } = Vector2.zero;
+
         public static InteractionData Instance { get; private set; }
         private void Awake()
         {
@@ -68,7 +64,7 @@ namespace Managers
             else Instance = this;
             _dwellTime = DwellTimeFromPlayerPrefs;
             _dwellTime = _dwellTime <= 0 ? 1 : _dwellTime;
-            _interactionMethod = MethodFromPlayerPrefs;
+            interactionMethod = MethodFromPlayerPrefs;
             DontDestroyOnLoad(this);
         }
         
@@ -80,8 +76,8 @@ namespace Managers
             btn.IsHover = false;
             
             yield return new WaitForSeconds(coolDownTime);
-            ExecuteEvents.Execute (btn.gameObject, new PointerEventData (EventSystem.current), ExecuteEvents.pointerExitHandler);
             btn.SetCanHover(true);
+            ExecuteEvents.Execute (btn.gameObject, new PointerEventData (EventSystem.current), ExecuteEvents.pointerExitHandler);
         }
 
         

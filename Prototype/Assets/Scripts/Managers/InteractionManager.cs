@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Custom_Buttons.Did_Stuff_Buttons;
@@ -11,36 +12,28 @@ namespace Managers
     public class InteractionManager : MonoBehaviour
     {
 
-        private List<RaycastResult> result = new List<RaycastResult>();
+        private List<RaycastResult> _resultMouse = new List<RaycastResult>();
+        private List<RaycastResult> _resultTobii = new List<RaycastResult>();
         [SerializeField]  GraphicRaycaster raycasterOverlay;
         private static PointerEventData _pointerEventDataOverlay;
-        [SerializeField] internal EventSystem _eventSystem;
-        private static GraphicRaycaster tobiiRay;
+        [SerializeField] internal EventSystem eventSystem;
+        private static GraphicRaycaster _tobiiRay;
         private GameObject _lastHitButton;
         [SerializeField] private RectTransform gazeSignifier;
-        private bool _activateTobiiRay = false;
-        private bool _interact = true;
+
         //public static InteractionManager Instance { get; private set; }
         
-        public bool ActivateTobiiRay
-        {
-            get => _activateTobiiRay;
-            set => _activateTobiiRay = value;
-        }
+        public bool ActivateTobiiRay { get; set; } = false;
 
-        public bool Interact
-        {
-            get => _interact;
-            set => _interact = value;
-        }
-        
+        public bool Interact { get; set; } = true;
+
         [SerializeField] private float signifierSpeed = 1.0f;
 
 
      
         private void Update()
         {
-            if (!_interact) return;
+            if (!Interact) return;
             switch (InteractionData.Instance.Method)
             {
                 case InteractionMethod.Mouse:
@@ -56,46 +49,69 @@ namespace Managers
                         InteractionData.Instance.InputPosition = TobiiAPI.GetGazePoint().Screen;
                         TobiiGraphicRaycast();
                         SignifierFollowInputPosition();
-                    } 
-                    //InteractionData.Instance.InputPosition = Input.mousePosition;
-                    TobiiGraphicRaycast();
+                    }
                     break;
+                case InteractionMethod.Touch:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-            if(_activateTobiiRay) TobiiGraphicRaycast();
+            if(ActivateTobiiRay) TobiiGraphicRaycast();
+            //MouseGraphicRaycast();
         }
 
         protected virtual void TobiiGraphicRaycast()
         {
             if (!TobiiAPI.IsConnected) return;
-            
-            
             //Set up the new Pointer Event
-            _pointerEventDataOverlay = new PointerEventData(_eventSystem);
-            //Set the Pointer Event Position to mouse position (Change to tobii)
-            _pointerEventDataOverlay.position = TobiiAPI.GetGazePoint().Screen;
-            _pointerEventDataOverlay.pointerId = 1;
-            //Create a list of Raycast Results
-            List<RaycastResult> resultsOverlay = new List<RaycastResult>();
+            _pointerEventDataOverlay = new PointerEventData(eventSystem)
+            {
+                //Set the Pointer Event Position to mouse position (Change to tobii)
+                position = TobiiAPI.GetGazePoint().Screen,
+                pointerId = 1
+            };
             
             //Raycast using the Graphics Raycaster and mouse click position
-            raycasterOverlay.Raycast(_pointerEventDataOverlay, resultsOverlay);
+            raycasterOverlay.Raycast(_pointerEventDataOverlay, _resultTobii);
             
-            if (resultsOverlay.Count > 0) //Raycast for overlay canvas
+            if (_resultTobii.Count > 0) //Raycast for overlay canvas
             {
-                var btn = resultsOverlay[0].gameObject;
-                if (btn != null)
-                {
-                    _lastHitButton = btn;
-                    ExecuteEvents.Execute (btn.gameObject,  _pointerEventDataOverlay, ExecuteEvents.pointerEnterHandler);
-                }
+                var btn = _resultTobii[0].gameObject;
+                if (btn == null) return;
+                _lastHitButton = btn;
+                ExecuteEvents.Execute (btn.gameObject,  _pointerEventDataOverlay, ExecuteEvents.pointerEnterHandler);
             }
             else if (_lastHitButton != null)
             {
                 ExecuteEvents.Execute (_lastHitButton.gameObject,  _pointerEventDataOverlay, ExecuteEvents.pointerExitHandler);
-            }      
+            }
+        }
+        
+        protected virtual void MouseGraphicRaycast()
+        {
+            if (!TobiiAPI.IsConnected) return;
+            //Set up the new Pointer Event
+            _pointerEventDataOverlay = new PointerEventData(eventSystem)
+            {
+                //Set the Pointer Event Position to mouse position (Change to tobii)
+                position = Input.mousePosition,
+                pointerId = 1
+            };
             
-           
+            //Raycast using the Graphics Raycaster and mouse click position
+            raycasterOverlay.Raycast(_pointerEventDataOverlay, _resultMouse);
             
+            if (_resultMouse.Count > 0) //Raycast for overlay canvas
+            {
+                var btn = _resultMouse[0].gameObject;
+                if (btn == null) return;
+                _lastHitButton = btn;
+                ExecuteEvents.Execute (btn.gameObject,  _pointerEventDataOverlay, ExecuteEvents.pointerEnterHandler);
+            }
+            else if (_lastHitButton != null)
+            {
+                ExecuteEvents.Execute (_lastHitButton.gameObject,  _pointerEventDataOverlay, ExecuteEvents.pointerExitHandler);
+            }
         }
 
         public void SetSignifierActive(bool active)

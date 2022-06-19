@@ -702,17 +702,11 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		public void OnPointerEnter(PointerEventData eventData)
 		{
 			if(IsHover) return;
-			if (eventData.pointerId == 1)
-			{
-				if (localInteractionMethod != InteractionMethod.Tobii)
-					return;
-			}
-			else if (eventData.pointerId < 0)
-			{
-				if (localInteractionMethod == InteractionMethod.Tobii)
-					return;
-			}
-			
+			if ((eventData.pointerId == 1 && localInteractionMethod != InteractionMethod.Tobii) ||
+			    (eventData.pointerId < 0 && localInteractionMethod == InteractionMethod.Tobii))
+				return;
+
+			Debug.Log("Hit");
 			if (_isDisabled) return;
 			if(!_canHover) return;
 			_isHover = true;
@@ -722,20 +716,13 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		public void OnPointerExit(PointerEventData eventData)
 		{
 			_pointerEventData = eventData;
-			if (eventData.pointerId == 1)
-			{
-				if (localInteractionMethod != InteractionMethod.Tobii)
-				{
-					return;
-				}
-			}
-			else if (eventData.pointerId < 0)
-			{
-				if (localInteractionMethod == InteractionMethod.Tobii)
-					return;
-			}
+			if ((eventData.pointerId == 1 && localInteractionMethod != InteractionMethod.Tobii) ||
+			    (eventData.pointerId < 0 && localInteractionMethod == InteractionMethod.Tobii))
+				return;
+
 			if (IsDisabled) return;
 			IsHover = false;
+			
 			OnUnHover?.Invoke();
 		}
 		#endregion

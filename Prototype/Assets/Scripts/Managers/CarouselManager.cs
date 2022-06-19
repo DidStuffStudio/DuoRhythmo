@@ -29,6 +29,7 @@ namespace Managers {
         public bool isSoloMode = false;
         [SerializeField] private InGameInteractionManager interactionManager;
         [SerializeField] private NavigationVoteSync[] _navigationVoteSyncs;
+        private GraphicRaycaster _currentGraphicRaycaster;
         public delegate void MoveCarouselAction();
         public static event MoveCarouselAction OnMovedCarousel;
 
@@ -58,14 +59,21 @@ namespace Managers {
             if (justJoined) return;
         }
 
-        public void InitialiseBlur() {
-            for (int i = 0; i < panelsToStartUnblurred.Length; i++)
+        public void InitialiseBlur()
+        {
+            foreach (var t1 in panelsToStartUnblurred)
             {
-                foreach (var t in panels[panelsToStartUnblurred[i]].GetComponentsInChildren<Transform>()) {
+                foreach (var t in panels[t1].GetComponentsInChildren<Transform>()) {
                     t.gameObject.layer =
-                        LayerMask.NameToLayer("RenderPanel"); //Change their layer to default so they are blurred
+                        LayerMask.NameToLayer("RenderPanel");
                 }
             }
+        }
+
+        public void InitialiseGraphicRaycast()
+        {
+            _currentGraphicRaycaster = panels[_currentPanel].GetComponentInChildren<GraphicRaycaster>();
+            _currentGraphicRaycaster.enabled = true;
         }
 
         public void ToggleVFX(bool activate) {
@@ -89,7 +97,11 @@ namespace Managers {
                 if (_currentPanel > 0) _currentPanel--;
                 else _currentPanel = panels.Count - 1;
             }
-            interactionManager.SwitchDrumPanel(panels[_currentPanel].GetComponentInChildren<GraphicRaycaster>());
+
+            _currentGraphicRaycaster.enabled = false;
+            _currentGraphicRaycaster = panels[_currentPanel].GetComponentInChildren<GraphicRaycaster>();
+            _currentGraphicRaycaster.enabled = true;
+            interactionManager.SwitchDrumPanel(_currentGraphicRaycaster);
             ChangedPanel();
         }
 
@@ -122,7 +134,10 @@ namespace Managers {
                 if(navsync.VotingValue > 0) navsync.ResetVoting();
             }
 
-            interactionManager.SwitchDrumPanel(panels[_currentPanel].GetComponent<GraphicRaycaster>());
+            _currentGraphicRaycaster.enabled = false;
+            _currentGraphicRaycaster = panels[_currentPanel].GetComponentInChildren<GraphicRaycaster>();
+            _currentGraphicRaycaster.enabled = true;
+            interactionManager.SwitchDrumPanel(_currentGraphicRaycaster);
             ChangedPanel();
             OnMovedCarousel?.Invoke();
         }

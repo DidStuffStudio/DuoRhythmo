@@ -65,12 +65,13 @@ namespace DidStuffLab {
             var position = _camera.transform.position;
             position = Vector3.Lerp(position,
                 _finalDestination.position, fractionOfJourney * Time.deltaTime);
-            _camera.transform.position = position;
+            var transform1 = _camera.transform;
+            transform1.position = position;
 
             _transform.position = position;
 
             // update the rotation
-            var rotation = _camera.transform.rotation;
+            var rotation = transform1.rotation;
             rotation = Quaternion.Lerp(rotation,
                 _finalDestination.rotation, fractionOfJourney * Time.deltaTime);
             _camera.transform.rotation = rotation;

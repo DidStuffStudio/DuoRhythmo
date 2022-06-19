@@ -11,9 +11,11 @@ namespace Misc
     public class InGameInteractionManager : InteractionManager
     {
         [SerializeField] private InGameMenuManager inGameMenuManager;
-        [SerializeField]  GraphicRaycaster raycasterDrumPanel;
+        [SerializeField] private GraphicRaycaster raycasterDrumPanel;
         private static PointerEventData _pointerEventDataDrumPanel;
         private GameObject _lastHitDrumElement;
+        private List<RaycastResult> _resultMouse = new List<RaycastResult>();
+        private List<RaycastResult> _resultTobii = new List<RaycastResult>();
 
         public GraphicRaycaster RaycasterDrumPanel
         {
@@ -40,25 +42,51 @@ namespace Misc
             base.TobiiGraphicRaycast();
             
             //Set up the new Pointer Event
-            _pointerEventDataDrumPanel = new PointerEventData(_eventSystem);
-            //Set the Pointer Event Position to mouse position (Change to tobii)
-            _pointerEventDataDrumPanel.position = InteractionData.Instance.InputPosition;
-            //Set pointer ID to 1 so we can detect that it is Tobii
-            _pointerEventDataDrumPanel.pointerId = 1;
-            //Create a list of Raycast Results
-            List<RaycastResult> resultsDrumPanel = new List<RaycastResult>();
-            //Raycast
-            raycasterDrumPanel.Raycast(_pointerEventDataDrumPanel, resultsDrumPanel);
-            
-            if (resultsDrumPanel.Count > 0)
+            _pointerEventDataDrumPanel = new PointerEventData(eventSystem)
             {
-                Debug.Log("Hit " + resultsDrumPanel[0].gameObject.name);
-                var btn = resultsDrumPanel[0].gameObject;
-                if (btn != null)
-                {
-                    _lastHitDrumElement = btn;
-                    ExecuteEvents.Execute (btn.gameObject,  _pointerEventDataDrumPanel, ExecuteEvents.pointerEnterHandler);
-                }
+                //Set the Pointer Event Position to mouse position (Change to tobii)
+                position = TobiiAPI.GetGazePoint().Screen,
+                //Set pointer ID to 1 so we can detect that it is Tobii
+                pointerId = 1
+            };
+
+            //Raycast
+            raycasterDrumPanel.Raycast(_pointerEventDataDrumPanel, _resultTobii);
+            
+            if (_resultTobii.Count > 0)
+            {
+                var btn = _resultTobii[0].gameObject;
+                if (btn == null) return;
+                _lastHitDrumElement = btn;
+                ExecuteEvents.Execute (btn.gameObject,  _pointerEventDataDrumPanel, ExecuteEvents.pointerEnterHandler);
+            }
+            else if (_lastHitDrumElement != null)
+            {
+                ExecuteEvents.Execute (_lastHitDrumElement.gameObject,  _pointerEventDataDrumPanel, ExecuteEvents.pointerExitHandler);
+            }
+        }
+
+        protected override void MouseGraphicRaycast()
+        {
+            base.MouseGraphicRaycast();
+            
+            //Set up the new Pointer Event
+            _pointerEventDataDrumPanel = new PointerEventData(eventSystem)
+            {
+                //Set the Pointer Event Position to mouse position (Change to tobii)
+                position = Input.mousePosition,
+                //Set pointer ID to 1 so we can detect that it is Tobii
+                pointerId = 1
+            };
+            //Raycast
+            raycasterDrumPanel.Raycast(_pointerEventDataDrumPanel, _resultMouse);
+            
+            if (_resultMouse.Count > 0)
+            {
+                var btn = _resultMouse[0].gameObject;
+                if (btn == null) return;
+                _lastHitDrumElement = btn;
+                ExecuteEvents.Execute (btn.gameObject,  _pointerEventDataDrumPanel, ExecuteEvents.pointerEnterHandler);
             }
             else if (_lastHitDrumElement != null)
             {

@@ -9,13 +9,10 @@ using UnityEngine.Networking;
 public class SaveIntoWav : MonoBehaviour
 {
 
-    public const string DEFAULT_FILENAME = "record";
+    public const string DEFAULT_FILENAME = "DuoRhythmo";
     public const string FILE_EXTENSION = ".wav";
 
-    public bool IsRecording
-    {
-        get { return recOutput; }
-    }
+    public bool IsRecording => recOutput;
 
     private int bufferSize;
     private int numBuffers;
@@ -28,7 +25,8 @@ public class SaveIntoWav : MonoBehaviour
     private AudioClip[] audioClips;
     //private AudioSource[] audioSources;
     public int currentSlot;
-    float[] tempDataSource;
+    float[] _tempDataSource;
+    private int maxRecordTime = 60;
 
     void Awake()
     {
@@ -48,8 +46,6 @@ public class SaveIntoWav : MonoBehaviour
     public void StartRecording()
     {
         var filename = "DuoRhythmo_" + MasterManager.Instance.currentDrumKitName + DateTime.Now.ToString("_MM-dd-yyyy_HH-mm");
-        Debug.Log("File name is : " + filename);
-        //fileName = Application.dataPath +"/"+ filename + FILE_EXTENSION;
         fileName = filename + FILE_EXTENSION;
 
 
@@ -57,6 +53,7 @@ public class SaveIntoWav : MonoBehaviour
         {
             StartWriting(fileName);
             recOutput = true;
+            StartCoroutine(LimitRecording());
         }
         else
         {
@@ -72,12 +69,12 @@ public class SaveIntoWav : MonoBehaviour
     }
 
 
-    private void StartWriting(String name)
+    private void StartWriting(String n)
     {
-        fileStream = new FileStream( Path.Combine(Application.dataPath,name), FileMode.Create);
+        fileStream = new FileStream( Path.Combine(Application.dataPath,n), FileMode.Create);
 
         var emptyByte = new byte();
-        for (int i = 0; i < headerSize; i++) //preparing the header
+        for (var i = 0; i < headerSize; i++) //preparing the header
         {
             fileStream.WriteByte(emptyByte);
         }
@@ -106,15 +103,14 @@ public class SaveIntoWav : MonoBehaviour
         for (var i = 0; i < dataSource.Length; i++)
         {
             intData[i] = (Int16) (dataSource[i] * rescaleFactor);
-            var byteArr = new Byte[2];
-            byteArr = BitConverter.GetBytes(intData[i]);
+            var byteArr = BitConverter.GetBytes(intData[i]);
             byteArr.CopyTo(bytesData, i * 2);
         }
 
         fileStream.Write(bytesData, 0, bytesData.Length);
 
-        tempDataSource = new float[dataSource.Length];
-        tempDataSource = dataSource;
+        _tempDataSource = new float[dataSource.Length];
+        _tempDataSource = dataSource;
 
 
     }
@@ -173,7 +169,16 @@ public class SaveIntoWav : MonoBehaviour
 
     }
 
-
+    IEnumerator LimitRecording()
+    {
+        var counter = 0;
+        while (IsRecording)
+        {
+            yield return new WaitForSeconds(1.0f);
+            counter++;
+            if (counter > maxRecordTime) MasterManager.Instance.Record(false);
+        }
+    }
 
 
 }

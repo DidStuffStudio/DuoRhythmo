@@ -196,7 +196,7 @@ public class InGameMenuManager : MonoBehaviour
        drumGraphicRaycaster = interactionManager.RaycasterDrumPanel;
        interactionManager.RaycasterDrumPanel = graphicRaycaster;
        settingsButton.SetActive(false);
-       for (int i = 0; i < _panelDictionary.Count; i++) DeactivatePanel(i); 
+       for (var i = 0; i < _panelDictionary.Count; i++) DeactivatePanel(i); 
        exitButton.SetActive(false);
        backButton.SetActive(true);
        BlurBackground(true);
@@ -208,7 +208,7 @@ public class InGameMenuManager : MonoBehaviour
     {
        DeactivatePanel(0);
        settingsButton.SetActive(true);
-       for (int i = 0; i < _panelDictionary.Count; i++) DeactivatePanel(i); 
+       for (var i = 0; i < _panelDictionary.Count; i++) DeactivatePanel(i); 
        exitButton.SetActive(true);
        backButton.SetActive(false);
        BlurBackground(false);

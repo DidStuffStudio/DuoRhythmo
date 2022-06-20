@@ -13,8 +13,7 @@ namespace Misc
         [SerializeField] private InGameMenuManager inGameMenuManager;
         [SerializeField] private GraphicRaycaster raycasterDrumPanel;
         private static PointerEventData _pointerEventDataDrumPanel;
-        private GameObject _lastHitDrumElement;
-        private List<RaycastResult> _resultMouse = new List<RaycastResult>();
+        private AbstractDidStuffButton _lastHitDrumElement;
         private List<RaycastResult> _resultTobii = new List<RaycastResult>();
 
         public GraphicRaycaster RaycasterDrumPanel
@@ -51,47 +50,31 @@ namespace Misc
             };
 
             //Raycast
+            _resultTobii.Clear();
             raycasterDrumPanel.Raycast(_pointerEventDataDrumPanel, _resultTobii);
-            
-            if (_resultTobii.Count > 0)
+            if (TobiiAPI.GetGazePoint().IsValid && (Time.unscaledTime - TobiiAPI.GetGazePoint().Timestamp) < 0.1f)
             {
-                var btn = _resultTobii[0].gameObject;
-                if (btn == null) return;
-                _lastHitDrumElement = btn;
-                ExecuteEvents.Execute (btn.gameObject,  _pointerEventDataDrumPanel, ExecuteEvents.pointerEnterHandler);
+                if (_resultTobii.Count > 0)
+                {
+                    _resultTobii[0].gameObject.TryGetComponent(typeof(AbstractDidStuffButton), out var isButton);
+                    if (!isButton) return;
+                    _lastHitDrumElement = _resultTobii[0].gameObject.GetComponent<AbstractDidStuffButton>();
+                    if (_lastHitDrumElement == null) return;
+                    ExecuteEvents.Execute(_lastHitDrumElement.gameObject, _pointerEventDataDrumPanel,
+                        ExecuteEvents.pointerEnterHandler);
+                }
+                else if (_lastHitDrumElement != null)
+                {
+                    ExecuteEvents.Execute(_lastHitDrumElement.gameObject, _pointerEventDataDrumPanel,
+                        ExecuteEvents.pointerExitHandler);
+                }
             }
             else if (_lastHitDrumElement != null)
             {
-                ExecuteEvents.Execute (_lastHitDrumElement.gameObject,  _pointerEventDataDrumPanel, ExecuteEvents.pointerExitHandler);
+                    ExecuteEvents.Execute(_lastHitDrumElement.gameObject, _pointerEventDataDrumPanel,
+                        ExecuteEvents.pointerExitHandler);
             }
         }
-
-        protected override void MouseGraphicRaycast()
-        {
-            base.MouseGraphicRaycast();
-            
-            //Set up the new Pointer Event
-            _pointerEventDataDrumPanel = new PointerEventData(eventSystem)
-            {
-                //Set the Pointer Event Position to mouse position (Change to tobii)
-                position = Input.mousePosition,
-                //Set pointer ID to 1 so we can detect that it is Tobii
-                pointerId = 1
-            };
-            //Raycast
-            raycasterDrumPanel.Raycast(_pointerEventDataDrumPanel, _resultMouse);
-            
-            if (_resultMouse.Count > 0)
-            {
-                var btn = _resultMouse[0].gameObject;
-                if (btn == null) return;
-                _lastHitDrumElement = btn;
-                ExecuteEvents.Execute (btn.gameObject,  _pointerEventDataDrumPanel, ExecuteEvents.pointerEnterHandler);
-            }
-            else if (_lastHitDrumElement != null)
-            {
-                ExecuteEvents.Execute (_lastHitDrumElement.gameObject,  _pointerEventDataDrumPanel, ExecuteEvents.pointerExitHandler);
-            }
-        }
+        
     }
 }

@@ -391,7 +391,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected virtual void ButtonClicked()
 		{
-			//ExecuteEvents.Execute(gameObject, new AxisEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
 			ToggleButton(!_isActive);
 			StartInteractionCoolDown();
 			onClicked?.Invoke();
@@ -525,6 +524,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (useIcon && changeTextOrIconColour) _iconImage.color = changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
 			if (useText && changeTextOrIconColour) _primaryText.color = changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
 			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color =changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
+			ExecuteEvents.Execute(gameObject,_pointerEventData, ExecuteEvents.pointerExitHandler);
 		}
 
 		protected virtual void ChangeToInactiveState()
@@ -701,12 +701,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		public void OnPointerEnter(PointerEventData eventData)
 		{
+			Debug.Log("Entered on " + name + " with pointer id "+ eventData.pointerId);
+			_pointerEventData = eventData;
 			if(IsHover) return;
 			if ((eventData.pointerId == 1 && localInteractionMethod != InteractionMethod.Tobii) ||
 			    (eventData.pointerId < 0 && localInteractionMethod == InteractionMethod.Tobii))
 				return;
-
-			Debug.Log("Hit");
 			if (_isDisabled) return;
 			if(!_canHover) return;
 			_isHover = true;
@@ -715,6 +715,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
   
 		public void OnPointerExit(PointerEventData eventData)
 		{
+			Debug.Log("Exited from " + name + " with pointer id "+ eventData.pointerId);
 			_pointerEventData = eventData;
 			if ((eventData.pointerId == 1 && localInteractionMethod != InteractionMethod.Tobii) ||
 			    (eventData.pointerId < 0 && localInteractionMethod == InteractionMethod.Tobii))

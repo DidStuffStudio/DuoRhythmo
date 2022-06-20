@@ -1,0 +1,112 @@
+[
+    {
+      "Action": "*",
+      "Effect": "Allow",
+      "Resource": "*--*",
+      "Principal": {
+        "ChildOf": {
+          "EntityType": "namespace",
+          "EntityId": "[PublisherId]"
+        }
+      },
+      "Comment": "The default allow title in namespace full access",
+      "Condition": {
+        "CallingEntityType": "title"
+      }
+    },
+    {
+      "Action": "*",
+      "Effect": "Allow",
+      "Resource": "pfrn:data--*![SELF]/Profile/*",
+      "Principal": "[SELF]",
+      "Comment": "The default allow profile self access",
+      "Condition": null
+    },
+    {
+      "Action": "*",
+      "Effect": "Allow",
+      "Resource": "pfrn:data--*![SELF]/Profile/*",
+      "Principal": {
+        "ChildOf": {
+          "EntityType": "[SELF]"
+        }
+      },
+      "Comment": "The default allow profile child access",
+      "Condition": null
+    },
+    {
+      "Action": "Write",
+      "Effect": "Deny",
+      "Resource": "pfrn:data--*!*/Profile/Statistics/*",
+      "Principal": "*",
+      "Comment": "Only title can edit user statistics",
+      "Condition": {
+        "CallingEntityType": "title_player_account"
+      }
+    },
+    {
+      "Action": "Write",
+      "Effect": "Deny",
+      "Resource": "pfrn:data--*!*/Profile/Statistics/*",
+      "Principal": "*",
+      "Comment": "Only title can edit user statistics",
+      "Condition": {
+        "CallingEntityType": "character"
+      }
+    },
+    {
+      "Action": "Write",
+      "Effect": "Deny",
+      "Resource": "pfrn:data--*!*/Profile/Statistics/*",
+      "Principal": "*",
+      "Comment": "Only title can edit user statistics",
+      "Condition": {
+        "CallingEntityType": "master_player_account"
+      }
+    },
+    {
+      "Action": "Write",
+      "Effect": "Deny",
+      "Resource": "pfrn:data--group!*/Profile/Statistics/*",
+      "Principal": {
+        "MemberOf": {
+          "RoleId": "*"
+        }
+      },
+      "Comment": "Only title can edit group statistics",
+      "Condition": null
+    },
+    {
+      "Action": "LobbyServerFull",
+      "Effect": "Allow",
+      "Resource": "pfrn:data--game_server!*/Lobby/Server/*",
+      "Principal": {
+        "ChildOf": {
+          "EntityType": "title",
+          "EntityId": "[TitleId]"
+        }
+      },
+      "Comment": "The Default allow title full Lobby server functionality",
+      "Condition": {
+        "CallingEntityType": "game_server"
+      }
+    },
+    {
+      "Action": "Read",
+      "Effect": "Allow",
+      "Resource": "pfrn:data--*!*/Profile/Objects/FriendMatchmakingTicket",
+      "Principal": {
+        "Friend": "true"
+      },
+      "Comment": "Allow friends to access this player's objects",
+      "Condition": null
+    },
+    {
+      "Action": "Read",
+      "Effect": "Allow",
+      "Resource": "pfrn:data--*!*/Profile/Objects/AvatarName",
+      "Principal": "*",
+      "Comment": "Allow other players to access their chosen avatar name object",
+      "Condition": null
+    }
+  ]

@@ -39,7 +39,7 @@ public class PlayFabLogin : MonoBehaviour {
     private string RememberMeId {
         get => PlayerPrefs.GetString(_PlayFabRememberMeIdKey, "");
         set {
-            var guid = value ?? Guid.NewGuid().ToString();
+            var guid = value ?? SystemInfo.deviceUniqueIdentifier;
             PlayerPrefs.SetString(_PlayFabRememberMeIdKey, guid);
         }
     }
@@ -108,6 +108,7 @@ public class PlayFabLogin : MonoBehaviour {
     private void OnPlayfabCreatedAccountSuccess(RegisterPlayFabUserResult result) {
         print("Created account successfully");
         IsLoggedInAsGuest = false;
+        RememberMeId = SystemInfo.deviceUniqueIdentifier;
         ProceedWithLogin(result.AuthenticationContext, result.Username, true);
     }
 
@@ -120,11 +121,12 @@ public class PlayFabLogin : MonoBehaviour {
         PlayFabClientAPI.LoginWithPlayFab(request, OnPlayfabLoginSuccess, OnLoginError);
     }
 
-    public void LoginWithDeviceUniqueIdentifier() {
+    public void LoginAsGuest() {
+        RememberMeId = SystemInfo.deviceUniqueIdentifier; // we need a customId for when creating the guest account
         LoginWithCustomIDRequest request = new LoginWithCustomIDRequest() {
             TitleId = PlayFabSettings.TitleId,
             CreateAccount = true,
-            CustomId = SystemInfo.deviceUniqueIdentifier
+            CustomId = RememberMeId
         };
         
         PlayFabClientAPI.LoginWithCustomID(request, OnPlayfabLoginAsGuestSuccess, OnLoginError);
@@ -133,6 +135,7 @@ public class PlayFabLogin : MonoBehaviour {
     private void OnPlayfabLoginSuccess(LoginResult result) {
         print("Logged in successfully");
         IsLoggedInAsGuest = false;
+        RememberMeId = SystemInfo.deviceUniqueIdentifier;
         ProceedWithLogin(result.AuthenticationContext, result.InfoResultPayload.AccountInfo.Username, false);
     }
 
@@ -158,18 +161,14 @@ public class PlayFabLogin : MonoBehaviour {
 
         FriendsManager.Instance.EnableFriendsManager();
 
-        if (string.IsNullOrEmpty(RememberMeId)) {
-            RememberMeId = Guid.NewGuid().ToString();
-            // Fire and forget, but link the custom ID to this PlayFab Account.
-            PlayFabClientAPI.LinkCustomID(
-                new LinkCustomIDRequest() {
-                    CustomId = RememberMeId,
-                    ForceLink = false
-                },
-                OnLinkedSuccess,
-                OnLinkedError
-            );
-        }
+        PlayFabClientAPI.LinkCustomID(
+            new LinkCustomIDRequest() {
+                CustomId = RememberMeId,
+                ForceLink = true
+            },
+            OnLinkedSuccess,
+            OnLinkedError
+        );
 
         if (SceneManager.GetActiveScene().buildIndex != 0) return;
         if(MainMenuManager.Instance.CurrentPanel != 4 && MainMenuManager.Instance.CurrentPanel != 19) MainMenuManager.Instance.SkipLogin();
@@ -192,7 +191,7 @@ public class PlayFabLogin : MonoBehaviour {
 
 
     // TODO --> Add clearing saved user info functionality
-    public void ClearRememberMe() {
+    private void ClearRememberMe() {
         PlayerPrefs.DeleteKey(_PlayFabRememberMeIdKey);
         RememberMeId = "";
         PlayerPrefs.DeleteKey(_LoggedInAsGuestKey);

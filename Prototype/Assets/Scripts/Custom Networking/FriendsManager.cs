@@ -44,7 +44,9 @@ namespace DidStuffLab {
         }
 
         public void EnableFriendsManager() {
-            if (!PlayFabMultiplayerAPI.IsEntityLoggedIn()) return;
+            // if (!PlayFabMultiplayerAPI.IsEntityLoggedIn()) return;
+            // if (!PlayFabClientAPI.IsClientLoggedIn()) return;
+            if (!PlayFabLogin.Instance.IsLoggedInToAccount) return;
             // StartCoroutine(WaitToRequestFriends());
             GetListOfFriends(); // call this on start because it's deactivated by default, and then activated once user logs in
         }

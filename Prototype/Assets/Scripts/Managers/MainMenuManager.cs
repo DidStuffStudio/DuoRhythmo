@@ -325,7 +325,7 @@ namespace Managers
 
       public void LoginAsGuest()
       {
-         PlayFabLogin.Instance.LoginWithDeviceUniqueIdentifier();
+         PlayFabLogin.Instance.LoginAsGuest();
          panelsThatDontshowBack.Add(19);
          _panelDictionary[13].ExecuteSpecificChanges();
       }

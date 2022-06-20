@@ -21,6 +21,9 @@ namespace DidStuffLab {
         public float FriendRequestCount { get; private set; } = 0;
 
         private List<Friend> _friends = new List<Friend>();
+        
+        public delegate void InitializedFriendsDetails();
+        public static event InitializedFriendsDetails OnInitializedFriendsDetails;
 
         private void Awake() {
             if (Instance == null) Instance = this;
@@ -87,6 +90,8 @@ namespace DidStuffLab {
                 AllFriendAvatars.Add(requesteeAvatars[i]);
                 FriendStatusMap.Add(requesteeUsernames[i], FriendStatus.Requestee);
             }
+            
+            OnInitializedFriendsDetails?.Invoke();
         }
 
         private void ClearLists() {

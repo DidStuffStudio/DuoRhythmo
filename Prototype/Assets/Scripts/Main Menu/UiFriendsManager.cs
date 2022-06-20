@@ -213,7 +213,7 @@ public class UiFriendsManager : MonoBehaviour {
     private void ClearLists() {
         foreach (var d in _dots) Destroy(d.gameObject);
         _dots.Clear();
-        _friendStatusMap.Clear();
+        // _friendStatusMap.Clear();
     }
 
     protected virtual void OnDisable() => ClearLists();

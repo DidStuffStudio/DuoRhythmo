@@ -45,11 +45,11 @@ public class ManageFriendsPanel : UiFriendsManager
     public static void SubscribeToEvents(bool subscribe) {
         if (subscribe) {
             // subscribe to the event when we've received all friends details including avatars
-            FriendsManager.OnReceivedFriendsDetails += FriendsUpdated;
+            UiFriendsDetailsInstance.OnInitializedFriendsDetails += FriendsUpdated;
         }
         else {
             // unsubscribe to the event when we've received all friends details including avatars
-            FriendsManager.OnReceivedFriendsDetails -= FriendsUpdated;
+            UiFriendsDetailsInstance.OnInitializedFriendsDetails -= FriendsUpdated;
         }
     }
 

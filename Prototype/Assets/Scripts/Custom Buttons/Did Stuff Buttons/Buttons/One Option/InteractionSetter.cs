@@ -16,12 +16,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Option
             ActivateButton();
             SetPreferredInteraction();
         }
-
-        protected override void ChangeToInactiveState()
-        {
-            base.ChangeToInactiveState();
-            //_isHover = false;
-        }
+        
 
         protected override void ButtonClicked()
         {

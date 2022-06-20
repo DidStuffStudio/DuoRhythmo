@@ -224,7 +224,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 
 		protected void SetInteractionMethod(InteractionMethod method)
 		{
-			DelegateInteractionMethod(false);
+			//DelegateInteractionMethod(false);
 			
 			InteractionData.Instance.Method = method;
 			_interactionMethod = method;
@@ -235,7 +235,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			}
 			else _provideDwellFeedbackGlobal = false;
 
-			DelegateInteractionMethod(true);
+			//DelegateInteractionMethod(true);
 		}
 		
 		

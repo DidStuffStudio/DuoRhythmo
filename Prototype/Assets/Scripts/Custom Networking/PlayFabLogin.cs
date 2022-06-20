@@ -172,7 +172,7 @@ public class PlayFabLogin : MonoBehaviour {
         }
 
         if (SceneManager.GetActiveScene().buildIndex != 0) return;
-        if(MainMenuManager.Instance.CurrentPanel != 4 || MainMenuManager.Instance.CurrentPanel != 19) MainMenuManager.Instance.SkipLogin();
+        if(MainMenuManager.Instance.CurrentPanel != 4 && MainMenuManager.Instance.CurrentPanel != 19) MainMenuManager.Instance.SkipLogin();
 
     }
 
@@ -206,8 +206,9 @@ public class PlayFabLogin : MonoBehaviour {
         PlayFabClientAPI.UnlinkCustomID(new UnlinkCustomIDRequest {CustomId = RememberMeId},
             (result) => { print("Successfully unlinked custom id from the user's account"); },
             (error) => { Debug.LogError(error.GenerateErrorReport()); });
-
+        
         AuthenticationContext.ForgetAllCredentials();
+        PlayFabClientAPI.ForgetAllCredentials();
         MasterPlayfabId = string.Empty;
         Username = string.Empty;
         PasswordPin = string.Empty;

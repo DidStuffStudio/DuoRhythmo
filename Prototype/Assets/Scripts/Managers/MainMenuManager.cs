@@ -6,6 +6,7 @@ using System.Linq;
 using Custom_Buttons.Did_Stuff_Buttons;
 using Custom_Buttons.Did_Stuff_Buttons.Buttons;
 using DidStuffLab;
+using PlayFab;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -84,6 +85,12 @@ namespace Managers
          uiPanels[6].ExecuteSpecificChanges();
          ActivatePanel(0);
          InteractionData.Instance.CheckInteractionMethod();
+      }
+
+      private void Start()
+      {
+         if(!PlayFabClientAPI.IsClientLoggedIn()) return;
+         if(CurrentPanel != 4 && CurrentPanel != 19) MainMenuManager.Instance.SkipLogin();
       }
 
       private void ToggleUIPanel()

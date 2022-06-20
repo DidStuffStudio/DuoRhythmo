@@ -55,24 +55,25 @@ namespace Misc
             if (TobiiAPI.GetGazePoint().IsValid && (Time.unscaledTime - TobiiAPI.GetGazePoint().Timestamp) < 0.1f)
             {
                 if (_resultTobii.Count > 0)
-                {
-                    _resultTobii[0].gameObject.TryGetComponent(typeof(AbstractDidStuffButton), out var isButton);
-                    if (!isButton) return;
-                    _lastHitDrumElement = _resultTobii[0].gameObject.GetComponent<AbstractDidStuffButton>();
-                    if (_lastHitDrumElement == null) return;
-                    ExecuteEvents.Execute(_lastHitDrumElement.gameObject, _pointerEventDataDrumPanel,
-                        ExecuteEvents.pointerEnterHandler);
-                }
+                    {
+                        if (_resultTobii[0].gameObject.TryGetComponent<AbstractDidStuffButton>(out var isButton))
+                        {
+                            if (isButton == null) return;
+                            ExecuteEvents.Execute(isButton.gameObject, _pointerEventDataDrumPanel,
+                                ExecuteEvents.pointerEnterHandler);
+                            _lastHitDrumElement = isButton;
+                        }
+                    }
+                    else if (_lastHitDrumElement != null)
+                    {
+                        ExecuteEvents.Execute(_lastHitDrumElement.gameObject, _pointerEventDataDrumPanel,
+                            ExecuteEvents.pointerExitHandler);
+                    }
                 else if (_lastHitDrumElement != null)
                 {
                     ExecuteEvents.Execute(_lastHitDrumElement.gameObject, _pointerEventDataDrumPanel,
                         ExecuteEvents.pointerExitHandler);
                 }
-            }
-            else if (_lastHitDrumElement != null)
-            {
-                    ExecuteEvents.Execute(_lastHitDrumElement.gameObject, _pointerEventDataDrumPanel,
-                        ExecuteEvents.pointerExitHandler);
             }
         }
         

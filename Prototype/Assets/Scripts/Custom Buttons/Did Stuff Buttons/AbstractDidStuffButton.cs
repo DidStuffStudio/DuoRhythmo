@@ -524,7 +524,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (useIcon && changeTextOrIconColour) _iconImage.color = changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
 			if (useText && changeTextOrIconColour) _primaryText.color = changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
 			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color =changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
-			ExecuteEvents.Execute(gameObject,_pointerEventData, ExecuteEvents.pointerExitHandler);
+			if (_pointerEventData == null) _pointerEventData = new PointerEventData(EventSystem.current);
+			ExecuteEvents.Execute(gameObject, _pointerEventData, ExecuteEvents.pointerExitHandler);
 		}
 
 		protected virtual void ChangeToInactiveState()
@@ -704,9 +705,13 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			Debug.Log("Entered on " + name + " with pointer id "+ eventData.pointerId);
 			_pointerEventData = eventData;
 			if(IsHover) return;
-			if ((eventData.pointerId == 1 && localInteractionMethod != InteractionMethod.Tobii) ||
-			    (eventData.pointerId < 0 && localInteractionMethod == InteractionMethod.Tobii))
-				return;
+			if (interactionSetting)
+			{
+				if ((eventData.pointerId == 1 && localInteractionMethod != InteractionMethod.Tobii) ||
+				    (eventData.pointerId < 0 && localInteractionMethod == InteractionMethod.Tobii))
+					return;
+			}
+			
 			if (_isDisabled) return;
 			if(!_canHover) return;
 			_isHover = true;
@@ -717,9 +722,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		{
 			Debug.Log("Exited from " + name + " with pointer id "+ eventData.pointerId);
 			_pointerEventData = eventData;
-			if ((eventData.pointerId == 1 && localInteractionMethod != InteractionMethod.Tobii) ||
-			    (eventData.pointerId < 0 && localInteractionMethod == InteractionMethod.Tobii))
-				return;
+			if (interactionSetting)
+			{
+				if ((eventData.pointerId == 1 && localInteractionMethod != InteractionMethod.Tobii) ||
+				    (eventData.pointerId < 0 && localInteractionMethod == InteractionMethod.Tobii))
+					return;
+			}
 
 			if (IsDisabled) return;
 			IsHover = false;

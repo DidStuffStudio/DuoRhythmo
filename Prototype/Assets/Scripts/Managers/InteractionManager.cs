@@ -78,12 +78,13 @@ namespace Managers
             {
                 if (_resultTobii.Count > 0) //Raycast for overlay canvas
                 {
-                    _resultTobii[0].gameObject.TryGetComponent(typeof(AbstractDidStuffButton), out var isButton);
-                    if (!isButton) return;
-                    _lastHitButton = _resultTobii[0].gameObject.GetComponent<AbstractDidStuffButton>();
-                    if (_lastHitButton == null) return;
-                    ExecuteEvents.Execute(_lastHitButton.gameObject, _pointerEventDataOverlay,
-                        ExecuteEvents.pointerEnterHandler);
+                    if (_resultTobii[0].gameObject.TryGetComponent<AbstractDidStuffButton>(out var isButton))
+                    {
+                        _lastHitButton = isButton;
+                        if (_lastHitButton == null) return;
+                        ExecuteEvents.Execute(_lastHitButton.gameObject, _pointerEventDataOverlay,
+                            ExecuteEvents.pointerEnterHandler);
+                    }
                 }
                 else if (_lastHitButton != null)
                 {

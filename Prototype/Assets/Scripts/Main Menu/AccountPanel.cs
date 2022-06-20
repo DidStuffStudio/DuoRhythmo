@@ -12,7 +12,15 @@ public class AccountPanel : MonoBehaviour
 
     private void OnEnable()
     {
-        avatar.sprite = Resources.Load<Sprite>("Avatars/" + PlayFabLogin.Instance.UserAvatar);
-        accountNameText.text = PlayFabLogin.Instance.Username;
+        if (PlayFabLogin.Instance.IsLoggedInToAccount)
+        {
+            avatar.sprite = Resources.Load<Sprite>("Avatars/" + PlayFabLogin.Instance.UserAvatar);
+            accountNameText.text = PlayFabLogin.Instance.Username;
+        }
+        else
+        {
+            avatar.sprite = Resources.Load<Sprite>("Avatars/" + "Avatar1");
+            accountNameText.text = "Guest: " + PlayFabLogin.Instance.Username;
+        }
     }
 }

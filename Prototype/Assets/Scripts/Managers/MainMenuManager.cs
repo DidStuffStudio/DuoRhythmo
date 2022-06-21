@@ -392,9 +392,9 @@ namespace Managers
       }
       public void SetDrumType(int i) => JamSessionDetails.Instance.DrumTypeIndex = i;
 
-      public void LoadJamSession()
-      {
-         SceneManager.LoadScene(2); // change to single player scene
+      public void LoadJamSession() {
+         // JamSessionDetails.Instance.isSoloMode = false;
+         SceneManager.LoadScene(1); // change to single player scene
       }
       
       public void OpenSurvey() => Application.OpenURL("https://t.maze.co/84786499");

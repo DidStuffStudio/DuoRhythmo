@@ -27,7 +27,6 @@ namespace Managers {
         [SerializeField] private ForwardRendererData _forwardRenderer;
         private bool isRenderingAPanel = false;
         public bool justJoined;
-        public bool isSoloMode = false;
         [SerializeField] private InGameInteractionManager interactionManager;
         [SerializeField] private NavigationVoteSync[] _navigationVoteSyncs;
         private GraphicRaycaster _currentGraphicRaycaster;
@@ -57,7 +56,7 @@ namespace Managers {
         }
 
         private void Start() {
-            _vfx.transform.gameObject.SetActive(false);
+            if(JamSessionDetails.Instance.isSoloMode) _vfx.transform.gameObject.SetActive(false);
             _targetVFXColor = MasterManager.Instance.drumColors[0];
             if (justJoined) return;
         }
@@ -147,7 +146,7 @@ namespace Managers {
 
         public void Update() {
             if(CarouselLerpMove.Instance != null) transform.rotation = CarouselLerpMove.Instance.transform.rotation;
-            if (!MasterManager.Instance.gameSetUpFinished || !isSoloMode) return;
+            if (!MasterManager.Instance.gameSetUpFinished || !JamSessionDetails.Instance.isSoloMode) return;
             if (_timeLeft <= Time.deltaTime) {
                 // transition complete
                 // assign the target color
@@ -155,7 +154,7 @@ namespace Managers {
                 _vfx.SetVector4("Core color", _targetVFXColor);
                 // start a new transition
                 var index = 0;
-                if (isSoloMode) {
+                if (JamSessionDetails.Instance.isSoloMode) {
                     if (_currentPanel % 2 == 1) index = _currentPanel - 1;
                     else index = _currentPanel;
 
@@ -189,7 +188,7 @@ namespace Managers {
                     LayerMask.NameToLayer("Default"); //Change their layer to default so they are blurred
             }
 
-            if (!isSoloMode) {
+            if (!JamSessionDetails.Instance.isSoloMode) {
                 foreach (var t in panels[_lastPanelBuddy].GetComponentsInChildren<Transform>()) {
                     t.gameObject.layer =
                         LayerMask.NameToLayer("Default"); //Change their layer to default so they are blurred
@@ -201,7 +200,7 @@ namespace Managers {
                     LayerMask.NameToLayer("RenderPanel"); //Change their layer to default so they are blurred
             }
 
-            if (!isSoloMode) {
+            if (!JamSessionDetails.Instance.isSoloMode) {
                 foreach (var t in panels[_currentPanelBuddy].GetComponentsInChildren<Transform>()) {
                     t.gameObject.layer =
                         LayerMask.NameToLayer("RenderPanel"); //Change their layer to default so they are blurred

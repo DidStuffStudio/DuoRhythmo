@@ -24,17 +24,10 @@ namespace DidStuffLab {
 
         private PlayerPositionSync _playerPositionSync;
 
-        // [SyncVar(hook = nameof(SetPlayerUsernameLocally))] public string playerUsername;
-        // [SyncVar(hook = nameof(SetPlayerAvatarNameLocally))] public string playerAvatarName;
-        public List<string> usernames = new List<string>();
-        public List<string> avatarNames = new List<string>();
-
         public override void OnStartClient() {
             base.OnStartClient();
             _transform = transform;
             _camera = MasterManager.Instance.playerCamera;
-            print(_camera.name);
-            print("Player's net id: " + netId);
             SetPlayerPosition();
         }
 
@@ -46,19 +39,8 @@ namespace DidStuffLab {
             _finalDestination = MasterManager.Instance.destinationTransform;
 
             JamSessionDetails.Instance.AddPlayer(this);
-            // if (isLocalPlayer) {
-                // SendUserDetailsToServer();
-                UpdateOtherPlayerUsername(PlayFabLogin.Instance.Username);
-                UpdateOtherPlayerAvatarName(PlayFabLogin.Instance.UserAvatar);
-            // }
-
-            /*
-            // send this local player's username and avatar to the other player
-            if (!isLocalPlayer) {
-                UpdateOtherPlayerUsername(PlayFabLogin.Instance.Username);
-                UpdateOtherPlayerAvatarName(PlayFabLogin.Instance.UserAvatar);
-            }
-            */
+            UpdateOtherPlayerUsername(PlayFabLogin.Instance.Username);
+            UpdateOtherPlayerAvatarName(PlayFabLogin.Instance.UserAvatar);
 
             CheckForCorrespondingPositioning();
         }
@@ -129,123 +111,45 @@ namespace DidStuffLab {
                 print("Is local player, so check if position is occupied");
                 _playerPositionSync.SetCorrespondingPosition();
             }
-            else {
-                // TODO --> Instantiate appropriate avatar (other user's avatar name)
-                // if its not the local player, then locally instantiate an avatar with the specified avatar name
-                // and make this follow the other players
-                // _otherPlayerAvatar = Instantiate(avatarPrefabs[0], JamSessionDetails.Instance.otherPlayer._transform);
-            }
 
             if (_playerPositionSync) _canStartMoving = true;
             else Debug.LogError("Player Position sync not found when checking for player's corresponding position");
         }
 
-        /*
-        [Command(requiresAuthority = false)]
-        private void SendUserDetailsToServer() {
-            playerUsername = PlayFabLogin.Instance.Username;
-            playerAvatarName = PlayFabLogin.Instance.UserAvatar;
-        }
-        
-        private void SetPlayerUsernameLocally(string oldUsername, string newUsername) {
-            
-            if (!isLocalPlayer) {
-                JamSessionDetails.Instance.otherPlayerUsername = newUsername;
-            }
-            
-        }
-        private void SetPlayerAvatarNameLocally(string oldAvatarName, string newAvatarName) {
-        if (!isLocalPlayer) {
-                JamSessionDetails.Instance.otherPlayerAvatarName = newAvatarName;
-                // instantiate other player's avatar
-                InstantiateOtherPlayerAvatar(newAvatarName);
-            }
-            
-        }
-        */
+        private void UpdateOtherPlayerUsername(string username) => CmdUpdateOtherPlayerUsername(username);
 
-        public void UpdateOtherPlayerUsername(string username) => CmdUpdateOtherPlayerUsername(/*netId + "," + */username);
-        
         [Command(requiresAuthority = false)]
         private void CmdUpdateOtherPlayerUsername(string username) {
             print("Server is going to tell clients the clients the username: " + username);
             RpcUpdateOtherPlayerUsername(username);
         }
-        
+
         [ClientRpc]
         private void RpcUpdateOtherPlayerUsername(string username) {
-            /*
-            // check if this player has already sent their username. If not, then update the other player's name locally
-            if (username.Contains(netId.ToString()))
-                return; // if it's the same as this player, then dont do anything. We want the other player's username
-            print("Received other player's username from server: " + username);
-            var split = username.Split(',');
-            JamSessionDetails.Instance.otherPlayerUsername = split[1];
-            */
-            /*
-            if (!usernames.Contains(username)) {
-                usernames.Add(username);
-                if (!username.Contains(netId.ToString())) {
-                    // then it means that this is the other player's username
-                    print("Received other player's username from server: " + username);
-                    var split = username.Split(',');
-                    JamSessionDetails.Instance.otherPlayerUsername = split[1];
-                }
-            }
-            */
             if (JamSessionDetails.Instance.IsOtherPlayerUsernameFromServer(username)) {
                 JamSessionDetails.Instance.otherPlayerUsername = username;
             }
         }
-        
-        public void UpdateOtherPlayerAvatarName(string avatarname) => CmdUpdateOtherPlayerAvatarName(/*netId + "," + */avatarname);
-        
+
+        public void UpdateOtherPlayerAvatarName(string avatarname) => CmdUpdateOtherPlayerAvatarName(avatarname);
+
         [Command(requiresAuthority = false)]
         private void CmdUpdateOtherPlayerAvatarName(string avatarname) {
             print("Server is going to tell clients the avatar name: " + avatarname);
             RpcUpdateOtherPlayerAvatarName(avatarname);
         }
-        
+
         [ClientRpc]
         private void RpcUpdateOtherPlayerAvatarName(string avatarname) {
-            /*
-            // check if this player has already sent their username. If not, then update the other player's name locally
-            if (avatarname.Contains(netId.ToString()))
-                return; // if it's the same as this player, then dont do anything. We want the other player's username
-            print("Received other player's avatar name from server: " + avatarname);
-            var split = avatarname.Split(',');
-            JamSessionDetails.Instance.otherPlayerAvatarName = split[1];
-            var avatarIndex = split[1] == "Avatar1" ? 0 : 1;
-            _otherPlayerAvatar =
-                Instantiate(avatarPrefabs[avatarIndex], JamSessionDetails.Instance.otherPlayer._transform);
-                */
-            /*
-            JamSessionDetails.Instance.otherPlayerAvatarName = avatarname;
-            var avatarIndex = avatarname == "Avatar1" ? 0 : 1;
-            _otherPlayerAvatar =
-                Instantiate(avatarPrefabs[avatarIndex], JamSessionDetails.Instance.otherPlayer._transform);
-                */
-            /*
-            if (!usernames.Contains(avatarname)) {
-                avatarNames.Add(avatarname);
-                
-                if (!avatarname.Contains(netId.ToString())) {
-                    // then it means that this is the other player's avatar name
-                    print("Received other player's avatarName from server: " + avatarname);
-                    var split = avatarname.Split(',');
-                    InstantiateOtherPlayerAvatar(split[1]);
-                    JamSessionDetails.Instance.otherPlayerAvatarName = split[1];
-                }
-            }
-            */
             if (JamSessionDetails.Instance.IsOtherPlayerAvatarNameFromServer(avatarname)) {
                 InstantiateOtherPlayerAvatar(avatarname);
             }
         }
-        
-        public void InstantiateOtherPlayerAvatar(string avatarName) {
+
+        private void InstantiateOtherPlayerAvatar(string avatarName) {
             var avatarIndex = avatarName == "Avatar1" ? 0 : 1;
-            _otherPlayerAvatar = Instantiate(avatarPrefabs[avatarIndex], JamSessionDetails.Instance.otherPlayer._transform);
+            _otherPlayerAvatar =
+                Instantiate(avatarPrefabs[avatarIndex], JamSessionDetails.Instance.otherPlayer._transform);
         }
     }
 }

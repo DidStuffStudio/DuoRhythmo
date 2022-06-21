@@ -105,7 +105,7 @@ namespace Managers {
         private void Initialise() {
             
             StartCoroutine(WaitToPositionCamera(0.5f));
-            if (carouselManager.isSoloMode) carouselManager.panels = new List<GameObject>();
+            if (JamSessionDetails.Instance.isSoloMode) carouselManager.panels = new List<GameObject>();
             InitialisePanels();
             gameSetUpFinished = true;
             if(JamSessionDetails.Instance.loadingBeat)JamSessionDetails.Instance.SetLoadedBeat();
@@ -117,7 +117,7 @@ namespace Managers {
         {
             for (var i = 0; i < numberInstruments; i++)
             {
-                if (carouselManager.isSoloMode)
+                if (JamSessionDetails.Instance.isSoloMode)
                 {
                     carouselManager.panels.Add(nodePanels[i]);
                     carouselManager.panels.Add(effectPanels[i]);
@@ -140,7 +140,7 @@ namespace Managers {
                 StartCoroutine(SetUpNodeManagers(i));
                 SetUpEffectsManagers(i);
             }
-            carouselManager.ToggleVFX(true);
+            if(JamSessionDetails.Instance.isSoloMode) carouselManager.ToggleVFX(true);
             gameSetUpFinished = true;
         }
        

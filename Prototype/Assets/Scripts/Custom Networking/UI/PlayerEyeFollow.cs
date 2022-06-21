@@ -8,12 +8,8 @@ namespace DidStuffLab {
     public class PlayerEyeFollow : MonoBehaviour {
         private Camera _camera;
         [SerializeField] private float multiplier;
-        private Player _player;
 
-        private void Start() {
-            _camera = Camera.main;
-            _player = GetComponentInParent<Player>();
-        }
+        private void Start() => _camera = Camera.main;
 
         private void Update() {
             // if(_player == null || !_player.isLocalPlayer) return;

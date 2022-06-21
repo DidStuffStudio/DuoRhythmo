@@ -111,8 +111,11 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   avatarPrefabs:
+  - {fileID: 126719473272933072, guid: b1fab351037bd4494b1071dd2de58b6b, type: 3}
   - {fileID: 126719473272933072, guid: 654d3115c9f374fc38d96bae78835eaa, type: 3}
   positionSpeed: 350
+  playerUsername: 
+  playerAvatarName: 
 --- !u!114 &-8773233248140237336
 MonoBehaviour:
   m_ObjectHideFlags: 0

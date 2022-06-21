@@ -38,6 +38,11 @@ public class JamSessionDetails : MonoBehaviour {
     public List<Player> players = new List<Player>();
     public Player localPlayer, otherPlayer;
     public Transform otherPlayerEyeFollowTransform;
+    
+    public List<string> usernames = new List<string>();
+    public List<string> avatarNames = new List<string>();
+
+    public string otherPlayerUsername, otherPlayerAvatarName;
 
     public MasterManagerData loadedBeatData;
     public bool loadingBeat { get; set; }
@@ -56,6 +61,30 @@ public class JamSessionDetails : MonoBehaviour {
             otherPlayerEyeFollowTransform = otherPlayerEyeFollow.transform;
         }
         else localPlayer = player;
+    }
+
+    public bool IsOtherPlayerUsernameFromServer(string username) {
+        if (!usernames.Contains(username)) {
+            usernames.Add(username);
+            if (username != PlayFabLogin.Instance.Username) {
+                otherPlayerUsername = username;
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    public bool IsOtherPlayerAvatarNameFromServer(string avatarname) {
+        if (!avatarNames.Contains(avatarname)) {
+            avatarNames.Add(avatarname);
+            if (avatarname != PlayFabLogin.Instance.UserAvatar) {
+                otherPlayerAvatarName = avatarname;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void ClearDetails() {

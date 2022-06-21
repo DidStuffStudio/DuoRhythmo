@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DidStuffLab;
 using Mirror;
 using Misc;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -48,6 +49,8 @@ namespace Managers {
         }
         public GameObject [] emojiSpawners;
         public Dictionary<byte, ParticleSystem[]> emojiParticles { get; private set; } = new Dictionary<byte, ParticleSystem[]>();
+
+        public bool votedToMoveLocally = false;
         
         private void OnEnable() {
             _forwardRenderer.rendererFeatures[0].SetActive(true);
@@ -216,6 +219,14 @@ namespace Managers {
                 CarouselLerpMove.Instance.UpdateLerpMoveRotation(forward);
             }
             else navSync.ChangeValue((byte) (newValue));
+        }
+        
+        public void UpdateNavSyncTexts(string username) {
+            foreach (var n in _navigationVoteSyncs) {
+                foreach (var text in n.texts) {
+                    text.text = username + " has voted to switch";
+                }
+            }
         }
 
         public void OpenFeedbackSite() => Application.OpenURL("https://duorhythmo.frill.co/b/zv9dw6m1/feature-ideas");

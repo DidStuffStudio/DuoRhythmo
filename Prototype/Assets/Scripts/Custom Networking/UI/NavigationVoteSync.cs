@@ -2,6 +2,7 @@ using System;
 using Custom_Buttons.Did_Stuff_Buttons.Buttons;
 using Managers;
 using Mirror;
+using TMPro;
 using UnityEngine;
 
 namespace DidStuffLab {
@@ -9,6 +10,8 @@ namespace DidStuffLab {
         [SerializeField] private bool forward;
         [SerializeField] private GameObject [] navigationButtonsToasts; // either left or right
         public byte VotingValue => Value.Value;
+
+        public TextMeshProUGUI [] texts;
 
         /*
         // show the vote to move toast event
@@ -44,6 +47,11 @@ namespace DidStuffLab {
             else if (newValue == 1) {
                 // show vote toast messages
                 foreach (var nbt in navigationButtonsToasts) nbt.SetActive(true);
+                if (MasterManager.Instance.carouselManager.votedToMoveLocally) {
+                    MasterManager.Instance.carouselManager.votedToMoveLocally = false;
+                    MasterManager.Instance.carouselManager.UpdateNavSyncTexts(PlayFabLogin.Instance.Username);
+                }
+                else MasterManager.Instance.carouselManager.UpdateNavSyncTexts(JamSessionDetails.Instance.otherPlayerUsername);
             }
             else if(newValue > 1) {
                 foreach (var nbt in navigationButtonsToasts) nbt.SetActive(false);

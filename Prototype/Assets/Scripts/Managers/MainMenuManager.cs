@@ -394,7 +394,7 @@ namespace Managers
 
       public void LoadJamSession()
       {
-         SceneManager.LoadScene(2); // change to single player scene
+         SceneManager.LoadScene(1); // change to single player scene
       }
       
       public void OpenSurvey() => Application.OpenURL("https://t.maze.co/84786499");

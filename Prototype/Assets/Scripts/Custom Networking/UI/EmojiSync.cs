@@ -6,6 +6,7 @@ using UnityEngine;
 namespace DidStuffLab {
     public class EmojiSync : CustomSyncBehaviour<byte> {
         private bool _sendingEmojiAnimation;
+        private bool firstRunExecuted = false;
 
         public void ChangeValueOnServer(byte newValue) {
             if (Value.Value == newValue) return;
@@ -20,6 +21,10 @@ namespace DidStuffLab {
 
         protected override void UpdateValueLocally(byte newValue) {
             base.UpdateValueLocally(newValue);
+            if (!firstRunExecuted) {
+                firstRunExecuted = true;
+                return;
+            }
             // print("Emoji index has changed from the server --> " + newValue);
             if (!_sendingEmojiAnimation) PlayReceivingAnimation(newValue);
             else PlaySendingAnimation(newValue);

@@ -11,9 +11,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
     public class EmojiToggle : AbstractDidStuffButton {
         [SerializeField] private List<Emoji> emojis = new List<Emoji>();
         [SerializeField] private List<ParticleSystem> emojiParticles = new List<ParticleSystem>();
-        private void Start()
+        protected override void Start()
         {
-
+base.Start();
             foreach (var p in emojiParticles)
             {
                 // set up the emission to generate particles

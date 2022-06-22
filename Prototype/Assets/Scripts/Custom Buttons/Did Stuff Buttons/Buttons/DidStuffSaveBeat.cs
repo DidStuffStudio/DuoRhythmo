@@ -5,8 +5,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
 {
     public class DidStuffSaveBeat : OneShotButton
     {
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             CoolDownTime = 1.2f;
         }
 

@@ -43,8 +43,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
             _caretPos = caret.rectTransform.anchoredPosition;
         }
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _dwellGfx.transform.SetParent(transform.parent);
             _dwellGfx.transform.SetSiblingIndex(0);
         }

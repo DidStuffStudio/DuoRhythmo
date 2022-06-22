@@ -87,10 +87,12 @@ namespace Managers
             mainMenuManager.SetPin(_pin);
             ClearPin();
         }
-        
-        public void StorePinForCheck() => mainMenuManager.ReferencePin = _pin;
 
-        
+        public void StorePinForCheck()
+        {
+            mainMenuManager.SetReferencePin(_pin);
+        }
+
     }
 }
 

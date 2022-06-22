@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03475364, g: 0.03370689, b: 0.030692842, a: 1}
+  m_IndirectSpecularColor: {r: 0.03503359, g: 0.033984136, b: 0.030972209, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -168,7 +168,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 292821739}
   initialised: 1
-  interactionManager: {fileID: 0}
 --- !u!1 &11298758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1676,7 +1675,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 179717812}
   initialised: 0
-  interactionManager: {fileID: 0}
 --- !u!65 &34273897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5787,7 +5785,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
   initialised: 0
-  interactionManager: {fileID: 0}
 --- !u!114 &230261025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7149,7 +7146,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 179717812}
   initialised: 0
-  interactionManager: {fileID: 0}
 --- !u!65 &282478008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12159,7 +12155,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
   initialised: 0
-  interactionManager: {fileID: 0}
 --- !u!1 &453481942
 GameObject:
   m_ObjectHideFlags: 0
@@ -17088,7 +17083,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 179717812}
   initialised: 0
-  interactionManager: {fileID: 0}
 --- !u!65 &586592641
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17395,7 +17389,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 292821739}
   initialised: 1
-  interactionManager: {fileID: 0}
 --- !u!1 &596152178
 GameObject:
   m_ObjectHideFlags: 0
@@ -20378,7 +20371,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
   initialised: 0
-  interactionManager: {fileID: 0}
 --- !u!114 &693999341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20530,7 +20522,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
   initialised: 0
-  interactionManager: {fileID: 0}
 --- !u!114 &698121169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23858,7 +23849,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
   initialised: 0
-  interactionManager: {fileID: 0}
 --- !u!114 &813212666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31247,7 +31237,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
   initialised: 0
-  interactionManager: {fileID: 0}
 --- !u!1 &1097749787
 GameObject:
   m_ObjectHideFlags: 0
@@ -33233,7 +33222,6 @@ MonoBehaviour:
   panelId: 21
   panelToReturnTo: 13
   interactionManager: {fileID: 1143099682}
-  inGame: 0
 --- !u!222 &1172219021
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -33790,7 +33778,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 830990059}
         m_TargetAssemblyTypeName: Managers.PinManager, Assembly-CSharp
-        m_MethodName: StorePinForCheck
+        m_MethodName: SetPin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33802,7 +33790,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 830990059}
         m_TargetAssemblyTypeName: Managers.PinManager, Assembly-CSharp
-        m_MethodName: SetPin
+        m_MethodName: StorePinForCheck
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -39613,7 +39601,6 @@ MonoBehaviour:
   panelId: 0
   panelToReturnTo: 0
   interactionManager: {fileID: 0}
-  inGame: 0
 --- !u!1 &1482131066
 GameObject:
   m_ObjectHideFlags: 0
@@ -39926,7 +39913,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
   initialised: 0
-  interactionManager: {fileID: 0}
 --- !u!1 &1487443844
 GameObject:
   m_ObjectHideFlags: 0
@@ -40046,7 +40032,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
   initialised: 0
-  interactionManager: {fileID: 0}
 --- !u!1 &1493366030
 GameObject:
   m_ObjectHideFlags: 0
@@ -44091,7 +44076,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 21180852}
   initialised: 0
-  interactionManager: {fileID: 0}
 --- !u!114 &1663906524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46047,7 +46031,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 292821739}
   initialised: 1
-  interactionManager: {fileID: 0}
 --- !u!1 &1744154226
 GameObject:
   m_ObjectHideFlags: 0
@@ -49605,7 +49588,6 @@ MonoBehaviour:
   dwellScaleX: 0
   buttonToEnableOnChoice: {fileID: 1038075779}
   initialised: 0
-  interactionManager: {fileID: 0}
 --- !u!1 &1931330231
 GameObject:
   m_ObjectHideFlags: 0

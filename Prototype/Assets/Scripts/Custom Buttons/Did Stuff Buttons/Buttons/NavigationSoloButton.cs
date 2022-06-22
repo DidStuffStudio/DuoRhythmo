@@ -8,7 +8,11 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
     {
         [SerializeField] private bool forward;
 
-        private void Start() => CoolDownTime = 2.0f;
+        protected override void Start()
+        {
+            base.Start();
+            CoolDownTime = 2.0f;
+        }
 
         protected override void ButtonClicked() {
             base.ButtonClicked();

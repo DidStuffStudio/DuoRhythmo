@@ -50,10 +50,8 @@ namespace Managers
       [SerializeField] private TextMeshProUGUI matchmakingStatusText;
 
 
-      public string ReferencePin
-      {
-         set => _referencePin = value;
-      }
+      public void SetReferencePin(string value) => _referencePin = value;
+      
 
       public int CurrentPanel => _currentPanel;
       
@@ -273,6 +271,7 @@ namespace Managers
          }
          else
          {
+            DeactivatePanel(_currentPanel);
             ActivatePanel(indexToActivate);
          }
          

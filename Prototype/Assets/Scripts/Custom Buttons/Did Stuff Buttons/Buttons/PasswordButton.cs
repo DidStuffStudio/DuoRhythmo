@@ -10,8 +10,9 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
     private Vector3 _position;
 
 
-    private void Start()
+    protected override void Start()
     {
+      base.Start();
       _pinManager = transform.parent.GetComponentInParent<PinManager>();
       /*var pos = GetComponent<RectTransform>().position;
       _position = new Vector3(pos.x, pos.y, 1);*/

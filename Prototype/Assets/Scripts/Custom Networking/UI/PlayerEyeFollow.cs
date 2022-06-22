@@ -13,6 +13,7 @@ namespace DidStuffLab {
 
         private void Update() {
 #if !UNITY_SERVER
+            if(JamSessionDetails.Instance.isServer) return;
             // if(_player == null || !_player.isLocalPlayer) return;
             Vector3 mousePos = InteractionData.Instance.InputPosition; //Todo --> Follow other player
             mousePos.z = _camera.nearClipPlane * multiplier;

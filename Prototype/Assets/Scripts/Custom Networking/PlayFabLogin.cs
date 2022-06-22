@@ -74,6 +74,7 @@ public class PlayFabLogin : MonoBehaviour {
 
 #if !UNITY_SERVER
     private void Start() {
+        if(JamSessionDetails.Instance.isServer) return;
         // NOTE --> Make sure that RememberMeId is initialised as the SystemInfo.deviceUniqueIdentifier
         LoginWithRememberMeId();
     }

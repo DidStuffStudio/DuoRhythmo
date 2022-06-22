@@ -33,6 +33,7 @@ namespace Managers
         private void Update()
         {
 #if !UNITY_SERVER
+            if(JamSessionDetails.Instance.isServer) return;
             if (!Interact) return;
             switch (InteractionData.Instance.Method)
             {

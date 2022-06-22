@@ -27,6 +27,7 @@ public class ClientStartup : MonoBehaviour {
     
 #if !UNITY_SERVER    
     private void Start() {
+        if(JamSessionDetails.Instance.isServer) return;
         // LoginRemoteUser(); // --> Done after matchmaking via the MatchMaker.cs file
         // ConnectUserToServer();
         if(!string.IsNullOrEmpty(JamSessionDetails.Instance.ServerIpAddress)) 
@@ -91,6 +92,7 @@ public class ClientStartup : MonoBehaviour {
     
     private void ConnectRemoteClient(RequestMultiplayerServerResponse response = null) {
         if (response == null) {
+            print("Connected to " + ipAddress + " || port " + port);
             UnityNetworkServer.Instance.networkAddress = ipAddress;
             UnityNetworkServer.Instance.GetComponent<kcp2k.KcpTransport>().Port = port;
             // telepathyTransport.port = configuration.port;

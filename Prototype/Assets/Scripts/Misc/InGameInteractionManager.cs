@@ -25,6 +25,7 @@ namespace Misc
         private void Awake()
         {
             #if !UNITY_SERVER
+            if(JamSessionDetails.Instance.isServer) return;
             if(InteractionData.Instance.Method == InteractionMethod.Tobii && !TobiiAPI.IsConnected) SendToInteractionPage();
             InteractionData.Instance.CheckInteractionMethod();
             #endif

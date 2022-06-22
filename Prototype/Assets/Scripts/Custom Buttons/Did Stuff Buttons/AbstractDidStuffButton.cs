@@ -287,6 +287,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected virtual void Start()
 		{
 #if !UNITY_SERVER
+			if(JamSessionDetails.Instance.isServer) return;
 			SetInteractionMethod(InteractionData.Instance.Method);
 			if (GetInteractionMethod == InteractionMethod.Tobii ||
 			    GetInteractionMethod == InteractionMethod.MouseDwell) _provideDwellFeedbackGlobal = true;
@@ -342,6 +343,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 		protected virtual void Update() {
 #if !UNITY_SERVER
+			if(JamSessionDetails.Instance.isServer) return;
 			if(!interactionSetting)
 			{
 				

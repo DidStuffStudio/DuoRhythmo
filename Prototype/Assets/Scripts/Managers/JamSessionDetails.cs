@@ -23,6 +23,10 @@ public class JamSessionDetails : MonoBehaviour {
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        // isServer = true;
+        #if UNITY_SERVER
+              isServer = true;      
+        #endif
     }
 
     // Server details
@@ -46,6 +50,7 @@ public class JamSessionDetails : MonoBehaviour {
 
     public MasterManagerData loadedBeatData;
     public bool loadingBeat { get; set; }
+    public bool isServer;
 
     public void StartMatchmaking(bool isRandom) {
         isSoloMode = false;

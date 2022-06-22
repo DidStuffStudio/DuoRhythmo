@@ -24,8 +24,10 @@ namespace Misc
 
         private void Awake()
         {
+#if !UNITY_SERVER
             if(InteractionData.Instance.Method == InteractionMethod.Tobii && !TobiiAPI.IsConnected) SendToInteractionPage();
             InteractionData.Instance.CheckInteractionMethod();
+#endif
         }
     
         private void SendToInteractionPage()

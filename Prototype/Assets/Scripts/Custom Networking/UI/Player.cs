@@ -139,30 +139,7 @@ namespace DidStuffLab {
             if (_playerPositionSync) _canStartMoving = true;
             else Debug.LogError("Player Position sync not found when checking for player's corresponding position");
         }
-
-        /*
-        [Command(requiresAuthority = false)]
-        private void SendUserDetailsToServer() {
-            playerUsername = PlayFabLogin.Instance.Username;
-            playerAvatarName = PlayFabLogin.Instance.UserAvatar;
-        }
         
-        private void SetPlayerUsernameLocally(string oldUsername, string newUsername) {
-            
-            if (!isLocalPlayer) {
-                JamSessionDetails.Instance.otherPlayerUsername = newUsername;
-            }
-            
-        }
-        private void SetPlayerAvatarNameLocally(string oldAvatarName, string newAvatarName) {
-        if (!isLocalPlayer) {
-                JamSessionDetails.Instance.otherPlayerAvatarName = newAvatarName;
-                // instantiate other player's avatar
-                InstantiateOtherPlayerAvatar(newAvatarName);
-            }
-            
-        }
-        */
 
         public void UpdateOtherPlayerUsername(string username) => CmdUpdateOtherPlayerUsername(/*netId + "," + */username);
         
@@ -244,8 +221,10 @@ namespace DidStuffLab {
         }
         
         public void InstantiateOtherPlayerAvatar(string avatarName) {
+#if !UNITY_SERVER
             var avatarIndex = avatarName == "Avatar1" ? 0 : 1;
             _otherPlayerAvatar = Instantiate(avatarPrefabs[avatarIndex], JamSessionDetails.Instance.otherPlayer._transform);
+#endif
         }
     }
 }

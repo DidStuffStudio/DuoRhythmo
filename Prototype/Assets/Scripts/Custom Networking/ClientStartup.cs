@@ -19,6 +19,7 @@ public class ClientStartup : MonoBehaviour {
 
     // if the server has been setup by the matchmaking process, I should call this function
     public void SetServerInstanceDetails(string ipAddress, ushort port) {
+        print("Connecting to ipaddress: " + ipAddress + " ||  " + port);
         this.ipAddress = ipAddress;
         this.port = port;
         ConnectUserToServer();
@@ -54,6 +55,7 @@ public class ClientStartup : MonoBehaviour {
         // if we haven't manually added the IP address then we have to make a request for a multiplayer server - otherwise, we can just connect to the saved one
         if (string.IsNullOrEmpty(ipAddress)) {
             // We need to grab an IP and Port from a server based on the buildId
+            print("Requesting multiplayer server");
             RequestMultiplayerServer();
         }
         else {

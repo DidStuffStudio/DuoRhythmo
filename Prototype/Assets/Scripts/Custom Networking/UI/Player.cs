@@ -147,9 +147,12 @@ namespace DidStuffLab {
         }
 
         private void InstantiateOtherPlayerAvatar(string avatarName) {
+            #if !UNITY_SERVER
+            if(!isClient) return;
             var avatarIndex = avatarName == "Avatar1" ? 0 : 1;
             _otherPlayerAvatar =
                 Instantiate(avatarPrefabs[avatarIndex], JamSessionDetails.Instance.otherPlayer._transform);
+            #endif
         }
     }
 }

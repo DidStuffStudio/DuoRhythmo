@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Custom_Buttons.Did_Stuff_Buttons;
+using PlayFab.Networking;
 using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -31,6 +32,7 @@ namespace Managers
      
         private void Update()
         {
+#if !UNITY_SERVER
             if (!Interact) return;
             switch (InteractionData.Instance.Method)
             {
@@ -58,6 +60,7 @@ namespace Managers
             }
             
             //MouseGraphicRaycast();
+#endif
         }
 
         protected virtual void TobiiGraphicRaycast()

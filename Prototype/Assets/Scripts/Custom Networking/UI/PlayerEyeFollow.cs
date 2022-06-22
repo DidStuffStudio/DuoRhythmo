@@ -12,11 +12,13 @@ namespace DidStuffLab {
         private void Start() => _camera = Camera.main;
 
         private void Update() {
+#if !UNITY_SERVER
             // if(_player == null || !_player.isLocalPlayer) return;
             Vector3 mousePos = InteractionData.Instance.InputPosition; //Todo --> Follow other player
             mousePos.z = _camera.nearClipPlane * multiplier;
             var mouseWorld = _camera.ScreenToWorldPoint(mousePos);
             transform.position = mouseWorld;
+#endif
         }
     }
 

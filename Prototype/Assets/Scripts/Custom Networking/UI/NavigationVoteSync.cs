@@ -40,6 +40,13 @@ namespace DidStuffLab {
             // if the value is 1, it means that one player has voted to move
             // if it's 2 or higher than 1, it means that two players have voted, so move the carousel
             print("Voting value has changed from server to: " + newValue);
+            
+            if (MasterManager.Instance.carouselManager.votedToMoveLocally) {
+                MasterManager.Instance.carouselManager.votedToMoveLocally = false;
+                MasterManager.Instance.carouselManager.UpdateNavSyncTexts(PlayFabLogin.Instance.Username, forward);
+            }
+            else MasterManager.Instance.carouselManager.UpdateNavSyncTexts(JamSessionDetails.Instance.otherPlayerUsername, forward);
+            
             if (newValue == 0) {
                 // hide vote toast messages
                 foreach (var nbt in navigationButtonsToasts) nbt.SetActive(false);
@@ -47,11 +54,6 @@ namespace DidStuffLab {
             else if (newValue == 1) {
                 // show vote toast messages
                 foreach (var nbt in navigationButtonsToasts) nbt.SetActive(true);
-                if (MasterManager.Instance.carouselManager.votedToMoveLocally) {
-                    MasterManager.Instance.carouselManager.votedToMoveLocally = false;
-                    MasterManager.Instance.carouselManager.UpdateNavSyncTexts(PlayFabLogin.Instance.Username, forward);
-                }
-                else MasterManager.Instance.carouselManager.UpdateNavSyncTexts(JamSessionDetails.Instance.otherPlayerUsername, forward);
             }
             else if(newValue > 1) {
                 foreach (var nbt in navigationButtonsToasts) nbt.SetActive(false);

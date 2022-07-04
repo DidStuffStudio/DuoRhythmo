@@ -286,11 +286,13 @@ namespace DidStuffLab {
                     if (!(member.Attributes.DataObject is JsonObject data)) continue;
                     if (data.ContainsKey("Username")) {
                         JamSessionDetails.Instance.otherPlayerUsername = data["Username"].ToString();
+                        print("we have matched with username: " + JamSessionDetails.Instance.otherPlayerUsername);
                     }
                     else Debug.LogError("Match member doesn't contain username key");
 
                     if (data.ContainsKey("AvatarName")) {
                         JamSessionDetails.Instance.otherPlayerAvatarName = data["AvatarName"].ToString();
+                        print("other player avatar name: " + JamSessionDetails.Instance.otherPlayerAvatarName);
                     }
                     else Debug.LogError("Match member doesn't contain avatarname key");
                 }

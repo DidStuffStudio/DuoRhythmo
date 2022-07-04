@@ -43,6 +43,8 @@ public class JamSessionDetails : MonoBehaviour {
     public string otherPlayerAvatarName = string.Empty;
 
     public MasterManagerData loadedBeatData;
+    public bool clientDisconnected = false;
+    public bool quitFromGame = false;
     public bool loadingBeat { get; set; }
 
     public void StartMatchmaking(bool isRandom) {

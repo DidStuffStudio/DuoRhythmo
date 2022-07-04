@@ -91,6 +91,14 @@ namespace Managers
       {
          if(!PlayFabClientAPI.IsClientLoggedIn()) return;
          if(CurrentPanel != 4 && CurrentPanel != 19) MainMenuManager.Instance.SkipLogin();
+         if (JamSessionDetails.Instance != null && JamSessionDetails.Instance.clientDisconnected) {
+            JamSessionDetails.Instance.clientDisconnected = false;
+            if (JamSessionDetails.Instance.quitFromGame) {
+               JamSessionDetails.Instance.quitFromGame = false;
+               return;
+            }
+            SpawnErrorToast("An error has occurred. Please try jamming again.", 0.1f);
+         }
       }
 
       private void ToggleUIPanel()

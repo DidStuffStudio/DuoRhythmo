@@ -272,6 +272,7 @@ public class InGameMenuManager : MonoBehaviour
     public void Quit()
     {
        StopAllCoroutines();
+       JamSessionDetails.Instance.quitFromGame = true;
        SceneManager.LoadScene(0);
     }
     

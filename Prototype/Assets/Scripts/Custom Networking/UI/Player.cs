@@ -3,6 +3,7 @@ using DidStuffLab;
 using Managers;
 using Mirror;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DidStuffLab {
     public class Player : CustomSyncBehaviour<Vector3> {
@@ -123,6 +124,13 @@ namespace DidStuffLab {
 
             if (_playerPositionSync) _canStartMoving = true;
             else Debug.LogError("Player Position sync not found when checking for player's corresponding position");
+        }
+
+        public override void OnStopClient() {
+            base.OnStopClient();
+            if (JamSessionDetails.Instance.quitFromGame) return;
+            JamSessionDetails.Instance.clientDisconnected = true;
+            SceneManager.LoadScene(0);
         }
     }
 }

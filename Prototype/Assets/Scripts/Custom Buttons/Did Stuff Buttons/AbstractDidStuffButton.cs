@@ -425,7 +425,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		protected virtual void StartInteractionCoolDown()
 		{
 			IsHover = false;
-			InteractionData.Instance.JustInteracted(this, interactionCooldownDictionary[_interactionMethod]);
+			InteractionData.Instance.JustInteracted(this, interactionCooldownDictionary[_interactionMethod], _pointerEventData);
 		}
 
 		private void ButtonHovered()
@@ -530,8 +530,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			if (useIcon && changeTextOrIconColour) _iconImage.color = changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
 			if (useText && changeTextOrIconColour) _primaryText.color = changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
 			if (useSecondaryText && changeTextOrIconColour) _secondaryText.color =changeTextToSameAsButton ? activeColour : activeTextOrIconColour;
-			if (_pointerEventData == null) _pointerEventData = new PointerEventData(EventSystem.current);
-			ExecuteEvents.Execute(gameObject, _pointerEventData, ExecuteEvents.pointerExitHandler);
+			/*if (_pointerEventData == null) _pointerEventData = new PointerEventData(EventSystem.current);
+			ExecuteEvents.Execute(gameObject, _pointerEventData, ExecuteEvents.pointerExitHandler);*/
 		}
 
 		protected virtual void ChangeToInactiveState()

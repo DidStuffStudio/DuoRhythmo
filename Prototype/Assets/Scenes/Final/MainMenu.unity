@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03503359, g: 0.033984136, b: 0.030972209, a: 1}
+  m_IndirectSpecularColor: {r: 0.03475364, g: 0.03370689, b: 0.030692842, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3051,7 +3051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ff0e6ed817ff34fa3ee0dab62fa61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactionMethod: 2
+  interactionMethod: 0
 --- !u!4 &79670159
 Transform:
   m_ObjectHideFlags: 0
@@ -21735,6 +21735,8 @@ MonoBehaviour:
   localPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
   otherPlayerEyeFollowTransform: {fileID: 0}
+  otherPlayerUsername: 
+  otherPlayerAvatarName: 
   loadedBeatData:
     drumIndex: 0
     BPM: 0
@@ -31664,7 +31666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycasterOverlay: {fileID: 530605015}
-  _eventSystem: {fileID: 999876413}
+  eventSystem: {fileID: 0}
   gazeSignifier: {fileID: 278012265}
   signifierSpeed: 20
   mainMenuManager: {fileID: 530605014}

@@ -68,16 +68,16 @@ namespace Managers
             DontDestroyOnLoad(this);
         }
         
-        public void JustInteracted(AbstractDidStuffButton btn, float coolDownTime) => StartCoroutine(CoolDownTime(btn, coolDownTime));
+        public void JustInteracted(AbstractDidStuffButton btn, float coolDownTime, PointerEventData p) => StartCoroutine(CoolDownTime(btn, coolDownTime, p));
 
-        private IEnumerator CoolDownTime(AbstractDidStuffButton btn, float coolDownTime)
+        private IEnumerator CoolDownTime(AbstractDidStuffButton btn, float coolDownTime, PointerEventData p)
         {
             btn.SetCanHover(false);
             btn.IsHover = false;
-            
             yield return new WaitForSeconds(coolDownTime);
+            ExecuteEvents.Execute (btn.gameObject, p, ExecuteEvents.pointerExitHandler);
+            p.pointerEnter = null;
             btn.SetCanHover(true);
-            ExecuteEvents.Execute (btn.gameObject, new PointerEventData (EventSystem.current), ExecuteEvents.pointerExitHandler);
         }
 
         

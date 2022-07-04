@@ -348,7 +348,7 @@ namespace Managers
       {
          if(_currentInvitePopUp != null)_currentInvitePopUp.GetComponent<DidStuffInvite>().DestroyForNew();
          var popUp = Instantiate(inviteToPlay, transform);
-         popUp.transform.SetSiblingIndex(transform.childCount-1);
+         popUp.transform.SetSiblingIndex(transform.childCount-2);
          _currentInvitePopUp = popUp.GetComponent<DidStuffInvite>();
          _currentInvitePopUp.SetInviter(username);
       }

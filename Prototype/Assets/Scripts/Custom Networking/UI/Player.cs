@@ -116,7 +116,8 @@ namespace DidStuffLab {
                 // TODO --> Instantiate appropriate avatar (other user's avatar name)
                 // if its not the local player, then locally instantiate an avatar with the specified avatar name
                 // and make this follow the other players
-                _otherPlayerAvatar = Instantiate(avatarPrefabs[0], JamSessionDetails.Instance.otherPlayer._transform);
+                var avatarIndex = JamSessionDetails.Instance.otherPlayerAvatarName == "Avatar1" ? 0 : 1;
+                _otherPlayerAvatar = Instantiate(avatarPrefabs[avatarIndex], JamSessionDetails.Instance.otherPlayer._transform);
             }
 
             if (_playerPositionSync) _canStartMoving = true;

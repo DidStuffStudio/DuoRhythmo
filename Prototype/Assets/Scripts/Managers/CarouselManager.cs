@@ -32,6 +32,8 @@ namespace Managers {
         private GraphicRaycaster _currentGraphicRaycaster;
         public delegate void MoveCarouselAction();
         public static event MoveCarouselAction OnMovedCarousel;
+        
+        public bool votedToMoveLocally = false;
 
         private EmojiSync _emojiSync;
 
@@ -216,6 +218,14 @@ namespace Managers {
                 CarouselLerpMove.Instance.UpdateLerpMoveRotation(forward);
             }
             else navSync.ChangeValue((byte) (newValue));
+        }
+        
+        public void UpdateNavSyncTexts(string username) {
+            foreach (var n in _navigationVoteSyncs) {
+                foreach (var text in n.texts) {
+                    text.text = username + " has voted to switch";
+                }
+            }
         }
 
         public void OpenFeedbackSite() => Application.OpenURL("https://duorhythmo.frill.co/b/zv9dw6m1/feature-ideas");

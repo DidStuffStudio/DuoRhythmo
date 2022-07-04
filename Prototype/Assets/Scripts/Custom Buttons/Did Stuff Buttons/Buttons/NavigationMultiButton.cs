@@ -18,6 +18,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons {
 
         protected override void ButtonClicked() {
             base.ButtonClicked();
+            _carouselManager.votedToMoveLocally = true;
             _carouselManager.UpdateVoteToMoveToServer(_isActive, forward);
             votedToMove = _isActive;
             if(otherButtonToDisable._isActive && _isActive) otherButtonToDisable.ClickAndCallEvents();

@@ -266,6 +266,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 		protected virtual void Awake()
 		{
+#if  !UNITY_SERVER
 			interactionCooldownDictionary.Add(InteractionMethod.Mouse, 0.1f);
 			interactionCooldownDictionary.Add(InteractionMethod.MouseDwell, 1.0f);
 			interactionCooldownDictionary.Add(InteractionMethod.Tobii, 1.0f);
@@ -282,10 +283,12 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			ToggleDwellGfx(false);
 			ChangeToInactiveState();
 			if(startDisabled) DisableButton();
+#endif
 		}
 
 		protected virtual void Start()
 		{
+#if  !UNITY_SERVER
 			SetInteractionMethod(InteractionData.Instance.Method);
 			if (GetInteractionMethod == InteractionMethod.Tobii ||
 			    GetInteractionMethod == InteractionMethod.MouseDwell) _provideDwellFeedbackGlobal = true;
@@ -301,6 +304,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 			_currentDwellTime = dwellTimeSetting ? localDwellTime : _dwellTime;
 			if (dwellScaleX) _dwellGfx.localScale = new Vector3(0.0f, _originaldwellScaleY, 1);
 			else _dwellGfx.localScale = zero;
+#endif
 		}
 
 		protected virtual void SetScaleOfChildren()
@@ -340,6 +344,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 		
 		
 		protected virtual void Update() {
+#if  !UNITY_SERVER
 			if(!interactionSetting)
 			{
 				
@@ -387,6 +392,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons
 				else if (_dwellGfx.localScale.x > 0.0f) _dwellGfx.localScale -= one * 0.01f;
 				else ToggleDwellGfx(false);
 			}
+#endif
 		}
 
 		protected virtual void ButtonClicked()

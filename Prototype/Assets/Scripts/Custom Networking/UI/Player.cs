@@ -48,6 +48,7 @@ namespace DidStuffLab {
         }
 
         private void Update() {
+            if (!isClient) return;
             if (!isLocalPlayer || !_canStartMoving) return;
             if (!_localplayerIsInPosition) LerpPlayer();
             if (JamSessionDetails.Instance.otherPlayer && JamSessionDetails.Instance.otherPlayerEyeFollowTransform) {
@@ -85,6 +86,7 @@ namespace DidStuffLab {
         }
 
         protected override void Initialize() {
+            if (!isClient) return;
             _transform = transform;
             _camera = MasterManager.Instance.playerCamera;
             print(_camera.name);
@@ -96,6 +98,7 @@ namespace DidStuffLab {
         }
 
         private void CheckForCorrespondingPositioning() {
+            if (!isClient) return;
             print("Checking for positioning");
             _playerPositionSync = FindObjectOfType<PlayerPositionSync>();
 

@@ -31,6 +31,7 @@ namespace Managers
      
         private void Update()
         {
+#if  !UNITY_SERVER
             if (!Interact) return;
             switch (InteractionData.Instance.Method)
             {
@@ -58,6 +59,7 @@ namespace Managers
             }
             
             //MouseGraphicRaycast();
+#endif
         }
 
         protected virtual void TobiiGraphicRaycast()

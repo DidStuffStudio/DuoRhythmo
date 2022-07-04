@@ -28,8 +28,7 @@ public class ClientStartup : MonoBehaviour {
     private void Start() {
         // LoginRemoteUser(); // --> Done after matchmaking via the MatchMaker.cs file
         // ConnectUserToServer();
-        if(!string.IsNullOrEmpty(JamSessionDetails.Instance.ServerIpAddress)) 
-            SetServerInstanceDetails(JamSessionDetails.Instance.ServerIpAddress, JamSessionDetails.Instance.ServerPort);
+        if(!string.IsNullOrEmpty(JamSessionDetails.Instance.ServerIpAddress)) SetServerInstanceDetails(JamSessionDetails.Instance.ServerIpAddress, JamSessionDetails.Instance.ServerPort);
     }
 #endif
     

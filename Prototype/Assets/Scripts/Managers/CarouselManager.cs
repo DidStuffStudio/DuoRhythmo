@@ -220,11 +220,11 @@ namespace Managers {
             else navSync.ChangeValue((byte) (newValue));
         }
         
-        public void UpdateNavSyncTexts(string username) {
-            foreach (var n in _navigationVoteSyncs) {
-                foreach (var text in n.texts) {
-                    text.text = username + " has voted to switch";
-                }
+        public void UpdateNavSyncTexts(string username, bool forward) {
+            var navSync = forward ? _navigationVoteSyncs[0] : _navigationVoteSyncs[1];
+            var voteMessage = forward ? " wants to move right" : " wants to move left";
+            foreach (var text in navSync.texts) {
+                text.text = username + voteMessage;
             }
         }
 

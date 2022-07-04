@@ -49,9 +49,9 @@ namespace DidStuffLab {
                 foreach (var nbt in navigationButtonsToasts) nbt.SetActive(true);
                 if (MasterManager.Instance.carouselManager.votedToMoveLocally) {
                     MasterManager.Instance.carouselManager.votedToMoveLocally = false;
-                    MasterManager.Instance.carouselManager.UpdateNavSyncTexts(PlayFabLogin.Instance.Username);
+                    MasterManager.Instance.carouselManager.UpdateNavSyncTexts(PlayFabLogin.Instance.Username, forward);
                 }
-                else MasterManager.Instance.carouselManager.UpdateNavSyncTexts(JamSessionDetails.Instance.otherPlayerUsername);
+                else MasterManager.Instance.carouselManager.UpdateNavSyncTexts(JamSessionDetails.Instance.otherPlayerUsername, forward);
             }
             else if(newValue > 1) {
                 foreach (var nbt in navigationButtonsToasts) nbt.SetActive(false);

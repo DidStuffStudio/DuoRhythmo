@@ -3,7 +3,132 @@ guid: 07c215747604cfe44811ee4b50d9ea52
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Backdrop.001
+    second: {fileID: 2100000, guid: 729967427c877a44cbf0e0b2b896a322, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_black_eyes
+    second: {fileID: 2100000, guid: 98404a9a413b57541bc2d152ce7f130d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_body_skin
+    second: {fileID: 2100000, guid: 39de1b4be8f35c94d803cd6b060b0ee3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_earrings
+    second: {fileID: 2100000, guid: 2360cb7d630c7464b9e96bc2c155ade6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_glasses_1_frame
+    second: {fileID: 2100000, guid: b086b4e7bdef038498d37a0a74e7b68e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_glasses_1_lens
+    second: {fileID: 2100000, guid: eac817e775a34ce4daedcc7f502b93ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_glasses_2_frame
+    second: {fileID: 2100000, guid: de9f415107935754ca1679be05b40b7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_glasses_2_lens
+    second: {fileID: 2100000, guid: 5dfaa5e3c46d5ca4184ba5e5393f5539, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_glasses_3_frame
+    second: {fileID: 2100000, guid: e69d9f517739f7c4b8646ad233936cb4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_gums
+    second: {fileID: 2100000, guid: e1131faf0464a2a42a4da7c9033e69a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_hairs
+    second: {fileID: 2100000, guid: d0247b3c4b53d7148b2d24154d26cf93, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_hat_strap
+    second: {fileID: 2100000, guid: be04a0f823d331242865fef18cfa8240, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_hat_white
+    second: {fileID: 2100000, guid: bd64ac618d32b124184af00677510fd9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_mask
+    second: {fileID: 2100000, guid: e07e8848c058c6244bc2bbcaf79c1ceb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_mouth
+    second: {fileID: 2100000, guid: 8c41f2f49caf2f148aa00769ab5ae166, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_necklace_buckle
+    second: {fileID: 2100000, guid: 236d753e6c1e72048b6f47d0fa0a8f30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_necklace_strap
+    second: {fileID: 2100000, guid: d6cfb08f5ebd3da4ca70d7b8ff443e02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_teeth
+    second: {fileID: 2100000, guid: fc9e5350d9de8e74e8d6893501766594, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_female_black_white_eyes
+    second: {fileID: 2100000, guid: 96fc9eed6a695454c8fc17200f61a52b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_eyes_iris_color
+    second: {fileID: 2100000, guid: bc0e4b82f864b9a4ebbb66caa451a208, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_eyes_lens
+    second: {fileID: 2100000, guid: 0385664249856204d8595abcb672546b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_eyes_pupil_black
+    second: {fileID: 2100000, guid: 206d7480072434444b695eed76d0f900, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_eyes_white
+    second: {fileID: 2100000, guid: e153cff6854991348a7c7d5001b6c8e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_gums
+    second: {fileID: 2100000, guid: 56be5a1a95381604b862e9012fcbb83f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_male_white_teeth
+    second: {fileID: 2100000, guid: 8f31229ede15c244085f16b98d75a918, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

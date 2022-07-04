@@ -128,6 +128,15 @@ namespace DidStuffLab {
 
         public override void OnStopClient() {
             base.OnStopClient();
+            if (!isClient) return; 
+            if (!isLocalPlayer) {
+                var inGameMenuManager = GameObject.FindObjectOfType<InGameMenuManager>();
+                if (inGameMenuManager != null) {
+                    inGameMenuManager.SpawnInfoToast(JamSessionDetails.Instance.otherPlayerUsername + " disconnected. Save your beats and continue in solo mode", 0.1f);
+                }
+
+                return;
+            } 
             if (JamSessionDetails.Instance.quitFromGame) return;
             JamSessionDetails.Instance.clientDisconnected = true;
             SceneManager.LoadScene(0);

@@ -38,6 +38,9 @@ public class JamSessionDetails : MonoBehaviour {
     public List<Player> players = new List<Player>();
     public Player localPlayer, otherPlayer;
     public Transform otherPlayerEyeFollowTransform;
+    
+    public string otherPlayerUsername = string.Empty;
+    public string otherPlayerAvatarName = string.Empty;
 
     public MasterManagerData loadedBeatData;
     public bool loadingBeat { get; set; }

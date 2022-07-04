@@ -104,11 +104,15 @@ namespace DidStuffLab {
             
             var dataObjectWithoutFriends = new {
                 Latencies, 
-                DrumTypes // doing type intersection rule if playing with random users
+                DrumTypes, // doing type intersection rule if playing with random users
+                Username = PlayFabLogin.Instance.Username,
+                AvatarName = PlayFabLogin.Instance.UserAvatar,
             };
             var dataObjectWithFriends = new {
                 Latencies,
                 MatchmakerId = matchmakerId,
+                Username = PlayFabLogin.Instance.Username,
+                AvatarName = PlayFabLogin.Instance.UserAvatar,
             };
 
             StopCoroutine(pollFriendMatchInvites);
@@ -276,6 +280,27 @@ namespace DidStuffLab {
             MainMenuManager.Instance.SetMatchmakingStatusText(
                 $"{result.Members[0].Entity.Id} vs {result.Members[1].Entity.Id}");
 
+
+            foreach (var member in result.Members.Where(member => member.Entity.Id != PlayFabLogin.AuthenticationContext.EntityId)) {
+                if (member.Attributes != null) {
+                    if (!(member.Attributes.DataObject is JsonObject data)) continue;
+                    if (data.ContainsKey("Username")) {
+                        JamSessionDetails.Instance.otherPlayerUsername = data["Username"].ToString();
+                    }
+                    else Debug.LogError("Match member doesn't contain username key");
+
+                    if (data.ContainsKey("AvatarName")) {
+                        JamSessionDetails.Instance.otherPlayerAvatarName = data["AvatarName"].ToString();
+                    }
+                    else Debug.LogError("Match member doesn't contain avatarname key");
+                }
+                else {
+                    // check escaped data object string in case attributes object is null
+                    Debug.LogError("The attributes data is null");
+                }
+            }
+            
+            
             byte highestChosenDrum = 0;
             if (isRandom) {
                 var drumTypes =

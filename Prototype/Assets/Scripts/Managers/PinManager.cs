@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Custom_Buttons.Did_Stuff_Buttons.Buttons;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,7 @@ namespace Managers
         private String _pin;
         private List<int> pinIntegers = new List<int>();
         private int _currentIndex = 0;
-        private Vector2 _lastPos;
+        private Vector3 _lastPos;
         [SerializeField] private float lineWidth;
         [SerializeField] private Color lineColor;
         [SerializeField] private Transform parent;
@@ -21,6 +22,9 @@ namespace Managers
         [SerializeField] private MainMenuManager mainMenuManager;
         private List<PasswordButton> _pinButtons = new List<PasswordButton>();
         private List<Vector3> _transforms = new List<Vector3>();
+        [SerializeField] private GameObject line;
+        private int _numberOfNumbers = 10;
+        [SerializeField] private GameObject pinNodeContainer;
 
         private void Start()
         {
@@ -54,6 +58,37 @@ namespace Managers
                 lineRenderer.SetPosition(_currentIndex, correctedTransform);
                 lineRenderer.widthMultiplier = 50.0f;
             }
+
+            if (_currentIndex > 0)
+            {
+                var l = Instantiate(line).GetComponent<RectTransform>();
+                l.transform.SetParent(transform);
+                l.anchoredPosition = _lastPos;
+                var vec1 =  pinNodeContainer.transform.position-new Vector3(0, 221, 0);
+                var vec2 = pinNodeContainer.transform.position-anchoredPos;
+                var length = Vector3.Magnitude(_lastPos - anchoredPos);
+                //var angle = Mathf.Acos(Vector3.Dot(vec1, vec2)/(vec1.magnitude*vec2.magnitude));
+                var top = new Vector3(0, 221, 0);
+                var dot = Vector3.Dot(top, vec2);
+                var det = top.x * vec2.y - top.y * vec2.x;
+                var angle = Mathf.Atan2(det, dot);
+                /*var angle = Mathf.Atan2(anchoredPos.y, anchoredPos.x);
+                    //var angle = Mathf.Atan(anchoredPos.y / anchoredPos.x);
+                
+                Debug.Log(angle);
+                l.rotation = Quaternion.Euler(0,0,angle);*/
+                /*var tGO = new GameObject("Test");
+                tGO.transform.parent = transform;
+                tGO.transform.position = Vector3.zero;
+                var inc = 360 / _numberOfNumbers;
+                var angle = value * inc;*/
+                angle *= Mathf.Rad2Deg;
+                l.Rotate(Vector3.forward, 360- angle);
+                //l.Rotate(Vector3.forward, angle);
+                l.sizeDelta = new Vector2(lineWidth, length);
+            }
+
+            _lastPos = anchoredPos;
             _currentIndex++;
             pinIntegers.Add(value);
         }

@@ -6,17 +6,15 @@ using Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public class UiFriendsManager : MonoBehaviour {
     [SerializeField] private List<GameObject> navigationArrows; //0 = Left, 1 = Right
     [SerializeField] private GameObject logInToAddViewFriends;
 
 
-    [SerializeField] protected List<GameObject> friendCards = new List<GameObject>();
-    [SerializeField] private List<Image> friendImages = new List<Image>();
-    [SerializeField] private List<TextMeshProUGUI> friendTexts = new List<TextMeshProUGUI>();
-
-    [Header("Dots")] [SerializeField] private GameObject dotParent, dot;
+    [SerializeField] protected List<FriendCard> friendCards = new List<FriendCard>();
+ [Header("Dots")] [SerializeField] private GameObject dotParent, dot;
     [SerializeField] private float dotSpacing;
     [SerializeField] private Color dotActive, dotInactive;
 
@@ -107,14 +105,14 @@ public class UiFriendsManager : MonoBehaviour {
         if (_numberFriends == 0) return;
         if (_numberFriends <= _numberOfCards) {
             _displayedFriends = _numberFriends;
-            for (int i = 0; i < _numberFriends; i++) friendCards[i].SetActive(true);
-            for(int i = _numberFriends; i < _numberOfCards; i++) friendCards[i].SetActive(false);
+            for (int i = 0; i < _numberFriends; i++) friendCards[i].gameObject.SetActive(true);
+            for(int i = _numberFriends; i < _numberOfCards; i++) friendCards[i].gameObject.SetActive(false);
             _currentAvatars = new string[_numberFriends];
             _currentUsernames = new string[_numberFriends];
         }
         else {
             _displayedFriends = _numberOfCards;
-            for (int i = 0; i < friendCards.Count; i++) friendCards[i].SetActive(true);
+            for (int i = 0; i < friendCards.Count; i++) friendCards[i].gameObject.SetActive(true);
             _currentAvatars = new string[_numberOfCards];
             _currentUsernames = new string[_numberOfCards];
         }
@@ -122,8 +120,7 @@ public class UiFriendsManager : MonoBehaviour {
 
         ChangeGraphics();
     }
-
-
+    
     public void Navigate(bool right) {
         if (right) {
             _page++;
@@ -151,11 +148,8 @@ public class UiFriendsManager : MonoBehaviour {
 
     protected virtual void ChangeGraphics() {
         for (int i = 0; i < _displayedFriends; i++) {
-            print("Displayed friends is " + _displayedFriends);
             _currentUsernames[i] = listToLoopUsernames[_currentListIndex + i];
             _currentAvatars[i] = listToLoopAvatars[_currentListIndex + i];
-            friendTexts[i].text = _currentUsernames[i];
-            friendImages[i].sprite = Resources.Load<Sprite>("Avatars/" + _currentAvatars[i]);
         }
     }
 
@@ -163,12 +157,12 @@ public class UiFriendsManager : MonoBehaviour {
         if (numberToRemove == 0) return;
 
         for (var index = numberToRemove; index < _numberOfCards; index++) {
-            friendCards[index].SetActive(activate);
+            friendCards[index].gameObject.SetActive(activate);
         }
     }
 
     protected virtual void DisableAllInteraction() {
-        foreach (var card in friendCards) card.SetActive(false);
+        foreach (var card in friendCards) card.gameObject.SetActive(false);
         logInToAddViewFriends.SetActive(true);
         Instantiate(logInToAddViewFriends, transform);
         foreach (var arrow in navigationArrows) {

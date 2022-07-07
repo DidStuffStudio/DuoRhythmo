@@ -3,7 +3,6 @@ using UnityEngine;
 namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
 {
     public class IncrementEuclidean :  OneShotButton {
-        private Transform _transform;
         private TweenSharp _tween;
         public float duration = 2.3f;
         [SerializeField] private float targetY;
@@ -19,13 +18,10 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
             }
         }
 
-        
-
         protected override void OnEnable() {
             base.OnEnable();
-            _transform = transform;
-            _transform.localPosition = Vector3.zero;
-            _transform.localScale = Vector3.zero;
+            transform.localPosition = Vector3.zero;
+            transform.localScale = Vector3.zero;
         }
         
         private void Enable() {
@@ -40,8 +36,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         }
 
         private void Disable() {
-            print("Disable");
-            _transform = transform;
             _tween = new TweenSharp(gameObject, duration, new {
                 scale = 0f,
                 localY = 0f,
@@ -49,10 +43,6 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
                 ease = Quad.EaseIn
             });
             _tween.Restart();
-        }
-
-        protected override void ButtonClicked() {
-            base.ButtonClicked();
         }
     }
 }

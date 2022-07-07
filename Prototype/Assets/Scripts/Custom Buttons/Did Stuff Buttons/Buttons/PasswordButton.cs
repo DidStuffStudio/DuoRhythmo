@@ -32,6 +32,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
         rectT, RectTransformUtility.WorldToScreenPoint(null,transform.position), null,
         out var point);
       _position = new Vector3(point.x, point.y, 0);
+      _position = GetComponent<RectTransform>().anchoredPosition;
     }
     
     public void Clear()

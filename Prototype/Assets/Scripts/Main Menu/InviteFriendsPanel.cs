@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class InviteFriendsPanel : UiFriendsManager {
-    [SerializeField] private List<Image> _onlineStatusImages = new List<Image>();
-    [SerializeField] private Color _active = Color.green, _inactive = Color.red;
+
     [SerializeField] private GameObject inviteFriendsMenu;
     [SerializeField] private GameObject rotatingSpinner;
     private static bool isUpdated = false;
@@ -64,8 +63,8 @@ public class InviteFriendsPanel : UiFriendsManager {
     protected override void ChangeGraphics() {
         base.ChangeGraphics();
         for (int i = 0; i < _displayedFriends; i++) {
-            _currentOnlineStatuses[i] = AllFriendOnlineStatuses[_currentListIndex + i];
-            _onlineStatusImages[i].color = _currentOnlineStatuses[i] ? _active : _inactive;
+            //friendCards[i].ChangeFriend(friend, true);
+            //Todo --> Update cards from a list of the class Friend
         }
     }
 

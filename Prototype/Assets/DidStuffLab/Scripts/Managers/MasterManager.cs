@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DidStuffLab.Scripts.Audio;
@@ -30,6 +31,8 @@ namespace DidStuffLab.Scripts.Managers {
         public CarouselManager carouselManager;
 
         private byte _bpm = 120;
+        [SerializeField] private float panelWidth = 737f;
+        private int previousAspectRatio;
 
         public byte Bpm {
             get => _bpm;
@@ -43,7 +46,6 @@ namespace DidStuffLab.Scripts.Managers {
         
         private float _startTime, _journeyLength;
         [SerializeField] private float positionSpeed = 10.0f;
-        public Transform playerPositionDestination;
         public bool gameSetUpFinished; public bool isInPosition = false;
         
         
@@ -87,13 +89,32 @@ namespace DidStuffLab.Scripts.Managers {
             Initialise();
         }
 
+        private void Update()
+        {
+            if(!isInPosition) return;
+            if (previousAspectRatio == Screen.width / Screen.height) return;
+            destinationTransform.transform.position = CalculateNewDistanceForCamera();
+            previousAspectRatio = Screen.width / Screen.height;
+        }
 
         public void PlayerReachedDestination()
         {
+            playerCamera.transform.SetParent(destinationTransform);
             isInPosition = true;
             carouselManager.InitialiseGraphicRaycast();
         }
 
+        private Vector3 CalculateNewDistanceForCamera()
+        {
+            float fT = panelWidth / Screen.width * Screen.height;
+            fT = fT / (2.0f * Mathf.Tan (0.5f * playerCamera.fieldOfView * Mathf.Deg2Rad));
+            Debug.Log(fT);
+
+            fT = fT < 408f ? -408 : -fT;
+            var vector = new Vector3(destinationTransform.transform.position.x, destinationTransform.transform.position.y,
+                fT);
+            return vector;
+        }
 
         private void Initialise() {
             
@@ -194,7 +215,7 @@ namespace DidStuffLab.Scripts.Managers {
             while(!audioManager.setUp) yield return new WaitForEndOfFrame();
             yield return new WaitForSeconds(time);
             _startTime = Time.time;
-            _journeyLength = Vector3.Distance(playerCamera.transform.position, playerPositionDestination.position);
+            _journeyLength = Vector3.Distance(playerCamera.transform.position, destinationTransform.position);
         }
     }
 }

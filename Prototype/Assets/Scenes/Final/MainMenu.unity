@@ -557,7 +557,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 13
   panelToDeactivate: 22
 --- !u!1 &24634903
@@ -3739,7 +3738,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 13
   panelToDeactivate: 23
 --- !u!1 &158334893
@@ -3911,7 +3909,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: -1
   panelToDeactivate: -1
 --- !u!1 &190711800
@@ -6264,7 +6261,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: -1
   panelToDeactivate: -1
 --- !u!1 &300271432
@@ -7865,7 +7861,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: -1
   panelToDeactivate: 12
 --- !u!114 &347554587
@@ -11373,7 +11368,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 9
   panelToDeactivate: 5
 --- !u!114 &474184583
@@ -12778,7 +12772,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 18
   panelToDeactivate: 19
 --- !u!114 &513689456
@@ -14268,7 +14261,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 4
   panelToDeactivate: 24
 --- !u!224 &551535584
@@ -23612,7 +23604,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 16
   panelToDeactivate: 17
 --- !u!1 &915281891
@@ -23926,7 +23917,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 10
   panelToDeactivate: 2
 --- !u!1 &929968304
@@ -24193,7 +24183,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: -1
   panelToDeactivate: 2
 --- !u!1 &944200959
@@ -25968,7 +25957,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 2
   panelToDeactivate: 1
 --- !u!1 &1047634642
@@ -29372,7 +29360,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 18
   panelToDeactivate: 25
 --- !u!114 &1189882778
@@ -29429,8 +29416,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 830990059}
-        m_TargetAssemblyTypeName: Managers.PinManager, Assembly-CSharp
-        m_MethodName: StorePinForCheck
+        m_TargetAssemblyTypeName: DidStuffLab.Scripts.Managers.PinManager, Assembly-CSharp
+        m_MethodName: SetPin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -29441,8 +29428,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 830990059}
-        m_TargetAssemblyTypeName: Managers.PinManager, Assembly-CSharp
-        m_MethodName: SetPin
+        m_TargetAssemblyTypeName: DidStuffLab.Scripts.Managers.PinManager, Assembly-CSharp
+        m_MethodName: StorePinForCheck
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -29491,7 +29478,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: -1
   panelToDeactivate: 11
 --- !u!1 &1190616611
@@ -42608,7 +42594,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 6
   panelToDeactivate: 18
 --- !u!1 &1872883243
@@ -43866,7 +43851,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 2
   panelToDeactivate: 13
 --- !u!114 &1963817656
@@ -47458,7 +47442,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: -1
   panelToDeactivate: 10
 --- !u!1 &2134405091
@@ -60312,7 +60295,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 0}
   panelToActivate: 19
   panelToDeactivate: 8
 --- !u!114 &2282966481167251442
@@ -60369,7 +60351,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 0}
   panelToActivate: 19
   panelToDeactivate: 8
 --- !u!114 &2282966481698854436
@@ -60426,7 +60407,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 0}
   panelToActivate: 19
   panelToDeactivate: 8
 --- !u!114 &2282966481779786954
@@ -60483,7 +60463,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 0}
   panelToActivate: 19
   panelToDeactivate: 8
 --- !u!114 &2298747534924563250
@@ -71103,7 +71082,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 6
   panelToDeactivate: 4
 --- !u!114 &3315310027037905623
@@ -71148,7 +71126,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 16
   panelToDeactivate: 13
 --- !u!222 &3315310027126011057
@@ -71339,7 +71316,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: -1
   panelToDeactivate: 2
 --- !u!114 &3315310027200552477
@@ -71396,7 +71372,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: -1
   panelToDeactivate: -1
 --- !u!114 &3315310027202320137
@@ -71477,7 +71452,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: -1
   panelToDeactivate: 3
 --- !u!224 &3315310027223464672
@@ -71668,7 +71642,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 4
   panelToDeactivate: 20
 --- !u!114 &3315310027349942887
@@ -71725,7 +71698,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 2
   panelToDeactivate: 17
 --- !u!1 &3315310027423561844
@@ -72440,7 +72412,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 23
   panelToDeactivate: 13
 --- !u!114 &3315310027701805422
@@ -72485,7 +72456,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 14
   panelToDeactivate: 13
 --- !u!114 &3315310027761848433
@@ -72530,7 +72500,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 21
   panelToDeactivate: 13
 --- !u!222 &3315310027816389568
@@ -72843,7 +72812,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 2
   panelToDeactivate: 24
 --- !u!224 &3315310027972540724
@@ -73290,7 +73258,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 15
   panelToDeactivate: 13
 --- !u!1 &3315310028096898625
@@ -73535,7 +73502,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: -1
   panelToDeactivate: -1
 --- !u!114 &3315310028187123027
@@ -73580,7 +73546,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 7
   panelToDeactivate: 6
 --- !u!114 &3315310028424429313
@@ -73625,7 +73590,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 5
   panelToDeactivate: 4
 --- !u!1 &3315310028534312627
@@ -74156,7 +74120,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 8
   panelToDeactivate: 6
 --- !u!114 &3315310028896493403
@@ -74201,7 +74164,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 25
   panelToDeactivate: 6
 --- !u!1 &3315310028932519313
@@ -82805,7 +82767,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 0}
   panelToActivate: 19
   panelToDeactivate: 8
 --- !u!222 &5823299464483051502
@@ -92663,7 +92624,6 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
   panelToActivate: 17
   panelToDeactivate: 16
 --- !u!224 &6922204168610355662

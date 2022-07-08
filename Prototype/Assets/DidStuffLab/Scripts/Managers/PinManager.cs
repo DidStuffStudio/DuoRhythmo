@@ -58,8 +58,8 @@ namespace DidStuffLab.Scripts.Managers
                 l.localRotation = Quaternion.Euler(0,0,angle);
                 l.sizeDelta = new Vector2(lineWidth, length);
                 _lines.Add(l.gameObject);
-                
             }
+            
             _lastPos = anchoredPos;
             pinIntegers.Add(value);
             _currentIndex++;

@@ -41,6 +41,7 @@ namespace DidStuffLab {
             print("Swap to opposite side because there's already another player here");
             _swapSides = true;
             _localplayerIsInPosition = false;
+            MasterManager.Instance.isPlayer2 = true;
             MasterManager.Instance.destinationTransform.parent.Rotate(0, 180, 0);
             MasterManager.Instance.carouselManager.SwapBlurForPlayer(5, 5, 0, 0);
             // _finalDestination = MasterManager.Instance.oppositeDestinationTransform;

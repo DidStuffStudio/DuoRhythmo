@@ -68,6 +68,7 @@ namespace DidStuffLab.Scripts.Managers {
 
         private string[] _drumKitNames = {"Rock drums", "Djembe", "Electronic", "Handpan", "Ambient"};
         private string _currentDrumKitName;
+        public bool isPlayer2 = false;
 
         public delegate void BpmChangedAction(byte newBpm);
         public static event BpmChangedAction OnBpmChanged;
@@ -104,13 +105,13 @@ namespace DidStuffLab.Scripts.Managers {
             carouselManager.InitialiseGraphicRaycast();
         }
 
-        private Vector3 CalculateNewDistanceForCamera()
-        {
+        private Vector3 CalculateNewDistanceForCamera() {
+            var multiplier = isPlayer2 ? 1 : -1;
             float fT = panelWidth / Screen.width * Screen.height;
             fT = fT / (2.0f * Mathf.Tan (0.5f * playerCamera.fieldOfView * Mathf.Deg2Rad));
             Debug.Log(fT);
 
-            fT = fT < 408f ? -408 : -fT;
+            fT = fT < 408f ? 408f * multiplier : fT * multiplier;
             var vector = new Vector3(destinationTransform.transform.position.x, destinationTransform.transform.position.y,
                 fT);
             return vector;

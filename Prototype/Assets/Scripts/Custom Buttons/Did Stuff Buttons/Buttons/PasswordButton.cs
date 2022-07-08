@@ -14,7 +14,7 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
     {
       base.Start();
       _pinManager = transform.parent.GetComponentInParent<PinManager>();
-      GetPoint();
+      _position = GetComponent<RectTransform>().anchoredPosition;
     }
 
     protected override void ButtonClicked()
@@ -23,19 +23,8 @@ namespace Custom_Buttons.Did_Stuff_Buttons.Buttons
       _pinManager.SetPinCharacter(_value, _position);
       SetCanHover(false);
     }
-
-
-    void GetPoint()
-    {
-      var rectT = transform.parent.GetComponent<RectTransform>();
-      RectTransformUtility.ScreenPointToWorldPointInRectangle(
-        rectT, RectTransformUtility.WorldToScreenPoint(null,transform.position), null,
-        out var point);
-      _position = new Vector3(point.x, point.y, 0);
-      _position = GetComponent<RectTransform>().anchoredPosition;
-    }
     
-    public void Clear()
+    public void ResetButton()
     {
       DeactivateButton();
       SetCanHover(true);

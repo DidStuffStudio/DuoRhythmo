@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Custom_Buttons.Did_Stuff_Buttons.Buttons;
-using Managers;
+using DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons.Buttons;
+using DidStuffLab.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,7 +16,7 @@ public class LoadBeat : MonoBehaviour
     public GameObject template;
     public Transform listWindow;
     private Transform savedListWindow;
-
+    private SaveFileButton _currentSelectedSaveFileButton;
     public string currentlySelectedSaveFile;
     public ToggleGroup toggleGroup;
 
@@ -234,8 +234,10 @@ public class LoadBeat : MonoBehaviour
     // Method for saving the currently selected save file string
     public void ChangeCurrentlySelectedFile()
     {
+        if(_currentSelectedSaveFileButton != null) _currentSelectedSaveFileButton.SetCanHover(true);
         currentlySelectedSaveFile =
             toggleGroup.GetFirstActiveToggle().gameObject.GetComponent<ToggleSaveData>().fileName;
+        _currentSelectedSaveFileButton = toggleGroup.GetFirstActiveToggle().gameObject.GetComponent<SaveFileButton>();
     }
 
     public void AddNewPanel()

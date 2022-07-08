@@ -56,14 +56,14 @@ namespace DidStuffLab.Scripts.Main_Menu
 
         public void Accept()
         {
-            statusVariableElements[0].SetActive(false);
+            statusVariableElements[2].SetActive(false);
             statusVariableElements[5].SetActive(true);
             FriendsManager.Instance.AcceptFriendRequest(_username);
         }
     
         public void Decline()
         {
-            statusVariableElements[0].SetActive(false);
+            statusVariableElements[2].SetActive(false);
             statusVariableElements[6].SetActive(true);
             FriendsManager.Instance.DenyFriendRequest(_username);
         }
@@ -84,6 +84,7 @@ namespace DidStuffLab.Scripts.Main_Menu
 
         public void InviteFriend()
         {
+            print("invite friend to matchmaking " + _username);
             Matchmaker.Instance.InviteFriendToMatchmaking(_username);
         }
     }

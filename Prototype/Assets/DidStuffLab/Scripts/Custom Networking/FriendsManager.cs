@@ -50,6 +50,16 @@ namespace DidStuffLab {
             if (!PlayFabLogin.Instance.IsLoggedInToAccount) return;
             // StartCoroutine(WaitToRequestFriends());
             GetListOfFriends(); // call this on start because it's deactivated by default, and then activated once user logs in
+            StartCoroutine(CheckForFriendsOverTime());
+        }
+
+        private IEnumerator CheckForFriendsOverTime() {
+            while (true) {
+                _changeInFriends = false;
+                yield return new WaitForSeconds(15.0f);
+                _changeInFriends = true;
+                GetListOfFriends();
+            }
         }
 
         private IEnumerator WaitForTimeoutFriendsRequest() {

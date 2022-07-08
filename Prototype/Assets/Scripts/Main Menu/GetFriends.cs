@@ -21,18 +21,13 @@ namespace DidStuffLab {
 
         private void PopulateFriendsMenu() {
             if (PlayFabLogin.Instance.IsLoggedInToAccount) {
-                foreach (var manager in managersToUpdate) {
-                    manager.AllFriendAvatars = UiFriendsDetailsInstance.Instance.AllFriendAvatars;
-                    manager.AllFriendUsernames = UiFriendsDetailsInstance.Instance.AllFriendUsernames;
-                    manager.ConfirmedFriendAvatars = UiFriendsDetailsInstance.Instance.ConfirmedFriendAvatars;
-                    manager.ConfirmedFriendUsernames = UiFriendsDetailsInstance.Instance.ConfirmedFriendUsernames;
+                foreach (var manager in managersToUpdate)
+                {
+                    manager.AllFriends = UiFriendsDetailsInstance.Instance.AllFriends;
+                    manager.ConfirmedFriends = UiFriendsDetailsInstance.Instance.ConfirmedFriends;
                     manager.FriendStatusMap = UiFriendsDetailsInstance.Instance.FriendStatusMap;
-                    manager.AllFriendOnlineStatuses = UiFriendsDetailsInstance.Instance.AllFriendOnlineStatuses;
                 }
-
-               
             }
-
             _notificationText = friendRequestNotification.GetComponentInChildren<TextMeshProUGUI>();
             friendRequestNotification.gameObject.SetActive(false);
             UpdateFriendRequests();

@@ -17,9 +17,7 @@ public class ManageFriendsPanel : UiFriendsManager
     [Header("Add friend Card")] [SerializeField]
     private GameObject addFriendCard;
     [SerializeField] private DidStuffTextField inputField;
-    
-    [Header("Friend Interface")]
-    public Dictionary<string, FriendStatus> _friendStatusDictionary = new Dictionary<string, FriendStatus>();
+   
 
     [Header("FriendsMenu/Spinner")]
     [SerializeField] private GameObject friendsMenuList;
@@ -50,8 +48,7 @@ public class ManageFriendsPanel : UiFriendsManager
         }
         else {
             print("It's updated, so show the friends list");
-            listToLoopUsernames = _allFriendUsernames;
-            listToLoopAvatars = _allFriendAvatars;
+            friendListToLoop = allFriends;
             friendsMenuList.SetActive(true);
             rotatingSpinner.SetActive(false);
         }
@@ -62,22 +59,7 @@ public class ManageFriendsPanel : UiFriendsManager
             
         }
     }
-
-    protected override void Initialise()
-    {
-        base.Initialise();
-        _friendStatusDictionary = new Dictionary<string, FriendStatus>();
-        for (int i = 0; i < FriendStatusMap.Count; i++)
-        {
-            if (FriendStatusMap[_allFriendUsernames[i]] == FriendStatus.Confirmed)
-                _friendStatusDictionary.Add(_allFriendUsernames[i], FriendStatus.Confirmed);
-            if (FriendStatusMap[_allFriendUsernames[i]] == FriendStatus.Requestee)
-                _friendStatusDictionary.Add(_allFriendUsernames[i], FriendStatus.Requestee);
-            if (FriendStatusMap[_allFriendUsernames[i]] == FriendStatus.Requester)
-                _friendStatusDictionary.Add(_allFriendUsernames[i], FriendStatus.Requester);
-        }
-    }
-
+    
     private void FriendsManagerOnOnReceivedFriendsDetails() {
         print("Friends updated, so hide the rotating spinner");
         friendsMenuList.SetActive(true);
@@ -87,10 +69,8 @@ public class ManageFriendsPanel : UiFriendsManager
     protected override void ChangeGraphics()
     {
         base.ChangeGraphics();
-        for (int i = 0; i < _displayedFriends; i++)
-        {
-            //TODO --> Update the friends cards from a list of the class friend
-            //friendCards[i].ChangeFriend(friend, false);
+        for (int i = 0; i < _displayedFriends; i++) {
+            friendCards[i].ChangeFriend(friendListToLoop[_currentListIndex+i], false);
         }
     }
 

@@ -17,16 +17,14 @@ public class UiFriendsManager : MonoBehaviour {
  [Header("Dots")] [SerializeField] private GameObject dotParent, dot;
     [SerializeField] private float dotSpacing;
     [SerializeField] private Color dotActive, dotInactive;
+    
+    private Dictionary<Friend, FriendStatus> _friendStatusMap = new Dictionary<Friend, FriendStatus>();
+    
+    protected List<Friend> allFriends = new List<Friend>();
+    protected List<Friend> confirmedFriends = new List<Friend>();
+    
+    protected List<Friend> friendListToLoop = new List<Friend>();
 
-    protected List<string> _allFriendUsernames = new List<string>();
-    protected List<string> _confirmedFriendUsernames = new List<string>();
-    protected List<string> _allFriendAvatars = new List<string>();
-    public List<bool> AllFriendOnlineStatuses { get; set; } = new List<bool>();
-    protected List<string> _confirmedFriendAvatars = new List<string>();
-    private Dictionary<string, FriendStatus> _friendStatusMap = new Dictionary<string, FriendStatus>();
-
-    protected List<string> listToLoopUsernames = new List<string>();
-    protected List<string> listToLoopAvatars = new List<string>();
 
     protected int _numberOfCards = 2;
     protected int _numberFriends = 0;
@@ -38,33 +36,10 @@ public class UiFriendsManager : MonoBehaviour {
     private List<Image> _dots = new List<Image>();
     private bool _initialised;
 
-
     private bool _even; //Set from Child Class
-    protected string[] _currentUsernames = new string[2];
-    protected string[] _currentAvatars = new string[2];
-    protected bool[] _currentOnlineStatuses = new bool[3];
-
-    public List<string> AllFriendUsernames {
-        get => _allFriendUsernames;
-        set => _allFriendUsernames = value;
-    }
-
-    public List<string> ConfirmedFriendUsernames {
-        get => _confirmedFriendUsernames;
-        set => _confirmedFriendUsernames = value;
-    }
-
-    public List<string> AllFriendAvatars {
-        get => _allFriendAvatars;
-        set => _allFriendAvatars = value;
-    }
-
-    public List<string> ConfirmedFriendAvatars {
-        get => _confirmedFriendAvatars;
-        set => _confirmedFriendAvatars = value;
-    }
-
-    public Dictionary<string, FriendStatus> FriendStatusMap {
+    
+    
+    public Dictionary<Friend, FriendStatus> FriendStatusMap {
         get => _friendStatusMap;
         set => _friendStatusMap = value;
     }
@@ -72,6 +47,18 @@ public class UiFriendsManager : MonoBehaviour {
     public bool Initialised {
         get => _initialised;
         set => _initialised = value;
+    }
+    
+    public List<Friend> AllFriends
+    {
+        get => allFriends;
+        set => allFriends = value;
+    }
+
+    public List<Friend> ConfirmedFriends
+    {
+        get => confirmedFriends;
+        set => confirmedFriends = value;
     }
 
     protected virtual void OnEnable() {
@@ -89,10 +76,10 @@ public class UiFriendsManager : MonoBehaviour {
         _currentListIndex = 0;
         _page = 1;
 
-        _numberFriends = listToLoopUsernames.Count;
+        _numberFriends = friendListToLoop.Count;
 
         _numberOfPages = Mathf.CeilToInt((float) _numberFriends / (float) _numberOfCards);
-        _numberOfCardsOnLastPage = listToLoopUsernames.Count % _numberOfCards;
+        _numberOfCardsOnLastPage = friendListToLoop.Count % _numberOfCards;
 
         ActivateArrowsAndDots(_numberFriends > _numberOfCards);
         navigationArrows[0].SetActive(false);
@@ -107,14 +94,10 @@ public class UiFriendsManager : MonoBehaviour {
             _displayedFriends = _numberFriends;
             for (int i = 0; i < _numberFriends; i++) friendCards[i].gameObject.SetActive(true);
             for(int i = _numberFriends; i < _numberOfCards; i++) friendCards[i].gameObject.SetActive(false);
-            _currentAvatars = new string[_numberFriends];
-            _currentUsernames = new string[_numberFriends];
         }
         else {
             _displayedFriends = _numberOfCards;
             for (int i = 0; i < friendCards.Count; i++) friendCards[i].gameObject.SetActive(true);
-            _currentAvatars = new string[_numberOfCards];
-            _currentUsernames = new string[_numberOfCards];
         }
 
 
@@ -147,10 +130,7 @@ public class UiFriendsManager : MonoBehaviour {
 
 
     protected virtual void ChangeGraphics() {
-        for (int i = 0; i < _displayedFriends; i++) {
-            _currentUsernames[i] = listToLoopUsernames[_currentListIndex + i];
-            _currentAvatars[i] = listToLoopAvatars[_currentListIndex + i];
-        }
+
     }
 
     private void ActivateLastCards(int numberToRemove, bool activate) {

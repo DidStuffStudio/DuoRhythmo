@@ -50,8 +50,7 @@ public class InviteFriendsPanel : UiFriendsManager {
             print("It's updated, so hide the rotating spinner in invite friends panel");
             rotatingSpinner.SetActive(false);
             inviteFriendsMenu.SetActive(true);
-            listToLoopUsernames = _confirmedFriendUsernames;
-            listToLoopAvatars = _confirmedFriendAvatars;
+            friendListToLoop = confirmedFriends;
         }
         else {
             print("It's NOT updated, so show the rotating spinner in invite friends panel");
@@ -63,13 +62,9 @@ public class InviteFriendsPanel : UiFriendsManager {
     protected override void ChangeGraphics() {
         base.ChangeGraphics();
         for (int i = 0; i < _displayedFriends; i++) {
-            //friendCards[i].ChangeFriend(friend, true);
-            //Todo --> Update cards from a list of the class Friend
+            friendCards[i].ChangeFriend(friendListToLoop[_currentListIndex+i], true);
         }
     }
-
-    public void InviteFriendToMatch(int index) =>
-        Matchmaker.Instance.InviteFriendToMatchmaking(_currentUsernames[index]);
 
     /*
     protected override void OnDisable() {

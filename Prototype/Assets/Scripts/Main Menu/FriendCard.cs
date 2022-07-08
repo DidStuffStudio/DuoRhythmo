@@ -38,6 +38,7 @@ public class FriendCard : MonoBehaviour
         {
             foreach (var e in statusVariableElements) e.SetActive(false);
             _inviteUsernameTMP.gameObject.SetActive(false);
+            statusDot.gameObject.SetActive(false);
             _usernameTMP.gameObject.SetActive(true);
             switch (_friendStatusUI)
             {
@@ -58,6 +59,7 @@ public class FriendCard : MonoBehaviour
             statusVariableElements[7].SetActive(true);
             _inviteUsernameTMP.gameObject.SetActive(true);
             _usernameTMP.gameObject.SetActive(false);
+            statusDot.gameObject.SetActive(true);
             statusDot.color = friend.IsOnline ? _active : _inactive;
         }
     }

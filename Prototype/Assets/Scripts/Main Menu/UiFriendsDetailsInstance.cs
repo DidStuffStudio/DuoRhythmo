@@ -7,21 +7,20 @@ using UnityEngine;
 namespace DidStuffLab {
     public class UiFriendsDetailsInstance : MonoBehaviour {
         public static UiFriendsDetailsInstance Instance { get; private set; }
-
-        // friends details variables
-        public List<string> AllFriendUsernames { get; private set; } = new List<string>();
-        public List<string> ConfirmedFriendUsernames { get; private set; } = new List<string>();
-        public List<string> AllFriendAvatars { get; private set; } = new List<string>();
-        public List<string> ConfirmedFriendAvatars { get; private set; } = new List<string>();
-
-        public Dictionary<string, FriendStatus> FriendStatusMap { get; private set; } =
-            new Dictionary<string, FriendStatus>();
+        public Dictionary<Friend, FriendStatus> FriendStatusMap { get; private set; } =
+            new Dictionary<Friend, FriendStatus>();
 
         public List<bool> AllFriendOnlineStatuses { get; private set; } = new List<bool>();
         public float FriendRequestCount { get; private set; } = 0;
 
+
+
         private List<Friend> _friends = new List<Friend>();
-        
+
+        public List<Friend> ConfirmedFriends { get; private set; } = new List<Friend>();
+
+        public List<Friend> AllFriends { get; private set;  } = new List<Friend>();
+
         public delegate void InitializedFriendsDetails();
         public static event InitializedFriendsDetails OnInitializedFriendsDetails;
 
@@ -36,59 +35,48 @@ namespace DidStuffLab {
             print("friends updated, so update all friends details");
             ClearLists();
             _friends = FriendsManager.Instance.FriendsDetails.ToList();
-
-            var requesterUsernames = new List<string>(); // Friend request
-            var requesteeUsernames = new List<string>(); // Pending
-            var confirmedUsernames = new List<string>(); // Friend
-
-            var requesterAvatars = new List<string>(); // Friend request
-            var requesteeAvatars = new List<string>(); // Pending
-            var confirmedAvatars = new List<string>(); // Friend
-            var confirmedOnlineStatus = new List<bool>(); // Friend
-
+            
+            var requesteeFriends = new List<Friend>();
+            var requesterFriends = new List<Friend>();
+            var confirmedFriends = new List<Friend>();
+            
             foreach (var friend in _friends) {
                 switch (friend.FriendStatus) {
                     case FriendStatus.Requestee:
-                        requesteeUsernames.Add(friend.Username);
-                        requesteeAvatars.Add(friend.AvatarName);
+                        requesteeFriends.Add(friend);
                         break;
 
                     case FriendStatus.Requester:
-                        requesterUsernames.Add(friend.Username);
-                        requesterAvatars.Add(friend.AvatarName);
+                        requesterFriends.Add(friend);
                         break;
 
                     case FriendStatus.Confirmed:
-                        confirmedUsernames.Add(friend.Username);
-                        confirmedAvatars.Add(friend.AvatarName);
-                        confirmedOnlineStatus.Add(friend.IsOnline);
+                        confirmedFriends.Add(friend);
                         break;
 
                     case FriendStatus.Default: break;
                 }
             }
 
-            ConfirmedFriendUsernames = confirmedUsernames;
-            ConfirmedFriendAvatars = confirmedAvatars;
-            AllFriendOnlineStatuses = confirmedOnlineStatus;
+            ConfirmedFriends = confirmedFriends;
 
-            for (var i = 0; i < requesterUsernames.Count; i++) {
+            foreach (var friend in requesterFriends)
+            {
                 FriendRequestCount++;
-                AllFriendUsernames.Add(requesterUsernames[i]);
-                AllFriendAvatars.Add(requesterAvatars[i]);
-                FriendStatusMap.Add(requesterUsernames[i], FriendStatus.Requester);
+                AllFriends.Add(friend);
+                FriendStatusMap.Add(friend, FriendStatus.Requester);
             }
 
-            for (var i = 0; i < confirmedUsernames.Count; i++) {
-                AllFriendUsernames.Add(confirmedUsernames[i]);
-                AllFriendAvatars.Add(confirmedAvatars[i]);
-                FriendStatusMap.Add(confirmedUsernames[i], FriendStatus.Confirmed);
+            foreach (var friend in confirmedFriends)
+            {
+                AllFriends.Add(friend);
+                FriendStatusMap.Add(friend, FriendStatus.Confirmed);
             }
 
-            for (var i = 0; i < requesteeUsernames.Count; i++) {
-                AllFriendUsernames.Add(requesteeUsernames[i]);
-                AllFriendAvatars.Add(requesteeAvatars[i]);
-                FriendStatusMap.Add(requesteeUsernames[i], FriendStatus.Requestee);
+            foreach (var friend in requesteeFriends)
+            {
+                AllFriends.Add(friend);
+                FriendStatusMap.Add(friend, FriendStatus.Requestee);
             }
             
             OnInitializedFriendsDetails?.Invoke();
@@ -96,12 +84,10 @@ namespace DidStuffLab {
 
         private void ClearLists() {
             FriendRequestCount = 0;
-            AllFriendUsernames.Clear();
-            AllFriendAvatars.Clear();
-            ConfirmedFriendAvatars.Clear();
             FriendStatusMap.Clear();
-            AllFriendOnlineStatuses.Clear();
             _friends.Clear();
+            ConfirmedFriends.Clear();
+            AllFriends.Clear();
         }
     }
 }

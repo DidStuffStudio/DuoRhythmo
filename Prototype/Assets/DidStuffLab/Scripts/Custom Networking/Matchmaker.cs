@@ -52,7 +52,6 @@ namespace DidStuffLab {
         private static string QueueName = "DefaultQueue";
         public bool isRandom = true;
         
-        private List<string> _declinedFriendMatches = new List<string>();
         private List<string> _declinedMatchmakingTicketIds = new List<string>();
         private string currentMatchmakingTicketId = string.Empty;
 
@@ -393,7 +392,6 @@ namespace DidStuffLab {
 
             foreach (var friend in FriendsManager.Instance.FriendsDetails) {
                 if(friend.FriendStatus != FriendStatus.Confirmed) continue; // only check for invites from friends who have confirmed friendship status 
-                if(_declinedFriendMatches.Contains(friend.Username)) continue; // if they've already been declined, then ignore their request to play
                 var getRequest = new GetObjectsRequest {
                     Entity = new PlayFab.DataModels.EntityKey
                         {Id = friend.TitleEntityKey.Id, Type = friend.TitleEntityKey.Type}
@@ -413,9 +411,7 @@ namespace DidStuffLab {
                             _friendToJoinId = details?["OwnerId"].ToString();
                             _friendToJoinUsername = details?["OwnerUsername"].ToString();
                             _selectedDrumToPlayWith = details?["DrumType"].ToString();
-                            if (_declinedFriendMatches.Contains(_friendToJoinUsername)) {
-                                if(_declinedMatchmakingTicketIds.Contains(details?["MatchmakingTicketId"].ToString())) continue;
-                            }
+                            if(_declinedMatchmakingTicketIds.Contains(details?["MatchmakingTicketId"].ToString())) continue;
                             StopCoroutine(pollFriendMatchInvites);
                             MainMenuManager.Instance.ReceiveInviteToPlay(_friendToJoinUsername);
                             currentMatchmakingTicketId = details?["MatchmakingTicketId"].ToString();
@@ -440,7 +436,6 @@ namespace DidStuffLab {
         }
 
         public void DeclineInvite(string username) {
-            _declinedFriendMatches.Add(username);
             _declinedMatchmakingTicketIds.Add(currentMatchmakingTicketId);
             pollFriendMatchInvites = StartCoroutine(PollFriendMatchInvites()); // start checking for invites again
         }

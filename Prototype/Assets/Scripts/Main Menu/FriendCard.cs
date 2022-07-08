@@ -18,14 +18,7 @@ public class FriendCard : MonoBehaviour
     [SerializeField] private Image _avatarImg;
     [SerializeField] private Color _active = Color.green, _inactive = Color.red;
     [SerializeField] private Image statusDot;
-
-    private void Start()
-    {
-        _usernameTMP = GetComponentInChildren<TextMeshProUGUI>();
-        _avatarImg = GetComponentInChildren<Image>();
-    }
     
-
     public void ChangeFriend(Friend friend, bool invite)
     {
 

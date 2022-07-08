@@ -5214,19 +5214,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259970397}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2130568961}
   - {fileID: 1931330232}
-  m_Father: {fileID: 263993140}
-  m_RootOrder: 1
+  m_Father: {fileID: 969501389}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -18}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1820, y: 864.6265}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &259970399
 CanvasRenderer:
@@ -5266,8 +5266,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1809103515}
+  - {fileID: 1880908285}
+  - {fileID: 473073334}
+  - {fileID: 1815136051}
   - {fileID: 969501389}
-  - {fileID: 259970398}
   m_Father: {fileID: 530605013}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6427,16 +6430,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 870538241}
-  - {fileID: 2074153110}
-  - {fileID: 2102855096}
-  - {fileID: 457354130}
   - {fileID: 1118959593}
   - {fileID: 6922204168793614021}
   - {fileID: 1104324979}
   - {fileID: 504011147}
   m_Father: {fileID: 1948926148}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7196,7 +7195,7 @@ RectTransform:
   - {fileID: 11298759}
   - {fileID: 542450668}
   m_Father: {fileID: 969501389}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -10848,7 +10847,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 301802664}
+  m_Father: {fileID: 1948926148}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -11239,7 +11238,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 969501389}
+  m_Father: {fileID: 263993140}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -12462,7 +12461,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 301802664}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13920,7 +13919,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 6082307374296740984}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Accept
         m_Mode: 1
@@ -17423,7 +17422,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ctsalidis
+  m_text: Friend
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 885a31db13a0c114187c51b289bff7db, type: 2}
   m_sharedMaterial: {fileID: -8642166747985674188, guid: 885a31db13a0c114187c51b289bff7db, type: 2}
@@ -20253,7 +20252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &798713731
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21039,7 +21038,7 @@ RectTransform:
   - {fileID: 1626828461}
   - {fileID: 1514744993}
   m_Father: {fileID: 1948926148}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -22586,7 +22585,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 301802664}
+  m_Father: {fileID: 1948926148}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -24422,16 +24421,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1809103515}
-  - {fileID: 1880908285}
-  - {fileID: 473073334}
-  - {fileID: 1815136051}
+  - {fileID: 259970398}
   - {fileID: 1110816745}
   - {fileID: 330825135}
   - {fileID: 1999204111}
   - {fileID: 2007346866}
   m_Father: {fileID: 263993140}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -27605,7 +27601,7 @@ RectTransform:
   - {fileID: 402565750}
   - {fileID: 570464938}
   m_Father: {fileID: 301802664}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -28007,7 +28003,7 @@ RectTransform:
   - {fileID: 5823299466352848578}
   - {fileID: 5823299465261575942}
   m_Father: {fileID: 969501389}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -28179,7 +28175,7 @@ RectTransform:
   - {fileID: 331847096}
   - {fileID: 5823299464648989758}
   m_Father: {fileID: 301802664}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -34968,7 +34964,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 370}
+  m_AnchoredPosition: {x: 0, y: 348}
   m_SizeDelta: {x: 1200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1483236469
@@ -41527,7 +41523,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 969501389}
+  m_Father: {fileID: 263993140}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -41929,7 +41925,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 969501389}
+  m_Father: {fileID: 263993140}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -43063,7 +43059,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 969501389}
+  m_Father: {fileID: 263993140}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -43710,6 +43706,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 870538241}
+  - {fileID: 2074153110}
+  - {fileID: 2102855096}
+  - {fileID: 457354130}
   - {fileID: 813224425}
   - {fileID: 301802664}
   m_Father: {fileID: 530605013}
@@ -44199,7 +44199,7 @@ RectTransform:
   - {fileID: 996146984}
   - {fileID: 35195030}
   m_Father: {fileID: 969501389}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -44570,7 +44570,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 969501389}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -45599,7 +45599,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 301802664}
+  m_Father: {fileID: 1948926148}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -46512,7 +46512,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 301802664}
+  m_Father: {fileID: 1948926148}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -56764,7 +56764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1139281835549272686
 GameObject:
   m_ObjectHideFlags: 0
@@ -56783,7 +56783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1139281835930105984
 GameObject:
   m_ObjectHideFlags: 0
@@ -56802,7 +56802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1139281836609227388
 GameObject:
   m_ObjectHideFlags: 0
@@ -56821,7 +56821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1198516245129960968
 RectTransform:
   m_ObjectHideFlags: 0
@@ -60085,7 +60085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2071701683585112448
 RectTransform:
   m_ObjectHideFlags: 0
@@ -60387,7 +60387,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 263993143}
+      - m_Target: {fileID: 340081516875263760}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: InviteFriend
         m_Mode: 1
@@ -60426,7 +60426,7 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
+  menuManager: {fileID: 0}
   panelToActivate: 19
   panelToDeactivate: 8
 --- !u!114 &2282966481779786954
@@ -65263,7 +65263,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081516875263760}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Revoke
         m_Mode: 1
@@ -65317,7 +65317,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081516603690694}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Revoke
         m_Mode: 1
@@ -65371,7 +65371,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081515991252478}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Remove
         m_Mode: 1
@@ -65953,7 +65953,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081516875263760}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Remove
         m_Mode: 1
@@ -66007,7 +66007,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081515815456514}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Decline
         m_Mode: 1
@@ -66061,7 +66061,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081515991252478}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Revoke
         m_Mode: 1
@@ -66115,7 +66115,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081516603690694}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Remove
         m_Mode: 1
@@ -66521,7 +66521,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081515991252478}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Decline
         m_Mode: 1
@@ -66575,7 +66575,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081515815456514}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Revoke
         m_Mode: 1
@@ -66981,7 +66981,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081515815456514}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Remove
         m_Mode: 1
@@ -67035,7 +67035,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081516603690694}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Decline
         m_Mode: 1
@@ -67089,7 +67089,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081516875263760}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Decline
         m_Mode: 1
@@ -68382,7 +68382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2868045827379188598
 RectTransform:
   m_ObjectHideFlags: 0
@@ -80723,7 +80723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &5358942426996317864
 GameObject:
   m_ObjectHideFlags: 0
@@ -80741,7 +80741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &5358942427457645968
 GameObject:
   m_ObjectHideFlags: 0
@@ -80759,7 +80759,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &5358942427919884140
 GameObject:
   m_ObjectHideFlags: 0
@@ -80777,7 +80777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &5633507458465720495
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -82762,7 +82762,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 263993143}
+      - m_Target: {fileID: 6082307374296740984}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: InviteFriend
         m_Mode: 1
@@ -82801,7 +82801,7 @@ MonoBehaviour:
   localDwellTime: 1
   _isActive: 0
   dwellScaleX: 0
-  menuManager: {fileID: 530605014}
+  menuManager: {fileID: 0}
   panelToActivate: 19
   panelToDeactivate: 8
 --- !u!222 &5823299464483051502
@@ -82967,7 +82967,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081516875263760}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Accept
         m_Mode: 1
@@ -83026,7 +83026,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ctsalidis
+  m_text: Friend
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 885a31db13a0c114187c51b289bff7db, type: 2}
   m_sharedMaterial: {fileID: -8642166747985674188, guid: 885a31db13a0c114187c51b289bff7db, type: 2}
@@ -83346,7 +83346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5823299464666807531
 RectTransform:
   m_ObjectHideFlags: 0
@@ -83383,7 +83383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5823299464797855037
 RectTransform:
   m_ObjectHideFlags: 0
@@ -83559,7 +83559,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ctsalidis
+  m_text: Friend
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 885a31db13a0c114187c51b289bff7db, type: 2}
   m_sharedMaterial: {fileID: -8642166747985674188, guid: 885a31db13a0c114187c51b289bff7db, type: 2}
@@ -83688,7 +83688,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081516603690694}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Accept
         m_Mode: 1
@@ -84652,7 +84652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5823299465393270277
 RectTransform:
   m_ObjectHideFlags: 0
@@ -84689,7 +84689,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081515991252478}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Accept
         m_Mode: 1
@@ -84955,7 +84955,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ctsalidis
+  m_text: Friend
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 885a31db13a0c114187c51b289bff7db, type: 2}
   m_sharedMaterial: {fileID: -8642166747985674188, guid: 885a31db13a0c114187c51b289bff7db, type: 2}
@@ -85181,7 +85181,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 340081515815456514}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Accept
         m_Mode: 1
@@ -85240,7 +85240,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ctsalidis
+  m_text: Friend
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 885a31db13a0c114187c51b289bff7db, type: 2}
   m_sharedMaterial: {fileID: -8642166747985674188, guid: 885a31db13a0c114187c51b289bff7db, type: 2}
@@ -85369,7 +85369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5823299465753271545
 RectTransform:
   m_ObjectHideFlags: 0
@@ -90841,7 +90841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &6894850857378338765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92739,7 +92739,7 @@ RectTransform:
   - {fileID: 4446980633617122467}
   - {fileID: 8255726156166422308}
   m_Father: {fileID: 301802664}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -98578,7 +98578,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 6082307374296740984}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Remove
         m_Mode: 1
@@ -98942,7 +98942,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 6082307374296740984}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Revoke
         m_Mode: 1
@@ -99858,7 +99858,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948926150}
+      - m_Target: {fileID: 6082307374296740984}
         m_TargetAssemblyTypeName: FriendCard, Assembly-CSharp
         m_MethodName: Decline
         m_Mode: 1
@@ -104971,7 +104971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &8603870902226940316
 GameObject:
   m_ObjectHideFlags: 0
@@ -104989,7 +104989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &8603870902685098866
 GameObject:
   m_ObjectHideFlags: 0
@@ -105007,7 +105007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &8603870903296823694
 GameObject:
   m_ObjectHideFlags: 0
@@ -105025,7 +105025,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &8641319156777898680
 CanvasRenderer:
   m_ObjectHideFlags: 0

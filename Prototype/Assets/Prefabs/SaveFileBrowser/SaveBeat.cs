@@ -128,8 +128,7 @@ public class SaveBeat : MonoBehaviour
 
     private void Quit()
     {
-        StopAllCoroutines();
-        SceneManager.LoadScene(0);
+        InGameMenuManager.Instance.Quit();
     }
     
 }

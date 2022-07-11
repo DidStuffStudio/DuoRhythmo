@@ -6,6 +6,7 @@ using DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons;
 using DidStuffLab.Scripts.Main_Menu;
 using DidStuffLab.Scripts.Misc;
 using LeTai.Asset.TranslucentImage;
+using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -272,6 +273,7 @@ namespace DidStuffLab.Scripts.Managers
 
       public void Quit()
       {
+         if(NetworkClient.active) NetworkClient.Disconnect();
          StopAllCoroutines();
          JamSessionDetails.Instance.quitFromGame = true;
          SceneManager.LoadScene(0);

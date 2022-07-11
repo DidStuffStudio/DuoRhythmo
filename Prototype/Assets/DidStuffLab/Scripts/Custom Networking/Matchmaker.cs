@@ -422,7 +422,8 @@ namespace DidStuffLab {
                                 continue;
                             currentMatchmakingTicketId = details?["MatchmakingTicketId"].ToString();
                             StopCoroutine(pollFriendMatchInvites);
-                            MainMenuManager.Instance.ReceiveInviteToPlay(_friendToJoinUsername);
+                            MainMenuManager.Instance.ReceiveInviteToPlay(_friendToJoinUsername, currentMatchmakingTicketId);
+                            AddCurrentTicketIdToIgnoreList();
                             break;
                         }
                     },
@@ -448,15 +449,27 @@ namespace DidStuffLab {
         }
 
         public void AcceptInvite() {
-            AddCurrentTicketIdToIgnoreList();
+            //AddCurrentTicketIdToIgnoreList();
             isRandom = false;
             JoinMatchmaking();
         }
 
         public void DeclineInvite(string username) {
-            AddCurrentTicketIdToIgnoreList();
+            //AddCurrentTicketIdToIgnoreList();
             print("This is the declined current matchmaking ticket id: " + currentMatchmakingTicketId);
             pollFriendMatchInvites = StartCoroutine(PollFriendMatchInvites()); // start checking for invites again
+        }
+
+        public void RemoveIdFromIgnore(string id)
+        {
+            StartCoroutine(WaitForReinvite(id));
+        }
+
+        IEnumerator WaitForReinvite(string id)
+        {
+            yield return new WaitForSeconds(50.0f);
+            _matchmakingTicketIdsToIgnore.Remove(id);
+            
         }
     }
 }

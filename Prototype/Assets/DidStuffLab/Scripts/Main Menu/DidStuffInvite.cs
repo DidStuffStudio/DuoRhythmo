@@ -16,6 +16,7 @@ namespace DidStuffLab.Scripts.Main_Menu
         [SerializeField] private AbstractDidStuffButton acceptButton;
         [SerializeField] private AbstractDidStuffButton rejectButton;
         private MainMenuManager mainMenuManager;
+        private string _matchID;
 
         private void OnEnable()
         {
@@ -30,10 +31,11 @@ namespace DidStuffLab.Scripts.Main_Menu
 
         }
 
-        public void SetInviter(string username) {
+        public void SetInviter(string username, string id) {
             _username = username;
             //Playfab ID stuff
             textField.text = _username + invitationMessage;
+            _matchID = id;
 
         }
 
@@ -55,6 +57,7 @@ namespace DidStuffLab.Scripts.Main_Menu
         IEnumerator Destroy()
         {
             yield return new WaitForSeconds(_animationTime + 0.1f);
+            Matchmaker.Instance.RemoveIdFromIgnore(_matchID);
             Destroy(gameObject);
         }
     

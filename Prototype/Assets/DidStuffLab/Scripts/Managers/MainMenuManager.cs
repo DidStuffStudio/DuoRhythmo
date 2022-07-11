@@ -349,13 +349,13 @@ namespace DidStuffLab.Scripts.Managers
          ActivatePanel(0);
       }
 
-      public void ReceiveInviteToPlay(string username)
+      public void ReceiveInviteToPlay(string username, string id)
       {
          if(_currentInvitePopUp != null)_currentInvitePopUp.GetComponent<DidStuffInvite>().DestroyForNew();
          var popUp = Instantiate(inviteToPlay, transform);
          popUp.transform.SetSiblingIndex(transform.childCount-2);
          _currentInvitePopUp = popUp.GetComponent<DidStuffInvite>();
-         _currentInvitePopUp.SetInviter(username);
+         _currentInvitePopUp.SetInviter(username, id);
       }
 
       public void AcceptInvite()

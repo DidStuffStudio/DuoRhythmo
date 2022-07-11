@@ -23,7 +23,11 @@ namespace DidStuffLab.Scripts.Main_Menu {
         public static event InitializedFriendsDetails OnInitializedFriendsDetails;
 
         private void Awake() {
-            if (Instance == null) Instance = this;
+            // If there is an instance, and it's not me, kill myself.
+            if (Instance != null && Instance != this) Destroy(gameObject);
+            else Instance = this;
+            
+            DontDestroyOnLoad(gameObject);
         }
 
         private void OnEnable() => FriendsManager.OnReceivedFriendsDetails += SetFriendsDetails;

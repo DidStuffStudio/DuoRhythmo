@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons.Buttons;
 using UnityEngine;
 
@@ -10,47 +11,44 @@ namespace DidStuffLab.Scripts.Main_Menu
         [Header("Add friend Card")] [SerializeField]
         private GameObject addFriendCard;
         [SerializeField] private DidStuffTextField inputField;
-   
-
+        
         [Header("FriendsMenu/Spinner")]
         [SerializeField] private GameObject friendsMenuList;
         [SerializeField] private GameObject rotatingSpinner;
-        private static bool isUpdated = false;
-
+        private static bool _isUpdated = false;
         public static void SubscribeToEvents(bool subscribe) {
             if (subscribe) {
+                
                 // subscribe to the event when we've received all friends details including avatars
                 UiFriendsDetailsInstance.OnInitializedFriendsDetails += FriendsUpdated;
+                
             }
             else {
+                
                 // unsubscribe to the event when we've received all friends details including avatars
                 UiFriendsDetailsInstance.OnInitializedFriendsDetails -= FriendsUpdated;
+                
             }
         }
-
-        private static void FriendsUpdated() => isUpdated = true;
-    
-
+        private static void FriendsUpdated() => _isUpdated = true;
+        
         protected override void OnEnable() {
+            friendListToLoop = new List<Friend>();
+            friendListToLoop.AddRange(allFriends);
             _numberOfCards = friendCards.Count;
-
-            if (!isUpdated) {
+            base.OnEnable();
+            if (!_isUpdated) {
                 print("It's NOT updated, so show the rotating spinner");
                 friendsMenuList.SetActive(false);
                 rotatingSpinner.SetActive(true);
             }
+            
             else {
                 print("It's updated, so show the friends list");
-                friendListToLoop = allFriends;
                 friendsMenuList.SetActive(true);
                 rotatingSpinner.SetActive(false);
             }
-            base.OnEnable();
-            if (!PlayFabLogin.Instance.IsLoggedInAsGuest)
-            {
-                EnableAddFriend();
-            
-            }
+            if (!PlayFabLogin.Instance.IsLoggedInAsGuest) EnableAddFriend();
         }
     
         private void FriendsManagerOnOnReceivedFriendsDetails() {
@@ -67,7 +65,6 @@ namespace DidStuffLab.Scripts.Main_Menu
             }
         }
 
-
         protected override void DisableAllInteraction()
         {
             addFriendCard.SetActive(false);
@@ -78,22 +75,14 @@ namespace DidStuffLab.Scripts.Main_Menu
         {
             addFriendCard.SetActive(true);
         }
-
-
-
-
+        
         public void AddFriend() {
             var stringToPass = inputField.text;
             FriendsManager.Instance.SendFriendRequest(stringToPass);
             inputField.text = "";
         }
     
-
-        protected override void OnDisable() {
-            base.OnDisable();
-            FriendsManager.Instance.GetListOfFriends(); // update the list of friends once again
-        }
-
+        
         private void OnApplicationQuit() {
             FriendsManager.OnReceivedFriendsDetails -= FriendsManagerOnOnReceivedFriendsDetails;
         }

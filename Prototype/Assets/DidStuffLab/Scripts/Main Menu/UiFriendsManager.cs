@@ -184,6 +184,11 @@ namespace DidStuffLab.Scripts.Main_Menu
             // _friendStatusMap.Clear();
         }
 
-        protected virtual void OnDisable() => ClearLists();
+        protected virtual void OnDisable()
+        {
+            ClearLists();
+            if (FriendsManager.Instance == null) return;
+            FriendsManager.Instance.GetListOfFriends(); // update the list of friends once again
+        }
     }
 }

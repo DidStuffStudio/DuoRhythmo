@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngineInternal;
 
 namespace DidStuffLab.Scripts.Main_Menu
 {
@@ -7,6 +9,7 @@ namespace DidStuffLab.Scripts.Main_Menu
         [SerializeField] private GameObject inviteFriendsMenu;
         [SerializeField] private GameObject rotatingSpinner;
         private static bool isUpdated = false;
+        
         public static void SubscribeToEvents(bool subscribe) {
             if (subscribe) {
                 // subscribe to the event when we've received all friends details including avatars
@@ -35,25 +38,28 @@ namespace DidStuffLab.Scripts.Main_Menu
     */
 
         protected override void OnEnable() {
-            EnablePanel();
+            _numberOfCards = friendCards.Count;
+            friendListToLoop = new List<Friend>();
+            friendListToLoop.AddRange(confirmedFriends);
             base.OnEnable();
+            EnablePanel();
         }
 
         private void EnablePanel() {
-            print("Hide rotating spinner in invite friends menu");
-            _numberOfCards = friendCards.Count;
-
-
-            if (isUpdated) {
-                print("It's updated, so hide the rotating spinner in invite friends panel");
-                rotatingSpinner.SetActive(false);
-                inviteFriendsMenu.SetActive(true);
-                friendListToLoop = confirmedFriends;
-            }
-            else {
+            
+           
+            
+            if (!isUpdated) {
                 print("It's NOT updated, so show the rotating spinner in invite friends panel");
                 rotatingSpinner.SetActive(true);
                 inviteFriendsMenu.SetActive(false);
+                
+            }
+            else {
+                print("It's updated, so hide the rotating spinner in invite friends panel");
+                print("Enabled again");
+                rotatingSpinner.SetActive(false);
+                inviteFriendsMenu.SetActive(true);
             }
         }
 
@@ -63,12 +69,7 @@ namespace DidStuffLab.Scripts.Main_Menu
                 friendCards[i].ChangeFriend(friendListToLoop[_currentListIndex+i], true);
             }
         }
-
-        /*
-    protected override void OnDisable() {
-        base.OnDisable();
-        FriendsManager.OnReceivedFriendsDetails -= FriendsManagerOnOnReceivedFriendsDetails;
-    }
-    */
+        
+    
     }
 }

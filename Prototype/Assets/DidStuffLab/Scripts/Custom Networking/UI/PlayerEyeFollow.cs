@@ -17,7 +17,7 @@ namespace DidStuffLab {
 
         private void Update() {
 #if  !UNITY_SERVER
-            // if(_player == null || !_player.isLocalPlayer) return;
+            if (!MasterManager.Instance.isInPosition) return;
             Vector3 mousePos = InteractionData.Instance.InputPosition; //Todo --> Follow other player
             mousePos.z = _camera.nearClipPlane * multiplier;
             var mouseWorld = _camera.ScreenToWorldPoint(mousePos);

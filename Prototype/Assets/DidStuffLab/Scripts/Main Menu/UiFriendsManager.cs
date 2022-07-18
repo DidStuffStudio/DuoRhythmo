@@ -85,7 +85,7 @@ namespace DidStuffLab.Scripts.Main_Menu
 
         private void InitialiseGraphics() {
             DoTheDots();
-            if (_numberFriends == 0) return;
+            //if (_numberFriends == 0) return;
             if (_numberFriends <= _numberOfCards) {
                 _displayedFriends = _numberFriends;
                 for (int i = 0; i < _numberFriends; i++) friendCards[i].gameObject.SetActive(true);
@@ -113,10 +113,11 @@ namespace DidStuffLab.Scripts.Main_Menu
             navigationArrows[0].SetActive(_page != 1);
             navigationArrows[1].SetActive(_page != _numberOfPages);
             _displayedFriends = _numberOfCards;
-            if (_page == _numberOfPages && _numberOfCardsOnLastPage > 0) {
+            if (_page == _numberOfPages && _numberOfCardsOnLastPage > 0 || _numberFriends <= 0) {
                 ActivateLastCards(_numberOfCardsOnLastPage, false);
                 _displayedFriends = _numberOfCardsOnLastPage;
             }
+            
             else ActivateLastCards(_numberOfCardsOnLastPage, true);
 
             ChangeGraphics();
@@ -128,10 +129,10 @@ namespace DidStuffLab.Scripts.Main_Menu
 
         }
 
-        private void ActivateLastCards(int numberToRemove, bool activate) {
-            if (numberToRemove == 0) return;
+        private void ActivateLastCards(int numberToShow, bool activate) {
+            //if (numberToShow == 0) return;
 
-            for (var index = numberToRemove; index < _numberOfCards; index++) {
+            for (var index = numberToShow; index < _numberOfCards; index++) {
                 friendCards[index].gameObject.SetActive(activate);
             }
         }

@@ -8,7 +8,7 @@ namespace DidStuffLab.Scripts.Main_Menu
         public GameObject logOut;
 
         private void OnEnable() {
-            if (PlayFabLogin.Instance.IsLoggedInToAccount) {
+            /*if (PlayFabLogin.Instance.IsLoggedInToAccount) {
                 logInOrSignUp.SetActive(false);
                 logOut.SetActive(true);
             }
@@ -19,7 +19,7 @@ namespace DidStuffLab.Scripts.Main_Menu
             else {
                 logInOrSignUp.SetActive(true);
                 logOut.SetActive(false);
-            }
+            }*/
         }
     }
 }

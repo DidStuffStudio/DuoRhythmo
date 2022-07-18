@@ -110,7 +110,7 @@ namespace DidStuffLab {
         }
 
         private void InitializeFriends(List<FriendInfo> friends) {
-            if (friends.Count < 0) return;
+            if (friends.Count <= 0) return;
             foreach (var f in friends) {
                 _friendsDictionary.Add(
                     f.FriendPlayFabId,

@@ -51,15 +51,18 @@ namespace DidStuffLab {
 
         private static string QueueName = "DefaultQueue";
         public bool isRandom = true;
-        
-        private List<string> _declinedMatchmakingTicketIds = new List<string>();
+
+        private List<string> _matchmakingTicketIdsToIgnore = new List<string>();
         private string currentMatchmakingTicketId = string.Empty;
+        private bool isInitialized = false;
 
         private void Awake() {
             if (_instance == null) _instance = this;
         }
 
         public void Initialize() {
+            if (isInitialized) return;
+            isInitialized = true;
             print("Initialized matchmaker");
             SetMatchmakingTicketIdObject(clear: true); // in case there are any previous ones, clear them
             pollFriendMatchInvites = StartCoroutine(PollFriendMatchInvites());
@@ -98,14 +101,14 @@ namespace DidStuffLab {
                     latency = 100
                 },
             };
-            
+
             // TODO --> Fix selected drums array of strings:
             // right now it would come as [{"DrumType" : "0"}, {"DrumType" : "1"}] but should be ["0", "1"] 
             // var SelectedDrums = new object[] { _selectedDrumToPlayWith, _selectedDrumToPlayWith };
-            var DrumTypes = new object[] { _selectedDrumToPlayWith };
-            
+            var DrumTypes = new object[] {_selectedDrumToPlayWith};
+
             var dataObjectWithoutFriends = new {
-                Latencies, 
+                Latencies,
                 DrumTypes, // doing type intersection rule if playing with random users
                 Username = PlayFabLogin.Instance.Username,
                 AvatarName = PlayFabLogin.Instance.UserAvatar,
@@ -137,7 +140,8 @@ namespace DidStuffLab {
                 // The ticket creator specifies their own player attributes.
                 Creator = creator,
                 // Cancel matchmaking if a match is not found after 120 seconds.
-                GiveUpAfterSeconds = 120,
+                GiveUpAfterSeconds =
+                    120, // TODO --> consider taking this down (would also need to change the matchmaking queues in playfab)
 
                 // The name of the queue to submit the ticket into.
                 QueueName = QueueName
@@ -148,7 +152,7 @@ namespace DidStuffLab {
                 OnMatchmakingError
             );
         }
-        
+
         // https://docs.microsoft.com/en-us/gaming/playfab/features/multiplayer/lobby/lobby-matchmaking-sdks/multiplayer-unity-plugin-quickstart#join-a-matchmaking-ticket
         // https://docs.microsoft.com/en-us/gaming/playfab/features/multiplayer/matchmaking/quickstart#group-members-join-the-match-ticket
         public void JoinMatchmaking() => StartMatchmaking();
@@ -249,7 +253,8 @@ namespace DidStuffLab {
                     Debug.LogError(result.CancellationReasonString);
                     StopCoroutine(pollTicketCoroutine);
                     SetMatchmakingTicketIdObject(clear: true);
-                    if(result.CancellationReasonString.Contains("Timeout")) SendBackToMainMenuWithErrorMessage(result.CancellationReasonString);
+                    if (result.CancellationReasonString.Contains("Timeout"))
+                        SendBackToMainMenuWithErrorMessage(result.CancellationReasonString);
                     pollFriendMatchInvites = StartCoroutine(PollFriendMatchInvites());
                     break;
             }
@@ -283,7 +288,8 @@ namespace DidStuffLab {
                 $"{result.Members[0].Entity.Id} vs {result.Members[1].Entity.Id}");
 
 
-            foreach (var member in result.Members.Where(member => member.Entity.Id != PlayFabLogin.AuthenticationContext.EntityId)) {
+            foreach (var member in result.Members.Where(member =>
+                member.Entity.Id != PlayFabLogin.AuthenticationContext.EntityId)) {
                 if (member.Attributes != null) {
                     if (!(member.Attributes.DataObject is JsonObject data)) continue;
                     if (data.ContainsKey("Username")) {
@@ -303,8 +309,8 @@ namespace DidStuffLab {
                     Debug.LogError("The attributes data is null");
                 }
             }
-            
-            
+
+
             byte highestChosenDrum = 0;
             if (isRandom) {
                 var drumTypes =
@@ -333,10 +339,10 @@ namespace DidStuffLab {
 
             // TODO --> initialize server instance details (send to JammingSessionDetails), then call _clientStartup.SetServerInstanceDetails(...)
             // TODO --> Also pass user's avatar and username to jammingsessiondetails - then add to player sync gameobject prefab, and sync Mirror once in the server
-            
-            
-             // TODO --> UNCOMMENT ONCE WE HAVE SERVER ALLOCATION ENABLED ON THE MATCHMAKING QUEUE IN PLAYFAB (MAKE SURE THAT BUILD ID IS CORRECT)
-            
+
+
+            // TODO --> UNCOMMENT ONCE WE HAVE SERVER ALLOCATION ENABLED ON THE MATCHMAKING QUEUE IN PLAYFAB (MAKE SURE THAT BUILD ID IS CORRECT)
+
             var ipAddress = result.ServerDetails.IPV4Address;
             var ports = result.ServerDetails.Ports;
             print("Match ID: " + result.MatchId);
@@ -344,9 +350,9 @@ namespace DidStuffLab {
             for (int i = 0; i < result.ServerDetails.Ports.Count; i++) {
                 print("Port " + i + " - " + result.ServerDetails.Ports[i]);
             }
-            
-            JamSessionDetails.Instance.SetMultiplayerMatchDetails(PlayFabLogin.Instance.Username, PlayFabLogin.Instance.UserAvatar, highestChosenDrum, ipAddress, (ushort) ports[0].Num);
-            
+
+            JamSessionDetails.Instance.SetMultiplayerMatchDetails(PlayFabLogin.Instance.Username,
+                PlayFabLogin.Instance.UserAvatar, highestChosenDrum, ipAddress, (ushort) ports[0].Num);
         }
 
         // CHRISTIAN NOTE --> I´'m using this method as an attempt to save the ticket ID to the friend's title user data
@@ -391,7 +397,8 @@ namespace DidStuffLab {
             if (PlayFabMultiplayerAPI.IsEntityLoggedIn()) print("Logged in, so get match invitation from friends");
 
             foreach (var friend in FriendsManager.Instance.FriendsDetails) {
-                if(friend.FriendStatus != FriendStatus.Confirmed) continue; // only check for invites from friends who have confirmed friendship status 
+                if (friend.FriendStatus != FriendStatus.Confirmed)
+                    continue; // only check for invites from friends who have confirmed friendship status 
                 var getRequest = new GetObjectsRequest {
                     Entity = new PlayFab.DataModels.EntityKey
                         {Id = friend.TitleEntityKey.Id, Type = friend.TitleEntityKey.Type}
@@ -411,10 +418,11 @@ namespace DidStuffLab {
                             _friendToJoinId = details?["OwnerId"].ToString();
                             _friendToJoinUsername = details?["OwnerUsername"].ToString();
                             _selectedDrumToPlayWith = details?["DrumType"].ToString();
-                            if(_declinedMatchmakingTicketIds.Contains(details?["MatchmakingTicketId"].ToString())) continue;
+                            if (_matchmakingTicketIdsToIgnore.Contains(details?["MatchmakingTicketId"].ToString()))
+                                continue;
+                            currentMatchmakingTicketId = details?["MatchmakingTicketId"].ToString();
                             StopCoroutine(pollFriendMatchInvites);
                             MainMenuManager.Instance.ReceiveInviteToPlay(_friendToJoinUsername);
-                            currentMatchmakingTicketId = details?["MatchmakingTicketId"].ToString();
                             break;
                         }
                     },
@@ -435,8 +443,19 @@ namespace DidStuffLab {
             CancelAllTickets();
         }
 
+        private void AddCurrentTicketIdToIgnoreList() {
+            _matchmakingTicketIdsToIgnore.Add(currentMatchmakingTicketId);
+        }
+
+        public void AcceptInvite() {
+            AddCurrentTicketIdToIgnoreList();
+            isRandom = false;
+            JoinMatchmaking();
+        }
+
         public void DeclineInvite(string username) {
-            _declinedMatchmakingTicketIds.Add(currentMatchmakingTicketId);
+            AddCurrentTicketIdToIgnoreList();
+            print("This is the declined current matchmaking ticket id: " + currentMatchmakingTicketId);
             pollFriendMatchInvites = StartCoroutine(PollFriendMatchInvites()); // start checking for invites again
         }
     }

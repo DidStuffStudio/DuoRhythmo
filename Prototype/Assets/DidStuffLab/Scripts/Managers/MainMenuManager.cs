@@ -361,8 +361,7 @@ namespace DidStuffLab.Scripts.Managers
       public void AcceptInvite()
       {
          print("Accepted");
-         Matchmaker.Instance.JoinMatchmaking();
-         Matchmaker.Instance.isRandom = false;
+         Matchmaker.Instance.AcceptInvite();
          // Matchmaker.Instance.SelectDrumAndStartMatch("0"); // TODO --> Fix this (get drum type in getmatchmakingticketObject method )
          DeactivatePanel(_currentPanel);
          ActivatePanel(18);

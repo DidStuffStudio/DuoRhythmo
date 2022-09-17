@@ -49,6 +49,7 @@ namespace DidStuffLab.Scripts.Managers
 
       private void Awake()
       {
+#if !UNITY_SERVER
          if (_instance == null) _instance = this;
        
          var uiPanels = GetComponentsInChildren<UIPanel>();
@@ -70,7 +71,7 @@ namespace DidStuffLab.Scripts.Managers
          _backgroundRTs.Add(initialBlurPanel.GetComponent<RectTransform>());
          initialBlurPanel.transform.SetSiblingIndex(0);
          CloseSettings();
-        
+#endif
       }
     
       private void ToggleUIPanel()
@@ -108,7 +109,9 @@ namespace DidStuffLab.Scripts.Managers
 
       private void Update()
       {
+#if !UNITY_SERVER
          if(_shouldLerp) LerpBlur();
+#endif
       }
 
       private void LerpBlur()

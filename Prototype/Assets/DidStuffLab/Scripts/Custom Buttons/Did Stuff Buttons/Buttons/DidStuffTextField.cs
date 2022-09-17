@@ -70,8 +70,10 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons.Buttons
 
         protected override void Update()
         {
+#if !UNITY_SERVER
             if(_isActive)TextUpdate();
             base.Update();
+#endif
         }
         
 

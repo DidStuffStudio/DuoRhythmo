@@ -80,7 +80,7 @@ namespace DidStuffLab.Scripts.Managers {
         }
 
         private void Start() {
-
+#if !UNITY_SERVER
             _drumNames.Add(0, classicDrumNames);
             _drumNames.Add(1, djembeDrumNames);
             _drumNames.Add(2, electronicDrumNames);
@@ -88,6 +88,7 @@ namespace DidStuffLab.Scripts.Managers {
             _drumNames.Add(4, ambientDrumNames);
             SwitchDrumKits(JamSessionDetails.Instance.DrumTypeIndex);
             Initialise();
+#endif
         }
 
         private void Update()

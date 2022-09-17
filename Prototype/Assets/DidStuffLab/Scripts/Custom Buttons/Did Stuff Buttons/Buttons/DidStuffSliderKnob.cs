@@ -98,9 +98,10 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons.Buttons
         {
             fillRect.sizeDelta = new Vector2( _w, _knobRectTransform.anchoredPosition.y); 
         }
-
+        
         protected override void Update()
         {
+#if !UNITY_SERVER
             if (sliderIndex == 0) CurrentValue = MasterManager.Instance.Bpm;
             base.Update();
 
@@ -149,6 +150,7 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons.Buttons
             if(dist>distanceToDeactivate && (InteractionData.Instance.Method != InteractionMethod.Mouse || InteractionData.Instance.Method != InteractionMethod.Touch)) DeactivateButton();
             print(InteractionData.Instance.Method);    
             FillSlider();
+#endif
         }
 
         protected override void ChangeToActiveState()

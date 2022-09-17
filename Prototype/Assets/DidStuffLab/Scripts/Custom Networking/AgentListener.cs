@@ -13,7 +13,7 @@ public class AgentListener : MonoBehaviour {
 
     public bool Debugging = true;
 
-
+#if UNITY_SERVER
     // Use this for initialization
     void Start() {
         _connectedPlayers = new List<ConnectedPlayer>();
@@ -50,7 +50,7 @@ public class AgentListener : MonoBehaviour {
 
         StartCoroutine(ReadyForPlayers());
     }
-
+#endif
 
     IEnumerator ReadyForPlayers() {
         yield return new WaitForSeconds(.5f);

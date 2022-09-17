@@ -57,9 +57,17 @@ namespace DidStuffLab {
         private bool isInitialized = false;
 
         private void Awake() {
-            if (_instance == null) _instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (_instance != null && _instance != this) 
+            { 
+                Destroy(this); 
+            } 
+            else 
+            { 
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+            } 
         }
+
 
         public void Initialize() {
             if (isInitialized) return;

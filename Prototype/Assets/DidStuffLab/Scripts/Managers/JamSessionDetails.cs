@@ -8,21 +8,27 @@ namespace DidStuffLab.Scripts.Managers
     public class JamSessionDetails : MonoBehaviour {
         private static JamSessionDetails _instance;
 
-        public static JamSessionDetails Instance {
+        public static JamSessionDetails Instance
+        {
             get {
                 if (_instance != null) return _instance;
-                var JamSessionDetailsGO = new GameObject();
-                _instance = JamSessionDetailsGO.AddComponent<JamSessionDetails>();
-                JamSessionDetailsGO.name = typeof(JamSessionDetails).ToString();
+                var jamSessionDetailsGO = new GameObject();
+                _instance = jamSessionDetailsGO.AddComponent<JamSessionDetails>();
+                jamSessionDetailsGO.name = typeof(JamSessionDetails).ToString();
                 return _instance;
             }
         }
 
         private void Awake() {
-            if (_instance == null) {
+            if (_instance != null && _instance != this) 
+            { 
+                Destroy(this); 
+            } 
+            else 
+            { 
                 _instance = this;
-                DontDestroyOnLoad(this.gameObject);
-            }
+                DontDestroyOnLoad(gameObject);
+            } 
         }
 
         // Server details

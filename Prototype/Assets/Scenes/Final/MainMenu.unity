@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03475364, g: 0.03370689, b: 0.030692842, a: 1}
+  m_IndirectSpecularColor: {r: 0.03503359, g: 0.033984136, b: 0.030972209, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12733,9 +12733,9 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 777611235}
-        m_TargetAssemblyTypeName: JamSessionDetails, Assembly-CSharp
-        m_MethodName: StartMatchmaking
+      - m_Target: {fileID: 530605014}
+        m_TargetAssemblyTypeName: DidStuffLab.Scripts.Managers.MainMenuManager, Assembly-CSharp
+        m_MethodName: InviteFriendToMatch
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -29321,9 +29321,9 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 777611235}
-        m_TargetAssemblyTypeName: JamSessionDetails, Assembly-CSharp
-        m_MethodName: StartMatchmaking
+      - m_Target: {fileID: 530605014}
+        m_TargetAssemblyTypeName: DidStuffLab.Scripts.Managers.MainMenuManager, Assembly-CSharp
+        m_MethodName: InviteFriendToMatch
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

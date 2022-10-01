@@ -400,7 +400,9 @@ namespace DidStuffLab.Scripts.Managers
       {
          SceneManager.LoadScene(1); // change to single player scene
       }
-      
+
+      public void InviteFriendToMatch(bool isRandom) => JamSessionDetails.Instance.StartMatchmaking(isRandom);
+
       public void OpenSurvey() => Application.OpenURL("https://t.maze.co/84786499");
       public void OpenFeedback() => Application.OpenURL("http://duorhythmo.frill.co/");
 

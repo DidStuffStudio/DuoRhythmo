@@ -84,7 +84,6 @@ namespace DidStuffLab.Scripts.Main_Menu
 
         public void InviteFriend()
         {
-            print("invite friend to matchmaking " + _username);
             Matchmaker.Instance.InviteFriendToMatchmaking(_username);
         }
     }

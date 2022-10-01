@@ -71,11 +71,14 @@ namespace DidStuffLab {
         }
 
         public void InviteFriendToMatchmaking(string username) {
+            print("Called Invite with user " + username);
             _playerToMatchWithId = FriendsManager.Instance.IdFromUsername(username);
             // StartMatchmaking();
         }
 
-        public void SelectDrumAndStartMatch(string drumName, bool random) {
+        public void SelectDrumAndStartMatch(string drumName, bool random)
+        {
+            Debug.Log("Called matchmaking");
             isRandom = random;
             QueueName = isRandom ? "DefaultQueueRandom" : "DefaultQueue";
             _selectedDrumToPlayWith = drumName;
@@ -457,6 +460,16 @@ namespace DidStuffLab {
         public void RemoveIdFromIgnore(string id)
         {
             StartCoroutine(WaitForReinvite(id));
+        }
+
+        public void ResetMatchmaking()
+        {
+            ticketId = "";
+            _playerToMatchWithId = "";
+            _selectedDrumToPlayWith = "";
+            matchmakerId = "";
+            _friendToJoinId = "";
+            _friendToJoinUsername = "";
         }
 
         IEnumerator WaitForReinvite(string id)

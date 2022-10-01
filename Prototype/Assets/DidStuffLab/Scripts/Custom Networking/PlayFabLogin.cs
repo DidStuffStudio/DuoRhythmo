@@ -229,6 +229,7 @@ public class PlayFabLogin : MonoBehaviour {
             // TODO --> Check if this actually happened (return bool for success from cloudscript)
             print("Successfully sent request to delete player's account");
             Logout();
+            MainMenuManager.Instance.SpawnSuccessToast("Account has been flagged for deletion, this can take a few hours.", 0.1f);
         }, (error) => { Debug.LogError(error.GenerateErrorReport()); });
     }
 

@@ -121,6 +121,7 @@ namespace DidStuffLab {
                 var avatarIndex = JamSessionDetails.Instance.otherPlayerAvatarName == "Avatar1" ? 0 : 1;
                 print("Instantiating avatar with index " + avatarIndex);
                 _otherPlayerAvatar = Instantiate(avatarPrefabs[avatarIndex], JamSessionDetails.Instance.otherPlayer._transform);
+                JamSessionDetails.Instance.otherPlayer.GetComponentInChildren<PlayerEyeFollow>().enabled = false;
             }
 
             if (_playerPositionSync) _canStartMoving = true;

@@ -277,10 +277,11 @@ namespace DidStuffLab.Scripts.Managers
       public void Quit()
       {
          if(NetworkClient.active) NetworkClient.Disconnect(); 
-         if(NetworkServer.active) NetworkServer.Shutdown();
+         if(NetworkServer.active && JamSessionDetails.Instance.isSoloMode) NetworkServer.Shutdown();
          StopAllCoroutines();
          JamSessionDetails.Instance.ClearDetails();
          JamSessionDetails.Instance.quitFromGame = true;
+         Destroy(Matchmaker.Instance.gameObject); 
          SceneManager.LoadScene(0);
       }
     

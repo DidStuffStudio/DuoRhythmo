@@ -15,7 +15,7 @@ namespace DidStuffLab {
             _player = GetComponentInParent<Player>();
         }
 
-        /*private void Update() {
+        private void Update() {
 #if  !UNITY_SERVER
             if (!MasterManager.Instance.isInPosition) return;
             Vector3 mousePos = InteractionData.Instance.InputPosition; //Todo --> Follow other player
@@ -23,7 +23,7 @@ namespace DidStuffLab {
             var mouseWorld = _camera.ScreenToWorldPoint(mousePos);
             transform.position = mouseWorld;
 #endif
-        }*/
+        }
     }
 
 }

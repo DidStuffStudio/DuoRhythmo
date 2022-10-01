@@ -326,9 +326,9 @@ namespace DidStuffLab.Scripts.Managers
       public void SkipLogin()
       {
          int[] panelsToClose = new int[] {0, 1, 2, 3, 10, 11, 12, 20};
-         for (int i = 0; i < panelsToClose.Length; i++)
+         foreach (var t in panelsToClose)
          {
-            DeactivatePanel(panelsToClose[i]);  
+            _panelDictionary[t].gameObject.SetActive(false);
          }
          ActivatePanel(4);
       }

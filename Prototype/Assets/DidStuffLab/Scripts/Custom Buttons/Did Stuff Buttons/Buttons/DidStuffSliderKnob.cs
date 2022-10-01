@@ -148,7 +148,6 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons.Buttons
             var dist = Mathf.Abs(Mathf.Abs(value.x) - Mathf.Abs(_knobRectTransform.localPosition.x));
             //if(dist>30) DeactivateButton();
             if(dist>distanceToDeactivate && (InteractionData.Instance.Method != InteractionMethod.Mouse || InteractionData.Instance.Method != InteractionMethod.Touch)) DeactivateButton();
-            print(InteractionData.Instance.Method);    
             FillSlider();
 #endif
         }
@@ -196,7 +195,7 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons.Buttons
 
         private void EyeInteraction()
         {
-            GazePoint gazePoint = TobiiAPI.GetGazePoint();
+            var gazePoint = TobiiAPI.GetGazePoint();
             _currentInputScreenPosition = gazePoint.Screen;
         }
 

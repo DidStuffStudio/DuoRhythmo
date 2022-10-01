@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PlayFab.Networking;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,22 +9,13 @@ namespace DidStuffLab.Scripts.Managers
     public class JamSessionDetails : MonoBehaviour {
         private static JamSessionDetails _instance;
 
-        public static JamSessionDetails Instance {
-            get {
-                if (_instance != null) return _instance;
-                var JamSessionDetailsGO = new GameObject();
-                _instance = JamSessionDetailsGO.AddComponent<JamSessionDetails>();
-                JamSessionDetailsGO.name = typeof(JamSessionDetails).ToString();
-                return _instance;
-            }
-        }
-
+        public static JamSessionDetails Instance { get; private set; }
+        
         private void Awake() {
-            if (_instance == null) {
-                _instance = this;
-                DontDestroyOnLoad(this.gameObject);
+            if (Instance != null && Instance != this) Destroy(gameObject);
+            else Instance = this;
+            DontDestroyOnLoad(this.gameObject);
             }
-        }
 
         // Server details
         public string ServerIpAddress { get; private set; } = string.Empty;

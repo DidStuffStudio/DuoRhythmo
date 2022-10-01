@@ -703,7 +703,10 @@ namespace Mirror
         internal void OnStartClient()
         {
             if (clientStarted)
+            {
                 return;
+            }
+
             clientStarted = true;
 
             isClient = true;

@@ -218,7 +218,8 @@ namespace DidStuffLab.Scripts.Managers {
             var navSync = forward ? _navigationVoteSyncs[0] : _navigationVoteSyncs[1];
             var voteMessage = forward ? " wants to move right" : " wants to move left";
             foreach (var text in navSync.texts) {
-                text.text = username + voteMessage;
+                //text.text = username + voteMessage;
+                text.text = "Shall we switch it up?";
             }
         }
 

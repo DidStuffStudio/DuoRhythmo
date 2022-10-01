@@ -23,16 +23,8 @@ namespace DidStuffLab {
     public class Matchmaker : MonoBehaviour {
         private static Matchmaker _instance;
 
-        public static Matchmaker Instance {
-            get {
-                if (_instance != null) return _instance;
-                var matchmakerGameObject = new GameObject();
-                _instance = matchmakerGameObject.AddComponent<Matchmaker>();
-                matchmakerGameObject.name = typeof(Matchmaker).ToString();
-                return _instance;
-            }
-        }
-
+        public static Matchmaker Instance { get; private set; }
+        
         // TODO --> Switch this with JammingSessionDetails
         [SerializeField] private ClientStartup
             _clientStartup; // to start the client (connect and join the server) once matchmaking is done
@@ -57,7 +49,8 @@ namespace DidStuffLab {
         private bool isInitialized = false;
 
         private void Awake() {
-            if (_instance == null) _instance = this;
+            if (Instance != null && Instance != this) Destroy(gameObject);
+            else Instance = this;
             DontDestroyOnLoad(gameObject);
         }
 

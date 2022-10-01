@@ -276,8 +276,10 @@ namespace DidStuffLab.Scripts.Managers
 
       public void Quit()
       {
-         if(NetworkClient.active) NetworkClient.Disconnect();
+         if(NetworkClient.active) NetworkClient.Disconnect(); 
+         if(NetworkServer.active) NetworkServer.Shutdown();
          StopAllCoroutines();
+         JamSessionDetails.Instance.ClearDetails();
          JamSessionDetails.Instance.quitFromGame = true;
          SceneManager.LoadScene(0);
       }

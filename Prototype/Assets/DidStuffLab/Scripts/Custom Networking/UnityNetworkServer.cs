@@ -34,7 +34,6 @@ namespace PlayFab.Networking {
             NetworkServer.RegisterHandler<ReceiveAuthenticateMessage>(OnReceiveAuthenticate);
 
             if (JamSessionDetails.Instance.isSoloMode) {
-                print("It's in solo mode, so don't listen to the server, and start the server automatically");
                 NetworkServer.dontListen = true;
                 StartHost();
             }
@@ -104,7 +103,7 @@ namespace PlayFab.Networking {
         public override void OnServerDisconnect(NetworkConnectionToClient networkConnectionToClient) {
             // call base functionality (actually destroys the player)
             base.OnServerDisconnect(networkConnectionToClient);
-
+            NetworkServer.DestroyPlayerForConnection(networkConnectionToClient);
             var uconn = _connections.Find(c => c.ConnectionId == networkConnectionToClient.connectionId);
             if (uconn != null) {
                 if (!string.IsNullOrEmpty(uconn.PlayFabId)) {

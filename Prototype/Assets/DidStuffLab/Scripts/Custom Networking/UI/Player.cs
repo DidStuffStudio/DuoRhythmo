@@ -92,7 +92,6 @@ namespace DidStuffLab {
             if (!isClient) return;
             _transform = transform;
             _camera = MasterManager.Instance.playerCamera;
-            print(_camera.name);
             SetPlayerPosition();
         }
 

@@ -281,7 +281,8 @@ namespace DidStuffLab.Scripts.Managers
          StopAllCoroutines();
          JamSessionDetails.Instance.ClearDetails();
          JamSessionDetails.Instance.quitFromGame = true;
-         Destroy(Matchmaker.Instance.gameObject); 
+         // Destroy(Matchmaker.Instance.gameObject); 
+         Matchmaker.Instance.ResetMatchmaking();
          SceneManager.LoadScene(0);
       }
     

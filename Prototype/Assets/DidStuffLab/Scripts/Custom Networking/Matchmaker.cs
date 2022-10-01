@@ -21,7 +21,7 @@ using JsonObject = PlayFab.Json.JsonObject;
 
 namespace DidStuffLab {
     public class Matchmaker : MonoBehaviour {
-        private static Matchmaker _instance;
+        // private static Matchmaker _instance;
 
         public static Matchmaker Instance { get; private set; }
         
@@ -470,6 +470,11 @@ namespace DidStuffLab {
             matchmakerId = "";
             _friendToJoinId = "";
             _friendToJoinUsername = "";
+
+            Instance = null;
+            var old = GetComponent<Matchmaker>();
+            Instance = gameObject.AddComponent<Matchmaker>();
+            Destroy(old);
         }
 
         IEnumerator WaitForReinvite(string id)

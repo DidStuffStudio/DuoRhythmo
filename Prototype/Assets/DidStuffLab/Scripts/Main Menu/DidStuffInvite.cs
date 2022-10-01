@@ -42,6 +42,7 @@ namespace DidStuffLab.Scripts.Main_Menu
         public void AcceptRequest()
         {
             _uiAnimator.Play("InvitePopOut");
+            Debug.Log("Accepting invite");
             mainMenuManager.AcceptInvite();
         }
     

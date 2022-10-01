@@ -175,7 +175,7 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons
 		internal static float _dwellTime = 1.0f;
 		private static InteractionMethod _interactionMethod = InteractionMethod.Mouse;
 		internal float _currentDwellTime = 0.0f;
-		private bool _initialised;
+		private bool _initialised = false;
 		private bool _playActivatedScale;
 		private bool _isSquare;
 		[SerializeField] internal bool dwellScaleX = false;
@@ -243,17 +243,11 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons
 			OnUnHover += ButtonUnHovered;
 			OnActivate += ActivateButton;
 			OnDeactivate += DeactivateButton;
-			
-			if (DelegateInteractionMethod(true)) return;
 
-			_initialised = false;
+			//_initialised = false;
 
 		}
-
-		private bool DelegateInteractionMethod(bool enable) {
-			
-			return false;
-		}
+		
 
 		protected void SetNewDwellTime()
 		{
@@ -748,8 +742,6 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons
 			OnUnHover -= ButtonUnHovered;
 			OnActivate -= ActivateButton;
 			OnDeactivate -= DeactivateButton;
-
-			DelegateInteractionMethod(false);
 		}
 		
 		static void ShowMessage(string message,

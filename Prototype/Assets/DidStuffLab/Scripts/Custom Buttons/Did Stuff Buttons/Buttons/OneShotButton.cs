@@ -15,11 +15,12 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons.Buttons
 
         public void SetInactive() => gameObject.SetActive(false);
 
-        protected override void OnDisable()
+        protected override void OnEnable()
         {
-            base.OnDisable();
+            base.OnEnable();
+            if (!Initialised) return;
             _dwellGfx.localScale = dwellScaleX ? new Vector3(0, _originaldwellScaleY, 1) : Vector3.zero;
-			ToggleDwellGfx(false);
+            ToggleDwellGfx(false);
         }
     }
 }

@@ -323,8 +323,13 @@ namespace DidStuffLab.Scripts.Managers
       /// <summary>
       /// Call this if the login rememberMeId is cached/saved to player prefs (if it's successful)
       /// </summary>
-      public void SkipLogin() {
-         DeactivatePanel(0);
+      public void SkipLogin()
+      {
+         int[] panelsToClose = new int[] {0, 1, 2, 3, 10, 11, 12, 20};
+         for (int i = 0; i < panelsToClose.Length; i++)
+         {
+            DeactivatePanel(i);  
+         }
          ActivatePanel(4);
       }
 

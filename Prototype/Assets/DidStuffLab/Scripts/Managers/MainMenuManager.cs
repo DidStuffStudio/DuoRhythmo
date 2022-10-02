@@ -96,6 +96,8 @@ namespace DidStuffLab.Scripts.Managers
             }
             SpawnErrorToast("An error has occurred. Please try jamming again.", 0.1f);
          }
+
+         StartCoroutine(CheckForMultipleMenus());
       }
 
       private void ToggleUIPanel()
@@ -419,7 +421,19 @@ namespace DidStuffLab.Scripts.Managers
       }
       
       public void SetMatchmakingStatusText(string text) => matchmakingStatusText.text = text;
-      
+
+
+      IEnumerator CheckForMultipleMenus()
+      {
+         while (true)
+         {
+            yield return new WaitForSeconds(1.0f);
+            foreach (var k in _panelDictionary)
+               {
+                  if(k.Key != _currentPanel) k.Value.gameObject.SetActive(false);
+               }
+         }
+      }
    }
    
 }

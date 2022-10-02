@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using static UnityEngine.Vector3;
 using Image = UnityEngine.UI.Image;
 
@@ -223,7 +224,7 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons
 		{
 			//DelegateInteractionMethod(false);
 			
-			InteractionData.Instance.Method = method;
+			InteractionData.Instance.interactionMethod = method;
 			_interactionMethod = method;
 			if (GetInteractionMethod ==InteractionMethod.Tobii ||
 			    GetInteractionMethod == InteractionMethod.MouseDwell)
@@ -280,7 +281,7 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons
 		protected virtual void Start()
 		{
 #if  !UNITY_SERVER
-			SetInteractionMethod(InteractionData.Instance.Method);
+			SetInteractionMethod(InteractionData.Instance.interactionMethod);
 			if (GetInteractionMethod == InteractionMethod.Tobii ||
 			    GetInteractionMethod == InteractionMethod.MouseDwell) _provideDwellFeedbackGlobal = true;
 			else _provideDwellFeedbackGlobal = false;
@@ -381,9 +382,36 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons
 				if (_dwellGfx.localScale.x > 0.0f && dwellScaleX)
 					_dwellGfx.localScale -= new Vector3(0.01f, 0.0f, 0.0f);
 				else if (_dwellGfx.localScale.x > 0.0f) _dwellGfx.localScale -= one * 0.01f;
-				else ToggleDwellGfx(false);
+				else
+				{
+					ToggleDwellGfx(false);
+					if (SceneManager.GetActiveScene().buildIndex == 0) // Main Menu
+					{
+						print("Trying to remove " + gameObject.name);
+						MainMenuInteractionManager.Instance.RemoveButtonFromList(this);
+					}
+
+					else
+					{
+						
+					}
+				}
 			}
 #endif
+		}
+
+		private void RemoveButtonFromInteractionManager()
+		{
+			if (SceneManager.GetActiveScene().buildIndex == 0) // Main Menu
+			{
+				print("Trying to remove " + gameObject.name);
+				MainMenuInteractionManager.Instance.RemoveButtonFromList(this);
+			}
+
+			else
+			{
+				InGameInteractionManager.Instance.RemoveButtonFromList(this);
+			}
 		}
 
 		protected virtual void ButtonClicked()
@@ -467,6 +495,7 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons
 
 		private void ButtonUnHovered()
 		{
+			RemoveButtonFromInteractionManager();
 			if(!interactionSetting){switch (GetInteractionMethod)
 			{
 				case InteractionMethod.MouseDwell:
@@ -602,6 +631,7 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons
 
 		protected virtual void MouseUnHover()
 		{
+			RemoveButtonFromInteractionManager();
 			_mainImage.color = _isActive ? activeColour : inactiveColour;
 		}
 
@@ -640,7 +670,7 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons
 			if (_currentDwellTime > d)
 			{
 				_dwelling = false;
-				ToggleDwellGfx(false);
+				RemoveButtonFromInteractionManager();
 			}
 		}
 
@@ -656,6 +686,7 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons
 			_dwellGfx.localScale = dwellScaleX ? new Vector3(0, _originaldwellScaleY, 1) : zero;
 			DwellGfxImg.color = !_isActive ? inactiveColour : activeColour;
 			ToggleDwellGfx(false);
+			RemoveButtonFromInteractionManager();
 			OnClick?.Invoke();
 		}
 		

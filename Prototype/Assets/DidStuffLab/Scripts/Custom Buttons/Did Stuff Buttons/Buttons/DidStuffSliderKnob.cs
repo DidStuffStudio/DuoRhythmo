@@ -147,7 +147,7 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons.Buttons
             //var dist = Vector3.Distance(value, _knobRectTransform.localPosition);
             var dist = Mathf.Abs(Mathf.Abs(value.x) - Mathf.Abs(_knobRectTransform.localPosition.x));
             //if(dist>30) DeactivateButton();
-            if(dist>distanceToDeactivate && (InteractionData.Instance.Method != InteractionMethod.Mouse || InteractionData.Instance.Method != InteractionMethod.Touch)) DeactivateButton();
+            if(dist>distanceToDeactivate && (InteractionData.Instance.interactionMethod != InteractionMethod.Mouse || InteractionData.Instance.interactionMethod != InteractionMethod.Touch)) DeactivateButton();
             FillSlider();
 #endif
         }

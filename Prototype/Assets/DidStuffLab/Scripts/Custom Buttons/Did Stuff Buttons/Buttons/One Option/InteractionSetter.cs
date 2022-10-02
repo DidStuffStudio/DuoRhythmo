@@ -10,7 +10,7 @@ namespace DidStuffLab.Scripts.Custom_Buttons.Did_Stuff_Buttons.Buttons.One_Optio
         {
             base.OnEnable();
             if (!_initialisedInteractionSetter) return;
-            _preferredMethod = InteractionData.Instance.Method == localInteractionMethod;
+            _preferredMethod = InteractionData.Instance.interactionMethod == localInteractionMethod;
             if (!_preferredMethod) return;
             ActivateButton();
             SetPreferredInteraction();

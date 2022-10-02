@@ -185,7 +185,7 @@ public class LoadBeat : MonoBehaviour
         SceneManager.LoadScene(1); 
     }
     
-    //Method that returns a master manager data structure
+    //interactionMethod that returns a master manager data structure
     public MasterManagerData GetData(string file)
     {
         string json = System.IO.File.ReadAllText(file);
@@ -231,7 +231,7 @@ public class LoadBeat : MonoBehaviour
         yield return null;
     }
 
-    // Method for saving the currently selected save file string
+    // interactionMethod for saving the currently selected save file string
     public void ChangeCurrentlySelectedFile()
     {
         if(_currentSelectedSaveFileButton != null) _currentSelectedSaveFileButton.SetCanHover(true);

@@ -178,8 +178,8 @@ namespace DidStuffLab.Scripts.Managers
 
       public void NextFromInteractionPage()
       {
-         if (InteractionData.Instance.Method == InteractionMethod.Tobii ||
-             InteractionData.Instance.Method  == InteractionMethod.MouseDwell)
+         if (InteractionData.Instance.interactionMethod == InteractionMethod.Tobii ||
+             InteractionData.Instance.interactionMethod  == InteractionMethod.MouseDwell)
          {
             DeactivatePanel(_currentPanel);
             ActivatePanel(2);

@@ -62,7 +62,7 @@ namespace DidStuffLab {
         protected abstract void Initialize();
 
         /// <summary>
-        /// Method to implement for sending a command from a client to a server --> to update the value
+        /// interactionMethod to implement for sending a command from a client to a server --> to update the value
         /// Use [Command(requiresAuthority = false)] as the attribute
         /// (we don't require network identity authority for the nodes nor effect values)
         /// </summary>

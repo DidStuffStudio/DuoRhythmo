@@ -81,7 +81,7 @@ namespace DidStuffLab.Scripts.Managers
          initialBlurPanel.transform.SetSiblingIndex(0);
          uiPanels[6].ExecuteSpecificChanges();
          ActivatePanel(0);
-         InteractionData.Instance.CheckInteractionMethod();
+         InteractionData.Instance.CheckInteractionMethod(InteractionData.Instance.interactionMethod);
       }
 
       private void Start()
@@ -167,8 +167,8 @@ namespace DidStuffLab.Scripts.Managers
                p = _activatedSettingsFrom;
                break;
             
-            case 2 when InteractionData.Instance.Method == InteractionMethod.Tobii ||
-                        InteractionData.Instance.Method == InteractionMethod.MouseDwell:
+            case 2 when InteractionData.Instance.interactionMethod == InteractionMethod.Tobii ||
+                        InteractionData.Instance.interactionMethod == InteractionMethod.MouseDwell:
                p = 1;
                break;
             case 2:
@@ -217,8 +217,8 @@ namespace DidStuffLab.Scripts.Managers
 
       public void NextFromInteractionPage()
       {
-         if (InteractionData.Instance.Method == InteractionMethod.Tobii ||
-             InteractionData.Instance.Method == InteractionMethod.MouseDwell)
+         if (InteractionData.Instance.interactionMethod == InteractionMethod.Tobii ||
+             InteractionData.Instance.interactionMethod == InteractionMethod.MouseDwell)
          {
             DeactivatePanel(CurrentPanel);
             if (CurrentPanel == 0) ActivatePanel(1);

@@ -7,8 +7,8 @@ namespace DidStuffLab.Scripts.Managers
 {
     public class InteractionData : MonoBehaviour
     {
-        public InteractionMethod interactionMethod = 0;
         private float _dwellTime = 1f;
+        private InteractionMethod _interactionMethod;
         private static float DwellTimeFromPlayerPrefs
         {
             get => PlayerPrefs.GetFloat("DwellTime");
@@ -31,26 +31,28 @@ namespace DidStuffLab.Scripts.Managers
             }
         }
 
-        public InteractionMethod Method
+        public InteractionMethod interactionMethod
         {
-            get => interactionMethod;
+            get => _interactionMethod;
             set
             {
-                interactionMethod = value;
+                _interactionMethod = value;
                 MethodFromPlayerPrefs = value;
-                if (value == InteractionMethod.MouseDwell || value == InteractionMethod.Tobii)
-                    FindObjectOfType<InteractionManager>().SetSignifierActive(true);
-                else
-                    FindObjectOfType<InteractionManager>().SetSignifierActive(false);
+                CheckInteractionMethod(value);
             }
         }
+        
 
-        public void CheckInteractionMethod()
+        public void CheckInteractionMethod(InteractionMethod method)
         {
-            if (interactionMethod == InteractionMethod.MouseDwell || interactionMethod == InteractionMethod.Tobii)
+            if (method == InteractionMethod.MouseDwell || method == InteractionMethod.Tobii)
+            {
                 FindObjectOfType<InteractionManager>().SetSignifierActive(true);
+            }
             else
+            {
                 FindObjectOfType<InteractionManager>().SetSignifierActive(false);
+            }
         }
 
         public Vector2 InputPosition { get; set; } = Vector2.zero;
